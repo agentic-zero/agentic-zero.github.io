@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-E1.1",
+  "name": "Manage Supply Chain Governance",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "level": "L3",
+  "description": "Process of defining and maintaining the overall supply chain strategy, policies, and procedures",
+  "inputs": [
+    "supply chain strategy",
+    "organizational goals",
+    "industry trends"
+  ],
+  "outputs": [
+    "supply chain policies",
+    "procedures",
+    "standards"
+  ],
+  "kpis": [
+    "supply chain maturity",
+    "compliance rate"
+  ],
+  "related_processes": [
+    "SCOR-P1.1",
+    "SCOR-S1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

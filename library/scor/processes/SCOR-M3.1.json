@@ -1,0 +1,31 @@
+{
+  "process_id": "SCOR-M3.1",
+  "name": "Confirm Production",
+  "framework": "SCOR",
+  "domain": "Make",
+  "level": "L2",
+  "description": "Process of confirming production completion and updating inventory records",
+  "inputs": [
+    "production orders",
+    "material requirements"
+  ],
+  "outputs": [
+    "confirmed production",
+    "updated inventory records"
+  ],
+  "kpis": [
+    "production accuracy",
+    "inventory accuracy"
+  ],
+  "related_processes": [
+    "SCOR-M1.1",
+    "SCOR-M2.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "process industries"
+  ],
+  "compliance_flags": [],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.88
+}

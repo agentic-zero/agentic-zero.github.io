@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-S1.4",
+  "name": "Manage Supplier Contracts and Agreements",
+  "framework": "SCOR",
+  "domain": "Source",
+  "level": "L3",
+  "description": "Process of managing supplier contracts and agreements",
+  "inputs": [
+    "supplier contracts",
+    "agreements",
+    "negotiation data"
+  ],
+  "outputs": [
+    "updated contracts",
+    "agreement summaries"
+  ],
+  "kpis": [
+    "contract compliance rate",
+    "agreement renewal rate"
+  ],
+  "related_processes": [
+    "SCOR-S1.1",
+    "SCOR-S1.2"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

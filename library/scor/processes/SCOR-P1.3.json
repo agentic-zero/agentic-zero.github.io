@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-P1.3",
+  "name": "Determine Supply Chain Inventory Policy",
+  "framework": "SCOR",
+  "domain": "Plan",
+  "level": "L2",
+  "description": "Process of determining inventory policy to meet demand and minimize costs",
+  "inputs": [
+    "demand plan",
+    "supply chain requirements",
+    "inventory data"
+  ],
+  "outputs": [
+    "inventory policy",
+    "reorder points"
+  ],
+  "kpis": [
+    "inventory turnover",
+    "stockout rate"
+  ],
+  "related_processes": [
+    "SCOR-P1.1",
+    "SCOR-P2.3"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

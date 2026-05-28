@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-D1.3",
+  "name": "Deliver Engineer-to-Order Product",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "level": "L5",
+  "description": "Process of delivering engineered-to-order products to customers",
+  "inputs": [
+    "customer orders",
+    "design specifications",
+    "production schedules"
+  ],
+  "outputs": [
+    "delivered products",
+    "invoice and payment information"
+  ],
+  "kpis": [
+    "order fulfillment rate",
+    "on-time delivery rate",
+    "design-to-delivery cycle time"
+  ],
+  "related_processes": [
+    "SCOR-D1.1",
+    "SCOR-D1.2"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "aerospace",
+    "construction"
+  ],
+  "compliance_flags": [
+    "GxP if aerospace",
+    "EU GDPR if customer data"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.88
+}

@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-D1.2",
+  "name": "Deliver Make-to-Order Product",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "level": "L4",
+  "description": "Process of delivering made-to-order products to customers",
+  "inputs": [
+    "customer orders",
+    "production schedules",
+    "component availability"
+  ],
+  "outputs": [
+    "delivered products",
+    "invoice and payment information"
+  ],
+  "kpis": [
+    "order fulfillment rate",
+    "on-time delivery rate",
+    "production lead time"
+  ],
+  "related_processes": [
+    "SCOR-D1.1",
+    "SCOR-D1.3"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "aerospace",
+    "automotive"
+  ],
+  "compliance_flags": [
+    "GxP if aerospace",
+    "EU GDPR if customer data"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-P1.4",
+  "name": "Determine Supply Chain Transportation Policy",
+  "framework": "SCOR",
+  "domain": "Plan",
+  "level": "L2",
+  "description": "Process of determining transportation policy to meet demand and minimize costs",
+  "inputs": [
+    "demand plan",
+    "supply chain requirements",
+    "transportation data"
+  ],
+  "outputs": [
+    "transportation policy",
+    "carrier selection"
+  ],
+  "kpis": [
+    "transportation cost",
+    "on-time delivery rate"
+  ],
+  "related_processes": [
+    "SCOR-P1.1",
+    "SCOR-P2.4"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.88
+}

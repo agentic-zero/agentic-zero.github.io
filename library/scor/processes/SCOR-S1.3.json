@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-S1.3",
+  "name": "Manage Supplier Information and Performance",
+  "framework": "SCOR",
+  "domain": "Source",
+  "level": "L3",
+  "description": "Process of managing supplier information and evaluating supplier performance",
+  "inputs": [
+    "supplier information",
+    "performance data",
+    "quality metrics"
+  ],
+  "outputs": [
+    "supplier scorecards",
+    "supplier development plans"
+  ],
+  "kpis": [
+    "supplier quality rating",
+    "supplier delivery performance"
+  ],
+  "related_processes": [
+    "SCOR-S1.1",
+    "SCOR-S1.2"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

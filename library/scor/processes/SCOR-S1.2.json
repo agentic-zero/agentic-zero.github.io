@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-S1.2",
+  "name": "Authorize and Pay for Products and Services",
+  "framework": "SCOR",
+  "domain": "Source",
+  "level": "L2",
+  "description": "Process of authorizing and paying for products and services received from suppliers",
+  "inputs": [
+    "purchase orders",
+    "supplier invoices",
+    "receipts"
+  ],
+  "outputs": [
+    "payments to suppliers",
+    "updated inventory records"
+  ],
+  "kpis": [
+    "payment cycle time",
+    "invoice accuracy"
+  ],
+  "related_processes": [
+    "SCOR-S1.1",
+    "SCOR-D1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.95
+}

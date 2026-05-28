@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-R4.1",
+  "name": "Manage Return to Stock and Resale",
+  "framework": "SCOR",
+  "domain": "Return",
+  "level": "L4",
+  "description": "Process of managing the return to stock and resale of returned products",
+  "inputs": [
+    "repaired or refurbished products",
+    "disposition decision",
+    "resale instructions"
+  ],
+  "outputs": [
+    "returned products to stock",
+    "resale revenue"
+  ],
+  "kpis": [
+    "return to stock rate",
+    "resale revenue",
+    "resale cycle time"
+  ],
+  "related_processes": [
+    "SCOR-R3.1",
+    "SCOR-S4.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "electronics"
+  ],
+  "compliance_flags": [
+    "EU Consumer Rights Directive",
+    "US Consumer Product Safety Act"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.85
+}

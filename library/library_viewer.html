@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Zero — Library Viewer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04080f;--bg2:#070d18;--sur:#0d1828;--sur2:#111f35;--brd:#1a2e4a;--brd2:#0f1e30;--acc:#00d4ff;--acc2:#0097b8;--acc3:rgba(0,212,255,0.08);--grn:#00e676;--amb:#ffab40;--red:#ff5252;--w1:#f0f4f8;--w2:#8fa3c0;--w3:#4a6080;--mono:'DM Mono',monospace;--syne:'Syne',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w1);font-family:var(--mono);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+header{position:sticky;top:0;z-index:100;background:rgba(4,8,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd2);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.logo::before{content:'';width:6px;height:6px;background:var(--acc);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hstats{display:flex;align-items:center;gap:16px}
+.hstat{text-align:center}
+.hnum{font-family:var(--syne);font-size:16px;font-weight:800;color:var(--w1);line-height:1}
+.hnum span{color:var(--acc)}
+.hlbl{font-size:8px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;margin-top:2px}
+.hdiv{width:1px;height:28px;background:var(--brd)}
+#load-zone{max-width:560px;margin:80px auto;text-align:center;padding:0 32px;position:relative;z-index:1}
+.drop-area{border:1px dashed var(--brd);border-radius:8px;padding:48px 32px;cursor:pointer;transition:all 0.2s;background:var(--sur);margin-bottom:16px}
+.drop-area:hover,.drop-area.over{border-color:var(--acc2);background:var(--acc3)}
+.drop-icon{font-size:36px;margin-bottom:12px;opacity:0.4}
+.drop-title{font-family:var(--syne);font-size:18px;font-weight:700;color:var(--w1);margin-bottom:8px}
+.drop-sub{font-size:11px;color:var(--w3);line-height:1.7;margin-bottom:20px}
+.btn-pri{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bg);background:var(--acc);border:none;padding:11px 24px;border-radius:2px;cursor:pointer;transition:all 0.2s;margin-right:10px}
+.btn-pri:hover{background:#33dcff}
+.btn-sec{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w2);background:transparent;border:1px solid var(--brd);padding:11px 24px;border-radius:2px;cursor:pointer;transition:all 0.2s}
+.btn-sec:hover{border-color:var(--acc2);color:var(--w1)}
+.load-hint{font-size:10px;color:var(--w3);line-height:1.8;margin-top:12px}
+.load-hint code{color:var(--acc);background:var(--acc3);padding:1px 5px;border-radius:2px}
+#main{display:none;position:relative;z-index:1}
+.filters{padding:12px 32px;border-bottom:1px solid var(--brd2);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:rgba(7,13,24,0.9);position:sticky;top:57px;z-index:99}
+.flbl{font-size:9px;letter-spacing:2px;color:var(--w3);text-transform:uppercase}
+.fbtn{font-family:var(--mono);font-size:10px;color:var(--w3);background:transparent;border:1px solid var(--brd);padding:4px 12px;border-radius:2px;cursor:pointer;transition:all 0.15s}
+.fbtn:hover{border-color:var(--acc2);color:var(--w2)}
+.fbtn.on{border-color:var(--acc);color:var(--acc);background:var(--acc3)}
+.srch{margin-left:auto;position:relative}
+.srch input{font-family:var(--mono);font-size:11px;background:var(--sur);border:1px solid var(--brd);border-radius:2px;padding:6px 12px 6px 28px;color:var(--w1);outline:none;width:200px;transition:border-color 0.2s}
+.srch input:focus{border-color:var(--acc2)}
+.srch input::placeholder{color:var(--w3)}
+.srch-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--w3);font-size:12px;pointer-events:none}
+.stats{padding:20px 32px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sc{background:var(--sur);border:1px solid var(--brd);border-radius:4px;padding:14px 16px}
+.sn{font-family:var(--syne);font-size:24px;font-weight:800;color:var(--w1);line-height:1;margin-bottom:4px}
+.sn span{color:var(--acc)}
+.sl{font-size:9px;letter-spacing:2px;color:var(--w3);text-transform:uppercase}
+.grid{padding:0 32px 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--brd);border-radius:4px;overflow:hidden;cursor:pointer;transition:all 0.2s}
+.card:hover{border-color:var(--acc2);transform:translateY(-1px)}
+.card.open{border-color:var(--acc2)}
+.ctop{padding:16px;display:flex;gap:12px;align-items:flex-start}
+.cid{font-size:9px;letter-spacing:1px;color:var(--acc);background:var(--acc3);border:1px solid rgba(0,212,255,0.15);padding:3px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.clvl{font-size:8px;letter-spacing:1px;padding:2px 6px;border-radius:2px;text-transform:uppercase;margin-top:4px;display:block}
+.L1{background:rgba(0,230,118,0.1);color:var(--grn);border:1px solid rgba(0,230,118,0.2)}
+.L2{background:var(--acc3);color:var(--acc);border:1px solid rgba(0,212,255,0.2)}
+.L3{background:rgba(255,171,64,0.1);color:var(--amb);border:1px solid rgba(255,171,64,0.2)}
+.L4,.L5{background:rgba(255,82,82,0.1);color:var(--red);border:1px solid rgba(255,82,82,0.2)}
+.cmain{flex:1;min-width:0}
+.cname{font-family:var(--syne);font-size:13px;font-weight:700;color:var(--w1);margin-bottom:5px;line-height:1.3}
+.cdesc{font-size:10px;color:var(--w3);line-height:1.5}
+.cmeta{padding:0 16px 12px;display:flex;align-items:center;gap:6px}
+.cdot{width:5px;height:5px;border-radius:50%;background:var(--amb);flex-shrink:0}
+.cfw{font-size:9px;color:var(--w3)}
+.cconf{margin-left:auto;display:flex;align-items:center;gap:5px}
+.cbar{width:44px;height:3px;background:var(--brd);border-radius:2px;overflow:hidden}
+.cfill{height:100%;background:var(--grn);border-radius:2px}
+.cclbl{font-size:9px;color:var(--w3)}
+.detail{display:none;border-top:1px solid var(--brd2);background:var(--bg2)}
+.detail.open{display:block}
+.flow-sec{padding:12px 16px;border-bottom:1px solid var(--brd2)}
+.sec-lbl{font-size:8px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;margin-bottom:8px}
+.frow{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.ftag{font-size:9px;padding:2px 8px;border-radius:2px;white-space:nowrap}
+.fin{background:var(--acc3);color:var(--acc2);border:1px solid rgba(0,212,255,0.15)}
+.fproc{background:var(--sur2);color:var(--w2);border:1px solid var(--brd);font-weight:500}
+.fout{background:rgba(0,230,118,0.08);color:var(--grn);border:1px solid rgba(0,230,118,0.15)}
+.farr{color:var(--w3);font-size:11px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.dsec{padding:10px 16px;border-bottom:1px solid var(--brd2);border-right:1px solid var(--brd2)}
+.dsec:nth-child(even){border-right:none}
+.dsec:last-child,.dsec:nth-last-child(2):nth-child(odd){border-bottom:none}
+.tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.tag{font-size:9px;padding:2px 7px;border-radius:2px}
+.tkpi{background:var(--sur2);color:var(--w3);border:1px solid var(--brd)}
+.trel{background:rgba(255,171,64,0.1);color:var(--amb);border:1px solid rgba(255,171,64,0.15)}
+.tsec{background:var(--sur2);color:var(--w3);border:1px solid var(--brd)}
+.tcomp{background:rgba(255,171,64,0.1);color:var(--amb);border:1px solid rgba(255,171,64,0.2)}
+.cact{padding:10px 16px;display:flex;gap:6px;border-top:1px solid var(--brd2)}
+.act{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:2px;cursor:pointer;transition:all 0.15s;border:1px solid var(--brd);background:transparent;color:var(--w3)}
+.act:hover{border-color:var(--acc2);color:var(--acc);background:var(--acc3)}
+.act.p{border-color:var(--acc);color:var(--acc);background:var(--acc3)}
+.empty{grid-column:1/-1;text-align:center;padding:60px;color:var(--w3);font-size:12px}
+.empty h3{font-family:var(--syne);font-size:17px;color:var(--w2);margin-bottom:6px}
+.bpmn-wrap{padding:0 32px 32px}
+.bpmn-box{background:var(--sur);border:1px solid var(--brd);border-radius:4px;padding:20px;overflow-x:auto;margin-top:8px}
+.bpmn-title{font-size:9px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;margin-bottom:0}
+.footer{padding:10px 32px;background:var(--sur);border-top:1px solid var(--brd2);display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--w3);position:sticky;bottom:0;z-index:99}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--sur2);border:1px solid var(--acc2);border-radius:4px;padding:10px 18px;font-size:11px;color:var(--acc);z-index:9999;transform:translateY(60px);opacity:0;transition:all 0.3s;pointer-events:none}
+.toast.on{transform:translateY(0);opacity:1}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--brd);border-radius:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Agentic Zero · Library Viewer</div>
+  <div class="hstats" id="hstats" style="display:none">
+    <div class="hstat"><div class="hnum" id="hn1">0<span>+</span></div><div class="hlbl">Procesos</div></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><div class="hnum" id="hn2">0</div><div class="hlbl">Dominios</div></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><div class="hnum" id="hn3">0</div><div class="hlbl">Sectores</div></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><div class="hnum" id="hn4">0<span>%</span></div><div class="hlbl">Confianza</div></div>
+  </div>
+  <input type="file" id="fi" accept=".json" multiple style="display:none">
+</header>
+
+<div id="load-zone">
+  <div class="drop-area" id="drop">
+    <div class="drop-icon">📂</div>
+    <div class="drop-title">Biblioteca de procesos</div>
+    <div class="drop-sub">Arrastra archivos JSON o selecciónalos.<br>Archivos individuales de proceso o el resultado completo del Scout.</div>
+    <button class="btn-pri" onclick="document.getElementById('fi').click()">Seleccionar archivos</button>
+    <button class="btn-sec" onclick="loadDemo()">Ver demo</button>
+  </div>
+  <div class="load-hint">
+    Ruta: <code>F:\agentic-zero\library\scor\processes\</code><br>
+    Selecciona los <code>.json</code> individuales o <code>scout_scor_*.json</code>
+  </div>
+</div>
+
+<div id="main">
+  <div class="filters">
+    <span class="flbl">Dominio</span><div id="df" style="display:flex;gap:4px"></div>
+    <span class="flbl" style="margin-left:8px">Nivel</span><div id="lf" style="display:flex;gap:4px"></div>
+    <div class="srch"><span class="srch-ico">⌕</span><input id="srch" placeholder="Buscar..." oninput="applyF()"></div>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+  <div class="bpmn-wrap" id="bpmn-wrap" style="display:none">
+    <div class="bpmn-title" id="bpmn-ttl"></div>
+    <div class="bpmn-box" id="bpmn-box"></div>
+  </div>
+  <div class="footer">
+    <span id="finfo">Pioneer Team Scout — Agentic Zero Library v1.0</span>
+    <div style="display:flex;gap:6px">
+      <button class="act" onclick="expCSV()">CSV</button>
+      <button class="act" onclick="expJSON()">JSON</button>
+      <button class="act" onclick="clearAll()">Limpiar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let DB = [];
+let AF = {domain:'all',level:'all',search:''};
+
+const DEMO = [
+  {process_id:"SCOR-P1.1",name:"Identify, Prioritize and Aggregate SC Requirements",framework:"SCOR",domain:"Plan",level:"L2",description:"Collecting and prioritizing demand signals across the supply chain to create a unified view of requirements.",inputs:["demand signals","inventory data","capacity data","market forecasts"],outputs:["supply chain requirements","demand plan","priority list"],kpis:["forecast accuracy","planning cycle time","demand signal latency"],related_processes:["SCOR-P2.1","SCOR-P3.1","SCOR-S1.1"],sector_applicability:["manufacturing","distribution","pharma","food","chemical"],compliance_flags:["GxP if pharma","GDP if distribution","HACCP if food"],source:"Scout",confidence:0.95},
+  {process_id:"SCOR-P1.2",name:"Identify, Assess and Aggregate SC Resources",framework:"SCOR",domain:"Plan",level:"L2",description:"Identifying and evaluating available supply chain resources including capacity, inventory and supplier capabilities.",inputs:["capacity data","supplier data","inventory levels","production schedules"],outputs:["resource assessment","capacity plan","supplier scorecard"],kpis:["resource utilization","capacity availability","supplier performance"],related_processes:["SCOR-P1.1","SCOR-P2.2","SCOR-S2.1"],sector_applicability:["manufacturing","distribution","pharma","defense","automotive"],compliance_flags:["AS9100 if aerospace","IATF if automotive","GxP if pharma"],source:"Scout",confidence:0.93},
+  {process_id:"SCOR-P1.3",name:"Balance SC Resources with Requirements",framework:"SCOR",domain:"Plan",level:"L2",description:"Matching supply resources with demand requirements to create a balanced, executable supply chain plan.",inputs:["demand plan","resource assessment","constraints","business rules"],outputs:["balanced plan","gap analysis","action items"],kpis:["plan attainment","balance rate","exception rate"],related_processes:["SCOR-P1.1","SCOR-P1.2","SCOR-P2.3"],sector_applicability:["manufacturing","distribution","pharma","food","chemical","defense"],compliance_flags:["SOX if financial controls","GxP if pharma"],source:"Scout",confidence:0.94},
+  {process_id:"SCOR-P1.4",name:"Establish and Communicate SC Plans",framework:"SCOR",domain:"Plan",level:"L2",description:"Finalizing, approving and communicating supply chain plans to all relevant stakeholders.",inputs:["balanced plan","stakeholder requirements","approval workflow"],outputs:["approved plan","plan communications","performance targets"],kpis:["plan adherence","communication timeliness","stakeholder alignment"],related_processes:["SCOR-P1.3","SCOR-P2.4","SCOR-M1.4"],sector_applicability:["all sectors"],compliance_flags:["EU AI Act if AI-assisted","ISO 9001 quality planning"],source:"Scout",confidence:0.96},
+  {process_id:"SCOR-P2.1",name:"Identify, Prioritize and Aggregate Product Requirements",framework:"SCOR",domain:"Plan",level:"L2",description:"Identifying and prioritizing product-level requirements from demand signals and business objectives.",inputs:["sales orders","forecasts","product data","customer requirements"],outputs:["product requirements","priority list","demand signals"],kpis:["order fulfillment rate","forecast bias","demand signal accuracy"],related_processes:["SCOR-P1.1","SCOR-S1.1","SCOR-D1.1"],sector_applicability:["manufacturing","distribution","retail","pharma","food"],compliance_flags:["GxP batch tracking if pharma","FSMA if food","GDP if distribution"],source:"Scout",confidence:0.92}
+];
+
+document.getElementById('fi').addEventListener('change', function(e) {
+  if (e.target.files && e.target.files.length) { loadFiles(e.target.files); this.value=''; }
+});
+
+const drop = document.getElementById('drop');
+drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', ()=>drop.classList.remove('over'));
+drop.addEventListener('drop', e=>{ e.preventDefault(); drop.classList.remove('over'); loadFiles(e.dataTransfer.files); });
+
+function loadFiles(files) {
+  const jf = Array.from(files).filter(f=>f.name.endsWith('.json'));
+  if (!jf.length) { toast('No se encontraron archivos JSON'); return; }
+  toast('Cargando '+jf.length+' archivo(s)...');
+  let done=0; const found=[];
+  jf.forEach(f=>{
+    const r=new FileReader();
+    r.onerror=()=>{ done++; if(done===jf.length) finish(found); };
+    r.onload=e=>{
+      try {
+        const d=JSON.parse(e.target.result);
+        if(Array.isArray(d)) d.forEach(p=>{ if(p.process_id) found.push(norm(p)); });
+        else if(d.processes) d.processes.forEach(p=>{ if(p.process_id) found.push(norm(p)); });
+        else if(d.process_id) found.push(norm(d));
+        else console.warn('Formato desconocido en',f.name, Object.keys(d));
+      } catch(err){ console.error('JSON inválido en',f.name,err.message); }
+      done++;
+      if(done===jf.length) finish(found);
+    };
+    r.readAsText(f,'utf-8');
+  });
+}
+
+function finish(found) {
+  if (!found.length) { toast('No se encontraron procesos. Revisa F12 > Console.'); return; }
+  const ids=new Set(DB.map(p=>p.process_id));
+  found.forEach(p=>{ if(!ids.has(p.process_id)){ DB.push(p); ids.add(p.process_id); } });
+  renderAll();
+  toast(found.length+' procesos cargados');
+}
+
+function norm(p) {
+  return {
+    process_id: p.process_id||'UNKNOWN',
+    name: p.name||'Sin nombre',
+    framework: p.framework||'SCOR',
+    domain: p.domain||'General',
+    level: p.level||'L2',
+    description: p.description||'',
+    inputs: Array.isArray(p.inputs)?p.inputs:[],
+    outputs: Array.isArray(p.outputs)?p.outputs:[],
+    kpis: Array.isArray(p.kpis)?p.kpis:[],
+    related_processes: Array.isArray(p.related_processes)?p.related_processes:[],
+    sector_applicability: Array.isArray(p.sector_applicability)?p.sector_applicability:[],
+    compliance_flags: Array.isArray(p.compliance_flags)?p.compliance_flags:[],
+    source: p.source||'Scout',
+    confidence: typeof p.confidence==='number'?p.confidence:0.8
+  };
+}
+
+function loadDemo() {
+  DEMO.forEach(p=>{ if(!DB.find(x=>x.process_id===p.process_id)) DB.push(p); });
+  renderAll();
+  toast('Demo SCOR Plan cargada');
+}
+
+function renderAll() {
+  if (!DB.length) { toast('Sin procesos'); return; }
+  document.getElementById('load-zone').style.display='none';
+  document.getElementById('main').style.display='block';
+  document.getElementById('hstats').style.display='flex';
+
+  const domains=new Set(DB.map(p=>p.domain));
+  const sectors=new Set(DB.flatMap(p=>p.sector_applicability));
+  const avg=Math.round(DB.reduce((a,p)=>a+p.confidence,0)/DB.length*100);
+  document.getElementById('hn1').innerHTML=DB.length+'<span>+</span>';
+  document.getElementById('hn2').textContent=domains.size;
+  document.getElementById('hn3').textContent=sectors.size;
+  document.getElementById('hn4').innerHTML=avg+'<span>%</span>';
+
+  buildFilters();
+  buildStats();
+  applyF();
+}
+
+function buildFilters() {
+  const doms=['all',...new Set(DB.map(p=>p.domain))];
+  const lvls=['all',...new Set(DB.map(p=>p.level))].sort();
+  document.getElementById('df').innerHTML=doms.map(d=>`<button class="fbtn${d==='all'?' on':''}" onclick="setF('domain','${d}',this)">${d==='all'?'Todos':d}</button>`).join('');
+  document.getElementById('lf').innerHTML=lvls.map(l=>`<button class="fbtn${l==='all'?' on':''}" onclick="setF('level','${l}',this)">${l==='all'?'Todos':l}</button>`).join('');
+}
+
+function setF(type,val,btn) {
+  AF[type]=val;
+  btn.parentElement.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  applyF();
+}
+
+function buildStats() {
+  const domains=new Set(DB.map(p=>p.domain));
+  const sectors=new Set(DB.flatMap(p=>p.sector_applicability));
+  const wc=DB.filter(p=>p.compliance_flags.length>0).length;
+  const avg=Math.round(DB.reduce((a,p)=>a+p.confidence,0)/DB.length*100);
+  document.getElementById('stats').innerHTML=[
+    [DB.length+'<span>+</span>','Procesos mapeados'],
+    [domains.size,'Dominios SCOR'],
+    [sectors.size,'Sectores cubiertos'],
+    [wc,'Con compliance'],
+    [avg+'<span>%</span>','Confianza media']
+  ].map(([n,l])=>`<div class="sc"><div class="sn">${n}</div><div class="sl">${l}</div></div>`).join('');
+}
+
+function applyF() {
+  AF.search=document.getElementById('srch').value.toLowerCase();
+  let f=DB;
+  if(AF.domain!=='all') f=f.filter(p=>p.domain===AF.domain);
+  if(AF.level!=='all') f=f.filter(p=>p.level===AF.level);
+  if(AF.search) f=f.filter(p=>
+    p.name.toLowerCase().includes(AF.search)||
+    p.process_id.toLowerCase().includes(AF.search)||
+    p.description.toLowerCase().includes(AF.search)||
+    p.sector_applicability.some(s=>s.toLowerCase().includes(AF.search))
+  );
+  renderGrid(f);
+  document.getElementById('finfo').textContent=`Mostrando ${f.length} de ${DB.length} procesos — Pioneer Team Scout v1.0`;
+}
+
+function renderGrid(list) {
+  const g=document.getElementById('grid');
+  if (!list.length) { g.innerHTML='<div class="empty"><h3>Sin resultados</h3><p>Cambia los filtros o la búsqueda</p></div>'; return; }
+  g.innerHTML=list.map(p=>{
+    const c=Math.round(p.confidence*100);
+    const hc=p.compliance_flags.length>0;
+    return `<div class="card" data-id="${p.process_id}">
+      <div class="ctop" onclick="toggle('${p.process_id}')">
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;flex-shrink:0">
+          <span class="cid">${p.process_id}</span>
+          <span class="clvl ${p.level}">${p.level}</span>
+        </div>
+        <div class="cmain">
+          <div class="cname">${p.name}</div>
+          <div class="cdesc">${p.description||'—'}</div>
+        </div>
+      </div>
+      <div class="cmeta" onclick="toggle('${p.process_id}')">
+        ${hc?'<span class="cdot"></span>':''}
+        <span class="cfw">${p.framework} · ${p.domain}</span>
+        <div class="cconf"><div class="cbar"><div class="cfill" style="width:${c}%"></div></div><span class="cclbl">${c}%</span></div>
+      </div>
+      <div class="detail" id="d-${p.process_id}">
+        <div class="flow-sec">
+          <div class="sec-lbl">Flujo del proceso</div>
+          <div class="frow">
+            ${p.inputs.map(i=>`<span class="ftag fin">${i}</span>`).join('')}
+            <span class="farr">→</span>
+            <span class="ftag fproc">${p.process_id}</span>
+            <span class="farr">→</span>
+            ${p.outputs.map(o=>`<span class="ftag fout">${o}</span>`).join('')}
+          </div>
+        </div>
+        <div class="dgrid">
+          <div class="dsec"><div class="sec-lbl">KPIs</div><div class="tags">${p.kpis.map(k=>`<span class="tag tkpi">${k}</span>`).join('')||'—'}</div></div>
+          <div class="dsec"><div class="sec-lbl">Relacionados</div><div class="tags">${p.related_processes.map(r=>`<span class="tag trel">${r}</span>`).join('')||'—'}</div></div>
+          <div class="dsec"><div class="sec-lbl">Sectores</div><div class="tags">${p.sector_applicability.map(s=>`<span class="tag tsec">${s}</span>`).join('')||'—'}</div></div>
+          <div class="dsec"><div class="sec-lbl">Compliance</div><div class="tags">${p.compliance_flags.map(c=>`<span class="tag tcomp">${c}</span>`).join('')||'<span style="font-size:9px;color:var(--w3)">Sin flags</span>'}</div></div>
+        </div>
+        <div class="cact">
+          <button class="act p" onclick="showBPMN('${p.process_id}')">Ver BPMN</button>
+          <button class="act" onclick="copyP('${p.process_id}')">Copiar JSON</button>
+          <button class="act" onclick="markArchitect('${p.process_id}')">→ Architect</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggle(id) {
+  const card=document.querySelector(`[data-id="${id}"]`);
+  const det=document.getElementById('d-'+id);
+  const o=card.classList.toggle('open');
+  det.classList.toggle('open',o);
+}
+
+function showBPMN(id) {
+  const p=DB.find(x=>x.process_id===id);
+  if (!p) return;
+  const wrap=document.getElementById('bpmn-wrap');
+  document.getElementById('bpmn-ttl').textContent=`BPMN — ${p.process_id}: ${p.name}`;
+  wrap.style.display='block';
+
+  const bW=130,bH=40,gap=50;
+  const items=[...p.inputs,'▶'+p.process_id,...p.outputs];
+  const W=items.length*(bW+gap)+80, H=130;
+
+  let svg=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="font-family:'DM Mono',monospace">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a6080" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
+
+  items.forEach((item,i)=>{
+    const x=40+i*(bW+gap), y=H/2-bH/2;
+    const isP=item.startsWith('▶');
+    const isO=i>=p.inputs.length+1;
+    const fc=isP?'#111f35':isO?'rgba(0,230,118,0.08)':'rgba(0,212,255,0.08)';
+    const sc=isP?'#00d4ff':isO?'rgba(0,230,118,0.3)':'rgba(0,212,255,0.3)';
+    const tc=isP?'#f0f4f8':isO?'#00e676':'#0097b8';
+    const lbl=isP?item.replace('▶',''):item;
+    const disp=lbl.length>15?lbl.substring(0,15)+'…':lbl;
+    const cat=isP?'PROCESO':isO?'OUTPUT':'INPUT';
+    if(i>0) svg+=`<line x1="${x-gap+4}" y1="${H/2}" x2="${x-4}" y2="${H/2}" stroke="#4a6080" stroke-width="0.8" marker-end="url(#arr)"/>`;
+    svg+=`<rect x="${x}" y="${y}" width="${bW}" height="${bH}" rx="3" fill="${fc}" stroke="${sc}" stroke-width="${isP?1.5:0.8}"/>`;
+    svg+=`<text x="${x+bW/2}" y="${H/2}" text-anchor="middle" dominant-baseline="central" fill="${tc}" font-size="9" font-weight="${isP?500:400}">${disp}</text>`;
+    svg+=`<text x="${x+bW/2}" y="${y-7}" text-anchor="middle" fill="#4a6080" font-size="7" letter-spacing="1">${cat}</text>`;
+  });
+  svg+='</svg>';
+
+  const kpiH=p.kpis.length?`<div style="margin-top:14px"><div style="font-size:8px;letter-spacing:2px;color:#4a6080;text-transform:uppercase;margin-bottom:6px">KPIs</div><div style="display:flex;flex-wrap:wrap;gap:4px">${p.kpis.map(k=>`<span style="font-size:9px;padding:2px 8px;border-radius:2px;background:#111f35;color:#8fa3c0;border:1px solid #1a2e4a">${k}</span>`).join('')}</div></div>`:'';
+  const cmpH=p.compliance_flags.length?`<div style="margin-top:10px"><div style="font-size:8px;letter-spacing:2px;color:#4a6080;text-transform:uppercase;margin-bottom:6px">Compliance</div><div style="display:flex;flex-wrap:wrap;gap:4px">${p.compliance_flags.map(c=>`<span style="font-size:9px;padding:2px 8px;border-radius:2px;background:rgba(255,171,64,0.1);color:#ffab40;border:1px solid rgba(255,171,64,0.2)">${c}</span>`).join('')}</div></div>`:'';
+
+  document.getElementById('bpmn-box').innerHTML=svg+kpiH+cmpH;
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function copyP(id) {
+  const p=DB.find(x=>x.process_id===id);
+  if (!p) return;
+  navigator.clipboard.writeText(JSON.stringify(p,null,2)).then(()=>toast('JSON copiado'));
+}
+
+function markArchitect(id) {
+  toast(`${id} marcado para Architect`);
+}
+
+function expCSV() {
+  const h=['process_id','name','framework','domain','level','confidence'];
+  const r=DB.map(p=>h.map(k=>`"${String(p[k]).replace(/"/g,'""')}"`).join(','));
+  dl('agentic_zero_library.csv',[h.join(','),...r].join('\n'),'text/csv');
+  toast('CSV exportado');
+}
+
+function expJSON() {
+  dl('agentic_zero_library.json',JSON.stringify(DB,null,2),'application/json');
+  toast('JSON exportado');
+}
+
+function dl(name,content,type) {
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type}));
+  a.download=name; a.click();
+}
+
+function clearAll() {
+  if (!confirm('¿Limpiar todos los procesos?')) return;
+  DB.length=0;
+  document.getElementById('load-zone').style.display='block';
+  document.getElementById('main').style.display='none';
+  document.getElementById('hstats').style.display='none';
+  document.getElementById('bpmn-wrap').style.display='none';
+}
+
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),2500);
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.getElementById('bpmn-wrap').style.display='none'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-R2.1",
+  "name": "Inspect and Disposition Returned Products",
+  "framework": "SCOR",
+  "domain": "Return",
+  "level": "L4",
+  "description": "Process of inspecting and determining the disposition of returned products",
+  "inputs": [
+    "returned products",
+    "return material authorization number",
+    "product inspection criteria"
+  ],
+  "outputs": [
+    "disposition decision",
+    "repair or replacement instructions"
+  ],
+  "kpis": [
+    "inspection accuracy",
+    "disposition cycle time",
+    "return to stock rate"
+  ],
+  "related_processes": [
+    "SCOR-R1.1",
+    "SCOR-S2.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "electronics"
+  ],
+  "compliance_flags": [
+    "EU WEEE Directive",
+    "US EPA Regulations"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

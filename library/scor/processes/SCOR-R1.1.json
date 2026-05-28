@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-R1.1",
+  "name": "Return Material Authorization",
+  "framework": "SCOR",
+  "domain": "Return",
+  "level": "L3",
+  "description": "Process of authorizing and managing product returns from customers",
+  "inputs": [
+    "return request",
+    "product information",
+    "warranty data"
+  ],
+  "outputs": [
+    "return material authorization number",
+    "return shipping instructions"
+  ],
+  "kpis": [
+    "return rate",
+    "return processing time",
+    "return authorization rate"
+  ],
+  "related_processes": [
+    "SCOR-R2.1",
+    "SCOR-S1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "electronics"
+  ],
+  "compliance_flags": [
+    "EU Consumer Rights Directive",
+    "US Consumer Product Safety Act"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

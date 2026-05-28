@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-P1.2",
+  "name": "Analyze Supply Chain Capabilities and Capacity",
+  "framework": "SCOR",
+  "domain": "Plan",
+  "level": "L3",
+  "description": "Process of analyzing supply chain capabilities and capacity to meet demand",
+  "inputs": [
+    "supply chain requirements",
+    "capacity data",
+    "supplier data"
+  ],
+  "outputs": [
+    "supply chain capacity plan",
+    "capability analysis"
+  ],
+  "kpis": [
+    "capacity utilization",
+    "supplier performance"
+  ],
+  "related_processes": [
+    "SCOR-P1.1",
+    "SCOR-P2.2"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

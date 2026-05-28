@@ -1,0 +1,39 @@
+{
+  "process_id": "SCOR-E1.3",
+  "name": "Manage Supply Chain Information Systems",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "level": "L4",
+  "description": "Process of selecting, implementing, and maintaining supply chain information systems",
+  "inputs": [
+    "system requirements",
+    "vendor selection criteria",
+    "implementation plans"
+  ],
+  "outputs": [
+    "system design",
+    "implementation plan",
+    "training programs"
+  ],
+  "kpis": [
+    "system uptime",
+    "data accuracy"
+  ],
+  "related_processes": [
+    "SCOR-E1.1",
+    "SCOR-P1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution",
+    "EU GDPR"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.95
+}

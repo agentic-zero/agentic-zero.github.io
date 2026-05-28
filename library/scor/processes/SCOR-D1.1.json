@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-D1.1",
+  "name": "Deliver Stocked Product",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "level": "L3",
+  "description": "Process of delivering stocked products to customers",
+  "inputs": [
+    "customer orders",
+    "inventory data",
+    "shipping schedules"
+  ],
+  "outputs": [
+    "delivered products",
+    "invoice and payment information"
+  ],
+  "kpis": [
+    "order fulfillment rate",
+    "on-time delivery rate",
+    "inventory turnover"
+  ],
+  "related_processes": [
+    "SCOR-D1.2",
+    "SCOR-D1.3"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "e-commerce"
+  ],
+  "compliance_flags": [
+    "GDP if distribution",
+    "EU GDPR if customer data"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

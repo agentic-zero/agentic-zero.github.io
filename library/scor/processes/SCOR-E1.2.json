@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-E1.2",
+  "name": "Manage Supply Chain Organization",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "level": "L2",
+  "description": "Process of defining and maintaining the supply chain organization structure, roles, and responsibilities",
+  "inputs": [
+    "organizational design",
+    "job descriptions",
+    "training programs"
+  ],
+  "outputs": [
+    "organization chart",
+    "job descriptions",
+    "training plans"
+  ],
+  "kpis": [
+    "employee engagement",
+    "training completion rate"
+  ],
+  "related_processes": [
+    "SCOR-E1.1",
+    "SCOR-S1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

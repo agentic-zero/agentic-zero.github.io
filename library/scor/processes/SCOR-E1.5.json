@@ -1,0 +1,39 @@
+{
+  "process_id": "SCOR-E1.5",
+  "name": "Manage Supply Chain Data Governance",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "level": "L4",
+  "description": "Process of defining and maintaining the supply chain data governance framework, including data quality, security, and access controls",
+  "inputs": [
+    "data governance framework",
+    "data quality metrics",
+    "access control policies"
+  ],
+  "outputs": [
+    "data governance plan",
+    "data quality reports",
+    "access control lists"
+  ],
+  "kpis": [
+    "data quality",
+    "data security"
+  ],
+  "related_processes": [
+    "SCOR-E1.3",
+    "SCOR-P1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution",
+    "EU GDPR"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.95
+}

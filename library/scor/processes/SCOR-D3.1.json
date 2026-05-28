@@ -1,0 +1,37 @@
+{
+  "process_id": "SCOR-D3.1",
+  "name": "Manage Delivery Resources",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "level": "L2",
+  "description": "Process of managing delivery resources such as vehicles, equipment, and personnel",
+  "inputs": [
+    "delivery schedules",
+    "resource availability",
+    "maintenance schedules"
+  ],
+  "outputs": [
+    "managed delivery resources",
+    "resource utilization reports"
+  ],
+  "kpis": [
+    "resource utilization rate",
+    "delivery vehicle uptime"
+  ],
+  "related_processes": [
+    "SCOR-D1.1",
+    "SCOR-D1.2"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "logistics",
+    "transportation"
+  ],
+  "compliance_flags": [
+    "EU GDPR if driver data",
+    "OSHA if personnel safety"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

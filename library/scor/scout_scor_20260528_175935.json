@@ -1,0 +1,361 @@
+{
+  "framework": "SCOR",
+  "version": "12.0",
+  "scout_timestamp": "2026-05-28T17:59:35.191548",
+  "total_processes": 10,
+  "processes": [
+    {
+      "process_id": "SCOR-S1.1",
+      "name": "Schedule and Issue Purchase Orders",
+      "framework": "SCOR",
+      "domain": "Source",
+      "level": "L2",
+      "description": "Process of creating and issuing purchase orders to suppliers based on supply chain requirements",
+      "inputs": [
+        "supply chain requirements",
+        "supplier information",
+        "inventory data"
+      ],
+      "outputs": [
+        "purchase orders",
+        "supplier acknowledgments"
+      ],
+      "kpis": [
+        "purchase order cycle time",
+        "supplier lead time"
+      ],
+      "related_processes": [
+        "SCOR-P1.1",
+        "SCOR-S1.2"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution",
+        "pharma",
+        "food"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.95
+    },
+    {
+      "process_id": "SCOR-S1.2",
+      "name": "Authorize and Pay for Products and Services",
+      "framework": "SCOR",
+      "domain": "Source",
+      "level": "L2",
+      "description": "Process of authorizing and paying for products and services received from suppliers",
+      "inputs": [
+        "purchase orders",
+        "supplier invoices",
+        "receipts"
+      ],
+      "outputs": [
+        "payments to suppliers",
+        "updated inventory records"
+      ],
+      "kpis": [
+        "payment cycle time",
+        "invoice accuracy"
+      ],
+      "related_processes": [
+        "SCOR-S1.1",
+        "SCOR-D1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution",
+        "pharma",
+        "food"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.95
+    },
+    {
+      "process_id": "SCOR-S1.3",
+      "name": "Manage Supplier Information and Performance",
+      "framework": "SCOR",
+      "domain": "Source",
+      "level": "L3",
+      "description": "Process of managing supplier information and evaluating supplier performance",
+      "inputs": [
+        "supplier information",
+        "performance data",
+        "quality metrics"
+      ],
+      "outputs": [
+        "supplier scorecards",
+        "supplier development plans"
+      ],
+      "kpis": [
+        "supplier quality rating",
+        "supplier delivery performance"
+      ],
+      "related_processes": [
+        "SCOR-S1.1",
+        "SCOR-S1.2"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution",
+        "pharma",
+        "food"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.9
+    },
+    {
+      "process_id": "SCOR-S1.4",
+      "name": "Manage Supplier Contracts and Agreements",
+      "framework": "SCOR",
+      "domain": "Source",
+      "level": "L3",
+      "description": "Process of managing supplier contracts and agreements",
+      "inputs": [
+        "supplier contracts",
+        "agreements",
+        "negotiation data"
+      ],
+      "outputs": [
+        "updated contracts",
+        "agreement summaries"
+      ],
+      "kpis": [
+        "contract compliance rate",
+        "agreement renewal rate"
+      ],
+      "related_processes": [
+        "SCOR-S1.1",
+        "SCOR-S1.2"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution",
+        "pharma",
+        "food"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.9
+    },
+    {
+      "process_id": "SCOR-S1.5",
+      "name": "Conduct Supplier Audits and Assessments",
+      "framework": "SCOR",
+      "domain": "Source",
+      "level": "L4",
+      "description": "Process of conducting supplier audits and assessments to ensure compliance and quality",
+      "inputs": [
+        "supplier information",
+        "audit schedules",
+        "assessment criteria"
+      ],
+      "outputs": [
+        "audit reports",
+        "assessment results"
+      ],
+      "kpis": [
+        "audit completion rate",
+        "assessment score"
+      ],
+      "related_processes": [
+        "SCOR-S1.1",
+        "SCOR-S1.3"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution",
+        "pharma",
+        "food"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.85
+    },
+    {
+      "process_id": "SCOR-M1.1",
+      "name": "Schedule Production",
+      "framework": "SCOR",
+      "domain": "Make",
+      "level": "L3",
+      "description": "Process of creating and managing production schedules to meet customer demand",
+      "inputs": [
+        "production plans",
+        "inventory data",
+        "capacity data"
+      ],
+      "outputs": [
+        "production schedules",
+        "work orders"
+      ],
+      "kpis": [
+        "schedule adherence",
+        "production throughput"
+      ],
+      "related_processes": [
+        "SCOR-M2.1",
+        "SCOR-M3.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "process industries"
+      ],
+      "compliance_flags": [],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.92
+    },
+    {
+      "process_id": "SCOR-M2.1",
+      "name": "Release Production",
+      "framework": "SCOR",
+      "domain": "Make",
+      "level": "L2",
+      "description": "Process of releasing production orders to the shop floor",
+      "inputs": [
+        "production schedules",
+        "work orders"
+      ],
+      "outputs": [
+        "production orders",
+        "material requirements"
+      ],
+      "kpis": [
+        "production lead time",
+        "work-in-progress inventory"
+      ],
+      "related_processes": [
+        "SCOR-M1.1",
+        "SCOR-M3.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "process industries"
+      ],
+      "compliance_flags": [],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.9
+    },
+    {
+      "process_id": "SCOR-M3.1",
+      "name": "Confirm Production",
+      "framework": "SCOR",
+      "domain": "Make",
+      "level": "L2",
+      "description": "Process of confirming production completion and updating inventory records",
+      "inputs": [
+        "production orders",
+        "material requirements"
+      ],
+      "outputs": [
+        "confirmed production",
+        "updated inventory records"
+      ],
+      "kpis": [
+        "production accuracy",
+        "inventory accuracy"
+      ],
+      "related_processes": [
+        "SCOR-M1.1",
+        "SCOR-M2.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "process industries"
+      ],
+      "compliance_flags": [],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.88
+    },
+    {
+      "process_id": "SCOR-M4.1",
+      "name": "Test and Inspect Products",
+      "framework": "SCOR",
+      "domain": "Make",
+      "level": "L3",
+      "description": "Process of testing and inspecting products to ensure quality and compliance",
+      "inputs": [
+        "confirmed production",
+        "quality standards"
+      ],
+      "outputs": [
+        "tested and inspected products",
+        "quality reports"
+      ],
+      "kpis": [
+        "defect rate",
+        "test coverage"
+      ],
+      "related_processes": [
+        "SCOR-M3.1",
+        "SCOR-D1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "pharma",
+        "medical devices"
+      ],
+      "compliance_flags": [
+        "GxP if pharma",
+        "FDA if medical devices"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.85
+    },
+    {
+      "process_id": "SCOR-M5.1",
+      "name": "Pack and Prepare Products for Distribution",
+      "framework": "SCOR",
+      "domain": "Make",
+      "level": "L2",
+      "description": "Process of packing and preparing products for distribution to customers",
+      "inputs": [
+        "tested and inspected products",
+        "packaging materials"
+      ],
+      "outputs": [
+        "packed and prepared products",
+        "shipping documents"
+      ],
+      "kpis": [
+        "packaging lead time",
+        "shipping accuracy"
+      ],
+      "related_processes": [
+        "SCOR-M4.1",
+        "SCOR-D1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "distribution"
+      ],
+      "compliance_flags": [
+        "GDP if distribution"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.82
+    }
+  ],
+  "domains_covered": [
+    "Source",
+    "Make"
+  ],
+  "notes": "Researched by Scout Agent — Agentic Zero Pioneer Team",
+  "ready_for_architect": true
+}

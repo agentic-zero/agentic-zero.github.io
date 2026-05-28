@@ -1,0 +1,35 @@
+{
+  "process_id": "SCOR-M4.1",
+  "name": "Test and Inspect Products",
+  "framework": "SCOR",
+  "domain": "Make",
+  "level": "L3",
+  "description": "Process of testing and inspecting products to ensure quality and compliance",
+  "inputs": [
+    "confirmed production",
+    "quality standards"
+  ],
+  "outputs": [
+    "tested and inspected products",
+    "quality reports"
+  ],
+  "kpis": [
+    "defect rate",
+    "test coverage"
+  ],
+  "related_processes": [
+    "SCOR-M3.1",
+    "SCOR-D1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "pharma",
+    "medical devices"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "FDA if medical devices"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.85
+}

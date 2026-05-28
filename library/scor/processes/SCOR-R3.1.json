@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-R3.1",
+  "name": "Manage Return Repair and Refurbishment",
+  "framework": "SCOR",
+  "domain": "Return",
+  "level": "L5",
+  "description": "Process of managing the repair and refurbishment of returned products",
+  "inputs": [
+    "returned products",
+    "disposition decision",
+    "repair and refurbishment instructions"
+  ],
+  "outputs": [
+    "repaired or refurbished products",
+    "repair and refurbishment costs"
+  ],
+  "kpis": [
+    "repair and refurbishment cycle time",
+    "repair and refurbishment cost",
+    "quality of repaired or refurbished products"
+  ],
+  "related_processes": [
+    "SCOR-R2.1",
+    "SCOR-S3.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "retail",
+    "electronics"
+  ],
+  "compliance_flags": [
+    "EU RoHS Directive",
+    "US FDA Regulations"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.88
+}

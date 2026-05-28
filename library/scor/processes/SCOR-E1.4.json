@@ -1,0 +1,39 @@
+{
+  "process_id": "SCOR-E1.4",
+  "name": "Manage Supply Chain Compliance and Risk",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "level": "L3",
+  "description": "Process of identifying, assessing, and mitigating supply chain risks and ensuring compliance with regulations",
+  "inputs": [
+    "risk assessments",
+    "compliance requirements",
+    "mitigation plans"
+  ],
+  "outputs": [
+    "risk register",
+    "compliance reports",
+    "mitigation plans"
+  ],
+  "kpis": [
+    "risk mitigation effectiveness",
+    "compliance rate"
+  ],
+  "related_processes": [
+    "SCOR-E1.1",
+    "SCOR-S1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution",
+    "pharma",
+    "food"
+  ],
+  "compliance_flags": [
+    "GxP if pharma",
+    "GDP if distribution",
+    "EU GDPR"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

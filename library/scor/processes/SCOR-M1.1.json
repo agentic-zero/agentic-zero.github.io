@@ -1,0 +1,32 @@
+{
+  "process_id": "SCOR-M1.1",
+  "name": "Schedule Production",
+  "framework": "SCOR",
+  "domain": "Make",
+  "level": "L3",
+  "description": "Process of creating and managing production schedules to meet customer demand",
+  "inputs": [
+    "production plans",
+    "inventory data",
+    "capacity data"
+  ],
+  "outputs": [
+    "production schedules",
+    "work orders"
+  ],
+  "kpis": [
+    "schedule adherence",
+    "production throughput"
+  ],
+  "related_processes": [
+    "SCOR-M2.1",
+    "SCOR-M3.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "process industries"
+  ],
+  "compliance_flags": [],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

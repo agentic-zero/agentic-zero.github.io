@@ -1,0 +1,33 @@
+{
+  "process_id": "SCOR-M5.1",
+  "name": "Pack and Prepare Products for Distribution",
+  "framework": "SCOR",
+  "domain": "Make",
+  "level": "L2",
+  "description": "Process of packing and preparing products for distribution to customers",
+  "inputs": [
+    "tested and inspected products",
+    "packaging materials"
+  ],
+  "outputs": [
+    "packed and prepared products",
+    "shipping documents"
+  ],
+  "kpis": [
+    "packaging lead time",
+    "shipping accuracy"
+  ],
+  "related_processes": [
+    "SCOR-M4.1",
+    "SCOR-D1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "distribution"
+  ],
+  "compliance_flags": [
+    "GDP if distribution"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.82
+}

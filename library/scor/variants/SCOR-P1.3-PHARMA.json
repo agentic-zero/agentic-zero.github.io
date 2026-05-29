@@ -1,0 +1,37 @@
+{
+  "variant_id": "SCOR-P1.3-PHARMA",
+  "base_process_id": "SCOR-P1.3",
+  "sector": "pharma",
+  "name": "Determine Pharma Supply Chain Inventory Policy",
+  "description": "This process determines the inventory policy for pharmaceutical products, taking into account batch traceability, expiration dates, and regulatory requirements to ensure compliance with GxP, GMP, GDP, and ICH Q10 guidelines",
+  "sector_specific_inputs": [
+    "batch release data",
+    "product expiration dates",
+    "regulatory documentation",
+    "quality control data"
+  ],
+  "sector_specific_outputs": [
+    "inventory policy with batch tracking",
+    "reorder points with consideration of lead times and shelf life",
+    "validation documentation for automated decisions"
+  ],
+  "sector_specific_kpis": [
+    "batch turnover rate",
+    "expiration date compliance rate",
+    "audit trail completeness"
+  ],
+  "regulatory_requirements": [
+    "GxP compliance",
+    "GMP guidelines",
+    "GDP regulations",
+    "ICH Q10 quality management system",
+    "21 CFR Part 11 electronic signature and record-keeping"
+  ],
+  "compliance_frameworks": [
+    "GAMP 5 for automation validation",
+    "GCP for clinical trial supply chain management"
+  ],
+  "automation_complexity": "very_high",
+  "notes": "All automated decisions must be validated and documented per GxP, with a focus on batch traceability, electronic signatures, and audit trail maintenance. Deviation management and CAPA processes must be integrated into the inventory management system",
+  "confidence": 0.95
+}

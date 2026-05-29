@@ -1,0 +1,38 @@
+{
+  "variant_id": "SCOR-P1.2-FOOD",
+  "base_process_id": "SCOR-P1.2",
+  "sector": "food",
+  "name": "Analyze Food Supply Chain Capabilities and Capacity with Food Safety Considerations",
+  "description": "This process analyzes the food supply chain's capabilities and capacity to meet demand while ensuring compliance with food safety regulations and managing critical control points, allergen risks, and cold chain integrity",
+  "sector_specific_inputs": [
+    "HACCP plan",
+    "supplier food safety certifications",
+    "cold chain logistics data",
+    "allergen management protocols"
+  ],
+  "sector_specific_outputs": [
+    "food safety risk assessment",
+    "supplier verification and approval plan",
+    "recall procedure plan"
+  ],
+  "sector_specific_kpis": [
+    "percentage of suppliers with valid food safety certifications",
+    "cold chain integrity compliance rate",
+    "number of critical control points with validated logic"
+  ],
+  "regulatory_requirements": [
+    "HACCP",
+    "FSMA",
+    "BRC",
+    "IFS",
+    "ISO 22000",
+    "FSSC 22000"
+  ],
+  "compliance_frameworks": [
+    "GFSI",
+    "FDA regulations"
+  ],
+  "automation_complexity": "high",
+  "notes": "Implementation requires integration with food safety management systems and consideration of validated logic for critical control points. AI agents should be trained on food safety regulations and industry best practices to ensure accurate decision-making.",
+  "confidence": 0.95
+}

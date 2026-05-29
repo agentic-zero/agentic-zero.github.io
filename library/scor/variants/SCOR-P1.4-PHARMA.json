@@ -1,0 +1,38 @@
+{
+  "variant_id": "SCOR-P1.4-PHARMA",
+  "base_process_id": "SCOR-P1.4",
+  "sector": "pharma",
+  "name": "Determine Pharma Supply Chain Transportation Policy",
+  "description": "This process determines the transportation policy for pharmaceutical products, ensuring compliance with regulatory requirements such as GxP, GMP, GDP, and ICH Q10, while maintaining batch traceability, audit trails, and validation documentation",
+  "sector_specific_inputs": [
+    "cold chain requirements",
+    "temperature-controlled transportation data",
+    "product stability data",
+    "regulatory compliance documentation"
+  ],
+  "sector_specific_outputs": [
+    "validated transportation protocols",
+    "qualified carrier selection",
+    "transportation deviation management plan"
+  ],
+  "sector_specific_kpis": [
+    "temperature excursion rate",
+    "delivery time to patient or distribution center",
+    "compliance audit score"
+  ],
+  "regulatory_requirements": [
+    "GxP compliance",
+    "GMP for manufacturing",
+    "GDP for distribution",
+    "ICH Q10 for pharmaceutical quality systems",
+    "21 CFR Part 11 for electronic records and signatures"
+  ],
+  "compliance_frameworks": [
+    "GAMP 5 for automated systems",
+    "GCP for clinical trials",
+    "CAPA process for deviation management"
+  ],
+  "automation_complexity": "high",
+  "notes": "All automated decisions must be validated and documented per GxP, with a focus on batch traceability, audit trails, and electronic signatures. The system must also ensure that all transportation protocols are qualified and validated to prevent temperature excursions and ensure product stability",
+  "confidence": 0.92
+}

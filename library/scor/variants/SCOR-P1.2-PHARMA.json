@@ -1,0 +1,39 @@
+{
+  "variant_id": "SCOR-P1.2-PHARMA",
+  "base_process_id": "SCOR-P1.2",
+  "sector": "pharma",
+  "name": "Analyze Pharmaceutical Supply Chain Capabilities and Capacity",
+  "description": "This process involves analyzing the pharmaceutical supply chain's capabilities and capacity to meet demand while ensuring compliance with regulatory requirements such as GxP, GMP, and GDP. It includes evaluating the supply chain's ability to maintain batch traceability, manage audit trails, and implement electronic signatures, as well as validating automated decisions and documenting them according to GxP guidelines.",
+  "sector_specific_inputs": [
+    "batch release data",
+    "product quality control data",
+    "supplier qualification status",
+    "validation documentation for automated systems"
+  ],
+  "sector_specific_outputs": [
+    "validated supply chain capacity plan",
+    "capability analysis with risk assessment for pharmaceutical products",
+    "deviation management plan",
+    "CAPA (Corrective and Preventive Action) process documentation"
+  ],
+  "sector_specific_kpis": [
+    "batch release cycle time",
+    "right-first-time (RFT) rate for batch releases",
+    "supplier performance in terms of quality and compliance",
+    "capacity utilization rate for critical pharmaceutical manufacturing equipment"
+  ],
+  "regulatory_requirements": [
+    "GxP compliance",
+    "GMP (Good Manufacturing Practice) adherence",
+    "GDP (Good Distribution Practice) compliance",
+    "ICH Q10 (Pharmaceutical Quality System) implementation",
+    "21 CFR Part 11 (Electronic Records and Signatures) compliance"
+  ],
+  "compliance_frameworks": [
+    "GAMP 5 (Good Automated Manufacturing Practice) for automated systems",
+    "ISO 13485 (Medical Devices) for quality management systems"
+  ],
+  "automation_complexity": "very_high",
+  "notes": "Implementation of this process requires careful consideration of regulatory requirements and validation of automated decisions. The AI agent should be trained on pharmaceutical industry data and be able to handle complex validation and documentation requirements.",
+  "confidence": 0.95
+}

@@ -1,0 +1,38 @@
+{
+  "variant_id": "SCOR-P1.5-PHARMA",
+  "base_process_id": "SCOR-P1.5",
+  "sector": "pharma",
+  "name": "Manage Pharmaceutical Supply Chain Risk",
+  "description": "This process identifies and mitigates supply chain risks specific to the pharmaceutical industry, ensuring compliance with regulatory frameworks such as GxP, GMP, GDP, GCP, and ICH Q10. It involves assessing risks associated with batch traceability, audit trails, electronic signatures, validation documentation, deviation management, and CAPA processes.",
+  "sector_specific_inputs": [
+    "batch release data",
+    "supplier qualification status",
+    "cold chain monitoring data",
+    "serialization and aggregation data"
+  ],
+  "sector_specific_outputs": [
+    "risk assessment reports with focus on patient safety",
+    "mitigation plans for supply chain disruptions impacting drug availability",
+    "CAPA plans for addressing deviations and non-conformities"
+  ],
+  "sector_specific_kpis": [
+    "supply chain resilience index",
+    "time-to-market for new products",
+    "percentage of batches released on time"
+  ],
+  "regulatory_requirements": [
+    "GxP compliance",
+    "GMP adherence",
+    "GDP compliance for distribution",
+    "GCP compliance for clinical trials",
+    "ICH Q10 for pharmaceutical quality systems",
+    "21 CFR Part 11 for electronic records and signatures"
+  ],
+  "compliance_frameworks": [
+    "GAMP 5 for computerized systems validation",
+    "ISO 13485 for medical device quality management"
+  ],
+  "automation_complexity": "high",
+  "notes": "All automated decisions must be validated and documented per GxP, with a focus on data integrity and audit trails. Electronic signatures and validation documentation are crucial for compliance. The CAPA process must be integrated into the risk management framework to ensure timely and effective corrective actions.",
+  "confidence": 0.92
+}

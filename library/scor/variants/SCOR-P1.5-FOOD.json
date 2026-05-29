@@ -1,0 +1,38 @@
+{
+  "variant_id": "SCOR-P1.5-FOOD",
+  "base_process_id": "SCOR-P1.5",
+  "sector": "food",
+  "name": "Manage Food Supply Chain Risk",
+  "description": "Process of identifying and mitigating supply chain risks specific to food safety, quality, and regulatory compliance, including critical control points, allergen management, and cold chain integrity",
+  "sector_specific_inputs": [
+    "HACCP plans",
+    "supplier food safety certifications",
+    "cold chain monitoring data",
+    "allergen tracking information"
+  ],
+  "sector_specific_outputs": [
+    "food safety risk assessment",
+    "recall plan",
+    "supplier verification report"
+  ],
+  "sector_specific_kpis": [
+    "percentage of suppliers with valid food safety certifications",
+    "number of critical control points with validated logic",
+    "cold chain integrity compliance rate"
+  ],
+  "regulatory_requirements": [
+    "HACCP",
+    "FSMA",
+    "BRC",
+    "IFS",
+    "ISO 22000",
+    "FSSC 22000"
+  ],
+  "compliance_frameworks": [
+    "GFSI",
+    "FDA regulations"
+  ],
+  "automation_complexity": "high",
+  "notes": "Food safety decisions at critical control points require validated logic and automation to ensure accuracy and compliance. Integration with ERP, CRM, and supply chain management systems is crucial for real-time monitoring and decision-making.",
+  "confidence": 0.9
+}

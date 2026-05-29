@@ -1,0 +1,41 @@
+{
+  "variant_id": "SCOR-P1.4-FOOD",
+  "base_process_id": "SCOR-P1.4",
+  "sector": "food",
+  "name": "Determine Food Supply Chain Transportation Policy",
+  "description": "Process of determining transportation policy to meet demand, minimize costs, and ensure food safety and quality in the food supply chain, considering critical control points, allergen management, and cold chain integrity",
+  "sector_specific_inputs": [
+    "HACCP plan",
+    "allergen management plan",
+    "cold chain requirements",
+    "supplier verification data",
+    "recall procedures"
+  ],
+  "sector_specific_outputs": [
+    "temperature-controlled transportation plan",
+    "allergen segregation plan",
+    "supplier approval list",
+    "recall procedure documentation"
+  ],
+  "sector_specific_kpis": [
+    "temperature deviation rate",
+    "allergen contamination rate",
+    "supplier compliance rate",
+    "recall response time"
+  ],
+  "regulatory_requirements": [
+    "HACCP",
+    "FSMA",
+    "BRC",
+    "IFS",
+    "ISO 22000",
+    "FSSC 22000"
+  ],
+  "compliance_frameworks": [
+    "GFSI",
+    "FDA regulations"
+  ],
+  "automation_complexity": "high",
+  "notes": "Food safety decisions at critical control points require validated logic and real-time monitoring. Automation should ensure data integrity, security, and compliance with regulatory requirements. Temperature control, allergen management, and recall procedures must be integrated into the transportation policy.",
+  "confidence": 0.92
+}

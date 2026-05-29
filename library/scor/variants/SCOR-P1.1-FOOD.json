@@ -1,0 +1,43 @@
+{
+  "variant_id": "SCOR-P1.1-FOOD",
+  "base_process_id": "SCOR-P1.1",
+  "sector": "food",
+  "name": "Identify, Prioritize and Aggregate Food Supply Chain Requirements",
+  "description": "Process of collecting and prioritizing demand signals across the food supply chain, considering critical control points, allergen management, and cold chain integrity to ensure food safety and compliance with regulatory frameworks",
+  "sector_specific_inputs": [
+    "allergen information",
+    "nutritional data",
+    "cold chain storage and transportation requirements",
+    "supplier food safety certifications",
+    "recall history"
+  ],
+  "sector_specific_outputs": [
+    "food safety risk assessments",
+    "supplier verification plans",
+    "recall procedures",
+    "cold chain integrity plans"
+  ],
+  "sector_specific_kpis": [
+    "food safety incident rate",
+    "supplier compliance rate",
+    "cold chain integrity rate",
+    "recall response time"
+  ],
+  "regulatory_requirements": [
+    "HACCP plan implementation",
+    "FSMA compliance",
+    "BRC or IFS certification",
+    "ISO 22000 or FSSC 22000 certification"
+  ],
+  "compliance_frameworks": [
+    "HACCP",
+    "FSMA",
+    "BRC",
+    "IFS",
+    "ISO 22000",
+    "FSSC 22000"
+  ],
+  "automation_complexity": "high",
+  "notes": "Food safety decisions at critical control points require validated logic and integration with food safety management systems. Automation should ensure data integrity, accuracy, and compliance with regulatory requirements.",
+  "confidence": 0.92
+}

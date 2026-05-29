@@ -1,0 +1,40 @@
+{
+  "variant_id": "SCOR-P1.3-FOOD",
+  "base_process_id": "SCOR-P1.3",
+  "sector": "food",
+  "name": "Determine Food Supply Chain Inventory Policy with Food Safety Considerations",
+  "description": "This process determines the inventory policy for food products, taking into account food safety requirements, such as critical control points, allergen management, and cold chain integrity, to minimize costs and ensure compliance with regulatory frameworks",
+  "sector_specific_inputs": [
+    "allergen information",
+    "cold chain requirements",
+    "supplier food safety certifications",
+    "recall procedure plans"
+  ],
+  "sector_specific_outputs": [
+    "inventory policy with food safety considerations",
+    "reorder points with buffer stock for food safety emergencies",
+    "supplier verification and approval criteria"
+  ],
+  "sector_specific_kpis": [
+    "percentage of inventory meeting food safety requirements",
+    "rate of food safety-related stockouts",
+    "supplier compliance rate with food safety regulations"
+  ],
+  "regulatory_requirements": [
+    "HACCP plan implementation",
+    "FSMA compliance",
+    "BRC or IFS certification",
+    "ISO 22000 or FSSC 22000 certification"
+  ],
+  "compliance_frameworks": [
+    "HACCP",
+    "FSMA",
+    "BRC",
+    "IFS",
+    "ISO 22000",
+    "FSSC 22000"
+  ],
+  "automation_complexity": "high",
+  "notes": "Food safety decisions at critical control points require validated logic and integration with food safety management systems. Automation should ensure data integrity, traceability, and compliance with regulatory requirements.",
+  "confidence": 0.95
+}

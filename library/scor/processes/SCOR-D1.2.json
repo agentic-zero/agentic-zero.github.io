@@ -1,38 +1,37 @@
 {
   "process_id": "SCOR-D1.2",
-  "name": "Deliver Make-to-Order Product",
-  "framework": "SCOR",
-  "domain": "Deliver",
+  "name": "Develop Design Chain Roadmap",
+  "framework": "SCOR-D",
+  "domain": "Design Chain",
   "level": "L4",
-  "description": "Process of delivering made-to-order products to customers",
+  "description": "Process of creating a detailed roadmap for the design chain, including key milestones and deliverables",
   "inputs": [
-    "customer orders",
-    "production schedules",
-    "component availability"
+    "design chain strategy",
+    "design chain objectives",
+    "resource availability"
   ],
   "outputs": [
-    "delivered products",
-    "invoice and payment information"
+    "design chain roadmap",
+    "project schedule"
   ],
   "kpis": [
-    "order fulfillment rate",
-    "on-time delivery rate",
-    "production lead time"
+    "roadmap adherence",
+    "milestone achievement",
+    "resource utilization"
   ],
   "related_processes": [
     "SCOR-D1.1",
-    "SCOR-D1.3"
+    "SCOR-P2.1"
   ],
   "sector_applicability": [
     "manufacturing",
-    "distribution",
+    "high-tech",
     "aerospace",
     "automotive"
   ],
   "compliance_flags": [
-    "GxP if aerospace",
-    "EU GDPR if customer data"
+    "GxP if pharma or medical devices"
   ],
   "source": "Scout research — APICS/ASCM",
-  "confidence": 0.9
+  "confidence": 0.85
 }

@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-D1.4",
+  "name": "Develop and Manage Design Standards and Specifications",
+  "framework": "SCOR-D",
+  "domain": "Design Chain",
+  "level": "L3",
+  "description": "Process of developing, maintaining, and managing design standards and specifications across the organization",
+  "inputs": [
+    "industry standards",
+    "regulatory requirements",
+    "customer requirements"
+  ],
+  "outputs": [
+    "design standards",
+    "design specifications"
+  ],
+  "kpis": [
+    "standards adherence",
+    "specification quality",
+    "design consistency"
+  ],
+  "related_processes": [
+    "SCOR-D1.1",
+    "SCOR-P2.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "high-tech",
+    "aerospace",
+    "automotive"
+  ],
+  "compliance_flags": [
+    "GxP if pharma or medical devices",
+    "EU AI Act if AI-driven design"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.9
+}

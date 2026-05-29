@@ -1,0 +1,38 @@
+{
+  "process_id": "SCOR-D1.5",
+  "name": "Manage Design Data and Intellectual Property",
+  "framework": "SCOR-D",
+  "domain": "Design Chain",
+  "level": "L4",
+  "description": "Process of managing design data and intellectual property across the organization, including data storage, security, and access control",
+  "inputs": [
+    "design data",
+    "intellectual property"
+  ],
+  "outputs": [
+    "managed design data",
+    "protected intellectual property"
+  ],
+  "kpis": [
+    "data security",
+    "access control",
+    "IP protection"
+  ],
+  "related_processes": [
+    "SCOR-D1.1",
+    "SCOR-P1.1"
+  ],
+  "sector_applicability": [
+    "manufacturing",
+    "high-tech",
+    "aerospace",
+    "automotive"
+  ],
+  "compliance_flags": [
+    "GxP if pharma or medical devices",
+    "EU AI Act if AI-driven design",
+    "GDPR if personal data"
+  ],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.85
+}

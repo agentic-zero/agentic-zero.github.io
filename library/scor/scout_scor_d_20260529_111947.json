@@ -1,0 +1,202 @@
+{
+  "framework": "SCOR-D",
+  "version": "1.0",
+  "scout_timestamp": "2026-05-29T11:19:47.102337",
+  "total_processes": 5,
+  "processes": [
+    {
+      "process_id": "SCOR-D1.1",
+      "name": "Define Design Chain Strategy",
+      "framework": "SCOR-D",
+      "domain": "Design Chain",
+      "level": "L3",
+      "description": "Process of defining the overall design chain strategy and objectives",
+      "inputs": [
+        "business objectives",
+        "customer requirements",
+        "market trends"
+      ],
+      "outputs": [
+        "design chain strategy",
+        "design chain objectives"
+      ],
+      "kpis": [
+        "time-to-market",
+        "design quality",
+        "cost of design"
+      ],
+      "related_processes": [
+        "SCOR-D1.2",
+        "SCOR-P1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "high-tech",
+        "aerospace",
+        "automotive"
+      ],
+      "compliance_flags": [
+        "EU AI Act if AI-driven design"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.9
+    },
+    {
+      "process_id": "SCOR-D1.2",
+      "name": "Develop Design Chain Roadmap",
+      "framework": "SCOR-D",
+      "domain": "Design Chain",
+      "level": "L4",
+      "description": "Process of creating a detailed roadmap for the design chain, including key milestones and deliverables",
+      "inputs": [
+        "design chain strategy",
+        "design chain objectives",
+        "resource availability"
+      ],
+      "outputs": [
+        "design chain roadmap",
+        "project schedule"
+      ],
+      "kpis": [
+        "roadmap adherence",
+        "milestone achievement",
+        "resource utilization"
+      ],
+      "related_processes": [
+        "SCOR-D1.1",
+        "SCOR-P2.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "high-tech",
+        "aerospace",
+        "automotive"
+      ],
+      "compliance_flags": [
+        "GxP if pharma or medical devices"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.85
+    },
+    {
+      "process_id": "SCOR-D1.3",
+      "name": "Design Product and Service Offerings",
+      "framework": "SCOR-D",
+      "domain": "Design Chain",
+      "level": "L5",
+      "description": "Process of designing new product and service offerings, including the development of product specifications and design documentation",
+      "inputs": [
+        "customer requirements",
+        "market trends",
+        "technological advancements"
+      ],
+      "outputs": [
+        "product design",
+        "service design",
+        "design documentation"
+      ],
+      "kpis": [
+        "design quality",
+        "time-to-market",
+        "customer satisfaction"
+      ],
+      "related_processes": [
+        "SCOR-D1.1",
+        "SCOR-P1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "high-tech",
+        "aerospace",
+        "automotive"
+      ],
+      "compliance_flags": [
+        "GxP if pharma or medical devices",
+        "EU AI Act if AI-driven design"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.8
+    },
+    {
+      "process_id": "SCOR-D1.4",
+      "name": "Develop and Manage Design Standards and Specifications",
+      "framework": "SCOR-D",
+      "domain": "Design Chain",
+      "level": "L3",
+      "description": "Process of developing, maintaining, and managing design standards and specifications across the organization",
+      "inputs": [
+        "industry standards",
+        "regulatory requirements",
+        "customer requirements"
+      ],
+      "outputs": [
+        "design standards",
+        "design specifications"
+      ],
+      "kpis": [
+        "standards adherence",
+        "specification quality",
+        "design consistency"
+      ],
+      "related_processes": [
+        "SCOR-D1.1",
+        "SCOR-P2.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "high-tech",
+        "aerospace",
+        "automotive"
+      ],
+      "compliance_flags": [
+        "GxP if pharma or medical devices",
+        "EU AI Act if AI-driven design"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.9
+    },
+    {
+      "process_id": "SCOR-D1.5",
+      "name": "Manage Design Data and Intellectual Property",
+      "framework": "SCOR-D",
+      "domain": "Design Chain",
+      "level": "L4",
+      "description": "Process of managing design data and intellectual property across the organization, including data storage, security, and access control",
+      "inputs": [
+        "design data",
+        "intellectual property"
+      ],
+      "outputs": [
+        "managed design data",
+        "protected intellectual property"
+      ],
+      "kpis": [
+        "data security",
+        "access control",
+        "IP protection"
+      ],
+      "related_processes": [
+        "SCOR-D1.1",
+        "SCOR-P1.1"
+      ],
+      "sector_applicability": [
+        "manufacturing",
+        "high-tech",
+        "aerospace",
+        "automotive"
+      ],
+      "compliance_flags": [
+        "GxP if pharma or medical devices",
+        "EU AI Act if AI-driven design",
+        "GDPR if personal data"
+      ],
+      "source": "Scout research — APICS/ASCM",
+      "confidence": 0.85
+    }
+  ],
+  "domains_covered": [
+    "Design Chain"
+  ],
+  "notes": "Researched by Scout Agent — Agentic Zero Pioneer Team",
+  "ready_for_architect": true
+}

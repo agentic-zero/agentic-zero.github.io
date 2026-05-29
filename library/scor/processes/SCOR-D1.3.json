@@ -1,38 +1,39 @@
 {
   "process_id": "SCOR-D1.3",
-  "name": "Deliver Engineer-to-Order Product",
-  "framework": "SCOR",
-  "domain": "Deliver",
+  "name": "Design Product and Service Offerings",
+  "framework": "SCOR-D",
+  "domain": "Design Chain",
   "level": "L5",
-  "description": "Process of delivering engineered-to-order products to customers",
+  "description": "Process of designing new product and service offerings, including the development of product specifications and design documentation",
   "inputs": [
-    "customer orders",
-    "design specifications",
-    "production schedules"
+    "customer requirements",
+    "market trends",
+    "technological advancements"
   ],
   "outputs": [
-    "delivered products",
-    "invoice and payment information"
+    "product design",
+    "service design",
+    "design documentation"
   ],
   "kpis": [
-    "order fulfillment rate",
-    "on-time delivery rate",
-    "design-to-delivery cycle time"
+    "design quality",
+    "time-to-market",
+    "customer satisfaction"
   ],
   "related_processes": [
     "SCOR-D1.1",
-    "SCOR-D1.2"
+    "SCOR-P1.1"
   ],
   "sector_applicability": [
     "manufacturing",
-    "distribution",
+    "high-tech",
     "aerospace",
-    "construction"
+    "automotive"
   ],
   "compliance_flags": [
-    "GxP if aerospace",
-    "EU GDPR if customer data"
+    "GxP if pharma or medical devices",
+    "EU AI Act if AI-driven design"
   ],
   "source": "Scout research — APICS/ASCM",
-  "confidence": 0.88
+  "confidence": 0.8
 }

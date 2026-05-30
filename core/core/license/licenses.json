@@ -1,0 +1,21 @@
+[
+  {
+    "key_id": "LIC-SCOR-P1.1-CLIENT00-202605",
+    "key_hash": "31770b945fc5cad018d1197309c2381b06e2b0225b098b3b4082f9b96376195f",
+    "process_id": "SCOR-P1.1",
+    "agent_name": "agent_scor_p1.1",
+    "client_id": "CLIENT001",
+    "client_name": "IFF Global",
+    "sector": "pharma",
+    "issued_at": "2026-05-30T12:34:09.961365",
+    "expires_at": "2027-05-25T12:34:09.961365",
+    "status": "active",
+    "plan": "retainer",
+    "monthly_fee_eur": 1500.0,
+    "last_validated": "2026-05-30T12:34:44.699199",
+    "suspension_date": null,
+    "return_date": null,
+    "reactivations": 0,
+    "notes": "Issued for IFF Global — SCOR-P1.1"
+  }
+]

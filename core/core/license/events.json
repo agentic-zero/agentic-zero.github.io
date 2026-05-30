@@ -1,0 +1,13 @@
+[
+  {
+    "timestamp": "2026-05-30T12:34:09.962333",
+    "key_id": "LIC-SCOR-P1.1-CLIENT00-202605",
+    "event_type": "issued",
+    "details": {
+      "client": "IFF Global",
+      "process_id": "SCOR-P1.1",
+      "plan": "retainer",
+      "expires": "2027-05-25T12:34:09.961365"
+    }
+  }
+]

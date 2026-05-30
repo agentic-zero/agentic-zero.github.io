@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Zero — Autonomy Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #04080f;
+  --bg2:     #070d18;
+  --sur:     #0d1828;
+  --sur2:    #111f35;
+  --brd:     #1a2e4a;
+  --brd2:    #0f1e30;
+  --acc:     #00d4ff;
+  --acc2:    #0097b8;
+  --acc3:    rgba(0,212,255,0.08);
+  --grn:     #00e676;
+  --grn2:    rgba(0,230,118,0.1);
+  --amb:     #ffab40;
+  --amb2:    rgba(255,171,64,0.1);
+  --red:     #ff5252;
+  --red2:    rgba(255,82,82,0.1);
+  --pur:     #b388ff;
+  --pur2:    rgba(179,136,255,0.1);
+  --w1:      #f0f4f8;
+  --w2:      #8fa3c0;
+  --w3:      #4a6080;
+  --mono:    'DM Mono', monospace;
+  --syne:    'Syne', sans-serif;
+  --serif:   'Instrument Serif', serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--w1);
+  font-family: var(--mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid bg */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(4,8,15,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--brd2);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 11px;
+  color: var(--acc);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo::before {
+  content:'';
+  width:6px; height:6px;
+  background: var(--grn);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.client-badge {
+  font-size: 10px;
+  color: var(--w2);
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border: 1px solid var(--brd);
+  border-radius: 2px;
+  background: var(--sur);
+}
+
+.live-badge {
+  font-size: 9px;
+  color: var(--grn);
+  background: var(--grn2);
+  border: 1px solid rgba(0,230,118,0.2);
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.live-badge::before {
+  content:'';
+  width:5px; height:5px;
+  background: var(--grn);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 56px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--brd2);
+  padding: 24px 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.nav-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.nav-label {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--w3);
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--w3);
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+
+.nav-item:hover { background: var(--sur); color: var(--w2); }
+.nav-item.active { background: var(--acc3); color: var(--acc); border-color: rgba(0,212,255,0.15); }
+
+.nav-icon { font-size: 13px; width: 16px; text-align: center; }
+
+.nav-count {
+  margin-left: auto;
+  font-size: 9px;
+  color: var(--w3);
+  background: var(--sur2);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.nav-count.alert { background: var(--amb2); color: var(--amb); }
+
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid var(--brd2);
+  margin-top: auto;
+}
+
+.agent-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--w3);
+  padding: 8px;
+  background: var(--sur);
+  border-radius: 4px;
+  border: 1px solid var(--brd);
+}
+
+.status-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.dot-green { background: var(--grn); animation: pulse 2s infinite; }
+.dot-amber { background: var(--amb); }
+.dot-red   { background: var(--red); }
+
+/* ── MAIN CONTENT ── */
+.main {
+  padding: 24px 32px;
+  overflow-y: auto;
+}
+
+/* ── KPI ROW ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-radius: 4px;
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.kpi-card:hover { border-color: var(--acc2); }
+
+.kpi-card::before {
+  content:'';
+  position: absolute;
+  top:0; left:0; right:0;
+  height: 2px;
+  background: var(--accent-color, var(--acc));
+  opacity: 0.6;
+}
+
+.kpi-label {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--w3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-family: var(--syne);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--w1);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.kpi-value span { color: var(--accent-color, var(--acc)); font-size: 14px; font-weight: 400; }
+
+.kpi-trend {
+  font-size: 10px;
+  color: var(--w3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kpi-trend.up { color: var(--grn); }
+.kpi-trend.down { color: var(--red); }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--w2);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::before {
+  content:'';
+  width: 16px;
+  height: 1px;
+  background: var(--acc);
+}
+
+.section-action {
+  font-size: 10px;
+  color: var(--acc);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* ── AGENT GRID ── */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.agent-card {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.agent-card:hover { border-color: var(--acc2); }
+.agent-card.running { border-color: rgba(0,230,118,0.3); }
+.agent-card.warning { border-color: rgba(255,171,64,0.3); }
+
+.agent-header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--brd2);
+}
+
+.agent-icon {
+  width: 32px; height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.icon-blue   { background: var(--acc3); border: 1px solid rgba(0,212,255,0.2); }
+.icon-green  { background: var(--grn2); border: 1px solid rgba(0,230,118,0.2); }
+.icon-amber  { background: var(--amb2); border: 1px solid rgba(255,171,64,0.2); }
+.icon-purple { background: var(--pur2); border: 1px solid rgba(179,136,255,0.2); }
+
+.agent-info { flex: 1; min-width: 0; }
+
+.agent-name {
+  font-family: var(--syne);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--w1);
+  margin-bottom: 2px;
+}
+
+.agent-process {
+  font-size: 9px;
+  color: var(--w3);
+  letter-spacing: 1px;
+}
+
+.agent-status-badge {
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.badge-running { background: var(--grn2); color: var(--grn); border: 1px solid rgba(0,230,118,0.2); }
+.badge-idle    { background: var(--sur2); color: var(--w3); border: 1px solid var(--brd); }
+.badge-warning { background: var(--amb2); color: var(--amb); border: 1px solid rgba(255,171,64,0.2); }
+.badge-error   { background: var(--red2); color: var(--red); border: 1px solid rgba(255,82,82,0.2); }
+
+.agent-metrics {
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-bottom: 1px solid var(--brd2);
+}
+
+.metric-item { }
+
+.metric-val {
+  font-family: var(--syne);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--w1);
+  line-height: 1;
+}
+
+.metric-lbl {
+  font-size: 8px;
+  color: var(--w3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.agent-footer {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.last-run {
+  font-size: 9px;
+  color: var(--w3);
+}
+
+.mini-bar {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 20px;
+}
+
+.mini-bar-item {
+  width: 3px;
+  background: var(--acc2);
+  border-radius: 1px;
+  transition: height 0.3s;
+}
+
+/* ── EXECUTION LOG ── */
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.log-table th {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--w3);
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--brd);
+  background: var(--bg2);
+}
+
+.log-table td {
+  font-size: 11px;
+  color: var(--w2);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--brd2);
+  vertical-align: middle;
+}
+
+.log-table tr:hover td { background: var(--sur); }
+
+.log-id { font-family: var(--mono); color: var(--acc); font-size: 10px; }
+.log-status { }
+.log-time { color: var(--w3); font-size: 10px; }
+
+.status-pill {
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pill-success { background: var(--grn2); color: var(--grn); }
+.pill-warning { background: var(--amb2); color: var(--amb); }
+.pill-error   { background: var(--red2); color: var(--red); }
+.pill-running { background: var(--acc3); color: var(--acc); }
+
+/* ── ROI PANEL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.panel {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.panel-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--w3);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.roi-big {
+  font-family: var(--serif);
+  font-size: 48px;
+  color: var(--grn);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.roi-sub {
+  font-size: 11px;
+  color: var(--w3);
+  margin-bottom: 20px;
+}
+
+.roi-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--brd2);
+}
+
+.roi-row:last-child { border-bottom: none; }
+.roi-row-label { color: var(--w3); }
+.roi-row-value { color: var(--w1); font-weight: 500; }
+.roi-row-value.positive { color: var(--grn); }
+.roi-row-value.negative { color: var(--red); }
+
+/* ── COMPLIANCE PANEL ── */
+.compliance-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.compliance-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comp-bar-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--brd);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.comp-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.comp-label { font-size: 10px; color: var(--w2); width: 80px; flex-shrink: 0; }
+.comp-score { font-size: 10px; color: var(--w3); width: 32px; text-align: right; flex-shrink: 0; }
+
+/* ── AUDIT TRAIL ── */
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.audit-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--brd2);
+  align-items: flex-start;
+}
+
+.audit-item:last-child { border-bottom: none; }
+
+.audit-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.audit-content { flex: 1; }
+
+.audit-action {
+  font-size: 11px;
+  color: var(--w2);
+  margin-bottom: 2px;
+}
+
+.audit-meta {
+  font-size: 9px;
+  color: var(--w3);
+}
+
+/* ── CHART PLACEHOLDER ── */
+.mini-chart {
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  margin-top: 12px;
+}
+
+.chart-bar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.5s ease;
+  min-height: 4px;
+}
+
+/* ── EXPORT BTN ── */
+.export-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.btn-sm {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  border: 1px solid var(--brd);
+  background: transparent;
+  color: var(--w3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-sm:hover { border-color: var(--acc2); color: var(--acc); background: var(--acc3); }
+.btn-sm.primary { border-color: var(--acc); color: var(--acc); background: var(--acc3); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--brd); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Agentic Zero · Autonomy Dashboard</div>
+  <div class="header-right">
+    <div class="client-badge" id="client-name">IFF Global — Pharma Division</div>
+    <div class="live-badge">Live</div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="nav-section">
+      <div class="nav-label">Overview</div>
+      <div class="nav-item active" onclick="showSection('overview')">
+        <span class="nav-icon">◈</span> Dashboard
+      </div>
+      <div class="nav-item" onclick="showSection('agents')">
+        <span class="nav-icon">⬡</span> Agentes
+        <span class="nav-count" id="nav-agents">3</span>
+      </div>
+      <div class="nav-item" onclick="showSection('executions')">
+        <span class="nav-icon">▶</span> Ejecuciones
+        <span class="nav-count" id="nav-execs">247</span>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Análisis</div>
+      <div class="nav-item" onclick="showSection('roi')">
+        <span class="nav-icon">€</span> ROI Acumulado
+      </div>
+      <div class="nav-item" onclick="showSection('compliance')">
+        <span class="nav-icon">✓</span> Compliance
+      </div>
+      <div class="nav-item" onclick="showSection('audit')">
+        <span class="nav-icon">≡</span> Audit Trail
+        <span class="nav-count alert" id="nav-alerts">2</span>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Sistema</div>
+      <div class="nav-item" onclick="showSection('license')">
+        <span class="nav-icon">🔑</span> Licencia
+      </div>
+    </div>
+    <div style="padding:0 16px;margin-top:auto">
+      <div class="agent-status">
+        <div class="status-dot dot-green"></div>
+        <div>
+          <div style="font-size:10px;color:var(--w2)">supply_chain_req_mgr</div>
+          <div style="font-size:9px;color:var(--w3)">Ejecutando · ciclo #247</div>
+        </div>
+      </div>
+      <div class="agent-status" style="margin-top:6px">
+        <div class="status-dot dot-green"></div>
+        <div>
+          <div style="font-size:10px;color:var(--w2)">sc_resource_assessor</div>
+          <div style="font-size:9px;color:var(--w3)">Idle · último hace 2h</div>
+        </div>
+      </div>
+      <div class="agent-status" style="margin-top:6px">
+        <div class="status-dot dot-amber"></div>
+        <div>
+          <div style="font-size:10px;color:var(--w2)">sc_balance_optimizer</div>
+          <div style="font-size:9px;color:var(--w3)">Warning · revisar logs</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- KPI ROW -->
+    <div class="kpi-row">
+      <div class="kpi-card" style="--accent-color:var(--grn)">
+        <div class="kpi-label">Ejecuciones totales</div>
+        <div class="kpi-value" id="kpi-execs">247<span>+</span></div>
+        <div class="kpi-trend up">↑ +12 esta semana</div>
+      </div>
+      <div class="kpi-card" style="--accent-color:var(--acc)">
+        <div class="kpi-label">Tasa de éxito</div>
+        <div class="kpi-value" id="kpi-success">98.4<span>%</span></div>
+        <div class="kpi-trend up">↑ +0.3% vs mes anterior</div>
+      </div>
+      <div class="kpi-card" style="--accent-color:var(--amb)">
+        <div class="kpi-label">Ahorro acumulado</div>
+        <div class="kpi-value" id="kpi-savings">€<span id="savings-val">94K</span></div>
+        <div class="kpi-trend up">↑ €6.5K este mes</div>
+      </div>
+      <div class="kpi-card" style="--accent-color:var(--pur)">
+        <div class="kpi-label">Compliance score</div>
+        <div class="kpi-value" id="kpi-comp">96<span>%</span></div>
+        <div class="kpi-trend up">EU AI Act · GxP · NIST</div>
+      </div>
+      <div class="kpi-card" style="--accent-color:var(--red)">
+        <div class="kpi-label">Escalados a humano</div>
+        <div class="kpi-value" id="kpi-esc">4<span></span></div>
+        <div class="kpi-trend">de 247 ejecuciones (1.6%)</div>
+      </div>
+    </div>
+
+    <!-- AGENT CARDS -->
+    <div class="section-header">
+      <div class="section-title">Agentes activos</div>
+      <div class="section-action" onclick="exportAudit()">Exportar audit trail →</div>
+    </div>
+
+    <div class="agent-grid">
+      <div class="agent-card running">
+        <div class="agent-header">
+          <div class="agent-icon icon-green">⬡</div>
+          <div class="agent-info">
+            <div class="agent-name">Supply Chain Requirements Manager</div>
+            <div class="agent-process">SCOR-P1.1 · Plan · GxP Pharma</div>
+          </div>
+          <div class="agent-status-badge badge-running">Running</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="metric-item">
+            <div class="metric-val">147</div>
+            <div class="metric-lbl">Ejecuciones</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">99.3%</div>
+            <div class="metric-lbl">Éxito</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">2.4s</div>
+            <div class="metric-lbl">Avg. tiempo</div>
+          </div>
+        </div>
+        <div class="agent-footer">
+          <div class="last-run">Última ejecución: hace 3 min</div>
+          <div class="mini-bar" id="bar1"></div>
+        </div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-header">
+          <div class="agent-icon icon-blue">⬡</div>
+          <div class="agent-info">
+            <div class="agent-name">SC Resource Assessor</div>
+            <div class="agent-process">SCOR-P1.2 · Plan · GxP Pharma</div>
+          </div>
+          <div class="agent-status-badge badge-idle">Idle</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="metric-item">
+            <div class="metric-val">82</div>
+            <div class="metric-lbl">Ejecuciones</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">97.6%</div>
+            <div class="metric-lbl">Éxito</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">3.1s</div>
+            <div class="metric-lbl">Avg. tiempo</div>
+          </div>
+        </div>
+        <div class="agent-footer">
+          <div class="last-run">Última ejecución: hace 2 horas</div>
+          <div class="mini-bar" id="bar2"></div>
+        </div>
+      </div>
+
+      <div class="agent-card warning">
+        <div class="agent-header">
+          <div class="agent-icon icon-amber">⬡</div>
+          <div class="agent-info">
+            <div class="agent-name">SC Balance Optimizer</div>
+            <div class="agent-process">SCOR-P1.3 · Plan · GxP Pharma</div>
+          </div>
+          <div class="agent-status-badge badge-warning">Warning</div>
+        </div>
+        <div class="agent-metrics">
+          <div class="metric-item">
+            <div class="metric-val">18</div>
+            <div class="metric-lbl">Ejecuciones</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">88.9%</div>
+            <div class="metric-lbl">Éxito</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">8.7s</div>
+            <div class="metric-lbl">Avg. tiempo</div>
+          </div>
+        </div>
+        <div class="agent-footer">
+          <div class="last-run" style="color:var(--amb)">⚠ 2 excepciones pendientes</div>
+          <div class="mini-bar" id="bar3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO COL: ROI + COMPLIANCE -->
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">📈 ROI acumulado</div>
+        <div class="roi-big" id="roi-total">€94.2K</div>
+        <div class="roi-sub">Ahorro vs. proceso manual desde activación</div>
+        <div class="roi-breakdown">
+          <div class="roi-row">
+            <span class="roi-row-label">Coste manual evitado</span>
+            <span class="roi-row-value positive">+€101.800</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-row-label">Fee Agentic Zero</span>
+            <span class="roi-row-value negative">-€7.500</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-row-label">Ahorro neto</span>
+            <span class="roi-row-value positive">€94.200</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-row-label">Horas liberadas</span>
+            <span class="roi-row-value">255h</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-row-label">Errores evitados</span>
+            <span class="roi-row-value positive">19 incidencias</span>
+          </div>
+        </div>
+        <div class="mini-chart" id="roi-chart"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">🛡️ Compliance activo</div>
+        <div class="compliance-items">
+          <div class="compliance-item">
+            <div class="comp-label">EU AI Act</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:100%;background:var(--grn)"></div></div>
+            <div class="comp-score" style="color:var(--grn)">100%</div>
+          </div>
+          <div class="compliance-item">
+            <div class="comp-label">GxP / GMP</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:98%;background:var(--grn)"></div></div>
+            <div class="comp-score" style="color:var(--grn)">98%</div>
+          </div>
+          <div class="compliance-item">
+            <div class="comp-label">ISO 42001</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:94%;background:var(--acc)"></div></div>
+            <div class="comp-score" style="color:var(--acc)">94%</div>
+          </div>
+          <div class="compliance-item">
+            <div class="comp-label">NIST RMF</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:91%;background:var(--acc)"></div></div>
+            <div class="comp-score" style="color:var(--acc)">91%</div>
+          </div>
+          <div class="compliance-item">
+            <div class="comp-label">GDPR AI</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:100%;background:var(--grn)"></div></div>
+            <div class="comp-score" style="color:var(--grn)">100%</div>
+          </div>
+          <div class="compliance-item">
+            <div class="comp-label">21 CFR P11</div>
+            <div class="comp-bar-wrap"><div class="comp-bar-fill" style="width:89%;background:var(--amb)"></div></div>
+            <div class="comp-score" style="color:var(--amb)">89%</div>
+          </div>
+        </div>
+        <div class="export-row">
+          <button class="btn-sm primary" onclick="exportCompliance()">Exportar para auditoría</button>
+          <button class="btn-sm" onclick="alert('Compliance report generado')">Ver certificado</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTION LOG -->
+    <div class="section-header">
+      <div class="section-title">Últimas ejecuciones</div>
+      <div class="section-action">Ver todo →</div>
+    </div>
+
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th>ID Ejecución</th>
+          <th>Agente</th>
+          <th>Proceso</th>
+          <th>Estado</th>
+          <th>Decisión</th>
+          <th>Tiempo</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="exec-log"></tbody>
+    </table>
+
+    <!-- AUDIT TRAIL -->
+    <div class="section-header">
+      <div class="section-title">Audit trail reciente</div>
+      <div class="section-action" onclick="exportAudit()">Exportar PDF →</div>
+    </div>
+
+    <div class="panel" style="margin-bottom:24px">
+      <div class="audit-list" id="audit-trail"></div>
+    </div>
+
+    <!-- LICENSE INFO -->
+    <div class="section-header">
+      <div class="section-title">Información de licencia</div>
+    </div>
+
+    <div class="panel" style="margin-bottom:32px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div>
+          <div class="kpi-label" style="margin-bottom:6px">Key ID</div>
+          <div style="font-size:11px;color:var(--acc)">LIC-SCOR-P1.1-IFF-202605</div>
+        </div>
+        <div>
+          <div class="kpi-label" style="margin-bottom:6px">Estado</div>
+          <div><span class="agent-status-badge badge-running">Activa</span></div>
+        </div>
+        <div>
+          <div class="kpi-label" style="margin-bottom:6px">Vence</div>
+          <div style="font-size:11px;color:var(--w2)">2027-05-25 <span style="color:var(--grn)">(359 días)</span></div>
+        </div>
+        <div>
+          <div class="kpi-label" style="margin-bottom:6px">Plan</div>
+          <div style="font-size:11px;color:var(--w2)">Autonomy Partner Retainer · €1.500/mes</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── MINI BARS ──
+function generateBars(id, color, count) {
+  const container = document.getElementById(id);
+  if (!container) return;
+  const heights = Array.from({length:count}, () => Math.random() * 16 + 4);
+  heights.forEach(h => {
+    const bar = document.createElement('div');
+    bar.className = 'mini-bar-item';
+    bar.style.height = h + 'px';
+    bar.style.background = color;
+    bar.style.opacity = '0.6';
+    container.appendChild(bar);
+  });
+}
+
+generateBars('bar1', 'var(--grn)', 12);
+generateBars('bar2', 'var(--acc)', 12);
+generateBars('bar3', 'var(--amb)', 12);
+
+// ── ROI CHART ──
+function generateROIChart() {
+  const container = document.getElementById('roi-chart');
+  if (!container) return;
+  const vals = [18,24,31,38,42,51,59,68,74,82,89,94];
+  const max = Math.max(...vals);
+  vals.forEach((v,i) => {
+    const bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    bar.style.height = (v/max*56+4) + 'px';
+    bar.style.background = i === vals.length-1 ? 'var(--grn)' : 'var(--acc2)';
+    bar.style.opacity = i === vals.length-1 ? '1' : '0.5';
+    bar.title = `Mes ${i+1}: €${v}K`;
+    container.appendChild(bar);
+  });
+}
+
+generateROIChart();
+
+// ── EXECUTION LOG ──
+const executions = [
+  {id:'EX-247',agent:'SC Requirements Manager',process:'SCOR-P1.1',status:'success',decision:'Auto-aprobado',time:'2.3s',ts:'hace 3 min'},
+  {id:'EX-246',agent:'SC Requirements Manager',process:'SCOR-P1.1',status:'success',decision:'Auto-aprobado',time:'2.1s',ts:'hace 18 min'},
+  {id:'EX-245',agent:'SC Resource Assessor',process:'SCOR-P1.2',status:'success',decision:'Auto-aprobado',time:'3.4s',ts:'hace 2h'},
+  {id:'EX-244',agent:'SC Balance Optimizer',process:'SCOR-P1.3',status:'warning',decision:'Escalado a humano',time:'8.7s',ts:'hace 3h'},
+  {id:'EX-243',agent:'SC Requirements Manager',process:'SCOR-P1.1',status:'success',decision:'Auto-aprobado',time:'2.4s',ts:'hace 4h'},
+  {id:'EX-242',agent:'SC Balance Optimizer',process:'SCOR-P1.3',status:'error',decision:'Fallo — reintentando',time:'—',ts:'hace 5h'},
+  {id:'EX-241',agent:'SC Resource Assessor',process:'SCOR-P1.2',status:'success',decision:'Auto-aprobado',time:'2.9s',ts:'hace 6h'},
+];
+
+const statusMap = {
+  success: '<span class="status-pill pill-success">Éxito</span>',
+  warning: '<span class="status-pill pill-warning">Warning</span>',
+  error:   '<span class="status-pill pill-error">Error</span>',
+  running: '<span class="status-pill pill-running">Running</span>'
+};
+
+const tbody = document.getElementById('exec-log');
+executions.forEach(e => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td class="log-id">${e.id}</td>
+    <td style="font-size:11px;color:var(--w2)">${e.agent}</td>
+    <td style="font-size:10px;color:var(--w3)">${e.process}</td>
+    <td>${statusMap[e.status]}</td>
+    <td style="font-size:10px;color:var(--w2)">${e.decision}</td>
+    <td class="log-time">${e.time}</td>
+    <td class="log-time">${e.ts}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// ── AUDIT TRAIL ──
+const auditEvents = [
+  {color:'var(--grn)',action:'SCOR-P1.1 ejecutado correctamente — demand plan generado',meta:'EX-247 · hace 3 min · supply_chain_req_mgr'},
+  {color:'var(--acc)',action:'Audit trail guardado — 15 decisiones documentadas',meta:'EX-247 · hace 3 min · sistema'},
+  {color:'var(--amb)',action:'SCOR-P1.3 escalado a humano — constraint no resuelta automáticamente',meta:'EX-244 · hace 3h · sc_balance_optimizer'},
+  {color:'var(--grn)',action:'Compliance GxP verificado — batch requirements validados',meta:'EX-243 · hace 4h · guardian'},
+  {color:'var(--red)',action:'SCOR-P1.3 fallo en ejecución — datos insuficientes',meta:'EX-242 · hace 5h · sc_balance_optimizer'},
+  {color:'var(--grn)',action:'SCOR-P1.2 ejecutado — resource assessment completado',meta:'EX-241 · hace 6h · sc_resource_assessor'},
+];
+
+const auditContainer = document.getElementById('audit-trail');
+auditEvents.forEach(e => {
+  const item = document.createElement('div');
+  item.className = 'audit-item';
+  item.innerHTML = `
+    <div class="audit-dot" style="background:${e.color}"></div>
+    <div class="audit-content">
+      <div class="audit-action">${e.action}</div>
+      <div class="audit-meta">${e.meta}</div>
+    </div>
+  `;
+  auditContainer.appendChild(item);
+});
+
+// ── NAVIGATION ──
+function showSection(section) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+// ── EXPORTS ──
+function exportAudit() {
+  const data = auditEvents.map(e => e.action + ' | ' + e.meta).join('\n');
+  const blob = new Blob([data], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'audit_trail_agentic_zero.txt';
+  a.click();
+}
+
+function exportCompliance() {
+  alert('Compliance report exportado para auditoría.\nFormato: JSON con certificados EU AI Act, GxP, ISO 42001, NIST, GDPR.');
+}
+
+// ── LIVE COUNTER ──
+let execCount = 247;
+setInterval(() => {
+  execCount++;
+  document.getElementById('kpi-execs').innerHTML = execCount + '<span>+</span>';
+  document.getElementById('nav-execs').textContent = execCount;
+}, 45000);
+</script>
+</body>
+</html>

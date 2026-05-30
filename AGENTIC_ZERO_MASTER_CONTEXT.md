@@ -427,3 +427,451 @@ Sep-Oct 2026: Fase 4 — Primer ingreso real
 *Documento generado automáticamente desde conversación fundacional*
 *Claude Sonnet 4.6 + Alberto Muñoz Waissen*
 *27 Mayo 2026 — Día 1 de Agentic Zero*
+
+
+# ACTULIZACION 30 MAYO
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Documento de recuperación de contexto completo
+### Versión: 2.0 | Fecha: 30 Mayo 2026 | Sesiones: 27-30 Mayo 2026
+
+---
+
+## 1. IDENTIDAD DE LA EMPRESA
+
+**Nombre:** AGENTIC ZERO
+**Tagline:** Autonomous Operations for Regulated Supply Chains
+**Subtítulo:** Building the Agentic Enterprise · Built for Complexity
+**Fundador:** Alberto Muñoz Waissen
+**Rol:** Founder & CEO
+**Fecha de fundación:** 27 Mayo 2026
+**Dominio:** agentic-zero.com
+**Web:** https://agentic-zero.github.io
+**Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. PROPUESTA DE VALOR
+
+### Mensaje principal
+"Construimos la empresa Agentic que los grandes persiguen y las medianas creen que no pueden permitirse."
+
+### Subtítulo
+"La empresa que opera sola ya no es el futuro. Es lo que construimos hoy."
+
+### Posicionamiento
+- Alta capacidad técnica + Alta accesibilidad económica
+- Agnóstico de plataforma (funciona sobre cualquier ERP sin migración)
+- Razonamiento regulatorio embebido desde el diseño
+- Conocimiento de dominio real en entornos regulados
+
+### Mercado objetivo
+Empresa mediana (50M-500M€) en sectores regulados europeos:
+Pharma · Defense · Chemical · Food · Automotive · MedTech · Logistics · Energy · Manufacturing · Distribution
+
+### Diferenciación
+- vs SAP Joule / Amazon: no requiere clean core ni migración 2-4 años
+- vs Big Four: 10 días vs 6 meses, ROI visible antes de comprometerse
+- vs Process Mining (Celonis): genera el agente que resuelve, no solo el diagnóstico
+- vs consultores genéricos: 25 años campo regulado + credenciales AI
+
+---
+
+## 3. PERFIL DEL FUNDADOR
+
+**Experiencia:** 25+ años · 30+ países · 400+ plantas · $420M valor demostrado · 20+ años consultoría digital
+
+**Credenciales:**
+- MIT Operations Research & Analytics
+- Oxford AI Governance
+- Vanderbilt Agentic AI Developer
+- IBM AI Engineering Professional
+- APICS SCOR-D
+- ERP Certified Consultant
+- EU AI Act · NIST AI RMF · ISO/IEC 42001
+
+**Referencias:** IFF Global (€30M, 150 personas, 20 países) · Indra Defense · Tiresur (€16M antidumping)
+
+---
+
+## 4. PRODUCTOS
+
+### AGENTIC ZERO AUDIT (entrada)
+- 10 días · ROI visible · Precio no publicado en web
+- Primer audit gratuito a cambio de caso de estudio
+- 5 fases: Intake → Mapeo → ROI & Compliance → Autonomy Map → Sesión Ejecutiva
+
+### AGENTIC ZERO SWARM (estrella)
+- Enjambre de agentes para alta complejidad
+- Donde un solo agente no es suficiente
+
+### AGENTIC ZERO PLATFORM (Fase 5 — futuro)
+- SaaS self-service L1-L2
+- Engine = Pioneer Team
+
+### Pricing interno (no publicado)
+- AUDIT Estándar: €12.000
+- AUDIT Regulado: €18.000
+- AUDIT Urgente 5d: €25.000
+- Quick Win: €25.000-45.000
+- Domain Cluster SCOR: €80.000-150.000
+- Retainer mensual: €15.000-25.000/mes
+
+---
+
+## 5. AI GOVERNANCE
+
+4 frameworks embebidos nativamente en cada agente:
+- **EU AI Act**: clasificación de riesgo. Obligatorio agosto 2026
+- **ISO/IEC 42001**: AI Management Systems
+- **NIST AI RMF**: Govern · Map · Measure · Manage
+- **GDPR AI**: intersección GDPR con sistemas AI autónomos
+
+---
+
+## 6. ARQUITECTURA TÉCNICA
+
+### Filosofía
+Modular · Abierto · Composable · API-first
+Coste mínimo sin perder al cliente
+**Agentic Zero es un COMPONENTE de una empresa agéntica mayor**
+
+### Stack por fase
+```
+Fase 1-2: Groq (gratuito) + Pioneer Team
+Fase 3:   + Paperclip AI + OpenClaw Communication Agent
+Fase 4:   + IBM Bob Skills pattern completo
+Fase 5:   Pioneer Team = SaaS Engine
+```
+
+### Política de tokens
+```
+ACTUAL: Groq gratuito — 100.000 tokens/día
+        Llama-3.3-70b-versatile
+        RPM=1 para Builder/Packager/Guardian
+        RPM=3 para Scout
+
+CUANDO HAYA INGRESOS:
+        Claude Opus para SWARM y procesos críticos
+        Groq Pro para nivel intermedio
+```
+
+### Módulos definidos
+```
+M1 — License Management & Library Return System
+M2 — Autonomy Dashboard
+M3 — ROI Calculator
+M4 — Compliance Engine evolutivo
+M5 — Pioneer Team Pipeline
+M6 — Library Management System
+M7 — API Gateway
+M8 — Message Queue System
+M9 — Library API Service
+M10 — Orchestration Interface Layer (Paperclip compatible)
+```
+
+---
+
+## 7. PIONEER TEAM — R&D ENGINE → SAAS ENGINE
+
+### Concepto
+Cadena de producción agéntica que construye la biblioteca internamente
+y se convierte en el engine de la plataforma SaaS en Fase 5.
+**API-first desde el día 1. Queue-based. Escala horizontalmente.**
+
+### Los 5 agentes
+
+| Agente | Rol | Estado | Archivo |
+|--------|-----|--------|---------|
+| SCOUT | Investigación y mapeo | ✅ FUNCIONANDO | pioneer_team/scout/scout.py |
+| ARCHITECT | Validación y variantes | ✅ FUNCIONANDO | pioneer_team/architect/architect.py |
+| BUILDER | IBM Bob pattern proceso→agente | ✅ CÓDIGO LISTO | pioneer_team/builder/builder.py |
+| PACKAGER | Product packager | ✅ CÓDIGO LISTO | pioneer_team/packager/packager.py |
+| GUARDIAN | Compliance & Quality | ✅ CÓDIGO LISTO | pioneer_team/guardian/guardian.py |
+
+### Configuración Groq
+```
+RPM Scout:     3 (20s entre llamadas)
+RPM Architect: 1 (60s entre llamadas)
+RPM Builder:   1 (60s entre llamadas)
+RPM Packager:  1 (60s entre llamadas)
+RPM Guardian:  1 (60s entre llamadas)
+Modelo:        groq/llama-3.3-70b-versatile
+Límite diario: 100.000 TPD
+```
+
+### Pipeline completo (cuando Groq tenga créditos)
+```powershell
+# Paso 1
+cd F:\agentic-zero\pioneer_team\builder
+python builder.py SCOR-P1.1
+
+# Paso 2
+cd F:\agentic-zero\pioneer_team\packager
+python packager.py SCOR-P1.1
+
+# Paso 3
+cd F:\agentic-zero\pioneer_team\guardian
+python guardian.py SCOR-P1.1
+```
+
+### Fix aplicado al Builder (30 Mayo 2026)
+El LLM generaba caracteres de control en el JSON del Step 3.
+Solución: Step 3 pide código Python directo (no JSON).
+El fix está en el builder.py actual en outputs.
+
+---
+
+## 8. BIBLIOTECA DE PROCESOS
+
+### Estado actual
+```
+✅ SCOR completo        — 31 procesos base (6 dominios)
+✅ Variantes Plan       — 10 variantes (PHARMA + FOOD)
+⏳ SCOR-D               — 5 procesos (Design Chain OK)
+                          Product Development + Network Design pendientes
+⏳ ISO 9001             — pendiente
+⏳ ISO 14001            — pendiente
+⏳ BPMN                 — pendiente
+```
+
+### Estructura de carpetas
+```
+F:\agentic-zero\library\
+  ├── scor\
+  │   ├── processes\      ← 31 JSON de procesos base SCOR
+  │   ├── variants\       ← 10 JSON de variantes sectoriales
+  │   ├── validations\    ← informes del Architect
+  │   ├── agents\         ← output del Builder
+  │   │   └── code\       ← código Python de agentes
+  │   ├── sops\           ← SOPs en Markdown
+  │   ├── packages\       ← output del Packager
+  │   ├── certificates\   ← output del Guardian
+  │   └── catalog.json    ← catálogo general
+  ├── iso\
+  ├── bpmn\
+  ├── sector_specific\
+  └── library_viewer.html ← visualizador operativo v1.1
+```
+
+### Para ampliar biblioteca (cuando Groq resetee)
+```powershell
+cd F:\agentic-zero\pioneer_team\scout
+
+# SCOR-D pendientes
+python scout.py SCOR-D "Product Development" "Network Design"
+
+# ISO 9001
+python scout.py ISO_9001
+
+# BPMN transversal
+python scout.py BPMN
+```
+
+### Library Viewer v1.1
+- Ruta: F:\agentic-zero\library\library_viewer.html
+- Abre con Live Server en VSCode
+- Soporta procesos base (azul) y variantes sectoriales (morado/violeta)
+- Filtros: Tipo (Todos/Base/Variantes/Revisión) · Dominio · Nivel
+- Badge ⬡ para variantes con sector
+- Badge ⚠ para revisión humana
+- Botón "✓ Aprobar para Builder" en procesos flaggeados
+- Stats: procesos base, variantes, revisión humana, dominios, sectores, confianza
+- Export CSV y JSON
+
+---
+
+## 9. SISTEMA DE RETENCIÓN
+
+### Separación de capas
+```
+Capa de DATOS          → del cliente, siempre suya
+Capa de INTELIGENCIA   → de Agentic Zero, requiere licencia activa
+```
+
+### License Management (M1)
+- License key que expira o se revoca
+- Modo suspendido: datos intactos, sin ejecución
+- Secuencia: -30 / -7 / 0 / +30 días
+- Reactivación recupera el agente donde lo dejó
+
+### Library Return Process
+1. Strip automático de datos del cliente
+2. Ontología base preservada
+3. Versión anonimizada entra a biblioteca mejorada
+
+### Métricas objetivo
+- Churn: < 5% anual
+- NRR: > 120%
+
+---
+
+## 10. ESTRATEGIA COMERCIAL
+
+### Principio clave
+**No salir al mercado hasta tener sistema funcionando.**
+LinkedIn y marketing cuando el producto esté listo para entregar.
+
+### Secuencia
+```
+Semanas 1-6:  ✅ Biblioteca SCOR construida
+Semana 7:     Primer pipeline Builder→Packager→Guardian completo
+Semana 8:     Primer AUDIT gratuito (caso de estudio)
+Semana 9-10:  Primer AUDIT pagado
+Mes 3:        Pipeline de 3 clientes en retainer
+```
+
+### Canales (cuando esté listo)
+1. Directo C-level vía LinkedIn
+2. Alianzas integradores SAP mid-size (split 40/60)
+3. Contenido: "Regulated Operations Autopilot"
+4. Red IFF/Indra como primeros contactos
+
+---
+
+## 11. INFRAESTRUCTURA ACTUAL
+
+### Dominios (IONOS)
+- agentic-zero.com (principal, €9/año)
+- agenticzero.es / .eu / .org / .store
+
+### Web
+- GitHub: github.com/agentic-zero/agentic-zero.github.io
+- Live: agentic-zero.com
+- Último commit web: index.html actualizado con botón "AGENTIC ZERO"
+
+### Proyecto técnico local
+```
+Ruta:    F:\agentic-zero\
+Python:  3.14.4
+Git:     2.54.0
+venv:    .venv (activar con .venv\Scripts\Activate.ps1)
+```
+
+### Git — commits principales
+```
+3835c0b — Initial structure — Agentic Zero v0.1.0
+7850982 — Pioneer Team Scout — SCOR complete 31 processes
+a666937 — Architect Agent + Library Viewer v1.1 — variants support
+bb66e29 — Pioneer Team complete — Builder + Packager + Guardian agents
+[pending] — Fix Builder: JSON control chars + Step 3 plain code
+```
+
+### Coste total acumulado
+```
+Dominio + hosting IONOS: €14,52
+API tokens:              €0.00
+Infraestructura:         €0.00
+TOTAL:                   €14,52
+```
+
+---
+
+## 12. ROADMAP
+
+```
+Mayo 2026 ✅:
+  Web online · Pioneer Team completo · Biblioteca SCOR
+  Library Viewer · Git configurado
+
+Junio 2026:
+  Pipeline completo Builder→Packager→Guardian
+  Primer agente certificado de la biblioteca
+  SCOR-D + ISO 9001 + BPMN completados
+  API Gateway básico (M7)
+  Queue básica (M8)
+  Primer AUDIT gratuito (caso de estudio)
+
+Julio 2026:
+  Paperclip AI integrado (orquestador)
+  Communication Agent
+  Sistema de retención (License Management M1)
+
+Agosto 2026:
+  Sistema estable
+  Primeros audits pagados
+
+Sep-Oct 2026:
+  Primer cliente en retainer
+  LinkedIn + marketing activo
+
+2027:
+  Plataforma SaaS
+  Pioneer Team = SaaS Engine
+  ARR €500K+
+```
+
+---
+
+## 13. POSICIONAMIENTO COMPETITIVO
+
+### TRL actual
+- Scout + Architect: 7/9 (funcionando en producción)
+- Builder + Packager + Guardian: 5/9 (código listo, pipeline por probar)
+- End-to-end proceso → agente certificado: 4/9 (pendiente primer run completo)
+- Empresa autónoma: 2/9
+
+### Ventana de oportunidad
+- 12-18 meses antes de que grandes vendors cubran mid-market regulado
+- EU AI Act obligatorio agosto 2026 → urgencia real en mercado
+
+### Fosos competitivos
+1. Dataset de outcomes en entornos regulados
+2. Ontologías verticales con compliance embebido
+3. Red de confianza pharma/defense/chemical
+4. Autoridad de contenido acumulada
+
+---
+
+## 14. PROTOCOLO DE RECUPERACIÓN
+
+### Si esta conversación se pierde
+
+**ESTADO TÉCNICO AL 30 MAYO 2026:**
+```
+✅ Scout Agent funcionando
+✅ Architect Agent funcionando (10 variantes generadas)
+✅ Builder Agent código listo (fix JSON aplicado)
+✅ Packager Agent código listo
+✅ Guardian Agent código listo
+✅ Library Viewer v1.1 operativo
+✅ 31 procesos SCOR en biblioteca
+✅ 10 variantes sectoriales
+⏳ Pipeline end-to-end pendiente (esperar reset Groq)
+⏳ SCOR-D completo (2 dominios pendientes)
+⏳ ISO 9001 pendiente
+⏳ BPMN pendiente
+```
+
+**PRÓXIMOS PASOS INMEDIATOS:**
+```
+1. Probar pipeline: builder.py → packager.py → guardian.py SCOR-P1.1
+2. Completar biblioteca: SCOR-D + ISO_9001 + BPMN con scout.py
+3. API Gateway básico (M7) — FastAPI
+4. Queue básica (M8)
+5. Primer proceso end-to-end a agente deployable
+```
+
+**PARA ACTIVAR EL ENTORNO:**
+```powershell
+cd F:\agentic-zero
+.venv\Scripts\Activate.ps1
+```
+
+**ARCHIVOS CLAVE:**
+```
+Scout:     F:\agentic-zero\pioneer_team\scout\scout.py
+Architect: F:\agentic-zero\pioneer_team\architect\architect.py
+Builder:   F:\agentic-zero\pioneer_team\builder\builder.py
+Packager:  F:\agentic-zero\pioneer_team\packager\packager.py
+Guardian:  F:\agentic-zero\pioneer_team\guardian\guardian.py
+Viewer:    F:\agentic-zero\library\library_viewer.html
+Config:    F:\agentic-zero\.env (GROQ_API_KEY configurada)
+```
+
+---
+
+*Versión 2.0 — Generado automáticamente*
+*Claude Sonnet 4.6 + Alberto Muñoz Waissen*
+*30 Mayo 2026 — Sprint 1 completado*

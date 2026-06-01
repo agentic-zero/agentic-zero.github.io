@@ -1,0 +1,27 @@
+[
+  {
+    "process_id": "SCOR-P1.1",
+    "agent_name": "supply_chain_optimizer_agent",
+    "framework": "SCOR",
+    "domain": "Plan",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-01T10:06:07.439300"
+  }
+]

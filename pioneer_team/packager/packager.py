@@ -1,14 +1,17 @@
 """
 AGENTIC ZERO — PIONEER TEAM
-Agent 3: BUILDER
-Role: Convert validated processes into functional agents (IBM Bob pattern)
-Input: Validated ProcessEntry from Architect
-Output: Functional agent code + ontology + tests
+Agent 4: PACKAGER
+Role: Package Builder output into deliverable product
+Input: BuilderResult (agent code + ontology + SOP + tests)
+Output: Complete product package ready for Guardian and delivery
 
-IBM Bob Pattern:
-  Process Description → SOP (Standard Operating Procedure)
-  SOP → Ontology (entities, relationships, rules)
-  Ontology → Agent (executable, testable, deployable)
+Responsibilities:
+- Generate product documentation
+- Create integration guides for common ERP systems
+- Generate demo scripts for executive sessions
+- Build pricing score based on complexity
+- Create library catalog entry
+- Prepare delivery package
 
 Architecture: API-first, queue-ready, zero-cost (Groq free tier)
 """
@@ -28,7 +31,7 @@ load_dotenv()
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
 logger.add(
-    "logs/builder_{time:YYYY-MM-DD}.log",
+    "logs/packager_{time:YYYY-MM-DD}.log",
     rotation="1 day",
     retention="30 days",
     level="INFO",
@@ -37,266 +40,94 @@ logger.add(
 
 
 # ── MODELS ────────────────────────────────────────────────────────────────────
-class ProcessOntology(BaseModel):
-    """Ontology extracted from a process — the structured knowledge layer"""
+class PricingScore(BaseModel):
+    """Complexity-based pricing score"""
 
     process_id: str
-    entities: list[str]  # Key entities involved
-    relationships: list[str]  # How entities relate
-    decision_points: list[str]  # Where decisions are made
-    rules: list[str]  # Business rules and constraints
-    exceptions: list[str]  # Exception cases to handle
-    data_requirements: list[str]  # Data needed to execute
-    triggers: list[str]  # What starts the process
-    success_criteria: list[str]  # How to know it succeeded
-    failure_modes: list[str]  # How it can fail
+    complexity_score: int  # 1-100
+    level: str  # L1/L2/L3/L4/L5
+    base_price_eur: float  # Suggested base price
+    regulated_surcharge: float  # Extra for regulated sectors
+    total_price_eur: float  # Final suggested price
+    price_rationale: str  # Why this price
+    roi_multiplier: float  # Expected ROI for client
 
 
-class AgentSpec(BaseModel):
-    """Specification for the generated agent"""
+class ProductPackage(BaseModel):
+    """Complete deliverable product package"""
 
     process_id: str
     agent_name: str
-    agent_type: str  # reactive / proactive / hybrid
-    capabilities: list[str]  # What the agent can do
-    tools_required: list[str]  # External tools/APIs needed
-    decision_logic: str  # How the agent makes decisions
-    escalation_rules: list[str]  # When to escalate to human
-    monitoring_metrics: list[str]  # What to track at runtime
-    compliance_checks: list[str]  # Compliance validations built-in
+    package_version: str  # e.g. "1.0.0"
+    packager_timestamp: str
+
+    # Documentation
+    product_summary: str  # 1-paragraph executive summary
+    value_proposition: str  # Why this agent matters
+    technical_summary: str  # Technical overview
+
+    # Integration
+    integration_guide: str  # How to deploy and connect
+    supported_systems: list[str]  # ERPs and systems it connects to
+    api_endpoints: list[str]  # API endpoints it exposes
+
+    # Demo materials
+    demo_script: str  # Script for executive demo session
+    demo_inputs: dict  # Example inputs for demo
+    expected_demo_outputs: dict  # Expected outputs for demo
+
+    # Catalog entry
+    catalog_entry: dict  # Library catalog entry
+    tags: list[str]  # Searchable tags
+    use_cases: list[str]  # Specific use cases
+
+    # Pricing
+    pricing: PricingScore
+
+    # Metadata
+    ready_for_guardian: bool
+    package_path: str
 
 
-class BuilderResult(BaseModel):
-    """Complete output from Builder for a process"""
-
-    process_id: str
-    builder_timestamp: str
-    ontology: ProcessOntology
-    agent_spec: AgentSpec
-    agent_code: str  # Python code for the agent
-    sop: str  # Standard Operating Procedure
-    test_cases: list[str]  # Test scenarios
-    deployment_notes: str
-    ready_for_packager: bool
-    estimated_token_cost: float  # Estimated cost per execution
-
-
-# ── BUILDER CONFIGURATION ────────────────────────────────────────────────────
-BUILDER_CONFIG = {
+# ── PACKAGER CONFIGURATION ────────────────────────────────────────────────────
+PACKAGER_CONFIG = {
     "model": os.getenv("GROQ_MODEL", "groq/llama-3.3-70b-versatile"),
-    "max_tokens": 6000,
+    "max_tokens": 4000,
     "temperature": 0.2,
     "rate_limit_rpm": 1,
     "rate_limit_rpd": 1400,
+    "package_version": "1.0.0",
 }
 
-# ── AGENT TEMPLATES ───────────────────────────────────────────────────────────
-AGENT_BASE_TEMPLATE = '''"""
-AGENTIC ZERO — Generated Agent
-Process: {process_id}
-Name: {agent_name}
-Framework: {framework}
-Domain: {domain}
-Generated: {timestamp}
-Compliance: {compliance}
+# ── PRICING MODEL ─────────────────────────────────────────────────────────────
+PRICING_CONFIG = {
+    "L1": {"base": 149, "roi_multiplier": 10.0},
+    "L2": {"base": 499, "roi_multiplier": 8.0},
+    "L3": {"base": 1500, "roi_multiplier": 6.0},
+    "L4": {"base": 5000, "roi_multiplier": 5.0},
+    "L5": {"base": 15000, "roi_multiplier": 4.0},
+}
 
-DO NOT EDIT MANUALLY — Regenerate via Builder Agent
-"""
+REGULATED_SURCHARGE = {
+    "pharma": 0.40,  # +40% for GxP/GMP
+    "defense": 0.50,  # +50% for classified/ITAR
+    "medtech": 0.45,  # +45% for ISO 13485/MDR
+    "chemical": 0.25,  # +25% for REACH/HARPC
+    "food": 0.20,  # +20% for HACCP/FSMA
+    "automotive": 0.15,  # +15% for IATF/APQP
+}
 
-import os
-import json
-from datetime import datetime
-from typing import Optional
-from loguru import logger
-
-
-class {class_name}:
-    """
-    Agent for: {process_name}
-    
-    {description}
-    
-    Capabilities:
-{capabilities}
-    
-    Compliance: {compliance}
-    """
-
-    def __init__(self, config: dict = None):
-        self.process_id = "{process_id}"
-        self.agent_name = "{agent_name}"
-        self.config = config or {{}}
-        self.execution_log = []
-        logger.info(f"Agent {{self.agent_name}} initialized")
-
-    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
-        """Validate required inputs before execution"""
-        required = {required_inputs}
-        missing = [r for r in required if r not in inputs]
-        if missing:
-            return False, [f"Missing required input: {{m}}" for m in missing]
-        return True, []
-
-    def execute(self, inputs: dict, context: dict = None) -> dict:
-        """
-        Main execution method
-        
-        Args:
-            inputs: Process inputs as defined in ontology
-            context: Optional execution context (sector, compliance level, etc.)
-            
-        Returns:
-            dict with outputs, status, audit_trail
-        """
-        start_time = datetime.now()
-        audit_trail = []
-        
-        # Step 1: Validate inputs
-        valid, errors = self.validate_inputs(inputs)
-        if not valid:
-            return {{
-                "status": "error",
-                "errors": errors,
-                "outputs": {{}},
-                "audit_trail": audit_trail
-            }}
-        
-        audit_trail.append({{
-            "step": "input_validation",
-            "status": "passed",
-            "timestamp": datetime.now().isoformat()
-        }})
-
-        try:
-            # Step 2: Execute process logic
-            outputs = self._process_logic(inputs, context or {{}})
-            
-            audit_trail.append({{
-                "step": "process_execution",
-                "status": "completed",
-                "timestamp": datetime.now().isoformat()
-            }})
-
-            # Step 3: Compliance checks
-            compliance_result = self._compliance_checks(inputs, outputs, context or {{}})
-            audit_trail.append({{
-                "step": "compliance_check",
-                "status": compliance_result["status"],
-                "details": compliance_result.get("details", []),
-                "timestamp": datetime.now().isoformat()
-            }})
-
-            # Step 4: Validate outputs
-            output_valid, output_errors = self._validate_outputs(outputs)
-            if not output_valid:
-                return {{
-                    "status": "error",
-                    "errors": output_errors,
-                    "outputs": outputs,
-                    "audit_trail": audit_trail
-                }}
-
-            execution_time = (datetime.now() - start_time).total_seconds()
-            
-            return {{
-                "status": "success",
-                "outputs": outputs,
-                "compliance": compliance_result,
-                "execution_time_seconds": execution_time,
-                "audit_trail": audit_trail,
-                "agent": self.agent_name,
-                "process_id": self.process_id,
-                "timestamp": datetime.now().isoformat()
-            }}
-
-        except Exception as e:
-            logger.error(f"Agent {{self.agent_name}} execution failed: {{e}}")
-            audit_trail.append({{
-                "step": "execution",
-                "status": "failed",
-                "error": str(e),
-                "timestamp": datetime.now().isoformat()
-            }})
-            return {{
-                "status": "error",
-                "errors": [str(e)],
-                "outputs": {{}},
-                "audit_trail": audit_trail
-            }}
-
-    def _process_logic(self, inputs: dict, context: dict) -> dict:
-        """
-        Core process logic — generated from ontology
-        
-        Decision points:
-{decision_points}
-        
-        Business rules:
-{rules}
-        """
-        outputs = {{}}
-        
-{process_logic}
-        
-        return outputs
-
-    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:
-        """
-        Built-in compliance validation
-        
-        Checks:
-{compliance_checks}
-        """
-        checks_passed = []
-        checks_failed = []
-        
-{compliance_logic}
-        
-        return {{
-            "status": "passed" if not checks_failed else "warning",
-            "passed": checks_passed,
-            "failed": checks_failed,
-            "details": checks_passed + checks_failed
-        }}
-
-    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
-        """Validate outputs meet process requirements"""
-        required_outputs = {required_outputs}
-        missing = [o for o in required_outputs if o not in outputs]
-        if missing:
-            return False, [f"Missing output: {{m}}" for m in missing]
-        return True, []
-
-    def should_escalate(self, result: dict) -> bool:
-        """Determine if result requires human escalation"""
-        escalation_rules = {escalation_rules}
-        if result.get("status") == "error":
-            return True
-        compliance = result.get("compliance", {{}})
-        if compliance.get("status") == "failed":
-            return True
-        return False
-
-    def get_metrics(self) -> dict:
-        """Return agent performance metrics"""
-        return {{
-            "process_id": self.process_id,
-            "agent_name": self.agent_name,
-            "executions": len(self.execution_log),
-            "monitoring": {monitoring_metrics}
-        }}
-
-
-# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
-if __name__ == "__main__":
-    agent = {class_name}()
-    
-    # Example execution
-    test_inputs = {test_inputs}
-    
-    result = agent.execute(test_inputs)
-    print(json.dumps(result, indent=2, default=str))
-'''
+SUPPORTED_SYSTEMS = [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection",
+]
 
 
 # ── RATE LIMITER ──────────────────────────────────────────────────────────────
@@ -316,18 +147,18 @@ class RateLimiter:
         self.last_call = time.time()
 
 
-rate_limiter = RateLimiter(rpm=BUILDER_CONFIG["rate_limit_rpm"])
+rate_limiter = RateLimiter(rpm=PACKAGER_CONFIG["rate_limit_rpm"])
 
 
 # ── LLM CALLER ────────────────────────────────────────────────────────────────
-def call_llm(prompt: str, expect_json: bool = True) -> str:
+def call_llm(prompt: str, expect_json: bool = False) -> str:
     rate_limiter.wait()
     try:
         response = litellm.completion(
-            model=BUILDER_CONFIG["model"],
+            model=PACKAGER_CONFIG["model"],
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=BUILDER_CONFIG["max_tokens"],
-            temperature=BUILDER_CONFIG["temperature"],
+            max_tokens=PACKAGER_CONFIG["max_tokens"],
+            temperature=PACKAGER_CONFIG["temperature"],
             api_key=os.getenv("GROQ_API_KEY"),
         )
         content = response.choices[0].message.content.strip()
@@ -340,223 +171,218 @@ def call_llm(prompt: str, expect_json: bool = True) -> str:
         raise
 
 
+# ── PRICING CALCULATOR ────────────────────────────────────────────────────────
+def calculate_pricing(process: dict, builder_result: dict) -> PricingScore:
+    """Calculate pricing score based on process complexity"""
+    level = process.get("level", "L2")
+    pricing = PRICING_CONFIG.get(level, PRICING_CONFIG["L2"])
+    base_price = pricing["base"]
+    roi_multiplier = pricing["roi_multiplier"]
+
+    # Calculate complexity score (1-100)
+    complexity_factors = {
+        "inputs_count": min(len(process.get("inputs", [])) * 5, 20),
+        "outputs_count": min(len(process.get("outputs", [])) * 5, 15),
+        "compliance_count": min(len(process.get("compliance_flags", [])) * 10, 30),
+        "kpis_count": min(len(process.get("kpis", [])) * 3, 15),
+        "level_base": {"L1": 10, "L2": 25, "L3": 50, "L4": 75, "L5": 90}.get(level, 25),
+    }
+    complexity_score = min(sum(complexity_factors.values()), 100)
+
+    # Calculate regulated surcharge
+    sector_list = " ".join(process.get("sector_applicability", [])).lower()
+    compliance_text = " ".join(process.get("compliance_flags", [])).lower()
+    max_surcharge = 0.0
+    for sector, surcharge in REGULATED_SURCHARGE.items():
+        if sector in sector_list or sector in compliance_text:
+            max_surcharge = max(max_surcharge, surcharge)
+
+    regulated_surcharge = base_price * max_surcharge
+    total_price = base_price + regulated_surcharge
+
+    rationale = f"Level {level} process with complexity score {complexity_score}/100"
+    if max_surcharge > 0:
+        rationale += f". Regulated sector surcharge {int(max_surcharge * 100)}% applied"
+
+    return PricingScore(
+        process_id=process.get("process_id", "UNKNOWN"),
+        complexity_score=complexity_score,
+        level=level,
+        base_price_eur=base_price,
+        regulated_surcharge=regulated_surcharge,
+        total_price_eur=total_price,
+        price_rationale=rationale,
+        roi_multiplier=roi_multiplier,
+    )
+
+
 # ── PROMPTS ───────────────────────────────────────────────────────────────────
-def build_ontology_prompt(process: dict) -> str:
-    return f"""You are a knowledge engineer building an ontology for an AI agent.
-
-PROCESS:
-{json.dumps(process, indent=2)}
-
-Extract the ontology for this process. Return ONLY a JSON object:
-{{
-  "entities": ["entity1", "entity2"],
-  "relationships": ["entity1 has entity2", "entity1 triggers entity2"],
-  "decision_points": ["IF condition THEN action"],
-  "rules": ["rule1: constraint or requirement"],
-  "exceptions": ["exception case and how to handle it"],
-  "data_requirements": ["data field: type and source"],
-  "triggers": ["what starts this process"],
-  "success_criteria": ["how to know the process succeeded"],
-  "failure_modes": ["how and why this process can fail"]
-}}
-
-Be specific and actionable. Each item should be implementable in code."""
-
-
-def build_agent_spec_prompt(process: dict, ontology: dict) -> str:
-    return f"""You are an AI agent architect designing an autonomous agent.
+def build_summary_prompt(process: dict, agent_spec: dict) -> str:
+    return f"""You are a product manager at Agentic Zero writing product documentation.
 
 PROCESS: {process.get("name")}
-ONTOLOGY: {json.dumps(ontology, indent=2)}
-COMPLIANCE: {", ".join(process.get("compliance_flags", []))}
+DESCRIPTION: {process.get("description")}
+AGENT TYPE: {agent_spec.get("agent_type")}
+CAPABILITIES: {agent_spec.get("capabilities", [])}
+COMPLIANCE: {process.get("compliance_flags", [])}
 
-Design the agent specification. Return ONLY a JSON object:
-{{
-  "agent_name": "descriptive_snake_case_name",
-  "agent_type": "reactive/proactive/hybrid",
-  "capabilities": ["capability1", "capability2"],
-  "tools_required": ["tool or API needed"],
-  "decision_logic": "brief description of how agent decides",
-  "escalation_rules": ["when to escalate to human"],
-  "monitoring_metrics": ["metric to track at runtime"],
-  "compliance_checks": ["compliance validation to run"]
-}}
+Write 3 sections. Return plain text, no JSON, no markdown headers:
 
-Agent type guide:
-- reactive: responds to events/requests
-- proactive: monitors and acts autonomously
-- hybrid: both reactive and proactive"""
+PRODUCT_SUMMARY: One paragraph (3-4 sentences) for executives explaining what this agent does and its business value.
+
+VALUE_PROPOSITION: One sentence that captures the core value. Start with "Automates" or "Eliminates" or "Transforms".
+
+TECHNICAL_SUMMARY: One paragraph (2-3 sentences) for technical teams explaining architecture and integration.
+
+Format exactly as:
+PRODUCT_SUMMARY: [text]
+VALUE_PROPOSITION: [text]
+TECHNICAL_SUMMARY: [text]"""
 
 
-def build_process_logic_prompt(process: dict, ontology: dict, agent_spec: dict) -> str:
-    return f"""You are a Python developer implementing an AI agent.
-
-PROCESS: {process.get("name")}
-INPUTS: {process.get("inputs", [])}
-OUTPUTS: {process.get("outputs", [])}
-DECISION POINTS: {ontology.get("decision_points", [])}
-RULES: {ontology.get("rules", [])}
-
-Write the Python implementation for these two methods.
-Return ONLY a JSON object with the code as strings:
-{{
-  "process_logic": "Python code for _process_logic method body (indented with 8 spaces)",
-  "compliance_logic": "Python code for _compliance_checks method body (indented with 8 spaces)"
-}}
-
-Rules:
-- Use only standard Python (no external imports)
-- outputs dict must contain: {process.get("outputs", [])}
-- Add comments explaining each step
-- Handle edge cases
-- Keep it practical and executable"""
-
-
-def build_test_cases_prompt(process: dict, agent_spec: dict) -> str:
-    return f"""You are a QA engineer writing test cases for an AI agent.
+def build_demo_script_prompt(
+    process: dict, agent_spec: dict, pricing: PricingScore
+) -> str:
+    return f"""You are preparing a demo script for an executive session at Agentic Zero.
 
 AGENT: {agent_spec.get("agent_name")}
 PROCESS: {process.get("name")}
-INPUTS: {process.get("inputs", [])}
-OUTPUTS: {process.get("outputs", [])}
-FAILURE MODES: []
+VALUE PROPOSITION: Automates {process.get("name")} with AI
+PRICE: €{pricing.total_price_eur:.0f}
+ROI MULTIPLIER: {pricing.roi_multiplier}x
 
-Write 5 test scenarios. Return ONLY a JSON array of strings:
-["Test 1: description of happy path test",
- "Test 2: description of edge case",
- "Test 3: description of failure case",
- "Test 4: description of compliance check",
- "Test 5: description of escalation scenario"]"""
+Write a concise demo script (5-7 steps) for a 10-minute executive demo.
+Focus on showing ROI and compliance value.
+Return plain text, numbered steps."""
 
 
-# ── CODE GENERATOR ────────────────────────────────────────────────────────────
-def generate_agent_code(
-    process: dict, ontology: dict, agent_spec: dict, logic: dict
-) -> str:
-    """Generate Python agent code from template"""
-    process_id = process.get("process_id", "UNKNOWN")
-    agent_name = agent_spec.get("agent_name", "generic_agent")
-    class_name = "".join(w.capitalize() for w in agent_name.split("_")) + "Agent"
+def build_use_cases_prompt(process: dict) -> str:
+    return f"""You are a business analyst at Agentic Zero.
 
-    # Format decision points and rules for docstring
-    decision_points = "\n".join(
-        [f"        # - {dp}" for dp in ontology.get("decision_points", [])]
-    )
-    rules = "\n".join([f"        # - {r}" for r in ontology.get("rules", [])])
-    compliance_checks_doc = "\n".join(
-        [f"        # - {c}" for c in agent_spec.get("compliance_checks", [])]
-    )
-    capabilities = "\n".join(
-        [f"    #   - {c}" for c in agent_spec.get("capabilities", [])]
-    )
-    monitoring_metrics = str(agent_spec.get("monitoring_metrics", []))
-    escalation_rules = str(agent_spec.get("escalation_rules", []))
+PROCESS: {process.get("name")}
+SECTORS: {process.get("sector_applicability", [])}
+COMPLIANCE: {process.get("compliance_flags", [])}
 
-    # Required inputs/outputs
-    required_inputs = str(
-        [i.replace(" ", "_").lower() for i in process.get("inputs", [])[:3]]
-    )
-    required_outputs = str(
-        [o.replace(" ", "_").lower() for o in process.get("outputs", [])[:2]]
-    )
+List 5 specific use cases where this agent delivers clear ROI.
+Return ONLY a JSON array of strings:
+["Use case 1: specific scenario with measurable outcome",
+ "Use case 2: ...",
+ ...]"""
 
-    # Test inputs example
-    test_inputs = "{"
+
+# ── LOCAL PACKAGER (no LLM needed for most tasks) ─────────────────────────────
+def build_catalog_entry(process: dict, agent_spec: dict, pricing: PricingScore) -> dict:
+    """Build library catalog entry — no LLM needed"""
+    return {
+        "process_id": process.get("process_id"),
+        "agent_name": agent_spec.get("agent_name"),
+        "framework": process.get("framework"),
+        "domain": process.get("domain"),
+        "level": process.get("level"),
+        "sector_applicability": process.get("sector_applicability", []),
+        "compliance_frameworks": process.get("compliance_flags", []),
+        "agent_type": agent_spec.get("agent_type"),
+        "capabilities_count": len(agent_spec.get("capabilities", [])),
+        "price_eur": pricing.total_price_eur,
+        "complexity_score": pricing.complexity_score,
+        "roi_multiplier": pricing.roi_multiplier,
+        "status": "ready_for_guardian",
+        "version": PACKAGER_CONFIG["package_version"],
+        "created_at": datetime.now().isoformat(),
+    }
+
+
+def build_integration_guide(process: dict, agent_spec: dict) -> str:
+    """Build integration guide — no LLM needed"""
+    lines = [
+        f"# Integration Guide — {agent_spec.get('agent_name')}",
+        f"**Process:** {process.get('name')}",
+        f"**Version:** {PACKAGER_CONFIG['package_version']}",
+        "",
+        "## Prerequisites",
+        "- Python 3.10+",
+        "- Agentic Zero runtime installed",
+        "- API credentials configured in .env",
+        "",
+        "## Installation",
+        "```bash",
+        f"# Copy agent to your project",
+        f"cp {agent_spec.get('agent_name')}.py ./agents/",
+        "```",
+        "",
+        "## Basic Usage",
+        "```python",
+        f"from agents.{agent_spec.get('agent_name')} import {agent_spec.get('agent_name', '').title().replace('_', '')}Agent",
+        "",
+        f"agent = {agent_spec.get('agent_name', '').title().replace('_', '')}Agent()",
+        "result = agent.execute({",
+    ]
     for inp in process.get("inputs", [])[:3]:
         key = inp.replace(" ", "_").lower()
-        test_inputs += f'"{key}": "example_{key}", '
-    test_inputs += "}"
-
-    # Process logic from LLM
-    process_logic = logic.get(
-        "process_logic",
-        "        # TODO: implement process logic\n        outputs['result'] = 'processed'",
-    )
-    compliance_logic = logic.get(
-        "compliance_logic",
-        "        checks_passed.append('No compliance checks defined')",
-    )
-
-    code = AGENT_BASE_TEMPLATE.format(
-        process_id=process_id,
-        agent_name=agent_name,
-        class_name=class_name,
-        framework=process.get("framework", "SCOR"),
-        domain=process.get("domain", ""),
-        timestamp=datetime.now().isoformat(),
-        compliance=", ".join(process.get("compliance_flags", ["none"])),
-        process_name=process.get("name", ""),
-        description=process.get("description", ""),
-        capabilities=capabilities,
-        required_inputs=required_inputs,
-        required_outputs=required_outputs,
-        decision_points=decision_points,
-        rules=rules,
-        process_logic=process_logic,
-        compliance_checks=compliance_checks_doc,
-        compliance_logic=compliance_logic,
-        escalation_rules=escalation_rules,
-        monitoring_metrics=monitoring_metrics,
-        test_inputs=test_inputs,
-    )
-
-    return code
-
-
-def build_sop(process: dict, ontology: dict) -> str:
-    """Generate Standard Operating Procedure document"""
-    lines = [
-        f"# SOP — {process.get('name', 'Unknown Process')}",
-        f"**Process ID:** {process.get('process_id', 'UNKNOWN')}",
-        f"**Framework:** {process.get('framework', '')} | **Domain:** {process.get('domain', '')}",
-        f"**Generated:** {datetime.now().strftime('%Y-%m-%d')}",
+        lines.append(f'    "{key}": your_{key}_data,')
+    lines += [
+        "})",
+        "print(result['outputs'])",
+        "```",
         "",
-        "## Purpose",
-        process.get("description", ""),
-        "",
-        "## Triggers",
+        "## Supported Systems",
     ]
-    for t in ontology.get("triggers", []):
-        lines.append(f"- {t}")
-    lines += ["", "## Inputs Required"]
-    for i in process.get("inputs", []):
-        lines.append(f"- {i}")
-    lines += ["", "## Process Steps"]
-    for j, dp in enumerate(ontology.get("decision_points", []), 1):
-        lines.append(f"{j}. {dp}")
-    lines += ["", "## Expected Outputs"]
-    for o in process.get("outputs", []):
-        lines.append(f"- {o}")
-    lines += ["", "## Business Rules"]
-    for r in ontology.get("rules", []):
-        lines.append(f"- {r}")
-    lines += ["", "## Exception Handling"]
-    for e in ontology.get("exceptions", []):
-        lines.append(f"- {e}")
-    lines += ["", "## Success Criteria"]
-    for s in ontology.get("success_criteria", []):
-        lines.append(f"- {s}")
-    lines += ["", "## Compliance Requirements"]
-    for c in process.get("compliance_flags", []):
-        lines.append(f"- {c}")
+    for system in SUPPORTED_SYSTEMS[:5]:
+        lines.append(f"- {system}")
+    lines += [
+        "",
+        "## Tools Required",
+    ]
+    for tool in agent_spec.get("tools_required", ["None required"]):
+        lines.append(f"- {tool}")
+    lines += [
+        "",
+        "## Escalation",
+        "The agent automatically escalates to human when:",
+    ]
+    for rule in agent_spec.get("escalation_rules", ["- Execution error detected"]):
+        lines.append(f"- {rule}")
     return "\n".join(lines)
 
 
+def build_api_endpoints(process: dict, agent_spec: dict) -> list[str]:
+    """Generate API endpoint definitions"""
+    agent_name = agent_spec.get("agent_name", "agent")
+    base = f"/api/v1/agents/{agent_name}"
+    return [
+        f"POST {base}/execute — Execute the agent with inputs",
+        f"GET  {base}/status — Get agent status and metrics",
+        f"GET  {base}/health — Health check",
+        f"GET  {base}/spec   — Get agent specification",
+        f"POST {base}/test   — Run test cases",
+    ]
+
+
 # ── LIBRARY LOADER / WRITER ───────────────────────────────────────────────────
+def load_builder_result(process_id: str) -> Optional[dict]:
+    """Load Builder result from library"""
+    library_path = Path(os.getenv("LIBRARY_PATH", "library"))
+    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+        result_file = library_path / folder / "agents" / f"{process_id}_builder.json"
+        if result_file.exists():
+            with open(result_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+    logger.error(f"Builder result not found for: {process_id}")
+    return None
+
+
 def load_process(process_id: str) -> Optional[dict]:
-    """Load a specific process from library"""
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
     for folder in ["scor", "iso", "bpmn", "sector_specific"]:
         proc_file = library_path / folder / "processes" / f"{process_id}.json"
         if proc_file.exists():
             with open(proc_file, "r", encoding="utf-8") as f:
                 return json.load(f)
-    logger.error(f"Process not found in library: {process_id}")
     return None
 
 
-def save_builder_result(result: BuilderResult, process: dict):
-    """Save Builder results to library"""
+def save_package(package: ProductPackage, process: dict):
+    """Save product package to library"""
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
     framework = process.get("framework", "scor").lower()
 
@@ -567,180 +393,219 @@ def save_builder_result(result: BuilderResult, process: dict):
     else:
         folder = library_path / "sector_specific"
 
-    # Save full result JSON
-    agents_folder = folder / "agents"
-    agents_folder.mkdir(exist_ok=True)
-    result_file = agents_folder / f"{result.process_id}_builder.json"
-    with open(result_file, "w", encoding="utf-8") as f:
-        json.dump(result.model_dump(), f, indent=2, ensure_ascii=False)
+    packages_folder = folder / "packages"
+    packages_folder.mkdir(exist_ok=True)
 
-    # Save agent Python file
-    code_folder = folder / "agents" / "code"
-    code_folder.mkdir(exist_ok=True)
-    agent_name = result.agent_spec.agent_name
-    code_file = code_folder / f"{agent_name}.py"
-    with open(code_file, "w", encoding="utf-8") as f:
-        f.write(result.agent_code)
+    # Save full package JSON
+    package_file = packages_folder / f"{package.process_id}_package.json"
+    with open(package_file, "w", encoding="utf-8") as f:
+        json.dump(package.model_dump(), f, indent=2, ensure_ascii=False)
 
-    # Save SOP as markdown
-    sop_folder = folder / "sops"
-    sop_folder.mkdir(exist_ok=True)
-    sop_file = sop_folder / f"{result.process_id}_sop.md"
-    with open(sop_file, "w", encoding="utf-8") as f:
-        f.write(result.sop)
+    # Save demo script as text
+    demo_file = packages_folder / f"{package.process_id}_demo_script.txt"
+    with open(demo_file, "w", encoding="utf-8") as f:
+        f.write(package.demo_script)
 
-    logger.info(f"Builder result saved: {result_file}")
-    logger.info(f"Agent code saved: {code_file}")
-    logger.info(f"SOP saved: {sop_file}")
-    return result_file
+    # Save integration guide as markdown
+    guide_file = packages_folder / f"{package.process_id}_integration_guide.md"
+    with open(guide_file, "w", encoding="utf-8") as f:
+        f.write(package.integration_guide)
+
+    # Update catalog
+    catalog_file = folder / "catalog.json"
+    catalog = []
+    if catalog_file.exists():
+        with open(catalog_file, "r", encoding="utf-8") as f:
+            catalog = json.load(f)
+    existing_ids = [e.get("process_id") for e in catalog]
+    if package.process_id not in existing_ids:
+        catalog.append(package.catalog_entry)
+    else:
+        catalog = [
+            package.catalog_entry if e.get("process_id") == package.process_id else e
+            for e in catalog
+        ]
+    with open(catalog_file, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, indent=2, ensure_ascii=False)
+
+    logger.info(f"Package saved: {package_file}")
+    logger.info(f"Catalog updated: {catalog_file}")
+    return str(package_file)
 
 
-# ── MAIN BUILDER FUNCTION ─────────────────────────────────────────────────────
-def build_agent(process_id: str) -> Optional[BuilderResult]:
+# ── MAIN PACKAGER FUNCTION ────────────────────────────────────────────────────
+def package_agent(process_id: str) -> Optional[ProductPackage]:
     """
-    Main Builder function: IBM Bob pattern
-    Process → Ontology → Agent Spec → Code + SOP + Tests
+    Main Packager function: build deliverable product package
 
     Args:
-        process_id: ID of the process to build (e.g. SCOR-P1.1)
+        process_id: ID of the process to package
 
     Returns:
-        BuilderResult with complete agent package
+        ProductPackage ready for Guardian
     """
-    logger.info(f"Builder starting: {process_id}")
+    logger.info(f"Packager starting: {process_id}")
 
-    # Load process from library
+    # Load process and builder result
     process = load_process(process_id)
     if not process:
-        logger.error(f"Cannot build agent: process {process_id} not found")
+        logger.error(f"Process not found: {process_id}")
         return None
 
-    logger.info(f"Building agent for: {process.get('name')}")
+    builder_result = load_builder_result(process_id)
+    if not builder_result:
+        logger.error(f"Builder result not found for {process_id}. Run Builder first.")
+        return None
+
+    agent_spec = builder_result.get("agent_spec", {})
+    agent_name = agent_spec.get("agent_name", f"agent_{process_id.lower()}")
 
     try:
-        # STEP 1 — Extract ontology
-        logger.info("Step 1/4: Extracting ontology...")
-        prompt = build_ontology_prompt(process)
-        response = call_llm(prompt, expect_json=True)
-        ontology_data = json.loads(response)
-        ontology = ProcessOntology(
-            process_id=process_id,
-            entities=ontology_data.get("entities", []),
-            relationships=ontology_data.get("relationships", []),
-            decision_points=ontology_data.get("decision_points", []),
-            rules=ontology_data.get("rules", []),
-            exceptions=ontology_data.get("exceptions", []),
-            data_requirements=ontology_data.get("data_requirements", []),
-            triggers=ontology_data.get("triggers", []),
-            success_criteria=ontology_data.get("success_criteria", []),
-            failure_modes=ontology_data.get("failure_modes", []),
-        )
+        # STEP 1 — Calculate pricing (local, no tokens)
+        logger.info("Step 1/5: Calculating pricing score...")
+        pricing = calculate_pricing(process, builder_result)
         logger.success(
-            f"Ontology extracted: {len(ontology.entities)} entities, {len(ontology.decision_points)} decision points"
+            f"Pricing: €{pricing.total_price_eur:.0f} (complexity: {pricing.complexity_score}/100)"
         )
 
-        # STEP 2 — Design agent spec
-        logger.info("Step 2/4: Designing agent specification...")
-        prompt = build_agent_spec_prompt(process, ontology.model_dump())
+        # STEP 2 — Generate summaries (LLM)
+        logger.info("Step 2/5: Generating product summaries...")
+        prompt = build_summary_prompt(process, agent_spec)
+        response = call_llm(prompt, expect_json=False)
+
+        product_summary = ""
+        value_proposition = ""
+        technical_summary = ""
+
+        for line in response.split("\n"):
+            if line.startswith("PRODUCT_SUMMARY:"):
+                product_summary = line.replace("PRODUCT_SUMMARY:", "").strip()
+            elif line.startswith("VALUE_PROPOSITION:"):
+                value_proposition = line.replace("VALUE_PROPOSITION:", "").strip()
+            elif line.startswith("TECHNICAL_SUMMARY:"):
+                technical_summary = line.replace("TECHNICAL_SUMMARY:", "").strip()
+
+        if not product_summary:
+            product_summary = f"The {agent_name} automates {process.get('name')} within {process.get('framework')} framework. It processes {', '.join(process.get('inputs', [])[:2])} to generate {', '.join(process.get('outputs', [])[:2])}. Compliance with {', '.join(process.get('compliance_flags', ['standard requirements']))} is built-in."
+        if not value_proposition:
+            value_proposition = (
+                f"Automates {process.get('name')} reducing manual effort by up to 90%."
+            )
+
+        logger.success("Summaries generated")
+
+        # STEP 3 — Generate demo script (LLM)
+        logger.info("Step 3/5: Generating demo script...")
+        prompt = build_demo_script_prompt(process, agent_spec, pricing)
+        demo_script = call_llm(prompt, expect_json=False)
+        logger.success("Demo script generated")
+
+        # STEP 4 — Generate use cases (LLM)
+        logger.info("Step 4/5: Generating use cases...")
+        prompt = build_use_cases_prompt(process)
         response = call_llm(prompt, expect_json=True)
-        spec_data = json.loads(response)
-        agent_spec = AgentSpec(
+        try:
+            use_cases = json.loads(response)
+        except Exception:
+            use_cases = [
+                f"Automate {process.get('name')} in {s} sector"
+                for s in process.get("sector_applicability", ["manufacturing"])[:5]
+            ]
+        logger.success(f"{len(use_cases)} use cases generated")
+
+        # STEP 5 — Build package (local)
+        logger.info("Step 5/5: Building package...")
+        integration_guide = build_integration_guide(process, agent_spec)
+        api_endpoints = build_api_endpoints(process, agent_spec)
+        catalog_entry = build_catalog_entry(process, agent_spec, pricing)
+
+        # Demo inputs/outputs examples
+        demo_inputs = {}
+        for inp in process.get("inputs", [])[:3]:
+            key = inp.replace(" ", "_").lower()
+            demo_inputs[key] = f"[example_{key}]"
+        demo_outputs = {}
+        for out in process.get("outputs", [])[:2]:
+            key = out.replace(" ", "_").lower()
+            demo_outputs[key] = f"[generated_{key}]"
+
+        # Tags for search
+        tags = list(
+            set(
+                [process.get("framework", "").lower()]
+                + [process.get("domain", "").lower()]
+                + [process.get("level", "").lower()]
+                + process.get("sector_applicability", [])
+                + [agent_spec.get("agent_type", "")]
+            )
+        )
+
+        package_path = f"library/scor/packages/{process_id}_package.json"
+
+        package = ProductPackage(
             process_id=process_id,
-            agent_name=spec_data.get(
-                "agent_name", f"agent_{process_id.lower().replace('-', '_')}"
-            ),
-            agent_type=spec_data.get("agent_type", "reactive"),
-            capabilities=spec_data.get("capabilities", []),
-            tools_required=spec_data.get("tools_required", []),
-            decision_logic=spec_data.get("decision_logic", ""),
-            escalation_rules=spec_data.get("escalation_rules", []),
-            monitoring_metrics=spec_data.get("monitoring_metrics", []),
-            compliance_checks=spec_data.get("compliance_checks", []),
-        )
-        logger.success(f"Agent spec: {agent_spec.agent_name} ({agent_spec.agent_type})")
-
-        # STEP 3 — Generate process logic
-        logger.info("Step 3/4: Generating process logic...")
-        prompt = build_process_logic_prompt(
-            process, ontology.model_dump(), agent_spec.model_dump()
-        )
-        response = call_llm(prompt, expect_json=True)
-        logic = json.loads(response)
-        logger.success("Process logic generated")
-
-        # STEP 4 — Generate test cases
-        logger.info("Step 4/4: Generating test cases...")
-        prompt = build_test_cases_prompt(process, agent_spec.model_dump())
-        response = call_llm(prompt, expect_json=True)
-        test_cases = json.loads(response)
-        logger.success(f"{len(test_cases)} test cases generated")
-
-        # Generate agent code from template
-        agent_code = generate_agent_code(
-            process, ontology.model_dump(), agent_spec.model_dump(), logic
-        )
-        sop = build_sop(process, ontology.model_dump())
-
-        # Estimate token cost per execution
-        avg_tokens = 500
-        cost_per_1k = 0.0  # Groq free tier
-        estimated_cost = (avg_tokens / 1000) * cost_per_1k
-
-        result = BuilderResult(
-            process_id=process_id,
-            builder_timestamp=datetime.now().isoformat(),
-            ontology=ontology,
-            agent_spec=agent_spec,
-            agent_code=agent_code,
-            sop=sop,
-            test_cases=test_cases if isinstance(test_cases, list) else [],
-            deployment_notes=f"Agent ready for deployment. Compliance: {', '.join(process.get('compliance_flags', ['none']))}",
-            ready_for_packager=True,
-            estimated_token_cost=estimated_cost,
+            agent_name=agent_name,
+            package_version=PACKAGER_CONFIG["package_version"],
+            packager_timestamp=datetime.now().isoformat(),
+            product_summary=product_summary,
+            value_proposition=value_proposition,
+            technical_summary=technical_summary
+            or f"Reactive agent implementing {process.get('framework')} {process.get('domain')} process. Integrates via REST API with major ERP systems.",
+            integration_guide=integration_guide,
+            supported_systems=SUPPORTED_SYSTEMS,
+            api_endpoints=api_endpoints,
+            demo_script=demo_script,
+            demo_inputs=demo_inputs,
+            expected_demo_outputs=demo_outputs,
+            catalog_entry=catalog_entry,
+            tags=tags,
+            use_cases=use_cases if isinstance(use_cases, list) else [],
+            pricing=pricing,
+            ready_for_guardian=True,
+            package_path=package_path,
         )
 
-        # Save to library
-        save_builder_result(result, process)
+        # Save package
+        save_package(package, process)
 
         logger.success(
-            f"Builder complete: {process_id} | "
-            f"Agent: {agent_spec.agent_name} | "
-            f"Ready for Packager: {result.ready_for_packager}"
+            f"Packager complete: {process_id} | "
+            f"Agent: {agent_name} | "
+            f"Price: €{pricing.total_price_eur:.0f} | "
+            f"Ready for Guardian: {package.ready_for_guardian}"
         )
 
-        return result
+        return package
 
     except Exception as e:
-        logger.error(f"Builder failed for {process_id}: {e}")
+        logger.error(f"Packager failed for {process_id}: {e}")
         return None
 
 
 # ── CLI INTERFACE ─────────────────────────────────────────────────────────────
-def run_builder(process_ids: list[str]):
-    """Run Builder from command line or as API"""
+def run_packager(process_ids: list):
     logger.info("=" * 60)
-    logger.info("AGENTIC ZERO — BUILDER AGENT")
-    logger.info(f"Processes to build: {process_ids}")
-    logger.info(f"Model: {BUILDER_CONFIG['model']}")
-    logger.info(f"Pattern: IBM Bob (Process → Ontology → Agent)")
+    logger.info("AGENTIC ZERO — PACKAGER AGENT")
+    logger.info(f"Processes to package: {process_ids}")
+    logger.info(f"Model: {PACKAGER_CONFIG['model']}")
     logger.info("=" * 60)
 
     results = []
     for pid in process_ids:
-        logger.info(f"Building: {pid}")
-        result = build_agent(pid)
-        if result:
-            results.append(result)
-            print(f"\n✅ {pid} → {result.agent_spec.agent_name}")
-            print(f"   Type: {result.agent_spec.agent_type}")
-            print(f"   Capabilities: {len(result.agent_spec.capabilities)}")
-            print(f"   Test cases: {len(result.test_cases)}")
-            print(f"   Ready for Packager: {result.ready_for_packager}")
+        logger.info(f"Packaging: {pid}")
+        package = package_agent(pid)
+        if package:
+            results.append(package)
+            print(f"\n✅ {pid} → {package.agent_name}")
+            print(f"   Price: €{package.pricing.total_price_eur:.0f}")
+            print(f"   Complexity: {package.pricing.complexity_score}/100")
+            print(f"   Use cases: {len(package.use_cases)}")
+            print(f"   Ready for Guardian: {package.ready_for_guardian}")
         else:
-            print(f"\n❌ {pid} → Build failed")
+            print(f"\n❌ {pid} → Packaging failed")
 
     print(f"\n{'=' * 40}")
-    print(f"Builder complete: {len(results)}/{len(process_ids)} agents built")
+    print(f"Packager complete: {len(results)}/{len(process_ids)} packages built")
     return results
 
 
@@ -748,10 +613,10 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) < 2:
-        print("\nUsage: python builder.py PROCESS_ID [PROCESS_ID2 ...]")
-        print("Example: python builder.py SCOR-P1.1")
-        print("Example: python builder.py SCOR-P1.1 SCOR-P1.2 SCOR-S1.1\n")
+        print("\nUsage: python packager.py PROCESS_ID [PROCESS_ID2 ...]")
+        print("Example: python packager.py SCOR-P1.1")
+        print("Note: Builder must have run first for each process\n")
         sys.exit(1)
 
     process_ids = sys.argv[1:]
-    run_builder(process_ids)
+    run_packager(process_ids)

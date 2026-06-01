@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-P1.1",
+  "agent_name": "supply_chain_optimizer_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-01T10:06:07.439322",
+  "product_summary": "The hybrid agent is designed to streamline supply chain operations by collecting and prioritizing demand signals across the supply chain, enabling businesses to make informed decisions and optimize their inventory management and capacity planning. This agent is particularly useful for industries that require strict compliance, such as pharmaceuticals and distribution. By leveraging its capabilities, companies can improve forecast accuracy, reduce inventory costs, and enhance overall supply chain efficiency. The agent's capabilities can be tailored to meet specific business needs, making it a valuable asset for organizations seeking to enhance their supply chain operations.",
+  "value_proposition": "Automates the process of collecting and prioritizing demand signals across the supply chain, enabling businesses to make data-driven decisions and optimize their operations.",
+  "technical_summary": "The hybrid agent is built with a range of capabilities, including demand signal analysis, inventory data processing, capacity planning, and forecast accuracy evaluation, which are integrated to provide a comprehensive view of the supply chain. The agent's architecture is designed to support compliance with regulatory requirements, such as GxP for pharmaceuticals and GDP for distribution, ensuring that businesses can rely on the agent to support their operations while maintaining the highest standards of quality and compliance. The agent can be integrated with existing systems and infrastructure to provide seamless support for supply chain operations.",
+  "integration_guide": "# Integration Guide — supply_chain_optimizer_agent\n**Process:** Identify, Prioritize and Aggregate Supply Chain Requirements\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_optimizer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_optimizer_agent import SupplyChainOptimizerAgentAgent\n\nagent = SupplyChainOptimizerAgentAgent()\nresult = agent.execute({\n    \"demand_signals\": your_demand_signals_data,\n    \"inventory_data\": your_inventory_data_data,\n    \"capacity_data\": your_capacity_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- demand_forecasting_system_api\n- inventory_management_system_api\n- capacity_planning_system_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- when forecast accuracy is not within acceptable limits\n- when demand signals exceed capacity data",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supply_chain_optimizer_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_optimizer_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_optimizer_agent/health — Health check",
+    "GET  /api/v1/agents/supply_chain_optimizer_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_optimizer_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to the supply_chain_optimizer_agent: Briefly introduce the agent and its value proposition, highlighting how it automates the identification, prioritization, and aggregation of supply chain requirements using AI, and mention the price of €699.\n\n2. Current Supply Chain Challenges: Discuss common supply chain challenges that executives face, such as manual data processing, lack of visibility, and compliance issues, and how these challenges can lead to wasted resources and lost revenue.\n\n3. Demo of the Agent: Demonstrate how the supply_chain_optimizer_agent can identify, prioritize, and aggregate supply chain requirements, showcasing its AI-powered automation capabilities and ease of use, and highlight how this can save time and reduce costs.\n\n4. ROI Calculation: Calculate the potential return on investment (ROI) using the ROI multiplier of 8.0x, and demonstrate how the agent can help executives achieve a significant return on their investment of €699, such as saving €5,592 in costs.\n\n5. Compliance Benefits: Highlight the compliance benefits of using the supply_chain_optimizer_agent, such as improved data accuracy, reduced risk of non-compliance, and enhanced visibility into the supply chain, and demonstrate how the agent can help executives meet regulatory requirements.\n\n6. Case Study or Example: Provide a case study or example of a company that has successfully implemented the supply_chain_optimizer_agent, and highlight the benefits they have achieved, such as cost savings, improved efficiency, and enhanced compliance.\n\n7. Conclusion and Call to Action: Summarize the key benefits of the supply_chain_optimizer_agent, including its ability to automate supply chain requirements, provide a strong ROI, and enhance compliance, and encourage executives to take the next step in implementing the agent in their own organization.",
+  "demo_inputs": {
+    "demand_signals": "[example_demand_signals]",
+    "inventory_data": "[example_inventory_data]",
+    "capacity_data": "[example_capacity_data]"
+  },
+  "expected_demo_outputs": {
+    "supply_chain_requirements": "[generated_supply_chain_requirements]",
+    "demand_plan": "[generated_demand_plan]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-P1.1",
+    "agent_name": "supply_chain_optimizer_agent",
+    "framework": "SCOR",
+    "domain": "Plan",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-01T10:06:07.439300"
+  },
+  "tags": [
+    "pharma",
+    "scor",
+    "hybrid",
+    "food",
+    "l2",
+    "distribution",
+    "plan",
+    "manufacturing"
+  ],
+  "use_cases": [
+    "Use case 1: Optimizing inventory management for a manufacturing client, resulting in a 25% reduction in stockouts and a 15% decrease in inventory holding costs",
+    "Use case 2: Implementing a track-and-trace system for a pharma company to ensure GxP compliance, reducing counterfeiting risks and improving supply chain visibility by 30%",
+    "Use case 3: Streamlining logistics operations for a food distribution company, achieving a 20% reduction in transportation costs and a 12% decrease in delivery times",
+    "Use case 4: Developing a quality control framework for a distribution client to ensure GDP compliance, resulting in a 18% reduction in product returns and a 10% increase in customer satisfaction",
+    "Use case 5: Analyzing supply chain data to identify bottlenecks and areas of inefficiency for a manufacturing company, leading to a 22% reduction in lead times and a 12% increase in overall supply chain productivity"
+  ],
+  "pricing": {
+    "process_id": "SCOR-P1.1",
+    "complexity_score": 76,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 76/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-P1.1_package.json"
+}

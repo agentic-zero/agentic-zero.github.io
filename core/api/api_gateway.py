@@ -611,6 +611,105 @@ async def run_pipeline(request: PipelineRequest, background_tasks: BackgroundTas
         return results
 
 
+# ── ROI ENDPOINTS (M3) ────────────────────────────────────────────────────────
+@app.get("/api/v1/roi/{process_id}")
+async def get_roi(
+    process_id: str, sector: str = "manufacturing", hourly_rate: Optional[float] = None
+):
+    """Calculate ROI for a process from the library"""
+    try:
+        sys.path.insert(0, str(ROOT))
+        from core.roi_calculator import ROICalculator
+
+        process = get_process_by_id(process_id)
+        if not process:
+            raise HTTPException(
+                status_code=404, detail=f"Process {process_id} not found"
+            )
+
+        calc = ROICalculator()
+        result = calc.calculate_from_process(
+            process=process, sector=sector, custom_hourly_rate=hourly_rate
+        )
+
+        return {
+            "process_id": process_id,
+            "process_name": process.get("name"),
+            "sector": sector,
+            "roi": {
+                "manual_monthly_eur": result.manual_monthly_cost_eur,
+                "agent_monthly_eur": result.agent_monthly_cost_eur,
+                "setup_eur": result.setup_cost_eur,
+                "monthly_savings_eur": result.monthly_savings_eur,
+                "annual_savings_eur": result.annual_savings_eur,
+                "payback_months": result.payback_months,
+                "roi_12_months_pct": result.roi_12_months_pct,
+                "roi_24_months_pct": result.roi_24_months_pct,
+                "roi_36_months_pct": result.roi_36_months_pct,
+            },
+            "efficiency": {
+                "time_saved_hours_month": result.time_saved_hours_month,
+                "error_reduction_pct": result.error_reduction_pct,
+                "compliance_time_saved_hours_month": result.compliance_time_saved_hours_month,
+            },
+            "recommendation": result.recommendation,
+            "confidence": result.confidence_level,
+            "qualitative_benefits": result.qualitative_benefits,
+            "assumptions": result.assumptions,
+            "timestamp": datetime.now().isoformat(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"ROI calculation error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/v1/roi/compare/{process_id}")
+async def compare_roi_sectors(process_id: str):
+    """Compare ROI across all sectors for a process"""
+    try:
+        sys.path.insert(0, str(ROOT))
+        from core.roi_calculator import ROICalculator, INDUSTRY_BENCHMARKS
+
+        process = get_process_by_id(process_id)
+        if not process:
+            raise HTTPException(
+                status_code=404, detail=f"Process {process_id} not found"
+            )
+
+        calc = ROICalculator()
+        comparison = {}
+
+        for sector in INDUSTRY_BENCHMARKS.keys():
+            result = calc.calculate_from_process(process=process, sector=sector)
+            comparison[sector] = {
+                "monthly_savings_eur": result.monthly_savings_eur,
+                "annual_savings_eur": result.annual_savings_eur,
+                "roi_12_months_pct": result.roi_12_months_pct,
+                "payback_months": result.payback_months,
+                "recommendation": result.recommendation,
+            }
+
+        # Sort by ROI
+        sorted_sectors = sorted(
+            comparison.items(), key=lambda x: x[1]["roi_12_months_pct"], reverse=True
+        )
+
+        return {
+            "process_id": process_id,
+            "process_name": process.get("name"),
+            "best_sector": sorted_sectors[0][0],
+            "best_roi_pct": sorted_sectors[0][1]["roi_12_months_pct"],
+            "comparison": dict(sorted_sectors),
+            "timestamp": datetime.now().isoformat(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn

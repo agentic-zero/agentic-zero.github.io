@@ -1226,3 +1226,351 @@ Claude tendrá todo el contexto en segundos.
 *Versión 3.0 — Sprint 1 completado*
 *Claude Sonnet 4.6 + Alberto Muñoz Waissen*
 *30 Mayo 2026*
+
+# FINAL DE SPRINT 1 - LUNES 1 DE JUNIO 2026 (5 DIAS SPRINT LONG)
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Documento de recuperación de contexto completo
+### Versión: 3.1 | Fecha: 1 Junio 2026 | Sprint 1 CERRADO
+
+---
+
+## 1. IDENTIDAD DE LA EMPRESA
+
+**Nombre:** AGENTIC ZERO
+**Tagline:** Autonomous Operations for Regulated Supply Chains
+**Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Dominio:** agentic-zero.com
+**Web:** https://agentic-zero.github.io
+**Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. PROPUESTA DE VALOR
+
+**Mensaje:** "Construimos la empresa Agentic que los grandes persiguen y las medianas creen que no pueden permitirse."
+
+**Mercado:** Empresa mediana (50M-500M€) en sectores regulados europeos.
+Pharma · Defense · Chemical · Food · Automotive · MedTech · Logistics · Energy · Manufacturing
+
+**Diferenciación:**
+- vs SAP/Amazon: no requiere clean core ni migración 2-4 años
+- vs Big Four: 10 días vs 6 meses, ROI visible antes de comprometerse
+- vs Process Mining: genera el agente que resuelve, no solo el diagnóstico
+
+---
+
+## 3. PERFIL DEL FUNDADOR
+
+25+ años · 30+ países · 400+ plantas · $420M valor demostrado · 20+ años consultoría digital
+
+Credenciales: MIT Operations · Oxford AI Governance · Vanderbilt Agentic Dev · IBM AI Engineering · APICS SCOR-D · EU AI Act · NIST AI RMF · ISO/IEC 42001
+
+---
+
+## 4. PRODUCTOS
+
+```
+AGENTIC ZERO AUDIT    → entrada, 10 días, ROI visible, primer audit gratuito
+AGENTIC ZERO SWARM    → producto estrella, alta complejidad
+AGENTIC ZERO PLATFORM → Fase 5, SaaS self-service, engine = Pioneer Team
+```
+
+**Pricing interno:**
+- AUDIT Estándar: €12.000 | Regulado: €18.000 | Urgente 5d: €25.000
+- Quick Win: €25K-45K | Domain Cluster SCOR: €80K-150K
+- Retainer: €15K-25K/mes
+
+---
+
+## 5. ARQUITECTURA TÉCNICA
+
+**Filosofía:** Modular · Abierto · Composable · API-first
+**Agentic Zero es un COMPONENTE de una empresa agéntica mayor.**
+
+### Stack actual
+```
+Groq free tier (llama-3.3-70b-versatile) — 100.000 TPD
+RPM: Scout=3 · Architect/Builder/Packager/Guardian=1
+```
+
+### Módulos — ESTADO FINAL SPRINT 1
+```
+✅ M1 — License Management     core/license/license_manager.py
+✅ M2 — Autonomy Dashboard     core/autonomy_dashboard.html
+✅ M3 — ROI Calculator         core/roi_calculator.py
+⏳ M4 — Compliance Engine      (Sprint 2)
+✅ M5 — Pioneer Team Pipeline  pioneer_team/ (5 agentes)
+✅ M6 — Library Management     library/ (31 procesos + 10 variantes)
+✅ M7 — API Gateway            core/api/api_gateway.py
+✅ M8 — Queue System           core/queue/queue_system.py
+⏳ M9 — Library API Service    (cubierto por M7)
+⏳ M10 — Orchestration Layer   (Paperclip, Fase 3)
+```
+
+---
+
+## 6. PIONEER TEAM — ESTADO FINAL SPRINT 1
+
+### Los 5 agentes — TODOS OPERATIVOS
+
+| Agente | Rol | Archivo | Estado |
+|--------|-----|---------|--------|
+| SCOUT | Investigación y mapeo | pioneer_team/scout/scout.py | ✅ Producción |
+| ARCHITECT | Validación y variantes | pioneer_team/architect/architect.py | ✅ Producción |
+| BUILDER | IBM Bob proceso→agente | pioneer_team/builder/builder.py | ✅ Producción |
+| PACKAGER | Product packager | pioneer_team/packager/packager.py | ✅ Producción |
+| GUARDIAN | Compliance & Quality | pioneer_team/guardian/guardian.py | ✅ Producción |
+
+### PRIMER AGENTE CERTIFICADO — HITO SPRINT 1
+```
+Proceso:   SCOR-P1.1 — Identify, Prioritize and Aggregate SC Requirements
+Agente:    supply_chain_optimizer_agent (hybrid)
+Tipo:      IBM Bob pattern
+Status:    CONDITIONAL (requiere firma humana — correcto para pharma HIGH RISK)
+Score:     82%
+EU AI Act: HIGH RISK (pharma — correcto)
+ISO 42001: 60%
+NIST RMF:  100%
+Quality:   100%
+Archivos:
+  library/scor/agents/SCOR-P1.1_builder.json
+  library/scor/agents/code/supply_chain_optimizer_agent.py
+  library/scor/sops/SCOR-P1.1_sop.md
+  library/scor/packages/SCOR-P1.1_package.json
+  library/scor/certificates/SCOR-P1.1_guardian.json
+  library/scor/certificates/SCOR-P1.1_certificate.txt
+  library/scor/catalog.json (actualizado)
+```
+
+### Pipeline completo — comandos
+```powershell
+# Individual
+cd F:\agentic-zero\pioneer_team\builder  && python builder.py SCOR-P1.1
+cd F:\agentic-zero\pioneer_team\packager && python packager.py SCOR-P1.1
+cd F:\agentic-zero\pioneer_team\guardian && python guardian.py SCOR-P1.1
+
+# Via Queue (automatizado)
+cd F:\agentic-zero\core\queue
+python queue_system.py --pipeline SCOR-P1.1
+
+# Via API
+POST http://localhost:8000/api/v1/pioneer/pipeline
+{"process_id": "SCOR-P1.1", "run_builder": true, "run_packager": true, "run_guardian": true}
+```
+
+### Fix Builder aplicado
+Step 3 genera código Python directo (no JSON) — evita error de caracteres de control.
+
+---
+
+## 7. BIBLIOTECA DE PROCESOS
+
+### Estado final Sprint 1
+```
+✅ SCOR completo       — 31 procesos base (6 dominios)
+✅ Variantes Plan      — 10 variantes (PHARMA + FOOD)
+✅ Primer agente       — SCOR-P1.1 certificado
+⏳ SCOR-D              — 5 procesos, 2 dominios pendientes
+⏳ ISO 9001            — pendiente
+⏳ ISO 14001           — pendiente
+⏳ BPMN                — pendiente
+```
+
+### Para ampliar biblioteca (Sprint 2)
+```powershell
+cd F:\agentic-zero\pioneer_team\scout
+python scout.py SCOR-D "Product Development" "Network Design"
+python scout.py ISO_9001
+python scout.py BPMN
+```
+
+### Library Viewer v1.1
+```
+F:\agentic-zero\library\library_viewer.html
+Abre con Live Server → http://127.0.0.1:5500/library/library_viewer.html
+```
+
+---
+
+## 8. MÓDULOS OPERATIVOS — COMANDOS RÁPIDOS
+
+### Activar entorno
+```powershell
+cd F:\agentic-zero
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned)
+.venv\Scripts\Activate.ps1
+```
+
+### API Gateway (M7)
+```powershell
+cd F:\agentic-zero\core\api && python api_gateway.py
+# → http://localhost:8000/docs
+```
+
+### Queue System (M8)
+```powershell
+cd F:\agentic-zero\core\queue
+python queue_system.py --status
+python queue_system.py --pipeline SCOR-P1.1
+```
+
+### ROI Calculator (M3)
+```powershell
+cd F:\agentic-zero\core
+python roi_calculator.py SCOR-P1.1 --sector pharma
+# Pharma: 876% ROI · payback 1.2 meses · €78K ahorro anual
+# Defense: 903% ROI · payback 1.2 meses · €80K ahorro anual
+# Manufacturing: 192% ROI · payback 4.1 meses · €23K ahorro anual
+```
+
+### License Manager (M1)
+```powershell
+cd F:\agentic-zero\core\license
+python license_manager.py issue SCOR-P1.1 CLIENT001 "IFF Global" --sector pharma --fee 1500
+python license_manager.py status
+python license_manager.py validate AZ-xxxx...
+```
+
+### Autonomy Dashboard (M2)
+```
+F:\agentic-zero\core\autonomy_dashboard.html → Live Server
+```
+
+---
+
+## 9. SISTEMA DE RETENCIÓN
+
+```
+Capa DATOS         → del cliente, siempre suya
+Capa INTELIGENCIA  → de Agentic Zero, requiere licencia
+
+Secuencia: -30d warning → -7d urgente → Día 0 suspended → +30d return
+Return: strip datos + ontología preservada + biblioteca mejorada
+Objetivo: Churn < 5% · NRR > 120%
+```
+
+---
+
+## 10. INFRAESTRUCTURA
+
+### Proyecto local
+```
+Ruta:    F:\agentic-zero\
+Python:  3.14.4 · Git: 2.54.0 · venv: .venv
+```
+
+### Git — commits Sprint 1
+```
+3835c0b — Initial structure v0.1.0
+7850982 — Scout SCOR complete 31 processes
+a666937 — Architect Agent + Library Viewer v1.1
+bb66e29 — Pioneer Team complete — 5 agents
+51082ad — API Gateway M7
+6c322f0 — Queue System M8
+[último] — Pipeline completo SCOR-P1.1 — primer agente certificado
+```
+
+### Coste total Sprint 1
+```
+Dominio + hosting: €14,52
+API tokens:        €0,00
+TOTAL:             €14,52
+```
+
+---
+
+## 11. ESTRUCTURA DE CARPETAS
+
+```
+F:\agentic-zero\
+├── core\
+│   ├── api\api_gateway.py          ← M7: FastAPI 11 endpoints
+│   ├── license\license_manager.py  ← M1: lifecycle completo
+│   ├── queue\queue_system.py       ← M8: 8 colas
+│   ├── roi_calculator.py           ← M3: 7 sectores
+│   └── autonomy_dashboard.html     ← M2: dashboard cliente
+├── library\
+│   ├── scor\
+│   │   ├── processes\     ← 31 JSON SCOR
+│   │   ├── variants\      ← 10 variantes
+│   │   ├── agents\        ← Builder output + código Python
+│   │   ├── sops\          ← SOPs Markdown
+│   │   ├── packages\      ← Packager output
+│   │   └── certificates\  ← Guardian certificates
+│   └── library_viewer.html ← visualizador v1.1
+├── pioneer_team\
+│   ├── scout\scout.py
+│   ├── architect\architect.py
+│   ├── builder\builder.py
+│   ├── packager\packager.py
+│   └── guardian\guardian.py
+└── AGENTIC_ZERO_MASTER_CONTEXT.md
+```
+
+---
+
+## 12. ROADMAP
+
+```
+✅ Sprint 1 (27 Mayo — 1 Junio 2026) CERRADO:
+   Web · Pioneer Team · Biblioteca SCOR · Library Viewer
+   API Gateway · Queue · ROI Calculator · License Manager
+   Autonomy Dashboard · PRIMER AGENTE CERTIFICADO
+
+⏳ Sprint 2 (Junio 2026):
+   Completar biblioteca: SCOR-D + ISO 9001 + BPMN
+   Pipeline en batch: todos los procesos SCOR
+   M4 Compliance Engine independiente
+   ROI Calculator en API Gateway
+   Integración test completa
+   Primer AUDIT gratuito (caso de estudio)
+   LinkedIn + Company Page
+
+⏳ Sprint 3 (Julio 2026):
+   Paperclip AI (M10 orquestador)
+   Communication Agent
+   Sistema de alertas automáticas
+
+⏳ Sprint 4 (Agosto 2026):
+   Primeros audits pagados
+   Primer cliente en retainer
+
+⏳ 2027:
+   SaaS Platform · ARR €500K+
+```
+
+---
+
+## 13. PRÓXIMOS PASOS SPRINT 2
+
+```
+TÉCNICO INMEDIATO:
+  1. Batch pipeline todos los procesos SCOR:
+     python queue_system.py --pipeline SCOR-P1.2 SCOR-P1.3 SCOR-S1.1...
+  2. Completar biblioteca:
+     python scout.py SCOR-D "Product Development" "Network Design"
+     python scout.py ISO_9001
+     python scout.py BPMN
+  3. Añadir endpoint ROI al API Gateway
+  4. M4 Compliance Engine módulo independiente
+
+COMERCIAL:
+  5. Primer AUDIT gratuito → caso de estudio
+  6. LinkedIn actualizado con posicionamiento
+  7. Company Page Agentic Zero
+  8. 10 contactos objetivo red IFF/Indra
+```
+
+---
+
+## 14. PROTOCOLO DE RECUPERACIÓN
+
+Sube este archivo y di: **"Continúa desde el Master Context v3.1"**
+
+---
+
+*Versión 3.1 — Sprint 1 CERRADO*
+*Claude Sonnet 4.6 + Alberto Muñoz Waissen*
+*1 Junio 2026 — Primer agente certificado*

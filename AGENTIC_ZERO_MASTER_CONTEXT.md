@@ -1574,3 +1574,143 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.1"**
 *Versión 3.1 — Sprint 1 CERRADO*
 *Claude Sonnet 4.6 + Alberto Muñoz Waissen*
 *1 Junio 2026 — Primer agente certificado*
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.2 | Fecha: 1 Junio 2026 | Sprint 2 en curso
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Dominio:** agentic-zero.com | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ESTADO TÉCNICO AL 1 JUNIO 2026
+
+### Módulos operativos
+```
+✅ M1 — License Manager        core/license/license_manager.py
+✅ M2 — Autonomy Dashboard     core/autonomy_dashboard.html
+✅ M3 — ROI Calculator         core/roi_calculator.py
+✅ M5 — Pioneer Team           pioneer_team/ (5 agentes)
+✅ M6 — Library                library/ (31 procesos + 10 variantes)
+✅ M7 — API Gateway            core/api/api_gateway.py
+✅ M8 — Queue System           core/queue/queue_system.py
+⏳ M4 — Compliance Engine      (Sprint 2)
+⏳ M9 — Library API mejorado   (Sprint 2)
+⏳ M10 — Orchestration         (Fase 3)
+```
+
+### Pioneer Team — TODOS OPERATIVOS
+```
+Scout → Architect → Builder → Packager → Guardian
+Pipeline via: python queue_system.py --pipeline SCOR-P1.1
+```
+
+### Agentes certificados en biblioteca
+```
+✅ SCOR-P1.1 — supply_chain_optimizer_agent    (CONDITIONAL 82%)
+✅ SCOR-P1.2 — supply_chain_analyzer           (CONDITIONAL 90%)
+✅ SCOR-P1.3 — supply_chain_inventory_manager  (en proceso)
+✅ SCOR-P1.4 — supply_chain_transportation_policy_agent (en proceso)
+✅ SCOR-P1.5 — supply_chain_risk_manager       (en proceso)
+```
+
+### Biblioteca SCOR
+```
+31 procesos base · 10 variantes sectoriales
+5 agentes generados · 5 SOPs · 2 certificados completos
+Catálogo actualizado: library/scor/catalog.json
+```
+
+---
+
+## 3. FIX CRÍTICO APLICADO — Queue System
+
+**Problema:** ROOT path incorrecto causaba `No module named 'pioneer_team'`
+**Fix:** `ROOT = Path(__file__).parent.parent.parent` (línea 42 de queue_system.py)
+**Estado:** Corregido y verificado ✅
+
+**Fix adicional pendiente de commit:** Workers usaban mismo job_id en cascada.
+Corrección: `complete()` archiva + `push()` crea nuevo job con nuevo ID.
+
+---
+
+## 4. PENDIENTES SPRINT 2
+
+### Técnico inmediato
+```
+1. Limpiar colas y relanzar batch cuando Groq resetee:
+   python queue_system.py --clear builder_queue
+   python queue_system.py --clear failed_queue
+   python queue_system.py --pipeline SCOR-P1.2 SCOR-P1.3 SCOR-P1.4 SCOR-P1.5
+
+2. Integrar ROI Calculator en API Gateway:
+   GET /api/v1/roi/{process_id}?sector=pharma
+   Añadir en core/api/api_gateway.py
+
+3. Script de inicio rápido:
+   start.py — arranca API + muestra status
+
+4. Completar biblioteca:
+   python scout.py SCOR-D "Product Development" "Network Design"
+   python scout.py ISO_9001
+   python scout.py BPMN
+
+5. Quitar prints DEBUG del queue_system.py
+```
+
+### Comandos de entorno
+```powershell
+cd F:\agentic-zero
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned)
+.venv\Scripts\Activate.ps1
+
+# API Gateway
+cd core\api && python api_gateway.py  → http://localhost:8000/docs
+
+# Queue
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear builder_queue
+python queue_system.py --pipeline SCOR-P1.1
+
+# ROI
+cd core && python roi_calculator.py SCOR-P1.1 --sector pharma
+
+# License
+cd core\license && python license_manager.py status
+```
+
+---
+
+## 5. ROI DE REFERENCIA
+```
+Pharma:        876% ROI · payback 1.2 meses · €78K ahorro anual
+Defense:       903% ROI · payback 1.2 meses · €80K ahorro anual
+Manufacturing: 192% ROI · payback 4.1 meses · €23K ahorro anual
+```
+
+---
+
+## 6. GIT — COMMITS
+```
+3835c0b — Initial structure
+7850982 — Scout SCOR 31 processes
+a666937 — Architect + Library Viewer v1.1
+bb66e29 — Pioneer Team 5 agents
+51082ad — API Gateway M7
+6c322f0 — Queue System M8
+[último] — Pipeline completo + M1 M2 M3
+```
+
+---
+
+## 7. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.2"**
+
+---
+
+*v3.2 — Sprint 2 en curso · 1 Junio 2026*

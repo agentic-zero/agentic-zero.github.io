@@ -39,8 +39,10 @@ from loguru import logger
 load_dotenv()
 
 # ── Add project root to path ──────────────────────────────────────────────────
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(ROOT))
+print(f"DEBUG ROOT: {ROOT}")
+print(f"DEBUG PATH: {sys.path[0]}")
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
 logger.add(
@@ -52,7 +54,7 @@ logger.add(
 )
 
 # ── QUEUE CONFIGURATION ───────────────────────────────────────────────────────
-QUEUE_PATH = Path(__file__).parent / "jobs"
+QUEUE_PATH = ROOT / "core" / "queue" / "jobs"
 QUEUE_NAMES = [
     "scout_queue",
     "architect_queue",
@@ -287,15 +289,15 @@ def run_builder_worker(queue: QueueManager, max_jobs: int = 10):
             result = build_agent(process_id)
 
             if result:
+                # Archive this job as done
                 queue.complete(
                     job,
                     {
                         "agent_name": result.agent_spec.agent_name,
                         "ready_for_packager": result.ready_for_packager,
                     },
-                    next_queue="packager_queue",
                 )
-                # Push to packager queue
+                # Push NEW job to next queue with new ID
                 queue.push("packager_queue", {"process_id": process_id})
             else:
                 queue.fail(job, "Builder returned no result")
@@ -329,6 +331,7 @@ def run_packager_worker(queue: QueueManager, max_jobs: int = 10):
             result = package_agent(process_id)
 
             if result:
+                # Archive this job as done
                 queue.complete(
                     job,
                     {
@@ -336,8 +339,8 @@ def run_packager_worker(queue: QueueManager, max_jobs: int = 10):
                         "price_eur": result.pricing.total_price_eur,
                         "ready_for_guardian": result.ready_for_guardian,
                     },
-                    next_queue="guardian_queue",
                 )
+                # Push NEW job to next queue with new ID
                 queue.push("guardian_queue", {"process_id": process_id})
             else:
                 queue.fail(job, "Packager returned no result")
@@ -377,8 +380,15 @@ def run_guardian_worker(queue: QueueManager, max_jobs: int = 10):
                         {
                             "certificate_id": result.certificate.certificate_id,
                             "status": result.certificate.overall_status,
+                            "process_id": process_id,
                         },
-                        next_queue="review_queue",
+                    )
+                    queue.push(
+                        "review_queue",
+                        {
+                            "process_id": process_id,
+                            "certificate_id": result.certificate.certificate_id,
+                        },
                     )
                     logger.warning(f"Process {process_id} requires human review")
                 else:
@@ -388,8 +398,15 @@ def run_guardian_worker(queue: QueueManager, max_jobs: int = 10):
                             "certificate_id": result.certificate.certificate_id,
                             "status": result.certificate.overall_status,
                             "approved_for_library": result.approved_for_library,
+                            "process_id": process_id,
                         },
-                        next_queue="completed_queue",
+                    )
+                    queue.push(
+                        "completed_queue",
+                        {
+                            "process_id": process_id,
+                            "certificate_id": result.certificate.certificate_id,
+                        },
                     )
             else:
                 queue.fail(job, "Guardian returned no result")

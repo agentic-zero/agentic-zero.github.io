@@ -1,0 +1,16 @@
+{
+  "job_id": "builder_20260601_122912_395151",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-P1.3"
+  },
+  "priority": 5,
+  "retries": 1,
+  "max_retries": 3,
+  "created_at": "2026-06-01T12:29:12.395167",
+  "status": "pending",
+  "started_at": "2026-06-01T12:29:12.454679",
+  "completed_at": null,
+  "error": "No module named 'pioneer_team'",
+  "result": null
+}

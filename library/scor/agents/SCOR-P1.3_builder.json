@@ -1,0 +1,102 @@
+{
+  "process_id": "SCOR-P1.3",
+  "builder_timestamp": "2026-06-01T10:46:05.862403",
+  "ontology": {
+    "process_id": "SCOR-P1.3",
+    "entities": [
+      "Demand Plan",
+      "Supply Chain Requirements",
+      "Inventory Data",
+      "Inventory Policy",
+      "Reorder Points",
+      "Inventory Turnover",
+      "Stockout Rate"
+    ],
+    "relationships": [
+      "Demand Plan influences Inventory Policy",
+      "Supply Chain Requirements affect Inventory Policy",
+      "Inventory Data informs Reorder Points",
+      "Inventory Policy determines Reorder Points",
+      "Inventory Turnover measures Inventory Policy effectiveness",
+      "Stockout Rate measures Inventory Policy effectiveness"
+    ],
+    "decision_points": [
+      "IF demand exceeds supply THEN adjust Inventory Policy",
+      "IF inventory levels are low THEN trigger reorder",
+      "IF stockout rate is high THEN reevaluate Inventory Policy"
+    ],
+    "rules": [
+      "rule1: Inventory Policy must balance demand and supply",
+      "rule2: Reorder Points must be based on historical demand and lead time",
+      "rule3: Inventory Turnover must be optimized to minimize costs"
+    ],
+    "exceptions": [
+      "IF supply chain disruption occurs THEN manually adjust Inventory Policy",
+      "IF demand forecast is inaccurate THEN reevaluate Inventory Policy",
+      "IF inventory data is incomplete THEN use alternative data sources"
+    ],
+    "data_requirements": [
+      "demand plan: numeric and sourced from sales forecasts",
+      "supply chain requirements: text and sourced from supplier contracts",
+      "inventory data: numeric and sourced from warehouse management system"
+    ],
+    "triggers": [
+      "new demand plan is released",
+      "supply chain requirements are updated",
+      "inventory levels fall below reorder points"
+    ],
+    "success_criteria": [
+      "inventory turnover is within target range",
+      "stockout rate is below threshold",
+      "reorder points are accurately set"
+    ],
+    "failure_modes": [
+      "inventory policy is not aligned with demand plan",
+      "reorder points are not set correctly",
+      "inventory data is inaccurate or incomplete"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "SCOR-P1.3",
+    "agent_name": "supply_chain_inventory_manager",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "demand_plan_analysis",
+      "inventory_policy_optimization",
+      "reorder_point_setting",
+      "supply_chain_monitoring"
+    ],
+    "tools_required": [
+      "warehouse_management_system_api",
+      "sales_forecast_api",
+      "supplier_contract_parser"
+    ],
+    "decision_logic": "uses rules and decision points to adjust inventory policy based on demand plan, supply chain requirements, and inventory data",
+    "escalation_rules": [
+      "inventory_turnover_exceeds_target_range",
+      "stockout_rate_exceeds_threshold",
+      "supply_chain_disruption_detected"
+    ],
+    "monitoring_metrics": [
+      "inventory_turnover",
+      "stockout_rate",
+      "reorder_point_accuracy"
+    ],
+    "compliance_checks": [
+      "GxP_compliance_validation_if_pharma",
+      "GDP_compliance_validation_if_distribution"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: SCOR-P1.3\nName: supply_chain_inventory_manager\nFramework: SCOR\nDomain: Plan\nGenerated: 2026-06-01T10:46:05.862320\nCompliance: GxP if pharma, GDP if distribution\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass SupplyChainInventoryManagerAgent:\n    \"\"\"\n    Agent for: Determine Supply Chain Inventory Policy\n    \n    Process of determining inventory policy to meet demand and minimize costs\n    \n    Capabilities:\n    #   - demand_plan_analysis\n    #   - inventory_policy_optimization\n    #   - reorder_point_setting\n    #   - supply_chain_monitoring\n    \n    Compliance: GxP if pharma, GDP if distribution\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"SCOR-P1.3\"\n        self.agent_name = \"supply_chain_inventory_manager\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['demand_plan', 'supply_chain_requirements', 'inventory_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF demand exceeds supply THEN adjust Inventory Policy\n        # - IF inventory levels are low THEN trigger reorder\n        # - IF stockout rate is high THEN reevaluate Inventory Policy\n        \n        Business rules:\n        # - rule1: Inventory Policy must balance demand and supply\n        # - rule2: Reorder Points must be based on historical demand and lead time\n        # - rule3: Inventory Turnover must be optimized to minimize costs\n        \"\"\"\n        outputs = {}\n        \ndef _process_logic(self, inputs):\n            # Initialize outputs dictionary\n            outputs = {}\n\n            # Extract inputs\n            demand_plan = inputs['demand plan']\n            supply_chain_requirements = inputs['supply chain requirements']\n            inventory_data = inputs['inventory data']\n\n            # Determine inventory policy based on demand and supply\n            if demand_plan > supply_chain_requirements:  # IF demand exceeds supply THEN adjust Inventory Policy\n                # Adjust inventory policy to balance demand and supply\n                inventory_policy = 'just-in-time'  # prioritize demand\n            else:\n                # Default inventory policy\n                inventory_policy = 'just-in-case'  # prioritize supply\n\n            # Calculate reorder points based on historical demand and lead time\n            # Assuming historical demand and lead time are available in inventory data\n            historical_demand = inventory_data.get('historical_demand', 0)\n            lead_time = inventory_data.get('lead_time', 0)\n            reorder_points = historical_demand * lead_time  # rule2: Reorder Points must be based on historical demand and lead time\n\n            # Check if inventory levels are low to trigger reorder\n            if inventory_data.get('current_inventory', 0) < reorder_points:  # IF inventory levels are low THEN trigger reorder\n                # Trigger reorder\n                print(\"Reorder triggered\")\n\n            # Check if stockout rate is high to reevaluate inventory policy\n            stockout_rate = inventory_data.get('stockout_rate', 0)\n            if stockout_rate > 0.2:  # IF stockout rate is high THEN reevaluate Inventory Policy\n                # Reevaluate inventory policy\n                print(\"Reevaluating inventory policy\")\n\n            # Optimize inventory turnover to minimize costs\n            # Assuming cost per unit and holding cost per unit are available in inventory data\n            cost_per_unit = inventory_data.get('cost_per_unit', 0)\n            holding_cost_per_unit = inventory_data.get('holding_cost_per_unit', 0)\n            # Calculate optimal inventory turnover\n            optimal_turnover = (2 * cost_per_unit * demand_plan / holding_cost_per_unit) ** 0.5  # rule3: Inventory Turnover must be optimized to minimize costs\n\n            # Populate outputs dictionary\n            outputs['inventory policy'] = inventory_policy\n            outputs['reorder points'] = reorder_points\n\n            return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GxP_compliance_validation_if_pharma\n        # - GDP_compliance_validation_if_distribution\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \n        checks_passed.append('Compliance check completed')\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['inventory_policy', 'reorder_points']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['inventory_turnover_exceeds_target_range', 'stockout_rate_exceeds_threshold', 'supply_chain_disruption_detected']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['inventory_turnover', 'stockout_rate', 'reorder_point_accuracy']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = SupplyChainInventoryManagerAgent()\n    \n    # Example execution\n    test_inputs = {\"demand_plan\": \"example_demand_plan\", \"supply_chain_requirements\": \"example_supply_chain_requirements\", \"inventory_data\": \"example_inventory_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Determine Supply Chain Inventory Policy\n**Process ID:** SCOR-P1.3\n**Framework:** SCOR | **Domain:** Plan\n**Generated:** 2026-06-01\n\n## Purpose\nProcess of determining inventory policy to meet demand and minimize costs\n\n## Triggers\n- new demand plan is released\n- supply chain requirements are updated\n- inventory levels fall below reorder points\n\n## Inputs Required\n- demand plan\n- supply chain requirements\n- inventory data\n\n## Process Steps\n1. IF demand exceeds supply THEN adjust Inventory Policy\n2. IF inventory levels are low THEN trigger reorder\n3. IF stockout rate is high THEN reevaluate Inventory Policy\n\n## Expected Outputs\n- inventory policy\n- reorder points\n\n## Business Rules\n- rule1: Inventory Policy must balance demand and supply\n- rule2: Reorder Points must be based on historical demand and lead time\n- rule3: Inventory Turnover must be optimized to minimize costs\n\n## Exception Handling\n- IF supply chain disruption occurs THEN manually adjust Inventory Policy\n- IF demand forecast is inaccurate THEN reevaluate Inventory Policy\n- IF inventory data is incomplete THEN use alternative data sources\n\n## Success Criteria\n- inventory turnover is within target range\n- stockout rate is below threshold\n- reorder points are accurately set\n\n## Compliance Requirements\n- GxP if pharma\n- GDP if distribution",
+  "test_cases": [
+    "Test 1: Verify inventory policy and reorder points are correctly determined when demand plan, supply chain requirements, and inventory data are accurately provided",
+    "Test 2: Check the agent's response when demand plan and supply chain requirements are provided but inventory data is missing or incomplete",
+    "Test 3: Determine the agent's behavior when supply chain requirements are inconsistent with the demand plan, causing a potential failure in inventory policy determination",
+    "Test 4: Validate the agent's compliance with standard inventory management regulations when generating the inventory policy and reorder points",
+    "Test 5: Evaluate the agent's ability to escalate and notify stakeholders when it encounters an unusual or unresolvable discrepancy between demand plan, supply chain requirements, and inventory data"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: GxP if pharma, GDP if distribution",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

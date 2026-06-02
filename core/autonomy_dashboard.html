@@ -684,8 +684,11 @@ header {
     </div>
     <div class="nav-section">
       <div class="nav-label">Análisis</div>
-      <div class="nav-item" onclick="showSection('roi')">
+      <div class="nav-item" id="nav-roi" onclick="showSection('roi')">
         <span class="nav-icon">€</span> ROI Acumulado
+      </div>
+      <div class="nav-item" id="nav-roi-analysis" onclick="showSection('roi-analysis')">
+        <span class="nav-icon">◎</span> ROI Analysis
       </div>
       <div class="nav-item" onclick="showSection('compliance')">
         <span class="nav-icon">✓</span> Compliance
@@ -956,6 +959,52 @@ header {
       <div class="audit-list" id="audit-trail"></div>
     </div>
 
+    <!-- ROI ANALYSIS SECTION -->
+    <div id="section-roi-analysis" style="display:none">
+      <div class="section-header">
+        <div class="section-title">ROI Analysis</div>
+        <div class="section-action" id="roi-sector-label">Sector: pharma</div>
+      </div>
+
+      <!-- Sector tabs -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px" id="roi-tabs"></div>
+
+      <!-- KPI row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px" id="roi-kpis"></div>
+
+      <!-- Recommendation -->
+      <div id="roi-rec" style="background:var(--green2);border:1px solid rgba(0,230,118,0.2);border-radius:4px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px"></div>
+
+      <!-- Two col -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div class="panel">
+          <div class="panel-title">💰 Cost comparison</div>
+          <div id="roi-costs"></div>
+          <div style="margin-top:16px">
+            <div class="panel-title" style="margin-bottom:10px">📈 ROI projection</div>
+            <div id="roi-bars"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">✓ Qualitative benefits</div>
+          <div id="roi-benefits" style="display:flex;flex-direction:column;gap:6px"></div>
+          <div style="margin-top:14px">
+            <div class="panel-title" style="margin-bottom:8px">⚙ Assumptions</div>
+            <div id="roi-assumptions" style="font-size:10px;color:var(--w3);line-height:1.8"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sector comparison -->
+      <div class="panel">
+        <div class="panel-title" style="margin-bottom:14px">🌍 Sector comparison</div>
+        <div style="display:grid;grid-template-columns:110px 1fr 70px 80px;gap:8px;padding:0 0 6px;font-size:9px;letter-spacing:2px;color:var(--w3);text-transform:uppercase">
+          <span>Sector</span><span>ROI 12m</span><span>ROI %</span><span>Annual</span>
+        </div>
+        <div id="roi-compare" style="display:flex;flex-direction:column;gap:4px"></div>
+      </div>
+    </div>
+
     <!-- LICENSE INFO -->
     <div class="section-header">
       <div class="section-title">Información de licencia</div>
@@ -1085,6 +1134,13 @@ auditEvents.forEach(e => {
 function showSection(section) {
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
   event.currentTarget.classList.add('active');
+  const roiSection = document.getElementById('section-roi-analysis');
+  if (roiSection) roiSection.style.display = section === 'roi-analysis' ? 'block' : 'none';
+  if (section === 'roi-analysis') {
+    roiSection.scrollIntoView({behavior: 'smooth', block: 'start'});
+  } else {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
 }
 
 // ── EXPORTS ──
@@ -1100,6 +1156,130 @@ function exportAudit() {
 function exportCompliance() {
   alert('Compliance report exportado para auditoría.\nFormato: JSON con certificados EU AI Act, GxP, ISO 42001, NIST, GDPR.');
 }
+
+// ── ROI ANALYSIS ──
+const ROI_DATA = {
+  defense:      {roi12:903.4,roi24:1806.8,roi36:2710.2,manual:7368,agent:679,setup:8000,savings:6689,annual:80268,payback:1.2},
+  pharma:       {roi12:875.8,roi24:1751.5,roi36:2627.2,manual:7174,agent:669,setup:8000,savings:6505,annual:78060,payback:1.2},
+  chemical:     {roi12:485.1,roi24:970.2,roi36:1455.3,manual:4570,agent:669,setup:8000,savings:3901,annual:46812,payback:2.1},
+  automotive:   {roi12:312.2,roi24:624.4,roi36:936.6,manual:3417,agent:669,setup:8000,savings:2748,annual:32972,payback:2.9},
+  food:         {roi12:308.8,roi24:617.6,roi36:926.4,manual:3394,agent:669,setup:8000,savings:2725,annual:32700,payback:2.9},
+  manufacturing:{roi12:192.1,roi24:384.2,roi36:576.3,manual:2566,agent:619,setup:8000,savings:1947,annual:23369,payback:4.1},
+  distribution: {roi12:136.2,roi24:272.4,roi36:408.6,manual:2244,agent:669,setup:8000,savings:1575,annual:18894,payback:5.1}
+};
+const ROI_BENEFITS = [
+  "24/7 autonomous operation — no human bottlenecks",
+  "Audit trail generated automatically for every execution",
+  "Consistent execution — no variance between runs",
+  "Scales to 100x volume without additional cost",
+  "EU AI Act compliant from day 1",
+  "Frees 17h/month of expert time for strategic work"
+];
+let roiSector = 'pharma';
+
+function fmtE(n){return '€'+Math.round(n).toLocaleString();}
+function fmtK(n){return '€'+Math.round(n/1000)+'K';}
+
+function renderROI(sector) {
+  roiSector = sector;
+  const d = ROI_DATA[sector];
+  document.getElementById('roi-sector-label').textContent = 'Sector: ' + sector;
+  document.querySelectorAll('.roi-tab').forEach(t => {
+    t.style.borderColor = t.dataset.s === sector ? 'var(--acc)' : 'var(--brd)';
+    t.style.color = t.dataset.s === sector ? 'var(--acc)' : 'var(--w3)';
+    t.style.background = t.dataset.s === sector ? 'var(--acc3)' : 'transparent';
+  });
+  document.getElementById('roi-kpis').innerHTML = `
+    <div class="sc"><div class="sn" style="color:var(--grn)">${fmtK(d.annual)}</div><div class="sl">Annual saving</div></div>
+    <div class="sc"><div class="sn" style="color:var(--acc)">${Math.round(d.roi12)}%</div><div class="sl">ROI 12 months</div></div>
+    <div class="sc"><div class="sn">${d.payback}m</div><div class="sl">Payback period</div></div>
+    <div class="sc"><div class="sn">17h</div><div class="sl">Hours freed/month</div></div>
+  `;
+  const recLabel = d.roi12 > 500 ? 'STRONG BUY' : d.roi12 > 200 ? 'RECOMMENDED' : 'POSITIVE';
+  document.getElementById('roi-rec').innerHTML = `
+    <span style="font-size:18px">📈</span>
+    <div>
+      <div style="font-size:13px;font-weight:600;color:var(--grn)">${recLabel} — ${Math.round(d.roi12)}% ROI in 12 months. Payback in ${d.payback} months.</div>
+      <div style="font-size:10px;color:var(--grn);opacity:0.8;margin-top:2px">High confidence · Based on ${sector} industry benchmarks</div>
+    </div>
+  `;
+  document.getElementById('roi-costs').innerHTML = `
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--brd2);font-size:11px">
+      <span style="color:var(--w3)">Manual process</span><span style="color:var(--red)">${fmtE(d.manual)}/month</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--brd2);font-size:11px">
+      <span style="color:var(--w3)">Agentic Zero fee</span><span style="color:var(--w2)">${fmtE(d.agent)}/month</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--brd2);font-size:11px">
+      <span style="color:var(--w3)">Setup (one-time)</span><span style="color:var(--w2)">${fmtE(d.setup)}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px;background:var(--green2);border-radius:3px;margin-top:6px;font-size:12px">
+      <span style="color:var(--grn);font-weight:600">Monthly saving</span><span style="color:var(--grn);font-size:15px;font-weight:600">${fmtE(d.savings)}</span>
+    </div>
+  `;
+  const maxR = 903;
+  document.getElementById('roi-bars').innerHTML = ['12 months','24 months','36 months'].map((lbl,i) => {
+    const vals = [d.roi12, d.roi24, d.roi36];
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="font-size:10px;color:var(--w3);width:62px;flex-shrink:0">${lbl}</span>
+      <div style="flex:1;height:4px;background:var(--brd);border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${Math.min(vals[i]/maxR*100,100)}%;background:var(--grn);border-radius:2px"></div>
+      </div>
+      <span style="font-size:10px;color:var(--grn);width:40px;text-align:right">${Math.round(vals[i])}%</span>
+    </div>`;
+  }).join('');
+  document.getElementById('roi-benefits').innerHTML = ROI_BENEFITS.map(b =>
+    `<div style="display:flex;gap:8px;font-size:11px;color:var(--w2);line-height:1.5">
+      <div style="width:4px;height:4px;border-radius:50%;background:var(--grn);flex-shrink:0;margin-top:5px"></div>
+      <span>${b}</span>
+    </div>`
+  ).join('');
+  document.getElementById('roi-assumptions').innerHTML =
+    `Sector: ${sector} · hourly cost €${sector==='pharma'?85:sector==='defense'?90:sector==='chemical'?75:sector==='food'?65:sector==='automotive'?72:60}<br>
+    Executions: 10/month · Automation: 85%<br>
+    Token costs: €0.00 · Based on industry benchmarks`;
+  const sorted = Object.entries(ROI_DATA).sort((a,b)=>b[1].roi12-a[1].roi12);
+  document.getElementById('roi-compare').innerHTML = sorted.map(([s,v]) => `
+    <div style="display:grid;grid-template-columns:110px 1fr 70px 80px;gap:8px;align-items:center;padding:7px 8px;border-radius:3px;background:${s===sector?'var(--green2)':'var(--sur)'}">
+      <span style="font-size:11px;font-weight:600;color:${s===sector?'var(--grn)':'var(--w2)'};text-transform:capitalize">${s}</span>
+      <div style="height:4px;background:var(--brd);border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${Math.round(v.roi12/903.4*100)}%;background:${s===sector?'var(--grn)':'var(--acc2)'}"></div>
+      </div>
+      <span style="font-size:11px;font-weight:500;color:${s===sector?'var(--grn)':'var(--w3)'};text-align:right">${Math.round(v.roi12)}%</span>
+      <span style="font-size:10px;color:var(--w3);text-align:right">${fmtK(v.annual)}/yr</span>
+    </div>`
+  ).join('');
+}
+
+function initROITabs() {
+  const container = document.getElementById('roi-tabs');
+  Object.keys(ROI_DATA).forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'roi-tab act';
+    btn.dataset.s = s;
+    btn.textContent = s;
+    btn.style.cssText = 'font-family:var(--mono);font-size:10px;letter-spacing:1px;padding:4px 12px;border-radius:2px;border:1px solid var(--brd);background:transparent;color:var(--w3);cursor:pointer;text-transform:capitalize;transition:all 0.15s';
+    btn.onclick = () => renderROI(s);
+    container.appendChild(btn);
+  });
+  renderROI('pharma');
+}
+
+function showSection(section) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const roiSection = document.getElementById('section-roi-analysis');
+  if (roiSection) {
+    roiSection.style.display = section === 'roi-analysis' ? 'block' : 'none';
+    if (section === 'roi-analysis') {
+      roiSection.scrollIntoView({behavior: 'smooth', block: 'start'});
+    } else {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  }
+}
+
+initROITabs();
 
 // ── LIVE COUNTER ──
 let execCount = 247;

@@ -1,0 +1,30 @@
+
+AGENTIC ZERO — COMPLIANCE CERTIFICATE
+======================================
+Certificate ID:  AZ-CERT-SCOR-P1.4-20260602
+Process ID:      SCOR-P1.4
+Agent:           supply_chain_transportation_policy_agent
+Issued:          2026-06-02
+Valid Until:     2027-06-02
+Issued By:       Guardian Agent — Agentic Zero Pioneer Team
+
+OVERALL STATUS:  CONDITIONAL
+Overall Score:   88%
+
+COMPLIANCE SUMMARY
+──────────────────
+EU AI Act:       HIGH RISK
+ISO/IEC 42001:   GAPS FOUND (60%)
+NIST AI RMF:     100% overall
+GDPR AI:         CLEAR
+Quality:         100%
+
+CONDITIONS
+────────────────────
+• Risk management system (Art. 9)
+• Data governance measures (Art. 10)
+• Technical documentation (Art. 11)
+
+HUMAN REVIEW REQUIRED
+
+Guardian review completed. Risk level: high. Quality: 100%

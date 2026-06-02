@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-P1.3",
+  "agent_name": "supply_chain_inventory_manager",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-02T10:04:38.835483",
+  "product_summary": "The Determine Supply Chain Inventory Policy agent is a hybrid solution designed to optimize inventory management by analyzing demand plans, setting reorder points, and monitoring supply chains. This agent helps businesses minimize costs and meet customer demand by ensuring the right products are stocked at the right time. By leveraging advanced capabilities such as demand plan analysis and inventory policy optimization, companies can improve their overall supply chain efficiency and reduce waste. This leads to increased customer satisfaction and reduced operational expenses.",
+  "value_proposition": "Automates the determination of optimal inventory policies to minimize costs and meet demand, resulting in improved supply chain efficiency and reduced waste.",
+  "technical_summary": "The Determine Supply Chain Inventory Policy agent is built with a hybrid architecture, combining advanced analytics and machine learning capabilities to analyze demand plans, optimize inventory policies, and set reorder points. The agent integrates with existing supply chain systems to monitor inventory levels and adjust policies in real-time. This integration enables seamless communication between different components of the supply chain, ensuring that inventory levels are always optimized to meet changing demand patterns.",
+  "integration_guide": "# Integration Guide — supply_chain_inventory_manager\n**Process:** Determine Supply Chain Inventory Policy\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_inventory_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_inventory_manager import SupplyChainInventoryManagerAgent\n\nagent = SupplyChainInventoryManagerAgent()\nresult = agent.execute({\n    \"demand_plan\": your_demand_plan_data,\n    \"supply_chain_requirements\": your_supply_chain_requirements_data,\n    \"inventory_data\": your_inventory_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- warehouse_management_system_api\n- sales_forecast_api\n- supplier_contract_parser\n\n## Escalation\nThe agent automatically escalates to human when:\n- inventory_turnover_exceeds_target_range\n- stockout_rate_exceeds_threshold\n- supply_chain_disruption_detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supply_chain_inventory_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_inventory_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_inventory_manager/health — Health check",
+    "GET  /api/v1/agents/supply_chain_inventory_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_inventory_manager/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's supply_chain_inventory_manager: Briefly introduce the agent and its purpose, highlighting the value proposition of automating supply chain inventory policy determination with AI, and the potential return on investment.\n\n2. Current State Overview: Describe the current manual process of determining supply chain inventory policy, highlighting the inefficiencies, potential for human error, and lack of data-driven insights, which can lead to wasted resources and lost revenue.\n\n3. Demo of supply_chain_inventory_manager: Showcase the agent in action, demonstrating how it uses AI to analyze data, optimize inventory levels, and automatically determine the most effective supply chain inventory policy, resulting in reduced costs and improved efficiency.\n\n4. ROI Calculation: Walk the executives through a real-world example of how the supply_chain_inventory_manager can help a company achieve an 8.0x return on investment, highlighting the potential cost savings and revenue increases that can be achieved with the agent, such as reduced inventory holding costs and improved supply chain responsiveness.\n\n5. Compliance and Risk Mitigation: Emphasize the importance of compliance in supply chain management and demonstrate how the supply_chain_inventory_manager helps mitigate risks by ensuring alignment with regulatory requirements and industry standards, such as GDPR and ISO 28000.\n\n6. Implementation and Onboarding: Outline the straightforward implementation process and onboarding support provided by Agentic Zero, ensuring a seamless integration of the supply_chain_inventory_manager into the company's existing systems and workflows, with minimal disruption to operations.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the supply_chain_inventory_manager, including the potential for significant ROI and improved compliance, and outline the next steps for the executives to get started with the agent, including a clear call to action and any necessary follow-up meetings or trials.",
+  "demo_inputs": {
+    "demand_plan": "[example_demand_plan]",
+    "supply_chain_requirements": "[example_supply_chain_requirements]",
+    "inventory_data": "[example_inventory_data]"
+  },
+  "expected_demo_outputs": {
+    "inventory_policy": "[generated_inventory_policy]",
+    "reorder_points": "[generated_reorder_points]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-P1.3",
+    "agent_name": "supply_chain_inventory_manager",
+    "framework": "SCOR",
+    "domain": "Plan",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-02T10:04:38.835464"
+  },
+  "tags": [
+    "manufacturing",
+    "l2",
+    "food",
+    "distribution",
+    "plan",
+    "scor",
+    "hybrid",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Implementing just-in-time inventory management in manufacturing, resulting in a 25% reduction in inventory holding costs",
+    "Use case 2: Optimizing distribution routes for pharmaceutical products to ensure GDP compliance, leading to a 15% decrease in logistics expenses",
+    "Use case 3: Developing a vendor-managed inventory system for food distributors, resulting in a 30% reduction in stockouts and overstocking",
+    "Use case 4: Streamlining inventory management for pharmaceutical companies to ensure GxP compliance, resulting in a 20% reduction in audit-related costs",
+    "Use case 5: Analyzing demand forecasts to inform inventory decisions for manufacturers, leading to a 12% reduction in inventory obsolescence and a 10% increase in fill rates"
+  ],
+  "pricing": {
+    "process_id": "SCOR-P1.3",
+    "complexity_score": 76,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 76/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-P1.3_package.json"
+}

@@ -1714,3 +1714,200 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.2"**
 ---
 
 *v3.2 — Sprint 2 en curso · 1 Junio 2026*
+
+# MEJORAS EN EL DASHBOARD 02 JUNIO 2026
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.3 | Fecha: 2 Junio 2026 | Sprint 2 en curso
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Dominio:** agentic-zero.com | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ESTADO TÉCNICO AL 2 JUNIO 2026
+
+### Módulos operativos
+```
+✅ M1 — License Manager        core/license/license_manager.py
+✅ M2 — Autonomy Dashboard v2  core/autonomy_dashboard.html
+✅ M3 — ROI Calculator         core/roi_calculator.py
+✅ M5 — Pioneer Team           pioneer_team/ (5 agentes)
+✅ M6 — Library                library/ (33 procesos + 10 variantes)
+✅ M7 — API Gateway            core/api/api_gateway.py (+ ROI endpoints)
+✅ M8 — Queue System           core/queue/queue_system.py (ROOT fix aplicado)
+⏳ M4 — Compliance Engine      (pendiente)
+⏳ M10 — Orchestration         (Fase 3)
+```
+
+### Novedades Sprint 2
+```
+✅ ROI endpoints en API Gateway:
+   GET /api/v1/roi/{process_id}?sector=pharma
+   GET /api/v1/roi/compare/{process_id}
+
+✅ start.py — script de inicio del sistema:
+   python start.py           → status + arranca API
+   python start.py --no-api  → solo status
+
+✅ Autonomy Dashboard v2:
+   Pestaña ROI Analysis integrada
+   7 sectores con selector interactivo
+   Comparador de sectores con barras
+   Navegación con scroll automático
+
+✅ Queue System fix:
+   ROOT = Path(__file__).parent.parent.parent (línea 42)
+   Workers: complete() archiva + push() crea nuevo job con nuevo ID
+```
+
+### Agentes certificados en biblioteca
+```
+✅ SCOR-P1.1 — supply_chain_optimizer_agent    CONDITIONAL 82%
+✅ SCOR-P1.2 — supply_chain_analyzer           CONDITIONAL 90%
+✅ SCOR-P1.3 — supply_chain_inventory_manager  (built, pendiente packager/guardian)
+✅ SCOR-P1.4 — supply_chain_transportation_policy_agent (built)
+✅ SCOR-P1.5 — supply_chain_risk_manager       (built)
+```
+
+### ROI de referencia
+```
+Defense:       903% ROI · payback 1.2m · €80K/año
+Pharma:        876% ROI · payback 1.2m · €78K/año
+Chemical:      485% ROI · payback 2.1m · €47K/año
+Automotive:    312% ROI · payback 2.9m · €33K/año
+Food:          309% ROI · payback 2.9m · €33K/año
+Manufacturing: 192% ROI · payback 4.1m · €23K/año
+Distribution:  136% ROI · payback 5.1m · €19K/año
+```
+
+---
+
+## 3. COMANDOS ESENCIALES
+
+### Activar entorno
+```powershell
+cd F:\agentic-zero
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned)
+.venv\Scripts\Activate.ps1
+```
+
+### Arrancar sistema completo
+```powershell
+python start.py              # API en http://localhost:8000/docs
+python start.py --no-api     # Solo status
+```
+
+### Pipeline agentes
+```powershell
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear builder_queue
+python queue_system.py --pipeline SCOR-P1.2 SCOR-P1.3 SCOR-P1.4 SCOR-P1.5
+```
+
+### ROI Calculator
+```powershell
+cd core
+python roi_calculator.py SCOR-P1.1 --sector pharma
+```
+
+### API endpoints ROI
+```
+GET http://localhost:8000/api/v1/roi/SCOR-P1.1?sector=pharma
+GET http://localhost:8000/api/v1/roi/compare/SCOR-P1.1
+```
+
+### License Manager
+```powershell
+cd core\license
+python license_manager.py status
+python license_manager.py issue SCOR-P1.1 CLIENT001 "IFF Global" --sector pharma --fee 1500
+```
+
+### Library Viewer
+```
+F:\agentic-zero\library\library_viewer.html → Live Server
+```
+
+### Autonomy Dashboard
+```
+F:\agentic-zero\core\autonomy_dashboard.html → Live Server
+Pestañas: Dashboard · Agentes · Ejecuciones · ROI Analysis · Compliance · Audit Trail · Licencia
+```
+
+---
+
+## 4. PENDIENTES SPRINT 2
+
+```
+TÉCNICO:
+  1. Completar pipeline SCOR-P1.3/1.4/1.5 via packager+guardian:
+     cd core\queue
+     python queue_system.py --pipeline SCOR-P1.3 SCOR-P1.4 SCOR-P1.5
+
+  2. Completar biblioteca:
+     cd pioneer_team\scout
+     python scout.py SCOR-D "Product Development" "Network Design"
+     python scout.py ISO_9001
+     python scout.py BPMN
+
+  3. Batch pipeline dominio Source y Make:
+     python queue_system.py --pipeline SCOR-S1.1 SCOR-S1.2 SCOR-S1.3 SCOR-S1.4 SCOR-S1.5
+
+  4. M4 Compliance Engine módulo independiente
+
+COMERCIAL:
+  5. Primer AUDIT gratuito → caso de estudio
+  6. LinkedIn perfil actualizado
+  7. Company Page Agentic Zero
+  8. 10 contactos objetivo red IFF/Indra
+```
+
+---
+
+## 5. GIT — COMMITS SPRINT 2
+```
+51082ad — API Gateway M7
+6c322f0 — Queue System M8
+[commits Sprint 2] — ROI endpoints + start.py + queue fix + Dashboard v2
+```
+
+---
+
+## 6. ESTRUCTURA DE CARPETAS
+```
+F:\agentic-zero\
+├── start.py                          ← arranque del sistema
+├── core\
+│   ├── api\api_gateway.py            ← M7: 13 endpoints (+ ROI)
+│   ├── license\license_manager.py    ← M1
+│   ├── queue\queue_system.py         ← M8 (ROOT fix línea 42)
+│   ├── roi_calculator.py             ← M3
+│   └── autonomy_dashboard.html       ← M2 v2 con ROI Analysis
+├── library\
+│   ├── scor\
+│   │   ├── processes\     ← 33 JSON
+│   │   ├── variants\      ← 10 variantes
+│   │   ├── agents\        ← 5 agentes construidos
+│   │   ├── sops\          ← 5 SOPs
+│   │   ├── packages\      ← 2 packages
+│   │   └── certificates\  ← 2 certificados
+│   └── library_viewer.html
+├── pioneer_team\
+│   ├── scout · architect · builder · packager · guardian
+└── AGENTIC_ZERO_MASTER_CONTEXT.md
+```
+
+---
+
+## 7. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.3"**
+
+---
+
+*v3.3 — Sprint 2 en curso · 2 Junio 2026*

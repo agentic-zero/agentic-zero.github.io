@@ -1,0 +1,90 @@
+{
+  "process_id": "SCOR-P1.5",
+  "guardian_timestamp": "2026-06-02T11:02:11.967110",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-P1.5-20260602",
+    "process_id": "SCOR-P1.5",
+    "agent_name": "supply_chain_risk_manager",
+    "issued_at": "2026-06-02T11:02:11.967061",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-02",
+    "overall_status": "conditional",
+    "overall_score": 0.86,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.8,
+      "gaps": [
+        "Lack of explicit human oversight and review processes",
+        "Insufficient documentation on data quality and integrity for supplier data analysis",
+        "Unclear criteria for evaluating mitigation effectiveness"
+      ],
+      "recommendations": [
+        "Implement regular human review and validation of AI-generated risk assessments and mitigation plans",
+        "Develop and maintain a data quality management plan for supplier data",
+        "Establish clear, measurable criteria for evaluating mitigation effectiveness"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Lack of explicit human oversight and review processes",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

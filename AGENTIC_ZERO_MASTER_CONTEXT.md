@@ -1911,3 +1911,243 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.3"**
 ---
 
 *v3.3 — Sprint 2 en curso · 2 Junio 2026*
+
+# TRABAJOS DEL DIA 2 DE JUNIO 2026
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.4 | Fecha: 2 Junio 2026 | Sprint 2 en curso
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Dominio:** agentic-zero.com | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ARQUITECTURA COMPLETA
+
+```
+ESTRATEGIA        VENTURE (pendiente construir)
+                     ↓
+PRODUCCIÓN        Scout → Architect → Builder → Packager → Guardian
+                     ↓
+COMERCIAL         HERALD v1.0 (operativo)
+                     ↓
+OPERACIONES       Paperclip (orquestador, Fase 3)
+```
+
+### Agentes del sistema
+```
+PIONEER TEAM (R&D Engine):
+  ✅ Scout     — Investigación y mapeo de frameworks
+  ✅ Architect — Validación y variantes sectoriales
+  ✅ Builder   — IBM Bob proceso→agente
+  ✅ Packager  — Product packaging
+  ✅ Guardian  — Compliance & certification
+
+COMMERCIAL ENGINE:
+  ✅ Herald    — Marketing & Growth Agent v1.0
+  ⏳ Venture   — Business Development & Passive Income (pendiente)
+
+ORCHESTRATION:
+  ⏳ Paperclip — M10, Fase 3
+```
+
+---
+
+## 3. ESTADO TÉCNICO AL 2 JUNIO 2026
+
+### Módulos operativos
+```
+✅ M1 — License Manager        core/license/license_manager.py
+✅ M2 — Autonomy Dashboard v2  core/autonomy_dashboard.html
+✅ M3 — ROI Calculator         core/roi_calculator.py
+✅ M5 — Pioneer Team           pioneer_team/ (5 agentes)
+✅ M6 — Library                library/ (33 procesos + 10 variantes)
+✅ M7 — API Gateway            core/api/api_gateway.py (13 endpoints + ROI)
+✅ M8 — Queue System           core/queue/queue_system.py
+⏳ M4 — Compliance Engine      (pendiente)
+⏳ M10 — Orchestration         (Fase 3)
+```
+
+### Agentes certificados en biblioteca
+```
+✅ SCOR-P1.1 — supply_chain_optimizer_agent        CONDITIONAL 82%
+✅ SCOR-P1.2 — supply_chain_analyzer               CONDITIONAL 90%
+✅ SCOR-P1.3 — supply_chain_inventory_manager      CONDITIONAL 88%
+✅ SCOR-P1.4 — supply_chain_transportation_policy  CONDITIONAL 88%
+✅ SCOR-P1.5 — supply_chain_risk_manager           CONDITIONAL 86%
+⏳ SCOR-S1.1 a S1.5 — Dominio Source (Builder OK, Packager/Guardian pendiente)
+```
+
+### Pipeline Source — estado
+```
+Builder:   SCOR-S1.1 a S1.5 completados ✅
+Packager:  SCOR-S1.1 fallido por rate limit · S1.2-S1.5 pendientes
+Guardian:  pendiente
+
+Relanzar cuando Groq resetee:
+  cd core\queue
+  python queue_system.py --clear failed_queue
+  python queue_system.py --pipeline SCOR-S1.1 SCOR-S1.2 SCOR-S1.3 SCOR-S1.4 SCOR-S1.5
+```
+
+---
+
+## 4. HERALD AGENT v1.0
+
+### Ruta
+```
+F:\agentic-zero\commercial\herald\herald.py
+```
+
+### Uso
+```powershell
+cd F:\agentic-zero\commercial\herald
+
+# Primer contacto en español
+python herald.py \
+  --name "Carlos Martinez" \
+  --company "Laboratorios Rovi" \
+  --role "Director de Operaciones" \
+  --sector pharma \
+  --process SCOR-P1.1 \
+  --type first_contact \
+  --history "Trabajamos juntos en optimizacion cadena suministro 2021" \
+  --language es
+
+# Tipos disponibles: first_contact / follow_up / audit_proposal / post
+# Sectores: pharma / defense / chemical / food / automotive / manufacturing / distribution
+# Idiomas: es / en
+```
+
+### Output de Herald
+```
+1. Mensaje LinkedIn personalizado (listo para enviar)
+2. ROI argumentario por sector
+3. Post LinkedIn de autoridad
+4. Guardado en: commercial/herald/outputs/HERALD-{timestamp}.json
+```
+
+### Filosofía Herald
+```
+Herald propone. Alberto decide y envía.
+No publica automáticamente — requiere aprobación.
+```
+
+---
+
+## 5. COMANDOS ESENCIALES
+
+### Activar entorno
+```powershell
+cd F:\agentic-zero
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned)
+.venv\Scripts\Activate.ps1
+```
+
+### Sistema completo
+```powershell
+python start.py           # API + status
+python start.py --no-api  # Solo status
+```
+
+### Pipeline agentes
+```powershell
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear failed_queue
+python queue_system.py --pipeline SCOR-S1.1 SCOR-S1.2 SCOR-S1.3 SCOR-S1.4 SCOR-S1.5
+```
+
+### ROI endpoints API
+```
+GET http://localhost:8000/api/v1/roi/SCOR-P1.1?sector=pharma
+GET http://localhost:8000/api/v1/roi/compare/SCOR-P1.1
+```
+
+### Herald
+```powershell
+cd commercial\herald
+python herald.py --name "X" --company "Y" --sector pharma --process SCOR-P1.1 --type first_contact --language es
+```
+
+---
+
+## 6. ROI DE REFERENCIA
+```
+Defense:       903% ROI · payback 1.2m · €80K/año
+Pharma:        876% ROI · payback 1.2m · €78K/año
+Chemical:      485% ROI · payback 2.1m · €47K/año
+Automotive:    312% ROI · payback 2.9m · €33K/año
+Food:          309% ROI · payback 2.9m · €33K/año
+Manufacturing: 192% ROI · payback 4.1m · €23K/año
+Distribution:  136% ROI · payback 5.1m · €19K/año
+```
+
+---
+
+## 7. PENDIENTES SPRINT 2
+
+```
+TÉCNICO INMEDIATO:
+  1. Relanzar pipeline Source cuando Groq resetee
+  2. Pipeline Make: SCOR-M1.1 a M5.1
+  3. Pipeline Deliver: SCOR-D1.1 a D4.1
+  4. Completar biblioteca: SCOR-D + ISO 9001 + BPMN
+  5. Venture Agent (Business Development)
+  6. Quitar prints DEBUG del queue_system.py
+
+COMERCIAL:
+  7. Probar Herald con los 5 contactos reales
+  8. Primer AUDIT gratuito fijado en agenda
+  9. LinkedIn perfil actualizado
+  10. Company Page Agentic Zero
+```
+
+---
+
+## 8. ESTRUCTURA DE CARPETAS
+```
+F:\agentic-zero\
+├── start.py
+├── commercial\
+│   └── herald\
+│       ├── herald.py         ← Herald Agent v1.0
+│       └── outputs\          ← JSONs generados
+├── core\
+│   ├── api\api_gateway.py
+│   ├── license\license_manager.py
+│   ├── queue\queue_system.py
+│   ├── roi_calculator.py
+│   └── autonomy_dashboard.html
+├── library\
+│   └── scor\
+│       ├── processes\   ← 33 JSON
+│       ├── variants\    ← 10 variantes
+│       ├── agents\      ← 5 agentes Plan + 5 Source (Builder)
+│       ├── packages\    ← 5 packages Plan
+│       └── certificates\ ← 5 certificados Plan
+└── pioneer_team\
+    ├── scout · architect · builder · packager · guardian
+```
+
+---
+
+## 9. GIT — COMMITS SPRINT 2
+```
+[últimos commits]
+1649538 — Dominio Plan completo — 5 agentes certificados
+[último]  — Herald Agent v1.0 + Commercial Engine
+```
+
+---
+
+## 10. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.4"**
+
+---
+
+*v3.4 — Sprint 2 en curso · 2 Junio 2026*

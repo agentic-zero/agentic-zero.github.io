@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/alberto/Downloads/agentic_zero_deck_3.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Zero — Executive Brief</title>
+<link href="./Agentic Zero — Executive Brief_files/css2" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#04080f;--bg2:#070d18;--sur:#0d1828;
+  --brd:#1a2e4a;--brd2:#0f1e30;
+  --acc:#00d4ff;--grn:#00e676;--amb:#ffab40;
+  --w1:#f0f4f8;--w2:#8fa3c0;--w3:#4a6080;
+  --mono:'DM Mono',monospace;
+  --serif:'Instrument Serif',serif;
+  --syne:'Syne',sans-serif;
+}
+html{background:var(--bg);color:var(--w1);font-family:var(--mono)}
+.page{max-width:960px;margin:0 auto;padding:48px 40px;position:relative}
+.page::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,0.02) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;z-index:0;
+}
+
+/* HEADER */
+.header{
+  border-bottom:1px solid var(--brd);
+  padding-bottom:28px;margin-bottom:48px;
+  position:relative;z-index:1;
+}
+.logo-tag{font-size:9px;letter-spacing:4px;color:var(--acc);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.logo-tag::before{content:'';width:24px;height:1px;background:var(--acc)}
+.logo-name{font-family:var(--syne);font-size:42px;font-weight:800;color:var(--w1);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.logo-tagline{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--w3)}
+
+/* HERO */
+.hero{text-align:center;padding:48px 0 40px;border-bottom:1px solid var(--brd2);margin-bottom:40px;position:relative;z-index:1}
+.hero-eyebrow{font-size:9px;letter-spacing:5px;color:var(--w3);text-transform:uppercase;margin-bottom:32px}
+
+.hero-headline{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:28px}
+.hero-word-row{display:flex;align-items:center;justify-content:center;gap:28px}
+.hero-word-az{font-family:var(--syne);font-size:60px;font-weight:800;color:var(--acc);letter-spacing:-2px;line-height:1;text-shadow:0 0 60px rgba(0,212,255,0.25)}
+.hero-word-zero{font-family:var(--syne);font-size:60px;font-weight:800;color:var(--w1);letter-spacing:-2px;line-height:1}
+.hero-word-def{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--w3);max-width:190px;line-height:1.4;text-align:left}
+.hero-sep-row{display:flex;align-items:center;gap:12px;width:460px;margin:2px auto}
+.hero-sep-line{flex:1;height:1px;background:var(--brd)}
+.hero-sep-plus{font-size:16px;color:var(--w3)}
+
+.hero-divider{width:40px;height:2px;background:var(--acc);margin:0 auto 24px;opacity:0.4}
+.hero-sub{font-size:13px;color:var(--w2);line-height:1.8;max-width:560px;margin:0 auto 24px}
+
+.hero-speed{
+  display:inline-flex;align-items:stretch;
+  background:var(--sur);border:1px solid var(--brd);border-radius:6px;
+  overflow:hidden;margin-bottom:24px;
+}
+.speed-item{padding:16px 28px;text-align:center}
+.speed-fast{background:rgba(0,230,118,0.04);border-right:1px solid var(--brd)}
+.speed-time{font-family:var(--syne);font-size:32px;font-weight:800;line-height:1;margin-bottom:3px}
+.speed-fast .speed-time{color:var(--grn)}
+.speed-item:not(.speed-fast) .speed-time{color:var(--acc)}
+.speed-label{font-size:11px;color:var(--w1);font-weight:500;margin-bottom:2px}
+.speed-desc{font-size:9px;color:var(--w3);letter-spacing:0.3px}
+
+.hero-pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:10px;letter-spacing:0.5px;color:var(--w3);background:var(--sur);border:1px solid var(--brd);border-radius:2px;padding:5px 14px}
+
+/* IMPACT PROOF */
+.impact-numbers{
+  display:flex;align-items:center;justify-content:center;
+  gap:32px;margin-bottom:20px;
+}
+.impact-stat{text-align:center}
+.impact-stat-num{
+  font-family:var(--syne);font-size:48px;font-weight:800;
+  color:var(--grn);line-height:1;margin-bottom:4px;
+}
+.impact-stat-label{
+  font-size:11px;letter-spacing:1px;color:var(--w2);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.impact-stat-sub{font-size:10px;color:var(--w3);line-height:1.6}
+.impact-stat-divider{
+  font-family:var(--syne);font-size:32px;font-weight:800;
+  color:var(--brd);align-self:center;margin-bottom:20px;
+}
+.impact-sources{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;font-size:9px;color:var(--w3);letter-spacing:1px;
+  margin-bottom:14px;padding-bottom:14px;
+  border-bottom:1px solid var(--brd2);
+}
+.impact-dot{color:var(--brd)}
+
+.impact-block{
+  background:var(--bg2);border:1px solid var(--brd);border-left:3px solid var(--acc);
+  border-radius:6px;padding:28px 32px;margin-bottom:16px;position:relative;z-index:1;
+}
+.impact-quote{font-family:var(--serif);font-size:22px;color:var(--w1);line-height:1.6;margin-bottom:10px}
+.impact-quote em{color:var(--grn);font-style:italic}
+.impact-source{font-size:9px;letter-spacing:1px;color:var(--w3);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--brd2)}
+.impact-note{font-size:12px;color:var(--w2);line-height:1.7}
+
+/* NUMBERS */
+.numbers-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:48px;position:relative;z-index:1}
+.num-card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:18px;text-align:center;position:relative;overflow:hidden}
+.num-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c,var(--acc))}
+.num-big{font-family:var(--syne);font-size:30px;font-weight:800;color:var(--c,var(--acc));line-height:1;margin-bottom:4px}
+.num-label{font-size:8px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;margin-bottom:3px}
+.num-sub{font-size:10px;color:var(--w3)}
+
+/* VISION */
+.section-label{font-size:9px;letter-spacing:3px;color:var(--w3);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.section-label::after{content:'';flex:1;height:1px;background:var(--brd2)}
+
+.vision-block{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:28px 32px;margin-bottom:48px;position:relative;z-index:1}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.vision-col-title{font-family:var(--syne);font-size:13px;font-weight:700;color:var(--w1);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.vision-col-title span{font-size:10px;color:var(--w3);font-family:var(--mono);font-weight:400}
+.vision-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.vision-list li{font-size:11px;color:var(--w2);line-height:1.6;display:flex;gap:10px}
+.vision-list li::before{content:'→';color:var(--acc);flex-shrink:0}
+
+/* HOW */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:48px;position:relative;z-index:1}
+.step{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:18px}
+.step-n{font-size:9px;color:var(--acc);letter-spacing:2px;margin-bottom:8px}
+.step-title{font-family:var(--syne);font-size:13px;font-weight:700;color:var(--w1);margin-bottom:6px}
+.step-desc{font-size:10px;color:var(--w3);line-height:1.6}
+
+/* SECTORS */
+.sectors-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:48px;position:relative;z-index:1}
+.sector-card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:14px;text-align:center}
+.sector-name{font-family:var(--syne);font-size:12px;font-weight:700;color:var(--w1);margin-bottom:4px}
+.sector-roi{font-size:11px;color:var(--grn)}
+.sector-payback{font-size:9px;color:var(--w3);margin-top:2px}
+
+/* AUDIT */
+.audit-block{
+  border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.02);
+  border-radius:8px;padding:32px;text-align:center;margin-bottom:48px;position:relative;z-index:1;
+}
+.audit-tag{font-size:9px;letter-spacing:3px;color:var(--acc);text-transform:uppercase;margin-bottom:12px}
+.audit-title{font-family:var(--syne);font-size:24px;font-weight:800;color:var(--w1);margin-bottom:8px}
+.audit-sub{font-size:13px;color:var(--w2);margin-bottom:24px;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto}
+.audit-phases{display:flex;justify-content:center;max-width:600px;margin:0 auto 20px;border:1px solid var(--brd);border-radius:4px;overflow:hidden}
+.audit-phase{flex:1;padding:12px 8px;text-align:center;font-size:10px;color:var(--w3);border-right:1px solid var(--brd)}
+.audit-phase:last-child{border-right:none}
+.audit-phase strong{display:block;color:var(--acc);font-size:11px;margin-bottom:3px}
+.audit-cta{font-size:11px;color:var(--grn);background:rgba(0,230,118,0.08);border:1px solid rgba(0,230,118,0.15);border-radius:4px;padding:8px 24px;display:inline-block}
+
+/* COMPLIANCE */
+.compliance-row{
+  display:flex;align-items:center;gap:16px;
+  background:var(--bg2);border:1px solid var(--brd);border-radius:6px;
+  padding:16px 20px;margin-bottom:48px;position:relative;z-index:1;
+}
+.comp-pre{font-size:9px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.comp-tags{display:flex;flex-wrap:wrap;gap:6px;flex:1}
+.comp-tag{font-size:9px;padding:3px 9px;border-radius:2px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.12);color:#0097b8}
+.eu-pill{font-size:9px;color:var(--amb);background:rgba(255,171,64,0.08);border:1px solid rgba(255,171,64,0.2);border-radius:4px;padding:5px 12px;white-space:nowrap;flex-shrink:0}
+
+/* FOUNDER */
+.founder{display:grid;grid-template-columns:56px 1fr;gap:20px;background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:22px;margin-bottom:40px;position:relative;z-index:1}
+.av{width:56px;height:56px;border-radius:6px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15);display:flex;align-items:center;justify-content:center;font-family:var(--syne);font-size:18px;font-weight:800;color:var(--acc);flex-shrink:0}
+.f-name{font-family:var(--syne);font-size:15px;font-weight:700;color:var(--w1);margin-bottom:2px}
+.f-role{font-size:10px;color:var(--acc);margin-bottom:10px}
+.f-creds{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.f-cred{font-size:9px;padding:2px 8px;background:var(--bg2);border:1px solid var(--brd);border-radius:2px;color:var(--w3)}
+.f-ref{font-size:11px;color:var(--w3);line-height:1.7}
+
+/* FOOTER */
+.footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--brd2);padding-top:20px;position:relative;z-index:1}
+.footer-l{font-size:9px;letter-spacing:3px;color:var(--w3);text-transform:uppercase}
+.footer-r{font-size:11px;color:var(--w3)}
+.footer-r a{color:var(--acc);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-tag">Executive Brief · Confidential</div>
+    <div class="logo-name">AGENTIC ZERO</div>
+    <div class="logo-tagline">The self-operating company is not the future. It's what we build today.</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">The name says it all</div>
+    <div class="hero-headline">
+      <div class="hero-word-row">
+        <span class="hero-word-az">AGENTIC</span>
+        <span class="hero-word-def">Su empresa operando<br>de forma autónoma</span>
+      </div>
+      <div class="hero-sep-row">
+        <div class="hero-sep-line"></div>
+        <span class="hero-sep-plus">+</span>
+        <div class="hero-sep-line"></div>
+      </div>
+      <div class="hero-word-row">
+        <span class="hero-word-zero">ZERO</span>
+        <span class="hero-word-def">desperdicio del talento<br>de su equipo</span>
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-sub">
+      Agents pilot your company.<br>
+      Your team adds maximum value where it truly matters.
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px">
+      <!-- 24h HERO -->
+      <div style="display:inline-flex;align-items:center;gap:20px;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.25);border-radius:8px;padding:18px 40px">
+        <span style="font-family:var(--syne);font-size:56px;font-weight:800;color:var(--grn);line-height:1">24h</span>
+        <div>
+          <div style="font-family:var(--syne);font-size:14px;font-weight:700;color:var(--w1);margin-bottom:3px">Framework Processes</div>
+          <div style="font-size:10px;color:rgba(0,230,118,0.6)">Immediate deployment</div>
+        </div>
+      </div>
+      <!-- 10d SECONDARY -->
+      <div style="display:inline-flex;align-items:center;gap:16px;background:var(--sur);border:1px solid var(--brd);border-radius:8px;padding:14px 32px">
+        <span style="font-family:var(--syne);font-size:28px;font-weight:800;color:var(--acc);line-height:1">10d</span>
+        <div>
+          <div style="font-family:var(--syne);font-size:11px;font-weight:700;color:var(--w2);margin-bottom:3px">High complexity · Regulated</div>
+          <div style="font-size:9px;color:var(--w3)">Ontological mapping · Build · Compliance · Certification · Deployment</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-pills">
+      <span class="hero-pill">No ERP migration</span>
+      <span class="hero-pill">Embedded compliance</span>
+      <span class="hero-pill">ROI calculated before committing</span>
+    </div>
+  </div>
+
+  <!-- IMPACT PROOF -->
+  <div class="impact-block">
+    <div class="impact-numbers">
+      <div class="impact-stat">
+        <div class="impact-stat-num">$19,915</div>
+        <div class="impact-stat-label">generated in 8 hours</div>
+        <div class="impact-stat-sub">One agent. $10 starting capital.<br>220 professional tasks. Alone.</div>
+      </div>
+      <div class="impact-stat-divider">+</div>
+      <div class="impact-stat">
+        <div class="impact-stat-num">$47,000</div>
+        <div class="impact-stat-label">from 20 hours of work</div>
+        <div class="impact-stat-sub">Same agent sold 7 times.<br>Still working. Still earning.</div>
+      </div>
+    </div>
+    <div class="impact-sources">
+      <span>ClawWork Benchmark · Claude Opus 4 · March 2026</span>
+      <span class="impact-dot">·</span>
+      <span>The AI Agent Economy · Medium 2026</span>
+    </div>
+    <div class="impact-note">
+      Agentic Zero brings this to your business: certified agents built for complex, regulated environments —
+      with compliance embedded, ROI calculated on your data, and 25 years of field expertise behind every deployment.
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="numbers-row">
+    <div class="num-card" style="--c:var(--grn)">
+      <div class="num-label">Average annual saving</div>
+      <div class="num-big">€78K</div>
+      <div class="num-sub">per automated process</div>
+    </div>
+    <div class="num-card" style="--c:var(--acc)">
+      <div class="num-label">Average ROI 12 months</div>
+      <div class="num-big">600%</div>
+      <div class="num-sub">regulated sectors up to 903%</div>
+    </div>
+    <div class="num-card" style="--c:var(--grn)">
+      <div class="num-label">Framework Processes</div>
+      <div class="num-big">24h</div>
+      <div class="num-sub">live from the next day</div>
+    </div>
+    <div class="num-card" style="--c:var(--amb)">
+      <div class="num-label">Procesos a medida</div>
+      <div class="num-big">10d</div>
+      <div class="num-sub">mapping · build · certification</div>
+    </div>
+  </div>
+
+  <!-- VISION -->
+  <div class="section-label">Why now</div>
+  <div class="vision-block">
+    <div class="vision-grid">
+      <div>
+        <div class="vision-col-title">What your company does today <span>— manual, slow, expensive</span></div>
+        <ul class="vision-list">
+          <li>Repetitive processes run by people who should be doing strategic work</li>
+          <li>Operational decisions waiting for someone to have time</li>
+          <li>Data that exists but nobody can process in time</li>
+          <li>Compliance managed reactively, always running behind</li>
+          <li>System integrations that never quite work properly</li>
+        </ul>
+      </div>
+      <div>
+        <div class="vision-col-title">What Agentic Zero does for you <span>— autonomous, 24/7</span></div>
+        <ul class="vision-list">
+          <li>Agents that execute, decide and escalate to human only when necessary</li>
+          <li>Continuous operation without depending on people's availability</li>
+          <li>Real-time data processing with automatic audit trail</li>
+          <li>Embedded compliance desde el diseño — EU AI Act, GDPR, sectorial</li>
+          <li>Agnostic integration on your current ERP without migration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW -->
+  <div class="section-label">How it works</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">01 · AUDIT</div>
+      <div class="step-title">10-day diagnosis</div>
+      <div class="step-desc">We map your operation, identify highest-ROI processes and calculate impact with your real data</div>
+    </div>
+    <div class="step">
+      <div class="step-n">02 · BUILD</div>
+      <div class="step-title">Certified agent</div>
+      <div class="step-desc">We build the agent with process ontology, embedded compliance and quality tests</div>
+    </div>
+    <div class="step">
+      <div class="step-n">03 · DEPLOY</div>
+      <div class="step-title">On your current stack</div>
+      <div class="step-desc">Integrates via API on your existing ERP. No migration or system changes required</div>
+    </div>
+    <div class="step">
+      <div class="step-n">04 · OPERATE</div>
+      <div class="step-title">Autonomous 24/7</div>
+      <div class="step-desc">Real-time dashboard, full audit trail, automatic escalation when the agent detects exceptions</div>
+    </div>
+  </div>
+
+  <!-- SECTORS -->
+  <div class="section-label">ROI by sector</div>
+  <div class="sectors-grid">
+    <div class="sector-card">
+      <div class="sector-name">Defense</div>
+      <div class="sector-roi">903% ROI</div>
+      <div class="sector-payback">Payback 1.2 meses</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-name">Pharma</div>
+      <div class="sector-roi">876% ROI</div>
+      <div class="sector-payback">Payback 1.2 meses</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-name">Chemical</div>
+      <div class="sector-roi">485% ROI</div>
+      <div class="sector-payback">Payback 2.1 meses</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-name">Food</div>
+      <div class="sector-roi">309% ROI</div>
+      <div class="sector-payback">Payback 2.9 meses</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-name">Manufacturing</div>
+      <div class="sector-roi">192% ROI</div>
+      <div class="sector-payback">Payback 4.1 meses</div>
+    </div>
+  </div>
+
+  <!-- AUDIT OFFER -->
+  <div class="audit-block">
+    <div class="audit-tag">Entry offer · No risk</div>
+    <div class="audit-title">First AUDIT free</div>
+    <div class="audit-sub">
+      Before committing to anything, you see the exact ROI for your specific operation.<br>
+      If the numbers don't convince, there's no conversation to have.
+    </div>
+    <div class="audit-phases">
+      <div class="audit-phase"><strong>Days 1-2</strong>Intake &amp; mapping</div>
+      <div class="audit-phase"><strong>Days 3-5</strong>ROI &amp; compliance</div>
+      <div class="audit-phase"><strong>Days 6-8</strong>Autonomy Map</div>
+      <div class="audit-phase"><strong>Days 9-10</strong>Executive session</div>
+    </div>
+    <div class="audit-cta">✓ ROI calculated with your real data · No further commitment</div>
+  </div>
+
+  <!-- COMPLIANCE -->
+  <div class="compliance-row">
+    <div class="comp-pre">Native compliance</div>
+    <div class="comp-tags">
+      <span class="comp-tag">EU AI Act 2026</span>
+      <span class="comp-tag">ISO/IEC 42001</span>
+      <span class="comp-tag">NIST AI RMF</span>
+      <span class="comp-tag">GDPR AI</span>
+      <span class="comp-tag">GxP · GMP · GDP</span>
+      <span class="comp-tag">21 CFR Part 11</span>
+      <span class="comp-tag">AS9100</span>
+      <span class="comp-tag">HACCP · FSMA</span>
+      <span class="comp-tag">IATF 16949</span>
+    </div>
+    <div class="eu-pill">⚠ Mandatory August 2026</div>
+  </div>
+
+  <!-- FOUNDER -->
+  <div class="founder">
+    <div class="av">AM</div>
+    <div>
+      <div class="f-name">Alberto Muñoz Waissen</div>
+      <div class="f-role">Founder &amp; CEO · Agentic Zero</div>
+      <div class="f-creds">
+        <span class="f-cred">MIT Operations</span>
+        <span class="f-cred">Oxford AI Governance</span>
+        <span class="f-cred">Vanderbilt Agentic Dev</span>
+        <span class="f-cred">IBM AI Engineering</span>
+        <span class="f-cred">APICS SCOR-D</span>
+        <span class="f-cred">EU AI Act</span>
+        <span class="f-cred">NIST AI RMF</span>
+        <span class="f-cred">ISO/IEC 42001</span>
+      </div>
+      <div class="f-ref">
+        25 years · 30 countries · 400+ industrial plants · $420M value demonstrated<br>
+        IFF Global (€30M, 150 people, 20 countries) · Indra Defense · Tiresur (€16M anti-dumping)
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-l">Agentic Zero · 2026 · Confidential</div>
+    <div class="footer-r">
+      <a href="mailto:alberto@agentic-zero.com">alberto@agentic-zero.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://agentic-zero.com/">agentic-zero.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/awaissen">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+
+
+</body></html>

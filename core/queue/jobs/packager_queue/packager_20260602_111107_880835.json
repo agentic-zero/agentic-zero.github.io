@@ -1,0 +1,16 @@
+{
+  "job_id": "packager_20260602_111107_880835",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S1.2"
+  },
+  "priority": 5,
+  "retries": 2,
+  "max_retries": 3,
+  "created_at": "2026-06-02T11:11:07.880854",
+  "status": "pending",
+  "started_at": "2026-06-02T11:23:07.714064",
+  "completed_at": null,
+  "error": "Packager returned no result",
+  "result": null
+}

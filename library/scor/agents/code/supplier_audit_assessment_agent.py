@@ -1,10 +1,10 @@
 """
 AGENTIC ZERO — Generated Agent
-Process: SCOR-S1.4
-Name: supplier_contract_manager
+Process: SCOR-S1.5
+Name: supplier_audit_assessment_agent
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-03T12:00:05.843566
+Generated: 2026-06-03T12:04:05.858631
 Compliance: GxP if pharma, GDP if distribution
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -17,32 +17,31 @@ from typing import Optional
 from loguru import logger
 
 
-class SupplierContractManagerAgent:
+class SupplierAuditAssessmentAgentAgent:
     """
-    Agent for: Manage Supplier Contracts and Agreements
+    Agent for: Conduct Supplier Audits and Assessments
     
-    Process of managing supplier contracts and agreements
+    Process of conducting supplier audits and assessments to ensure compliance and quality
     
     Capabilities:
-    #   - contract_negotiation
-    #   - compliance_monitoring
-    #   - agreement_renewal
-    #   - supplier_notification
-    #   - data_tracking
+    #   - conducting_audits
+    #   - performing_assessments
+    #   - generating_reports
+    #   - triggering_corrective_actions
     
     Compliance: GxP if pharma, GDP if distribution
     """
 
     def __init__(self, config: dict = None):
-        self.process_id = "SCOR-S1.4"
-        self.agent_name = "supplier_contract_manager"
+        self.process_id = "SCOR-S1.5"
+        self.agent_name = "supplier_audit_assessment_agent"
         self.config = config or {}
         self.execution_log = []
         logger.info(f"Agent {self.agent_name} initialized")
 
     def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
         """Validate required inputs before execution"""
-        required = ['supplier_contracts', 'agreements', 'negotiation_data']
+        required = ['supplier_information', 'audit_schedules', 'assessment_criteria']
         missing = [r for r in required if r not in inputs]
         if missing:
             return False, [f"Missing required input: {m}" for m in missing]
@@ -140,70 +139,84 @@ class SupplierContractManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF contract compliance rate is below threshold THEN notify supplier
-        # - IF agreement renewal rate is below threshold THEN renegotiate agreement
+        # - IF Audit Report indicates non-compliance THEN trigger corrective action
+        # - IF Assessment Result indicates low quality THEN trigger supplier development
         
         Business rules:
-        # - rule1: contracts must be updated within 30 days of negotiation
-        # - rule2: agreements must be renewed at least 60 days before expiration
-        # - rule3: compliance rate must be above 90% to meet regulatory requirements
+        # - rule1: Audit must be conducted according to schedule
+        # - rule2: Assessment must be based on predefined criteria
+        # - rule3: Audit Report and Assessment Result must be documented and stored
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Initialize variables to store updated contracts and agreement summaries
-            updated_contracts = []
-            agreement_summaries = []
-
-            # Check if inputs are valid
-            if 'supplier contracts' in inputs and 'agreements' in inputs and 'negotiation data' in inputs:
-                # Iterate over each supplier contract
-                for contract in inputs['supplier contracts']:
-                    # Check if contract compliance rate is below threshold
-                    if contract['compliance_rate'] < 0.9:  # assuming 90% threshold
-                        # Notify supplier
-                        print(f"Notifying supplier for contract {contract['id']}")
-
-                    # Update contract based on negotiation data
-                    updated_contract = contract.copy()  # create a copy to avoid modifying original data
-                    updated_contract['terms'] = inputs['negotiation data']['terms']
-                    updated_contracts.append(updated_contract)
-
-                # Iterate over each agreement
-                for agreement in inputs['agreements']:
-                    # Check if agreement renewal rate is below threshold
-                    if agreement['renewal_rate'] < 0.8:  # assuming 80% threshold
-                        # Renegotiate agreement
-                        print(f"Renegotiating agreement {agreement['id']}")
-
-                    # Create agreement summary
-                    agreement_summary = {
-                        'id': agreement['id'],
-                        'expiration_date': agreement['expiration_date'],
-                        'renewal_status': agreement['renewal_status']
-                    }
-                    agreement_summaries.append(agreement_summary)
-
-                # Check if contracts are updated within 30 days of negotiation
-                for contract in updated_contracts:
-                    if (contract['updated_date'] - inputs['negotiation data']['date']).days > 30:
-                        print(f"Contract {contract['id']} not updated within 30 days of negotiation")
-
-                # Check if agreements are renewed at least 60 days before expiration
-                for agreement in inputs['agreements']:
-                    if (agreement['expiration_date'] - agreement['renewal_date']).days < 60:
-                        print(f"Agreement {agreement['id']} not renewed at least 60 days before expiration")
-
+            # Check if required inputs are present
+            if 'supplier information' in inputs and 'audit schedules' in inputs and 'assessment criteria' in inputs:
+                # Initialize empty lists to store audit reports and assessment results
+                audit_reports = []
+                assessment_results = []
+                # Iterate over each supplier
+                for supplier in inputs['supplier information']:
+                    # Check if audit schedule is available for the supplier
+                    if supplier['id'] in inputs['audit schedules']:
+                        # Conduct audit according to schedule
+                        audit_report = self.conduct_audit(supplier, inputs['audit schedules'][supplier['id']])
+                        # Check if audit report indicates non-compliance
+                        if audit_report['compliant'] == False:
+                            # Trigger corrective action
+                            self.trigger_corrective_action(supplier, audit_report)
+                        # Add audit report to the list
+                        audit_reports.append(audit_report)
+                # Iterate over each supplier
+                for supplier in inputs['supplier information']:
+                    # Conduct assessment based on predefined criteria
+                    assessment_result = self.conduct_assessment(supplier, inputs['assessment criteria'])
+                    # Check if assessment result indicates low quality
+                    if assessment_result['quality'] == 'low':
+                        # Trigger supplier development
+                        self.trigger_supplier_development(supplier, assessment_result)
+                    # Add assessment result to the list
+                    assessment_results.append(assessment_result)
                 # Populate outputs dictionary
-                outputs['updated contracts'] = updated_contracts
-                outputs['agreement summaries'] = agreement_summaries
-
+                outputs['audit reports'] = audit_reports
+                outputs['assessment results'] = assessment_results
             else:
-                # Handle edge case where inputs are invalid
-                print("Invalid inputs")
-
+                # Handle edge case where required inputs are missing
+                outputs['audit reports'] = []
+                outputs['assessment results'] = []
+                print("Error: Required inputs are missing")
             return outputs
+
+        def conduct_audit(self, supplier, schedule):
+            # Simulate audit process
+            audit_report = {
+                'supplier_id': supplier['id'],
+                'compliant': True  # assume compliant by default
+            }
+            # Add audit report details based on schedule
+            audit_report['schedule'] = schedule
+            # Return audit report
+            return audit_report
+
+        def conduct_assessment(self, supplier, criteria):
+            # Simulate assessment process
+            assessment_result = {
+                'supplier_id': supplier['id'],
+                'quality': 'high'  # assume high quality by default
+            }
+            # Add assessment result details based on criteria
+            assessment_result['criteria'] = criteria
+            # Return assessment result
+            return assessment_result
+
+        def trigger_corrective_action(self, supplier, audit_report):
+            # Simulate corrective action
+            print(f"Corrective action triggered for supplier {supplier['id']}")
+
+        def trigger_supplier_development(self, supplier, assessment_result):
+            # Simulate supplier development
+            print(f"Supplier development triggered for supplier {supplier['id']}")
         
         return outputs
 
@@ -212,11 +225,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP compliance for pharma suppliers
-        # - GDP compliance for distribution suppliers
-        # - contract_update_within_30_days
-        # - agreement_renewal_at_least_60_days_before_expiration
-        # - compliance_rate_above_90%
+        # - GxP_compliance_validation_for_pharma
+        # - GDP_compliance_validation_for_distribution
         """
         checks_passed = []
         checks_failed = []
@@ -232,7 +242,7 @@ def _process_logic(self, inputs):
 
     def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
         """Validate outputs meet process requirements"""
-        required_outputs = ['updated_contracts', 'agreement_summaries']
+        required_outputs = ['audit_reports', 'assessment_results']
         missing = [o for o in required_outputs if o not in outputs]
         if missing:
             return False, [f"Missing output: {m}" for m in missing]
@@ -240,7 +250,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['contract non-compliance rate exceeds 10%', 'agreement renewal failure', 'supplier satisfaction rating below 4/5']
+        escalation_rules = ['audit_report_indicates_critical_non_compliance', 'assessment_result_indicates_severe_quality_issues', 'supplier_unavailability_for_audit']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -254,16 +264,16 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['contract_compliance_rate', 'agreement_renewal_rate', 'supplier_satisfaction_rating', 'negotiation_success_rate']
+            "monitoring": ['audit_completion_rate', 'assessment_score', 'supplier_information_accuracy']
         }
 
 
 # ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    agent = SupplierContractManagerAgent()
+    agent = SupplierAuditAssessmentAgentAgent()
     
     # Example execution
-    test_inputs = {"supplier_contracts": "example_supplier_contracts", "agreements": "example_agreements", "negotiation_data": "example_negotiation_data", }
+    test_inputs = {"supplier_information": "example_supplier_information", "audit_schedules": "example_audit_schedules", "assessment_criteria": "example_assessment_criteria", }
     
     result = agent.execute(test_inputs)
     print(json.dumps(result, indent=2, default=str))

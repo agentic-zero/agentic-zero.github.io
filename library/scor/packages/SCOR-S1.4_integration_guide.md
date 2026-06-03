@@ -37,11 +37,12 @@ print(result['outputs'])
 - contract_database_api
 - supplier_database_api
 - agreement_database_api
-- compliance_tracking_system_api
-- renewal_tracking_system_api
+- negotiation_log_api
+- compliance_tracker_api
+- renewal_tracker_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- contract_non_compliance
-- agreement_renewal_failure
-- supplier_dissatisfaction
+- contract non-compliance rate exceeds 10%
+- agreement renewal failure
+- supplier satisfaction rating below 4/5

@@ -3,18 +3,18 @@ AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
 Certificate ID:  AZ-CERT-SCOR-S1.5-20260603
 Process ID:      SCOR-S1.5
-Agent:           supplier_audit_agent
+Agent:           supplier_audit_assessment_agent
 Issued:          2026-06-03
 Valid Until:     2027-06-03
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL
-Overall Score:   92%
+Overall Score:   88%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       HIGH RISK
-ISO/IEC 42001:   GAPS FOUND (80%)
+ISO/IEC 42001:   GAPS FOUND (60%)
 NIST AI RMF:     100% overall
 GDPR AI:         CLEAR
 Quality:         100%

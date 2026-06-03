@@ -1,11 +1,11 @@
 """
 AGENTIC ZERO — Generated Agent
-Process: SCOR-S1.4
-Name: supplier_contract_manager
+Process: SCOR-M2.1
+Name: production_order_release_agent
 Framework: SCOR
-Domain: Source
-Generated: 2026-06-03T12:00:05.843566
-Compliance: GxP if pharma, GDP if distribution
+Domain: Make
+Generated: 2026-06-03T15:41:01.441517
+Compliance: 
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
 """
@@ -17,32 +17,31 @@ from typing import Optional
 from loguru import logger
 
 
-class SupplierContractManagerAgent:
+class ProductionOrderReleaseAgentAgent:
     """
-    Agent for: Manage Supplier Contracts and Agreements
+    Agent for: Release Production
     
-    Process of managing supplier contracts and agreements
+    Process of releasing production orders to the shop floor
     
     Capabilities:
-    #   - contract_negotiation
-    #   - compliance_monitoring
-    #   - agreement_renewal
-    #   - supplier_notification
-    #   - data_tracking
+    #   - production_order_management
+    #   - material_requirement_planning
+    #   - inventory_tracking
+    #   - schedule_optimization
     
-    Compliance: GxP if pharma, GDP if distribution
+    Compliance: 
     """
 
     def __init__(self, config: dict = None):
-        self.process_id = "SCOR-S1.4"
-        self.agent_name = "supplier_contract_manager"
+        self.process_id = "SCOR-M2.1"
+        self.agent_name = "production_order_release_agent"
         self.config = config or {}
         self.execution_log = []
         logger.info(f"Agent {self.agent_name} initialized")
 
     def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
         """Validate required inputs before execution"""
-        required = ['supplier_contracts', 'agreements', 'negotiation_data']
+        required = ['production_schedules', 'work_orders']
         missing = [r for r in required if r not in inputs]
         if missing:
             return False, [f"Missing required input: {m}" for m in missing]
@@ -140,69 +139,42 @@ class SupplierContractManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF contract compliance rate is below threshold THEN notify supplier
-        # - IF agreement renewal rate is below threshold THEN renegotiate agreement
+        # - IF Production Schedule is available AND Work Order is ready THEN release Production Order
+        # - IF Material Requirement is not met THEN adjust Production Order
         
         Business rules:
-        # - rule1: contracts must be updated within 30 days of negotiation
-        # - rule2: agreements must be renewed at least 60 days before expiration
-        # - rule3: compliance rate must be above 90% to meet regulatory requirements
+        # - rule1: Production Order must be released within a certain timeframe
+        # - rule2: Material Requirement must be fulfilled before Production Order can start
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Initialize variables to store updated contracts and agreement summaries
-            updated_contracts = []
-            agreement_summaries = []
-
-            # Check if inputs are valid
-            if 'supplier contracts' in inputs and 'agreements' in inputs and 'negotiation data' in inputs:
-                # Iterate over each supplier contract
-                for contract in inputs['supplier contracts']:
-                    # Check if contract compliance rate is below threshold
-                    if contract['compliance_rate'] < 0.9:  # assuming 90% threshold
-                        # Notify supplier
-                        print(f"Notifying supplier for contract {contract['id']}")
-
-                    # Update contract based on negotiation data
-                    updated_contract = contract.copy()  # create a copy to avoid modifying original data
-                    updated_contract['terms'] = inputs['negotiation data']['terms']
-                    updated_contracts.append(updated_contract)
-
-                # Iterate over each agreement
-                for agreement in inputs['agreements']:
-                    # Check if agreement renewal rate is below threshold
-                    if agreement['renewal_rate'] < 0.8:  # assuming 80% threshold
-                        # Renegotiate agreement
-                        print(f"Renegotiating agreement {agreement['id']}")
-
-                    # Create agreement summary
-                    agreement_summary = {
-                        'id': agreement['id'],
-                        'expiration_date': agreement['expiration_date'],
-                        'renewal_status': agreement['renewal_status']
-                    }
-                    agreement_summaries.append(agreement_summary)
-
-                # Check if contracts are updated within 30 days of negotiation
-                for contract in updated_contracts:
-                    if (contract['updated_date'] - inputs['negotiation data']['date']).days > 30:
-                        print(f"Contract {contract['id']} not updated within 30 days of negotiation")
-
-                # Check if agreements are renewed at least 60 days before expiration
-                for agreement in inputs['agreements']:
-                    if (agreement['expiration_date'] - agreement['renewal_date']).days < 60:
-                        print(f"Agreement {agreement['id']} not renewed at least 60 days before expiration")
-
-                # Populate outputs dictionary
-                outputs['updated contracts'] = updated_contracts
-                outputs['agreement summaries'] = agreement_summaries
-
+            # Check if production schedule and work order are available
+            if 'production schedules' in inputs and 'work orders' in inputs:
+                # Check if production schedule is available and work order is ready
+                if inputs['production schedules'] and inputs['work orders']:
+                    # Release production order
+                    outputs['production orders'] = self.release_production_order(inputs['production schedules'], inputs['work orders'])  # assuming release_production_order method is defined
+                    # Calculate material requirements
+                    outputs['material requirements'] = self.calculate_material_requirements(inputs['production schedules'], inputs['work orders'])  # assuming calculate_material_requirements method is defined
+                    # Check if material requirement is met
+                    if not self.is_material_requirement_met(outputs['material requirements']):
+                        # Adjust production order
+                        outputs['production orders'] = self.adjust_production_order(outputs['production orders'], outputs['material requirements'])  # assuming adjust_production_order method is defined
+                else:
+                    # Handle edge case where production schedule or work order is not available
+                    outputs['production orders'] = []
+                    outputs['material requirements'] = []
             else:
-                # Handle edge case where inputs are invalid
-                print("Invalid inputs")
-
+                # Handle edge case where inputs are not provided
+                outputs['production orders'] = []
+                outputs['material requirements'] = []
+            # Check if production order is released within a certain timeframe
+            if outputs['production orders']:
+                if not self.is_production_order_released_within_timeframe(outputs['production orders']):
+                    # Handle edge case where production order is not released within a certain timeframe
+                    outputs['production orders'] = []
             return outputs
         
         return outputs
@@ -212,11 +184,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP compliance for pharma suppliers
-        # - GDP compliance for distribution suppliers
-        # - contract_update_within_30_days
-        # - agreement_renewal_at_least_60_days_before_expiration
-        # - compliance_rate_above_90%
+        # - production order release within timeframe rule
+        # - material requirement fulfillment before production start rule
         """
         checks_passed = []
         checks_failed = []
@@ -232,7 +201,7 @@ def _process_logic(self, inputs):
 
     def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
         """Validate outputs meet process requirements"""
-        required_outputs = ['updated_contracts', 'agreement_summaries']
+        required_outputs = ['production_orders', 'material_requirements']
         missing = [o for o in required_outputs if o not in outputs]
         if missing:
             return False, [f"Missing output: {m}" for m in missing]
@@ -240,7 +209,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['contract non-compliance rate exceeds 10%', 'agreement renewal failure', 'supplier satisfaction rating below 4/5']
+        escalation_rules = ['if production schedule is delayed by more than 24 hours', 'if material requirement cannot be fulfilled within 48 hours', 'if inventory levels are outside acceptable ranges']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -254,16 +223,16 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['contract_compliance_rate', 'agreement_renewal_rate', 'supplier_satisfaction_rating', 'negotiation_success_rate']
+            "monitoring": ['production order release rate', 'material requirement fulfillment rate', 'inventory turnover', 'production lead time']
         }
 
 
 # ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    agent = SupplierContractManagerAgent()
+    agent = ProductionOrderReleaseAgentAgent()
     
     # Example execution
-    test_inputs = {"supplier_contracts": "example_supplier_contracts", "agreements": "example_agreements", "negotiation_data": "example_negotiation_data", }
+    test_inputs = {"production_schedules": "example_production_schedules", "work_orders": "example_work_orders", }
     
     result = agent.execute(test_inputs)
     print(json.dumps(result, indent=2, default=str))

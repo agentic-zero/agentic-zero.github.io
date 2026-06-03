@@ -1,0 +1,85 @@
+{
+  "process_id": "SCOR-M1.1",
+  "agent_name": "production_scheduler_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-03T12:22:06.438771",
+  "product_summary": "The Schedule Production agent is a hybrid solution designed to streamline production planning and scheduling, enabling businesses to efficiently meet customer demand. By leveraging capabilities such as production planning, inventory management, capacity planning, and schedule optimization, this agent helps organizations reduce costs, improve productivity, and enhance overall customer satisfaction. This agent is particularly valuable for companies with complex production processes or fluctuating demand patterns. Effective use of this agent can lead to significant improvements in operational efficiency and bottom-line results.",
+  "value_proposition": "Automates the production scheduling process to optimize resource allocation, reduce downtime, and increase overall manufacturing efficiency.",
+  "technical_summary": "The Schedule Production agent is built on a hybrid architecture that integrates with existing production systems to gather data and apply advanced scheduling algorithms. This agent utilizes a combination of production planning, inventory management, capacity planning, and schedule optimization capabilities to generate optimized production schedules. The agent's architecture is designed to be flexible and adaptable, allowing for seamless integration with a variety of manufacturing systems and technologies.",
+  "integration_guide": "# Integration Guide — production_scheduler_agent\n**Process:** Schedule Production\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp production_scheduler_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.production_scheduler_agent import ProductionSchedulerAgentAgent\n\nagent = ProductionSchedulerAgentAgent()\nresult = agent.execute({\n    \"production_plans\": your_production_plans_data,\n    \"inventory_data\": your_inventory_data_data,\n    \"capacity_data\": your_capacity_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP system API\n- inventory management system API\n- production planning system API\n- CRM system API\n\n## Escalation\nThe agent automatically escalates to human when:\n- equipment failure\n- material shortages\n- insufficient production capacity",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/production_scheduler_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/production_scheduler_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/production_scheduler_agent/health — Health check",
+    "GET  /api/v1/agents/production_scheduler_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/production_scheduler_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's production_scheduler_agent: Briefly introduce the agent and its value proposition, highlighting how it automates schedule production with AI, and mention the price point of €1500.\n\n2. Current State Overview: Describe the current manual process of scheduling production, emphasizing the time-consuming and error-prone nature of this task, and how it affects the bottom line.\n\n3. Demo of Automated Production Scheduling: Showcase the production_scheduler_agent in action, demonstrating how it quickly and accurately generates production schedules, and explain how this automation leads to increased efficiency and reduced labor costs.\n\n4. ROI Calculation: Walk the executives through a simple ROI calculation, using the ROI multiplier of 6.0x, to illustrate the potential return on investment, such as \"with our agent, you can expect to save €9000 (€1500 x 6) by automating your production scheduling\".\n\n5. Compliance and Risk Mitigation: Highlight how the production_scheduler_agent ensures compliance with regulatory requirements and industry standards, reducing the risk of non-compliance and associated penalties, and demonstrate any relevant reporting or auditing features.\n\n6. Implementation and Onboarding: Outline the straightforward implementation process and provide an overview of the support and training provided to ensure a smooth onboarding experience, emphasizing the speed at which the agent can start delivering value.\n\n7. Conclusion and Next Steps: Recap the key benefits of the production_scheduler_agent, including the significant ROI and compliance value, and invite the executives to discuss further how Agentic Zero can help their organization streamline production scheduling and improve their bottom line.",
+  "demo_inputs": {
+    "production_plans": "[example_production_plans]",
+    "inventory_data": "[example_inventory_data]",
+    "capacity_data": "[example_capacity_data]"
+  },
+  "expected_demo_outputs": {
+    "production_schedules": "[generated_production_schedules]",
+    "work_orders": "[generated_work_orders]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M1.1",
+    "agent_name": "production_scheduler_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "process industries"
+    ],
+    "compliance_frameworks": [],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 1500.0,
+    "complexity_score": 81,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T12:22:06.438754"
+  },
+  "tags": [
+    "l3",
+    "scor",
+    "make",
+    "manufacturing",
+    "process industries",
+    "hybrid"
+  ],
+  "use_cases": [
+    "Optimizing production schedules for a pharmaceutical manufacturer to reduce batch processing time by 15% and increase overall throughput by 10%",
+    "Implementing a just-in-time inventory system for an automotive parts supplier to decrease inventory holding costs by 20% and minimize stockouts",
+    "Streamlining production workflows for a food processing company to improve yield by 12% and reduce waste by 8%",
+    "Developing a predictive maintenance schedule for a chemical plant to decrease equipment downtime by 18% and lower maintenance costs by 15%",
+    "Analyzing and optimizing production capacity for a aerospace manufacturer to increase production volume by 15% without additional capital expenditures"
+  ],
+  "pricing": {
+    "process_id": "SCOR-M1.1",
+    "complexity_score": 81,
+    "level": "L3",
+    "base_price_eur": 1500.0,
+    "regulated_surcharge": 0.0,
+    "total_price_eur": 1500.0,
+    "price_rationale": "Level L3 process with complexity score 81/100",
+    "roi_multiplier": 6.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M1.1_package.json"
+}

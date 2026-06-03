@@ -1,0 +1,84 @@
+{
+  "process_id": "SCOR-M2.1",
+  "agent_name": "production_order_release_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-03T15:46:01.711910",
+  "product_summary": "The Release Production agent is a hybrid solution designed to streamline the production process by efficiently releasing production orders to the shop floor. This agent leverages capabilities such as production order management, material requirement planning, inventory tracking, and schedule optimization to ensure a smooth and timely production flow. By automating and optimizing these processes, the agent helps reduce delays, minimize waste, and increase overall productivity. This results in significant business value through improved efficiency, reduced costs, and enhanced customer satisfaction.",
+  "value_proposition": "Automates the release of production orders to the shop floor, optimizing production workflows and improving overall manufacturing efficiency.",
+  "technical_summary": "The Release Production agent is built on a hybrid architecture that integrates with existing production systems to manage production orders, track inventory, and optimize schedules. The agent's capabilities are supported by advanced algorithms and data analytics, enabling real-time decision-making and process optimization. Through standardized APIs and interfaces, the agent can be seamlessly integrated with various manufacturing systems and technologies.",
+  "integration_guide": "# Integration Guide — production_order_release_agent\n**Process:** Release Production\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp production_order_release_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.production_order_release_agent import ProductionOrderReleaseAgentAgent\n\nagent = ProductionOrderReleaseAgentAgent()\nresult = agent.execute({\n    \"production_schedules\": your_production_schedules_data,\n    \"work_orders\": your_work_orders_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP system API\n- production scheduling software\n- inventory management system\n\n## Escalation\nThe agent automatically escalates to human when:\n- if production schedule is delayed by more than 24 hours\n- if material requirement cannot be fulfilled within 48 hours\n- if inventory levels are outside acceptable ranges",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/production_order_release_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/production_order_release_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/production_order_release_agent/health — Health check",
+    "GET  /api/v1/agents/production_order_release_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/production_order_release_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's production_order_release_agent: Briefly introduce the agent and its value proposition, highlighting how it automates release production with AI, and mention the price point of €499.\n\n2. Current State Overview: Describe the current manual process of release production, emphasizing the time-consuming and error-prone nature of manual workflows, and how this affects the bottom line.\n\n3. Demo of Automated Release Production: Showcase the production_order_release_agent in action, demonstrating how it streamlines and automates the release production process, reducing the need for manual intervention and minimizing errors.\n\n4. ROI Calculation: Explain how the agent can help achieve an 8.0x ROI multiplier by reducing labor costs, increasing efficiency, and improving productivity, and provide a simple calculation to illustrate the potential cost savings.\n\n5. Compliance and Risk Mitigation: Highlight the compliance benefits of using the production_order_release_agent, such as improved audit trails, reduced risk of human error, and increased transparency, and explain how these benefits can help mitigate potential risks and reputational damage.\n\n6. Implementation and Onboarding: Outline the simple implementation and onboarding process for the production_order_release_agent, emphasizing how quickly executives can start seeing the benefits of automation and ROI multiplier.\n\n7. Conclusion and Next Steps: Summarize the key takeaways from the demo, reiterate the value proposition and ROI potential, and provide a clear call to action for the next steps, such as scheduling a follow-up meeting or starting a pilot project.",
+  "demo_inputs": {
+    "production_schedules": "[example_production_schedules]",
+    "work_orders": "[example_work_orders]"
+  },
+  "expected_demo_outputs": {
+    "production_orders": "[generated_production_orders]",
+    "material_requirements": "[generated_material_requirements]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M2.1",
+    "agent_name": "production_order_release_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "process industries"
+    ],
+    "compliance_frameworks": [],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 499.0,
+    "complexity_score": 51,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T15:46:01.711892"
+  },
+  "tags": [
+    "manufacturing",
+    "l2",
+    "scor",
+    "process industries",
+    "hybrid",
+    "make"
+  ],
+  "use_cases": [
+    "Optimizing production workflows in manufacturing to reduce labor costs by 15%",
+    "Implementing predictive maintenance in process industries to decrease equipment downtime by 20%",
+    "Streamlining quality control processes to reduce defect rates by 10% and increase customer satisfaction",
+    "Analyzing production data to identify areas of inefficiency and improve overall equipment effectiveness by 12%",
+    "Developing data-driven strategies to reduce energy consumption and lower operational costs by 8% in process industries"
+  ],
+  "pricing": {
+    "process_id": "SCOR-M2.1",
+    "complexity_score": 51,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 0.0,
+    "total_price_eur": 499.0,
+    "price_rationale": "Level L2 process with complexity score 51/100",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M2.1_package.json"
+}

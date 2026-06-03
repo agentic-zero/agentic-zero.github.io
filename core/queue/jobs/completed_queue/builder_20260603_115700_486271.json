@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260603_115700_486271",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-M1.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-03T11:57:00.486292",
+  "status": "completed",
+  "started_at": "2026-06-03T12:04:05.872658",
+  "completed_at": "2026-06-03T12:08:05.703185",
+  "error": null,
+  "result": {
+    "agent_name": "production_scheduler_agent",
+    "ready_for_packager": true
+  }
+}

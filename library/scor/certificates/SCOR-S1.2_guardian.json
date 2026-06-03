@@ -1,11 +1,11 @@
 {
   "process_id": "SCOR-S1.2",
-  "guardian_timestamp": "2026-06-03T10:12:09.103252",
+  "guardian_timestamp": "2026-06-03T12:22:08.573747",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-S1.2-20260603",
     "process_id": "SCOR-S1.2",
     "agent_name": "authorize_and_pay_agent",
-    "issued_at": "2026-06-03T10:12:09.103206",
+    "issued_at": "2026-06-03T12:22:08.573707",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-03",
     "overall_status": "conditional",
@@ -45,9 +45,9 @@
         "No clear documentation of compliance flag application and monitoring"
       ],
       "recommendations": [
-        "Implement a risk management framework to identify, assess, and mitigate potential risks associated with AI decision-making",
-        "Develop and document detailed procedures for discrepancy investigation and escalation, including clear criteria for escalation",
-        "Establish a compliance monitoring program to ensure ongoing adherence to GxP and GDP requirements"
+        "Implement a risk management framework to identify, assess, and mitigate potential risks associated with AI-driven payment processing and inventory updates",
+        "Develop and document clear procedures for discrepancy investigation, including timelines and responsible personnel",
+        "Establish a compliance monitoring program to ensure adherence to GxP and GDP regulations, including regular audits and reporting"
       ]
     },
     "nist_ai_rmf": {
@@ -81,5 +81,16 @@
   "requires_human_sign_off": true,
   "remediation_plan": [
     "ISO 42001: Lack of explicit risk management process for AI decision-making"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "audited_at": "2026-06-03T15:30:25.608939",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

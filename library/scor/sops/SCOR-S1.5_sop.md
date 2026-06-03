@@ -7,9 +7,8 @@
 Process of conducting supplier audits and assessments to ensure compliance and quality
 
 ## Triggers
-- scheduled audit date
-- supplier information update
-- assessment criteria change
+- Scheduled Audit date is reached
+- New Supplier is onboarded
 
 ## Inputs Required
 - supplier information
@@ -18,25 +17,24 @@ Process of conducting supplier audits and assessments to ensure compliance and q
 
 ## Process Steps
 1. IF Audit Report indicates non-compliance THEN trigger corrective action
-2. IF Assessment Result indicates low quality THEN trigger supplier evaluation
+2. IF Assessment Result indicates low quality THEN trigger supplier development
 
 ## Expected Outputs
 - audit reports
 - assessment results
 
 ## Business Rules
-- rule1: Supplier must comply with GxP regulations if in pharma sector
-- rule2: Supplier must comply with GDP regulations if in distribution sector
-- rule3: Audit must be conducted according to scheduled timeline
+- rule1: Audit must be conducted according to schedule
+- rule2: Assessment must be based on predefined criteria
+- rule3: Audit Report and Assessment Result must be documented and stored
 
 ## Exception Handling
-- exception1: Supplier is unable to provide required documentation, THEN request additional information
-- exception2: Audit Report is incomplete, THEN trigger audit re-evaluation
+- IF Supplier is not available for Audit THEN reschedule Audit
+- IF Assessment Criteria are not defined THEN use industry standard criteria
 
 ## Success Criteria
-- Audit Report indicates compliance
-- Assessment Result indicates high quality
-- Audit completion rate meets target
+- Audit completion rate is above 90%
+- Assessment score is above 80%
 
 ## Compliance Requirements
 - GxP if pharma

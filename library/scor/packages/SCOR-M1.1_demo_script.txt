@@ -1,0 +1,13 @@
+1. Introduction to Agentic Zero's production_scheduler_agent: Briefly introduce the agent and its value proposition, highlighting how it automates schedule production with AI, and mention the price point of €1500.
+
+2. Current State Overview: Describe the current manual process of scheduling production, emphasizing the time-consuming and error-prone nature of this task, and how it affects the bottom line.
+
+3. Demo of Automated Production Scheduling: Showcase the production_scheduler_agent in action, demonstrating how it quickly and accurately generates production schedules, and explain how this automation leads to increased efficiency and reduced labor costs.
+
+4. ROI Calculation: Walk the executives through a simple ROI calculation, using the ROI multiplier of 6.0x, to illustrate the potential return on investment, such as "with our agent, you can expect to save €9000 (€1500 x 6) by automating your production scheduling".
+
+5. Compliance and Risk Mitigation: Highlight how the production_scheduler_agent ensures compliance with regulatory requirements and industry standards, reducing the risk of non-compliance and associated penalties, and demonstrate any relevant reporting or auditing features.
+
+6. Implementation and Onboarding: Outline the straightforward implementation process and provide an overview of the support and training provided to ensure a smooth onboarding experience, emphasizing the speed at which the agent can start delivering value.
+
+7. Conclusion and Next Steps: Recap the key benefits of the production_scheduler_agent, including the significant ROI and compliance value, and invite the executives to discuss further how Agentic Zero can help their organization streamline production scheduling and improve their bottom line.

@@ -2,10 +2,10 @@
   "process_id": "SCOR-S1.3",
   "agent_name": "supplier_information_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-03T10:03:08.203896",
-  "product_summary": "The Manage Supplier Information and Performance agent is a hybrid solution designed to streamline the process of managing supplier information and evaluating supplier performance. This agent provides a centralized platform for collecting and analyzing supplier data, enabling businesses to make informed decisions and drive improvement. By leveraging this agent, companies can reduce risks, improve quality, and enhance overall supplier relationships, ultimately leading to increased efficiency and cost savings. The agent's capabilities are particularly valuable in regulated industries such as pharmaceuticals and distribution.",
-  "value_proposition": "Automates the collection and analysis of supplier performance data, enabling businesses to make data-driven decisions and drive continuous improvement.",
-  "technical_summary": "The Manage Supplier Information and Performance agent is built with a hybrid architecture, combining the benefits of different technologies to provide a robust and scalable solution. The agent integrates with existing systems to collect supplier data, and then applies advanced analytics and quality metric evaluation to generate actionable insights and supplier scorecards. The agent's technical capabilities are designed to support compliance with regulatory requirements such as GxP and GDP.",
+  "packager_timestamp": "2026-06-03T12:13:06.593260",
+  "product_summary": "The Manage Supplier Information and Performance agent is a hybrid solution designed to streamline the process of managing supplier information and evaluating supplier performance. This agent offers significant business value by enabling organizations to make data-driven decisions, reduce risks, and improve overall supply chain efficiency. By leveraging capabilities such as supplier data collection and performance data analysis, organizations can optimize their supplier relationships and drive cost savings. Effective supplier management is critical for organizations, particularly those in regulated industries such as pharma and distribution.",
+  "value_proposition": "Automates the collection and analysis of supplier data, enabling organizations to evaluate supplier performance and make informed decisions to drive business growth and reduce risks.",
+  "technical_summary": "The Manage Supplier Information and Performance agent is built on a hybrid architecture that integrates supplier data collection, performance data analysis, and quality metric evaluation capabilities. This agent can be integrated with existing systems and infrastructure, allowing for seamless data exchange and compliance with regulatory requirements such as GxP and GDP. The agent's technical capabilities include generating supplier scorecards and creating supplier development plans, which can be tailored to meet the specific needs of each organization.",
   "integration_guide": "# Integration Guide — supplier_information_manager\n**Process:** Manage Supplier Information and Performance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supplier_information_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supplier_information_manager import SupplierInformationManagerAgent\n\nagent = SupplierInformationManagerAgent()\nresult = agent.execute({\n    \"supplier_information\": your_supplier_information_data,\n    \"performance_data\": your_performance_data_data,\n    \"quality_metrics\": your_quality_metrics_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- supplier_registration_api\n- internal_logistics_system_api\n- quality_control_system_api\n- customer_feedback_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- supplier_quality_rating_below_threshold\n- supplier_delivery_performance_below_threshold\n- discrepancy_in_performance_data_or_quality_metrics",
   "supported_systems": [
     "SAP ECC",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/supplier_information_manager/spec   — Get agent specification",
     "POST /api/v1/agents/supplier_information_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Introduction to Agentic Zero's supplier_information_manager: Welcome executives and briefly introduce the supplier_information_manager, highlighting its ability to automate the management of supplier information and performance using AI, with a focus on delivering significant ROI and ensuring compliance.\n\n2. Current State Challenges: Discuss the common pain points and challenges associated with manual supplier management, such as data inaccuracies, lack of visibility, and compliance risks, emphasizing how these issues can negatively impact the bottom line.\n\n3. Demo of Supplier Information Management: Showcase the supplier_information_manager's capabilities in collecting, verifying, and updating supplier information in real-time, demonstrating how AI-driven automation reduces errors and increases efficiency, and highlighting the compliance benefits of having accurate and up-to-date supplier data.\n\n4. Performance Monitoring and Analytics: Demonstrate how the supplier_information_manager provides real-time performance monitoring and analytics, enabling data-driven decisions and proactive issue resolution, and explain how this leads to improved supplier relationships and reduced supply chain risks.\n\n5. ROI Calculation and Benefits: Calculate and present the potential ROI of implementing the supplier_information_manager, using the €2100 price point and 6.0x ROI multiplier, and discuss how the solution can help executives achieve their business objectives by reducing costs, improving efficiency, and minimizing compliance risks.\n\n6. Compliance and Risk Mitigation: Emphasize the importance of compliance in supplier management and demonstrate how the supplier_information_manager helps mitigate risks associated with non-compliance, such as fines, reputational damage, and legal action, by ensuring that all supplier information is accurate, up-to-date, and auditable.\n\n7. Conclusion and Next Steps: Summarize the key benefits and value proposition of the supplier_information_manager, reiterate the potential ROI and compliance benefits, and outline the next steps for implementation, including a call to action for the executives to take advantage of the solution's capabilities and start achieving significant returns on their investment.",
+  "demo_script": "1. Introduction: Welcome executives and introduce the supplier_information_manager, explaining that it automates the management of supplier information and performance using AI, with a price of €2100 and an expected ROI multiplier of 6.0x.\n\n2. Current State: Describe the current manual process of managing supplier information, highlighting the inefficiencies, potential for human error, and lack of real-time visibility into supplier performance, which can lead to compliance risks and financial losses.\n\n3. Demo of Automation: Demonstrate how the supplier_information_manager automates the collection, verification, and updates of supplier information, and how it uses AI to analyze supplier performance data, providing real-time insights and alerts for potential issues.\n\n4. ROI Calculation: Show how the supplier_information_manager can help reduce costs associated with manual processing, minimize the risk of non-compliance, and optimize supplier relationships, resulting in a significant return on investment, with the expected 6.0x ROI multiplier.\n\n5. Compliance Value: Highlight the compliance benefits of using the supplier_information_manager, such as improved audit trails, automated reporting, and enhanced visibility into supplier performance, which can help mitigate regulatory risks and reduce the burden of compliance.\n\n6. Implementation and Support: Outline the implementation process, including data integration, training, and ongoing support, to ensure a smooth transition and maximize the value of the supplier_information_manager, and address any questions or concerns the executives may have.\n\n7. Conclusion: Summarize the key benefits of the supplier_information_manager, including automation, ROI, and compliance value, and provide a clear call to action, such as scheduling a follow-up meeting to discuss implementation details or answering any remaining questions the executives may have.",
   "demo_inputs": {
     "supplier_information": "[example_supplier_information]",
     "performance_data": "[example_performance_data]",
@@ -58,24 +58,24 @@
     "roi_multiplier": 6.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T10:03:08.203875"
+    "created_at": "2026-06-03T12:13:06.593238"
   },
   "tags": [
-    "hybrid",
-    "pharma",
     "l3",
-    "manufacturing",
     "scor",
     "source",
+    "distribution",
+    "manufacturing",
+    "hybrid",
     "food",
-    "distribution"
+    "pharma"
   ],
   "use_cases": [
     "Use case 1: Automating supplier audits in the pharma sector to ensure GxP compliance, resulting in a 30% reduction in audit time and a 25% decrease in non-compliance risks",
     "Use case 2: Implementing a supplier performance scorecard in the manufacturing sector, leading to a 20% improvement in on-time delivery rates and a 15% reduction in supply chain costs",
-    "Use case 3: Streamlining supplier information management in the food sector, resulting in a 40% reduction in data entry errors and a 10% decrease in procurement cycle time",
-    "Use case 4: Conducting regular supplier risk assessments in the distribution sector to ensure GDP compliance, resulting in a 28% reduction in stockouts and a 12% decrease in inventory holding costs",
-    "Use case 5: Developing a predictive analytics model to forecast supplier performance in the manufacturing sector, resulting in a 22% reduction in supply chain disruptions and a 18% improvement in overall supply chain resilience"
+    "Use case 3: Streamlining supplier information management in the distribution sector to ensure GDP compliance, resulting in a 40% reduction in data entry errors and a 10% increase in supply chain efficiency",
+    "Use case 4: Conducting predictive analytics on supplier performance data in the food sector, enabling proactive identification of potential supply chain disruptions and a 12% reduction in stockouts",
+    "Use case 5: Developing a supplier risk management framework in the manufacturing sector, resulting in a 28% reduction in supplier-related risks and a 18% decrease in overall supply chain costs"
   ],
   "pricing": {
     "process_id": "SCOR-S1.3",

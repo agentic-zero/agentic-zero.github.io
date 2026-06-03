@@ -1,11 +1,11 @@
 """
 AGENTIC ZERO — Generated Agent
-Process: SCOR-S1.4
-Name: supplier_contract_manager
+Process: SCOR-M1.1
+Name: production_scheduler_agent
 Framework: SCOR
-Domain: Source
-Generated: 2026-06-03T12:00:05.843566
-Compliance: GxP if pharma, GDP if distribution
+Domain: Make
+Generated: 2026-06-03T12:08:05.699198
+Compliance: 
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
 """
@@ -17,32 +17,31 @@ from typing import Optional
 from loguru import logger
 
 
-class SupplierContractManagerAgent:
+class ProductionSchedulerAgentAgent:
     """
-    Agent for: Manage Supplier Contracts and Agreements
+    Agent for: Schedule Production
     
-    Process of managing supplier contracts and agreements
+    Process of creating and managing production schedules to meet customer demand
     
     Capabilities:
-    #   - contract_negotiation
-    #   - compliance_monitoring
-    #   - agreement_renewal
-    #   - supplier_notification
-    #   - data_tracking
+    #   - production planning
+    #   - inventory management
+    #   - capacity planning
+    #   - schedule optimization
     
-    Compliance: GxP if pharma, GDP if distribution
+    Compliance: 
     """
 
     def __init__(self, config: dict = None):
-        self.process_id = "SCOR-S1.4"
-        self.agent_name = "supplier_contract_manager"
+        self.process_id = "SCOR-M1.1"
+        self.agent_name = "production_scheduler_agent"
         self.config = config or {}
         self.execution_log = []
         logger.info(f"Agent {self.agent_name} initialized")
 
     def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
         """Validate required inputs before execution"""
-        required = ['supplier_contracts', 'agreements', 'negotiation_data']
+        required = ['production_plans', 'inventory_data', 'capacity_data']
         missing = [r for r in required if r not in inputs]
         if missing:
             return False, [f"Missing required input: {m}" for m in missing]
@@ -140,68 +139,51 @@ class SupplierContractManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF contract compliance rate is below threshold THEN notify supplier
-        # - IF agreement renewal rate is below threshold THEN renegotiate agreement
+        # - IF production capacity is insufficient THEN adjust Production Plans
+        # - IF inventory levels are low THEN prioritize production of affected items
         
         Business rules:
-        # - rule1: contracts must be updated within 30 days of negotiation
-        # - rule2: agreements must be renewed at least 60 days before expiration
-        # - rule3: compliance rate must be above 90% to meet regulatory requirements
+        # - rule1: Production Schedules must be created within 24 hours of receiving Production Plans
+        # - rule2: Work Orders must be generated within 1 hour of creating Production Schedules
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Initialize variables to store updated contracts and agreement summaries
-            updated_contracts = []
-            agreement_summaries = []
+            production_plans = inputs['production plans']
+            inventory_data = inputs['inventory data']
+            capacity_data = inputs['capacity data']
 
-            # Check if inputs are valid
-            if 'supplier contracts' in inputs and 'agreements' in inputs and 'negotiation data' in inputs:
-                # Iterate over each supplier contract
-                for contract in inputs['supplier contracts']:
-                    # Check if contract compliance rate is below threshold
-                    if contract['compliance_rate'] < 0.9:  # assuming 90% threshold
-                        # Notify supplier
-                        print(f"Notifying supplier for contract {contract['id']}")
+            # Check if production capacity is insufficient
+            if sum(capacity_data.values()) < sum(production_plans.values()):
+                # Adjust production plans if capacity is insufficient
+                adjusted_production_plans = {}
+                for item, quantity in production_plans.items():
+                    adjusted_quantity = min(quantity, capacity_data.get(item, 0))
+                    adjusted_production_plans[item] = adjusted_quantity
+                production_plans = adjusted_production_plans  # update production plans
 
-                    # Update contract based on negotiation data
-                    updated_contract = contract.copy()  # create a copy to avoid modifying original data
-                    updated_contract['terms'] = inputs['negotiation data']['terms']
-                    updated_contracts.append(updated_contract)
+            # Prioritize production of items with low inventory levels
+            prioritized_production_plans = {}
+            for item, quantity in production_plans.items():
+                if inventory_data.get(item, 0) < quantity:
+                    prioritized_production_plans[item] = quantity
+            production_plans = prioritized_production_plans  # update production plans
 
-                # Iterate over each agreement
-                for agreement in inputs['agreements']:
-                    # Check if agreement renewal rate is below threshold
-                    if agreement['renewal_rate'] < 0.8:  # assuming 80% threshold
-                        # Renegotiate agreement
-                        print(f"Renegotiating agreement {agreement['id']}")
+            # Create production schedules within 24 hours of receiving production plans
+            production_schedules = {}
+            for item, quantity in production_plans.items():
+                production_schedules[item] = {'quantity': quantity, 'due_date': 'within 24 hours'}
 
-                    # Create agreement summary
-                    agreement_summary = {
-                        'id': agreement['id'],
-                        'expiration_date': agreement['expiration_date'],
-                        'renewal_status': agreement['renewal_status']
-                    }
-                    agreement_summaries.append(agreement_summary)
+            # Generate work orders within 1 hour of creating production schedules
+            work_orders = []
+            for item, schedule in production_schedules.items():
+                work_order = {'item': item, 'quantity': schedule['quantity'], 'due_date': 'within 1 hour'}
+                work_orders.append(work_order)
 
-                # Check if contracts are updated within 30 days of negotiation
-                for contract in updated_contracts:
-                    if (contract['updated_date'] - inputs['negotiation data']['date']).days > 30:
-                        print(f"Contract {contract['id']} not updated within 30 days of negotiation")
-
-                # Check if agreements are renewed at least 60 days before expiration
-                for agreement in inputs['agreements']:
-                    if (agreement['expiration_date'] - agreement['renewal_date']).days < 60:
-                        print(f"Agreement {agreement['id']} not renewed at least 60 days before expiration")
-
-                # Populate outputs dictionary
-                outputs['updated contracts'] = updated_contracts
-                outputs['agreement summaries'] = agreement_summaries
-
-            else:
-                # Handle edge case where inputs are invalid
-                print("Invalid inputs")
+            # Populate outputs dictionary
+            outputs['production schedules'] = production_schedules
+            outputs['work orders'] = work_orders
 
             return outputs
         
@@ -212,11 +194,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP compliance for pharma suppliers
-        # - GDP compliance for distribution suppliers
-        # - contract_update_within_30_days
-        # - agreement_renewal_at_least_60_days_before_expiration
-        # - compliance_rate_above_90%
+        # - production schedules created within 24 hours of receiving production plans
+        # - work orders generated within 1 hour of creating production schedules
         """
         checks_passed = []
         checks_failed = []
@@ -232,7 +211,7 @@ def _process_logic(self, inputs):
 
     def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
         """Validate outputs meet process requirements"""
-        required_outputs = ['updated_contracts', 'agreement_summaries']
+        required_outputs = ['production_schedules', 'work_orders']
         missing = [o for o in required_outputs if o not in outputs]
         if missing:
             return False, [f"Missing output: {m}" for m in missing]
@@ -240,7 +219,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['contract non-compliance rate exceeds 10%', 'agreement renewal failure', 'supplier satisfaction rating below 4/5']
+        escalation_rules = ['equipment failure', 'material shortages', 'insufficient production capacity']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -254,16 +233,16 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['contract_compliance_rate', 'agreement_renewal_rate', 'supplier_satisfaction_rating', 'negotiation_success_rate']
+            "monitoring": ['production schedule adherence', 'inventory levels', 'production capacity utilization', 'customer demand fulfillment']
         }
 
 
 # ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    agent = SupplierContractManagerAgent()
+    agent = ProductionSchedulerAgentAgent()
     
     # Example execution
-    test_inputs = {"supplier_contracts": "example_supplier_contracts", "agreements": "example_agreements", "negotiation_data": "example_negotiation_data", }
+    test_inputs = {"production_plans": "example_production_plans", "inventory_data": "example_inventory_data", "capacity_data": "example_capacity_data", }
     
     result = agent.execute(test_inputs)
     print(json.dumps(result, indent=2, default=str))

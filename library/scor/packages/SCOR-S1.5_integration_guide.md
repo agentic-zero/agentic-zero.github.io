@@ -1,4 +1,4 @@
-# Integration Guide — supplier_audit_agent
+# Integration Guide — supplier_audit_assessment_agent
 **Process:** Conduct Supplier Audits and Assessments
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp supplier_audit_agent.py ./agents/
+cp supplier_audit_assessment_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.supplier_audit_agent import SupplierAuditAgentAgent
+from agents.supplier_audit_assessment_agent import SupplierAuditAssessmentAgentAgent
 
-agent = SupplierAuditAgentAgent()
+agent = SupplierAuditAssessmentAgentAgent()
 result = agent.execute({
     "supplier_information": your_supplier_information_data,
     "audit_schedules": your_audit_schedules_data,
@@ -34,13 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- audit_tool
-- assessment_tool
-- supplier_database
-- quality_control_manual
+- audit_schedule_api
+- supplier_information_database
+- assessment_criteria_document
 
 ## Escalation
 The agent automatically escalates to human when:
-- non-compliance indicated in audit report
-- low quality indicated in assessment result
-- incomplete or missing supplier information
+- audit_report_indicates_critical_non_compliance
+- assessment_result_indicates_severe_quality_issues
+- supplier_unavailability_for_audit

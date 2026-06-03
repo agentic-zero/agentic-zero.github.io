@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260603_154101_446636",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M2.1"
+  },
+  "priority": 5,
+  "retries": 1,
+  "max_retries": 3,
+  "created_at": "2026-06-03T15:41:01.446658",
+  "status": "completed",
+  "started_at": "2026-06-03T15:43:01.158043",
+  "completed_at": "2026-06-03T15:46:01.727054",
+  "error": "Packager returned no result",
+  "result": {
+    "agent_name": "production_order_release_agent",
+    "price_eur": 499.0,
+    "ready_for_guardian": true
+  }
+}

@@ -147,7 +147,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T10:00:08.281540"
+    "created_at": "2026-06-03T12:10:06.621240"
   },
   {
     "process_id": "SCOR-S1.3",
@@ -172,7 +172,7 @@
     "roi_multiplier": 6.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T10:03:08.203875"
+    "created_at": "2026-06-03T12:13:06.593238"
   },
   {
     "process_id": "SCOR-S1.4",
@@ -191,17 +191,17 @@
       "GDP if distribution"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 2100.0,
     "complexity_score": 100,
     "roi_multiplier": 6.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T10:06:08.000654"
+    "created_at": "2026-06-03T12:16:06.442776"
   },
   {
     "process_id": "SCOR-S1.5",
-    "agent_name": "supplier_audit_agent",
+    "agent_name": "supplier_audit_assessment_agent",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L4",
@@ -222,7 +222,7 @@
     "roi_multiplier": 5.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T10:09:07.902726"
+    "created_at": "2026-06-03T12:19:06.442266"
   },
   {
     "process_id": "SCOR-S1.1",
@@ -248,5 +248,45 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-03T10:12:08.163043"
+  },
+  {
+    "process_id": "SCOR-M1.1",
+    "agent_name": "production_scheduler_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "process industries"
+    ],
+    "compliance_frameworks": [],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 1500.0,
+    "complexity_score": 81,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T12:22:06.438754"
+  },
+  {
+    "process_id": "SCOR-M2.1",
+    "agent_name": "production_order_release_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "process industries"
+    ],
+    "compliance_frameworks": [],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 499.0,
+    "complexity_score": 51,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T15:46:01.711892"
   }
 ]

@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-S1.3",
-  "guardian_timestamp": "2026-06-03T10:13:08.869012",
+  "guardian_timestamp": "2026-06-03T12:23:07.277035",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-S1.3-20260603",
     "process_id": "SCOR-S1.3",
     "agent_name": "supplier_information_manager",
-    "issued_at": "2026-06-03T10:13:08.868979",
+    "issued_at": "2026-06-03T12:23:07.276998",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-03",
     "overall_status": "conditional",
-    "overall_score": 0.92,
+    "overall_score": 0.88,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,16 +38,18 @@
     },
     "iso_42001": {
       "compliant": false,
-      "score": 0.8,
+      "score": 0.6,
       "gaps": [
         "Lack of explicit risk management for supplier information and performance",
-        "Insufficient detail on data quality and integrity controls for supplier data collection and analysis",
-        "No clear evidence of continuous monitoring and evaluation of supplier performance"
+        "Insufficient detail on data quality and integrity controls for supplier data collection and performance data analysis",
+        "Unclear criteria for supplier quality rating and delivery performance thresholds",
+        "No evidence of continuous monitoring and evaluation of supplier development plans"
       ],
       "recommendations": [
         "Implement a risk management process to identify, assess, and mitigate potential risks associated with supplier information and performance",
-        "Develop and implement data quality and integrity controls to ensure accuracy, completeness, and reliability of supplier data",
-        "Establish a continuous monitoring and evaluation process to assess supplier performance and identify areas for improvement"
+        "Establish clear data quality and integrity controls for supplier data collection and performance data analysis",
+        "Define and document explicit criteria for supplier quality rating and delivery performance thresholds",
+        "Develop a process for continuous monitoring and evaluation of supplier development plans and their effectiveness"
       ]
     },
     "nist_ai_rmf": {
@@ -81,5 +83,16 @@
   "requires_human_sign_off": true,
   "remediation_plan": [
     "ISO 42001: Lack of explicit risk management for supplier information and performance"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "audited_at": "2026-06-03T15:30:25.626169",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

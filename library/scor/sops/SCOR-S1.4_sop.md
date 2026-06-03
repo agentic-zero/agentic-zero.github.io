@@ -9,7 +9,7 @@ Process of managing supplier contracts and agreements
 ## Triggers
 - new contract creation
 - agreement expiration
-- supplier onboarding
+- supplier notification
 
 ## Inputs Required
 - supplier contracts
@@ -25,17 +25,18 @@ Process of managing supplier contracts and agreements
 - agreement summaries
 
 ## Business Rules
-- rule1: all contracts must be compliant with regulatory requirements
-- rule2: all agreements must be reviewed and renewed periodically
+- rule1: contracts must be updated within 30 days of negotiation
+- rule2: agreements must be renewed at least 60 days before expiration
+- rule3: compliance rate must be above 90% to meet regulatory requirements
 
 ## Exception Handling
-- exception1: contract non-compliance - notify supplier and trigger remediation process
-- exception2: agreement renewal failure - trigger renegotiation process
+- exception1: contract non-compliance - notify supplier and trigger renegotiation
+- exception2: agreement renewal failure - trigger escalation to management
 
 ## Success Criteria
-- contract compliance rate is above threshold
-- agreement renewal rate is above threshold
-- supplier satisfaction rating is above threshold
+- contract compliance rate above 90%
+- agreement renewal rate above 80%
+- supplier satisfaction rating above 4/5
 
 ## Compliance Requirements
 - GxP if pharma

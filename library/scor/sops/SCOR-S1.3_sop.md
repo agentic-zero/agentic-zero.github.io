@@ -1,7 +1,7 @@
 # SOP — Manage Supplier Information and Performance
 **Process ID:** SCOR-S1.3
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-02
+**Generated:** 2026-06-03
 
 ## Purpose
 Process of managing supplier information and evaluating supplier performance

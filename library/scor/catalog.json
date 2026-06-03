@@ -123,5 +123,130 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-02T10:30:45.508645"
+  },
+  {
+    "process_id": "SCOR-S1.2",
+    "agent_name": "authorize_and_pay_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:00:08.281540"
+  },
+  {
+    "process_id": "SCOR-S1.3",
+    "agent_name": "supplier_information_manager",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 2100.0,
+    "complexity_score": 100,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:03:08.203875"
+  },
+  {
+    "process_id": "SCOR-S1.4",
+    "agent_name": "supplier_contract_manager",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 2100.0,
+    "complexity_score": 100,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:06:08.000654"
+  },
+  {
+    "process_id": "SCOR-S1.5",
+    "agent_name": "supplier_audit_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L4",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 7000.0,
+    "complexity_score": 100,
+    "roi_multiplier": 5.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:09:07.902726"
+  },
+  {
+    "process_id": "SCOR-S1.1",
+    "agent_name": "autonomous_purchase_order_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:12:08.163043"
   }
 ]

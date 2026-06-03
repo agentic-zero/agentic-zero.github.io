@@ -1,10 +1,10 @@
 """
 AGENTIC ZERO — Generated Agent
-Process: SCOR-S1.2
-Name: authorize_and_pay_agent
+Process: SCOR-S1.1
+Name: autonomous_purchase_order_agent
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-03T09:54:06.844603
+Generated: 2026-06-03T09:50:07.189224
 Compliance: GxP if pharma, GDP if distribution
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -17,31 +17,31 @@ from typing import Optional
 from loguru import logger
 
 
-class AuthorizeAndPayAgentAgent:
+class AutonomousPurchaseOrderAgentAgent:
     """
-    Agent for: Authorize and Pay for Products and Services
+    Agent for: Schedule and Issue Purchase Orders
     
-    Process of authorizing and paying for products and services received from suppliers
+    Process of creating and issuing purchase orders to suppliers based on supply chain requirements
     
     Capabilities:
-    #   - invoice_verification
-    #   - payment_processing
-    #   - inventory_update
-    #   - discrepancy_investigation
+    #   - purchase_order_creation
+    #   - supplier_communication
+    #   - inventory_management
+    #   - supply_chain_requirements_analysis
     
     Compliance: GxP if pharma, GDP if distribution
     """
 
     def __init__(self, config: dict = None):
-        self.process_id = "SCOR-S1.2"
-        self.agent_name = "authorize_and_pay_agent"
+        self.process_id = "SCOR-S1.1"
+        self.agent_name = "autonomous_purchase_order_agent"
         self.config = config or {}
         self.execution_log = []
         logger.info(f"Agent {self.agent_name} initialized")
 
     def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
         """Validate required inputs before execution"""
-        required = ['purchase_orders', 'supplier_invoices', 'receipts']
+        required = ['supply_chain_requirements', 'supplier_information', 'inventory_data']
         missing = [r for r in required if r not in inputs]
         if missing:
             return False, [f"Missing required input: {m}" for m in missing]
@@ -139,71 +139,77 @@ class AuthorizeAndPayAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF Supplier Invoice is accurate THEN process Payment
-        # - IF Receipt does not match Purchase Order THEN investigate discrepancy
+        # - IF Supplier Information is incomplete THEN request additional information
+        # - IF Inventory levels are below threshold THEN create Purchase Order
+        # - IF Supply Chain Requirements change THEN update Purchase Order
         
         Business rules:
-        # - rule1: Payment must be made within payment cycle time
-        # - rule2: Invoice accuracy must be verified before Payment
-        # - rule3: Compliance with GxP or GDP regulations must be ensured if applicable
+        # - rule1: Purchase Orders must be issued within 24 hours of Supply Chain Requirements update
+        # - rule2: Suppliers must acknowledge Purchase Orders within 48 hours
+        # - rule3: Inventory levels must be updated in real-time
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # check if all required inputs are present
-            if 'purchase orders' in inputs and 'supplier invoices' in inputs and 'receipts' in inputs:
-                # initialize variables to store payments and updated inventory records
-                payments_to_suppliers = []
-                updated_inventory_records = []
-                
-                # iterate over each purchase order
-                for purchase_order in inputs['purchase orders']:
-                    # find the corresponding supplier invoice and receipt
-                    supplier_invoice = next((invoice for invoice in inputs['supplier invoices'] if invoice['order_id'] == purchase_order['order_id']), None)
-                    receipt = next((r for r in inputs['receipts'] if r['order_id'] == purchase_order['order_id']), None)
-                    
-                    # check if supplier invoice is accurate
-                    if supplier_invoice and self._is_invoice_accurate(supplier_invoice, purchase_order):
-                        # process payment
-                        payment = self._process_payment(supplier_invoice, purchase_order)
-                        payments_to_suppliers.append(payment)
-                        
-                        # update inventory records
-                        updated_inventory_record = self._update_inventory_record(purchase_order, receipt)
-                        updated_inventory_records.append(updated_inventory_record)
-                    else:
-                        # investigate discrepancy
-                        self._investigate_discrepancy(purchase_order, supplier_invoice, receipt)
-                
-                # populate outputs dictionary
-                outputs['payments to suppliers'] = payments_to_suppliers
-                outputs['updated inventory records'] = updated_inventory_records
-            else:
-                # handle edge case where not all required inputs are present
-                outputs['error'] = 'Not all required inputs are present'
-            
+            supply_chain_requirements = inputs['supply chain requirements']
+            supplier_information = inputs['supplier information']
+            inventory_data = inputs['inventory data']
+
+            # Check if supplier information is complete
+            if not supplier_information or 'name' not in supplier_information or 'contact' not in supplier_information:
+                # Request additional information if supplier information is incomplete
+                print("Requesting additional supplier information")
+                return outputs  # return empty outputs if supplier info is incomplete
+
+            # Initialize purchase orders and supplier acknowledgments
+            purchase_orders = []
+            supplier_acknowledgments = []
+
+            # Check if inventory levels are below threshold
+            for item, quantity in inventory_data.items():
+                if quantity < supply_chain_requirements[item]['threshold']:
+                    # Create purchase order if inventory level is below threshold
+                    purchase_order = {
+                        'item': item,
+                        'quantity': supply_chain_requirements[item]['required_quantity'],
+                        'supplier': supplier_information['name']
+                    }
+                    purchase_orders.append(purchase_order)
+
+            # Update purchase orders based on supply chain requirements changes
+            for purchase_order in purchase_orders:
+                if purchase_order['item'] in supply_chain_requirements:
+                    purchase_order['quantity'] = supply_chain_requirements[purchase_order['item']]['required_quantity']
+
+            # Issue purchase orders within 24 hours of supply chain requirements update
+            if purchase_orders:
+                print("Issuing purchase orders")
+                # Simulate issuing purchase orders
+                for purchase_order in purchase_orders:
+                    print(f"Issued purchase order for {purchase_order['item']}")
+
+            # Suppliers must acknowledge purchase orders within 48 hours
+            if purchase_orders:
+                print("Waiting for supplier acknowledgments")
+                # Simulate supplier acknowledgments
+                for purchase_order in purchase_orders:
+                    supplier_acknowledgment = {
+                        'purchase_order': purchase_order,
+                        'acknowledged': True
+                    }
+                    supplier_acknowledgments.append(supplier_acknowledgment)
+
+            # Update inventory levels in real-time
+            for purchase_order in purchase_orders:
+                if purchase_order['item'] in inventory_data:
+                    inventory_data[purchase_order['item']] += purchase_order['quantity']
+
+            # Populate outputs
+            outputs['purchase orders'] = purchase_orders
+            outputs['supplier acknowledgments'] = supplier_acknowledgments
+
             return outputs
-
-        def _is_invoice_accurate(self, supplier_invoice, purchase_order):
-            # implement logic to check if supplier invoice is accurate
-            # for simplicity, assume invoice is accurate if order ids match
-            return supplier_invoice['order_id'] == purchase_order['order_id']
-
-        def _process_payment(self, supplier_invoice, purchase_order):
-            # implement logic to process payment
-            # for simplicity, assume payment is processed by returning a payment object
-            return {'payment_id': supplier_invoice['order_id'], 'amount': supplier_invoice['total']}
-
-        def _update_inventory_record(self, purchase_order, receipt):
-            # implement logic to update inventory record
-            # for simplicity, assume inventory record is updated by returning an updated inventory object
-            return {'order_id': purchase_order['order_id'], 'quantity': receipt['quantity']}
-
-        def _investigate_discrepancy(self, purchase_order, supplier_invoice, receipt):
-            # implement logic to investigate discrepancy
-            # for simplicity, assume discrepancy is investigated by printing a message
-            print(f'Discrepancy found for order {purchase_order["order_id"]}')
         
         return outputs
 
@@ -212,9 +218,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP_regulations_if_pharma
-        # - GDP_regulations_if_distribution
-        # - payment_cycle_time_compliance
+        # - GxP_compliance_validation_for_pharma
+        # - GDP_compliance_validation_for_distribution
         """
         checks_passed = []
         checks_failed = []
@@ -230,7 +235,7 @@ def _process_logic(self, inputs):
 
     def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
         """Validate outputs meet process requirements"""
-        required_outputs = ['payments_to_suppliers', 'updated_inventory_records']
+        required_outputs = ['purchase_orders', 'supplier_acknowledgments']
         missing = [o for o in required_outputs if o not in outputs]
         if missing:
             return False, [f"Missing output: {m}" for m in missing]
@@ -238,7 +243,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['payment_failure', 'discrepancy_investigation_unresolved', 'compliance_issue_detected']
+        escalation_rules = ['when supplier is unavailable', 'when inventory levels are inconsistent', 'when supply chain requirements are unclear']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -252,16 +257,16 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['payment_cycle_time', 'invoice_accuracy_rate', 'inventory_update_accuracy_rate']
+            "monitoring": ['purchase_order_issuance_rate', 'supplier_acknowledgment_rate', 'inventory_level_accuracy']
         }
 
 
 # ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    agent = AuthorizeAndPayAgentAgent()
+    agent = AutonomousPurchaseOrderAgentAgent()
     
     # Example execution
-    test_inputs = {"purchase_orders": "example_purchase_orders", "supplier_invoices": "example_supplier_invoices", "receipts": "example_receipts", }
+    test_inputs = {"supply_chain_requirements": "example_supply_chain_requirements", "supplier_information": "example_supplier_information", "inventory_data": "example_inventory_data", }
     
     result = agent.execute(test_inputs)
     print(json.dumps(result, indent=2, default=str))

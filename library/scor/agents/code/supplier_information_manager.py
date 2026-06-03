@@ -4,7 +4,7 @@ Process: SCOR-S1.3
 Name: supplier_information_manager
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-02T11:15:08.144159
+Generated: 2026-06-03T09:58:07.195743
 Compliance: GxP if pharma, GDP if distribution
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,11 @@ class SupplierInformationManagerAgent:
     Process of managing supplier information and evaluating supplier performance
     
     Capabilities:
-    #   - data_collection
-    #   - performance_evaluation
-    #   - scorecard_generation
-    #   - development_plan_creation
+    #   - supplier_data_collection
+    #   - performance_data_analysis
+    #   - quality_metric_evaluation
+    #   - supplier_scorecard_generation
+    #   - supplier_development_plan_creation
     
     Compliance: GxP if pharma, GDP if distribution
     """
@@ -151,62 +152,68 @@ class SupplierInformationManagerAgent:
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Check if required inputs are present
+            # Check if all required inputs are present
             if 'supplier information' in inputs and 'performance data' in inputs and 'quality metrics' in inputs:
                 # Initialize supplier scorecards and development plans
                 supplier_scorecards = []
                 supplier_development_plans = []
                 
-                # Iterate over each supplier
+                # Loop through each supplier
                 for supplier in inputs['supplier information']:
-                    # Check if supplier information is up-to-date and accurate
-                    if 'last_updated' in supplier and supplier['last_updated'] is not None:
-                        # Calculate supplier quality rating
-                        quality_rating = self.calculate_quality_rating(supplier, inputs['performance data'], inputs['quality metrics'])
-                        
-                        # Check if supplier quality rating is below threshold
-                        if quality_rating < 0.5:  # assuming threshold is 0.5
-                            # Initiate Supplier Development Plan
-                            supplier_development_plans.append({'supplier_id': supplier['id'], 'development_plan': 'Improve quality rating'})
-                        
-                        # Calculate supplier delivery performance
-                        delivery_performance = self.calculate_delivery_performance(supplier, inputs['performance data'])
-                        
-                        # Check if supplier delivery performance is below threshold
-                        if delivery_performance < 0.8:  # assuming threshold is 0.8
-                            # Reassess Supplier Scorecard
-                            supplier_scorecards.append({'supplier_id': supplier['id'], 'scorecard': 'Reassess delivery performance'})
-                        else:
-                            # Update Supplier Scorecard
-                            supplier_scorecards.append({'supplier_id': supplier['id'], 'scorecard': 'Update scorecard'})
+                    # Calculate supplier quality rating
+                    quality_rating = self.calculate_quality_rating(supplier, inputs['performance data'], inputs['quality metrics'])
                     
+                    # Check if supplier quality rating is below threshold
+                    if quality_rating < self.quality_threshold:
+                        # Initiate supplier development plan
+                        supplier_development_plans.append(self.create_development_plan(supplier))
+                    
+                    # Calculate supplier delivery performance
+                    delivery_performance = self.calculate_delivery_performance(supplier, inputs['performance data'])
+                    
+                    # Check if supplier delivery performance is below threshold
+                    if delivery_performance < self.delivery_threshold:
+                        # Reassess supplier scorecard
+                        supplier_scorecards.append(self.reassess_scorecard(supplier))
                     else:
-                        # Handle edge case: supplier information is not up-to-date or accurate
-                        supplier_scorecards.append({'supplier_id': supplier['id'], 'scorecard': 'Update supplier information'})
-                        supplier_development_plans.append({'supplier_id': supplier['id'], 'development_plan': 'Update supplier information'})
+                        # Update supplier scorecard
+                        supplier_scorecards.append(self.update_scorecard(supplier))
                 
-                # Populate outputs dictionary
+                # Add supplier scorecards and development plans to outputs
                 outputs['supplier scorecards'] = supplier_scorecards
                 outputs['supplier development plans'] = supplier_development_plans
-            
             else:
-                # Handle edge case: required inputs are not present
+                # Handle edge case where required inputs are missing
                 outputs['supplier scorecards'] = []
                 outputs['supplier development plans'] = []
+                print("Error: Missing required inputs")
             
             return outputs
 
-
         def calculate_quality_rating(self, supplier, performance_data, quality_metrics):
-            # Calculate supplier quality rating based on performance data and quality metrics
-            # This is a placeholder function and should be implemented based on actual requirements
-            return 0.6  # placeholder value
+            # Calculate quality rating based on performance data and quality metrics
+            # This is a placeholder, actual implementation depends on the specific formula
+            return 0.5
 
+        def create_development_plan(self, supplier):
+            # Create development plan for supplier
+            # This is a placeholder, actual implementation depends on the specific requirements
+            return "Development Plan"
 
         def calculate_delivery_performance(self, supplier, performance_data):
-            # Calculate supplier delivery performance based on performance data
-            # This is a placeholder function and should be implemented based on actual requirements
-            return 0.9  # placeholder value
+            # Calculate delivery performance based on performance data
+            # This is a placeholder, actual implementation depends on the specific formula
+            return 0.8
+
+        def reassess_scorecard(self, supplier):
+            # Reassess supplier scorecard
+            # This is a placeholder, actual implementation depends on the specific requirements
+            return "Reassessed Scorecard"
+
+        def update_scorecard(self, supplier):
+            # Update supplier scorecard
+            # This is a placeholder, actual implementation depends on the specific requirements
+            return "Updated Scorecard"
         
         return outputs
 
@@ -218,6 +225,7 @@ def _process_logic(self, inputs):
         # - GxP_compliance_validation_if_pharma
         # - GDP_compliance_validation_if_distribution
         # - supplier_information_accuracy_check
+        # - performance_data_and_quality_metrics_collection_frequency_check
         """
         checks_passed = []
         checks_failed = []
@@ -255,7 +263,7 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['supplier_quality_rating', 'supplier_delivery_performance', 'scorecard_review_frequency']
+            "monitoring": ['supplier_quality_rating', 'supplier_delivery_performance', 'supplier_scorecard_update_frequency']
         }
 
 

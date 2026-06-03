@@ -1,10 +1,10 @@
 """
 AGENTIC ZERO — Generated Agent
-Process: SCOR-S1.2
-Name: authorize_and_pay_agent
+Process: SCOR-S1.4
+Name: supplier_contract_manager
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-03T09:54:06.844603
+Generated: 2026-06-03T09:42:07.239065
 Compliance: GxP if pharma, GDP if distribution
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -17,31 +17,31 @@ from typing import Optional
 from loguru import logger
 
 
-class AuthorizeAndPayAgentAgent:
+class SupplierContractManagerAgent:
     """
-    Agent for: Authorize and Pay for Products and Services
+    Agent for: Manage Supplier Contracts and Agreements
     
-    Process of authorizing and paying for products and services received from suppliers
+    Process of managing supplier contracts and agreements
     
     Capabilities:
-    #   - invoice_verification
-    #   - payment_processing
-    #   - inventory_update
-    #   - discrepancy_investigation
+    #   - contract_review
+    #   - compliance_tracking
+    #   - agreement_renewal
+    #   - supplier_communication
     
     Compliance: GxP if pharma, GDP if distribution
     """
 
     def __init__(self, config: dict = None):
-        self.process_id = "SCOR-S1.2"
-        self.agent_name = "authorize_and_pay_agent"
+        self.process_id = "SCOR-S1.4"
+        self.agent_name = "supplier_contract_manager"
         self.config = config or {}
         self.execution_log = []
         logger.info(f"Agent {self.agent_name} initialized")
 
     def validate_inputs(self, inputs: dict) -> tuple[bool, list]:
         """Validate required inputs before execution"""
-        required = ['purchase_orders', 'supplier_invoices', 'receipts']
+        required = ['supplier_contracts', 'agreements', 'negotiation_data']
         missing = [r for r in required if r not in inputs]
         if missing:
             return False, [f"Missing required input: {m}" for m in missing]
@@ -139,71 +139,54 @@ class AuthorizeAndPayAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF Supplier Invoice is accurate THEN process Payment
-        # - IF Receipt does not match Purchase Order THEN investigate discrepancy
+        # - IF contract compliance rate is below threshold THEN notify supplier
+        # - IF agreement renewal rate is below threshold THEN renegotiate agreement
         
         Business rules:
-        # - rule1: Payment must be made within payment cycle time
-        # - rule2: Invoice accuracy must be verified before Payment
-        # - rule3: Compliance with GxP or GDP regulations must be ensured if applicable
+        # - rule1: all contracts must be compliant with regulatory requirements
+        # - rule2: all agreements must be reviewed and renewed periodically
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # check if all required inputs are present
-            if 'purchase orders' in inputs and 'supplier invoices' in inputs and 'receipts' in inputs:
-                # initialize variables to store payments and updated inventory records
-                payments_to_suppliers = []
-                updated_inventory_records = []
-                
-                # iterate over each purchase order
-                for purchase_order in inputs['purchase orders']:
-                    # find the corresponding supplier invoice and receipt
-                    supplier_invoice = next((invoice for invoice in inputs['supplier invoices'] if invoice['order_id'] == purchase_order['order_id']), None)
-                    receipt = next((r for r in inputs['receipts'] if r['order_id'] == purchase_order['order_id']), None)
-                    
-                    # check if supplier invoice is accurate
-                    if supplier_invoice and self._is_invoice_accurate(supplier_invoice, purchase_order):
-                        # process payment
-                        payment = self._process_payment(supplier_invoice, purchase_order)
-                        payments_to_suppliers.append(payment)
-                        
-                        # update inventory records
-                        updated_inventory_record = self._update_inventory_record(purchase_order, receipt)
-                        updated_inventory_records.append(updated_inventory_record)
-                    else:
-                        # investigate discrepancy
-                        self._investigate_discrepancy(purchase_order, supplier_invoice, receipt)
-                
-                # populate outputs dictionary
-                outputs['payments to suppliers'] = payments_to_suppliers
-                outputs['updated inventory records'] = updated_inventory_records
-            else:
-                # handle edge case where not all required inputs are present
-                outputs['error'] = 'Not all required inputs are present'
-            
+            # Initialize empty lists to store updated contracts and agreement summaries
+            updated_contracts = []
+            agreement_summaries = []
+
+            # Check if inputs are not empty
+            if inputs:
+                # Iterate over each contract in the supplier contracts
+                for contract in inputs['supplier contracts']:
+                    # Check if contract compliance rate is below threshold
+                    if contract['compliance_rate'] < 0.8:  # assuming threshold is 80%
+                        # Notify supplier if contract compliance rate is below threshold
+                        print(f"Notifying supplier for contract {contract['id']}")
+                    # Update contract status to 'compliant' if it meets regulatory requirements
+                    if contract['regulatory_compliant']:
+                        contract['status'] = 'compliant'
+                    updated_contracts.append(contract)
+
+                # Iterate over each agreement in the agreements
+                for agreement in inputs['agreements']:
+                    # Check if agreement renewal rate is below threshold
+                    if agreement['renewal_rate'] < 0.7:  # assuming threshold is 70%
+                        # Renegotiate agreement if agreement renewal rate is below threshold
+                        print(f"Renegotiating agreement {agreement['id']}")
+                    # Create a summary for the agreement
+                    agreement_summary = {
+                        'id': agreement['id'],
+                        'status': agreement['status'],
+                        'renewal_rate': agreement['renewal_rate']
+                    }
+                    agreement_summaries.append(agreement_summary)
+
+            # Populate the outputs dictionary
+            outputs['updated contracts'] = updated_contracts
+            outputs['agreement summaries'] = agreement_summaries
+
+            # Return the outputs dictionary
             return outputs
-
-        def _is_invoice_accurate(self, supplier_invoice, purchase_order):
-            # implement logic to check if supplier invoice is accurate
-            # for simplicity, assume invoice is accurate if order ids match
-            return supplier_invoice['order_id'] == purchase_order['order_id']
-
-        def _process_payment(self, supplier_invoice, purchase_order):
-            # implement logic to process payment
-            # for simplicity, assume payment is processed by returning a payment object
-            return {'payment_id': supplier_invoice['order_id'], 'amount': supplier_invoice['total']}
-
-        def _update_inventory_record(self, purchase_order, receipt):
-            # implement logic to update inventory record
-            # for simplicity, assume inventory record is updated by returning an updated inventory object
-            return {'order_id': purchase_order['order_id'], 'quantity': receipt['quantity']}
-
-        def _investigate_discrepancy(self, purchase_order, supplier_invoice, receipt):
-            # implement logic to investigate discrepancy
-            # for simplicity, assume discrepancy is investigated by printing a message
-            print(f'Discrepancy found for order {purchase_order["order_id"]}')
         
         return outputs
 
@@ -212,9 +195,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP_regulations_if_pharma
-        # - GDP_regulations_if_distribution
-        # - payment_cycle_time_compliance
+        # - GxP_compliance_validation_if_pharma
+        # - GDP_compliance_validation_if_distribution
         """
         checks_passed = []
         checks_failed = []
@@ -230,7 +212,7 @@ def _process_logic(self, inputs):
 
     def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:
         """Validate outputs meet process requirements"""
-        required_outputs = ['payments_to_suppliers', 'updated_inventory_records']
+        required_outputs = ['updated_contracts', 'agreement_summaries']
         missing = [o for o in required_outputs if o not in outputs]
         if missing:
             return False, [f"Missing output: {m}" for m in missing]
@@ -238,7 +220,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['payment_failure', 'discrepancy_investigation_unresolved', 'compliance_issue_detected']
+        escalation_rules = ['contract_non_compliance', 'agreement_renewal_failure', 'supplier_dissatisfaction']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -252,16 +234,16 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['payment_cycle_time', 'invoice_accuracy_rate', 'inventory_update_accuracy_rate']
+            "monitoring": ['contract_compliance_rate', 'agreement_renewal_rate', 'supplier_satisfaction_rating']
         }
 
 
 # ── STANDALONE EXECUTION ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    agent = AuthorizeAndPayAgentAgent()
+    agent = SupplierContractManagerAgent()
     
     # Example execution
-    test_inputs = {"purchase_orders": "example_purchase_orders", "supplier_invoices": "example_supplier_invoices", "receipts": "example_receipts", }
+    test_inputs = {"supplier_contracts": "example_supplier_contracts", "agreements": "example_agreements", "negotiation_data": "example_negotiation_data", }
     
     result = agent.execute(test_inputs)
     print(json.dumps(result, indent=2, default=str))

@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-S1.4",
+  "agent_name": "supplier_contract_manager",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-03T10:06:08.000673",
+  "product_summary": "The Manage Supplier Contracts and Agreements agent is a hybrid solution designed to streamline and optimize the process of managing supplier contracts and agreements, ensuring compliance with regulatory requirements such as GxP and GDP. This agent provides a range of capabilities, including contract review, compliance tracking, agreement renewal, and supplier communication, enabling organizations to reduce risks and improve relationships with suppliers. By leveraging this agent, businesses can increase efficiency, reduce costs, and enhance overall supply chain management. The agent's capabilities can be tailored to meet the specific needs of pharmaceutical and distribution companies.",
+  "value_proposition": "Automates the management of supplier contracts and agreements, reducing manual errors and increasing compliance with regulatory requirements.",
+  "technical_summary": "The Manage Supplier Contracts and Agreements agent is built on a hybrid architecture, combining the benefits of automated processing and human oversight to ensure accuracy and compliance. The agent's capabilities are integrated through APIs and data exchange protocols, enabling seamless communication with supplier systems and internal stakeholders. The agent's technical framework is designed to support scalability and flexibility, allowing it to adapt to changing business needs and regulatory requirements.",
+  "integration_guide": "# Integration Guide — supplier_contract_manager\n**Process:** Manage Supplier Contracts and Agreements\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supplier_contract_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supplier_contract_manager import SupplierContractManagerAgent\n\nagent = SupplierContractManagerAgent()\nresult = agent.execute({\n    \"supplier_contracts\": your_supplier_contracts_data,\n    \"agreements\": your_agreements_data,\n    \"negotiation_data\": your_negotiation_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- contract_database_api\n- supplier_database_api\n- agreement_database_api\n- compliance_tracking_system_api\n- renewal_tracking_system_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- contract_non_compliance\n- agreement_renewal_failure\n- supplier_dissatisfaction",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supplier_contract_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supplier_contract_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supplier_contract_manager/health — Health check",
+    "GET  /api/v1/agents/supplier_contract_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/supplier_contract_manager/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's supplier_contract_manager: Welcome executives and introduce the supplier_contract_manager, highlighting its ability to automate the management of supplier contracts and agreements using AI, with a focus on increasing efficiency and reducing costs.\n\n2. Current State Overview: Describe the current manual process of managing supplier contracts, highlighting the time-consuming and error-prone nature of the task, and the potential for non-compliance with regulatory requirements.\n\n3. Demo of supplier_contract_manager: Showcase the supplier_contract_manager in action, demonstrating how it can automatically track and manage supplier contracts, send notifications and reminders, and ensure compliance with regulatory requirements, all while providing real-time visibility and control.\n\n4. ROI Calculation: Explain the ROI multiplier of 6.0x, and calculate the potential return on investment for the executives, using the price of €2100 as a basis, highlighting the potential cost savings and efficiency gains that can be achieved through automation.\n\n5. Compliance and Risk Mitigation: Emphasize the importance of compliance with regulatory requirements, and demonstrate how the supplier_contract_manager can help mitigate risks associated with non-compliance, such as fines and reputational damage, by ensuring that all contracts are up-to-date and compliant.\n\n6. Implementation and Onboarding: Outline the implementation and onboarding process for the supplier_contract_manager, highlighting the ease of use and minimal disruption to existing workflows, and provide a clear call to action for the executives to get started.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the supplier_contract_manager, including the potential ROI and compliance value, and provide a clear next step for the executives to take, such as scheduling a follow-up meeting or trial, to further explore the solution and its potential to drive business value.",
+  "demo_inputs": {
+    "supplier_contracts": "[example_supplier_contracts]",
+    "agreements": "[example_agreements]",
+    "negotiation_data": "[example_negotiation_data]"
+  },
+  "expected_demo_outputs": {
+    "updated_contracts": "[generated_updated_contracts]",
+    "agreement_summaries": "[generated_agreement_summaries]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-S1.4",
+    "agent_name": "supplier_contract_manager",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 2100.0,
+    "complexity_score": 100,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:06:08.000654"
+  },
+  "tags": [
+    "hybrid",
+    "pharma",
+    "l3",
+    "manufacturing",
+    "scor",
+    "source",
+    "food",
+    "distribution"
+  ],
+  "use_cases": [
+    "Use case 1: Automating contract renewal notifications for manufacturing suppliers, resulting in a 30% reduction in late renewal fees",
+    "Use case 2: Implementing a compliance tracking system for pharma suppliers to ensure GxP adherence, reducing audit failures by 25%",
+    "Use case 3: Streamlining distribution supplier onboarding with a standardized agreement template, decreasing onboarding time by 40%",
+    "Use case 4: Developing a risk-based assessment tool for food suppliers to identify potential GDP compliance issues, minimizing product recalls by 20%",
+    "Use case 5: Creating a centralized contract repository for all suppliers across sectors, resulting in a 50% reduction in contract search and retrieval time"
+  ],
+  "pricing": {
+    "process_id": "SCOR-S1.4",
+    "complexity_score": 100,
+    "level": "L3",
+    "base_price_eur": 1500.0,
+    "regulated_surcharge": 600.0,
+    "total_price_eur": 2100.0,
+    "price_rationale": "Level L3 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 6.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-S1.4_package.json"
+}

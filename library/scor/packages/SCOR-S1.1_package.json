@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-S1.1",
+  "agent_name": "autonomous_purchase_order_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-03T10:12:08.163060",
+  "product_summary": "The Schedule and Issue Purchase Orders agent is a hybrid solution designed to streamline the procurement process by creating and issuing purchase orders to suppliers based on supply chain requirements. This agent leverages capabilities such as purchase order creation, supplier communication, inventory management, and supply chain requirements analysis to optimize the procurement process. By automating these tasks, businesses can reduce manual errors, improve efficiency, and enhance overall supply chain management. This results in cost savings, improved supplier relationships, and better inventory control.",
+  "value_proposition": "Automates the creation and issuance of purchase orders to suppliers, enabling businesses to streamline their procurement processes, reduce errors, and improve supply chain efficiency.",
+  "technical_summary": "The Schedule and Issue Purchase Orders agent is built with a hybrid architecture, integrating capabilities such as purchase order creation, supplier communication, and inventory management to analyze supply chain requirements and generate purchase orders. This agent can be integrated with existing enterprise resource planning (ERP) systems, supplier portals, and inventory management software to provide a seamless and automated procurement experience. The agent's architecture is designed to comply with regulatory requirements such as GxP for pharmaceutical companies and GDP for distribution businesses.",
+  "integration_guide": "# Integration Guide — autonomous_purchase_order_agent\n**Process:** Schedule and Issue Purchase Orders\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp autonomous_purchase_order_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.autonomous_purchase_order_agent import AutonomousPurchaseOrderAgentAgent\n\nagent = AutonomousPurchaseOrderAgentAgent()\nresult = agent.execute({\n    \"supply_chain_requirements\": your_supply_chain_requirements_data,\n    \"supplier_information\": your_supplier_information_data,\n    \"inventory_data\": your_inventory_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system_API\n- Supplier_database_API\n- Inventory_management_system_API\n\n## Escalation\nThe agent automatically escalates to human when:\n- when supplier is unavailable\n- when inventory levels are inconsistent\n- when supply chain requirements are unclear",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/autonomous_purchase_order_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/autonomous_purchase_order_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/autonomous_purchase_order_agent/health — Health check",
+    "GET  /api/v1/agents/autonomous_purchase_order_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/autonomous_purchase_order_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's autonomous_purchase_order_agent: Briefly introduce the agent and its purpose, highlighting the value proposition of automating schedule and issue purchase orders with AI, and the potential ROI multiplier of 8.0x.\n\n2. Current Pain Points: Discuss the current manual process of scheduling and issuing purchase orders, highlighting the time-consuming and error-prone nature of the task, and the potential for non-compliance with regulatory requirements.\n\n3. Demo of Autonomous Purchase Order Agent: Demonstrate how the autonomous_purchase_order_agent can automatically schedule and issue purchase orders, showcasing its ability to learn from historical data and optimize the purchasing process, and highlighting the potential for cost savings and increased efficiency.\n\n4. Compliance and Risk Management: Highlight the agent's ability to ensure compliance with regulatory requirements, such as GDPR and VAT regulations, and demonstrate how it can detect and prevent potential errors or fraudulent activities, reducing the risk of non-compliance and associated penalties.\n\n5. ROI Calculation: Provide a clear example of how the autonomous_purchase_order_agent can generate a return on investment, using the ROI multiplier of 8.0x, and demonstrate how the agent can pay for itself through cost savings and increased efficiency, with a potential return of €5,592 (8.0x €699) per year.\n\n6. Implementation and Onboarding: Outline the simple and straightforward implementation and onboarding process for the autonomous_purchase_order_agent, highlighting the support and resources available to ensure a seamless integration with existing systems and processes.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the autonomous_purchase_order_agent, including its ability to automate schedule and issue purchase orders, ensure compliance, and generate a significant return on investment, and provide a clear call to action for the next steps, including a trial or pilot program to demonstrate the agent's value in a real-world setting.",
+  "demo_inputs": {
+    "supply_chain_requirements": "[example_supply_chain_requirements]",
+    "supplier_information": "[example_supplier_information]",
+    "inventory_data": "[example_inventory_data]"
+  },
+  "expected_demo_outputs": {
+    "purchase_orders": "[generated_purchase_orders]",
+    "supplier_acknowledgments": "[generated_supplier_acknowledgments]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-S1.1",
+    "agent_name": "autonomous_purchase_order_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 76,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-03T10:12:08.163043"
+  },
+  "tags": [
+    "hybrid",
+    "pharma",
+    "l2",
+    "manufacturing",
+    "scor",
+    "source",
+    "food",
+    "distribution"
+  ],
+  "use_cases": [
+    "Use case 1: Automating purchase order scheduling for a manufacturing client, resulting in a 30% reduction in procurement processing time and a 25% decrease in inventory costs",
+    "Use case 2: Implementing a compliant purchase order system for a pharma company, ensuring 100% adherence to GxP regulations and avoiding potential fines and reputational damage",
+    "Use case 3: Streamlining purchase order issuance for a food distribution client, reducing order fulfillment time by 40% and increasing customer satisfaction ratings by 20%",
+    "Use case 4: Providing real-time purchase order tracking and visibility for a distribution company, enabling a 15% reduction in stockouts and a 10% decrease in logistics costs",
+    "Use case 5: Integrating purchase order scheduling with inventory management for a manufacturing client, resulting in a 20% reduction in inventory holding costs and a 12% increase in production efficiency"
+  ],
+  "pricing": {
+    "process_id": "SCOR-S1.1",
+    "complexity_score": 76,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 76/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-S1.1_package.json"
+}

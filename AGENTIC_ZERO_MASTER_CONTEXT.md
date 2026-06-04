@@ -2662,3 +2662,223 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.6"**
 
 *v3.6 — Jornada 3 Junio 2026 completada*
 *Plan ✅ · Source ✅ · Make 2/5 · Deliver 0/8 · Auditor ✅ · Deck ✅*
+
+# TRABAJOS DEL 4 DE JUNIO
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.7 | Fecha: 4 Junio 2026 | Fin de jornada
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Empresa:** Agentic Zero powered by Dis-Solutions (25 años consultoría digital)
+**Web:** agentic-zero.com (GitHub Pages · HTTPS activo ✅) | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ARQUITECTURA COMPLETA
+
+```
+PIONEER TEAM    Scout → Architect → Builder → Packager → Guardian → Auditor
+COMMERCIAL      Herald v1.0 · BD v1.2 · Venture v1.0
+ORCHESTRATION   Paperclip (Fase 3 · pendiente)
+```
+
+---
+
+## 3. BIBLIOTECA — ESTADO AL 4 JUNIO 2026
+
+```
+PLAN    P1.1-P1.5   ✅ 5 agentes CONDITIONAL
+SOURCE  S1.1-S1.5   ✅ 5 agentes AUTO_APPROVED · Delivery: True
+MAKE    M1.1        ✅ CERTIFIED
+        M2.1        ✅ CERTIFIED · €499
+        M3.1        ✅ CERTIFIED · €499
+        M4.1        ✅ AUTO_APPROVED · €2,100
+        M5.1        ✅ CERTIFIED · 84%
+DELIVER D1.1        ✅ Builder ✅ · Packager FAILED (Groq limit)
+        D1.2        ✅ Builder ✅ · Packager FAILED (Groq limit)
+        D1.3-D1.5   ❌ Builder FAILED · Groq daily limit
+        D2.1-D4.1   ❌ Pendientes · Groq daily limit
+```
+
+### Deliver — relanzar mañana primera hora
+```powershell
+cd F:\agentic-zero\core\queue
+python queue_system.py --clear failed_queue
+python queue_system.py --clear builder_queue
+python queue_system.py --pipeline SCOR-D1.1 SCOR-D1.2 SCOR-D1.3 SCOR-D1.4 SCOR-D1.5 SCOR-D2.1 SCOR-D3.1 SCOR-D4.1
+
+# Auditar tras completar:
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+```
+
+### Nomenclatura crítica
+```
+Plan:    P1.1-P1.5
+Source:  S1.1-S1.5
+Make:    M1.1, M2.1, M3.1, M4.1, M5.1
+Deliver: D1.1-D1.5 + D2.1, D3.1, D4.1 (8 total)
+```
+
+---
+
+## 4. AGENTES COMERCIALES
+
+### Herald v1.0
+```
+Ruta:   F:\agentic-zero\commercial\herald\herald.py
+Estado: Operativo · Pendiente primer contacto real
+```
+
+### BD Agent v1.2
+```
+Ruta:   F:\agentic-zero\commercial\bd\bd_agent.py
+Keys:   TAVILY_API_KEY + SERPER_API_KEY en .env ✅
+Estado: Operativo · 21 oportunidades en pipeline
+NOTA:   Usa Groq — lanzar ESTA NOCHE cuando resetee
+        python bd_agent.py --scan
+```
+
+### Venture v1.0
+```
+Ruta:     F:\agentic-zero\commercial\venture\venture.py
+Pipeline: 17 leads activos importados de BD
+Uso:
+  python venture.py --pipeline      # ver pipeline
+  python venture.py --import-bd     # importar de BD
+  python venture.py --advance OPP_ID
+  python venture.py --followup
+  python venture.py --revenue
+```
+
+### Auditor v1.0
+```
+Ruta:   F:\agentic-zero\pioneer_team\auditor\auditor.py
+Uso:    python auditor.py --all
+```
+
+---
+
+## 5. WEB agentic-zero.com
+
+```
+Estado:  LIVE · HTTPS activo ✅
+Repo:    github.com/agentic-zero/agentic-zero.github.io
+Version: v2 EN · subida hoy ✅
+Copy:    100% inglés · deck v4 · imagen Swarm táctica
+Fuentes: legibles · max-width 1200px · responsive
+```
+
+### Pendiente web
+```
+→ Activar privacidad WHOIS en IONOS
+→ Resolver www.agentic-zero.com (CNAME conflict)
+→ Booking form operativo en agentic-zero.com/audit
+```
+
+---
+
+## 6. DECK EJECUTIVO v4
+
+```
+Commit: 4e11ea0
+Ruta:   F:\agentic-zero\commercial\agentic_zero_deck.html
+Estado: Completo · 100% inglés
+```
+
+---
+
+## 7. PRECIOS
+
+```
+Standard:   $600/mes  · $7,200/año
+Enterprise: $1,800/mes · $21,600/año
+Swarm:      Add-on · Enterprise · Priced on scope
+AUDIT:      First free · Subsequent on request
+```
+
+### ROI por sector
+```
+Defense 349%·2.7m  Pharma 322%·2.8m  Chemical 285%·3.2m
+Automotive 264%·3.4m  Food 242%·3.7m  Mfg 218%·4.1m  Distrib 196%·4.6m
+Base: 3 procesos · 3 FTE · eficiencia variable
+```
+
+---
+
+## 8. COMANDOS ESENCIALES
+
+```powershell
+# Activar
+cd F:\agentic-zero
+.venv\Scripts\Activate.ps1
+
+# Queue
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear failed_queue
+python queue_system.py --clear builder_queue
+
+# Deliver (mañana)
+python queue_system.py --pipeline SCOR-D1.1 SCOR-D1.2 SCOR-D1.3 SCOR-D1.4 SCOR-D1.5 SCOR-D2.1 SCOR-D3.1 SCOR-D4.1
+
+# Auditor
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+
+# BD (esta noche cuando Groq resetee)
+cd F:\agentic-zero\commercial\bd
+python bd_agent.py --scan
+
+# Venture
+cd F:\agentic-zero\commercial\venture
+python venture.py --pipeline
+python venture.py --import-bd
+```
+
+---
+
+## 9. PENDIENTES SPRINT 4
+
+```
+MAÑANA PRIMERA HORA:
+  1. Deliver pipeline completo (Groq reseteado)
+  2. Auditor --all tras Deliver
+  3. BD --scan esta noche (Groq libre)
+  4. Venture --import-bd con nuevo briefing BD
+
+TÉCNICO:
+  5. Activar privacidad WHOIS en IONOS
+  6. Resolver www.agentic-zero.com
+  7. Anthropic API ($5 límite) para BD v1.3
+
+COMERCIAL:
+  8. Herald — primer contacto real
+  9. Venture --advance primera oportunidad HIGH
+  10. Primer AUDIT gratuito en agenda
+  11. LinkedIn Company Page Agentic Zero
+  12. Booking form en web
+```
+
+---
+
+## 10. GIT — COMMITS
+```
+1649538  — Plan completo
+4e11ea0  — Deck v4 full English
+[hoy]    — BD v1.2 + Venture v1.0 + Web v2 EN + Make completo
+```
+
+---
+
+## 11. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.7"**
+
+---
+
+*v3.7 — 4 Junio 2026 · Fin de jornada*
+*Plan ✅ · Source ✅ · Make ✅ · Deliver ⏳ · BD ✅ · Venture ✅ · Web v2 ✅*

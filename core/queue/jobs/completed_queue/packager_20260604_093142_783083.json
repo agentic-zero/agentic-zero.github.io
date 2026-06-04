@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260604_093142_783083",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M4.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-04T09:31:42.783102",
+  "status": "completed",
+  "started_at": "2026-06-04T09:40:43.624181",
+  "completed_at": "2026-06-04T09:43:43.914441",
+  "error": null,
+  "result": {
+    "agent_name": "product_test_and_inspect_agent",
+    "price_eur": 2100.0,
+    "ready_for_guardian": true
+  }
+}

@@ -1,0 +1,992 @@
+{
+  "opportunities": [
+    {
+      "id": "20230604-001",
+      "title": "Regulatory Compliance Automation in Pharma",
+      "source": "linkedin_pain",
+      "description": "Pharmaceutical companies struggle with manual processes for regulatory compliance, which can lead to errors, fines, and reputational damage. Automating these processes can bring significant cost savings and reduce risk.",
+      "target": "Pharmaceutical manufacturers with 100+ employees",
+      "trigger": "Recent posts from pharma directors about scaling challenges and manual processes",
+      "agentic_fit": "Plan (P1.1-P1.5) and Source (S1.1-S1.5) certified agents for compliance and data management",
+      "revenue_potential": "$120,000 (one-time) + $1,800/month (support plan)",
+      "next_action": "Reach out to pharma directors who posted about regulatory compliance challenges and schedule a demo of Agentic Zero's certified agents",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 9,
+        "agentic_fit": 9,
+        "timing": 7,
+        "market_size": 8,
+        "competitive_gap": 6
+      },
+      "total_score": 80.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "20230604-002",
+      "title": "Supply Chain Optimization in Manufacturing",
+      "source": "linkedin_pain",
+      "description": "Manufacturing companies face challenges in optimizing their supply chains, leading to inefficiencies, delays, and increased costs. AI-powered agents can help streamline these processes and improve forecasting.",
+      "target": "Manufacturing companies with 500+ employees and complex supply chains",
+      "trigger": "Posts from manufacturing directors about scaling challenges and manual processes in supply chain management",
+      "agentic_fit": "Make (M1.1, M2.1) certified agents for supply chain optimization and forecasting",
+      "revenue_potential": "$180,000 (one-time) + $1,200/month (support plan)",
+      "next_action": "Research and reach out to manufacturing companies with complex supply chains and schedule a demo of Agentic Zero's certified agents",
+      "scores": {
+        "universal_pain": 7,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 6,
+        "market_size": 9,
+        "competitive_gap": 7
+      },
+      "total_score": 75.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "market_size": {
+          "raw": 9,
+          "weighted": 13.5
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "20230604-003",
+      "title": "Quality Control Automation in Food Processing",
+      "source": "linkedin_pain",
+      "description": "Food processing companies struggle with manual quality control processes, which can lead to contamination risks, recalls, and reputational damage. Automating these processes can bring significant cost savings and reduce risk.",
+      "target": "Food processing companies with 50+ employees",
+      "trigger": "Recent posts from food processing directors about quality control challenges and manual processes",
+      "agentic_fit": "Source (S1.1-S1.5) certified agents for quality control and data management",
+      "revenue_potential": "$60,000 (one-time) + $900/month (support plan)",
+      "next_action": "Reach out to food processing directors who posted about quality control challenges and schedule a demo of Agentic Zero's certified agents",
+      "scores": {
+        "universal_pain": 6,
+        "measurable_roi": 7,
+        "agentic_fit": 7,
+        "timing": 5,
+        "market_size": 6,
+        "competitive_gap": 5
+      },
+      "total_score": 61.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 6,
+          "weighted": 12.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "timing": {
+          "raw": 5,
+          "weighted": 7.5
+        },
+        "market_size": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "competitive_gap": {
+          "raw": 5,
+          "weighted": 5.0
+        }
+      },
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "MED-001",
+      "title": "Agentic Workflow Automation",
+      "source": "medium_agentic",
+      "description": "Companies with complex or regulated processes can benefit from automating their workflows using certified AI agents, reducing costs and increasing efficiency",
+      "target": "Operations managers in industries with high regulatory requirements, such as finance or healthcare",
+      "trigger": "Recent articles on Medium highlighting the benefits of agentic workflows and autonomous operations",
+      "agentic_fit": "Agentic Zero's certified agent library, particularly Plan (P1.1-P1.5) and Make (M1.1, M2.1) agents",
+      "revenue_potential": "$10,000 - $50,000 per implementation, with potential for recurring support plans",
+      "next_action": "Research and identify key operations managers in target industries and reach out to discuss potential automation opportunities",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 9,
+        "agentic_fit": 9,
+        "timing": 7,
+        "market_size": 8,
+        "competitive_gap": 6
+      },
+      "total_score": 80.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "MED-002",
+      "title": "n8n Agent Integration",
+      "source": "medium_agentic",
+      "description": "Companies already using n8n agents can benefit from integrating Agentic Zero's certified agents to enhance their automation capabilities and ensure compliance with regulations",
+      "target": "n8n users and developers, particularly those in industries with high regulatory requirements",
+      "trigger": "Mentions of n8n agents in Medium articles, highlighting the potential for integration with other agentic solutions",
+      "agentic_fit": "Agentic Zero's certified agent library, particularly Source (S1.1-S1.5) and Deliver (in progress) agents",
+      "revenue_potential": "$5,000 - $20,000 per integration, with potential for recurring support plans",
+      "next_action": "Reach out to n8n community leaders and developers to discuss potential integration opportunities and promote Agentic Zero's certified agents",
+      "scores": {
+        "universal_pain": 6,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 8,
+        "market_size": 7,
+        "competitive_gap": 5
+      },
+      "total_score": 71.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 6,
+          "weighted": 12.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "competitive_gap": {
+          "raw": 5,
+          "weighted": 5.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "MED-003",
+      "title": "Agentic Economy Thought Leadership",
+      "source": "medium_agentic",
+      "description": "Establishing Agentic Zero as a thought leader in the agentic economy can attract potential customers and partners, particularly those interested in AI agents and automation",
+      "target": "Industry influencers, researchers, and potential customers interested in agentic economy and AI agents",
+      "trigger": "Recent articles on Medium discussing the agentic economy and its potential applications",
+      "agentic_fit": "Agentic Zero's 25 years of field expertise and EU AI Act compliance, NIST AI RMF",
+      "revenue_potential": "$0 - $10,000 per engagement, with potential for long-term partnerships and sales",
+      "next_action": "Publish thought leadership articles on Medium, highlighting Agentic Zero's expertise and capabilities in the agentic economy",
+      "scores": {
+        "universal_pain": 4,
+        "measurable_roi": 5,
+        "agentic_fit": 9,
+        "timing": 9,
+        "market_size": 8,
+        "competitive_gap": 7
+      },
+      "total_score": 68.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 4,
+          "weighted": 8.0
+        },
+        "measurable_roi": {
+          "raw": 5,
+          "weighted": 10.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 9,
+          "weighted": 13.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "AUTOMATION_001",
+      "title": "Automating Repetitive Tasks in Regulated Industries",
+      "source": "reddit_automation",
+      "description": "Companies in regulated industries are seeking to automate repetitive tasks while ensuring compliance with EU AI Act and NIST AI RMF, which Agentic Zero's certified agents can address",
+      "target": "Compliance officers or automation teams in regulated industries such as finance, healthcare, or government",
+      "trigger": "Posts on r/automation and Discord automation servers mentioning 'EU AI Act compliance' or 'NIST AI RMF' in the context of automation",
+      "agentic_fit": "Agentic Zero's Plan (P1.1-P1.5) and Source (S1.1-S1.5) agents, which are EU AI Act compliant and follow NIST AI RMF",
+      "revenue_potential": "$7,000 - $18,000 per implementation, with potential for recurring support plans ($600-$1,800/month)",
+      "next_action": "Monitor r/automation and Discord automation servers for relevant posts and engage with users to discuss their automation needs and potential solutions with Agentic Zero's agents",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 9,
+        "agentic_fit": 9,
+        "timing": 7,
+        "market_size": 8,
+        "competitive_gap": 6
+      },
+      "total_score": 80.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "AUTOMATION_002",
+      "title": "Streamlining Complex Workflows with Certified AI Agents",
+      "source": "reddit_automation",
+      "description": "Companies with complex workflows are looking for ways to streamline their processes using certified AI agents, which Agentic Zero can provide",
+      "target": "Business process owners or automation teams in industries with complex workflows, such as manufacturing or logistics",
+      "trigger": "Posts on r/n8n and Make.com community mentioning 'complex workflow automation' or 'certified AI agents'",
+      "agentic_fit": "Agentic Zero's Make (M1.1, M2.1) agents, which can integrate with n8n and Make.com to streamline complex workflows",
+      "revenue_potential": "$1,000 - $3,000 per implementation, with potential for recurring support plans ($600-$1,800/month)",
+      "next_action": "Engage with users on r/n8n and Make.com community to discuss their workflow automation needs and potential solutions with Agentic Zero's agents",
+      "scores": {
+        "universal_pain": 7,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 6,
+        "market_size": 7,
+        "competitive_gap": 5
+      },
+      "total_score": 70.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "market_size": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "competitive_gap": {
+          "raw": 5,
+          "weighted": 5.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "AUTOMATION_003",
+      "title": "Delivering Automated Solutions for Repetitive Processes",
+      "source": "reddit_automation",
+      "description": "Companies with repetitive processes are seeking automated solutions, which Agentic Zero's Deliver agent (in progress) can address",
+      "target": "Operations teams or automation specialists in industries with repetitive processes, such as customer service or data entry",
+      "trigger": "Posts on r/automation and Discord automation servers mentioning 'automating repetitive tasks' or 'delivering automated solutions'",
+      "agentic_fit": "Agentic Zero's Deliver agent (in progress), which can automate repetitive processes",
+      "revenue_potential": "$699 - $1,000 per implementation, with potential for recurring support plans ($600-$1,800/month)",
+      "next_action": "Monitor r/automation and Discord automation servers for relevant posts and engage with users to discuss their automation needs and potential solutions with Agentic Zero's Deliver agent",
+      "scores": {
+        "universal_pain": 6,
+        "measurable_roi": 7,
+        "agentic_fit": 7,
+        "timing": 5,
+        "market_size": 6,
+        "competitive_gap": 4
+      },
+      "total_score": 60.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 6,
+          "weighted": 12.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "timing": {
+          "raw": 5,
+          "weighted": 7.5
+        },
+        "market_size": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "competitive_gap": {
+          "raw": 4,
+          "weighted": 4.0
+        }
+      },
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "AH-001",
+      "title": "Regulated Process Automation",
+      "source": "marketplace_gaps",
+      "description": "Companies with repetitive, complex or regulated processes are seeking certified AI agents to automate tasks, but existing marketplaces lack EU AI Act compliant and NIST AI RMF certified agents",
+      "target": "Companies in highly regulated industries such as finance, healthcare, and government",
+      "trigger": "Recent updates to EU AI Act and NIST AI RMF regulations",
+      "agentic_fit": "Agentic Zero's certified agent library, particularly Plan (P1.1-P1.5) and Make (M1.1, M2.1) agents",
+      "revenue_potential": "$10,000 - $50,000 per deal",
+      "next_action": "Research and identify 10 potential companies in targeted industries to approach with Agentic Zero's value proposition",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 9,
+        "agentic_fit": 9,
+        "timing": 8,
+        "market_size": 7,
+        "competitive_gap": 6
+      },
+      "total_score": 80.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "AH-002",
+      "title": "Custom Agent Development",
+      "source": "marketplace_gaps",
+      "description": "Existing marketplaces lack the expertise and capabilities to develop custom certified AI agents for complex and regulated processes, leaving a gap for Agentic Zero's 25 years of field expertise",
+      "target": "Large enterprises with unique and complex process automation needs",
+      "trigger": "Increasing demand for customized AI solutions in regulated industries",
+      "agentic_fit": "Agentic Zero's expertise in developing custom certified AI agents, leveraging the certified agent library",
+      "revenue_potential": "$50,000 - $200,000 per deal",
+      "next_action": "Develop a sales sheet highlighting Agentic Zero's custom agent development capabilities and expertise",
+      "scores": {
+        "universal_pain": 9,
+        "measurable_roi": 8,
+        "agentic_fit": 9,
+        "timing": 7,
+        "market_size": 8,
+        "competitive_gap": 8
+      },
+      "total_score": 82.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 8,
+          "weighted": 8.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "AH-003",
+      "title": "Partnership with Marketplaces",
+      "source": "marketplace_gaps",
+      "description": "Partnering with existing marketplaces to offer Agentic Zero's certified AI agents, filling the gap in EU AI Act compliance and NIST AI RMF certification",
+      "target": "AgentHub, AIMarketplace, and Upwork",
+      "trigger": "Growing demand for certified AI agents in regulated industries",
+      "agentic_fit": "Agentic Zero's certified agent library and expertise in regulated processes",
+      "revenue_potential": "$20,000 - $100,000 per month",
+      "next_action": "Reach out to the partnerships teams of the targeted marketplaces to explore potential partnership opportunities",
+      "scores": {
+        "universal_pain": 7,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 8,
+        "market_size": 9,
+        "competitive_gap": 7
+      },
+      "total_score": 78.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 9,
+          "weighted": 13.5
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "EU_AIACT_001",
+      "title": "EU AI Act Compliance Support",
+      "source": "regulatory_triggers",
+      "description": "Companies facing EU AI Act compliance challenges and regulatory deadlines can leverage Agentic Zero's certified AI agents to ensure timely adherence to the August 2026 mandate",
+      "target": "European companies with repetitive, complex or regulated processes",
+      "trigger": "EU AI Act mandatory implementation by August 2026",
+      "agentic_fit": "SCOR-certified agents, EU AI Act compliant, NIST AI RMF",
+      "revenue_potential": "$10,000 - $50,000 per client",
+      "next_action": "Reach out to European industry associations and regulatory bodies to offer compliance support and education on Agentic Zero's certified AI agents",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 7,
+        "agentic_fit": 9,
+        "timing": 9,
+        "market_size": 8,
+        "competitive_gap": 6
+      },
+      "total_score": 79.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 9,
+          "weighted": 13.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "NIST_AI_RMF_001",
+      "title": "NIST AI Risk Management Framework Implementation",
+      "source": "regulatory_triggers",
+      "description": "Companies requiring NIST AI RMF implementation can utilize Agentic Zero's expertise and certified AI agents to streamline their risk management processes",
+      "target": "US-based companies with complex or regulated operations",
+      "trigger": "Upcoming regulatory deadlines and increasing demand for AI risk management",
+      "agentic_fit": "NIST AI RMF, SCOR-certified agents, 25 years field expertise",
+      "revenue_potential": "$20,000 - $100,000 per client",
+      "next_action": "Develop a targeted marketing campaign highlighting Agentic Zero's NIST AI RMF expertise and certified AI agents, focusing on US-based companies with complex operations",
+      "scores": {
+        "universal_pain": 9,
+        "measurable_roi": 8,
+        "agentic_fit": 9,
+        "timing": 8,
+        "market_size": 7,
+        "competitive_gap": 7
+      },
+      "total_score": 81.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "COMPLIANCE_ASSESMENT_001",
+      "title": "Compliance Assessment and Agent Implementation",
+      "source": "regulatory_triggers",
+      "description": "Companies can engage Agentic Zero for a comprehensive compliance assessment, followed by the implementation of certified AI agents to address identified gaps and ensure regulatory adherence",
+      "target": "Companies with repetitive, complex or regulated processes, especially those in highly regulated industries",
+      "trigger": "Imminent EU AI Act and NIST AI RMF regulatory deadlines",
+      "agentic_fit": "SCOR-certified agents, EU AI Act compliant, NIST AI RMF, 25 years field expertise",
+      "revenue_potential": "$50,000 - $200,000 per client",
+      "next_action": "Develop a sales script and supporting materials for a compliance assessment and agent implementation package, focusing on high-regulation industries and companies",
+      "scores": {
+        "universal_pain": 9,
+        "measurable_roi": 9,
+        "agentic_fit": 10,
+        "timing": 10,
+        "market_size": 8,
+        "competitive_gap": 8
+      },
+      "total_score": 91.0,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "measurable_roi": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "agentic_fit": {
+          "raw": 10,
+          "weighted": 20.0
+        },
+        "timing": {
+          "raw": 10,
+          "weighted": 15.0
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 8,
+          "weighted": 8.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "whitespace_001",
+      "title": "Regulatory Compliance in Healthcare",
+      "source": "whitespace_detection",
+      "description": "Healthcare companies struggle with regulatory compliance due to complex and ever-changing laws, making it a prime target for Agentic Zero's certified AI agents",
+      "target": "Healthcare companies with 500+ employees",
+      "trigger": "Recent high-profile fines for non-compliance in the healthcare industry",
+      "agentic_fit": "EU AI Act compliance and NIST AI RMF capabilities",
+      "revenue_potential": "$120,000 - $180,000 per year",
+      "next_action": "Research and identify key decision-makers at target healthcare companies",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 7,
+        "agentic_fit": 9,
+        "timing": 6,
+        "market_size": 8,
+        "competitive_gap": 7
+      },
+      "total_score": 76.0,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "whitespace_002",
+      "title": "Automating Financial Reporting",
+      "source": "whitespace_detection",
+      "description": "Financial institutions and companies with complex financial reporting needs lack efficient automation solutions, creating an opportunity for Agentic Zero's certified AI agents",
+      "target": "Financial institutions and publicly traded companies",
+      "trigger": "Upcoming changes to financial reporting regulations",
+      "agentic_fit": "Plan (P1.1-P1.5) and Deliver agents",
+      "revenue_potential": "$80,000 - $120,000 per year",
+      "next_action": "Develop a tailored pitch highlighting the benefits of automation in financial reporting",
+      "scores": {
+        "universal_pain": 7,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 7,
+        "market_size": 9,
+        "competitive_gap": 6
+      },
+      "total_score": 76.0,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 9,
+          "weighted": 13.5
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "whitespace_003",
+      "title": "Streamlining Supply Chain Management",
+      "source": "whitespace_detection",
+      "description": "Companies with complex global supply chains struggle with efficiency and compliance, making them a good fit for Agentic Zero's certified AI agents",
+      "target": "Manufacturing and logistics companies with international operations",
+      "trigger": "Recent supply chain disruptions and increased demand for resilience",
+      "agentic_fit": "Make (M1.1, M2.1) and Deliver agents",
+      "revenue_potential": "$100,000 - $150,000 per year",
+      "next_action": "Research industry-specific pain points and develop a tailored value proposition",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 8,
+        "agentic_fit": 8,
+        "timing": 8,
+        "market_size": 8,
+        "competitive_gap": 7
+      },
+      "total_score": 79.0,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "PCD-001",
+      "title": "AI Automation Partnership",
+      "source": "partner_channels",
+      "description": "Identify consultancies, system integrators, and VARs looking for certified AI agents to resell, leveraging Agentic Zero's unique differentiators",
+      "target": "Mid-sized to large consultancies and system integrators serving industries with complex, regulated processes",
+      "trigger": "Increasing demand for AI automation solutions in regulated industries",
+      "agentic_fit": "SCOR-certified agents, EU AI Act compliance, NIST AI RMF",
+      "revenue_potential": "$100,000 - $500,000 per year",
+      "next_action": "Research and create a list of 10 potential partners, then reach out to schedule exploratory calls",
+      "scores": {
+        "universal_pain": 8,
+        "measurable_roi": 7,
+        "agentic_fit": 9,
+        "timing": 6,
+        "market_size": 8,
+        "competitive_gap": 7
+      },
+      "total_score": 76.0,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 6,
+          "weighted": 9.0
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 7,
+          "weighted": 7.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "PCD-002",
+      "title": "Reseller Program Development",
+      "source": "partner_channels",
+      "description": "Develop a reseller program for Agentic Zero's certified AI agents, targeting VARs and system integrators",
+      "target": "Value-added resellers (VARs) and system integrators with existing customer relationships in regulated industries",
+      "trigger": "Growing interest in AI automation among Agentic Zero's target markets",
+      "agentic_fit": "Certified agent library, EU AI Act compliance, NIST AI RMF",
+      "revenue_potential": "$200,000 - $1,000,000 per year",
+      "next_action": "Design a reseller program framework, including pricing, support, and training requirements",
+      "scores": {
+        "universal_pain": 7,
+        "measurable_roi": 8,
+        "agentic_fit": 9,
+        "timing": 7,
+        "market_size": 8,
+        "competitive_gap": 6
+      },
+      "total_score": 76.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "measurable_roi": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "agentic_fit": {
+          "raw": 9,
+          "weighted": 18.0
+        },
+        "timing": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "market_size": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "competitive_gap": {
+          "raw": 6,
+          "weighted": 6.0
+        }
+      },
+      "priority": "HIGH"
+    },
+    {
+      "id": "PCD-003",
+      "title": "Joint Go-to-Market Strategy",
+      "source": "partner_channels",
+      "description": "Collaborate with existing partners to develop joint go-to-market strategies for Agentic Zero's certified AI agents",
+      "target": "Existing partners with complementary product or service offerings",
+      "trigger": "Successful pilots or proof-of-concepts with existing partners",
+      "agentic_fit": "Certified agent library, EU AI Act compliance, NIST AI RMF",
+      "revenue_potential": "$50,000 - $200,000 per year",
+      "next_action": "Schedule meetings with existing partners to discuss potential joint go-to-market initiatives",
+      "scores": {
+        "universal_pain": 6,
+        "measurable_roi": 7,
+        "agentic_fit": 8,
+        "timing": 8,
+        "market_size": 7,
+        "competitive_gap": 5
+      },
+      "total_score": 69.5,
+      "scores_detail": {
+        "universal_pain": {
+          "raw": 6,
+          "weighted": 12.0
+        },
+        "measurable_roi": {
+          "raw": 7,
+          "weighted": 14.0
+        },
+        "agentic_fit": {
+          "raw": 8,
+          "weighted": 16.0
+        },
+        "timing": {
+          "raw": 8,
+          "weighted": 12.0
+        },
+        "market_size": {
+          "raw": 7,
+          "weighted": 10.5
+        },
+        "competitive_gap": {
+          "raw": 5,
+          "weighted": 5.0
+        }
+      },
+      "priority": "MEDIUM"
+    }
+  ],
+  "updated_at": "2026-06-04T10:45:46.163689"
+}

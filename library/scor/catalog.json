@@ -288,5 +288,71 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-03T15:46:01.711892"
+  },
+  {
+    "process_id": "SCOR-M3.1",
+    "agent_name": "production_confirmation_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "process industries"
+    ],
+    "compliance_frameworks": [],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 499.0,
+    "complexity_score": 51,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-04T09:40:43.598095"
+  },
+  {
+    "process_id": "SCOR-M4.1",
+    "agent_name": "product_test_and_inspect_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "FDA if medical devices"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 2100.0,
+    "complexity_score": 96,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-04T09:54:19.706050"
+  },
+  {
+    "process_id": "SCOR-M5.1",
+    "agent_name": "pack_and_prepare_products_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDP if distribution"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 499.0,
+    "complexity_score": 61,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-04T10:01:00.306530"
   }
 ]

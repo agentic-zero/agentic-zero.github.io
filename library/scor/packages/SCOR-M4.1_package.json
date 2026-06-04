@@ -1,0 +1,89 @@
+{
+  "process_id": "SCOR-M4.1",
+  "agent_name": "product_test_and_inspect_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-04T09:54:19.706070",
+  "product_summary": "The Test and Inspect Products agent is a hybrid solution designed to ensure the quality and compliance of products by testing and inspecting them. This agent has the capability to test products, generate test and quality reports, detect defects, and notify quality control teams. By leveraging this agent, businesses can reduce the risk of non-compliant products reaching the market, thereby protecting their brand reputation and minimizing potential liabilities. The agent's capabilities are particularly valuable in regulated industries such as pharmaceuticals and medical devices.",
+  "value_proposition": "Automates the testing and inspection of products to ensure quality and compliance, reducing the risk of non-compliant products and associated liabilities.",
+  "technical_summary": "The Test and Inspect Products agent is built with a hybrid architecture, enabling it to integrate with various systems and devices to perform testing and inspection tasks. The agent's capabilities, such as test_product and generate_test_report, are designed to be modular and scalable, allowing for easy integration with existing quality control systems. The agent's compliance capabilities, including support for GxP and FDA regulations, are also configurable to meet the specific needs of different industries and use cases.",
+  "integration_guide": "# Integration Guide — product_test_and_inspect_agent\n**Process:** Test and Inspect Products\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp product_test_and_inspect_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.product_test_and_inspect_agent import ProductTestAndInspectAgentAgent\n\nagent = ProductTestAndInspectAgentAgent()\nresult = agent.execute({\n    \"confirmed_production\": your_confirmed_production_data,\n    \"quality_standards\": your_quality_standards_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- testing_system_api\n- quality_standards_database\n- report_generation_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- defect rate exceeds threshold\n- test coverage is below threshold\n- quality report generation fails",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/product_test_and_inspect_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/product_test_and_inspect_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/product_test_and_inspect_agent/health — Health check",
+    "GET  /api/v1/agents/product_test_and_inspect_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/product_test_and_inspect_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction to Agentic Zero's product_test_and_inspect_agent: Briefly introduce the agent and its purpose, highlighting the value proposition of automating test and inspect products with AI, and the potential return on investment.\n\n2. Current State: Describe the current manual process of testing and inspecting products, highlighting the time-consuming and error-prone nature of these tasks, and the potential for non-compliance.\n\n3. Demo of Automated Testing and Inspection: Demonstrate how the product_test_and_inspect_agent uses AI to automate the testing and inspection process, showcasing its speed, accuracy, and ability to detect defects and anomalies.\n\n4. ROI Calculation: Calculate the potential return on investment using the ROI multiplier, showing how the €2100 price can generate significant cost savings and efficiency gains, with a potential return of 6 times the initial investment.\n\n5. Compliance Benefits: Highlight the compliance benefits of using the product_test_and_inspect_agent, including the ability to maintain detailed records of testing and inspection, and ensure adherence to regulatory standards.\n\n6. Implementation and Integration: Discuss the ease of implementation and integration of the product_test_and_inspect_agent, highlighting its ability to work with existing systems and infrastructure, and the support provided by Agentic Zero.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the product_test_and_inspect_agent, including its ability to automate testing and inspection, generate significant ROI, and ensure compliance, and outline the next steps for implementation and deployment.",
+  "demo_inputs": {
+    "confirmed_production": "[example_confirmed_production]",
+    "quality_standards": "[example_quality_standards]"
+  },
+  "expected_demo_outputs": {
+    "tested_and_inspected_products": "[generated_tested_and_inspected_products]",
+    "quality_reports": "[generated_quality_reports]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M4.1",
+    "agent_name": "product_test_and_inspect_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L3",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "FDA if medical devices"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 2100.0,
+    "complexity_score": 96,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-04T09:54:19.706050"
+  },
+  "tags": [
+    "hybrid",
+    "make",
+    "pharma",
+    "scor",
+    "l3",
+    "medical devices",
+    "manufacturing"
+  ],
+  "use_cases": [
+    "Use case 1: Implementing automated inspection systems in manufacturing to reduce defect rates by 30% and increase production efficiency by 25%",
+    "Use case 2: Conducting regular GxP compliance audits in pharma to minimize the risk of costly regulatory fines and product recalls",
+    "Use case 3: Streamlining the testing process for medical devices to achieve FDA approval 40% faster and reduce associated costs by 20%",
+    "Use case 4: Developing and implementing a quality control checklist in manufacturing to reduce waste by 15% and improve overall product quality by 12%",
+    "Use case 5: Creating a data analytics platform to track and analyze product inspection data in real-time, resulting in a 28% reduction in inspection time and a 10% increase in overall productivity"
+  ],
+  "pricing": {
+    "process_id": "SCOR-M4.1",
+    "complexity_score": 96,
+    "level": "L3",
+    "base_price_eur": 1500.0,
+    "regulated_surcharge": 600.0,
+    "total_price_eur": 2100.0,
+    "price_rationale": "Level L3 process with complexity score 96/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 6.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M4.1_package.json"
+}

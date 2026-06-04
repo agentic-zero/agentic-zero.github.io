@@ -727,5 +727,113 @@
     },
     "audited_at": "2026-06-03T15:30:25.705668",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M4.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-04T09:47:30.395481",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M4.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-04T10:02:00.823462",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 ]

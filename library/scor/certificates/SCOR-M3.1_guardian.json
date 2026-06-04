@@ -1,0 +1,67 @@
+{
+  "process_id": "SCOR-M3.1",
+  "guardian_timestamp": "2026-06-04T09:44:44.693057",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-M3.1-20260604",
+    "process_id": "SCOR-M3.1",
+    "agent_name": "production_confirmation_agent",
+    "issued_at": "2026-06-04T09:44:44.693015",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-04",
+    "overall_status": "certified",
+    "overall_score": 0.86,
+    "eu_ai_act": {
+      "risk_level": "minimal",
+      "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
+      "prohibited": false,
+      "requirements": [
+        "Voluntary codes of conduct recommended",
+        "No mandatory requirements"
+      ],
+      "article_references": [
+        "Recital 47 — Minimal risk AI systems"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.6,
+      "gaps": [
+        "Lack of explicit risk management process",
+        "Insufficient transparency in decision-making process",
+        "No clear documentation of data quality and integrity"
+      ],
+      "recommendations": [
+        "Implement a risk management process to identify and mitigate potential risks associated with AI decision-making",
+        "Provide transparent and explainable decision-making processes to ensure accountability",
+        "Develop and maintain documentation of data quality and integrity to ensure reliability and accuracy of AI outputs"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 0.75,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 0.9375,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": false,
+      "lawful_basis_defined": true,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": []
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [],
+    "rejection_reasons": [],
+    "human_review_required": false,
+    "notes": "Guardian review completed. Risk level: minimal. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": true,
+  "requires_human_sign_off": false,
+  "remediation_plan": [
+    "ISO 42001: Lack of explicit risk management process"
+  ]
+}

@@ -2402,3 +2402,263 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.5"**
 ---
 
 *v3.5 — Sprint 2 completado · 3 Junio 2026*
+
+# FIX DEL 3 DE JUNIO 2026
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.6 | Fecha: 3 Junio 2026 | Fin de jornada
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Empresa:** Agentic Zero powered by Dis-Solutions (25 años consultoría digital)
+**Dominio:** agentic-zero.com · agenticzero.org | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ARQUITECTURA COMPLETA
+
+```
+ESTRATEGIA        VENTURE (pendiente construir)
+                     ↓
+PRODUCCIÓN        Scout → Architect → Builder → Packager → Guardian → Auditor
+                     ↓
+COMERCIAL         HERALD v1.0 (operativo)
+                     ↓
+OPERACIONES       Paperclip (orquestador, Fase 3)
+```
+
+### Estado de agentes
+```
+PIONEER TEAM (R&D Engine):
+  ✅ Scout     — Investigación y mapeo de frameworks
+  ✅ Architect — Validación y variantes sectoriales
+  ✅ Builder   — IBM Bob proceso→agente
+  ✅ Packager  — Product packaging
+  ✅ Guardian  — Compliance & certification
+  ✅ Auditor   — Human review protocol (v1.0 · autonomía B)
+
+COMMERCIAL ENGINE:
+  ✅ Herald    — Marketing & Growth Agent v1.0
+  ⏳ Venture   — Business Development (pendiente)
+
+ORCHESTRATION:
+  ⏳ Paperclip — M10, Fase 3
+```
+
+---
+
+## 3. ESTADO TÉCNICO AL 3 JUNIO 2026 — FIN DE JORNADA
+
+### Módulos operativos
+```
+✅ M1  — License Manager
+✅ M2  — Autonomy Dashboard v2
+✅ M3  — ROI Calculator
+✅ M5  — Pioneer Team (6 agentes — incluye Auditor)
+✅ M6  — Library (procesos + agentes certificados)
+✅ M7  — API Gateway (13 endpoints + ROI)
+✅ M8  — Queue System
+⏳ M4  — Compliance Engine (pendiente)
+⏳ M10 — Orchestration (Fase 3)
+```
+
+### Biblioteca — estado completo
+```
+DOMINIO PLAN (SCOR-P1.x) — 5/5 ✅
+  P1.1  supply_chain_optimizer_agent        82%  CONDITIONAL
+  P1.2  supply_chain_analyzer               90%  CONDITIONAL
+  P1.3  supply_chain_inventory_manager      88%  CONDITIONAL
+  P1.4  supply_chain_transportation_policy  88%  CONDITIONAL
+  P1.5  supply_chain_risk_manager           86%  CONDITIONAL
+
+DOMINIO SOURCE (SCOR-S1.x) — 5/5 ✅ AUTO_APPROVED por Auditor
+  S1.1  autonomous_purchase_order_agent     88%  Delivery: True  €699
+  S1.2  authorize_and_pay_agent             88%  Delivery: True  €699
+  S1.3  supplier_information_manager        92%  Delivery: True  €2,100
+  S1.4  supplier_contract_manager           88%  Delivery: True  €2,100
+  S1.5  supplier_audit_agent                92%  Delivery: True  €7,000
+
+DOMINIO MAKE (SCOR-M1.x) — 2/5 ✅
+  M1.1  make_schedule_agent                 80%  CERTIFIED  Delivery: True
+  M2.1  production_order_release_agent      88%  CERTIFIED  Delivery: True  €499
+  M3.1  ⏳ PENDIENTE — Groq rate limit
+  M4.1  ⏳ PENDIENTE — Groq rate limit
+  M5.1  ⏳ PENDIENTE — Groq rate limit
+
+DOMINIO DELIVER (SCOR-D1.x a D4.x) — 0/8 ⏳
+  D1.1, D1.2, D1.3, D1.4, D1.5  ⏳ pendientes
+  D2.1, D3.1, D4.1               ⏳ pendientes
+```
+
+### Nomenclatura de procesos (CRÍTICO)
+```
+Plan:    P1.1 a P1.5  (5 procesos)
+Source:  S1.1 a S1.5  (5 procesos)
+Make:    M1.1, M2.1, M3.1, M4.1, M5.1  (un proceso por subdominio)
+Deliver: D1.1 a D1.5 + D2.1, D3.1, D4.1  (8 procesos total)
+```
+
+---
+
+## 4. AUDITOR AGENT v1.0
+
+```
+Ruta:    F:\agentic-zero\pioneer_team\auditor\auditor.py
+Log:     F:\agentic-zero\core\auditor\audit_log.json
+Protocolo: F:\agentic-zero\core\protocols\PROTOCOL_HUMAN_REVIEW.md
+```
+
+### Uso
+```powershell
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --status              # ver review_queue
+python auditor.py --process SCOR-S1.3  # auditar uno
+python auditor.py --all                 # auditar todos
+```
+
+### Lógica autonomía B
+```
+score ≥ 88 + NIST 100% + GDPR Clear  →  AUTO_APPROVE ✅
+score 75-87 o gaps EU AI Act          →  APPROVE WITH CONDITIONS ✅⚠️
+score < 75 o artículos MISSING        →  HOLD ⏸️
+GDPR violation o código roto          →  REJECT ❌
+```
+
+---
+
+## 5. COMERCIAL
+
+### Deck ejecutivo v4 — COMPLETADO
+```
+Commit: 4e11ea0
+Idioma: 100% inglés
+Listo para: Herald
+```
+
+### Secciones deck v4
+```
+Hero · Impact · Numbers · Why Now · How It Works · 
+Beyond The Agent · Agentic Swarm · ROI by Sector · 
+First AUDIT Free · Native Compliance · Founder · CTA Final
+```
+
+### Precios
+```
+Standard:   $600/mes  · $7,200/año
+Enterprise: $1,800/mes · $21,600/año
+Swarm:      Add-on · Available on Enterprise · Priced on scope
+AUDIT:      First free · Subsequent on request
+```
+
+### ROI por sector (metodología: 3 procesos · 3 FTE)
+```
+Defense      349% · 2.7m · 65%    Pharma    322% · 2.8m · 65%
+Chemical     285% · 3.2m · 60%    Automotive 264% · 3.4m · 58%
+Food         242% · 3.7m · 55%    Mfg       218% · 4.1m · 52%
+Distribution 196% · 4.6m · 50%
+```
+
+---
+
+## 6. COMANDOS ESENCIALES
+
+### Activar entorno
+```powershell
+cd F:\agentic-zero
+.venv\Scripts\Activate.ps1
+```
+
+### Queue status y pipelines
+```powershell
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear failed_queue
+python queue_system.py --clear review_queue
+
+# Make pendientes (lanzar tras reset Groq ~medianoche UTC)
+python queue_system.py --pipeline SCOR-M3.1 SCOR-M4.1 SCOR-M5.1
+
+# Deliver completo
+python queue_system.py --pipeline SCOR-D1.1 SCOR-D1.2 SCOR-D1.3 SCOR-D1.4 SCOR-D1.5 SCOR-D2.1 SCOR-D3.1 SCOR-D4.1
+
+# Auditor tras cada pipeline con review_queue
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+```
+
+### Herald
+```powershell
+cd commercial\herald
+python herald.py --name "X" --company "Y" --sector pharma --process SCOR-P1.1 --type first_contact --language es
+```
+
+---
+
+## 7. PENDIENTES SPRINT 3 — PRÓXIMA SESIÓN
+
+```
+INMEDIATO (mañana):
+  1. Reset Groq → lanzar pipeline Make M3.1 M4.1 M5.1
+  2. Lanzar pipeline Deliver D1.1-D1.5 D2.1 D3.1 D4.1
+  3. Auditor --all tras cada pipeline
+
+TÉCNICO:
+  4. Activar privacidad WHOIS en IONOS (spam detectado)
+  5. Venture Agent (Business Development)
+  6. Quitar prints DEBUG del queue_system.py
+
+COMERCIAL:
+  7. Web agentic-zero.com — landing + booking AUDIT
+  8. Probar Herald con 5 contactos reales
+  9. Primer AUDIT gratuito en agenda
+  10. LinkedIn perfil + Company Page
+```
+
+---
+
+## 8. ESTRUCTURA DE CARPETAS
+```
+F:\agentic-zero\
+├── commercial\
+│   ├── herald\herald.py
+│   └── agentic_zero_deck.html     ← v4 · commit 4e11ea0
+├── core\
+│   ├── api\api_gateway.py
+│   ├── auditor\audit_log.json
+│   ├── protocols\PROTOCOL_HUMAN_REVIEW.md
+│   ├── queue\queue_system.py
+│   ├── roi_calculator.py
+│   └── autonomy_dashboard.html
+├── library\scor\
+│   ├── processes\   ← Plan(5) Source(5) Make(5) Deliver(8)
+│   ├── agents\      ← 12 agentes (Plan+Source+Make M1+M2)
+│   ├── sops\        ← 12 SOPs
+│   ├── packages\    ← 12 packages
+│   └── certificates\ ← 12 certificados
+└── pioneer_team\
+    ├── scout · architect · builder · packager · guardian
+    └── auditor\auditor.py
+```
+
+---
+
+## 9. GIT — COMMITS
+```
+1649538  — Dominio Plan completo
+[prev]   — Herald Agent v1.0
+4e11ea0  — Deck ejecutivo v4 — full English + Swarm
+[hoy]    — Auditor v1.0 + Source AUTO_APPROVED + Make M2.1
+```
+
+---
+
+## 10. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.6"**
+
+---
+
+*v3.6 — Jornada 3 Junio 2026 completada*
+*Plan ✅ · Source ✅ · Make 2/5 · Deliver 0/8 · Auditor ✅ · Deck ✅*

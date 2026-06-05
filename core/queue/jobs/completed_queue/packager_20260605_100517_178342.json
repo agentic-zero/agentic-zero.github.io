@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260605_100517_178342",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D1.5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-05T10:05:17.178367",
+  "status": "completed",
+  "started_at": "2026-06-05T10:28:17.968652",
+  "completed_at": "2026-06-05T10:31:18.045042",
+  "error": null,
+  "result": {
+    "agent_name": "design_data_manager",
+    "price_eur": 7000.0,
+    "ready_for_guardian": true
+  }
+}

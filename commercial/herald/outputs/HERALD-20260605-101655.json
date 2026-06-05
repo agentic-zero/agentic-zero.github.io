@@ -1,0 +1,61 @@
+{
+  "request_id": "HERALD-20260605-101655",
+  "generated_at": "2026-06-05T10:17:56.602751",
+  "communication_type": "sequence",
+  "contact_name": "Alberto",
+  "process_id": "SCOR-P1.1",
+  "primary_message": "Are manual planning cycles and lack of visibility hindering your S&OP and IBP integration? What's the most significant challenge you're facing in this area?",
+  "subject_line": "3-touch sequence for Alberto @ Dis-Solutions",
+  "email_body": null,
+  "key_arguments": [
+    "218% ROI in 12 months (manufacturing · conservative estimate)",
+    "Payback in 4.1 months",
+    "$107,000 estimated annual saving · 3 processes · 3 FTE basis",
+    "Exact ROI calculated on your data during the free AUDIT",
+    "EU AI Act compliant by design — mandatory August 2026",
+    "Powered by Dis-Solutions · 25 years · $420M value demonstrated"
+  ],
+  "roi_hook": "* By implementing our Process to Identify, Prioritize and Aggregate Supply Chain Requirements, Dis-Solutions can expect a significant return on investment, with a conservative estimate of 218% ROI in 12 months.\n* This translates to an estimated annual saving of $107,000, with a payback period of just 4.1 months, making it a highly attractive proposition for the manufacturing sector.\n* Our methodology is based on defendible data, including published sector salary benchmarks for FTE costs and a conservative automation rate of 52%, which is lower than the industry average of 70-80%.\n* The total cost of our agent is $12,000 per year, which includes license and standard support, and we offer a free audit to calculate the exact figures based on Dis-Solutions' real data.\n* Our solution has been proven to deliver results in real-world scenarios, with benchmarks showing that similar agents have generated significant revenue, such as $19,915 in 8 hours and $47,000 from 20 hours of work, demonstrating the potential for substantial returns on investment.",
+  "eu_ai_act_angle": "EU AI Act enforcement begins August 2026. High-risk AI in manufacturing supply chains requires conformity assessment. Agentic Zero agents arrive pre-certified — Guardian-verified compliance from day 1.",
+  "call_to_action": "Free AUDIT — you see the numbers before deciding anything",
+  "sequence": [
+    {
+      "touch": "1",
+      "channel": "linkedin",
+      "timing": "Day 1",
+      "goal": "Recognize the problem",
+      "subject": "S&OP and IBP Challenges",
+      "message": "Are manual planning cycles and lack of visibility hindering your S&OP and IBP integration? What's the most significant challenge you're facing in this area?"
+    },
+    {
+      "touch": "2",
+      "channel": "email",
+      "timing": "Day 4 — if no response",
+      "goal": "Offer expert perspective",
+      "subject": "Expert Insight on S&OP and IBP Integration",
+      "message": "I've seen similar challenges in the manufacturing sector, where manual planning cycles and lack of visibility led to significant losses. In one case, a company faced a 15% reduction in productivity due to inefficient planning. I'd like to discuss how to address these issues. Would you be available for a 15-minute call to explore the approach?"
+    },
+    {
+      "touch": "3",
+      "channel": "linkedin",
+      "timing": "Day 9 — if no response",
+      "goal": "Present the solution",
+      "subject": "Agentic Solution for S&OP and IBP",
+      "message": "Our certified AI agent automates planning cycles, providing real-time visibility and integrating S&OP and IBP. It works on your current infrastructure, no migration or ERP replacement needed. I'd like to offer a free AUDIT to demonstrate its capabilities on your data."
+    },
+    {
+      "touch": "4",
+      "channel": "email",
+      "timing": "Day 14 — final touch",
+      "goal": "ROI and price",
+      "subject": "Agentic Zero ROI and Pricing",
+      "message": "Our solution offers an estimated 218% ROI in 12 months, with a payback period of 4.1 months and $107,000 in annual savings. Pricing starts at $600/month after the free AUDIT. Book your AUDIT at agentic-zero.com to see the numbers on your data. Best, Alberto Muñoz Waissen | Agentic Zero | Powered by Dis-Solutions"
+    }
+  ],
+  "linkedin_post": null,
+  "linkedin_hashtags": null,
+  "word_count": 24,
+  "estimated_read_time_seconds": 72,
+  "confidence_score": 0.88,
+  "notes": "Generated for Alberto at Dis-Solutions"
+}

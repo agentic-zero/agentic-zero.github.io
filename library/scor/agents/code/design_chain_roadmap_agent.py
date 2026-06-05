@@ -4,7 +4,7 @@ Process: SCOR-D1.2
 Name: design_chain_roadmap_agent
 Framework: SCOR-D
 Domain: Design Chain
-Generated: 2026-06-04T09:55:59.725130
+Generated: 2026-06-05T09:53:17.596839
 Compliance: GxP if pharma or medical devices
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,9 @@ class DesignChainRoadmapAgentAgent:
     Process of creating a detailed roadmap for the design chain, including key milestones and deliverables
     
     Capabilities:
-    #   - roadmap_generation
-    #   - resource_allocation
-    #   - milestone_tracking
-    #   - project_schedule_management
+    #   - design_chain_strategy_analysis
+    #   - resource_availability_assessment
+    #   - milestone_achievement_tracking
     
     Compliance: GxP if pharma or medical devices
     """
@@ -139,68 +138,111 @@ class DesignChainRoadmapAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF Design Chain Strategy is updated THEN update Design Chain Roadmap
-        # - IF Resource Availability changes THEN update Design Chain Roadmap
-        # - IF Milestone Achievement is not met THEN re-evaluate Design Chain Roadmap
+        # - IF Design Chain Strategy is updated THEN re-evaluate Design Chain Roadmap
+        # - IF Resource Availability changes THEN adjust Design Chain Roadmap
+        # - IF Milestone Achievement is behind schedule THEN re-prioritize Deliverables
         
         Business rules:
-        # - Design Chain Roadmap must be reviewed and updated annually
-        # - Design Chain Roadmap must align with Design Chain Objectives
-        # - Resource Availability must be considered when creating Design Chain Roadmap
+        # - Design Chain Roadmap must be reviewed and updated regularly
+        # - Resource Utilization must be tracked and reported
+        # - Milestone Achievement must be measured against Design Chain Objectives
         """
         outputs = {}
         
 def _process_logic(self, inputs):
+            # Initialize outputs dictionary to store the results
             outputs = {}
-            
-            # Check if all required inputs are present
+
+            # Check if all required inputs are available
             if 'design chain strategy' in inputs and 'design chain objectives' in inputs and 'resource availability' in inputs:
-                design_chain_strategy = inputs['design chain strategy']
-                design_chain_objectives = inputs['design chain objectives']
-                resource_availability = inputs['resource availability']
-                
-                # Initialize design chain roadmap and project schedule
-                design_chain_roadmap = []
-                project_schedule = []
-                
-                # Create design chain roadmap based on design chain strategy and objectives
-                if design_chain_strategy and design_chain_objectives:
-                    # Assuming design chain strategy and objectives are lists of tasks and goals
-                    for task in design_chain_strategy:
-                        if task in design_chain_objectives:
-                            # Add task to design chain roadmap
-                            design_chain_roadmap.append(task)
-                            # Create a project schedule entry for the task
-                            project_schedule.append({'task': task, 'status': 'pending'})
-                
-                # Consider resource availability when creating design chain roadmap
-                if resource_availability:
-                    # Assuming resource availability is a dictionary with resource names and quantities
-                    for task in design_chain_roadmap:
-                        # Check if required resources are available for the task
-                        required_resources = self.get_required_resources(task)  # Assuming this method exists
-                        if required_resources:
-                            for resource, quantity in required_resources.items():
-                                if resource in resource_availability and resource_availability[resource] >= quantity:
-                                    # Resource is available, proceed with the task
-                                    pass
-                                else:
-                                    # Resource is not available, update project schedule accordingly
-                                    for schedule_entry in project_schedule:
-                                        if schedule_entry['task'] == task:
-                                            schedule_entry['status'] = 'on hold'
-                                            break
-                
-                # Update outputs dictionary
+                # Create a design chain roadmap based on the strategy and objectives
+                design_chain_roadmap = self._create_design_chain_roadmap(inputs['design chain strategy'], inputs['design chain objectives'])
+                # Create a project schedule based on the design chain roadmap and resource availability
+                project_schedule = self._create_project_schedule(design_chain_roadmap, inputs['resource availability'])
+
+                # Check if design chain strategy is updated
+                if 'design chain strategy updated' in inputs and inputs['design chain strategy updated']:
+                    # Re-evaluate design chain roadmap
+                    design_chain_roadmap = self._re_evaluate_design_chain_roadmap(design_chain_roadmap, inputs['design chain strategy'])
+
+                # Check if resource availability has changed
+                if 'resource availability changed' in inputs and inputs['resource availability changed']:
+                    # Adjust design chain roadmap
+                    design_chain_roadmap = self._adjust_design_chain_roadmap(design_chain_roadmap, inputs['resource availability'])
+
+                # Check if milestone achievement is behind schedule
+                if 'milestone achievement' in inputs and inputs['milestone achievement'] == 'behind schedule':
+                    # Re-prioritize deliverables
+                    design_chain_roadmap = self._re_prioritize_deliverables(design_chain_roadmap, inputs['design chain objectives'])
+
+                # Review and update design chain roadmap regularly
+                design_chain_roadmap = self._review_and_update_design_chain_roadmap(design_chain_roadmap)
+
+                # Track and report resource utilization
+                resource_utilization = self._track_and_report_resource_utilization(inputs['resource availability'])
+
+                # Measure milestone achievement against design chain objectives
+                milestone_achievement = self._measure_milestone_achievement(design_chain_roadmap, inputs['design chain objectives'])
+
+                # Populate outputs dictionary
                 outputs['design chain roadmap'] = design_chain_roadmap
                 outputs['project schedule'] = project_schedule
-            
-            # Handle edge case where inputs are missing
+
+            # Handle edge case where required inputs are missing
             else:
-                outputs['design chain roadmap'] = []
-                outputs['project schedule'] = []
-            
+                # Raise an exception or return an error message
+                raise ValueError("Missing required inputs")
+
+            # Return the populated outputs dictionary
             return outputs
+
+
+        def _create_design_chain_roadmap(self, design_chain_strategy, design_chain_objectives):
+            # Implement logic to create design chain roadmap
+            # For demonstration purposes, a simple roadmap is created
+            return {'roadmap': design_chain_strategy + ' - ' + design_chain_objectives}
+
+
+        def _create_project_schedule(self, design_chain_roadmap, resource_availability):
+            # Implement logic to create project schedule
+            # For demonstration purposes, a simple schedule is created
+            return {'schedule': design_chain_roadmap['roadmap'] + ' - ' + resource_availability}
+
+
+        def _re_evaluate_design_chain_roadmap(self, design_chain_roadmap, design_chain_strategy):
+            # Implement logic to re-evaluate design chain roadmap
+            # For demonstration purposes, the roadmap is updated with the new strategy
+            return {'roadmap': design_chain_strategy + ' - ' + design_chain_roadmap['roadmap']}
+
+
+        def _adjust_design_chain_roadmap(self, design_chain_roadmap, resource_availability):
+            # Implement logic to adjust design chain roadmap
+            # For demonstration purposes, the roadmap is updated with the new resource availability
+            return {'roadmap': design_chain_roadmap['roadmap'] + ' - ' + resource_availability}
+
+
+        def _re_prioritize_deliverables(self, design_chain_roadmap, design_chain_objectives):
+            # Implement logic to re-prioritize deliverables
+            # For demonstration purposes, the roadmap is updated with the new objectives
+            return {'roadmap': design_chain_objectives + ' - ' + design_chain_roadmap['roadmap']}
+
+
+        def _review_and_update_design_chain_roadmap(self, design_chain_roadmap):
+            # Implement logic to review and update design chain roadmap
+            # For demonstration purposes, the roadmap is updated with a review comment
+            return {'roadmap': design_chain_roadmap['roadmap'] + ' - reviewed'}
+
+
+        def _track_and_report_resource_utilization(self, resource_availability):
+            # Implement logic to track and report resource utilization
+            # For demonstration purposes, a simple report is created
+            return {'report': resource_availability + ' - tracked'}
+
+
+        def _measure_milestone_achievement(self, design_chain_roadmap, design_chain_objectives):
+            # Implement logic to measure milestone achievement
+            # For demonstration purposes, a simple measurement is created
+            return {'measurement': design_chain_roadmap['roadmap'] + ' - ' + design_chain_objectives}
         
         return outputs
 
@@ -209,8 +251,8 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - GxP_compliance_validation
-        # - design_chain_roadmap_review_and_update_annually
+        # - GxP_validation
+        # - design_chain_objectives_alignment_check
         """
         checks_passed = []
         checks_failed = []
@@ -234,7 +276,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['if milestone achievement is not met', 'if resource availability is insufficient', 'if design chain roadmap is not achievable']
+        escalation_rules = ['when design chain strategy is updated', 'when resource availability changes significantly', 'when milestone achievement is behind schedule']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -248,7 +290,7 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['roadmap_adherence', 'milestone_achievement', 'resource_utilization']
+            "monitoring": ['roadmap_adherence', 'resource_utilization', 'milestone_achievement']
         }
 
 

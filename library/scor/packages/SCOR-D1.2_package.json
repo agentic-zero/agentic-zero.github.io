@@ -1,0 +1,91 @@
+{
+  "process_id": "SCOR-D1.2",
+  "agent_name": "design_chain_roadmap_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-05T10:22:17.932459",
+  "product_summary": "The Develop Design Chain Roadmap agent is a hybrid solution that enables organizations to create a detailed roadmap for their design chain, including key milestones and deliverables. This agent provides significant business value by streamlining the design chain process, reducing errors, and improving overall efficiency. By leveraging its capabilities, such as design chain strategy analysis and resource availability assessment, the agent helps organizations to make informed decisions and stay on track. This ultimately leads to faster time-to-market and increased competitiveness.",
+  "value_proposition": "Automates the development of a detailed design chain roadmap, enabling organizations to achieve key milestones and deliverables more efficiently and effectively.",
+  "technical_summary": "The Develop Design Chain Roadmap agent is built on a hybrid architecture that integrates design chain strategy analysis, resource availability assessment, and milestone achievement tracking capabilities. The agent's architecture is designed to comply with GxP regulations for pharma and medical devices, ensuring the highest level of quality and reliability. The agent can be integrated with existing systems and tools, providing a seamless and efficient design chain management experience.",
+  "integration_guide": "# Integration Guide — design_chain_roadmap_agent\n**Process:** Develop Design Chain Roadmap\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_chain_roadmap_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_chain_roadmap_agent import DesignChainRoadmapAgentAgent\n\nagent = DesignChainRoadmapAgentAgent()\nresult = agent.execute({\n    \"design_chain_strategy\": your_design_chain_strategy_data,\n    \"design_chain_objectives\": your_design_chain_objectives_data,\n    \"resource_availability\": your_resource_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- project_management_API\n- resource_allocation_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- when design chain strategy is updated\n- when resource availability changes significantly\n- when milestone achievement is behind schedule",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/design_chain_roadmap_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/design_chain_roadmap_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/design_chain_roadmap_agent/health — Health check",
+    "GET  /api/v1/agents/design_chain_roadmap_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/design_chain_roadmap_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction (1 minute): Welcome executives and introduce the design_chain_roadmap_agent, explaining its purpose is to automate the development of a design chain roadmap using AI, with a price of €7000 and a potential ROI multiplier of 5.0x.\n\n2. Current State (1 minute): Describe the current manual process of developing a design chain roadmap, highlighting the time-consuming and error-prone nature of the task, and the potential compliance risks associated with it.\n\n3. Demo of design_chain_roadmap_agent (3 minutes): Demonstrate how the agent uses AI to automate the development of a design chain roadmap, showcasing its ability to quickly and accurately identify key components, workflows, and potential bottlenecks, and generate a comprehensive roadmap.\n\n4. ROI Calculation (2 minutes): Calculate the potential ROI of using the design_chain_roadmap_agent, explaining how the automation of the design chain roadmap development process can save time and resources, and increase efficiency, resulting in a 5.0x return on investment.\n\n5. Compliance Value (1 minute): Highlight the compliance value of using the design_chain_roadmap_agent, explaining how the automated process can help ensure adherence to regulatory requirements and industry standards, reducing the risk of non-compliance and associated costs.\n\n6. Case Study (1 minute): Present a case study of a company that has successfully implemented the design_chain_roadmap_agent, showcasing the benefits and results they have achieved, including cost savings, increased efficiency, and improved compliance.\n\n7. Conclusion (1 minute): Summarize the key points of the demo, reiterating the value proposition of the design_chain_roadmap_agent, and encouraging executives to consider implementing the solution to automate their design chain roadmap development process and achieve a significant return on investment.",
+  "demo_inputs": {
+    "design_chain_strategy": "[example_design_chain_strategy]",
+    "design_chain_objectives": "[example_design_chain_objectives]",
+    "resource_availability": "[example_resource_availability]"
+  },
+  "expected_demo_outputs": {
+    "design_chain_roadmap": "[generated_design_chain_roadmap]",
+    "project_schedule": "[generated_project_schedule]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-D1.2",
+    "agent_name": "design_chain_roadmap_agent",
+    "framework": "SCOR-D",
+    "domain": "Design Chain",
+    "level": "L4",
+    "sector_applicability": [
+      "manufacturing",
+      "high-tech",
+      "aerospace",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma or medical devices"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 7000.0,
+    "complexity_score": 100,
+    "roi_multiplier": 5.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-05T10:22:17.932441"
+  },
+  "tags": [
+    "manufacturing",
+    "high-tech",
+    "automotive",
+    "hybrid",
+    "scor-d",
+    "l4",
+    "aerospace",
+    "design chain"
+  ],
+  "use_cases": [
+    "Use case 1: Implementing a design chain roadmap for a high-tech company to reduce product development time by 30% and increase supply chain visibility by 25%",
+    "Use case 2: Developing a compliance framework for a medical device manufacturer to ensure GxP adherence and reduce audit preparation time by 40%",
+    "Use case 3: Optimizing the design chain for an automotive company to improve collaboration between engineering teams and reduce prototype costs by 20%",
+    "Use case 4: Creating a digital twin for an aerospace manufacturer to simulate and test product designs, resulting in a 15% reduction in physical prototyping costs",
+    "Use case 5: Streamlining the design chain for a manufacturing company to reduce time-to-market by 25% and improve product quality by 12% through enhanced collaboration and data exchange"
+  ],
+  "pricing": {
+    "process_id": "SCOR-D1.2",
+    "complexity_score": 100,
+    "level": "L4",
+    "base_price_eur": 5000.0,
+    "regulated_surcharge": 2000.0,
+    "total_price_eur": 7000.0,
+    "price_rationale": "Level L4 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 5.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-D1.2_package.json"
+}

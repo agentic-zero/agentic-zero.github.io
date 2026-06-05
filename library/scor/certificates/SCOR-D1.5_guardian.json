@@ -1,0 +1,93 @@
+{
+  "process_id": "SCOR-D1.5",
+  "guardian_timestamp": "2026-06-05T10:44:18.592717",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-D1.5-20260605",
+    "process_id": "SCOR-D1.5",
+    "agent_name": "design_data_manager",
+    "issued_at": "2026-06-05T10:44:18.592684",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-05",
+    "overall_status": "conditional",
+    "overall_score": 0.92,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.8,
+      "gaps": [
+        "Lack of explicit risk management process for AI-driven design data",
+        "Insufficient documentation on access control enforcement and security protocol execution"
+      ],
+      "recommendations": [
+        "Implement a risk management process that includes identification, assessment, and mitigation of risks associated with AI-driven design data",
+        "Develop and maintain detailed documentation on access control enforcement, security protocol execution, and intellectual property protection measures"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": false,
+      "lawful_basis_defined": true,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": []
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Lack of explicit risk management process for AI-driven design data"
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11"
+    ],
+    "audited_at": "2026-06-05T15:12:29.367435",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
+}

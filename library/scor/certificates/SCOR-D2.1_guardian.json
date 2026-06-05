@@ -1,0 +1,85 @@
+{
+  "process_id": "SCOR-D2.1",
+  "guardian_timestamp": "2026-06-05T10:45:18.870043",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-D2.1-20260605",
+    "process_id": "SCOR-D2.1",
+    "agent_name": "autonomous_service_delivery_agent",
+    "issued_at": "2026-06-05T10:45:18.870001",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-05",
+    "overall_status": "certified",
+    "overall_score": 0.8,
+    "eu_ai_act": {
+      "risk_level": "limited",
+      "risk_rationale": "Process involves AI interaction with users",
+      "prohibited": false,
+      "requirements": [
+        "Transparency obligations (Art. 52)",
+        "Inform users they are interacting with AI",
+        "Deep fake labeling if applicable"
+      ],
+      "article_references": [
+        "Article 52 — Transparency obligations"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.6,
+      "gaps": [
+        "Lack of explicit risk management process",
+        "Insufficient transparency in decision-making for 'resource_allocation' and 'invoice_generation' capabilities",
+        "No clear process for continuous monitoring and evaluation of 'sla_compliance_monitoring' capability",
+        "Unclear roles and responsibilities for 'EU GDPR if customer data' and 'HIPAA if healthcare' compliance flags"
+      ],
+      "recommendations": [
+        "Implement a risk management process that identifies, assesses, and mitigates potential risks associated with the AI agent's capabilities",
+        "Provide transparent and explainable decision-making processes for 'resource_allocation' and 'invoice_generation' capabilities",
+        "Establish a continuous monitoring and evaluation process for 'sla_compliance_monitoring' capability to ensure ongoing compliance",
+        "Define and assign clear roles and responsibilities for 'EU GDPR if customer data' and 'HIPAA if healthcare' compliance flags"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 0.75,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 0.9375,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [],
+    "rejection_reasons": [],
+    "human_review_required": false,
+    "notes": "Guardian review completed. Risk level: limited. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": true,
+  "requires_human_sign_off": false,
+  "remediation_plan": [
+    "ISO 42001: Lack of explicit risk management process",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ],
+  "auditor_review": {
+    "decision": "REJECT",
+    "delivery": false,
+    "restricted": false,
+    "conditions": [
+      "GDPR violation detected — immediate escalation required"
+    ],
+    "audited_at": "2026-06-05T15:13:43.257355",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
+}

@@ -1,0 +1,30 @@
+
+AGENTIC ZERO — COMPLIANCE CERTIFICATE
+======================================
+Certificate ID:  AZ-CERT-SCOR-D1.4-20260605
+Process ID:      SCOR-D1.4
+Agent:           design_standard_manager
+Issued:          2026-06-05
+Valid Until:     2027-06-05
+Issued By:       Guardian Agent — Agentic Zero Pioneer Team
+
+OVERALL STATUS:  CONDITIONAL
+Overall Score:   86%
+
+COMPLIANCE SUMMARY
+──────────────────
+EU AI Act:       HIGH RISK
+ISO/IEC 42001:   GAPS FOUND (80%)
+NIST AI RMF:     100% overall
+GDPR AI:         ISSUES FOUND
+Quality:         100%
+
+CONDITIONS
+────────────────────
+• Risk management system (Art. 9)
+• Data governance measures (Art. 10)
+• Technical documentation (Art. 11)
+
+HUMAN REVIEW REQUIRED
+
+Guardian review completed. Risk level: high. Quality: 100%

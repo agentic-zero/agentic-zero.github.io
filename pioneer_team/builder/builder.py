@@ -383,8 +383,24 @@ Design the agent specification. Return ONLY a JSON object:
   "decision_logic": "brief description of how agent decides",
   "escalation_rules": ["when to escalate to human"],
   "monitoring_metrics": ["metric to track at runtime"],
-  "compliance_checks": ["compliance validation to run"]
+  "compliance_checks": [
+    "GDPR: lawful_basis = legitimate_interest (B2B supply chain operations under Art.6(1)(f))",
+    "GDPR: data_minimization = only process data strictly required for this SCOR process",
+    "GDPR: retention_policy = data retained max 7 years aligned with business document retention",
+    "GDPR: transparency = processing purpose documented in SOP and audit trail",
+    "GDPR: data_subject_rights = no personal data of natural persons processed unless strictly necessary",
+    "EU_AI_ACT: risk_classification verified before deployment",
+    "ISO_42001: human_oversight checkpoint at every decision point",
+    "NIST_AI_RMF: govern_map_measure_manage cycle embedded in agent lifecycle"
+  ]
 }}
+
+CRITICAL GDPR REQUIREMENT:
+Every agent MUST include explicit GDPR compliance checks in the compliance_checks array.
+For B2B supply chain agents, use lawful basis: legitimate interest (Art. 6(1)(f)).
+Define retention policy: maximum 7 years aligned with business document retention laws.
+If the process handles personal data of natural persons (employees, contacts), add explicit consent mechanism.
+Data minimization: only process data strictly required for the specific SCOR process outcome.
 
 Agent type guide:
 - reactive: responds to events/requests

@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260605_094609_563253",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D2.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-05T09:46:09.563266",
+  "status": "completed",
+  "started_at": "2026-06-05T10:05:17.193979",
+  "completed_at": "2026-06-05T10:09:17.273664",
+  "error": null,
+  "result": {
+    "agent_name": "autonomous_service_delivery_agent",
+    "ready_for_packager": true
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-D1.5",
+  "agent_name": "design_data_manager",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-05T10:31:18.028189",
+  "product_summary": "The Manage Design Data and Intellectual Property agent is a hybrid solution that enables organizations to effectively manage their design data and intellectual property across the enterprise. This agent provides a centralized platform for data storage, security, and access control, ensuring that sensitive information is protected and only accessible to authorized personnel. By implementing this agent, organizations can reduce the risk of data breaches and intellectual property theft, while also improving collaboration and productivity among design teams. This results in significant business value, including reduced costs, improved efficiency, and enhanced competitiveness.",
+  "value_proposition": "Automates the management of design data and intellectual property, ensuring secure storage, access control, and compliance with regulatory requirements, thereby protecting business assets and minimizing risk.",
+  "technical_summary": "The Manage Design Data and Intellectual Property agent is built on a hybrid architecture that leverages advanced data storage management, access control enforcement, and security protocol execution capabilities to protect design data and intellectual property. The agent integrates with existing systems and infrastructure to provide a seamless and secure experience, while also ensuring compliance with relevant regulations such as GxP, EU AI Act, and GDPR. The agent's capabilities can be easily scaled and customized to meet the specific needs of the organization, making it a flexible and adaptable solution for managing design data and intellectual property.",
+  "integration_guide": "# Integration Guide — design_data_manager\n**Process:** Manage Design Data and Intellectual Property\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_data_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_data_manager import DesignDataManagerAgent\n\nagent = DesignDataManagerAgent()\nresult = agent.execute({\n    \"design_data\": your_design_data_data,\n    \"intellectual_property\": your_intellectual_property_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- data_storage_API\n- access_control_system\n- security_suite\n- intellectual_property_management_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- when sensitive data is accessed by unauthorized personnel\n- when intellectual property is compromised\n- when data breach is detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/design_data_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/design_data_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/design_data_manager/health — Health check",
+    "GET  /api/v1/agents/design_data_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/design_data_manager/test   — Run test cases"
+  ],
+  "demo_script": "1. Introduction (1 minute): Welcome executives and introduce the design_data_manager, highlighting its ability to automate the management of design data and intellectual property using AI, with a focus on increasing efficiency and reducing costs.\n\n2. Current State (1 minute): Describe the current challenges and pain points in managing design data and intellectual property, such as manual processes, data breaches, and IP infringement, and how these issues can lead to significant financial losses.\n\n3. Demo of design_data_manager (3 minutes): Showcase the design_data_manager's capabilities, including automated data categorization, access controls, and IP protection, demonstrating how it can streamline workflows, reduce errors, and ensure compliance with regulatory requirements.\n\n4. ROI Calculation (2 minutes): Calculate the potential return on investment (ROI) using the ROI multiplier of 5.0x, demonstrating how the €7000 investment in design_data_manager can generate significant cost savings and revenue growth, such as reducing data management costs by 75% and increasing IP-related revenue by 20%.\n\n5. Compliance Value (1 minute): Highlight the compliance value of design_data_manager, demonstrating how it can help organizations meet regulatory requirements, such as GDPR and IP laws, and reduce the risk of non-compliance fines and reputational damage.\n\n6. Case Study (1 minute): Share a case study or success story of an organization that has implemented design_data_manager, showcasing the tangible benefits and results achieved, such as improved efficiency, reduced costs, and increased revenue.\n\n7. Conclusion and Next Steps (1 minute): Summarize the key benefits and value proposition of design_data_manager, and outline the next steps for implementation, including a call to action for the executives to take advantage of the solution's potential to drive business growth and improve compliance.",
+  "demo_inputs": {
+    "design_data": "[example_design_data]",
+    "intellectual_property": "[example_intellectual_property]"
+  },
+  "expected_demo_outputs": {
+    "managed_design_data": "[generated_managed_design_data]",
+    "protected_intellectual_property": "[generated_protected_intellectual_property]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-D1.5",
+    "agent_name": "design_data_manager",
+    "framework": "SCOR-D",
+    "domain": "Design Chain",
+    "level": "L4",
+    "sector_applicability": [
+      "manufacturing",
+      "high-tech",
+      "aerospace",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma or medical devices",
+      "EU AI Act if AI-driven design",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 7000.0,
+    "complexity_score": 100,
+    "roi_multiplier": 5.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-05T10:31:18.028171"
+  },
+  "tags": [
+    "manufacturing",
+    "high-tech",
+    "automotive",
+    "hybrid",
+    "scor-d",
+    "l4",
+    "aerospace",
+    "design chain"
+  ],
+  "use_cases": [
+    "Use case 1: Implementing a design data management system for a high-tech manufacturer, resulting in 30% reduction in product development time and 25% decrease in design errors",
+    "Use case 2: Developing an IP protection strategy for an aerospace company, yielding a 40% reduction in IP infringement risks and a 20% increase in licensing revenue",
+    "Use case 3: Creating a compliance framework for a pharma company's GxP-regulated design data, resulting in 90% reduction in audit findings and a 15% decrease in compliance costs",
+    "Use case 4: Designing an AI-driven design system for an automotive company, with a 50% reduction in design time and a 30% increase in design innovation, while ensuring EU AI Act compliance",
+    "Use case 5: Implementing a GDPR-compliant design data management system for a manufacturing company handling personal data, resulting in 80% reduction in data breach risks and a 10% decrease in data management costs"
+  ],
+  "pricing": {
+    "process_id": "SCOR-D1.5",
+    "complexity_score": 100,
+    "level": "L4",
+    "base_price_eur": 5000.0,
+    "regulated_surcharge": 2000.0,
+    "total_price_eur": 7000.0,
+    "price_rationale": "Level L4 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 5.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-D1.5_package.json"
+}

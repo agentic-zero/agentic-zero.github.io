@@ -501,49 +501,65 @@ function buildSummary() {
   document.getElementById('confirm-summary').innerHTML = html;
 }
 
-// Submit
-function submitForm() {
+// Submit via Web3Forms with file attachment
+async function submitForm() {
   state.notes = document.getElementById('f-notes').value.trim();
   if(!state.timing){alert('Please select a preferred timing.');return;}
 
-  // Build mailto (fallback — replace with backend or Formspree)
-  const fileInfo = uploadedFile 
-    ? `\nPROCESS MAP ATTACHED: ${uploadedFile.name} (${(uploadedFile.size/1024).toFixed(0)}KB)\nPlease reply to this email and the file will be sent separately if needed.`
-    : '\nPROCESS MAP: Not provided';
+  const btn = document.querySelector('#step-4 .btn-primary');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
 
-  const body = `
-AGENTIC ZERO — FREE AUDIT REQUEST
+  try {
+    const formData = new FormData();
 
-Name: ${state.name}
-Company: ${state.company}
-Email: ${state.email}
-Role: ${state.role}
-Sector: ${state.sector}
-ERP: ${state.erp}
-Volume: ${state.volume}
-Team: ${state.fte}
-Timing: ${state.timing}
-${fileInfo}
+    // Web3Forms access key
+    formData.append('access_key', 'b2eace97-6c50-4b9f-825c-3530a7fc76a7');
+    formData.append('subject', `Free AUDIT Request — ${state.company} (${state.sector})`);
+    formData.append('from_name', 'Agentic Zero AUDIT Form');
+    formData.append('replyto', state.email);
 
-PAIN POINTS:
-${state.pains.join(', ')}
+    // Contact fields
+    formData.append('name', state.name);
+    formData.append('company', state.company);
+    formData.append('email', state.email);
+    formData.append('role', state.role || 'Not specified');
+    formData.append('sector', state.sector);
+    formData.append('erp', state.erp || 'Not specified');
+    formData.append('volume', state.volume);
+    formData.append('team', state.fte || 'Not specified');
+    formData.append('timing', state.timing);
+    formData.append('pain_points', state.pains.join(', ') || 'Not specified');
+    formData.append('pain_description', state.pain_desc || 'Not provided');
+    formData.append('notes', state.notes || 'None');
 
-DESCRIPTION:
-${state.pain_desc}
+    // File attachment
+    if (uploadedFile) {
+      formData.append('file', uploadedFile, uploadedFile.name);
+      formData.append('process_map_info', `${uploadedFile.name} — ${(uploadedFile.size/1024).toFixed(0)}KB`);
+    } else {
+      formData.append('process_map_info', 'No file uploaded');
+    }
 
-NOTES:
-${state.notes}
-  `.trim();
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
 
-  // Send via mailto
-  const subject = encodeURIComponent(`Free AUDIT Request — ${state.company}`);
-  const bodyEnc = encodeURIComponent(body);
-  window.location.href = `mailto:alberto@agentic-zero.com?subject=${subject}&body=${bodyEnc}`;
+    const data = await response.json();
 
-  // Show success
-  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-  document.getElementById('success').style.display='block';
-  document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
+    if (data.success) {
+      document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+      document.getElementById('success').style.display='block';
+      document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
+  } catch(err) {
+    btn.textContent = 'Book Free AUDIT →';
+    btn.disabled = false;
+    alert('Something went wrong: ' + err.message + '\n\nPlease try again or email alberto@agentic-zero.com directly.');
+  }
 }
 </script>
 </body>

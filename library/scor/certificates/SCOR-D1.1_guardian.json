@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D1.1",
-  "guardian_timestamp": "2026-06-05T10:40:18.655557",
+  "guardian_timestamp": "2026-06-06T11:39:37.071863",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-D1.1-20260605",
+    "certificate_id": "AZ-CERT-SCOR-D1.1-20260606",
     "process_id": "SCOR-D1.1",
     "agent_name": "design_chain_strategy_agent",
-    "issued_at": "2026-06-05T10:40:18.655510",
+    "issued_at": "2026-06-06T11:39:37.071814",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-05",
+    "valid_until": "2027-06-06",
     "overall_status": "certified",
-    "overall_score": 0.84,
+    "overall_score": 0.82,
     "eu_ai_act": {
       "risk_level": "minimal",
       "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
@@ -24,16 +24,18 @@
     },
     "iso_42001": {
       "compliant": false,
-      "score": 0.7,
+      "score": 0.6,
       "gaps": [
-        "Lack of explicit risk management process for AI-driven design chain strategy",
-        "Insufficient documentation on human oversight and review of AI-generated design chain objectives",
-        "Unclear criteria for escalation rules and compliance flags"
+        "Lack of explicit risk management process for AI-driven design chain strategy development",
+        "Insufficient documentation on AI agent's decision-making process and algorithms used",
+        "No clear metrics or KPIs defined for evaluating design chain strategy effectiveness",
+        "No evidence of human oversight and review process for AI-driven design chain strategy outputs"
       ],
       "recommendations": [
-        "Implement a risk management process to identify, assess, and mitigate potential risks associated with AI-driven design chain strategy",
-        "Establish a clear documentation process for human oversight and review of AI-generated design chain objectives",
-        "Define and document clear criteria for escalation rules and compliance flags, including procedures for addressing changes in business objectives or customer requirements"
+        "Implement a risk management process that includes identification, assessment, and mitigation of risks associated with AI-driven design chain strategy development",
+        "Develop and maintain documentation on AI agent's decision-making process, algorithms used, and data sources",
+        "Establish clear metrics and KPIs to evaluate design chain strategy effectiveness and monitor AI agent's performance",
+        "Establish a human oversight and review process for AI-driven design chain strategy outputs to ensure accuracy and validity"
       ]
     },
     "nist_ai_rmf": {
@@ -66,17 +68,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Lack of explicit risk management process for AI-driven design chain strategy",
+    "ISO 42001: Lack of explicit risk management process for AI-driven design chain strategy development",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ],
-  "auditor_review": {
-    "decision": "REJECT",
-    "delivery": false,
-    "restricted": false,
-    "conditions": [
-      "GDPR violation detected — immediate escalation required"
-    ],
-    "audited_at": "2026-06-05T15:13:42.923429",
-    "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  }
+  ]
 }

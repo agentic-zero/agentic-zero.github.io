@@ -1,4 +1,4 @@
-# Integration Guide — design_standard_manager
+# Integration Guide — design_standards_manager
 **Process:** Develop and Manage Design Standards and Specifications
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp design_standard_manager.py ./agents/
+cp design_standards_manager.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.design_standard_manager import DesignStandardManagerAgent
+from agents.design_standards_manager import DesignStandardsManagerAgent
 
-agent = DesignStandardManagerAgent()
+agent = DesignStandardsManagerAgent()
 result = agent.execute({
     "industry_standards": your_industry_standards_data,
     "regulatory_requirements": your_regulatory_requirements_data,
@@ -35,10 +35,9 @@ print(result['outputs'])
 
 ## Tools Required
 - ontology_engine
-- document_management_api
-- regulatory_database
+- document_management_API
 
 ## Escalation
 The agent automatically escalates to human when:
-- when new regulatory requirements are introduced
-- when design specifications are inconsistent with design standards
+- when design standards are not updated to reflect changes in regulatory requirements or industry standards
+- when design specifications do not conform to design standards

@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-D1.4",
-  "agent_name": "design_standard_manager",
+  "agent_name": "design_standards_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-05T10:28:17.939006",
-  "product_summary": "The hybrid agent is designed to develop and manage design standards and specifications across the organization, ensuring consistency and compliance with regulatory requirements. This agent has the capabilities to update design standards, validate design specifications, and monitor regulatory requirements, making it an essential tool for organizations in the pharma, medical devices, and AI-driven design industries. By leveraging this agent, organizations can streamline their design processes, reduce errors, and improve overall efficiency. The agent's capabilities also enable organizations to stay up-to-date with changing regulatory requirements, reducing the risk of non-compliance.",
-  "value_proposition": "Automates the development, maintenance, and management of design standards and specifications, enabling organizations to improve efficiency, reduce errors, and ensure compliance with regulatory requirements.",
-  "technical_summary": "The hybrid agent's architecture is designed to integrate with existing design systems and regulatory databases, allowing for seamless updates and validations of design standards and specifications. The agent's capabilities are built on top of a robust framework that enables real-time monitoring of regulatory requirements, ensuring that design standards and specifications are always up-to-date and compliant. The agent's technical infrastructure is scalable and flexible, allowing it to be easily integrated with various design tools and systems.",
-  "integration_guide": "# Integration Guide — design_standard_manager\n**Process:** Develop and Manage Design Standards and Specifications\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_standard_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_standard_manager import DesignStandardManagerAgent\n\nagent = DesignStandardManagerAgent()\nresult = agent.execute({\n    \"industry_standards\": your_industry_standards_data,\n    \"regulatory_requirements\": your_regulatory_requirements_data,\n    \"customer_requirements\": your_customer_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ontology_engine\n- document_management_api\n- regulatory_database\n\n## Escalation\nThe agent automatically escalates to human when:\n- when new regulatory requirements are introduced\n- when design specifications are inconsistent with design standards",
+  "packager_timestamp": "2026-06-06T12:12:49.425718",
+  "product_summary": "The hybrid agent is designed to develop and manage design standards and specifications across the organization, ensuring consistency and compliance with regulatory requirements. This agent brings significant business value by streamlining design processes, reducing errors, and improving overall product quality. By leveraging its capabilities, organizations can enhance their design standards and specifications, leading to increased efficiency and reduced costs. The agent's ability to monitor regulatory requirements also helps organizations stay compliant with relevant laws and regulations.",
+  "value_proposition": "Automates the development, maintenance, and management of design standards and specifications, ensuring consistency, compliance, and high-quality products.",
+  "technical_summary": "The hybrid agent's architecture is designed to integrate with existing design systems, leveraging its capabilities to update design standards, validate design specifications, and monitor regulatory requirements. The agent's technical infrastructure enables seamless integration with various design tools and platforms, allowing for efficient data exchange and processing. The agent's design is also scalable, allowing it to adapt to the evolving needs of the organization and its design processes.",
+  "integration_guide": "# Integration Guide — design_standards_manager\n**Process:** Develop and Manage Design Standards and Specifications\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_standards_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_standards_manager import DesignStandardsManagerAgent\n\nagent = DesignStandardsManagerAgent()\nresult = agent.execute({\n    \"industry_standards\": your_industry_standards_data,\n    \"regulatory_requirements\": your_regulatory_requirements_data,\n    \"customer_requirements\": your_customer_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ontology_engine\n- document_management_API\n\n## Escalation\nThe agent automatically escalates to human when:\n- when design standards are not updated to reflect changes in regulatory requirements or industry standards\n- when design specifications do not conform to design standards",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/design_standard_manager/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/design_standard_manager/status — Get agent status and metrics",
-    "GET  /api/v1/agents/design_standard_manager/health — Health check",
-    "GET  /api/v1/agents/design_standard_manager/spec   — Get agent specification",
-    "POST /api/v1/agents/design_standard_manager/test   — Run test cases"
+    "POST /api/v1/agents/design_standards_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/design_standards_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/design_standards_manager/health — Health check",
+    "GET  /api/v1/agents/design_standards_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/design_standards_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Introduction to Agentic Zero's design_standard_manager: Welcome executives and introduce the design_standard_manager, highlighting its ability to automate the development and management of design standards and specifications using AI, with a focus on increasing efficiency and reducing costs.\n\n2. Current State Overview: Explain the current challenges and pain points in managing design standards and specifications, such as manual updates, version control issues, and compliance risks, and how these challenges can lead to significant financial losses and reputational damage.\n\n3. Demo of Automated Design Standard Management: Demonstrate how the design_standard_manager uses AI to automate the development, updating, and management of design standards and specifications, ensuring consistency, accuracy, and compliance with regulatory requirements, and show how this automation can reduce the time and resources required for these tasks.\n\n4. ROI Calculation: Show how the design_standard_manager can help organizations achieve a significant return on investment, with a calculated ROI multiplier of 6.0x, and explain how this can be achieved through reduced labor costs, minimized errors, and improved compliance, highlighting the potential for the organization to save or redirect €12,600 (6.0x €2100) in the first year.\n\n5. Compliance and Risk Mitigation: Highlight the importance of compliance with regulatory requirements and industry standards, and demonstrate how the design_standard_manager ensures that design standards and specifications are up-to-date and compliant, reducing the risk of non-compliance and associated penalties, and show examples of how the system can help organizations maintain audit trails and demonstrate compliance.\n\n6. Implementation and Support: Outline the implementation process for the design_standard_manager, including training and support, and assure executives that the system can be integrated with existing workflows and systems, minimizing disruption and ensuring a smooth transition, and provide examples of how the system can be customized to meet the organization's specific needs.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the design_standard_manager, including automated design standard management, significant ROI, and compliance and risk mitigation, and provide a clear call to action for executives to take the next step in implementing the solution, including scheduling a follow-up meeting or providing a trial or pilot project.",
+  "demo_script": "1. Introduction to Agentic Zero's Design Standards Manager: Welcome executives and introduce the Design Standards Manager, highlighting its ability to automate the development and management of design standards and specifications using AI, with a focus on increasing ROI and ensuring compliance.\n\n2. Current Challenges: Discuss the current challenges faced by organizations in managing design standards and specifications, such as manual updates, version control, and compliance issues, and how these challenges can lead to decreased efficiency and increased costs.\n\n3. Demo of Automated Design Standards Management: Demonstrate how the Design Standards Manager uses AI to automate the development and management of design standards and specifications, including real-time updates, version control, and collaboration tools, showcasing its ease of use and efficiency.\n\n4. ROI Calculation: Calculate the potential ROI of using the Design Standards Manager, using the €2100 price point and 6.0x ROI multiplier, and explain how the tool can help organizations save time and resources, increase productivity, and reduce costs, resulting in a significant return on investment.\n\n5. Compliance and Risk Mitigation: Highlight the compliance and risk mitigation benefits of using the Design Standards Manager, including the ability to ensure adherence to industry standards and regulations, and demonstrate how the tool can help organizations reduce the risk of non-compliance and associated penalties.\n\n6. Case Study and Results: Share a case study or example of an organization that has implemented the Design Standards Manager, and discuss the results they have achieved, including increased efficiency, cost savings, and improved compliance, to demonstrate the real-world value of the tool.\n\n7. Conclusion and Next Steps: Summarize the key benefits of the Design Standards Manager, including its ability to automate design standards management, increase ROI, and ensure compliance, and outline the next steps for implementation, including a call to action for the executives to learn more about how the tool can help their organization.",
   "demo_inputs": {
     "industry_standards": "[example_industry_standards]",
     "regulatory_requirements": "[example_regulatory_requirements]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-D1.4",
-    "agent_name": "design_standard_manager",
+    "agent_name": "design_standards_manager",
     "framework": "SCOR-D",
     "domain": "Design Chain",
     "level": "L3",
@@ -58,24 +58,24 @@
     "roi_multiplier": 6.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-05T10:28:17.938989"
+    "created_at": "2026-06-06T12:12:49.425693"
   },
   "tags": [
-    "manufacturing",
     "high-tech",
-    "automotive",
-    "hybrid",
-    "scor-d",
-    "aerospace",
+    "manufacturing",
     "l3",
-    "design chain"
+    "aerospace",
+    "scor-d",
+    "automotive",
+    "design chain",
+    "hybrid"
   ],
   "use_cases": [
-    "Use case 1: Implementation of standardized design specifications in aerospace manufacturing, resulting in 25% reduction in production errors and 15% decrease in overall production time",
-    "Use case 2: Development of GxP-compliant design standards for medical device production, leading to 30% reduction in regulatory compliance costs and 20% increase in product quality",
-    "Use case 3: Creation of EU AI Act-compliant design specifications for high-tech AI-driven products, resulting in 40% reduction in compliance risks and 25% increase in product innovation",
-    "Use case 4: Streamlining of design-to-manufacturing process in automotive sector through standardized design standards, resulting in 20% reduction in production lead time and 12% decrease in material waste",
-    "Use case 5: Establishment of standardized design specifications for manufacturing of pharmaceutical equipment, resulting in 28% reduction in equipment validation time and 18% increase in overall equipment effectiveness"
+    "Use case 1: Implementation of standardized design specifications in the automotive sector, resulting in a 25% reduction in production errors and a 15% decrease in overall production costs",
+    "Use case 2: Development of GxP-compliant design standards for a medical device manufacturer, ensuring regulatory compliance and avoiding potential fines of up to $1 million",
+    "Use case 3: Creation of EU AI Act-compliant design specifications for an AI-driven aerospace project, reducing the risk of non-compliance and associated legal liabilities",
+    "Use case 4: Streamlining of design-to-manufacturing processes in the high-tech sector through standardized design standards, resulting in a 30% reduction in time-to-market and a 20% increase in product quality",
+    "Use case 5: Establishment of a centralized design standards repository for a manufacturing company, resulting in a 40% reduction in design reuse errors and a 12% decrease in overall design costs"
   ],
   "pricing": {
     "process_id": "SCOR-D1.4",

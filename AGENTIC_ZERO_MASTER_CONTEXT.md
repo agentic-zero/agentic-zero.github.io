@@ -2882,3 +2882,259 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.7"**
 
 *v3.7 — 4 Junio 2026 · Fin de jornada*
 *Plan ✅ · Source ✅ · Make ✅ · Deliver ⏳ · BD ✅ · Venture ✅ · Web v2 ✅*
+
+# TRABAJOS DEL SPRINT 2 VIERNES 5 DE JUNIO
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.8 | Fecha: 5 Junio 2026 | Fin de jornada
+
+---
+
+## 1. IDENTIDAD
+**Nombre:** AGENTIC ZERO | **Fundador:** Alberto Muñoz Waissen — Founder & CEO
+**Empresa:** Agentic Zero powered by Dis-Solutions (25 años consultoría digital)
+**Web:** agentic-zero.com (GitHub Pages · HTTPS activo ✅) | **Email:** alberto@agentic-zero.com
+**LinkedIn:** linkedin.com/in/awaissen
+
+---
+
+## 2. ARQUITECTURA COMPLETA
+
+```
+PIONEER TEAM    Scout → Architect → Builder → Packager → Guardian → Auditor
+COMMERCIAL      Herald v2.0 · BD v1.2 · Venture v1.0
+ORCHESTRATION   Paperclip (Fase 3 · pendiente)
+```
+
+---
+
+## 3. BIBLIOTECA — ESTADO AL 5 JUNIO 2026
+
+```
+PLAN    P1.1-P1.5   ✅ 5 agentes CONDITIONAL
+SOURCE  S1.1-S1.5   ✅ 5 agentes AUTO_APPROVED · Delivery: True
+MAKE    M1.1        ✅ CERTIFIED
+        M2.1        ✅ CERTIFIED · €499
+        M3.1        ✅ CERTIFIED · €499
+        M4.1        ✅ AUTO_APPROVED · €2,100
+        M5.1        ✅ CERTIFIED · 84%
+DELIVER D1.1        ❌ REJECT GDPR · Builder fix aplicado · relanzar mañana
+        D1.2        ✅ AUTO_APPROVED · 88%
+        D1.3        ❌ REJECT GDPR · Builder fix aplicado · relanzar mañana
+        D1.4        ❌ REJECT GDPR · Builder fix aplicado · relanzar mañana
+        D1.5        ✅ AUTO_APPROVED · 92%
+        D2.1        ❌ REJECT GDPR · Builder fix aplicado · relanzar mañana
+        D3.1        ✅ AUTO_APPROVED · 88%
+        D4.1        ✅ AUTO_APPROVED · 88%
+```
+
+### Deliver — relanzar mañana primera hora (Groq reset medianoche UTC)
+```powershell
+cd F:\agentic-zero\core\queue
+python queue_system.py --clear failed_queue
+python queue_system.py --pipeline SCOR-D1.1 SCOR-D1.3 SCOR-D1.4 SCOR-D2.1
+
+# Auditar tras completar:
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+```
+
+### Nomenclatura crítica
+```
+Plan:    P1.1-P1.5
+Source:  S1.1-S1.5
+Make:    M1.1, M2.1, M3.1, M4.1, M5.1
+Deliver: D1.1-D1.5 + D2.1, D3.1, D4.1 (8 total)
+```
+
+---
+
+## 4. AGENTES COMERCIALES
+
+### Herald v2.0 ✅ PRODUCCIÓN
+```
+Ruta:   F:\agentic-zero\commercial\herald\herald.py
+Estado: Operativo · Validado con contacto teórico · Listo para primer contacto real
+
+CAMBIOS v2.0:
+  · ROI actualizado (322-349% · payback 2.7-4.6m · datos defendibles)
+  · Clientes eliminados del perfil (IFF/Indra/Tiresur)
+  · Dis-Solutions añadido en firma y perfil
+  · Secuencia 4 toques consultivos (era 3 genéricos)
+  · Email mode con subject + body
+  · Venture integration --venture OPP_ID
+  · 4 llamadas LLM separadas por toque (calidad garantizada)
+  · Encoding fix: Munoz (ASCII-safe)
+
+ESTRUCTURA SECUENCIA:
+  Touch 1 (LinkedIn · Día 1):   Reconocer dolor desde experiencia campo · sin pitch
+  Touch 2 (Email · Día 4):      Perspectiva experto · consecuencias no medidas
+  Touch 3 (LinkedIn · Día 9):   Solución · tono consultor · sin "Hi [nombre]"
+  Touch 4 (Email · Día 14):     ROI + precio + CTA AUDIT
+
+USO:
+  python herald.py --name "X" --company "Y" --sector pharma --process SCOR-S1.3 --type sequence --language en --pain "pain1,pain2"
+  python herald.py --venture opp_20260604_114909
+  python herald.py --type email --name "X" --company "Y" --sector pharma
+```
+
+### BD Agent v1.2
+```
+Ruta:   F:\agentic-zero\commercial\bd\bd_agent.py
+Keys:   TAVILY_API_KEY + SERPER_API_KEY en .env ✅
+Estado: Operativo · 21 oportunidades en pipeline
+Uso:    python bd_agent.py --scan (fuera de horario pipelines)
+```
+
+### Venture v1.0
+```
+Ruta:     F:\agentic-zero\commercial\venture\venture.py
+Pipeline: 17 leads activos
+Uso:
+  python venture.py --pipeline
+  python venture.py --import-bd
+  python venture.py --advance OPP_ID
+  python venture.py --followup
+  python venture.py --revenue
+```
+
+### Auditor v1.0
+```
+Ruta:   F:\agentic-zero\pioneer_team\auditor\auditor.py
+Uso:    python auditor.py --all
+```
+
+### Builder v1.1 (fix GDPR)
+```
+Ruta:   F:\agentic-zero\pioneer_team\builder\builder.py
+Fix:    GDPR compliance explícito en agent spec prompt
+        · lawful_basis = legitimate_interest (Art.6(1)(f))
+        · retention_policy = max 7 años
+        · data_minimization explícita
+        · transparency documentada en SOP
+```
+
+---
+
+## 5. WEB agentic-zero.com
+
+```
+Estado:  LIVE · HTTPS activo ✅
+Repo:    github.com/agentic-zero/agentic-zero.github.io
+Version: v2 EN · subida ✅ · fuentes legibles · max-width 1200px
+Footnote: * ClawWork Benchmark · Claude Opus 4 · Mar 2026 · The AI Agent Economy · Medium 2026
+```
+
+### Pendiente web
+```
+→ Activar privacidad WHOIS en IONOS
+→ Resolver www.agentic-zero.com (CNAME conflict)
+→ Booking form operativo en agentic-zero.com/audit
+```
+
+---
+
+## 6. DECK EJECUTIVO v4
+```
+Commit: 4e11ea0
+Ruta:   F:\agentic-zero\commercial\agentic_zero_deck.html
+Estado: Completo · 100% inglés
+```
+
+---
+
+## 7. PRECIOS
+```
+Standard:   $600/mes  · $7,200/año
+Enterprise: $1,800/mes · $21,600/año
+Swarm:      Add-on · Enterprise · Priced on scope
+AUDIT:      First free · Subsequent on request
+```
+
+### ROI por sector (3 procesos · 3 FTE · defendible)
+```
+Defense 349%·2.7m  Pharma 322%·2.8m  Chemical 285%·3.2m
+Automotive 264%·3.4m  Food 242%·3.7m  Mfg 218%·4.1m  Distrib 196%·4.6m
+```
+
+---
+
+## 8. COMANDOS ESENCIALES
+
+```powershell
+# Activar
+cd F:\agentic-zero
+.venv\Scripts\Activate.ps1
+
+# Queue
+cd core\queue
+python queue_system.py --status
+python queue_system.py --clear failed_queue
+
+# Deliver pendientes (mañana)
+python queue_system.py --pipeline SCOR-D1.1 SCOR-D1.3 SCOR-D1.4 SCOR-D2.1
+
+# Auditor
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+
+# Herald — primer contacto real
+cd F:\agentic-zero\commercial\herald
+python herald.py --venture opp_20260604_114909
+
+# BD (fuera de horario pipelines)
+cd F:\agentic-zero\commercial\bd
+python bd_agent.py --scan
+
+# Venture
+cd F:\agentic-zero\commercial\venture
+python venture.py --pipeline
+```
+
+---
+
+## 9. PENDIENTES SPRINT 4
+
+```
+MAÑANA PRIMERA HORA:
+  1. Deliver D1.1 D1.3 D1.4 D2.1 — relanzar con Builder GDPR fix
+  2. Auditor --all tras completar
+  3. BD --scan (Groq libre)
+  4. Venture --import-bd con nuevo briefing
+
+COMERCIAL — PRIORIDAD ALTA:
+  5. Herald — primer contacto real
+     Seleccionar top oportunidad de Venture
+     python herald.py --venture [OPP_ID]
+  6. Venture --advance primera oportunidad tras Herald
+  7. Primer AUDIT gratuito en agenda
+
+TÉCNICO:
+  8. Activar privacidad WHOIS en IONOS
+  9. Resolver www.agentic-zero.com
+  10. Groq Dev Tier ($9/mes) — evaluar para eliminar bloqueos diarios
+
+COMERCIAL MEDIO PLAZO:
+  11. LinkedIn Company Page Agentic Zero
+  12. Booking form en web (agentic-zero.com/audit)
+```
+
+---
+
+## 10. GIT — COMMITS
+```
+1649538  — Plan completo
+4e11ea0  — Deck v4 full English
+[4 Jun]  — BD v1.2 + Venture v1.0 + Web v2 EN + Make completo
+[5 Jun]  — Herald v2.0 + Builder GDPR fix + Deliver 50%
+```
+
+---
+
+## 11. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.8"**
+
+---
+
+*v3.8 — 5 Junio 2026 · Fin de jornada*
+*Plan ✅ · Source ✅ · Make ✅ · Deliver 50% · BD ✅ · Venture ✅ · Herald v2.0 ✅ · Web v2 ✅*

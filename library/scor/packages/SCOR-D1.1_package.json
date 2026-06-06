@@ -2,11 +2,11 @@
   "process_id": "SCOR-D1.1",
   "agent_name": "design_chain_strategy_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-05T10:19:18.170996",
-  "product_summary": "The Define Design Chain Strategy agent is a hybrid solution that enables organizations to define and optimize their design chain strategy, aligning business objectives with customer requirements and market trends. This agent provides valuable insights and recommendations, allowing companies to make informed decisions and stay competitive. By leveraging this agent, businesses can improve their design chain efficiency, reduce costs, and enhance overall performance. The agent's capabilities also ensure compliance with relevant regulations, such as the EU AI Act.",
-  "value_proposition": "Automates the definition of design chain strategy and objectives, enabling businesses to respond quickly to changing market conditions and customer needs.",
-  "technical_summary": "The Define Design Chain Strategy agent is built on a modular architecture, integrating capabilities such as business objective analysis, customer requirement processing, and market trend evaluation. The agent's design chain objective definition capability enables seamless integration with existing design chain systems, allowing for efficient implementation and minimal disruption to ongoing operations. The agent's hybrid nature also ensures flexibility and scalability, supporting a range of deployment options and use cases.",
-  "integration_guide": "# Integration Guide — design_chain_strategy_agent\n**Process:** Define Design Chain Strategy\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_chain_strategy_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_chain_strategy_agent import DesignChainStrategyAgentAgent\n\nagent = DesignChainStrategyAgentAgent()\nresult = agent.execute({\n    \"business_objectives\": your_business_objectives_data,\n    \"customer_requirements\": your_customer_requirements_data,\n    \"market_trends\": your_market_trends_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- natural_language_processing_api\n- machine_learning_library\n- project_management_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- when business objectives or customer requirements change significantly\n- when design chain strategy development is delayed",
+  "packager_timestamp": "2026-06-06T11:30:36.152198",
+  "product_summary": "The hybrid agent is designed to define the overall design chain strategy and objectives, leveraging its capabilities in design chain strategy development, market trend analysis, and customer requirement analysis. This agent provides significant business value by enabling organizations to make informed decisions about their design chain, ultimately leading to improved efficiency and competitiveness. By utilizing this agent, companies can ensure compliance with relevant regulations, such as the EU AI Act, when using AI-driven design. This results in a more streamlined and effective design chain strategy that meets customer needs and stays ahead of market trends.",
+  "value_proposition": "Automates the definition of design chain strategy and objectives, enabling organizations to make informed decisions and improve efficiency.",
+  "technical_summary": "The hybrid agent's architecture is built around its core capabilities, including design chain strategy development, market trend analysis, and customer requirement analysis, which are integrated to provide a comprehensive design chain strategy. The agent's technical infrastructure is designed to ensure seamless integration with existing systems and compliance with relevant regulations, such as the EU AI Act. The agent's architecture also allows for flexibility and scalability, enabling it to adapt to changing market trends and customer requirements.",
+  "integration_guide": "# Integration Guide — design_chain_strategy_agent\n**Process:** Define Design Chain Strategy\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp design_chain_strategy_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.design_chain_strategy_agent import DesignChainStrategyAgentAgent\n\nagent = DesignChainStrategyAgentAgent()\nresult = agent.execute({\n    \"business_objectives\": your_business_objectives_data,\n    \"customer_requirements\": your_customer_requirements_data,\n    \"market_trends\": your_market_trends_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- project_management_tool\n- market_research_reports_api\n- customer_feedback_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- IF design chain strategy development is delayed THEN notify stakeholders and revise project timeline\n- IF design chain strategy is not effective THEN revise design chain strategy and re-evaluate KPIs",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/design_chain_strategy_agent/spec   — Get agent specification",
     "POST /api/v1/agents/design_chain_strategy_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Introduction: Welcome executives and introduce the design_chain_strategy_agent, explaining that it automates the Define Design Chain Strategy process with AI, and highlight the value proposition of increased efficiency and compliance.\n\n2. Current State: Describe the current manual process of defining design chain strategy, highlighting the time-consuming and error-prone nature of the task, and the potential for non-compliance with regulatory requirements.\n\n3. Demo: Showcase the design_chain_strategy_agent in action, demonstrating how it quickly and accurately defines design chain strategy using AI, and how it ensures compliance with relevant regulations and standards.\n\n4. ROI Calculation: Calculate the potential return on investment (ROI) using the ROI multiplier of 6.0x, and the price of €1725, to demonstrate the significant cost savings and efficiency gains that can be achieved by automating the process.\n\n5. Compliance Benefits: Highlight the compliance benefits of using the design_chain_strategy_agent, such as reduced risk of non-compliance, improved audit trails, and increased transparency, and demonstrate how the agent ensures that design chain strategies are aligned with regulatory requirements.\n\n6. Implementation and Support: Discuss the implementation process and ongoing support provided for the design_chain_strategy_agent, including training, maintenance, and updates, to ensure that executives understand the total cost of ownership and the level of support provided.\n\n7. Conclusion: Summarize the key benefits of the design_chain_strategy_agent, including the automation of the define design chain strategy process, significant ROI, and compliance value, and provide a clear call to action for executives to consider implementing the agent in their organization.",
+  "demo_script": "1. Introduction: Welcome executives and introduce the design_chain_strategy_agent, explaining its purpose is to automate the Define Design Chain Strategy process with AI, highlighting the value proposition and price of €1725.\n\n2. Current State: Describe the current manual process of defining design chain strategy, emphasizing the time-consuming and error-prone nature of this task, and the potential for non-compliance with regulatory requirements.\n\n3. Demo: Showcase the design_chain_strategy_agent in action, demonstrating how it quickly and accurately automates the definition of design chain strategy, ensuring compliance with relevant regulations and standards.\n\n4. ROI Calculation: Calculate the potential return on investment (ROI) using the provided ROI multiplier of 6.0x, illustrating how the €1725 investment can yield significant cost savings and efficiency gains, and provide a clear example of how this ROI can be achieved.\n\n5. Compliance Benefits: Highlight the compliance benefits of using the design_chain_strategy_agent, such as reduced risk of non-compliance, improved audit readiness, and enhanced reputation, and provide a case study or example of a company that has achieved these benefits.\n\n6. Implementation and Support: Outline the implementation process and ongoing support provided for the design_chain_strategy_agent, ensuring a seamless integration with existing systems and minimal disruption to business operations, and provide information on training and resources available to users.\n\n7. Conclusion: Summarize the key benefits of the design_chain_strategy_agent, including the automation of design chain strategy definition, significant ROI, and enhanced compliance, and provide a clear call to action for executives to consider implementing the solution.",
   "demo_inputs": {
     "business_objectives": "[example_business_objectives]",
     "customer_requirements": "[example_customer_requirements]",
@@ -51,30 +51,30 @@
       "EU AI Act if AI-driven design"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 3,
     "price_eur": 1725.0,
     "complexity_score": 94,
     "roi_multiplier": 6.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-05T10:19:18.170973"
+    "created_at": "2026-06-06T11:30:36.152177"
   },
   "tags": [
-    "manufacturing",
-    "high-tech",
     "automotive",
-    "hybrid",
-    "scor-d",
-    "aerospace",
     "l3",
-    "design chain"
+    "design chain",
+    "hybrid",
+    "manufacturing",
+    "scor-d",
+    "high-tech",
+    "aerospace"
   ],
   "use_cases": [
-    "Use case 1: Optimizing production workflows in manufacturing by streamlining design-to-production handoffs, resulting in a 25% reduction in production time and 15% decrease in costs",
-    "Use case 2: Implementing AI-driven design in high-tech sector to reduce product development time by 30% and increase product quality by 20%, while ensuring compliance with EU AI Act",
-    "Use case 3: Enhancing supply chain management in aerospace sector through data-driven design chain strategy, resulting in a 12% reduction in procurement costs and 18% improvement in delivery times",
-    "Use case 4: Improving vehicle design and production in automotive sector through design chain strategy, resulting in a 10% reduction in production costs and 8% increase in vehicle quality and safety",
-    "Use case 5: Developing a digital twin for high-tech product design, reducing physical prototyping costs by 40% and accelerating time-to-market by 22%, while maintaining EU AI Act compliance"
+    "Use case 1: Implementing AI-driven design in aerospace sector to reduce product development time by 30% and increase design accuracy by 25%",
+    "Use case 2: Optimizing manufacturing supply chain in high-tech sector using predictive analytics, resulting in 20% reduction in inventory costs and 15% improvement in delivery times",
+    "Use case 3: Enhancing automotive design chain with virtual reality and simulation tools, leading to 40% reduction in prototyping costs and 28% decrease in time-to-market",
+    "Use case 4: Ensuring EU AI Act compliance in manufacturing sector by integrating transparent AI decision-making processes, reducing regulatory risks by 90% and improving brand reputation",
+    "Use case 5: Streamlining high-tech product design and testing using digital twins, resulting in 35% reduction in production costs and 22% increase in product quality and reliability"
   ],
   "pricing": {
     "process_id": "SCOR-D1.1",

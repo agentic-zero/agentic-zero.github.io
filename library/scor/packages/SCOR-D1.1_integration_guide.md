@@ -34,11 +34,11 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- natural_language_processing_api
-- machine_learning_library
 - project_management_tool
+- market_research_reports_api
+- customer_feedback_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- when business objectives or customer requirements change significantly
-- when design chain strategy development is delayed
+- IF design chain strategy development is delayed THEN notify stakeholders and revise project timeline
+- IF design chain strategy is not effective THEN revise design chain strategy and re-evaluate KPIs

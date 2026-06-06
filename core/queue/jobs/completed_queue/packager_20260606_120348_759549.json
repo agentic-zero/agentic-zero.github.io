@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260606_120348_759549",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D1.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-06T12:03:48.759566",
+  "status": "completed",
+  "started_at": "2026-06-06T12:07:48.630319",
+  "completed_at": "2026-06-06T12:09:49.421835",
+  "error": null,
+  "result": {
+    "agent_name": "product_and_service_design_agent",
+    "price_eur": 21000.0,
+    "ready_for_guardian": true
+  }
+}

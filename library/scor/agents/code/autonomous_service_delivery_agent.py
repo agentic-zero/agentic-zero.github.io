@@ -4,7 +4,7 @@ Process: SCOR-D2.1
 Name: autonomous_service_delivery_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-05T10:09:17.269986
+Generated: 2026-06-06T11:28:35.246881
 Compliance: EU GDPR if customer data, HIPAA if healthcare
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -146,45 +146,49 @@ class AutonomousServiceDeliveryAgentAgent:
         
         Business rules:
         # - rule1: Ensure SLA compliance for all Services
-        # - rule2: Validate Customer Request against Service Schedule
-        # - rule3: Verify Resource availability before delivering Service
+        # - rule2: Validate Customer Request against Service Schedule and Resource availability
+        # - rule3: Generate Invoice and Payment information according to Service delivery
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Check if customer requests are available
+            # Check if customer requests are present in the inputs
             if 'customer requests' in inputs and inputs['customer requests']:
-                # Validate customer requests against service schedules
-                if 'service schedules' in inputs and inputs['service schedules']:
-                    # Verify resource availability before delivering service
-                    if 'resource availability' in inputs and inputs['resource availability']:
-                        delivered_services = []
-                        invoice_and_payment_info = []
-                        # Iterate over each customer request
-                        for request in inputs['customer requests']:
-                            # Check if the request is valid and resource is available
-                            if request in inputs['service schedules'] and inputs['resource availability'] > 0:
-                                # Deliver the service and update the resource availability
-                                delivered_services.append(request)
-                                inputs['resource availability'] -= 1
-                                # Generate invoice and payment information
-                                invoice_and_payment_info.append({'request': request, 'amount': 100.0})  # assuming a fixed amount for simplicity
-                            else:
-                                # If the request is not valid or resource is not available, escalate to management
-                                print("Escalating to management: Request {} is not valid or resource is not available".format(request))
-                        # Check if SLA compliance is at risk
-                        if len(delivered_services) < len(inputs['customer requests']):
-                            print("SLA compliance is at risk: Only {} out of {} services were delivered".format(len(delivered_services), len(inputs['customer requests'])))
-                        # Populate the outputs dictionary
-                        outputs['delivered services'] = delivered_services
-                        outputs['invoice and payment information'] = invoice_and_payment_info
+                # Initialize an empty list to store delivered services
+                delivered_services = []
+                # Iterate over each customer request
+                for request in inputs['customer requests']:
+                    # Check if the request is valid against the service schedule and resource availability
+                    if 'service schedules' in inputs and 'resource availability' in inputs:
+                        # Assuming service schedules and resource availability are lists
+                        if request['service'] in inputs['service schedules'] and inputs['resource availability'] > 0:
+                            # Deliver the service and add it to the delivered services list
+                            delivered_services.append(request)
+                            # Decrement the resource availability
+                            inputs['resource availability'] -= 1
+                            # Generate invoice and payment information
+                            invoice_info = {
+                                'customer': request['customer'],
+                                'service': request['service'],
+                                'amount': request['amount']
+                            }
+                            # Add the invoice info to the outputs
+                            if 'invoice and payment information' not in outputs:
+                                outputs['invoice and payment information'] = []
+                            outputs['invoice and payment information'].append(invoice_info)
+                        else:
+                            # If the request is not valid, escalate to management
+                            print("Escalating to management: Invalid customer request")
                     else:
-                        print("Resource availability is not available")
-                else:
-                    print("Service schedules are not available")
+                        # If service schedules or resource availability are not present, escalate to management
+                        print("Escalating to management: Missing service schedules or resource availability")
+                # Add the delivered services to the outputs
+                outputs['delivered services'] = delivered_services
             else:
-                print("Customer requests are not available")
+                # If no customer requests are present, add empty lists to the outputs
+                outputs['delivered services'] = []
+                outputs['invoice and payment information'] = []
             return outputs
         
         return outputs
@@ -194,8 +198,15 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - eu_gdpr_customer_data_protection
-        # - hipaa_healthcare_data_protection
+        # - GDPR: lawful_basis = legitimate_interest (B2B supply chain operations under Art.6(1)(f))
+        # - GDPR: data_minimization = only process data strictly required for this SCOR process
+        # - GDPR: retention_policy = data retained max 7 years aligned with business document retention
+        # - GDPR: transparency = processing purpose documented in SOP and audit trail
+        # - GDPR: data_subject_rights = no personal data of natural persons processed unless strictly necessary
+        # - EU_AI_ACT: risk_classification verified before deployment
+        # - ISO_42001: human_oversight checkpoint at every decision point
+        # - NIST_AI_RMF: govern_map_measure_manage cycle embedded in agent lifecycle
+        # - HIPAA: compliance checked for healthcare-related customer data
         """
         checks_passed = []
         checks_failed = []
@@ -219,7 +230,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['sla_compliance_at_risk', 'resource_availability_unexpectedly_low', 'customer_request_cannot_be_fulfilled']
+        escalation_rules = ['IF SLA compliance is at risk THEN escalate to management', 'IF Customer Request cannot be fulfilled due to Resource unavailability THEN escalate to human oversight']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -233,7 +244,7 @@ def _process_logic(self, inputs):
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['service_delivery_time', 'sla_compliance_rate', 'invoice_payment_success_rate', 'resource_utilization_rate']
+            "monitoring": ['SLA compliance rate', 'Customer satisfaction rate', 'Invoice and Payment information accuracy and timeliness']
         }
 
 

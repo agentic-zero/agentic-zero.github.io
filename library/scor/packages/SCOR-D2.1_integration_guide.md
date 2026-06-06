@@ -34,13 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- customer_request_api
-- service_schedule_database
-- resource_availability_api
-- accounting_system_api
+- service_management_api
+- resource_management_api
+- accounting_api
+- customer_relationship_management_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- sla_compliance_at_risk
-- resource_availability_unexpectedly_low
-- customer_request_cannot_be_fulfilled
+- IF SLA compliance is at risk THEN escalate to management
+- IF Customer Request cannot be fulfilled due to Resource unavailability THEN escalate to human oversight

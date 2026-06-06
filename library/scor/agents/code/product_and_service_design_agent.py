@@ -4,7 +4,7 @@ Process: SCOR-D1.3
 Name: product_and_service_design_agent
 Framework: SCOR-D
 Domain: Design Chain
-Generated: 2026-06-05T09:57:17.289918
+Generated: 2026-06-06T12:03:48.754117
 Compliance: GxP if pharma or medical devices, EU AI Act if AI-driven design
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,9 @@ class ProductAndServiceDesignAgentAgent:
     Process of designing new product and service offerings, including the development of product specifications and design documentation
     
     Capabilities:
-    #   - customer_requirement_analysis
-    #   - market_trend_analysis
-    #   - design_quality_evaluation
-    #   - time_to_market_optimization
+    #   - product_design
+    #   - service_design
+    #   - design_documentation
     
     Compliance: GxP if pharma or medical devices, EU AI Act if AI-driven design
     """
@@ -139,72 +138,59 @@ class ProductAndServiceDesignAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF Customer Requirements are incomplete THEN request additional information
-        # - IF Design Quality does not meet standards THEN revise Product Design
+        # - IF Design Quality is below threshold THEN revise Product Design
+        # - IF Time-to-Market exceeds target THEN prioritize Service Design
         
         Business rules:
-        # - Design Quality must meet industry standards
-        # - Time-to-Market must be within specified timeframe
-        # - Customer Satisfaction must be measured and reported
+        # - Design Quality must meet customer requirements
+        # - Time-to-Market must be within target range
+        # - Design Documentation must be complete and accurate
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Check if customer requirements are complete
-            if 'customer requirements' in inputs and inputs['customer requirements']:
-                # Initialize product design based on customer requirements
-                product_design = self._initialize_product_design(inputs['customer requirements'])
-                # Consider market trends and technological advancements for product design
-                if 'market trends' in inputs:
-                    product_design = self._update_product_design(product_design, inputs['market trends'])
-                if 'technological advancements' in inputs:
-                    product_design = self._update_product_design(product_design, inputs['technological advancements'])
-                # Check design quality and revise if necessary
-                if not self._check_design_quality(product_design):
-                    product_design = self._revise_product_design(product_design)
-                # Initialize service design
-                service_design = self._initialize_service_design(product_design)
-                # Create design documentation
-                design_documentation = self._create_design_documentation(product_design, service_design)
-                # Populate outputs dictionary
-                outputs['product design'] = product_design
-                outputs['service design'] = service_design
-                outputs['design documentation'] = design_documentation
+            # Check if all required inputs are present
+            if not all(key in inputs for key in ['customer requirements', 'market trends', 'technological advancements']):
+                raise ValueError("All inputs are required")
+
+            # Initialize design quality and time-to-market variables
+            design_quality = 0
+            time_to_market = 0
+
+            # Calculate design quality based on customer requirements and market trends
+            # For simplicity, assume design quality is the average of customer requirements and market trends
+            design_quality = (inputs['customer requirements'] + inputs['market trends']) / 2  # calculate design quality
+
+            # Check if design quality meets the threshold
+            if design_quality < 0.5:  # assuming 0.5 as the threshold
+                # Revise product design if design quality is below threshold
+                product_design = 'revised_product_design'
             else:
-                # Request additional information if customer requirements are incomplete
-                outputs['error'] = 'Customer requirements are incomplete'
-            return outputs
+                # Otherwise, create a new product design based on technological advancements
+                product_design = 'new_product_design_' + str(inputs['technological advancements'])  # create new product design
 
-        def _initialize_product_design(self, customer_requirements):
-            # Initialize product design based on customer requirements
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return customer_requirements
+            # Calculate time-to-market based on market trends and technological advancements
+            # For simplicity, assume time-to-market is the sum of market trends and technological advancements
+            time_to_market = inputs['market trends'] + inputs['technological advancements']  # calculate time-to-market
 
-        def _update_product_design(self, product_design, market_trends_or_technological_advancements):
-            # Update product design based on market trends or technological advancements
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return product_design
+            # Check if time-to-market exceeds the target
+            if time_to_market > 10:  # assuming 10 as the target
+                # Prioritize service design if time-to-market exceeds target
+                service_design = 'prioritized_service_design'
+            else:
+                # Otherwise, create a new service design based on customer requirements
+                service_design = 'new_service_design_' + str(inputs['customer requirements'])  # create new service design
 
-        def _check_design_quality(self, product_design):
-            # Check if design quality meets industry standards
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return True
-
-        def _revise_product_design(self, product_design):
-            # Revise product design if it does not meet industry standards
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return product_design
-
-        def _initialize_service_design(self, product_design):
-            # Initialize service design based on product design
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return product_design
-
-        def _create_design_documentation(self, product_design, service_design):
             # Create design documentation based on product design and service design
-            # This is a placeholder, actual implementation depends on the specific requirements
-            return 'Design documentation'
+            design_documentation = 'design_documentation_for_' + product_design + '_and_' + service_design  # create design documentation
+
+            # Populate the outputs dictionary
+            outputs['product design'] = product_design  # populate product design
+            outputs['service design'] = service_design  # populate service design
+            outputs['design documentation'] = design_documentation  # populate design documentation
+
+            return outputs  # return the outputs dictionary
         
         return outputs
 
@@ -213,8 +199,15 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - gx_p_compliance_validation
-        # - eu_ai_act_compliance_validation
+        # - GDPR: lawful_basis = legitimate_interest (B2B supply chain operations under Art.6(1)(f))
+        # - GDPR: data_minimization = only process data strictly required for this SCOR process
+        # - GDPR: retention_policy = data retained max 7 years aligned with business document retention
+        # - GDPR: transparency = processing purpose documented in SOP and audit trail
+        # - GDPR: data_subject_rights = no personal data of natural persons processed unless strictly necessary
+        # - EU_AI_ACT: risk_classification verified before deployment
+        # - ISO_42001: human_oversight checkpoint at every decision point
+        # - NIST_AI_RMF: govern_map_measure_manage cycle embedded in agent lifecycle
+        # - GxP: design_control_and_documentation_compliance_for_pharma_or_medical_devices
         """
         checks_passed = []
         checks_failed = []
@@ -238,7 +231,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['incomplete_customer_requirements', 'design_quality_does_not_meet_standards', 'non_compliance_with_regulatory_requirements']
+        escalation_rules = ['when design quality is below threshold', 'when time-to-market exceeds target range']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})

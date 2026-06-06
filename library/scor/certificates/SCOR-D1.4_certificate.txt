@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-SCOR-D1.4-20260605
+Certificate ID:  AZ-CERT-SCOR-D1.4-20260606
 Process ID:      SCOR-D1.4
-Agent:           design_standard_manager
-Issued:          2026-06-05
-Valid Until:     2027-06-05
+Agent:           design_standards_manager
+Issued:          2026-06-06
+Valid Until:     2027-06-06
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

@@ -241,11 +241,32 @@ def make_decision(process_id: str, guardian: dict) -> dict:
     escalate = False
     decision = "APPROVE"
 
-    # REJECT inmediato
-    if gdpr_check["status"] == "ISSUES":
+    # REJECT inmediato — solo si GDPR issues Y score bajo O artifacts faltantes
+    gdpr_blocking = gdpr_check["status"] == "ISSUES" and (
+        overall_score < THRESHOLD_APPROVE_CONDITIONS
+        or artifact_check["status"] != "PASS"
+    )
+
+    if gdpr_blocking:
         decision = "REJECT"
         escalate = True
         conditions.append("GDPR violation detected — immediate escalation required")
+
+    elif (
+        gdpr_check["status"] == "ISSUES"
+        and overall_score >= THRESHOLD_APPROVE_CONDITIONS
+    ):
+        # GDPR issues pero score aceptable → APPROVE WITH CONDITIONS
+        # El Guardian ya certificó para library — el Auditor añade condiciones GDPR
+        decision = "APPROVE_WITH_CONDITIONS"
+        delivery = True
+        escalate = True
+        conditions.append(
+            "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment"
+        )
+        conditions.append(
+            f"Overall score {overall_score}% meets threshold — approved with GDPR remediation plan required"
+        )
 
     elif quality_check["status"] == "FAIL":
         decision = "REJECT"

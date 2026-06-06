@@ -4,7 +4,7 @@ Process: SCOR-D1.1
 Name: design_chain_strategy_agent
 Framework: SCOR-D
 Domain: Design Chain
-Generated: 2026-06-05T09:49:17.306561
+Generated: 2026-06-06T11:16:35.508540
 Compliance: EU AI Act if AI-driven design
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,9 @@ class DesignChainStrategyAgentAgent:
     Process of defining the overall design chain strategy and objectives
     
     Capabilities:
-    #   - business_objective_analysis
-    #   - customer_requirement_processing
-    #   - market_trend_evaluation
-    #   - design_chain_objective_definition
+    #   - design_chain_strategy_development
+    #   - market_trend_analysis
+    #   - customer_requirement_analysis
     
     Compliance: EU AI Act if AI-driven design
     """
@@ -139,88 +138,73 @@ class DesignChainStrategyAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF Business Objectives change THEN re-evaluate Design Chain Strategy
-        # - IF Customer Requirements change THEN re-evaluate Design Chain Strategy
-        # - IF Market Trends change THEN re-evaluate Design Chain Strategy
+        # - IF Design Chain Strategy is not aligned with Business Objectives THEN revise Design Chain Strategy
+        # - IF Customer Requirements are not met by Design Chain Strategy THEN revise Design Chain Strategy
+        # - IF Market Trends indicate a change in customer needs THEN revise Design Chain Strategy
         
         Business rules:
-        # - Design Chain Strategy must align with Business Objectives
+        # - Design Chain Strategy must be aligned with Business Objectives
         # - Design Chain Strategy must meet Customer Requirements
-        # - Design Chain Strategy must consider Market Trends
+        # - Design Chain Strategy must be based on current Market Trends
         # - Design Chain Strategy must comply with EU AI Act if AI-driven design is used
         """
         outputs = {}
         
 def _process_logic(self, inputs):
             outputs = {}
-            # Check if all required inputs are present
-            if 'business objectives' in inputs and 'customer requirements' in inputs and 'market trends' in inputs:
-                business_objectives = inputs['business objectives']
-                customer_requirements = inputs['customer requirements']
-                market_trends = inputs['market trends']
-                
-                # Define design chain strategy based on inputs
-                design_chain_strategy = self._define_design_chain_strategy(business_objectives, customer_requirements, market_trends)
-                # Define design chain objectives based on design chain strategy
-                design_chain_objectives = self._define_design_chain_objectives(design_chain_strategy)
-                
-                # Check if design chain strategy aligns with business objectives
-                if self._check_alignment(design_chain_strategy, business_objectives):
-                    # Check if design chain strategy meets customer requirements
-                    if self._check_meeting_requirements(design_chain_strategy, customer_requirements):
-                        # Check if design chain strategy considers market trends
-                        if self._check_consideration(design_chain_strategy, market_trends):
-                            # Check if design chain strategy complies with EU AI Act if AI-driven design is used
-                            if self._check_compliance(design_chain_strategy):
-                                # Populate outputs dictionary
-                                outputs['design chain strategy'] = design_chain_strategy
-                                outputs['design chain objectives'] = design_chain_objectives
-                            else:
-                                # Handle non-compliance with EU AI Act
-                                outputs['error'] = 'Design chain strategy does not comply with EU AI Act'
-                        else:
-                            # Handle design chain strategy not considering market trends
-                            outputs['error'] = 'Design chain strategy does not consider market trends'
-                    else:
-                        # Handle design chain strategy not meeting customer requirements
-                        outputs['error'] = 'Design chain strategy does not meet customer requirements'
-                else:
-                    # Handle design chain strategy not aligning with business objectives
-                    outputs['error'] = 'Design chain strategy does not align with business objectives'
-            else:
-                # Handle missing inputs
-                outputs['error'] = 'Missing required inputs'
+            business_objectives = inputs.get('business objectives', [])
+            customer_requirements = inputs.get('customer requirements', [])
+            market_trends = inputs.get('market trends', [])
+
+            # Check if business objectives are provided
+            if not business_objectives:
+                raise ValueError("Business objectives are required")
+
+            # Initialize design chain strategy and objectives
+            design_chain_strategy = []
+            design_chain_objectives = []
+
+            # Align design chain strategy with business objectives
+            for objective in business_objectives:
+                # Check if objective is already in design chain strategy
+                if objective not in design_chain_strategy:
+                    design_chain_strategy.append(objective)
+
+            # Check if customer requirements are met by design chain strategy
+            for requirement in customer_requirements:
+                # Check if requirement is already in design chain strategy
+                if requirement not in design_chain_strategy:
+                    design_chain_strategy.append(requirement)
+
+            # Update design chain strategy based on market trends
+            for trend in market_trends:
+                # Check if trend indicates a change in customer needs
+                if 'change in customer needs' in trend:
+                    # Revise design chain strategy to meet new customer needs
+                    design_chain_strategy.append(trend)
+
+            # Comply with EU AI Act if AI-driven design is used
+            if 'AI-driven design' in inputs:
+                # Add EU AI Act compliance to design chain strategy
+                design_chain_strategy.append('EU AI Act compliance')
+
+            # Populate design chain objectives
+            for objective in design_chain_strategy:
+                # Check if objective is already in design chain objectives
+                if objective not in design_chain_objectives:
+                    design_chain_objectives.append(objective)
+
+            # Check for edge cases
+            if not design_chain_strategy:
+                raise ValueError("Design chain strategy cannot be empty")
+            if not design_chain_objectives:
+                raise ValueError("Design chain objectives cannot be empty")
+
+            # Populate outputs dictionary
+            outputs['design chain strategy'] = design_chain_strategy
+            outputs['design chain objectives'] = design_chain_objectives
+
             return outputs
-
-        def _define_design_chain_strategy(self, business_objectives, customer_requirements, market_trends):
-            # Implement logic to define design chain strategy based on inputs
-            # For demonstration purposes, a simple strategy is defined
-            return 'Design chain strategy based on ' + business_objectives + ', ' + customer_requirements + ', and ' + market_trends
-
-        def _define_design_chain_objectives(self, design_chain_strategy):
-            # Implement logic to define design chain objectives based on design chain strategy
-            # For demonstration purposes, simple objectives are defined
-            return 'Design chain objectives based on ' + design_chain_strategy
-
-        def _check_alignment(self, design_chain_strategy, business_objectives):
-            # Implement logic to check if design chain strategy aligns with business objectives
-            # For demonstration purposes, alignment is assumed
-            return True
-
-        def _check_meeting_requirements(self, design_chain_strategy, customer_requirements):
-            # Implement logic to check if design chain strategy meets customer requirements
-            # For demonstration purposes, meeting requirements is assumed
-            return True
-
-        def _check_consideration(self, design_chain_strategy, market_trends):
-            # Implement logic to check if design chain strategy considers market trends
-            # For demonstration purposes, consideration is assumed
-            return True
-
-        def _check_compliance(self, design_chain_strategy):
-            # Implement logic to check if design chain strategy complies with EU AI Act if AI-driven design is used
-            # For demonstration purposes, compliance is assumed
-            return True
         
         return outputs
 
@@ -229,7 +213,14 @@ def _process_logic(self, inputs):
         Built-in compliance validation
         
         Checks:
-        # - eu_ai_act_compliance_validation
+        # - GDPR: lawful_basis = legitimate_interest (B2B supply chain operations under Art.6(1)(f))
+        # - GDPR: data_minimization = only process data strictly required for this SCOR process
+        # - GDPR: retention_policy = data retained max 7 years aligned with business document retention
+        # - GDPR: transparency = processing purpose documented in SOP and audit trail
+        # - GDPR: data_subject_rights = no personal data of natural persons processed unless strictly necessary
+        # - EU_AI_ACT: risk_classification verified before deployment
+        # - ISO_42001: human_oversight checkpoint at every decision point
+        # - NIST_AI_RMF: govern_map_measure_manage cycle embedded in agent lifecycle
         """
         checks_passed = []
         checks_failed = []
@@ -253,7 +244,7 @@ def _process_logic(self, inputs):
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['when business objectives or customer requirements change significantly', 'when design chain strategy development is delayed']
+        escalation_rules = ['IF design chain strategy development is delayed THEN notify stakeholders and revise project timeline', 'IF design chain strategy is not effective THEN revise design chain strategy and re-evaluate KPIs']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})

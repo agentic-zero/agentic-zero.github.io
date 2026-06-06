@@ -34,12 +34,10 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- natural_language_processing_api
-- machine_learning_library
-- design_documentation_tool
+- computer_aided_design_software
+- product_lifecycle_management_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- incomplete_customer_requirements
-- design_quality_does_not_meet_standards
-- non_compliance_with_regulatory_requirements
+- when design quality is below threshold
+- when time-to-market exceeds target range

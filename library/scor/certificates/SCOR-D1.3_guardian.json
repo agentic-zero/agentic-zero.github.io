@@ -1,13 +1,13 @@
 {
   "process_id": "SCOR-D1.3",
-  "guardian_timestamp": "2026-06-05T10:42:18.580636",
+  "guardian_timestamp": "2026-06-06T12:12:50.123779",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-D1.3-20260605",
+    "certificate_id": "AZ-CERT-SCOR-D1.3-20260606",
     "process_id": "SCOR-D1.3",
     "agent_name": "product_and_service_design_agent",
-    "issued_at": "2026-06-05T10:42:18.580599",
+    "issued_at": "2026-06-06T12:12:50.123743",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-05",
+    "valid_until": "2027-06-06",
     "overall_status": "conditional",
     "overall_score": 0.82,
     "eu_ai_act": {
@@ -41,13 +41,15 @@
       "score": 0.6,
       "gaps": [
         "Lack of explicit risk management process for AI-driven design",
-        "Insufficient documentation on design quality evaluation metrics",
-        "Unclear escalation procedures for non-compliance with regulatory requirements"
+        "Insufficient documentation on design quality metrics and threshold values",
+        "Unclear escalation procedures for time-to-market exceedance",
+        "No evidence of regular review and update of compliance flags"
       ],
       "recommendations": [
         "Implement a risk management process that includes identification, assessment, and mitigation of risks associated with AI-driven design",
-        "Develop and maintain documentation on design quality evaluation metrics and criteria",
-        "Establish clear escalation procedures for non-compliance with regulatory requirements, including communication protocols and responsible personnel"
+        "Develop and maintain documentation on design quality metrics, threshold values, and target ranges for time-to-market",
+        "Establish clear escalation procedures for design quality and time-to-market issues, including communication protocols and responsible personnel",
+        "Regularly review and update compliance flags to ensure ongoing adherence to relevant regulations, such as GxP and EU AI Act"
       ]
     },
     "nist_ai_rmf": {
@@ -88,13 +90,14 @@
     "GDPR: Personal data detected: define lawful basis for processing"
   ],
   "auditor_review": {
-    "decision": "REJECT",
-    "delivery": false,
-    "restricted": false,
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
     "conditions": [
-      "GDPR violation detected — immediate escalation required"
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
     ],
-    "audited_at": "2026-06-05T15:12:29.296776",
+    "audited_at": "2026-06-06T16:58:17.119416",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

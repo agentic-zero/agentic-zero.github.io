@@ -1,13 +1,13 @@
 {
   "process_id": "SCOR-D2.1",
-  "guardian_timestamp": "2026-06-05T10:45:18.870043",
+  "guardian_timestamp": "2026-06-06T11:42:37.270287",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-D2.1-20260605",
+    "certificate_id": "AZ-CERT-SCOR-D2.1-20260606",
     "process_id": "SCOR-D2.1",
     "agent_name": "autonomous_service_delivery_agent",
-    "issued_at": "2026-06-05T10:45:18.870001",
+    "issued_at": "2026-06-06T11:42:37.270239",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-05",
+    "valid_until": "2027-06-06",
     "overall_status": "certified",
     "overall_score": 0.8,
     "eu_ai_act": {
@@ -28,15 +28,15 @@
       "score": 0.6,
       "gaps": [
         "Lack of explicit risk management process",
-        "Insufficient transparency in decision-making for 'resource_allocation' and 'invoice_generation' capabilities",
-        "No clear process for continuous monitoring and evaluation of 'sla_compliance_monitoring' capability",
-        "Unclear roles and responsibilities for 'EU GDPR if customer data' and 'HIPAA if healthcare' compliance flags"
+        "Insufficient transparency in decision-making process",
+        "No clear process for continuous monitoring and evaluation",
+        "No defined process for handling compliance flags"
       ],
       "recommendations": [
-        "Implement a risk management process that identifies, assesses, and mitigates potential risks associated with the AI agent's capabilities",
-        "Provide transparent and explainable decision-making processes for 'resource_allocation' and 'invoice_generation' capabilities",
-        "Establish a continuous monitoring and evaluation process for 'sla_compliance_monitoring' capability to ensure ongoing compliance",
-        "Define and assign clear roles and responsibilities for 'EU GDPR if customer data' and 'HIPAA if healthcare' compliance flags"
+        "Implement a risk management process to identify, assess, and mitigate potential risks",
+        "Provide transparency in decision-making process by implementing explainability techniques",
+        "Establish a process for continuous monitoring and evaluation of the AI system",
+        "Develop a process to handle compliance flags, including procedures for EU GDPR and HIPAA"
       ]
     },
     "nist_ai_rmf": {
@@ -71,15 +71,5 @@
   "remediation_plan": [
     "ISO 42001: Lack of explicit risk management process",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ],
-  "auditor_review": {
-    "decision": "REJECT",
-    "delivery": false,
-    "restricted": false,
-    "conditions": [
-      "GDPR violation detected — immediate escalation required"
-    ],
-    "audited_at": "2026-06-05T15:13:43.257355",
-    "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  }
+  ]
 }

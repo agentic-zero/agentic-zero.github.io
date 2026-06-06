@@ -1,7 +1,7 @@
 # SOP — Develop and Manage Design Standards and Specifications
 **Process ID:** SCOR-D1.4
 **Framework:** SCOR-D | **Domain:** Design Chain
-**Generated:** 2026-06-05
+**Generated:** 2026-06-06
 
 ## Purpose
 Process of developing, maintaining, and managing design standards and specifications across the organization
@@ -10,7 +10,7 @@ Process of developing, maintaining, and managing design standards and specificat
 - Introduction of new Regulatory Requirements
 - Introduction of new Industry Standards
 - Change in Customer Requirements
-- Scheduled review and update of Design Standards
+- Scheduled review of Design Standards
 
 ## Inputs Required
 - industry standards
@@ -29,17 +29,17 @@ Process of developing, maintaining, and managing design standards and specificat
 ## Business Rules
 - Design Standards must adhere to Regulatory Requirements
 - Design Standards must adhere to Industry Standards
-- Design Specifications must be consistent with Design Standards
-- Design Standards must be reviewed and updated regularly
+- Design Standards must meet Customer Requirements
+- Design Specifications must conform to Design Standards
 
 ## Exception Handling
 - IF Design Standards are not adhered to THEN trigger audit and corrective action
-- IF Design Specifications are inconsistent with Design Standards THEN trigger review and revision
+- IF Design Specifications do not conform to Design Standards THEN trigger redesign
 
 ## Success Criteria
-- Design Standards are up-to-date and adhere to Regulatory Requirements and Industry Standards
-- Design Specifications are consistent with Design Standards
-- Organization operates in compliance with Regulatory Requirements and Industry Standards
+- Design Standards are up-to-date and aligned with Regulatory Requirements and Industry Standards
+- Design Specifications conform to Design Standards
+- Customer Requirements are met
 
 ## Compliance Requirements
 - GxP if pharma or medical devices

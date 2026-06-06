@@ -146,6 +146,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .form-card{padding:24px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('_55-V5xnvLJVEGafR');</script>
 </head>
 <body>
 
@@ -302,7 +304,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div>
         <div style="font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px">
           The more detail you share, the more precise your ROI calculation will be.
-          Inmaculada shared her Order-to-Cash BPMN — we had answers in 24 hours.
         </div>
       </div>
 
@@ -357,7 +358,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="success-next-title">What happens next</div>
         <ul>
           <li>You'll receive a confirmation email at the address you provided</li>
-          <li>Alberto prepares a tailored AUDIT brief based on your inputs and process map</li>
+          <li>Alberto prepares a tailored AUDIT brief based on your inputs</li>
+          <li style="color:var(--grn)">📎 Please reply to our confirmation email attaching your process map (BPMN, PDF or image) — this helps us calculate your ROI with maximum precision</li>
           <li>30-45 minute call — your real data, your exact ROI</li>
           <li>Full ROI calculation before any commitment or cost</li>
         </ul>
@@ -501,7 +503,7 @@ function buildSummary() {
   document.getElementById('confirm-summary').innerHTML = html;
 }
 
-// Submit via Web3Forms with file attachment
+// Submit via EmailJS
 async function submitForm() {
   state.notes = document.getElementById('f-notes').value.trim();
   if(!state.timing){alert('Please select a preferred timing.');return;}
@@ -510,55 +512,37 @@ async function submitForm() {
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
+  const fileInfo = uploadedFile
+    ? `${uploadedFile.name} (${(uploadedFile.size/1024).toFixed(0)}KB) — client will send by email reply`
+    : 'Not uploaded — request from client by email';
+
+  const templateParams = {
+    name:             state.name,
+    company:          state.company,
+    email:            state.email,
+    role:             state.role || 'Not specified',
+    sector:           state.sector,
+    erp:              state.erp || 'Not specified',
+    volume:           state.volume,
+    team:             state.fte || 'Not specified',
+    timing:           state.timing,
+    pain_points:      state.pains.join(', ') || 'Not specified',
+    pain_description: state.pain_desc || 'Not provided',
+    notes:            state.notes || 'None',
+    process_map_info: fileInfo,
+    title:            `${state.company} (${state.sector})`,
+  };
+
   try {
-    const formData = new FormData();
-
-    // Web3Forms access key
-    formData.append('access_key', 'b2eace97-6c50-4b9f-825c-3530a7fc76a7');
-    formData.append('subject', `Free AUDIT Request — ${state.company} (${state.sector})`);
-    formData.append('from_name', 'Agentic Zero AUDIT Form');
-    formData.append('replyto', state.email);
-
-    // Contact fields
-    formData.append('name', state.name);
-    formData.append('company', state.company);
-    formData.append('email', state.email);
-    formData.append('role', state.role || 'Not specified');
-    formData.append('sector', state.sector);
-    formData.append('erp', state.erp || 'Not specified');
-    formData.append('volume', state.volume);
-    formData.append('team', state.fte || 'Not specified');
-    formData.append('timing', state.timing);
-    formData.append('pain_points', state.pains.join(', ') || 'Not specified');
-    formData.append('pain_description', state.pain_desc || 'Not provided');
-    formData.append('notes', state.notes || 'None');
-
-    // File attachment
-    if (uploadedFile) {
-      formData.append('file', uploadedFile, uploadedFile.name);
-      formData.append('process_map_info', `${uploadedFile.name} — ${(uploadedFile.size/1024).toFixed(0)}KB`);
-    } else {
-      formData.append('process_map_info', 'No file uploaded');
-    }
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-      document.getElementById('success').style.display='block';
-      document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
-    } else {
-      throw new Error(data.message || 'Submission failed');
-    }
+    await emailjs.send('service_eq9ckdb', 'template_5br90kf', templateParams);
+    document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+    document.getElementById('success').style.display='block';
+    document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
   } catch(err) {
     btn.textContent = 'Book Free AUDIT →';
     btn.disabled = false;
-    alert('Something went wrong: ' + err.message + '\n\nPlease try again or email alberto@agentic-zero.com directly.');
+    alert('Something went wrong. Please try again or email alberto@agentic-zero.com directly.');
+    console.error('EmailJS error:', err);
   }
 }
 </script>

@@ -91,6 +91,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .slider::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:var(--acc);border-radius:50%;cursor:pointer}
 .slider-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px}
 
+/* FILE UPLOAD */
+.upload-zone{border:2px dashed var(--brd);border-radius:6px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--acc);background:rgba(0,212,255,0.04)}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:28px;margin-bottom:8px}
+.upload-title{font-family:var(--syne);font-size:14px;font-weight:600;color:var(--w2);margin-bottom:4px}
+.upload-subtitle{font-family:var(--mono);font-size:11px;color:var(--w3)}
+.upload-accepted{font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px}
+.upload-preview{display:none;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.2);border-radius:4px;padding:10px 14px;margin-top:10px;display:none;align-items:center;gap:10px}
+.upload-preview.visible{display:flex}
+.upload-preview-name{font-family:var(--mono);font-size:12px;color:var(--grn);flex:1}
+.upload-preview-size{font-family:var(--mono);font-size:11px;color:var(--w3)}
+.upload-remove{background:none;border:none;color:var(--w3);cursor:pointer;font-size:16px;padding:0;line-height:1}
+.upload-remove:hover{color:var(--red,#ff3d3d)}
+
 /* PAIN TAGS */
 .pain-tags{display:flex;flex-wrap:wrap;gap:8px}
 .pain-tag{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono)}
@@ -271,6 +286,27 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
 
       <div class="field">
+        <label>Upload your process map <span style="color:var(--grn);font-size:10px">recommended</span></label>
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="f-file" accept=".bpmn,.xml,.png,.jpg,.jpeg,.pdf,.vsdx,.drawio,.svg" onchange="handleFile(this)">
+          <div class="upload-icon">📎</div>
+          <div class="upload-title">Drop your process map here or click to browse</div>
+          <div class="upload-subtitle">BPMN, diagram, flowchart, screenshot or PDF</div>
+          <div class="upload-accepted">Accepted: .bpmn · .xml · .png · .jpg · .pdf · .vsdx · .drawio · .svg · max 10MB</div>
+        </div>
+        <div class="upload-preview" id="upload-preview">
+          <span style="font-size:18px">📄</span>
+          <span class="upload-preview-name" id="upload-name">—</span>
+          <span class="upload-preview-size" id="upload-size">—</span>
+          <button class="upload-remove" onclick="removeFile()" title="Remove">✕</button>
+        </div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px">
+          The more detail you share, the more precise your ROI calculation will be.
+          Inmaculada shared her Order-to-Cash BPMN — we had answers in 24 hours.
+        </div>
+      </div>
+
+      <div class="field">
         <label>Describe your main challenge in 2-3 sentences</label>
         <textarea id="f-pain" placeholder="Tell us what keeps you up at night operationally. The more specific, the more precise our ROI calculation."></textarea>
       </div>
@@ -321,7 +357,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="success-next-title">What happens next</div>
         <ul>
           <li>You'll receive a confirmation email at the address you provided</li>
-          <li>Alberto prepares a tailored AUDIT brief based on your inputs</li>
+          <li>Alberto prepares a tailored AUDIT brief based on your inputs and process map</li>
           <li>30-45 minute call — your real data, your exact ROI</li>
           <li>Full ROI calculation before any commitment or cost</li>
         </ul>
@@ -348,6 +384,51 @@ setInterval(()=>{rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;ring.style.left=rx-14+'px';ri
 
 // State
 const state = {name:'',company:'',email:'',role:'',sector:'',erp:'',volume:'~50 / day',fte:'',pains:[],pain_desc:'',timing:'',notes:''};
+
+// File upload
+let uploadedFile = null;
+
+function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) {
+    alert('File too large. Maximum 10MB.');
+    input.value = '';
+    return;
+  }
+  uploadedFile = file;
+  document.getElementById('upload-name').textContent = file.name;
+  const kb = file.size < 1024*1024 ? Math.round(file.size/1024)+'KB' : (file.size/1024/1024).toFixed(1)+'MB';
+  document.getElementById('upload-size').textContent = kb;
+  document.getElementById('upload-preview').classList.add('visible');
+  document.getElementById('upload-zone').style.borderColor = 'var(--grn)';
+}
+
+function removeFile() {
+  uploadedFile = null;
+  document.getElementById('f-file').value = '';
+  document.getElementById('upload-preview').classList.remove('visible');
+  document.getElementById('upload-zone').style.borderColor = '';
+}
+
+// Drag and drop
+const zone = document.getElementById('upload-zone');
+if (zone) {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      const input = document.getElementById('f-file');
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      input.files = dt.files;
+      handleFile(input);
+    }
+  });
+}
 
 // Step navigation
 function goStep(n) {
@@ -426,6 +507,10 @@ function submitForm() {
   if(!state.timing){alert('Please select a preferred timing.');return;}
 
   // Build mailto (fallback — replace with backend or Formspree)
+  const fileInfo = uploadedFile 
+    ? `\nPROCESS MAP ATTACHED: ${uploadedFile.name} (${(uploadedFile.size/1024).toFixed(0)}KB)\nPlease reply to this email and the file will be sent separately if needed.`
+    : '\nPROCESS MAP: Not provided';
+
   const body = `
 AGENTIC ZERO — FREE AUDIT REQUEST
 
@@ -438,6 +523,7 @@ ERP: ${state.erp}
 Volume: ${state.volume}
 Team: ${state.fte}
 Timing: ${state.timing}
+${fileInfo}
 
 PAIN POINTS:
 ${state.pains.join(', ')}

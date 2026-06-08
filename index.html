@@ -250,6 +250,454 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
   .paradigm-vs{display:none}
   footer{flex-direction:column;gap:12px;text-align:center}
 }
+
+
+/* ── BPMN Guide Section ── */
+#bpmn-guide {
+  padding: 120px 0;
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+
+#bpmn-guide::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bpmn-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.bpmn-header .section-label {
+  margin-bottom: 16px;
+}
+
+.bpmn-header h2 {
+  font-family: var(--syne);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--w1);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.bpmn-header h2 span {
+  color: var(--acc);
+}
+
+.bpmn-header p {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--w2);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Flow Steps ── */
+.bpmn-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.bpmn-flow::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acc), var(--acc), var(--acc), transparent);
+  opacity: 0.3;
+}
+
+.bpmn-step {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  padding: 32px 24px;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.bpmn-step:first-child { border-radius: 8px 0 0 8px; }
+.bpmn-step:last-child  { border-radius: 0 8px 8px 0; }
+
+.bpmn-step:hover {
+  border-color: var(--acc);
+  transform: translateY(-4px);
+  z-index: 2;
+}
+
+.bpmn-step-n {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--acc);
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.bpmn-step-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.bpmn-step-title {
+  font-family: var(--syne);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--w1);
+  margin-bottom: 8px;
+}
+
+.bpmn-step-desc {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--w2);
+  line-height: 1.6;
+}
+
+.bpmn-step-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 8px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--acc);
+}
+
+/* ── Example Card ── */
+.bpmn-example {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-radius: 12px;
+  padding: 48px;
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bpmn-example::before {
+  content: 'REAL EXAMPLE';
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--grn);
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  border: 1px solid var(--grn);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.bpmn-example-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.bpmn-example-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.bpmn-example-meta h3 {
+  font-family: var(--syne);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--w1);
+  margin-bottom: 4px;
+}
+
+.bpmn-example-meta p {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--w2);
+}
+
+/* ── BPMN Diagram ── */
+.bpmn-diagram {
+  background: var(--bg3);
+  border: 1px solid var(--brd2);
+  border-radius: 8px;
+  padding: 32px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+}
+
+.bpmn-lane {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.bpmn-lane:last-child { margin-bottom: 0; }
+
+.bpmn-lane-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--w3);
+  width: 100px;
+  flex-shrink: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bpmn-nodes {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+.bpmn-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.bpmn-node::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-60%);
+  color: var(--w3);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.bpmn-node:last-child::after { display: none; }
+
+.bpmn-node-box {
+  width: 90px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-align: center;
+  line-height: 1.3;
+  padding: 4px;
+}
+
+.bpmn-node-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--w3);
+  text-align: center;
+  max-width: 90px;
+  line-height: 1.2;
+}
+
+.node-start {
+  background: rgba(0,230,118,0.12);
+  border: 2px solid var(--grn);
+  color: var(--grn);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+
+.node-end {
+  background: rgba(0,212,255,0.12);
+  border: 2px solid var(--acc);
+  color: var(--acc);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+
+.node-task {
+  background: rgba(15,30,55,0.8);
+  border: 1px solid var(--brd);
+  color: var(--w2);
+}
+
+.node-task-auto {
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.4);
+  color: var(--acc);
+}
+
+.node-gateway {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,171,64,0.1);
+  border: 1px solid var(--amb);
+  color: var(--amb);
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+}
+
+.node-gateway span {
+  transform: rotate(-45deg);
+  display: block;
+  font-size: 0.55rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ── Metrics Row ── */
+.bpmn-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.bpmn-metric {
+  background: var(--bg3);
+  border: 1px solid var(--brd2);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.bpmn-metric-val {
+  font-family: var(--syne);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--acc);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.bpmn-metric-val.green { color: var(--grn); }
+.bpmn-metric-val.amber { color: var(--amb); }
+
+.bpmn-metric-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--w3);
+}
+
+/* ── CTA Row ── */
+.bpmn-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--brd2);
+}
+
+.bpmn-cta-row p {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--w2);
+  flex: 1;
+}
+
+.bpmn-cta-row p strong {
+  color: var(--grn);
+}
+
+/* ── Upload Box ── */
+.bpmn-upload-box {
+  background: var(--sur);
+  border: 1px dashed var(--brd);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  transition: border-color 0.3s, background 0.3s;
+  cursor: pointer;
+}
+
+.bpmn-upload-box:hover {
+  border-color: var(--acc);
+  background: rgba(0,212,255,0.03);
+}
+
+.bpmn-upload-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.bpmn-upload-box h3 {
+  font-family: var(--syne);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--w1);
+  margin-bottom: 12px;
+}
+
+.bpmn-upload-box p {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--w2);
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.bpmn-supported {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.bpmn-fmt {
+  padding: 4px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--brd);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--w2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .bpmn-flow { grid-template-columns: repeat(2, 1fr); }
+  .bpmn-metrics { grid-template-columns: repeat(2, 1fr); }
+  .bpmn-flow::before { display: none; }
+  .bpmn-step:first-child { border-radius: 8px 0 0 0; }
+  .bpmn-step:last-child  { border-radius: 0 0 8px 0; }
+}
+
+@media (max-width: 600px) {
+  .bpmn-flow { grid-template-columns: 1fr; }
+  .bpmn-metrics { grid-template-columns: repeat(2, 1fr); }
+  .bpmn-example { padding: 24px; }
+  .bpmn-step:first-child,
+  .bpmn-step:last-child { border-radius: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -266,6 +714,7 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
     <li><a href="#beyond">Plans</a></li>
     <li><a href="#swarm">Swarm</a></li>
     <li><a href="#sectors">ROI</a></li>
+    <li><a href="#bpmn-guide">BPMN Guide</a></li>
     <li><a href="#about">About</a></li>
   </ul>
   <a href="/audit" class="nav-cta">Book Free AUDIT →</a>
@@ -596,498 +1045,41 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
   </div>
 </section>
 
-<!-- FIRST AUDIT FREE -->
-<!-- ═══════════════════════════════════════════════════════
-     BPMN GUIDE SECTION — Insert before </body> or after #audit
-     ═══════════════════════════════════════════════════════ -->
 
-<style>
-/* ── BPMN Guide Section ── */
-#bpmn-guide {
-  padding: 120px 0;
-  background: var(--bg2);
-  position: relative;
-  overflow: hidden;
-}
-
-#bpmn-guide::before {
-  content: '';
-  position: absolute;
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.bpmn-header {
-  text-align: center;
-  margin-bottom: 80px;
-}
-
-.bpmn-header .section-label {
-  margin-bottom: 16px;
-}
-
-.bpmn-header h2 {
-  font-family: var(--syne);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  color: var(--w1);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.bpmn-header h2 span {
-  color: var(--acc);
-}
-
-.bpmn-header p {
-  font-family: var(--mono);
-  font-size: 0.95rem;
-  color: var(--w2);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ── Flow Steps ── */
-.bpmn-flow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  margin-bottom: 80px;
-  position: relative;
-}
-
-.bpmn-flow::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 12.5%;
-  right: 12.5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--acc), var(--acc), var(--acc), transparent);
-  opacity: 0.3;
-}
-
-.bpmn-step {
-  background: var(--sur);
-  border: 1px solid var(--brd);
-  padding: 32px 24px;
-  position: relative;
-  transition: border-color 0.3s, transform 0.3s;
-}
-
-.bpmn-step:first-child { border-radius: 8px 0 0 8px; }
-.bpmn-step:last-child  { border-radius: 0 8px 8px 0; }
-
-.bpmn-step:hover {
-  border-color: var(--acc);
-  transform: translateY(-4px);
-  z-index: 2;
-}
-
-.bpmn-step-n {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--acc);
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-}
-
-.bpmn-step-icon {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.bpmn-step-title {
-  font-family: var(--syne);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--w1);
-  margin-bottom: 8px;
-}
-
-.bpmn-step-desc {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--w2);
-  line-height: 1.6;
-}
-
-.bpmn-step-tag {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 3px 8px;
-  background: rgba(0,212,255,0.08);
-  border: 1px solid rgba(0,212,255,0.2);
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--acc);
-}
-
-/* ── Example Card ── */
-.bpmn-example {
-  background: var(--sur);
-  border: 1px solid var(--brd);
-  border-radius: 12px;
-  padding: 48px;
-  margin-bottom: 60px;
-  position: relative;
-  overflow: hidden;
-}
-
-.bpmn-example::before {
-  content: 'EJEMPLO REAL';
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--grn);
-  letter-spacing: 0.15em;
-  padding: 4px 10px;
-  border: 1px solid var(--grn);
-  border-radius: 4px;
-  opacity: 0.7;
-}
-
-.bpmn-example-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-}
-
-.bpmn-example-icon {
-  width: 56px;
-  height: 56px;
-  background: rgba(0,212,255,0.1);
-  border: 1px solid rgba(0,212,255,0.3);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.bpmn-example-meta h3 {
-  font-family: var(--syne);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--w1);
-  margin-bottom: 4px;
-}
-
-.bpmn-example-meta p {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--w2);
-}
-
-/* ── BPMN Diagram ── */
-.bpmn-diagram {
-  background: var(--bg3);
-  border: 1px solid var(--brd2);
-  border-radius: 8px;
-  padding: 32px;
-  margin-bottom: 32px;
-  overflow-x: auto;
-}
-
-.bpmn-lane {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 16px;
-}
-
-.bpmn-lane:last-child { margin-bottom: 0; }
-
-.bpmn-lane-label {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--w3);
-  width: 100px;
-  flex-shrink: 0;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.bpmn-nodes {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex: 1;
-}
-
-.bpmn-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-}
-
-.bpmn-node::after {
-  content: '→';
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-60%);
-  color: var(--w3);
-  font-size: 0.8rem;
-  z-index: 1;
-}
-
-.bpmn-node:last-child::after { display: none; }
-
-.bpmn-node-box {
-  width: 90px;
-  height: 44px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  text-align: center;
-  line-height: 1.3;
-  padding: 4px;
-}
-
-.bpmn-node-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--w3);
-  text-align: center;
-  max-width: 90px;
-  line-height: 1.2;
-}
-
-.node-start {
-  background: rgba(0,230,118,0.12);
-  border: 2px solid var(--grn);
-  color: var(--grn);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-}
-
-.node-end {
-  background: rgba(0,212,255,0.12);
-  border: 2px solid var(--acc);
-  color: var(--acc);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-}
-
-.node-task {
-  background: rgba(15,30,55,0.8);
-  border: 1px solid var(--brd);
-  color: var(--w2);
-}
-
-.node-task-auto {
-  background: rgba(0,212,255,0.08);
-  border: 1px solid rgba(0,212,255,0.4);
-  color: var(--acc);
-}
-
-.node-gateway {
-  width: 44px;
-  height: 44px;
-  background: rgba(255,171,64,0.1);
-  border: 1px solid var(--amb);
-  color: var(--amb);
-  transform: rotate(45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-}
-
-.node-gateway span {
-  transform: rotate(-45deg);
-  display: block;
-  font-size: 0.55rem;
-  text-align: center;
-  line-height: 1.2;
-}
-
-/* ── Metrics Row ── */
-.bpmn-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.bpmn-metric {
-  background: var(--bg3);
-  border: 1px solid var(--brd2);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-}
-
-.bpmn-metric-val {
-  font-family: var(--syne);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--acc);
-  display: block;
-  margin-bottom: 4px;
-}
-
-.bpmn-metric-val.green { color: var(--grn); }
-.bpmn-metric-val.amber { color: var(--amb); }
-
-.bpmn-metric-label {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--w3);
-}
-
-/* ── CTA Row ── */
-.bpmn-cta-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--brd2);
-}
-
-.bpmn-cta-row p {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--w2);
-  flex: 1;
-}
-
-.bpmn-cta-row p strong {
-  color: var(--grn);
-}
-
-/* ── Upload Box ── */
-.bpmn-upload-box {
-  background: var(--sur);
-  border: 1px dashed var(--brd);
-  border-radius: 12px;
-  padding: 48px;
-  text-align: center;
-  transition: border-color 0.3s, background 0.3s;
-  cursor: pointer;
-}
-
-.bpmn-upload-box:hover {
-  border-color: var(--acc);
-  background: rgba(0,212,255,0.03);
-}
-
-.bpmn-upload-icon {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  display: block;
-}
-
-.bpmn-upload-box h3 {
-  font-family: var(--syne);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--w1);
-  margin-bottom: 12px;
-}
-
-.bpmn-upload-box p {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--w2);
-  margin-bottom: 8px;
-  line-height: 1.7;
-}
-
-.bpmn-supported {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-}
-
-.bpmn-fmt {
-  padding: 4px 10px;
-  background: var(--bg3);
-  border: 1px solid var(--brd);
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--w2);
-}
-
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .bpmn-flow { grid-template-columns: repeat(2, 1fr); }
-  .bpmn-metrics { grid-template-columns: repeat(2, 1fr); }
-  .bpmn-flow::before { display: none; }
-  .bpmn-step:first-child { border-radius: 8px 0 0 0; }
-  .bpmn-step:last-child  { border-radius: 0 0 8px 0; }
-}
-
-@media (max-width: 600px) {
-  .bpmn-flow { grid-template-columns: 1fr; }
-  .bpmn-metrics { grid-template-columns: repeat(2, 1fr); }
-  .bpmn-example { padding: 24px; }
-  .bpmn-step:first-child,
-  .bpmn-step:last-child { border-radius: 0; }
-}
-</style>
-
-<!-- ═══ BPMN GUIDE SECTION HTML ═══ -->
 <section id="bpmn-guide">
   <div class="container">
 
     <div class="bpmn-header reveal">
-      <div class="section-label">Cómo funciona el AUDIT</div>
-      <h2>Tu BPMN <span>→ Agente certificado</span><br>en 24 horas</h2>
-      <p>Nos envías cómo opera tu empresa hoy — en cualquier formato. Nosotros identificamos los procesos de mayor ROI y construimos el agente certificado sobre tu operación real.</p>
+      <div class="section-label">How the AUDIT works</div>
+      <h2><span>→ Certified agent</span><br>in 24 hours</h2>
+      <p>Tell us how your operation runs today — in any format. We identify the highest-value processes — ROI, ontological fit and automation potential — and build the certified agent on your real data.</p>
     </div>
 
     <!-- 4 pasos -->
     <div class="bpmn-flow reveal">
       <div class="bpmn-step">
-        <div class="bpmn-step-n">01 · ENVÍA</div>
+        <div class="bpmn-step-n">01 · SEND</div>
         <span class="bpmn-step-icon">📄</span>
-        <div class="bpmn-step-title">Tu proceso actual</div>
-        <div class="bpmn-step-desc">BPMN, diagrama de flujo, descripción en texto, Excel o conversación. Trabajamos con lo que tienes, no con lo que debería ser.</div>
+        <div class="bpmn-step-title">Your current process</div>
+        <div class="bpmn-step-desc">BPMN, flowchart, text description, Excel or conversation. We work with what you have, not what it should be.</div>
         <span class="bpmn-step-tag">BPMN 2.0 · PDF · XLS · TXT</span>
       </div>
       <div class="bpmn-step">
-        <div class="bpmn-step-n">02 · MAPEAMOS</div>
+        <div class="bpmn-step-n">02 · MAP &amp; AGENTIC</div>
         <span class="bpmn-step-icon">🗺️</span>
-        <div class="bpmn-step-title">A biblioteca SCOR</div>
-        <div class="bpmn-step-desc">Identificamos los nodos automatizables y los mapeamos contra nuestra biblioteca de 111 procesos SCOR certificados.</div>
-        <span class="bpmn-step-tag">111 procesos · 6 dominios SCOR</span>
+        <div class="bpmn-step-title">Certified process frameworks and best in class Agentic Dev</div>
       </div>
       <div class="bpmn-step">
-        <div class="bpmn-step-n">03 · CERTIFICAMOS</div>
+        <div class="bpmn-step-n">03 · CERTIFY</div>
         <span class="bpmn-step-icon">🛡️</span>
-        <div class="bpmn-step-title">Agente certificado</div>
-        <div class="bpmn-step-desc">El Guardian certifica cada agente contra EU AI Act, ISO 42001 y NIST AI RMF antes del despliegue. Sin excepciones.</div>
-        <span class="bpmn-step-tag">EU AI Act · ISO 42001 · NIST</span>
+        <div class="bpmn-step-title">AI Governance and Data Protection</div>
+        <div class="bpmn-step-desc">Every agent certified against EU AI Act, ISO 42001 and NIST AI RMF — and in strict compliance with your data security.</div>
       </div>
       <div class="bpmn-step">
-        <div class="bpmn-step-n">04 · DESPLEGAMOS</div>
+        <div class="bpmn-step-n">04 · DEPLOY</div>
         <span class="bpmn-step-icon">🚀</span>
-        <div class="bpmn-step-title">Sobre tu stack actual</div>
-        <div class="bpmn-step-desc">SAP ECC · HANA · Oracle · Dynamics. Sin migración, sin tocar el ERP. El agente opera en tu entorno desde el día uno.</div>
-        <span class="bpmn-step-tag">SAP · Oracle · MS Dynamics</span>
+        <div class="bpmn-step-title">On your current stack</div>
+        <div class="bpmn-step-desc">SAP ECC · HANA · Oracle · Dynamics · Microsoft BC · Infor · Epicor · NetSuite · Odoo · Tailored ERPs/Systems. No migration, no ERP changes. The agent runs in your environment from day one.</div>
       </div>
     </div>
 
@@ -1096,25 +1088,25 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
       <div class="bpmn-example-header">
         <div class="bpmn-example-icon">📦</div>
         <div class="bpmn-example-meta">
-          <h3>Order-to-Cash — Empresa de Transporte</h3>
-          <p>SAP ECC → HANA · Proceso real · BPMN enviado por cliente</p>
+          <h3>Order-to-Cash — Transport Company</h3>
+          <p>SAP ECC → HANA · Real process · BPMN submitted by client</p>
         </div>
       </div>
 
       <!-- BPMN Diagram -->
       <div class="bpmn-diagram">
 
-        <!-- Lane: Cliente -->
+        <!-- Lane: Customer -->
         <div class="bpmn-lane">
-          <div class="bpmn-lane-label">Cliente</div>
+          <div class="bpmn-lane-label">Customer</div>
           <div class="bpmn-nodes">
             <div class="bpmn-node">
               <div class="bpmn-node-box node-start">●</div>
-              <div class="bpmn-node-label">Orden recibida</div>
+              <div class="bpmn-node-label">Order received</div>
             </div>
             <div style="width:24px;height:1px;background:var(--brd);flex-shrink:0;margin-top:-18px"></div>
             <div class="bpmn-node">
-              <div class="bpmn-node-box node-task-auto">Validar orden</div>
+              <div class="bpmn-node-box node-task-auto">Validate order</div>
               <div class="bpmn-node-label">🤖 Agente</div>
             </div>
             <div style="width:24px;height:1px;background:var(--brd);flex-shrink:0;margin-top:-18px"></div>
@@ -1125,39 +1117,39 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
           </div>
         </div>
 
-        <!-- Lane: Almacén -->
+        <!-- Lane: Warehouse -->
         <div class="bpmn-lane">
-          <div class="bpmn-lane-label">Almacén</div>
+          <div class="bpmn-lane-label">Warehouse</div>
           <div class="bpmn-nodes" style="margin-left:114px">
             <div class="bpmn-node">
-              <div class="bpmn-node-box node-task-auto">Reservar stock</div>
+              <div class="bpmn-node-box node-task-auto">Reserve stock</div>
               <div class="bpmn-node-label">🤖 Agente</div>
             </div>
             <div style="width:24px;height:1px;background:var(--brd);flex-shrink:0;margin-top:-18px"></div>
             <div class="bpmn-node">
-              <div class="bpmn-node-box node-task-auto">Preparar envío</div>
+              <div class="bpmn-node-box node-task-auto">Prepare shipment</div>
               <div class="bpmn-node-label">🤖 Agente</div>
             </div>
           </div>
         </div>
 
-        <!-- Lane: Finanzas -->
+        <!-- Lane: Finance -->
         <div class="bpmn-lane">
-          <div class="bpmn-lane-label">Finanzas</div>
+          <div class="bpmn-lane-label">Finance</div>
           <div class="bpmn-nodes" style="margin-left:114px">
             <div class="bpmn-node">
-              <div class="bpmn-node-box node-task" style="margin-left:118px">Aprobar pago</div>
-              <div class="bpmn-node-label">👤 Humano</div>
+              <div class="bpmn-node-box node-task-auto" style="margin-left:118px">Approve payment</div>
+              <div class="bpmn-node-label">🤖 Agente</div>
             </div>
             <div style="width:24px;height:1px;background:var(--brd);flex-shrink:0;margin-top:-18px"></div>
             <div class="bpmn-node">
-              <div class="bpmn-node-box node-task-auto">Facturar</div>
+              <div class="bpmn-node-box node-task-auto">Invoice</div>
               <div class="bpmn-node-label">🤖 Agente</div>
             </div>
             <div style="width:24px;height:1px;background:var(--brd);flex-shrink:0;margin-top:-18px"></div>
             <div class="bpmn-node">
               <div class="bpmn-node-box node-end">●</div>
-              <div class="bpmn-node-label">Completado</div>
+              <div class="bpmn-node-label">Completed</div>
             </div>
           </div>
         </div>
@@ -1167,48 +1159,30 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
       <!-- Métricas -->
       <div class="bpmn-metrics">
         <div class="bpmn-metric">
-          <span class="bpmn-metric-val">5/6</span>
-          <span class="bpmn-metric-label">Nodos automatizables</span>
+          <span class="bpmn-metric-val">6/6</span>
+          <span class="bpmn-metric-label">Automatable nodes</span>
         </div>
         <div class="bpmn-metric">
-          <span class="bpmn-metric-val green">65%</span>
-          <span class="bpmn-metric-label">Automatización v1</span>
+          <span class="bpmn-metric-val green">100%</span>
+          <span class="bpmn-metric-label">Automatable · 65% if human kept in payment approval loop</span>
         </div>
         <div class="bpmn-metric">
           <span class="bpmn-metric-val">24h</span>
-          <span class="bpmn-metric-label">Desde AUDIT a deploy</span>
+          <span class="bpmn-metric-label">AUDIT to deploy</span>
         </div>
         <div class="bpmn-metric">
-          <span class="bpmn-metric-val amber">3.2x</span>
-          <span class="bpmn-metric-label">ROI estimado · Año 1</span>
+          <span class="bpmn-metric-val amber">4.7x</span>
+          <span class="bpmn-metric-label">Conservative ROI · Year 1 · 65% automation</span>
         </div>
       </div>
 
       <div class="bpmn-cta-row">
-        <p>Este proceso está en nuestra biblioteca como <strong>BPMN-OTC-001</strong> — mapeado a SCOR-D2.2 → D2.15. Agente certificado, listo para SAP ECC y HANA.</p>
-        <a href="/audit" class="btn-primary" style="white-space:nowrap">Enviar mi BPMN →</a>
+        <p>Example of simple process</p>
+        <a href="/audit" class="btn-primary" style="white-space:nowrap">Book Free AUDIT →</a>
       </div>
     </div><!-- /bpmn-example -->
 
-    <!-- Upload CTA -->
-    <div class="bpmn-upload-box reveal" onclick="window.location.href='/audit'">
-      <span class="bpmn-upload-icon">⬆️</span>
-      <h3>¿Tienes tu BPMN o diagrama de proceso?</h3>
-      <p>Envíanoslo en el AUDIT. Analizamos en 24 horas qué procesos son automatizables, cuál es el ROI real sobre tus datos y cuánto tiempo lleva el primer agente en producción.</p>
-      <p style="color:var(--w3);font-size:0.75rem">Sin compromiso · Sin coste · Sin necesidad de datos perfectos</p>
-      <div class="bpmn-supported">
-        <span class="bpmn-fmt">BPMN 2.0</span>
-        <span class="bpmn-fmt">.bpmn</span>
-        <span class="bpmn-fmt">.xml</span>
-        <span class="bpmn-fmt">Visio .vsdx</span>
-        <span class="bpmn-fmt">Lucidchart</span>
-        <span class="bpmn-fmt">Draw.io</span>
-        <span class="bpmn-fmt">PDF</span>
-        <span class="bpmn-fmt">Excel</span>
-        <span class="bpmn-fmt">Descripción texto</span>
-      </div>
-      <a href="/audit" class="btn-primary" style="display:inline-block;margin-top:8px">Iniciar AUDIT gratuito →</a>
-    </div>
+
 
   </div><!-- /container -->
 </section>
@@ -1221,6 +1195,7 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
     <div class="audit-desc">Before committing to anything, you see the exact ROI for your specific operation.<br>If the numbers don't convince, there's no conversation to have.</div>
     <div class="audit-cta-line">✓ ROI calculated with your real data · No further commitment</div>
     <div class="audit-sub">Subsequent AUDITs · Priced on scope · On request</div>
+    <a href="/audit" class="btn-primary" style="display:inline-block;margin-top:24px">Book Free AUDIT →</a>
   </div>
 </section>
 
@@ -1231,9 +1206,9 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
     <div class="founder-av">AM</div>
     <div>
       <div class="founder-powered">Agentic Zero is powered by Dis-Solutions · 25 years of digital transformation consultancy</div>
-      <div class="founder-ref">25 years · 30 countries · 400+ industrial plants · $420M value demonstrated</div>
+      <div class="founder-ref">30 countries · 400+ industrial plants · +$420M value demonstrated</div>
       <div class="founder-creds">
-        <span class="founder-cred">MIT Operations</span>
+        <span class="founder-cred">MIT · Supply Chain Operations &amp; Analytics</span>
         <span class="founder-cred">Oxford AI Governance</span>
         <span class="founder-cred">Vanderbilt Agentic Dev</span>
         <span class="founder-cred">IBM AI Engineering</span>
@@ -1242,19 +1217,8 @@ footer{padding:24px 40px;border-top:1px solid var(--brd2);display:flex;justify-c
         <span class="founder-cred">NIST AI RMF</span>
         <span class="founder-cred">ISO/IEC 42001</span>
       </div>
-      <div class="founder-name">Alberto Muñoz Waissen</div>
-      <div class="founder-role">Founder &amp; CEO · Agentic Zero</div>
-    </div>
-  </div>
-</section>
 
-<!-- CTA FINAL -->
-<section style="padding:60px">
-  <div class="cta-final reveal">
-    <div class="cta-pre">Ready to see your numbers?</div>
-    <div class="cta-title">Book your free AUDIT.</div>
-    <div class="cta-sub">Your real data. Your exact ROI.<br>No commitment until the numbers convince you.</div>
-    <a href="/audit" class="cta-btn">Book Free AUDIT →</a>
+    </div>
   </div>
 </section>
 

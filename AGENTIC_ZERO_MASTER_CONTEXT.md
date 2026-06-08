@@ -3368,3 +3368,305 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.9"**
 ---
 *v3.9 — 6 Junio 2026 · Fin de jornada*
 *Plan ✅ · Source ✅ · Make ✅ · Deliver ✅ 8/8 · Web ✅ · AUDIT form ✅ · Herald v2.0 ✅*
+
+# RESUMEN A 8 DE JUNIO DE 2026
+
+# AGENTIC ZERO — MASTER CONTEXT v4.0
+## Fecha: 8 Junio 2026 | Sprint 5 completado
+
+---
+
+## 1. IDENTIDAD
+Alberto Muñoz Waissen — Founder & CEO, Agentic Zero powered by Dis-Solutions
+Web: agentic-zero.com (GitHub Pages · HTTPS ✅) | Email: alberto@agentic-zero.com
+Repo: github.com/agentic-zero/agentic-zero.github.io | Local: F:\agentic-zero\
+
+---
+
+## 2. INFRAESTRUCTURA LLM
+
+```
+PRODUCCIÓN:   xAI API (grok-3-mini)
+              XAI_API_KEY en F:\agentic-zero\.env
+              GROQ_MODEL=xai/grok-3-mini
+              $10 cargados · $9.05 restantes · $0.91 gastados
+              477K tokens · 1,652 requests · sin cuello de botella
+
+PERSONAL:     SuperGrok Lite (grok.com) — uso personal separado
+BACKUP:       Groq free (llama-3.3-70b) — 100K tokens/día
+FUTURO:       Anthropic Claude Opus 4.6 (Fase 2)
+```
+
+---
+
+## 3. BIBLIOTECA SCOR — ESTADO 8 JUNIO 2026
+
+### Procesos instalados: 111 JSON en F:\agentic-zero\library\scor\processes\
+
+```
+PLAN    P1.1-P1.5        ✅ 5 procesos · certificados
+SOURCE  S1.1-S1.5        ✅ 5 procesos · certificados
+        S2.1-S2.5 MTO    ✅ generados · pipeline corriendo
+        S3.1-S3.5 ETO    ✅ generados · pipeline corriendo
+MAKE    M1.1-M5.1        ✅ 5 procesos · certificados
+        M2.1-M2.5 MTO    ✅ generados · pipeline corriendo
+        M3.1-M3.5 ETO    ✅ generados · pipeline corriendo
+DELIVER D1.1-D1.5        ✅ 8/8 certificados
+        D2.2-D2.15 MTO   ✅ generados · pipeline corriendo
+        D3.2-D3.3 ETO    ✅ generados · pipeline corriendo
+        D4.2-D4.4 Retail ✅ generados · pipeline corriendo
+RETURN  SR1.1-SR3.5      ✅ 15 procesos · certificados
+        DR1.1-DR3.1      ✅ 6 procesos · certificados
+ENABLE  E1-E10           ✅ generados · pipeline corriendo
+DIGITAL DIG1-DIG10       ✅ pipeline corriendo (DIG5 completado · DIG6 arrancado)
+```
+
+### Auditor --all resultado (8 Jun):
+```
+62/62 aprobados · 0 rechazados
+AUTO_APPROVED: 37 · APPROVED_WITH_CONDITIONS: 25 (GDPR non-blocking)
+```
+
+### Queue status (última lectura):
+```
+builder_queue:   67 jobs (corriendo con xAI)
+packager_queue:  3 jobs
+completed:       323+
+failed:          0
+review:          71
+```
+
+---
+
+## 4. BIBLIOTECA BPMN — ESTADO 8 JUNIO 2026
+
+### Instalada en F:\agentic-zero\library\bpmn\processes\
+
+```
+ZIP 1 — bpmn_library.zip (14 procesos base)
+  OTC-001  Order-to-Cash ← Inmaculada ✅
+  PTP-001  Purchase-to-Pay
+  MRP-001  Material Requirements Planning
+  WMS-001/002  Warehouse Inbound/Outbound
+  SOP-001  S&OP · IBP-001  IBP
+  QMS-001  CAPA · RMA-001  Returns
+  FIN-001  Invoice-to-Cash · TRP-001  Transport
+  HRM-001  Production Scheduling · SPM-001  Supplier Performance
+  INV-001  Inventory Replenishment
+
+ZIP 2 — bpmn_complete.zip (27 procesos adicionales)
+  GXP-001-005  Pharma (Batch, Change, Deviation, Validation, Regulatory)
+  MFG-001-005  Manufacturing (ECO, MRO, NPI, Capacity, Shop Floor)
+  DIG-001-005  Digital SC (AI Forecast, Autonomous Replenishment, Digital Twin, IoT, Agent Handoff)
+  FIN-002-005  Finance (AP, Month-End, Credit, Trade Finance)
+  CRM-001-003  Customer (Complaints, Field Service, Renewal)
+  DEF-001-003  Defense (Controlled Items, Export Control, Config Mgmt)
+  ESG-001-002  ESG (Carbon, Supplier Sustainability)
+```
+
+**Total BPMN: 41 procesos**
+Cada proceso incluye: mapeo SCOR, potencial automatización, integración ERP, FTE típico
+
+### [PENDIENTE] Pipeline BPMN:
+```powershell
+python queue_system.py --pipeline BPMN-OTC-001 BPMN-PTP-001 BPMN-MRP-001 [todos los 41]
+```
+
+---
+
+## 5. PIONEER TEAM — VERSIONES ACTUALES
+
+```
+Builder  v1.2  F:\agentic-zero\pioneer_team\builder\builder.py
+               Fix xAI API key · GDPR explícito · detecta prefijo xai/
+Packager v1.1  F:\agentic-zero\pioneer_team\packager\packager.py
+               Fix xAI API key
+Guardian v1.1  F:\agentic-zero\pioneer_team\guardian\guardian.py
+               Fix xAI API key · GDPR non-blocking
+Auditor  v1.1  F:\agentic-zero\pioneer_team\auditor\auditor.py
+               GDPR non-blocking · APPROVE_WITH_CONDITIONS si score ≥75%
+Herald   v2.0  F:\agentic-zero\commercial\herald\herald.py
+               4 toques consultivos · ROI defendible · listo producción
+```
+
+---
+
+## 6. WEB Y FORMULARIO AUDIT
+
+```
+URL:      agentic-zero.com/audit ✅ LIVE
+Backend:  EmailJS (service_eq9ckdb · template_5br90kf · public key: _55-V5xnvLJVEGafR)
+Email:    alberto@agentic-zero.com (IONOS activo)
+Test:     Email recibido con todos los campos ✅
+```
+
+---
+
+## 7. PRIMER CLIENTE REAL — INMACULADA SIERRA
+
+```
+Email:    inmasire@hotmail.com
+Empresa:  transporte pequeña
+Proceso:  Order-to-Cash (BPMN-OTC-001 mapeado)
+ERP:      SAP ECC → HANA (transición)
+```
+
+### [PENDIENTE — PRIORIDAD 1] Email desde alberto@agentic-zero.com:
+```
+SUBJECT: Re: Agente para proceso Order-to-Cash — Sí es posible, preciso y rápido
+
+Hola Inmaculada,
+
+¿ES POSIBLE? Sí. 100% automatizable.
+¿ES PRECISO? 50-65% automatización primera versión.
+¿CUÁNTO? 24h desde AUDIT para proceso biblioteca estándar.
+SAP: RFC/BAPI en ECC · API REST en HANA · sin tocar ERP.
+
+Necesito:
+1. Volumen aproximado de órdenes por día o mes
+2. ¿En qué fase está la transición a HANA?
+3. ¿Quién valida las órdenes hoy y cuánto tiempo lleva por orden?
+
+Primer AUDIT gratuito. ¿Llamada esta semana 15 minutos?
+
+Alberto Munoz Waissen | Agentic Zero | Powered by Dis-Solutions
+alberto@agentic-zero.com | agentic-zero.com
+```
+
+---
+
+## 8. LINKEDIN POST — LISTO PARA PUBLICAR
+
+```
+Archivos:
+  F:\...\linkedin_post_agentica.docx  ← editable
+  F:\...\linkedin_post_final.md       ← referencia
+
+Publicar: miércoles o jueves (mayor audiencia)
+Condición: sistema listo para recibir contactos ✓
+
+Estructura del post:
+  1. AI Efficiency Trap — Klarna como caso honesto
+  2. Argumento infraestructura → analogía iOS 2008
+  3. 3 características empresas con ROI real
+  4. Datos demoledores integrados:
+     · 10x volumen · 99.2% precisión
+     · 40-60% menos defectos (Deloitte 2025)
+     · 90% automatización reposición
+     · 90 segundos vs horas en disrupciones
+     · 85% matching facturas · 10x menos coste
+     · 34% mejora eficiencia (Deloitte 600 ejecutivos)
+     · 60% disrupciones sin humano (Gartner 2026)
+  5. P&L math: 2.7-4.6 meses payback
+  6. "¿Cuánto está costando esperar?"
+  7. El planificador que queda valdrá más
+```
+
+---
+
+## 9. PRICING Y ROI
+
+```
+Standard:   $600/mes · $7,200/año
+Enterprise: $1,800/mes · $21,600/año
+Swarm:      Add-on · Enterprise · Priced on scope
+AUDIT:      First free
+
+ROI por sector (3 procesos · 3 FTE · defendible):
+Defense 349%·2.7m  Pharma 322%·2.8m  Chemical 285%·3.2m
+Automotive 264%·3.4m  Food 242%·3.7m  Mfg 218%·4.1m  Distrib 196%·4.6m
+```
+
+---
+
+## 10. PENDIENTES PRIORITARIOS
+
+```
+INMEDIATO:
+  1. ⏳ Email a Inmaculada (inmasire@hotmail.com)
+  2. ⏳ Auditor --all cuando pipeline 67 agentes termine
+  3. ⏳ Herald sequence para Inmaculada (O2C + interconectados)
+  4. ⏳ Pipeline BPMN (41 procesos) — lanzar cuando SCOR termine
+
+ESTA SEMANA:
+  5. ⏳ Publicar LinkedIn post (miércoles/jueves)
+  6. ⏳ ISO 9001 + ISO 42001 library JSON
+  7. ⏳ Guía BPMN en index.html (ejemplo descargable)
+  8. ⏳ Commit tras pipeline completado
+
+PRÓXIMO:
+  9. ⏳ LinkedIn Company Page Agentic Zero
+  10. ⏳ Adjuntos formulario AUDIT (primer ingreso)
+  11. ⏳ Groq Dev Tier o xAI permanente como default
+  12. ⏳ Activar privacidad WHOIS en IONOS
+  13. ⏳ Resolver www.agentic-zero.com
+
+COMPLETADO HOY:
+  ✅ xAI API integrada — sin cuello de botella ($10)
+  ✅ 111 procesos SCOR en biblioteca
+  ✅ 41 procesos BPMN generados (2 ZIPs)
+  ✅ Pipeline masivo 67 agentes corriendo con xAI
+  ✅ Builder + Packager + Guardian migrados a xAI
+  ✅ Auditor --all 62/62 aprobados
+  ✅ LinkedIn post versión final con datos demoledores
+  ✅ BPMN completo (GxP, MFG, Digital, Finance, CRM, DEF, ESG)
+  ✅ Argumentario vs gurús + AI Efficiency Trap + Klarna
+```
+
+---
+
+## 11. COMANDOS ESENCIALES
+
+```powershell
+# Activar
+cd F:\agentic-zero && .venv\Scripts\Activate.ps1
+
+# Queue status
+cd core\queue && python queue_system.py --status
+
+# Auditor sobre nuevos agentes
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+
+# Pipeline BPMN (cuando SCOR termine)
+cd F:\agentic-zero\core\queue
+python queue_system.py --pipeline BPMN-OTC-001 BPMN-PTP-001 BPMN-MRP-001 BPMN-WMS-001 BPMN-WMS-002 BPMN-SOP-001 BPMN-IBP-001 BPMN-QMS-001 BPMN-RMA-001 BPMN-FIN-001 BPMN-TRP-001 BPMN-HRM-001 BPMN-SPM-001 BPMN-INV-001 BPMN-GXP-001 BPMN-GXP-002 BPMN-GXP-003 BPMN-GXP-004 BPMN-GXP-005 BPMN-MFG-001 BPMN-MFG-002 BPMN-MFG-003 BPMN-MFG-004 BPMN-MFG-005 BPMN-DIG-001 BPMN-DIG-002 BPMN-DIG-003 BPMN-DIG-004 BPMN-DIG-005 BPMN-FIN-002 BPMN-FIN-003 BPMN-FIN-004 BPMN-FIN-005 BPMN-CRM-001 BPMN-CRM-002 BPMN-CRM-003 BPMN-DEF-001 BPMN-DEF-002 BPMN-DEF-003 BPMN-ESG-001 BPMN-ESG-002
+
+# Herald
+cd F:\agentic-zero\commercial\herald
+python herald.py --name "Inmaculada" --company "empresa-transporte" --sector transport --type sequence --language es --pain "O2C,SAP-transition"
+
+# Git
+cd F:\agentic-zero
+git add . && git commit -m "Sprint 5 · xAI · 111 SCOR · 41 BPMN · pipeline masivo"
+```
+
+---
+
+## 12. .ENV CONFIGURACIÓN ACTUAL
+
+```
+PROJECT_NAME=agentic-zero
+VERSION=1.0
+XAI_MODEL=xai/grok-3-mini
+XAI_API_KEY=xai-yq86qKnk0BDOrzOxww... [completa en disco]
+GROQ_API_KEY=gsk_Emn... [completa en disco]
+GROQ_MODEL=xai/grok-3-mini
+ANTHROPIC_API_KEY=your_anthropic_api_key
+ANTHROPIC_MODEL=claude-opus-4-6
+LIBRARY_PATH=F:/agentic-zero/library
+LOG_LEVEL=INFO
+```
+
+---
+
+## 13. PROTOCOLO DE RECUPERACIÓN
+
+1. Sube este archivo al nuevo chat
+2. Di: **"Continúa desde el Master Context v4.0"**
+3. El sistema tiene memoria completa del proyecto
+
+---
+*v4.0 — 8 Junio 2026*
+*SCOR 111 procesos ✅ · BPMN 41 procesos ✅ · xAI migrado ✅ · Pipeline masivo corriendo ✅*
+*LinkedIn post listo ✅ · Inmaculada pendiente ⏳ · ISO pendiente ⏳*

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-FIN-003",
+  "name": "Month-End Financial Close",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Financial Operations",
+  "category": "Finance",
+  "description": "Month-end close process from period-end activities to financial statement publication including journal entries, reconciliations, variance analysis and management reporting",
+  "bpmn_elements": {
+    "start_events": ["Period End"],
+    "end_events": ["Financial Statements Published"],
+    "tasks": ["Post Accruals", "Inventory Valuation", "Fixed Asset Depreciation", "Intercompany Reconciliation", "Balance Sheet Reconciliation", "Variance Analysis", "Management Review", "Consolidation", "Publish Financials"],
+    "gateways": ["All Entries Posted?", "Reconciled?", "Variance Explained?", "Approved?"],
+    "lanes": ["Accounting", "Controlling", "Management", "External Reporting"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E2", "SCOR-E3", "SCOR-E8"],
+    "secondary": ["SCOR-DIG9", "SCOR-E1"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["transaction data", "accrual schedules", "reconciliation templates", "reporting requirements"],
+  "outputs": ["financial statements", "management reports", "variance analysis", "audit trail"],
+  "kpis": ["close cycle time", "journal entry accuracy", "reconciliation completion rate", "reporting on-time"],
+  "sector_applicability": ["manufacturing", "pharma", "distribution", "food", "defense", "services"],
+  "erp_integration": ["SAP FI/CO", "Oracle Financials", "MS Dynamics", "BlackLine", "OneStream"],
+  "compliance_flags": ["IFRS/GAAP compliance", "SOX controls", "GDPR financial data", "audit requirements"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "5-20",
+  "source": "OMG BPMN 2.0 + AICPA Close Process Standards",
+  "confidence": 0.93
+}

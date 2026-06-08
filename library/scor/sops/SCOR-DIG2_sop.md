@@ -1,14 +1,13 @@
 # SOP — Manage IoT and Sensor Data Streams
 **Process ID:** SCOR-DIG2
 **Framework:** SCOR-Digital | **Domain:** Digital Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of managing end-to-end IoT infrastructure including sensor deployment, data ingestion, stream processing and real-time event management to feed autonomous supply chain agents
 
 ## Triggers
-- New sensor_readings received on ingestion endpoint
-- Scheduled stream processing job every 100ms
+- Continuous arrival of sensor_readings or device_telemetry on ingestion topic
 
 ## Inputs Required
 - sensor readings
@@ -18,9 +17,9 @@ Process of managing end-to-end IoT infrastructure including sensor deployment, d
 - equipment signals
 
 ## Process Steps
-1. IF data_latency > 500ms THEN trigger AnomalyAlert
-2. IF data_quality_rate < 0.95 THEN quarantine DataStream and log exception
-3. IF sensor_uptime < 0.99 THEN initiate failover to redundant Sensor
+1. IF data_latency_ms > 100 THEN emit AnomalyAlert
+2. IF sensor_uptime_pct < 99.0 THEN create SensorPerformanceReport with maintenance flag
+3. IF data_quality_rate < 0.95 THEN quarantine DataStream and log exception
 
 ## Expected Outputs
 - clean data streams
@@ -30,18 +29,20 @@ Process of managing end-to-end IoT infrastructure including sensor deployment, d
 - data quality metrics
 
 ## Business Rules
-- GDPR: anonymize all location_data before storage
-- EU AI Act Art.10: enforce data_quality_rate >= 0.98 on all ingested streams
-- cybersecurity: encrypt device_telemetry in transit using TLS 1.3
+- All sensor_readings must be timestamped with UTC and device_id
+- GDPR IoT data collection consent flag required before ingestion
+- EU AI Act Art.10 data quality checks must run on every batch
+- cybersecurity IoT standards encryption required for device_telemetry
 
 ## Exception Handling
-- Sensor offline > 5min: auto-create maintenance ticket and switch to backup sensor
-- Corrupted environmental_data: discard batch and increment failure counter
+- Missing device_telemetry: substitute last valid reading for max 300 seconds then raise AnomalyAlert
+- Location data absent in pharma sector: block EventTrigger and log compliance violation
 
 ## Success Criteria
-- sensor_uptime >= 0.995 over 24h window
-- data_latency <= 200ms p95
-- event_detection_accuracy >= 0.97
+- sensor_uptime >= 0.99
+- data_latency_ms <= 100
+- data_quality_rate >= 0.95
+- event_detection_accuracy >= 0.95
 
 ## Compliance Requirements
 - GDPR IoT data collection

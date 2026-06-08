@@ -1,7 +1,7 @@
 # SOP — Authorize MRO Product Return
 **Process ID:** SCOR-DR2.1
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of evaluating and authorizing MRO product return requests from customers or internal operations, establishing credit or exchange terms
@@ -16,8 +16,9 @@ Process of evaluating and authorizing MRO product return requests from customers
 - return policy
 
 ## Process Steps
-1. IF ProductConditionAssessment.compliant_with(ReturnPolicy) AND PurchaseHistory.valid THEN create MROReturnAuthorization ELSE reject request
-2. IF MRO hazardous THEN require environmental compliance check before authorization
+1. IF product_condition_score >= policy_threshold AND purchase_history_valid THEN create MROReturnAuthorization ELSE reject_request
+2. IF hazardous_material_flag == true THEN require environmental_compliance_check
+3. IF personal_data_present THEN enforce GDPR_consent_verification
 
 ## Expected Outputs
 - MRO return authorization
@@ -25,16 +26,20 @@ Process of evaluating and authorizing MRO product return requests from customers
 - return instructions
 
 ## Business Rules
-- authorization_cycle_time must be <= KPI threshold
-- GDPR consent required if personal data present in request
-- asset_management_policy must be enforced on all MRO returns
+- authorization_cycle_time <= 48_hours
+- credit_recovery_rate >= 0.85
+- authorization must reference asset_management_policy_id
+- return_instructions must include carrier and tracking_template
 
 ## Exception Handling
-- If return request missing required fields, route to manual review queue before processing
-- If sector is pharma or defense, enforce additional regulatory approval step
+- Missing purchase_history: auto-request from ERP and pause 24h
+- Hazardous MRO: route to environmental_officer before authorization
+- GDPR personal_data without consent: reject and log for compliance_audit
 
 ## Success Criteria
-- MROReturnAuthorization issued with status=approved AND CreditOrExchangeTerms generated AND AuthorizationAccuracy KPI >= threshold
+- MROReturnAuthorization generated with status=approved
+- credit_or_exchange_terms attached
+- cycle_time recorded and accuracy_kpi >= 0.95
 
 ## Compliance Requirements
 - asset management policy

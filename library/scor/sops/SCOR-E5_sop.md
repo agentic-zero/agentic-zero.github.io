@@ -1,15 +1,14 @@
 # SOP — Manage Supply Chain Assets
 **Process ID:** SCOR-E5
 **Framework:** SCOR | **Domain:** Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of managing physical and digital assets across the supply chain including equipment, facilities, technology infrastructure and IoT devices that support autonomous operations
 
 ## Triggers
-- Scheduled daily/weekly asset review cron job
-- Real-time threshold breach on AssetPerformanceData stream
-- New CapitalPlan or TechnologyRoadmap version published
+- scheduled cron job from technology_roadmap review date
+- real-time threshold breach alert from asset_performance_data
 
 ## Inputs Required
 - asset registry
@@ -19,9 +18,8 @@ Process of managing physical and digital assets across the supply chain includin
 - technology roadmap
 
 ## Process Steps
-1. IF assetUptime < 0.95 THEN generate MaintenancePlan
-2. IF maintenanceComplianceRate < 0.98 THEN escalate to compliance audit
-3. IF returnOnAssets < target THEN produce InvestmentRecommendation
+1. IF asset_uptime < 0.95 THEN create MaintenancePlan
+2. IF asset_utilization_rate < 0.75 THEN generate InvestmentRecommendation
 
 ## Expected Outputs
 - asset utilization reports
@@ -31,17 +29,15 @@ Process of managing physical and digital assets across the supply chain includin
 - asset performance dashboards
 
 ## Business Rules
-- All assets must comply with ISO 55001 registry requirements
-- MaintenanceSchedule must be executed within SLA window defined in maintenance schedules
-- Environmental compliance checks required before LifecycleAssessment approval
+- asset_registry must contain ISO 55001 compliance flag for every asset
+- maintenance_compliance_rate must be >= 0.98
+- all outputs require environmental compliance flag
 
 ## Exception Handling
-- IoT device offline: switch to last-known AssetPerformanceData and flag for manual inspection within 24h
-- CapitalPlan budget exceeded: defer non-critical InvestmentRecommendation and log exception
+- If asset_performance_data missing > 10% of records, halt process and request IoT sensor refresh before generating reports
 
 ## Success Criteria
-- asset_utilization_rate >= target AND maintenance_compliance_rate >= 0.98 AND asset_uptime >= 0.95
-- All outputs (reports, plans, dashboards) generated and stored within SLA
+- asset_utilization_rate >= 0.80 AND asset_uptime >= 0.99 AND all compliance_flags validated
 
 ## Compliance Requirements
 - ISO 55001 asset management

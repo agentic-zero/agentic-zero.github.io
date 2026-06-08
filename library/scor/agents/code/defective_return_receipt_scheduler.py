@@ -4,7 +4,7 @@ Process: SCOR-DR1.2
 Name: defective_return_receipt_scheduler
 Framework: SCOR
 Domain: Return
-Generated: 2026-06-07T17:11:13.999737
+Generated: 2026-06-08T10:09:06.594596
 Compliance: GxP if pharma, cold chain if required, health and safety regulations
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,11 @@ class DefectiveReturnReceiptSchedulerAgent:
     Process of scheduling and coordinating the receipt of defective product returns from customers including dock scheduling and inspection resource allocation
     
     Capabilities:
-    #   - schedule_dock_appointments
-    #   - allocate_inspection_resources
-    #   - check_warehouse_capacity
-    #   - handle_hazardous_exceptions
-    #   - enforce_compliance_rules
+    #   - validate_rma_and_notice
+    #   - check_capacity_and_resources
+    #   - create_receipt_schedule
+    #   - enforce_sector_compliance
+    #   - handle_exceptions
     
     Compliance: GxP if pharma, cold chain if required, health and safety regulations
     """
@@ -140,43 +140,50 @@ class DefectiveReturnReceiptSchedulerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF warehouse_capacity.available_slots >= 1 AND inspection_resources.available >= required_hours THEN create Dock_Appointment ELSE queue request
+        # - IF sector == 'pharma' THEN enforce GxP compliance on Inspection_Plan
+        # - IF product.requires_cold_chain THEN allocate temperature-controlled dock and resources
+        # - IF Warehouse_Capacity.available < required_space THEN reject or reschedule appointment
         
         Business rules:
-        # - receipt_schedule must include dock_id and inspection_start_time
-        # - compliance_flags.pharma requires GxP audit trail on all outputs
-        # - cold_chain.required == true implies temperature_controlled_dock == true
+        # - RMA_Authorization must be valid and non-expired before scheduling
+        # - Dock_Appointment must not exceed warehouse operating hours
+        # - Inspection_Plan must allocate resources with efficiency >= KPI target
+        # - All compliance_flags must be checked before confirming schedule
         """
         outputs = {}
         
-# Extract and validate inputs with defaults for edge cases
-        rma = inputs.get('RMA authorization', {}) or {}
-        shipment = inputs.get('customer shipment notice', {}) or {}
-        warehouse = inputs.get('warehouse capacity', {}) or {}
-        inspection = inputs.get('inspection resources', {}) or {}
-        required_hours = shipment.get('inspection_hours', 2)
-        # Decision point evaluation per spec
-        if warehouse.get('available_slots', 0) >= 1 and inspection.get('available', 0) >= required_hours:
-            dock_id = warehouse.get('dock_id', 'DOCK_DEFAULT')
-            insp_start = '2024-01-01T10:00:00'
-            dock_appointment = {'dock_id': dock_id, 'appointment_time': insp_start}
-            inspection_plan = {'start_time': insp_start, 'resources_allocated': inspection.get('resources', [])}
-            receipt_schedule = {'dock_id': dock_id, 'inspection_start_time': insp_start}
-            # Cold chain rule enforcement
-            if shipment.get('cold_chain', {}).get('required'):
-                dock_appointment['temperature_controlled_dock'] = True
-            # Pharma GxP audit trail on all outputs
-            if rma.get('compliance_flags', {}).get('pharma'):
-                audit = {'event': 'return_receipt_scheduled', 'timestamp': '2024-01-01T09:00:00'}
-                receipt_schedule['gxp_audit_trail'] = audit
-                dock_appointment['gxp_audit_trail'] = audit
-                inspection_plan['gxp_audit_trail'] = audit
+# Extract and validate inputs per rules
+        rma = inputs['RMA authorization']
+        shipment = inputs['customer shipment notice']
+        capacity = inputs['warehouse capacity']
+        resources = inputs['inspection resources']
+        if not rma.get('valid') or rma.get('expired'):
+            raise ValueError('RMA_Authorization must be valid and non-expired')
+        required_space = shipment.get('volume', 0)
+        if capacity.get('available', 0) < required_space:
+            raise ValueError('Warehouse_Capacity insufficient: reject or reschedule')
+        # Apply decision points
+        inspection_plan = {'steps': ['receive', 'inspect'], 'resources': resources}
+        if shipment.get('sector') == 'pharma':
+            inspection_plan['compliance'] = 'GxP'
+        if shipment.get('requires_cold_chain'):
+            dock_appointment = {'dock': 'temp-controlled', 'hours': capacity.get('operating_hours')}
         else:
-            # Queue on insufficient capacity/resources
-            receipt_schedule = {'status': 'queued', 'reason': 'capacity_or_resources'}
-            dock_appointment = {'status': 'queued'}
-            inspection_plan = {'status': 'queued'}
-        outputs = {'receipt schedule': receipt_schedule, 'dock appointment': dock_appointment, 'inspection plan': inspection_plan}
+            dock_appointment = {'dock': 'standard', 'hours': capacity.get('operating_hours')}
+        if dock_appointment['hours'] > capacity.get('max_operating_hours', 24):
+            raise ValueError('Dock_Appointment exceeds warehouse operating hours')
+        # Efficiency check per rules
+        if resources.get('efficiency', 0) < resources.get('kpi_target', 0.9):
+            raise ValueError('Inspection_Plan efficiency below KPI target')
+        receipt_schedule = {'date': shipment.get('eta'), 'status': 'confirmed'}
+        for flag in rma.get('compliance_flags', []):
+            if not flag.get('checked'):
+                raise ValueError('All compliance_flags must be checked')
+        # Populate required outputs
+        outputs = {}
+        outputs['receipt schedule'] = receipt_schedule
+        outputs['dock appointment'] = dock_appointment
+        outputs['inspection plan'] = inspection_plan
         return outputs
         
         return outputs
@@ -186,9 +193,9 @@ class DefectiveReturnReceiptSchedulerAgent:
         Built-in compliance validation
         
         Checks:
-        # - GxP_audit_trail_verification
-        # - cold_chain_temperature_control_validation
-        # - health_safety_regulations_check
+        # - GxP_for_pharma
+        # - cold_chain_requirements
+        # - health_and_safety_regulations
         """
         checks_passed = []
         checks_failed = []
@@ -212,7 +219,7 @@ class DefectiveReturnReceiptSchedulerAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['hazardous product detected', 'repeated queuing or capacity shortfall', 'double-booking risk or stale resource data']
+        escalation_rules = ['Missing or invalid RMA', 'Insufficient resources after reallocation', 'Cold chain or GxP violation risk']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -226,7 +233,7 @@ class DefectiveReturnReceiptSchedulerAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['scheduling_accuracy', 'dock_utilization', 'resource_efficiency', 'queue_length']
+            "monitoring": ['scheduling_accuracy', 'dock_utilization', 'resource_efficiency_kpi']
         }
 
 

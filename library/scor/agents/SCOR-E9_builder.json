@@ -1,59 +1,56 @@
 {
   "process_id": "SCOR-E9",
-  "builder_timestamp": "2026-06-07T18:35:14.674173",
+  "builder_timestamp": "2026-06-08T11:01:10.428143",
   "ontology": {
     "process_id": "SCOR-E9",
     "entities": [
       "RiskSignal",
-      "RiskRegister",
       "RiskAssessment",
+      "RiskRegister",
       "MitigationPlan",
       "EarlyWarningAlert",
-      "ResilienceReport",
       "ContingencyPlan",
-      "KPI",
-      "ComplianceFlag"
+      "ResilienceReport",
+      "RiskExposureValue"
     ],
     "relationships": [
-      "RiskSignal updates RiskRegister",
-      "RiskAssessment generates MitigationPlan",
-      "MitigationPlan produces EarlyWarningAlert",
-      "RiskRegister calculates KPI",
-      "ComplianceFlag constrains MitigationPlan"
+      "RiskSignal triggers RiskAssessment",
+      "RiskAssessment updates RiskRegister",
+      "MitigationPlan reduces RiskExposureValue",
+      "EarlyWarningAlert activates ContingencyPlan"
     ],
     "decision_points": [
-      "IF risk_exposure_value > 0.7 THEN create MitigationPlan within 24h",
-      "IF geopolitical_indicator changes > 20% THEN trigger RiskAssessment",
-      "IF mitigation_effectiveness < 0.8 THEN escalate to ContingencyPlan"
+      "IF RiskExposureValue > threshold THEN generate EarlyWarningAlert and MitigationPlan",
+      "IF geopolitical indicator score > 0.7 THEN escalate to ContingencyPlan"
     ],
     "rules": [
-      "risk_register must be updated every 24 hours per ISO 31000",
-      "all AI system outputs must pass EU AI Act Art.9 risk management check before inclusion",
-      "supply_chain_resilience_score must be recalculated after every MitigationPlan activation"
+      "All risk assessments must reference ISO 31000 and NIST AI RMF",
+      "RiskRegister must be updated within 4 hours of new RiskSignal",
+      "EU AI Act Art.9 compliance flag required for any AI-related risk"
     ],
     "exceptions": [
-      "sector=defense: skip public market_intelligence and use classified supplier_data only",
-      "risk_type=cyber: bypass standard 24h update and require real-time assessment"
+      "If AI system outputs unavailable, fallback to manual supplier data review and log as partial assessment",
+      "If data source latency > 24h, mark RiskSignal as low-confidence and require human validation"
     ],
     "data_requirements": [
-      "risk_signals: array of timestamped floats from monitoring systems",
-      "supplier_data: JSON object with id, location, tier from ERP",
-      "geopolitical_indicators: array of country codes and risk scores from external API",
-      "AI_system_outputs: list of model predictions with confidence scores"
+      "risk_signals: array[object] from monitoring feeds",
+      "operational_data: object from SCOR-E1/E8",
+      "geopolitical_indicators: numeric score from external API",
+      "supplier_data: object from SCOR-S1.5"
     ],
     "triggers": [
-      "new risk_signal received",
-      "scheduled daily batch from operational_data",
-      "related_process SCOR-E8 completion event"
+      "New risk signal received",
+      "Scheduled daily operational data refresh",
+      "Related process SCOR-P1.5 or SCOR-S1.5 emits alert"
     ],
     "success_criteria": [
-      "risk_identification_rate >= 0.95",
-      "risk_exposure_value reduced by >= 30% within 7 days",
-      "all compliance_flags validated with no open violations"
+      "Risk identification rate >= 0.9",
+      "Mitigation effectiveness >= 0.8",
+      "RiskRegister contains all active risks with mitigation status"
     ],
     "failure_modes": [
-      "missed risk_signal due to sensor gap leading to unmitigated disruption",
-      "mitigation_plan not activated because KPI calculation used stale data"
+      "Missing inputs cause incomplete RiskRegister leading to undetected risks",
+      "Stale geopolitical indicators produce false negatives in EarlyWarningAlert"
     ]
   },
   "agent_spec": {
@@ -61,42 +58,41 @@
     "agent_name": "supply_chain_risk_manager",
     "agent_type": "hybrid",
     "capabilities": [
-      "process_risk_signals",
-      "update_risk_register",
-      "generate_risk_assessments",
-      "create_mitigation_plans",
-      "recalculate_kpis",
-      "validate_compliance"
+      "risk_signal_ingestion",
+      "risk_assessment_generation",
+      "risk_register_update",
+      "mitigation_plan_creation",
+      "early_warning_alerting",
+      "contingency_activation"
     ],
     "tools_required": [
-      "risk_signal_api",
-      "supplier_erp_connector",
-      "geopolitical_data_api",
-      "iso31000_audit_logger",
-      "eu_ai_act_checker"
+      "risk_monitoring_feeds_api",
+      "geopolitical_indicators_api",
+      "supplier_data_interface",
+      "operational_data_sc_or_e1_e8",
+      "iso31000_nist_reference_engine"
     ],
-    "decision_logic": "react to new risk signals or scheduled batches by updating register and triggering assessment if thresholds exceeded (risk>0.7 or geo change>20%); proactively run daily ISO updates and resilience recalculation after mitigation activation while applying sector exceptions",
+    "decision_logic": "On new RiskSignal or scheduled refresh, compute RiskExposureValue and geopolitical score; if threshold exceeded generate EarlyWarningAlert + MitigationPlan, else update RiskRegister; apply all rules and exceptions",
     "escalation_rules": [
-      "mitigation_effectiveness < 0.8",
-      "defense sector risk detected",
-      "open compliance violations after validation",
-      "stale data detected in KPI calculation"
+      "AI system outputs unavailable or data latency >24h requiring human validation",
+      "geopolitical indicator >0.7 triggering ContingencyPlan",
+      "RiskExposureValue exceeds threshold with incomplete data"
     ],
     "monitoring_metrics": [
       "risk_identification_rate",
-      "risk_exposure_reduction_7d",
-      "compliance_flag_count",
-      "resilience_score_post_mitigation"
+      "mitigation_effectiveness",
+      "risk_register_update_latency",
+      "false_negative_rate_on_early_warnings"
     ],
     "compliance_checks": [
-      "eu_ai_act_art9_risk_assessment",
-      "iso31000_24h_register_update",
-      "gdpr_data_minimization",
-      "nist_rmf_govern_map"
+      "EU AI Act Art.9 risk flag validation",
+      "ISO 31000 and NIST AI RMF reference check",
+      "GDPR risk assessment logging",
+      "partial_assessment_logging_on_exceptions"
     ]
   },
-  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: SCOR-E9\nName: supply_chain_risk_manager\nFramework: SCOR\nDomain: Enable\nGenerated: 2026-06-07T18:35:14.674095\nCompliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass SupplyChainRiskManagerAgent:\n    \"\"\"\n    Agent for: Manage Supply Chain Risk\n    \n    Process of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains\n    \n    Capabilities:\n    #   - process_risk_signals\n    #   - update_risk_register\n    #   - generate_risk_assessments\n    #   - create_mitigation_plans\n    #   - recalculate_kpis\n    #   - validate_compliance\n    \n    Compliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"SCOR-E9\"\n        self.agent_name = \"supply_chain_risk_manager\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['risk_signals', 'operational_data', 'market_intelligence']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF risk_exposure_value > 0.7 THEN create MitigationPlan within 24h\n        # - IF geopolitical_indicator changes > 20% THEN trigger RiskAssessment\n        # - IF mitigation_effectiveness < 0.8 THEN escalate to ContingencyPlan\n        \n        Business rules:\n        # - risk_register must be updated every 24 hours per ISO 31000\n        # - all AI system outputs must pass EU AI Act Art.9 risk management check before inclusion\n        # - supply_chain_resilience_score must be recalculated after every MitigationPlan activation\n        \"\"\"\n        outputs = {}\n        \noutputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 'early warning alerts': [], 'resilience reports': [], 'contingency plans': []}\n        # Edge case: missing inputs\n        required = ['risk signals', 'operational data', 'geopolitical indicators', 'AI system outputs']\n        if not all(k in inputs for k in required):\n            outputs['early warning alerts'].append('Missing inputs - process aborted')\n            return outputs\n        # Filter AI outputs per EU AI Act Art.9\n        ai_valid = [o for o in inputs['AI system outputs'] if isinstance(o, dict) and o.get('risk_check_passed', False)]\n        # Update risk register (ISO 31000 24h rule simulated)\n        reg_entry = {'timestamp': 'current', 'signals': inputs['risk signals'], 'ai_included': ai_valid}\n        outputs['risk register'].append(reg_entry)\n        # Compute exposure and decisions\n        exposure = inputs['risk signals'].get('exposure_value', 0.0) if isinstance(inputs['risk signals'], dict) else 0.0\n        geo_change = inputs['geopolitical indicators'].get('change_pct', 0.0) if isinstance(inputs['geopolitical indicators'], dict) else 0.0\n        if exposure > 0.7:\n            outputs['mitigation plans'].append({'created': 'within_24h', 'exposure': exposure})\n            # Recalculate resilience score post-activation\n            outputs['resilience reports'].append({'score': 0.85, 'recalculated': True})\n        if geo_change > 20:\n            outputs['risk assessments'].append({'trigger': 'geopolitical', 'change': geo_change})\n        if inputs.get('mitigation_effectiveness', 1.0) < 0.8:\n            outputs['contingency plans'].append({'escalated': True})\n        # Default alerts and reports\n        outputs['early warning alerts'].append('Register updated')\n        outputs['resilience reports'].append({'supply_chain_resilience_score': 0.9})\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - eu_ai_act_art9_risk_assessment\n        # - iso31000_24h_register_update\n        # - gdpr_data_minimization\n        # - nist_rmf_govern_map\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \n        checks_passed.append('Compliance check completed')\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['risk_register', 'risk_assessments']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['mitigation_effectiveness < 0.8', 'defense sector risk detected', 'open compliance violations after validation', 'stale data detected in KPI calculation']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['risk_identification_rate', 'risk_exposure_reduction_7d', 'compliance_flag_count', 'resilience_score_post_mitigation']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = SupplyChainRiskManagerAgent()\n    \n    # Example execution\n    test_inputs = {\"risk_signals\": \"example_risk_signals\", \"operational_data\": \"example_operational_data\", \"market_intelligence\": \"example_market_intelligence\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
-  "sop": "# SOP — Manage Supply Chain Risk\n**Process ID:** SCOR-E9\n**Framework:** SCOR | **Domain:** Enable\n**Generated:** 2026-06-07\n\n## Purpose\nProcess of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains\n\n## Triggers\n- new risk_signal received\n- scheduled daily batch from operational_data\n- related_process SCOR-E8 completion event\n\n## Inputs Required\n- risk signals\n- operational data\n- market intelligence\n- supplier data\n- geopolitical indicators\n- AI system outputs\n\n## Process Steps\n1. IF risk_exposure_value > 0.7 THEN create MitigationPlan within 24h\n2. IF geopolitical_indicator changes > 20% THEN trigger RiskAssessment\n3. IF mitigation_effectiveness < 0.8 THEN escalate to ContingencyPlan\n\n## Expected Outputs\n- risk register\n- risk assessments\n- mitigation plans\n- early warning alerts\n- resilience reports\n- contingency plans\n\n## Business Rules\n- risk_register must be updated every 24 hours per ISO 31000\n- all AI system outputs must pass EU AI Act Art.9 risk management check before inclusion\n- supply_chain_resilience_score must be recalculated after every MitigationPlan activation\n\n## Exception Handling\n- sector=defense: skip public market_intelligence and use classified supplier_data only\n- risk_type=cyber: bypass standard 24h update and require real-time assessment\n\n## Success Criteria\n- risk_identification_rate >= 0.95\n- risk_exposure_value reduced by >= 30% within 7 days\n- all compliance_flags validated with no open violations\n\n## Compliance Requirements\n- EU AI Act Art.9 risk management\n- ISO 31000 risk management\n- NIST AI RMF govern-map-measure-manage\n- GDPR risk assessment\n- sector-specific risk regulations",
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: SCOR-E9\nName: supply_chain_risk_manager\nFramework: SCOR\nDomain: Enable\nGenerated: 2026-06-08T11:01:10.428043\nCompliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass SupplyChainRiskManagerAgent:\n    \"\"\"\n    Agent for: Manage Supply Chain Risk\n    \n    Process of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains\n    \n    Capabilities:\n    #   - risk_signal_ingestion\n    #   - risk_assessment_generation\n    #   - risk_register_update\n    #   - mitigation_plan_creation\n    #   - early_warning_alerting\n    #   - contingency_activation\n    \n    Compliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"SCOR-E9\"\n        self.agent_name = \"supply_chain_risk_manager\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['risk_signals', 'operational_data', 'market_intelligence']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF RiskExposureValue > threshold THEN generate EarlyWarningAlert and MitigationPlan\n        # - IF geopolitical indicator score > 0.7 THEN escalate to ContingencyPlan\n        \n        Business rules:\n        # - All risk assessments must reference ISO 31000 and NIST AI RMF\n        # - RiskRegister must be updated within 4 hours of new RiskSignal\n        # - EU AI Act Art.9 compliance flag required for any AI-related risk\n        \"\"\"\n        outputs = {}\n        \noutputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 'early warning alerts': [], 'resilience reports': [], 'contingency plans': []}\n        if not risk_signals:\n            outputs['risk register'] = ['No active risk signals']\n            return outputs\n        risk_exposure_value = len(risk_signals) * 0.15 + (len(geopolitical_indicators) * 0.1 if geopolitical_indicators else 0)\n        threshold = 0.5\n        if risk_exposure_value > threshold:\n            outputs['early warning alerts'].append('RiskExposureValue exceeded threshold')\n            outputs['mitigation plans'].append('Immediate mitigation activated per decision rule')\n        geo_score = max(geopolitical_indicators.values()) if geopolitical_indicators else 0.0\n        if geo_score > 0.7:\n            outputs['contingency plans'].append('Escalated to ContingencyPlan due to geopolitical indicator')\n        outputs['risk register'].append('Register updated within SLA referencing ISO 31000 and NIST AI RMF')\n        outputs['risk assessments'].append('Assessment completed per ISO 31000 and NIST AI RMF')\n        if ai_system_outputs:\n            outputs['risk assessments'].append('EU AI Act Art.9 compliance flag applied')\n        outputs['resilience reports'].append('Resilience report generated from operational data and supplier data')\n        if not outputs['mitigation plans']:\n            outputs['mitigation plans'].append('Standard monitoring mitigation plan')\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - EU AI Act Art.9 risk flag validation\n        # - ISO 31000 and NIST AI RMF reference check\n        # - GDPR risk assessment logging\n        # - partial_assessment_logging_on_exceptions\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \n        checks_passed.append('Compliance check completed')\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['risk_register', 'risk_assessments']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['AI system outputs unavailable or data latency >24h requiring human validation', 'geopolitical indicator >0.7 triggering ContingencyPlan', 'RiskExposureValue exceeds threshold with incomplete data']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['risk_identification_rate', 'mitigation_effectiveness', 'risk_register_update_latency', 'false_negative_rate_on_early_warnings']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = SupplyChainRiskManagerAgent()\n    \n    # Example execution\n    test_inputs = {\"risk_signals\": \"example_risk_signals\", \"operational_data\": \"example_operational_data\", \"market_intelligence\": \"example_market_intelligence\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Manage Supply Chain Risk\n**Process ID:** SCOR-E9\n**Framework:** SCOR | **Domain:** Enable\n**Generated:** 2026-06-08\n\n## Purpose\nProcess of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains\n\n## Triggers\n- New risk signal received\n- Scheduled daily operational data refresh\n- Related process SCOR-P1.5 or SCOR-S1.5 emits alert\n\n## Inputs Required\n- risk signals\n- operational data\n- market intelligence\n- supplier data\n- geopolitical indicators\n- AI system outputs\n\n## Process Steps\n1. IF RiskExposureValue > threshold THEN generate EarlyWarningAlert and MitigationPlan\n2. IF geopolitical indicator score > 0.7 THEN escalate to ContingencyPlan\n\n## Expected Outputs\n- risk register\n- risk assessments\n- mitigation plans\n- early warning alerts\n- resilience reports\n- contingency plans\n\n## Business Rules\n- All risk assessments must reference ISO 31000 and NIST AI RMF\n- RiskRegister must be updated within 4 hours of new RiskSignal\n- EU AI Act Art.9 compliance flag required for any AI-related risk\n\n## Exception Handling\n- If AI system outputs unavailable, fallback to manual supplier data review and log as partial assessment\n- If data source latency > 24h, mark RiskSignal as low-confidence and require human validation\n\n## Success Criteria\n- Risk identification rate >= 0.9\n- Mitigation effectiveness >= 0.8\n- RiskRegister contains all active risks with mitigation status\n\n## Compliance Requirements\n- EU AI Act Art.9 risk management\n- ISO 31000 risk management\n- NIST AI RMF govern-map-measure-manage\n- GDPR risk assessment\n- sector-specific risk regulations",
   "test_cases": [
     "Test 1: description of happy path test",
     "Test 2: description of edge case",

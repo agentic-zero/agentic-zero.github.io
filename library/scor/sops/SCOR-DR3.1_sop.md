@@ -1,13 +1,13 @@
 # SOP — Authorize Excess Product Return
 **Process ID:** SCOR-DR3.1
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of evaluating and authorizing excess inventory return requests, negotiating credit terms and defining acceptable return quantities and conditions
 
 ## Triggers
-- receipt of ExcessReturnRequest via API or portal submission
+- Receipt of ExcessReturnRequest via API or portal
 
 ## Inputs Required
 - excess return request
@@ -17,8 +17,8 @@ Process of evaluating and authorizing excess inventory return requests, negotiat
 - return policy
 
 ## Process Steps
-1. IF excess_return_request.quantity <= return_policy.max_excess_pct * customer_purchase_history.total_purchases AND inventory_data.available_capacity >= approved_quantity THEN create ExcessReturnAuthorization
-2. IF market_conditions.demand_forecast < 0.8 THEN negotiate reduced CreditTerms.value
+1. IF ExcessReturnRequest.quantity <= InventoryData.available AND matches ReturnPolicy THEN issue ExcessReturnAuthorization ELSE negotiate quantity
+2. IF customer tier from CustomerPurchaseHistory is premium THEN offer extended CreditTerms ELSE standard terms
 
 ## Expected Outputs
 - excess return authorization
@@ -27,17 +27,18 @@ Process of evaluating and authorizing excess inventory return requests, negotiat
 - return schedule
 
 ## Business Rules
-- authorization_cycle_time must be <= 48 hours
-- approved_return_quantity must be <= 15% of customer_purchase_history.last_12m_purchases
-- credit_terms.payment_window_days must be between 30 and 90
-- return_schedule must specify pickup_date within 14 days of authorization
+- ReturnPolicy must be checked before any authorization
+- CreditTerms must comply with financial reporting compliance
+- ApprovedReturnQuantity cannot exceed ExcessReturnRequest.quantity
 
 ## Exception Handling
-- IF product is perishable and expiry_date < return_schedule.pickup_date + 30 days THEN reject request and log expiry_compliance violation
-- IF GDPR applies and customer_personal_data missing consent flag THEN require explicit consent before processing
+- If sector is pharma and expiry compliance fails then reject return and log in compliance_flags
+- If GDPR applies and personal data missing then pause process until consent obtained
 
 ## Success Criteria
-- ExcessReturnAuthorization.status == 'approved' AND authorization_cycle_time <= 48 AND excess_return_recovery_rate >= 0.85
+- ExcessReturnAuthorization generated with status=approved
+- authorization_cycle_time < target_threshold
+- credit_terms_quality score >= 0.8
 
 ## Compliance Requirements
 - financial reporting compliance

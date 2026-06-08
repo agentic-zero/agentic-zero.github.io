@@ -1,13 +1,13 @@
 # SOP — Receive Defective Product Return
 **Process ID:** SCOR-DR1.3
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Physical receipt, inspection and verification of defective product returns against RMA authorization including condition assessment and system update
 
 ## Triggers
-- Arrival of scheduled ReturnShipment at receiving dock with RMADocument
+- Arrival of scheduled return shipment at receiving dock with valid RMA
 
 ## Inputs Required
 - scheduled return shipment
@@ -16,8 +16,7 @@ Physical receipt, inspection and verification of defective product returns again
 - receiving equipment
 
 ## Process Steps
-1. IF ReturnShipment matches RMADocument AND passes InspectionCriteria THEN create InspectionReport ELSE flag exception
-2. IF inspection passes THEN issue CreditTrigger ELSE hold for quarantine review
+1. IF received_serials match RMA AND condition passes inspection_criteria THEN accept ELSE quarantine
 
 ## Expected Outputs
 - received return confirmation
@@ -26,19 +25,18 @@ Physical receipt, inspection and verification of defective product returns again
 - credit trigger
 
 ## Business Rules
-- ReturnShipment must have valid RMADocument before physical receipt
-- InspectionReport must be generated before SystemInventoryUpdate
-- CreditTrigger only issued after successful inspection and confirmation
+- RMA must be valid and not expired before physical receipt
+- Inspection must complete within KPI cycle_time before system update
+- GxP compliance required if sector=pharma: all inspection data immutable
 
 ## Exception Handling
-- Mismatch between ReturnShipment and RMADocument: quarantine item and notify originator within 4 hours
-- Personal data detected in records: apply GDPR masking before SystemInventoryUpdate
+- Serial mismatch or damage beyond RMA: quarantine item, create exception ticket, notify originating SCOR-DR1.2
 
 ## Success Criteria
-- ReceivedReturnConfirmation generated
-- InspectionReport completed with pass flag
-- SystemInventoryUpdate executed
-- CreditTrigger issued
+- received return confirmation emitted
+- inspection_report generated with pass/fail
+- inventory_system updated
+- credit_trigger emitted within KPI time
 
 ## Compliance Requirements
 - GxP if pharma

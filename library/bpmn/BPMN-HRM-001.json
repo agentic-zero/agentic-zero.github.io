@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-HRM-001",
+  "name": "Production Scheduling",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Manufacturing",
+  "category": "Production",
+  "description": "Production scheduling and execution process from work order release to production completion including capacity allocation, material staging and quality control",
+  "bpmn_elements": {
+    "start_events": ["Production Order Released"],
+    "end_events": ["Production Complete", "Order Failed"],
+    "tasks": ["Verify Material Availability", "Allocate Machine Capacity", "Schedule Sequence", "Stage Materials", "Setup Machine", "Execute Production", "In-Process Quality Check", "Record Output", "Transfer to Storage"],
+    "gateways": ["Materials Ready?", "Capacity Available?", "Quality OK?", "Rework Required?"],
+    "lanes": ["Planning", "Production", "Quality", "Warehouse"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M1.1", "SCOR-M2.1", "SCOR-M2.2", "SCOR-M2.3", "SCOR-M4.1"],
+    "secondary": ["SCOR-S2.4", "SCOR-E5", "SCOR-DIG2"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["production orders", "BOM", "routing", "capacity plan", "material availability", "quality plans"],
+  "outputs": ["production schedule", "work instructions", "production records", "quality data", "finished goods"],
+  "kpis": ["schedule adherence", "OEE", "first-pass yield", "production cycle time"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "chemical", "automotive", "defense"],
+  "erp_integration": ["SAP PP", "Oracle Manufacturing", "MS Dynamics", "Siemens Opcenter"],
+  "compliance_flags": ["GxP batch records if pharma", "HACCP if food", "ISO 9001", "ATEX if applicable"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-12",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.94
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-WMS-002",
+  "name": "Warehouse Outbound Operations",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Warehouse Management",
+  "category": "Logistics",
+  "description": "Warehouse outbound process from order release to shipment dispatch including picking, packing, labeling, loading and documentation",
+  "bpmn_elements": {
+    "start_events": ["Order Released for Picking"],
+    "end_events": ["Shipment Dispatched"],
+    "tasks": ["Generate Pick List", "Wave Planning", "Pick Products", "Verify Pick", "Pack Shipment", "Label & Document", "Stage for Loading", "Load Vehicle", "Dispatch"],
+    "gateways": ["Pick Complete?", "Quality Check OK?", "Hazardous Goods?", "Cross-dock?"],
+    "lanes": ["Warehouse", "Quality", "Logistics", "System"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.9", "SCOR-D2.10", "SCOR-D2.11", "SCOR-D2.12", "SCOR-D1.2"],
+    "secondary": ["SCOR-E5", "SCOR-DIG2", "SCOR-DIG5"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["sales orders", "pick lists", "inventory data", "carrier booking", "packaging specs"],
+  "outputs": ["picked orders", "packed shipments", "shipping documents", "dispatched vehicle"],
+  "kpis": ["pick accuracy", "order fulfillment rate", "on-time dispatch", "lines per hour"],
+  "sector_applicability": ["distribution", "manufacturing", "food", "pharma", "automotive", "retail"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle WMS", "Manhattan", "Blue Yonder"],
+  "compliance_flags": ["dangerous goods", "GxP if pharma", "customs export", "GDPR shipment data"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "5-20",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.94
+}

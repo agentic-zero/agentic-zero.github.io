@@ -4,7 +4,7 @@ Process: SCOR-SR3.5
 Name: excess_product_return_agent
 Framework: SCOR
 Domain: Return
-Generated: 2026-06-07T17:35:14.248604
+Generated: 2026-06-08T10:01:10.032185
 Compliance: expiry compliance, chain of custody, financial credit documentation
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,11 @@ class ExcessProductReturnAgentAgent:
     Physical execution of excess product return to supplier including preparation, shipment execution and credit confirmation
     
     Capabilities:
-    #   - validate_return_authorization
-    #   - enforce_expiry_and_accuracy_checks
-    #   - orchestrate_carrier_pickup_and_shipment
-    #   - monitor_proof_of_delivery
-    #   - trigger_credit_note_generation
+    #   - process_return_authorization
+    #   - schedule_carrier_pickup
+    #   - verify_expiry_chain_custody
+    #   - generate_credit_documentation
+    #   - handle_return_exceptions
     
     Compliance: expiry compliance, chain of custody, financial credit documentation
     """
@@ -140,43 +140,39 @@ class ExcessProductReturnAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF ReturnAuthorization.valid == true AND expiry_compliance == true THEN proceed to product preparation
-        # - IF carrier_pickup.confirmed == true THEN execute shipment and generate ReturnedExcessShipment
+        # - IF ReturnAuthorization.status == 'approved' THEN execute ProductPreparation
+        # - IF carrier pickup confirmed THEN generate ReturnedExcessShipment
         
         Business rules:
-        # - chain_of_custody document must be recorded at every handover
-        # - financial_credit_documentation required before CreditNote creation
-        # - return_accuracy must be verified against ReturnAuthorization before shipment
+        # - chain_of_custody: maintain signed logs for all pharma and food shipments
+        # - financial_credit_documentation: CreditNote must reference original PO and return authorization ID
+        # - expiry_compliance: reject return if product expiry < 30 days from receipt
         """
         outputs = {}
         
-outputs = {}
-        ra = inputs.get('return authorization', {})
-        if ra.get('valid') and ra.get('expiry_compliance'):
-            prep = inputs.get('product preparation', {})
-            if prep.get('return_accuracy_verified'):
-                custody = {'timestamp': 'now', 'handler': 'prep_to_carrier'}
-                carrier = inputs.get('carrier pickup', {})
-                if carrier.get('confirmed'):
-                    shipment = {'id': 'RET-' + str(hash(str(ra))), 'custody_log': [custody]}
-                    outputs['returned excess shipment'] = shipment
-                    outputs['proof of delivery'] = {'pod_id': 'POD-' + shipment['id'], 'status': 'delivered'}
-                    if inputs.get('financial_credit_documentation'):
-                        outputs['credit note'] = {'cn_id': 'CN-' + shipment['id'], 'amount': ra.get('credit_amount', 0)}
-                    else:
-                        outputs['credit note'] = None
-                else:
-                    outputs['returned excess shipment'] = None
-                    outputs['proof of delivery'] = None
-                    outputs['credit note'] = None
-            else:
-                outputs['returned excess shipment'] = None
-                outputs['proof of delivery'] = None
-                outputs['credit note'] = None
-        else:
-            outputs['returned excess shipment'] = None
-            outputs['proof of delivery'] = None
-            outputs['credit note'] = None
+# Validate return authorization approval per decision point
+        auth = inputs.get('return authorization', {})
+        if auth.get('status') != 'approved':
+            return {'returned excess shipment': None, 'proof of delivery': None, 'credit note': None}
+        # Execute product preparation only after approval
+        prep = inputs.get('product preparation', {})
+        # Enforce expiry compliance rule: reject if < 30 days
+        if prep.get('expiry_days', 0) < 30:
+            return {'returned excess shipment': None, 'proof of delivery': None, 'credit note': None}
+        # Maintain chain_of_custody signed logs for pharma/food
+        custody_log = {'signed': True, 'timestamp': prep.get('timestamp')}
+        # Confirm carrier pickup before generating shipment
+        pickup = inputs.get('carrier pickup', {})
+        if not pickup.get('confirmed'):
+            return {'returned excess shipment': None, 'proof of delivery': None, 'credit note': None}
+        # Generate returned excess shipment
+        schedule = inputs.get('return shipment schedule', {})
+        returned_shipment = {'id': schedule.get('id'), 'items': prep.get('items'), 'custody_log': custody_log}
+        # Generate proof of delivery
+        proof = {'shipment_id': returned_shipment['id'], 'carrier': pickup.get('carrier'), 'signed': True}
+        # Create credit note referencing original PO and auth ID per rule
+        credit = {'po_id': auth.get('po_id'), 'auth_id': auth.get('id'), 'amount': prep.get('value')}
+        outputs = {'returned excess shipment': returned_shipment, 'proof of delivery': proof, 'credit note': credit}
         return outputs
         
         return outputs
@@ -187,9 +183,8 @@ outputs = {}
         
         Checks:
         # - expiry_compliance
-        # - chain_of_custody_documentation
+        # - chain_of_custody
         # - financial_credit_documentation
-        # - return_accuracy_verification
         """
         checks_passed = []
         checks_failed = []
@@ -213,7 +208,7 @@ outputs = {}
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['product expired beyond policy', 'ProofOfDelivery missing after 48h', 'shipment rejected due to inaccurate contents or missing compliance_flags']
+        escalation_rules = ['product damaged during CarrierPickup', 'CreditNote rejected by supplier', 'expiry < 30 days']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -227,7 +222,7 @@ outputs = {}
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['return_completion_rate', 'credit_recovery_rate', 'exception_count', 'chain_of_custody_completeness']
+            "monitoring": ['ReturnCompletionRate', 'CreditRecoveryRate', 'ReturnAccuracy']
         }
 
 

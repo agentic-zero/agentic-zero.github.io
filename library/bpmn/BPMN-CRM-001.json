@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-CRM-001",
+  "name": "Customer Complaint Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Customer Service",
+  "category": "Customer",
+  "description": "Customer complaint handling process from receipt to resolution including acknowledgment, investigation, corrective action and customer follow-up",
+  "bpmn_elements": {
+    "start_events": ["Complaint Received"],
+    "end_events": ["Complaint Closed", "Escalated to Management"],
+    "tasks": ["Log Complaint", "Acknowledge Customer", "Classify Complaint", "Investigate", "Root Cause Analysis", "Define Resolution", "Implement Resolution", "Communicate to Customer", "Verify Satisfaction", "Close Complaint"],
+    "gateways": ["Regulatory Reportable?", "Safety Issue?", "Resolution Accepted?", "CAPA Required?"],
+    "lanes": ["Customer Service", "Quality", "Operations", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-DR1.1", "SCOR-E8", "SCOR-E2"],
+    "secondary": ["SCOR-SR1.1", "SCOR-E9", "SCOR-DIG10"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["customer complaint", "order data", "product data", "regulatory requirements", "resolution options"],
+  "outputs": ["complaint record", "resolution", "customer communication", "regulatory report if needed", "CAPA"],
+  "kpis": ["complaint cycle time", "first-contact resolution rate", "customer satisfaction score", "repeat complaint rate"],
+  "sector_applicability": ["pharma", "food", "manufacturing", "distribution", "automotive", "consumer goods"],
+  "erp_integration": ["SAP CRM", "Salesforce", "Veeva CRM", "ServiceNow", "Zendesk"],
+  "compliance_flags": ["GxP if pharma", "GDPR customer data", "consumer protection", "product liability"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + ISO 10002 Customer Satisfaction",
+  "confidence": 0.93
+}

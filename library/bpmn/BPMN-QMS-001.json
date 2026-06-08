@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-QMS-001",
+  "name": "Non-Conformance & CAPA Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Quality Management",
+  "category": "Quality",
+  "description": "Non-conformance detection through CAPA closure process including detection, containment, root cause analysis, corrective action implementation and effectiveness verification",
+  "bpmn_elements": {
+    "start_events": ["Non-Conformance Detected"],
+    "end_events": ["CAPA Closed", "Escalated to Management"],
+    "tasks": ["Log Non-Conformance", "Contain Affected Product", "Notify Stakeholders", "Root Cause Analysis", "Define Corrective Actions", "Implement Actions", "Verify Effectiveness", "Close CAPA"],
+    "gateways": ["Safety Issue?", "Root Cause Found?", "Actions Effective?", "Regulatory Reportable?"],
+    "lanes": ["Operations", "Quality", "Management", "Regulatory Affairs"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M4.1", "SCOR-SR1.1", "SCOR-SR1.2", "SCOR-E8"],
+    "secondary": ["SCOR-E1", "SCOR-E9", "SCOR-DIG10"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["non-conformance report", "product data", "process data", "regulatory requirements", "customer complaints"],
+  "outputs": ["CAPA record", "containment actions", "corrective actions", "effectiveness data", "regulatory notifications"],
+  "kpis": ["CAPA cycle time", "on-time closure rate", "recurrence rate", "regulatory on-time reporting"],
+  "sector_applicability": ["pharma", "food", "automotive", "defense", "chemical", "manufacturing"],
+  "erp_integration": ["SAP QM", "Oracle", "Veeva", "MasterControl", "ETQ"],
+  "compliance_flags": ["GxP CAPA if pharma", "ISO 9001 corrective action", "FDA 21 CFR", "EU GMP", "IATF 16949 automotive"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 Standard + ISO 9001",
+  "confidence": 0.94
+}

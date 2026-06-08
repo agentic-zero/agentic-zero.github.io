@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MFG-001",
+  "name": "Engineering Change Order (ECO)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Manufacturing Engineering",
+  "category": "Manufacturing",
+  "description": "Engineering change order process from change request to production implementation including design review, impact analysis, BOM update and work instruction revision",
+  "bpmn_elements": {
+    "start_events": ["Change Request Submitted"],
+    "end_events": ["Change Implemented", "Change Rejected"],
+    "tasks": ["Review Change Request", "Engineering Analysis", "Impact Assessment", "Cost Analysis", "Cross-functional Review", "Update BOM", "Update Drawings", "Update Work Instructions", "Train Operators", "Implement in Production"],
+    "gateways": ["Design Feasible?", "Cost Approved?", "Regulatory Impact?", "Immediate or Scheduled?"],
+    "lanes": ["Engineering", "Manufacturing", "Quality", "Finance", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D1.3", "SCOR-D1.4", "SCOR-M2.1", "SCOR-E8"],
+    "secondary": ["SCOR-S1.3", "SCOR-E3", "SCOR-DIG10"],
+    "automation_potential": 0.55
+  },
+  "inputs": ["change request", "engineering drawings", "BOM", "cost data", "regulatory requirements"],
+  "outputs": ["updated BOM", "revised drawings", "updated work instructions", "change implementation record"],
+  "kpis": ["ECO cycle time", "implementation on-time rate", "rework rate post-change", "cost variance"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "aerospace", "industrial equipment"],
+  "erp_integration": ["SAP PLM", "Oracle", "Windchill", "Teamcenter", "Arena PLM"],
+  "compliance_flags": ["AS9100 if aerospace", "IATF 16949 automotive", "GDPR if personal data", "export control"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "3-8",
+  "source": "OMG BPMN 2.0 + ISO 9001",
+  "confidence": 0.93
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MRP-001",
+  "name": "Material Requirements Planning",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Production Planning",
+  "category": "Manufacturing",
+  "description": "MRP process from demand input to production order release including BOM explosion, capacity check, material availability and work order generation",
+  "bpmn_elements": {
+    "start_events": ["Demand Signal Received"],
+    "end_events": ["Production Orders Released"],
+    "tasks": ["Load Demand", "Explode BOM", "Calculate Net Requirements", "Check Inventory", "Check Capacity", "Generate Planned Orders", "Convert to Production Orders", "Release Orders"],
+    "gateways": ["Material Available?", "Capacity Available?", "Exception?", "Approve Plan?"],
+    "lanes": ["Planning", "Production", "Procurement", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.1", "SCOR-P1.2", "SCOR-P1.3", "SCOR-M2.1", "SCOR-S1.1"],
+    "secondary": ["SCOR-E2", "SCOR-E3", "SCOR-DIG6"],
+    "automation_potential": 0.85
+  },
+  "inputs": ["demand forecast", "sales orders", "BOM", "inventory levels", "capacity data", "lead times"],
+  "outputs": ["production orders", "purchase requisitions", "capacity plan", "material shortage alerts"],
+  "kpis": ["planning accuracy", "material availability rate", "capacity utilization", "exception rate"],
+  "sector_applicability": ["manufacturing", "automotive", "pharma", "chemical", "food", "defense"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle", "MS Dynamics"],
+  "compliance_flags": ["GxP if pharma", "production scheduling compliance", "GDPR if personal data"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-10",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.94
+}

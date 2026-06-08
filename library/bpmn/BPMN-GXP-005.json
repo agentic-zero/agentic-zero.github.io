@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-GXP-005",
+  "name": "Regulatory Submission Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "GxP Operations",
+  "category": "Pharma",
+  "description": "Regulatory submission preparation and lifecycle management from dossier compilation to agency approval including variations, renewals and post-approval changes",
+  "bpmn_elements": {
+    "start_events": ["Submission Triggered"],
+    "end_events": ["Approval Received", "Submission Rejected"],
+    "tasks": ["Compile Dossier", "Quality Review", "Regulatory Strategy", "Prepare Submission", "Submit to Agency", "Track Status", "Respond to Queries", "Receive Decision", "Implement Approval"],
+    "gateways": ["Complete?", "Agency Query?", "Approved?", "Major Variation?"],
+    "lanes": ["Regulatory Affairs", "Quality Assurance", "Medical Affairs", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E8", "SCOR-D1.3", "SCOR-DIG10"],
+    "secondary": ["SCOR-E1", "SCOR-E6", "SCOR-E9"],
+    "automation_potential": 0.40
+  },
+  "inputs": ["clinical data", "quality data", "manufacturing data", "regulatory guidelines", "submission templates"],
+  "outputs": ["regulatory dossier", "agency submission", "approval certificate", "label update"],
+  "kpis": ["submission on-time rate", "query response time", "approval cycle time", "submission quality score"],
+  "sector_applicability": ["pharma", "biotech", "medical devices"],
+  "erp_integration": ["Veeva Vault RIM", "Documentum", "eCTD tools"],
+  "compliance_flags": ["ICH CTD format", "FDA 21 CFR", "EMA regulations", "GDPR clinical data"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-12",
+  "source": "OMG BPMN 2.0 + ICH M4 CTD",
+  "confidence": 0.92
+}

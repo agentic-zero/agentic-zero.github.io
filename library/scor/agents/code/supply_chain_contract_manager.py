@@ -4,7 +4,7 @@ Process: SCOR-E6
 Name: supply_chain_contract_manager
 Framework: SCOR
 Domain: Enable
-Generated: 2026-06-07T18:23:14.039017
+Generated: 2026-06-08T10:49:07.939549
 Compliance: GDPR data processing agreements, contractual compliance, EU AI Act supplier obligations, financial regulations
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,11 @@ class SupplyChainContractManagerAgent:
     Process of managing supplier and customer contracts throughout their lifecycle including negotiation, execution, compliance monitoring and renewal across all SCOR domains
     
     Capabilities:
-    #   - monitor_contract_expiry_and_performance
+    #   - monitor_expirations_and_renewals
     #   - generate_compliance_alerts
-    #   - optimize_renewal_terms
-    #   - handle_exceptions_with_defaults
+    #   - validate_legal_requirements
+    #   - calculate_performance_scorecards
+    #   - trigger_negotiation_parameters
     
     Compliance: GDPR data processing agreements, contractual compliance, EU AI Act supplier obligations, financial regulations
     """
@@ -139,50 +140,55 @@ class SupplyChainContractManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF contract_compliance_rate < 0.95 THEN generate ComplianceAlert and notify legal team
-        # - IF days_until_expiry <= 90 THEN create RenewalSchedule and start negotiation
-        # - IF cycle_time > 30 days THEN escalate to contract manager
+        # - IF days_until_expiration <= 90 THEN create RenewalSchedule
+        # - IF compliance_rate < 0.95 THEN generate ComplianceAlert
+        # - IF contract_value_deviation > 0.1 THEN flag for value optimization review
         
         Business rules:
-        # - All ExecutedContract must include GDPR data processing agreements
-        # - Contract value optimization must be recalculated on every PerformanceScorecard update
-        # - EU AI Act supplier obligations must be flagged in ComplianceAlert for pharma and defense sectors
+        # - Every Contract must reference at least one LegalRequirement for GDPR or EU AI Act if sector is pharma or defense
+        # - Contract cycle time must be calculated as execution_date - start_negotiation_date and stored in PerformanceScorecard
+        # - On-time renewal rate is computed only for contracts with renewal_date within the last 365 days
         """
         outputs = {}
         
 outputs = {'executed contracts': [], 'contract repository': [], 'compliance alerts': [], 'renewal schedules': [], 'performance scorecards': []}
-        # Edge case: empty inputs yield empty outputs
-        if not contract_templates or not supplier_performance_data:
-            return outputs
-        # Populate repository from templates
-        outputs['contract repository'] = list(contract_templates)
-        # Compute performance scorecards and compliance from supplier data
-        for perf in supplier_performance_data:
-            scorecard = {'supplier': perf.get('supplier', 'unknown'), 'score': perf.get('score', 0), 'compliance_rate': perf.get('compliance_rate', 0.0)}
-            outputs['performance scorecards'].append(scorecard)
-            rate = scorecard['compliance_rate']
-            if rate < 0.95:
-                alert = {'type': 'ComplianceAlert', 'supplier': scorecard['supplier'], 'rate': rate}
-                sector = perf.get('sector', '')
-                if sector in ('pharma', 'defense'):
-                    alert['flag'] = 'EU AI Act supplier obligations'
-                outputs['compliance alerts'].append(alert)
-        # Apply negotiation and business terms to create executed contracts
-        for tmpl in contract_templates:
-            contract = dict(tmpl)
-            contract.update(negotiation_parameters)
-            contract.update(business_terms)
-            if 'GDPR' not in str(contract.get('clauses', '')):
-                contract['clauses'] = contract.get('clauses', '') + ' GDPR data processing agreements'
+        contract_templates = contract_templates or []
+        negotiation_parameters = negotiation_parameters or []
+        supplier_performance_data = supplier_performance_data or []
+        legal_requirements = legal_requirements or []
+        business_terms = business_terms or []
+        # Build contract repository from templates and terms
+        for idx, template in enumerate(contract_templates):
+            contract = dict(template)
+            contract.update(business_terms[idx] if idx < len(business_terms) else {})
+            contract['id'] = idx
+            outputs['contract repository'].append(contract)
             outputs['executed contracts'].append(contract)
-        # Renewal schedules based on expiry (assume data in legal_requirements)
-        for req in legal_requirements:
-            if req.get('days_until_expiry', 999) <= 90:
-                outputs['renewal schedules'].append({'contract': req.get('contract_id'), 'action': 'start negotiation'})
-        # Cycle time escalation check
-        cycle = negotiation_parameters.get('cycle_time', 0)
-        if cycle > 30:
-            outputs['compliance alerts'].append({'type': 'Escalation', 'message': 'cycle_time > 30 days'})
+        # Apply decision points and rules using performance data
+        for perf in supplier_performance_data:
+            days_until_expiration = perf.get('days_until_expiration', 999)
+            compliance_rate = perf.get('compliance_rate', 1.0)
+            contract_value_deviation = perf.get('contract_value_deviation', 0.0)
+            sector = perf.get('sector', '')
+            if days_until_expiration <= 90:
+                outputs['renewal schedules'].append({'contract_id': perf.get('contract_id'), 'schedule_date': 'auto_renew'})
+            if compliance_rate < 0.95:
+                outputs['compliance alerts'].append({'contract_id': perf.get('contract_id'), 'alert': 'low_compliance'})
+            if contract_value_deviation > 0.1:
+                outputs['compliance alerts'].append({'contract_id': perf.get('contract_id'), 'alert': 'value_optimization'})
+            # Legal requirement rule for sensitive sectors
+            if sector in ('pharma', 'defense'):
+                if not any(lr.get('type') in ('GDPR', 'EU AI Act') for lr in legal_requirements):
+                    outputs['compliance alerts'].append({'contract_id': perf.get('contract_id'), 'alert': 'missing_legal_ref'})
+            # Cycle time calculation for scorecard
+            exec_date = perf.get('execution_date', 0)
+            start_date = perf.get('start_negotiation_date', 0)
+            cycle_time = exec_date - start_date if exec_date and start_date else 0
+            on_time = 1 if perf.get('renewal_date', 0) > 0 else 0
+            outputs['performance scorecards'].append({'contract_id': perf.get('contract_id'), 'cycle_time': cycle_time, 'on_time_renewal': on_time})
+        # Edge case: empty inputs yield empty outputs with no alerts
+        if not supplier_performance_data:
+            outputs['performance scorecards'] = [{'note': 'no_data'}]
         return outputs
         
         return outputs
@@ -192,9 +198,9 @@ outputs = {'executed contracts': [], 'contract repository': [], 'compliance aler
         Built-in compliance validation
         
         Checks:
-        # - GDPR data processing agreements present
-        # - EU AI Act supplier obligations flagged for pharma/defense
-        # - ExecutedContract validity against LegalRequirement
+        # - GDPR data processing agreements
+        # - EU AI Act supplier obligations
+        # - sector-specific LegalRequirement validation
         """
         checks_passed = []
         checks_failed = []
@@ -218,7 +224,7 @@ outputs = {'executed contracts': [], 'contract repository': [], 'compliance aler
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['contract_compliance_rate < 0.95 notify legal team', 'cycle_time > 30 days escalate to contract manager', 'non-compliant renewal auto-reject and route to legal review']
+        escalation_rules = ['LegalRequirement conflicts with BusinessTerm', 'supplier performance data older than 180 days', 'contract executed without required compliance_flags']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -232,7 +238,7 @@ outputs = {'executed contracts': [], 'contract repository': [], 'compliance aler
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['contract_compliance_rate', 'on-time_renewal_rate', 'contract_cycle_time']
+            "monitoring": ['contract_compliance_rate', 'on_time_renewal_rate', 'contract_cycle_time']
         }
 
 

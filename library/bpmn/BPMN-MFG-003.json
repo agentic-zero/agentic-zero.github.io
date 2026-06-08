@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MFG-003",
+  "name": "New Product Introduction (NPI)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Product Lifecycle",
+  "category": "Manufacturing",
+  "description": "New product introduction process from concept approval to production readiness including design, prototyping, validation, supply chain setup and commercial launch",
+  "bpmn_elements": {
+    "start_events": ["Product Concept Approved"],
+    "end_events": ["Product Launched", "Product Cancelled"],
+    "tasks": ["Concept Development", "Feasibility Study", "Design & Engineering", "Prototype Build", "Testing & Validation", "Regulatory Approval", "Supply Chain Setup", "Pilot Production", "Commercial Launch"],
+    "gateways": ["Stage Gate 1?", "Stage Gate 2?", "Stage Gate 3?", "Regulatory OK?"],
+    "lanes": ["R&D", "Engineering", "Manufacturing", "Supply Chain", "Regulatory", "Commercial"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D1.3", "SCOR-D1.1", "SCOR-S1.3", "SCOR-M2.1"],
+    "secondary": ["SCOR-E7", "SCOR-E6", "SCOR-DIG6"],
+    "automation_potential": 0.40
+  },
+  "inputs": ["product concept", "market requirements", "regulatory guidelines", "technical specifications", "supply chain requirements"],
+  "outputs": ["product design", "validated product", "regulatory approval", "production-ready process", "commercial launch plan"],
+  "kpis": ["NPI cycle time", "stage gate pass rate", "time-to-market", "launch quality score"],
+  "sector_applicability": ["pharma", "manufacturing", "food", "automotive", "defense", "consumer goods"],
+  "erp_integration": ["SAP PLM", "Oracle", "Windchill", "Agile PLM"],
+  "compliance_flags": ["regulatory approval if pharma/food", "export control", "GDPR product data", "IP protection"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "10-50",
+  "source": "OMG BPMN 2.0 + Stage-Gate International",
+  "confidence": 0.91
+}

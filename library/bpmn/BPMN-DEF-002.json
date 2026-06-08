@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DEF-002",
+  "name": "Export Control Clearance",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Defense & Regulated",
+  "category": "Defense",
+  "description": "Export control screening and clearance process for shipments, technology transfers and services to international customers including denied party screening, license determination and compliance documentation",
+  "bpmn_elements": {
+    "start_events": ["Export Transaction Initiated"],
+    "end_events": ["Export Cleared", "Export Blocked"],
+    "tasks": ["Classify Items (ECCN/USML)", "Screen Parties", "Determine License Requirement", "Apply License Exception", "Apply for Export License", "Document Controls", "Obtain License", "Clear Shipment", "File Electronic Export Information"],
+    "gateways": ["License Required?", "Party Denied?", "Exception Applies?", "License Approved?"],
+    "lanes": ["Sales/Operations", "Export Compliance", "Legal", "Government Authority"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E8", "SCOR-D2.6", "SCOR-D3.3"],
+    "secondary": ["SCOR-E1", "SCOR-S3.1", "SCOR-DIG10"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["product ECCN classification", "customer data", "country data", "denied party lists", "license data"],
+  "outputs": ["export clearance", "export license", "AES filing", "compliance documentation"],
+  "kpis": ["clearance cycle time", "compliance rate", "denied party hit rate", "license on-time rate"],
+  "sector_applicability": ["defense", "aerospace", "technology", "chemical", "pharma"],
+  "erp_integration": ["SAP GTS", "Oracle GTM", "Descartes", "Amber Road", "Visual Compliance"],
+  "compliance_flags": ["ITAR 22 CFR 120-130", "EAR 15 CFR 730-774", "OFAC sanctions", "EU dual-use regulations"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + BIS Export Administration Regulations",
+  "confidence": 0.92
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-SPM-001",
+  "name": "Supplier Performance Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Supplier Management",
+  "category": "Procurement",
+  "description": "Supplier performance monitoring and improvement process from KPI collection to supplier development including scorecarding, review meetings and corrective action plans",
+  "bpmn_elements": {
+    "start_events": ["Performance Period End"],
+    "end_events": ["Supplier Plan Approved", "Supplier Disqualified"],
+    "tasks": ["Collect KPI Data", "Calculate Scorecard", "Identify Gaps", "Prepare Review", "Conduct Supplier Review", "Agree Improvement Plan", "Monitor Actions", "Update Approved Supplier List"],
+    "gateways": ["Performance Acceptable?", "Improvement Possible?", "Strategic Supplier?", "Actions Completed?"],
+    "lanes": ["Procurement", "Quality", "Operations", "Supplier"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.5", "SCOR-S1.3", "SCOR-S1.4", "SCOR-E10"],
+    "secondary": ["SCOR-E6", "SCOR-E8", "SCOR-E2"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["delivery data", "quality data", "invoice data", "supplier contracts", "performance targets"],
+  "outputs": ["supplier scorecard", "improvement plans", "approved supplier list", "development actions"],
+  "kpis": ["supplier OTD", "supplier quality rate", "supplier cost index", "supplier development ROI"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "automotive", "chemical", "food"],
+  "erp_integration": ["SAP SRM", "SAP Ariba", "Oracle", "Jaggaer", "Coupa"],
+  "compliance_flags": ["GDPR supplier data", "anti-corruption", "ISO 9001 supplier evaluation", "GxP supplier qualification if pharma"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.93
+}

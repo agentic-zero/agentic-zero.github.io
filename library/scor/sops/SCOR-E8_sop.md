@@ -1,16 +1,16 @@
 # SOP — Manage Supply Chain Regulatory Compliance
 **Process ID:** SCOR-E8
 **Framework:** SCOR | **Domain:** Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of identifying, monitoring and ensuring compliance with all applicable regulations across the supply chain including EU AI Act, GDPR, GxP, customs, environmental and sector-specific requirements
 
 ## Triggers
-- receipt of regulatory_update
+- new regulatory_update received
 - scheduled compliance audit
-- new operational_data ingestion
-- related_process completion (SCOR-E1, SCOR-E3, SCOR-E9, SCOR-S1.5)
+- audit_finding created
+- operational_data change affecting compliance_flags
 
 ## Inputs Required
 - regulatory landscape
@@ -20,9 +20,9 @@ Process of identifying, monitoring and ensuring compliance with all applicable r
 - operational data
 
 ## Process Steps
-1. IF sector == 'pharma' THEN activate GxP flag and require GxP compliance check
-2. IF new regulatory update received THEN trigger compliance gap analysis within 24 hours
-3. IF audit finding severity == 'critical' THEN escalate to remediation plan within 48 hours
+1. IF sector in ['pharma'] THEN enforce GxP flag
+2. IF compliance_rate < 1.0 THEN create RemediationPlan
+3. IF regulatory_update received THEN refresh compliance_flags
 
 ## Expected Outputs
 - compliance status reports
@@ -32,20 +32,19 @@ Process of identifying, monitoring and ensuring compliance with all applicable r
 - compliance certificates
 
 ## Business Rules
-- compliance_rate must be >= 0.98
-- audit finding resolution time must be <= 30 days
-- regulatory penalty incidence must be 0
-- all active ComplianceFlags must have corresponding audit trails
+- compliance_flags must include EU AI Act, GDPR, ISO 42001, NIST AI RMF for all sectors
+- GxP flag required only when sector=pharma
+- audit finding resolution time must be logged in audit_trails
+- regulatory penalty incidence must remain zero
 
 ## Exception Handling
-- IF conflicting regulations detected (e.g. GDPR vs local law) THEN apply strictest requirement and log exception with legal review flag
-- IF sector applicability changes mid-process THEN re-evaluate all ComplianceFlags and regenerate compliance status report
+- non-pharma sector: skip GxP checks and set compliance_flags without GxP
+- customs regulations apply only for cross-border flows in operational_data
 
 ## Success Criteria
-- compliance_rate >= 0.98
-- all audit_findings resolved within SLA
-- compliance_certificates issued for all active ComplianceFlags
-- zero regulatory penalties recorded
+- compliance_rate == 1.0
+- regulatory_penalty_incidence == 0
+- all compliance_certificates issued and audit_trails complete
 
 ## Compliance Requirements
 - EU AI Act full compliance

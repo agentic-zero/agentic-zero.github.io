@@ -4,7 +4,7 @@ Process: SCOR-DR3.1
 Name: excess_return_authorizer
 Framework: SCOR
 Domain: Return
-Generated: 2026-06-07T17:27:14.247001
+Generated: 2026-06-08T10:25:06.064117
 Compliance: financial reporting compliance, GDPR if personal data, expiry compliance if perishable
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,11 @@ class ExcessReturnAuthorizerAgent:
     Process of evaluating and authorizing excess inventory return requests, negotiating credit terms and defining acceptable return quantities and conditions
     
     Capabilities:
-    #   - validate_excess_return_request
-    #   - check_inventory_and_policy
-    #   - determine_credit_terms
-    #   - generate_authorization_and_schedule
+    #   - evaluate_excess_return_request
+    #   - check_return_policy_and_inventory
+    #   - determine_approved_quantity_and_credit_terms
+    #   - generate_return_authorization
+    #   - handle_compliance_exceptions
     
     Compliance: financial reporting compliance, GDPR if personal data, expiry compliance if perishable
     """
@@ -139,50 +140,39 @@ class ExcessReturnAuthorizerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF excess return request quantity <= available inventory AND within return policy window THEN approve ELSE reject or negotiate
-        # - IF customer purchase history shows high value AND market conditions favorable THEN offer standard credit terms ELSE tighten terms
+        # - IF ExcessReturnRequest.quantity <= InventoryData.available AND matches ReturnPolicy THEN issue ExcessReturnAuthorization ELSE negotiate quantity
+        # - IF customer tier from CustomerPurchaseHistory is premium THEN offer extended CreditTerms ELSE standard terms
         
         Business rules:
-        # - ApprovedReturnQuantity must not exceed current inventory levels from InventoryData
+        # - ReturnPolicy must be checked before any authorization
         # - CreditTerms must comply with financial reporting compliance
-        # - ReturnSchedule must respect expiry compliance if product is perishable
-        # - Authorization cycle time must be logged for KPI tracking
+        # - ApprovedReturnQuantity cannot exceed ExcessReturnRequest.quantity
         """
         outputs = {}
         
-# Extract and validate inputs with edge case handling
-        req = inputs.get('excess return request', {}) or {}
+req = inputs.get('excess return request', {}) or {}
         inv = inputs.get('inventory data', {}) or {}
         hist = inputs.get('customer purchase history', {}) or {}
-        mkt = inputs.get('market conditions', {}) or {}
+        market = inputs.get('market conditions', {}) or {}
         pol = inputs.get('return policy', {}) or {}
-        req_qty = max(0, req.get('quantity', 0))
-        avail = max(0, inv.get('available', 0))
-        within_win = bool(pol.get('within_window', False))
-        high_val = bool(hist.get('high_value', False))
-        fav_mkt = bool(mkt.get('favorable', False))
-        perish = bool(inv.get('perishable', False))
-        exp = inv.get('expiry_date')
-        # Decision: approve only if quantity and policy satisfied
-        if req_qty > 0 and req_qty <= avail and within_win:
-            auth = 'approved'
-            appr_qty = req_qty
+        requested_qty = req.get('quantity', 0)
+        available = inv.get('available', 0)
+        matches_policy = bool(pol.get('allows_excess', False)) and requested_qty > 0
+        if requested_qty <= available and matches_policy:
+            auth = True
+            approved_qty = requested_qty
         else:
-            auth = 'rejected'
-            appr_qty = 0
-        # Credit terms per decision rule
-        terms = 'standard' if high_val and fav_mkt else 'tightened'
-        # Schedule respecting perishability rule
-        if perish and exp:
-            sched = 'expedited before ' + str(exp)
-        else:
-            sched = 'standard'
-        outputs = {
-            'excess return authorization': auth,
-            'approved return quantity': appr_qty,
-            'credit terms': terms,
-            'return schedule': sched
-        }
+            auth = False
+            approved_qty = min(requested_qty, available) if matches_policy else 0
+        approved_qty = min(approved_qty, requested_qty)
+        tier = hist.get('tier', 'standard')
+        credit = 'extended' if tier == 'premium' else 'standard'
+        schedule = market.get('preferred_schedule', 'standard 30 days')
+        outputs = {}
+        outputs['excess return authorization'] = auth
+        outputs['approved return quantity'] = approved_qty
+        outputs['credit terms'] = credit
+        outputs['return schedule'] = schedule
         return outputs
         
         return outputs
@@ -192,9 +182,9 @@ class ExcessReturnAuthorizerAgent:
         Built-in compliance validation
         
         Checks:
-        # - financial_reporting_compliance
+        # - financial_reporting_compliance_on_credit_terms
         # - gdpr_consent_validation
-        # - expiry_compliance_check
+        # - expiry_compliance_for_perishables
         """
         checks_passed = []
         checks_failed = []
@@ -218,7 +208,7 @@ class ExcessReturnAuthorizerAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['GDPR consent flag missing', 'credit negotiation timeout', 'stale inventory data detected']
+        escalation_rules = ['pharma expiry compliance failure', 'GDPR consent missing', 'ReturnPolicy violation without negotiable quantity', 'process timeout from missing data']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -232,7 +222,7 @@ class ExcessReturnAuthorizerAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['authorization_cycle_time', 'approval_rate', 'policy_violation_count']
+            "monitoring": ['authorization_cycle_time', 'approval_rate', 'credit_terms_quality_score']
         }
 
 

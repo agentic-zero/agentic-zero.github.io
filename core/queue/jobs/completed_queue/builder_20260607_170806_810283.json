@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170806_810283",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-SR3.5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:08:06.810304",
+  "status": "completed",
+  "started_at": "2026-06-08T09:57:08.399075",
+  "completed_at": "2026-06-08T10:01:10.035591",
+  "error": null,
+  "result": {
+    "agent_name": "excess_product_return_agent",
+    "ready_for_packager": true
+  }
+}

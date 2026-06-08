@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-WMS-001",
+  "name": "Warehouse Inbound Operations",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Warehouse Management",
+  "category": "Logistics",
+  "description": "Warehouse inbound process from delivery appointment to putaway including receiving, inspection, labeling and inventory update",
+  "bpmn_elements": {
+    "start_events": ["Delivery Appointment Confirmed"],
+    "end_events": ["Stock Available"],
+    "tasks": ["Schedule Dock", "Receive Shipment", "Count & Verify", "Quality Inspect", "Label Products", "Assign Location", "Putaway", "Update Inventory"],
+    "gateways": ["Quality OK?", "Quantity Match?", "Hazardous?", "Temperature OK?"],
+    "lanes": ["Receiving", "Quality Control", "Warehouse", "System"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.1", "SCOR-S2.2", "SCOR-S2.3", "SCOR-S2.4", "SCOR-D2.8"],
+    "secondary": ["SCOR-E5", "SCOR-DIG2", "SCOR-DIG5"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["advance shipment notice", "purchase orders", "quality specs", "warehouse capacity", "dock schedule"],
+  "outputs": ["received inventory", "quality report", "putaway confirmation", "inventory update"],
+  "kpis": ["receiving accuracy", "putaway cycle time", "dock-to-stock time", "quality rejection rate"],
+  "sector_applicability": ["distribution", "manufacturing", "food", "pharma", "automotive", "retail"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle WMS", "MS Dynamics", "Manhattan", "Blue Yonder"],
+  "compliance_flags": ["GxP if pharma", "cold chain", "GDPR if personal data", "food safety"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "3-15",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.94
+}

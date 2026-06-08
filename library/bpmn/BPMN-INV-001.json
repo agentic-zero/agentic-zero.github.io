@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-INV-001",
+  "name": "Inventory Management & Replenishment",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Inventory",
+  "category": "Planning",
+  "description": "Inventory replenishment process from stock monitoring to purchase order creation including reorder point calculation, safety stock management and ABC classification",
+  "bpmn_elements": {
+    "start_events": ["Inventory Monitor Trigger"],
+    "end_events": ["Replenishment Order Placed", "No Action Required"],
+    "tasks": ["Monitor Stock Levels", "Calculate Reorder Point", "Check Safety Stock", "Analyze Demand", "Calculate Order Quantity", "Select Supplier", "Create Purchase Order", "Expedite if Critical"],
+    "gateways": ["Below Reorder Point?", "Critical Stock?", "Preferred Supplier Available?", "Approve Order?"],
+    "lanes": ["Planning", "Procurement", "Warehouse", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.1", "SCOR-P1.3", "SCOR-S1.1", "SCOR-E3"],
+    "secondary": ["SCOR-DIG6", "SCOR-DIG5", "SCOR-E2"],
+    "automation_potential": 0.90
+  },
+  "inputs": ["inventory levels", "demand forecast", "lead times", "safety stock parameters", "supplier data"],
+  "outputs": ["replenishment orders", "stock alerts", "inventory reports", "reorder recommendations"],
+  "kpis": ["inventory turnover", "stockout rate", "excess inventory rate", "replenishment accuracy"],
+  "sector_applicability": ["distribution", "manufacturing", "retail", "pharma", "food", "automotive"],
+  "erp_integration": ["SAP MM", "Oracle", "MS Dynamics", "Blue Yonder"],
+  "compliance_flags": ["expiry management if pharma/food", "GDPR if personal data", "financial reporting"],
+  "automation_complexity": "LOW",
+  "typical_fte": "1-4",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.96
+}

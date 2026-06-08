@@ -1,13 +1,13 @@
 # SOP — Schedule Defective Product Return Receipt
 **Process ID:** SCOR-DR1.2
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of scheduling and coordinating the receipt of defective product returns from customers including dock scheduling and inspection resource allocation
 
 ## Triggers
-- Valid RMA_Authorization received AND Customer_Shipment_Notice received
+- Receipt of valid RMA_Authorization combined with Customer_Shipment_Notice
 
 ## Inputs Required
 - RMA authorization
@@ -16,9 +16,9 @@ Process of scheduling and coordinating the receipt of defective product returns 
 - inspection resources
 
 ## Process Steps
-1. IF sector == 'pharma' THEN enforce GxP compliance check before scheduling
-2. IF product.requires_cold_chain == true THEN allocate temperature-controlled dock and inspection resources
-3. IF warehouse_capacity.available < required_space THEN reject or reschedule appointment
+1. IF sector == 'pharma' THEN enforce GxP compliance on Inspection_Plan
+2. IF product.requires_cold_chain THEN allocate temperature-controlled dock and resources
+3. IF Warehouse_Capacity.available < required_space THEN reject or reschedule appointment
 
 ## Expected Outputs
 - receipt schedule
@@ -26,18 +26,20 @@ Process of scheduling and coordinating the receipt of defective product returns 
 - inspection plan
 
 ## Business Rules
-- Dock_Appointment must not exceed 85% daily utilization
-- Inspection_Plan must assign at least one qualified inspector per return batch
-- Receipt_Schedule must be generated within 4 hours of valid RMA + shipment notice receipt
+- RMA_Authorization must be valid and non-expired before scheduling
+- Dock_Appointment must not exceed warehouse operating hours
+- Inspection_Plan must allocate resources with efficiency >= KPI target
+- All compliance_flags must be checked before confirming schedule
 
 ## Exception Handling
-- Invalid RMA: reject scheduling and send rejection notification to customer within 1 hour
-- Insufficient capacity: auto-escalate to warehouse manager and propose next available slot
-- Missing compliance data: hold scheduling until GxP or cold-chain verification is provided
+- Missing RMA_Authorization: halt process and request authorization from customer
+- Insufficient Inspection_Resources: notify related_process SCOR-DR1.3 for resource reallocation
+- Cold chain violation risk: flag and route to specialized handling or reject shipment
 
 ## Success Criteria
-- Receipt_Schedule status == 'confirmed' AND Dock_Appointment assigned AND Inspection_Plan resources allocated
-- All compliance_flags satisfied for sector
+- Receipt_Schedule created with scheduling accuracy >= 95%
+- Dock_Appointment confirmed with utilization >= 80%
+- Inspection_Plan generated meeting resource efficiency KPI
 
 ## Compliance Requirements
 - GxP if pharma

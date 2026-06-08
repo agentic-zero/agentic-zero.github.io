@@ -1,15 +1,15 @@
 # SOP — Manage Supply Chain Human Resources
 **Process ID:** SCOR-E4
 **Framework:** SCOR | **Domain:** Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of managing supply chain workforce including skills development, capacity planning, performance management and knowledge transfer to support autonomous operations
 
 ## Triggers
-- New or updated workforce_data received from HRIS
-- skills_requirements change event from demand planning
-- Quarterly performance review cycle start
+- new workforce_data received from HRIS
+- quarterly skills_requirements update published
+- performance_data batch available from ERP
 
 ## Inputs Required
 - workforce data
@@ -19,9 +19,9 @@ Process of managing supply chain workforce including skills development, capacit
 - organizational structure
 
 ## Process Steps
-1. IF skills_coverage_rate < 0.85 THEN create TrainingProgram
-2. IF training_completion_rate < 0.9 THEN trigger capacity replanning
-3. IF GDPR employee data flag active THEN enforce anonymization before storage
+1. IF skills_coverage_rate < 0.85 THEN create new TrainingProgram
+2. IF training_completion_rate < 0.9 THEN escalate to capacity replanning
+3. IF GDPR employee data flag = true THEN anonymize before storage
 
 ## Expected Outputs
 - skills inventory
@@ -31,13 +31,13 @@ Process of managing supply chain workforce including skills development, capacit
 - knowledge base
 
 ## Business Rules
-- All workforce_data must comply with GDPR and labor_law before processing
-- EU AI Act Art.14 requires human oversight approval on every CapacityPlan
-- skills_inventory must be updated within 24 hours of PerformanceAssessment completion
+- labor_law_compliance: validate all capacity plans against local working hour limits before approval
+- EU_AI_Act_Art14: require human oversight sign-off on any automated performance assessment
+- health_safety_regulations: block deployment of workforce to tasks without valid certification
 
 ## Exception Handling
-- If health_and_safety violation detected in workforce_data, halt process and route to compliance review queue
-- If related_process SCOR-E1 unavailable, skip knowledge transfer step and log partial KnowledgeBase
+- missing workforce data: pause process and request update from HR source within 48 hours
+- non-compliant training plan: reject and route to compliance review before execution
 
 ## Success Criteria
 - skills_coverage_rate >= 0.9

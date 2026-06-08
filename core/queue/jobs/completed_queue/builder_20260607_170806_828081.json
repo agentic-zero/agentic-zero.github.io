@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170806_828081",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-DIG2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:08:06.828095",
+  "status": "completed",
+  "started_at": "2026-06-08T11:09:09.218218",
+  "completed_at": "2026-06-08T11:13:09.219326",
+  "error": null,
+  "result": {
+    "agent_name": "iot_sensor_stream_manager",
+    "ready_for_packager": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-CRM-002",
+  "name": "After-Sales Service & Field Service",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Customer Service",
+  "category": "Customer",
+  "description": "After-sales service process from service request to resolution including ticket creation, technician dispatch, parts ordering, on-site service and invoicing",
+  "bpmn_elements": {
+    "start_events": ["Service Request Received"],
+    "end_events": ["Service Completed", "Equipment Replaced"],
+    "tasks": ["Create Service Ticket", "Diagnose Remotely", "Schedule Technician", "Order Parts", "Dispatch Technician", "Execute Service", "Test & Verify", "Customer Sign-off", "Invoice Service", "Close Ticket"],
+    "gateways": ["Remote Resolution Possible?", "Parts Available?", "Under Warranty?", "Customer Satisfied?"],
+    "lanes": ["Customer Service", "Field Service", "Parts", "Finance"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.14", "SCOR-SR2.1", "SCOR-E6"],
+    "secondary": ["SCOR-DIG5", "SCOR-E5", "SCOR-DIG2"],
+    "automation_potential": 0.55
+  },
+  "inputs": ["service request", "equipment data", "service history", "parts inventory", "technician schedule"],
+  "outputs": ["service report", "resolved equipment", "invoice", "parts consumption", "customer feedback"],
+  "kpis": ["first-time fix rate", "mean time to repair", "SLA compliance", "customer satisfaction NPS"],
+  "sector_applicability": ["industrial equipment", "defense", "manufacturing systems", "energy", "healthcare"],
+  "erp_integration": ["SAP FSM", "ServiceNow", "Salesforce Field Service", "Oracle Field Service"],
+  "compliance_flags": ["safety regulations", "warranty compliance", "GDPR customer data", "export control if defense"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "3-15",
+  "source": "OMG BPMN 2.0 + TSIA Field Service Standards",
+  "confidence": 0.91
+}

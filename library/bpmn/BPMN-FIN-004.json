@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-FIN-004",
+  "name": "Credit Management & Risk Assessment",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Financial Operations",
+  "category": "Finance",
+  "description": "Customer credit assessment and management process from new customer request to credit limit management including risk scoring, approval and ongoing monitoring",
+  "bpmn_elements": {
+    "start_events": ["Credit Request Received"],
+    "end_events": ["Credit Approved", "Credit Denied", "Credit Suspended"],
+    "tasks": ["Gather Customer Data", "Credit Score Assessment", "Financial Analysis", "Risk Classification", "Define Credit Terms", "Approval Workflow", "Set Credit Limit", "Monitor Credit Usage", "Review & Adjust"],
+    "gateways": ["New Customer?", "Risk Acceptable?", "Approval Level?", "Limit Exceeded?"],
+    "lanes": ["Sales", "Credit Management", "Finance", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.2", "SCOR-E6", "SCOR-E9"],
+    "secondary": ["SCOR-E8", "SCOR-DIG6", "SCOR-E3"],
+    "automation_potential": 0.75
+  },
+  "inputs": ["customer financial data", "credit bureau data", "payment history", "order data", "risk parameters"],
+  "outputs": ["credit limit", "credit terms", "risk classification", "monitoring alerts"],
+  "kpis": ["credit approval cycle time", "bad debt rate", "credit limit utilization", "overdue rate"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "services"],
+  "erp_integration": ["SAP FSCM", "Oracle Credit", "MS Dynamics", "Dun & Bradstreet API"],
+  "compliance_flags": ["GDPR financial data", "consumer credit regulations", "AML compliance", "data retention"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + Basel III credit risk standards",
+  "confidence": 0.92
+}

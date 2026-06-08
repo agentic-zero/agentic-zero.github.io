@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-IBP-001",
+  "name": "Integrated Business Planning (IBP)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Integrated Planning",
+  "category": "Planning",
+  "description": "IBP process connecting strategic, financial and operational planning in a rolling 24-month horizon integrating S&OP with portfolio management and strategic review",
+  "bpmn_elements": {
+    "start_events": ["Rolling Cycle Trigger"],
+    "end_events": ["Integrated Business Plan Approved"],
+    "tasks": ["Portfolio Review", "Demand Sensing", "Statistical Forecasting", "Demand Consensus", "Supply Network Planning", "Financial Integration", "Scenario Modeling", "Management Business Review", "Executive Business Review"],
+    "gateways": ["Portfolio Change?", "Financial Target Met?", "Supply Feasible?", "Strategic Alignment?"],
+    "lanes": ["Portfolio Management", "Demand Planning", "Supply Planning", "Finance", "Commercial", "Executive"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.1", "SCOR-P1.2", "SCOR-P1.3", "SCOR-P1.4", "SCOR-P1.5"],
+    "secondary": ["SCOR-E2", "SCOR-E7", "SCOR-DIG6", "SCOR-DIG1", "SCOR-D1.1"],
+    "automation_potential": 0.55
+  },
+  "inputs": ["strategic plan", "portfolio data", "market intelligence", "financial targets", "capacity constraints", "demand signals"],
+  "outputs": ["integrated business plan", "financial forecast", "supply network plan", "strategic decisions", "risk register"],
+  "kpis": ["plan accuracy", "financial target achievement", "cycle time", "scenario quality"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "chemical", "automotive", "defense"],
+  "erp_integration": ["SAP IBP", "Oracle", "Kinaxis", "o9 Solutions", "Anaplan"],
+  "compliance_flags": ["financial reporting", "GDPR strategic data", "regulatory planning constraints"],
+  "automation_complexity": "VERY HIGH",
+  "typical_fte": "8-25",
+  "source": "OMG BPMN 2.0 Standard + Oliver Wight IBP Model",
+  "confidence": 0.93
+}

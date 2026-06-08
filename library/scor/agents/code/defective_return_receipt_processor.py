@@ -4,7 +4,7 @@ Process: SCOR-DR1.3
 Name: defective_return_receipt_processor
 Framework: SCOR
 Domain: Return
-Generated: 2026-06-07T17:47:14.212240
+Generated: 2026-06-08T10:13:07.381443
 Compliance: GxP if pharma, quality inspection standards, GDPR if personal data in records
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,12 +24,11 @@ class DefectiveReturnReceiptProcessorAgent:
     Physical receipt, inspection and verification of defective product returns against RMA authorization including condition assessment and system update
     
     Capabilities:
-    #   - rma_validation
-    #   - inspection_execution
-    #   - report_generation
-    #   - inventory_update
-    #   - credit_triggering
-    #   - exception_handling
+    #   - RMA validation and serial matching
+    #   - inspection_criteria evaluation
+    #   - inventory_system update
+    #   - credit_trigger emission
+    #   - exception quarantine handling
     
     Compliance: GxP if pharma, quality inspection standards, GDPR if personal data in records
     """
@@ -141,33 +140,46 @@ class DefectiveReturnReceiptProcessorAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF ReturnShipment matches RMADocument AND passes InspectionCriteria THEN create InspectionReport ELSE flag exception
-        # - IF inspection passes THEN issue CreditTrigger ELSE hold for quarantine review
+        # - IF received_serials match RMA AND condition passes inspection_criteria THEN accept ELSE quarantine
         
         Business rules:
-        # - ReturnShipment must have valid RMADocument before physical receipt
-        # - InspectionReport must be generated before SystemInventoryUpdate
-        # - CreditTrigger only issued after successful inspection and confirmation
+        # - RMA must be valid and not expired before physical receipt
+        # - Inspection must complete within KPI cycle_time before system update
+        # - GxP compliance required if sector=pharma: all inspection data immutable
         """
         outputs = {}
         
-# Validate mandatory RMA before any receipt per rules
-        if not inputs.get('RMA documentation') or not inputs.get('scheduled return shipment'):
-            outputs = {'received return confirmation': None, 'inspection report': None, 'system inventory update': None, 'credit trigger': None}
+# Validate RMA expiration and basic integrity before any receipt processing
+        rma_valid = rma_documentation.get('valid', False) and rma_documentation.get('expiry_date', '') > scheduled_return_shipment.get('receipt_date', '')
+        if not rma_valid:
+            outputs = {'received return confirmation': {'status': 'rejected', 'reason': 'invalid RMA'}, 'inspection report': {}, 'system inventory update': {'action': 'none'}, 'credit trigger': {'issued': False}}
             return outputs
-        # Edge case: missing inspection criteria or equipment
-        if not inputs.get('inspection criteria') or not inputs.get('receiving equipment'):
-            outputs = {'received return confirmation': 'received', 'inspection report': 'exception: missing criteria', 'system inventory update': None, 'credit trigger': None}
-            return outputs
-        shipment = inputs['scheduled return shipment']
-        rma_doc = inputs['RMA documentation']
-        criteria = inputs['inspection criteria']
-        # Decision: match shipment to RMA and apply criteria
-        if shipment == rma_doc and criteria.get('valid', False):
-            outputs = {'received return confirmation': 'confirmed', 'inspection report': 'passed', 'system inventory update': 'adjusted', 'credit trigger': 'issued'}
+        # Perform serial matching and inspection against criteria; respect KPI cycle time
+        received_serials = scheduled_return_shipment.get('serials', [])
+        match = all(s in rma_documentation.get('approved_serials', []) for s in received_serials)
+        passed_inspection = match and receiving_equipment.check_condition(inspection_criteria)
+        cycle_time_ok = receiving_equipment.get_elapsed_time() <= inspection_criteria.get('kpi_cycle_time', 0)
+        # Apply GxP immutability rule for pharma sector
+        sector = scheduled_return_shipment.get('sector', '')
+        gxp_compliant = True
+        if sector == 'pharma':
+            gxp_compliant = receiving_equipment.log_immutable_inspection()
+        # Decision point: accept or quarantine
+        if match and passed_inspection and cycle_time_ok and gxp_compliant:
+            status = 'accepted'
+            inventory_action = 'restock_quarantine' if inspection_criteria.get('requires_quarantine', False) else 'restock'
+            credit = True
         else:
-            # Exception path: quarantine, no credit
-            outputs = {'received return confirmation': 'confirmed', 'inspection report': 'failed: quarantine', 'system inventory update': 'quarantined', 'credit trigger': None}
+            status = 'quarantined'
+            inventory_action = 'quarantine_hold'
+            credit = False
+        # Populate all required outputs
+        outputs = {
+            'received return confirmation': {'status': status, 'serials': received_serials, 'timestamp': scheduled_return_shipment.get('receipt_date')},
+            'inspection report': {'match': match, 'passed': passed_inspection, 'cycle_time_ok': cycle_time_ok, 'gxp': gxp_compliant},
+            'system inventory update': {'action': inventory_action, 'serials': received_serials},
+            'credit trigger': {'issued': credit, 'rma_id': rma_documentation.get('id')}
+        }
         return outputs
         
         return outputs
@@ -177,9 +189,9 @@ class DefectiveReturnReceiptProcessorAgent:
         Built-in compliance validation
         
         Checks:
-        # - gx_p_compliance_for_pharma
-        # - gdpr_data_masking_validation
-        # - quality_inspection_standards_check
+        # - GxP audit_trail if sector=pharma
+        # - GDPR data_minimization on rma records
+        # - inspection_data_immutability
         """
         checks_passed = []
         checks_failed = []
@@ -203,7 +215,7 @@ class DefectiveReturnReceiptProcessorAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['RMA mismatch or missing RMADocument', 'Inspection timeout exceeding cycle KPI', 'Personal data detected in records']
+        escalation_rules = ['serial mismatch or RMA invalid', 'inspection cycle_time exceeds KPI', 'GxP immutability violation detected']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -217,7 +229,7 @@ class DefectiveReturnReceiptProcessorAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['receipt_to_confirmation_time', 'inspection_pass_rate', 'exception_frequency']
+            "monitoring": ['receipt_accuracy', 'inspection_cycle_time', 'credit_trigger_latency']
         }
 
 

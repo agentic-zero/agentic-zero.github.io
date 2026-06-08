@@ -1,15 +1,15 @@
 # SOP — Manage Supply Chain Risk
 **Process ID:** SCOR-E9
 **Framework:** SCOR | **Domain:** Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains
 
 ## Triggers
-- new risk_signal received
-- scheduled daily batch from operational_data
-- related_process SCOR-E8 completion event
+- New risk signal received
+- Scheduled daily operational data refresh
+- Related process SCOR-P1.5 or SCOR-S1.5 emits alert
 
 ## Inputs Required
 - risk signals
@@ -20,9 +20,8 @@ Process of identifying, assessing, monitoring and mitigating supply chain risks 
 - AI system outputs
 
 ## Process Steps
-1. IF risk_exposure_value > 0.7 THEN create MitigationPlan within 24h
-2. IF geopolitical_indicator changes > 20% THEN trigger RiskAssessment
-3. IF mitigation_effectiveness < 0.8 THEN escalate to ContingencyPlan
+1. IF RiskExposureValue > threshold THEN generate EarlyWarningAlert and MitigationPlan
+2. IF geopolitical indicator score > 0.7 THEN escalate to ContingencyPlan
 
 ## Expected Outputs
 - risk register
@@ -33,18 +32,18 @@ Process of identifying, assessing, monitoring and mitigating supply chain risks 
 - contingency plans
 
 ## Business Rules
-- risk_register must be updated every 24 hours per ISO 31000
-- all AI system outputs must pass EU AI Act Art.9 risk management check before inclusion
-- supply_chain_resilience_score must be recalculated after every MitigationPlan activation
+- All risk assessments must reference ISO 31000 and NIST AI RMF
+- RiskRegister must be updated within 4 hours of new RiskSignal
+- EU AI Act Art.9 compliance flag required for any AI-related risk
 
 ## Exception Handling
-- sector=defense: skip public market_intelligence and use classified supplier_data only
-- risk_type=cyber: bypass standard 24h update and require real-time assessment
+- If AI system outputs unavailable, fallback to manual supplier data review and log as partial assessment
+- If data source latency > 24h, mark RiskSignal as low-confidence and require human validation
 
 ## Success Criteria
-- risk_identification_rate >= 0.95
-- risk_exposure_value reduced by >= 30% within 7 days
-- all compliance_flags validated with no open violations
+- Risk identification rate >= 0.9
+- Mitigation effectiveness >= 0.8
+- RiskRegister contains all active risks with mitigation status
 
 ## Compliance Requirements
 - EU AI Act Art.9 risk management

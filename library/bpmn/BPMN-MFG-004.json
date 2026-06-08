@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MFG-004",
+  "name": "Capacity Planning & Rough-Cut",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Production Planning",
+  "category": "Manufacturing",
+  "description": "Rough-cut capacity planning process from demand input to capacity commitment including resource loading, constraint identification and capacity adjustment decisions",
+  "bpmn_elements": {
+    "start_events": ["Demand Plan Available"],
+    "end_events": ["Capacity Plan Approved"],
+    "tasks": ["Load Demand into Capacity Model", "Calculate Resource Requirements", "Identify Constraints", "Analyze Bottlenecks", "Develop Options", "Financial Impact Analysis", "Management Review", "Approve Capacity Plan", "Update Production Plan"],
+    "gateways": ["Capacity Sufficient?", "Overtime Feasible?", "Subcontract Option?", "Investment Required?"],
+    "lanes": ["Planning", "Manufacturing", "Finance", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.2", "SCOR-P1.3", "SCOR-M2.1", "SCOR-E5"],
+    "secondary": ["SCOR-E2", "SCOR-DIG6", "SCOR-DIG1"],
+    "automation_potential": 0.75
+  },
+  "inputs": ["demand plan", "routing data", "capacity data", "shift patterns", "constraint data"],
+  "outputs": ["capacity plan", "bottleneck analysis", "investment recommendations", "production feasibility"],
+  "kpis": ["capacity utilization", "bottleneck resolution rate", "plan feasibility rate", "planning cycle time"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "chemical", "automotive"],
+  "erp_integration": ["SAP PP", "SAP IBP", "Oracle", "Kinaxis", "Siemens Opcenter"],
+  "compliance_flags": ["labor regulations", "GDPR if personal data", "financial reporting"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + APICS/ASCM",
+  "confidence": 0.93
+}

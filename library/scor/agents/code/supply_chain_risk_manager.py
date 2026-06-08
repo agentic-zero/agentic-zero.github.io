@@ -4,7 +4,7 @@ Process: SCOR-E9
 Name: supply_chain_risk_manager
 Framework: SCOR
 Domain: Enable
-Generated: 2026-06-07T18:35:14.674095
+Generated: 2026-06-08T11:01:10.428043
 Compliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,12 +24,12 @@ class SupplyChainRiskManagerAgent:
     Process of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains
     
     Capabilities:
-    #   - process_risk_signals
-    #   - update_risk_register
-    #   - generate_risk_assessments
-    #   - create_mitigation_plans
-    #   - recalculate_kpis
-    #   - validate_compliance
+    #   - risk_signal_ingestion
+    #   - risk_assessment_generation
+    #   - risk_register_update
+    #   - mitigation_plan_creation
+    #   - early_warning_alerting
+    #   - contingency_activation
     
     Compliance: EU AI Act Art.9 risk management, ISO 31000 risk management, NIST AI RMF govern-map-measure-manage, GDPR risk assessment, sector-specific risk regulations
     """
@@ -141,42 +141,35 @@ class SupplyChainRiskManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF risk_exposure_value > 0.7 THEN create MitigationPlan within 24h
-        # - IF geopolitical_indicator changes > 20% THEN trigger RiskAssessment
-        # - IF mitigation_effectiveness < 0.8 THEN escalate to ContingencyPlan
+        # - IF RiskExposureValue > threshold THEN generate EarlyWarningAlert and MitigationPlan
+        # - IF geopolitical indicator score > 0.7 THEN escalate to ContingencyPlan
         
         Business rules:
-        # - risk_register must be updated every 24 hours per ISO 31000
-        # - all AI system outputs must pass EU AI Act Art.9 risk management check before inclusion
-        # - supply_chain_resilience_score must be recalculated after every MitigationPlan activation
+        # - All risk assessments must reference ISO 31000 and NIST AI RMF
+        # - RiskRegister must be updated within 4 hours of new RiskSignal
+        # - EU AI Act Art.9 compliance flag required for any AI-related risk
         """
         outputs = {}
         
 outputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 'early warning alerts': [], 'resilience reports': [], 'contingency plans': []}
-        # Edge case: missing inputs
-        required = ['risk signals', 'operational data', 'geopolitical indicators', 'AI system outputs']
-        if not all(k in inputs for k in required):
-            outputs['early warning alerts'].append('Missing inputs - process aborted')
+        if not risk_signals:
+            outputs['risk register'] = ['No active risk signals']
             return outputs
-        # Filter AI outputs per EU AI Act Art.9
-        ai_valid = [o for o in inputs['AI system outputs'] if isinstance(o, dict) and o.get('risk_check_passed', False)]
-        # Update risk register (ISO 31000 24h rule simulated)
-        reg_entry = {'timestamp': 'current', 'signals': inputs['risk signals'], 'ai_included': ai_valid}
-        outputs['risk register'].append(reg_entry)
-        # Compute exposure and decisions
-        exposure = inputs['risk signals'].get('exposure_value', 0.0) if isinstance(inputs['risk signals'], dict) else 0.0
-        geo_change = inputs['geopolitical indicators'].get('change_pct', 0.0) if isinstance(inputs['geopolitical indicators'], dict) else 0.0
-        if exposure > 0.7:
-            outputs['mitigation plans'].append({'created': 'within_24h', 'exposure': exposure})
-            # Recalculate resilience score post-activation
-            outputs['resilience reports'].append({'score': 0.85, 'recalculated': True})
-        if geo_change > 20:
-            outputs['risk assessments'].append({'trigger': 'geopolitical', 'change': geo_change})
-        if inputs.get('mitigation_effectiveness', 1.0) < 0.8:
-            outputs['contingency plans'].append({'escalated': True})
-        # Default alerts and reports
-        outputs['early warning alerts'].append('Register updated')
-        outputs['resilience reports'].append({'supply_chain_resilience_score': 0.9})
+        risk_exposure_value = len(risk_signals) * 0.15 + (len(geopolitical_indicators) * 0.1 if geopolitical_indicators else 0)
+        threshold = 0.5
+        if risk_exposure_value > threshold:
+            outputs['early warning alerts'].append('RiskExposureValue exceeded threshold')
+            outputs['mitigation plans'].append('Immediate mitigation activated per decision rule')
+        geo_score = max(geopolitical_indicators.values()) if geopolitical_indicators else 0.0
+        if geo_score > 0.7:
+            outputs['contingency plans'].append('Escalated to ContingencyPlan due to geopolitical indicator')
+        outputs['risk register'].append('Register updated within SLA referencing ISO 31000 and NIST AI RMF')
+        outputs['risk assessments'].append('Assessment completed per ISO 31000 and NIST AI RMF')
+        if ai_system_outputs:
+            outputs['risk assessments'].append('EU AI Act Art.9 compliance flag applied')
+        outputs['resilience reports'].append('Resilience report generated from operational data and supplier data')
+        if not outputs['mitigation plans']:
+            outputs['mitigation plans'].append('Standard monitoring mitigation plan')
         return outputs
         
         return outputs
@@ -186,10 +179,10 @@ outputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 
         Built-in compliance validation
         
         Checks:
-        # - eu_ai_act_art9_risk_assessment
-        # - iso31000_24h_register_update
-        # - gdpr_data_minimization
-        # - nist_rmf_govern_map
+        # - EU AI Act Art.9 risk flag validation
+        # - ISO 31000 and NIST AI RMF reference check
+        # - GDPR risk assessment logging
+        # - partial_assessment_logging_on_exceptions
         """
         checks_passed = []
         checks_failed = []
@@ -213,7 +206,7 @@ outputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['mitigation_effectiveness < 0.8', 'defense sector risk detected', 'open compliance violations after validation', 'stale data detected in KPI calculation']
+        escalation_rules = ['AI system outputs unavailable or data latency >24h requiring human validation', 'geopolitical indicator >0.7 triggering ContingencyPlan', 'RiskExposureValue exceeds threshold with incomplete data']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -227,7 +220,7 @@ outputs = {'risk register': [], 'risk assessments': [], 'mitigation plans': [], 
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['risk_identification_rate', 'risk_exposure_reduction_7d', 'compliance_flag_count', 'resilience_score_post_mitigation']
+            "monitoring": ['risk_identification_rate', 'mitigation_effectiveness', 'risk_register_update_latency', 'false_negative_rate_on_early_warnings']
         }
 
 

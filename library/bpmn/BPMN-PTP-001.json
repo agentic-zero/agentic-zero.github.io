@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-PTP-001",
+  "name": "Purchase-to-Pay",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Procurement",
+  "category": "Procurement",
+  "description": "End-to-end Purchase-to-Pay process from purchase requisition to supplier payment including approval workflows, PO creation, goods receipt and invoice matching",
+  "bpmn_elements": {
+    "start_events": ["Purchase Requisition Created"],
+    "end_events": ["Payment Completed"],
+    "tasks": ["Review Requisition", "Select Supplier", "Create PO", "Approve PO", "Send PO to Supplier", "Receive Goods", "Inspect Goods", "Match Invoice", "Approve Payment", "Execute Payment"],
+    "gateways": ["Approval Required?", "Goods Accepted?", "3-Way Match OK?", "Exception?"],
+    "lanes": ["Requester", "Procurement", "Approver", "Warehouse", "Finance"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.1", "SCOR-S1.2", "SCOR-S1.3", "SCOR-S1.4", "SCOR-S2.1", "SCOR-S2.2", "SCOR-S2.5"],
+    "secondary": ["SCOR-E6", "SCOR-E10", "SCOR-P1.3"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["purchase requisition", "supplier catalog", "budget data", "approval matrix", "receiving data"],
+  "outputs": ["purchase order", "goods receipt", "approved invoice", "payment", "supplier performance data"],
+  "kpis": ["PO cycle time", "invoice match rate", "payment on-time rate", "procurement cost savings"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "distribution"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle", "MS Dynamics", "SAP Ariba"],
+  "compliance_flags": ["GDPR supplier data", "financial controls", "anti-corruption", "tax compliance"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "3-8",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.95
+}

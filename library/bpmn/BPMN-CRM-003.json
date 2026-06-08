@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-CRM-003",
+  "name": "Contract Renewal & Customer Retention",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Customer Service",
+  "category": "Customer",
+  "description": "Contract renewal process from renewal trigger to signed contract including account review, pricing negotiation, approval and execution",
+  "bpmn_elements": {
+    "start_events": ["Renewal Window Opens"],
+    "end_events": ["Contract Renewed", "Contract Lost"],
+    "tasks": ["Account Performance Review", "Risk Assessment", "Prepare Renewal Offer", "Internal Approval", "Present to Customer", "Negotiate Terms", "Final Approval", "Execute Contract", "Onboard New Terms"],
+    "gateways": ["At Risk?", "Price Increase?", "Customer Accepts?", "Escalate?"],
+    "lanes": ["Account Management", "Pricing", "Legal", "Management", "Customer"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E6", "SCOR-E2", "SCOR-D2.2"],
+    "secondary": ["SCOR-E10", "SCOR-E8", "SCOR-DIG6"],
+    "automation_potential": 0.50
+  },
+  "inputs": ["contract data", "usage data", "pricing data", "competitive intelligence", "customer health score"],
+  "outputs": ["renewed contract", "pricing update", "retention metrics", "churn risk data"],
+  "kpis": ["renewal rate", "revenue retention", "renewal cycle time", "NPS at renewal"],
+  "sector_applicability": ["manufacturing", "pharma", "software", "services", "distribution"],
+  "erp_integration": ["SAP CRM", "Salesforce", "HubSpot", "Gainsight"],
+  "compliance_flags": ["GDPR customer data", "contractual compliance", "financial reporting", "competition law"],
+  "automation_complexity": "LOW",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + Gainsight CS Standards",
+  "confidence": 0.91
+}

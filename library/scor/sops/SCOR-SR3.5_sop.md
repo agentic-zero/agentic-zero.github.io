@@ -1,14 +1,13 @@
 # SOP — Return Excess Product to Supplier
 **Process ID:** SCOR-SR3.5
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Physical execution of excess product return to supplier including preparation, shipment execution and credit confirmation
 
 ## Triggers
-- Receipt of ReturnAuthorization from Supplier
-- Publication of ReturnShipmentSchedule
+- receipt of approved ReturnAuthorization and ReturnShipmentSchedule
 
 ## Inputs Required
 - return shipment schedule
@@ -17,8 +16,8 @@ Physical execution of excess product return to supplier including preparation, s
 - carrier pickup
 
 ## Process Steps
-1. IF ReturnAuthorization.valid == true AND expiry_compliance == true THEN proceed to product preparation
-2. IF carrier_pickup.confirmed == true THEN execute shipment and generate ReturnedExcessShipment
+1. IF ReturnAuthorization.status == 'approved' THEN execute ProductPreparation
+2. IF carrier pickup confirmed THEN generate ReturnedExcessShipment
 
 ## Expected Outputs
 - returned excess shipment
@@ -26,16 +25,18 @@ Physical execution of excess product return to supplier including preparation, s
 - credit note
 
 ## Business Rules
-- chain_of_custody document must be recorded at every handover
-- financial_credit_documentation required before CreditNote creation
-- return_accuracy must be verified against ReturnAuthorization before shipment
+- chain_of_custody: maintain signed logs for all pharma and food shipments
+- financial_credit_documentation: CreditNote must reference original PO and return authorization ID
+- expiry_compliance: reject return if product expiry < 30 days from receipt
 
 ## Exception Handling
-- IF product expired beyond policy: reject shipment, log exception, notify Supplier and update KPIs
-- IF ProofOfDelivery missing after 48h: hold CreditNote and trigger compliance audit
+- IF product damaged during CarrierPickup THEN quarantine shipment and create exception ticket with photos before proceeding to credit
+- IF CreditNote rejected by supplier THEN escalate to SCOR-SR3.4 for dispute resolution
 
 ## Success Criteria
-- ProofOfDelivery received AND CreditNote issued AND return_completion_rate >= 0.95 AND credit_recovery_rate >= 0.90
+- ReturnCompletionRate == 1.0
+- CreditRecoveryRate >= 0.95
+- ReturnAccuracy == 1.0 with ProofOfDelivery received
 
 ## Compliance Requirements
 - expiry compliance

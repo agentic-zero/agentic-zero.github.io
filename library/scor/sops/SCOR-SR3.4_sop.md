@@ -1,7 +1,7 @@
 # SOP — Schedule Excess Product Return Shipment
 **Process ID:** SCOR-SR3.4
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of planning and scheduling the logistics for returning excess inventory to supplier
@@ -17,8 +17,8 @@ Process of planning and scheduling the logistics for returning excess inventory 
 
 ## Process Steps
 1. IF product is perishable THEN enforce expiry compliance check before scheduling
-2. IF cross-border THEN require customs documentation in ReturnShippingDocument
-3. IF cold chain required THEN filter CarrierOption to temperature-controlled only
+2. IF sector requires cold chain THEN filter CarrierOption for temperature-controlled transport
+3. IF shipment is cross-border THEN add customs documentation to ReturnShippingDocument
 
 ## Expected Outputs
 - return shipment schedule
@@ -26,18 +26,19 @@ Process of planning and scheduling the logistics for returning excess inventory 
 - return shipping documents
 
 ## Business Rules
-- ReturnShipmentSchedule must be created within 24 hours of ExcessReturnAuthorization receipt
-- CarrierBooking cost must not exceed return logistics cost KPI threshold
-- Shipment lead time must be logged for every CarrierBooking
+- CarrierBooking must be confirmed within 24 hours of ExcessReturnAuthorization receipt
+- ReturnShipmentSchedule lead time must not exceed ShipmentLeadTimeKPI target
+- All outputs require sector-specific compliance flags to be validated
 
 ## Exception Handling
-- No valid CarrierOption available: escalate to manual review and log failure in scheduling efficiency KPI
-- Expiry date within 7 days: block shipment and trigger SCOR-SR3.5 disposal process
+- No valid CarrierOption available: escalate to manual carrier negotiation and log delay in SchedulingEfficiencyKPI
+- Missing expiry data on perishable goods: halt scheduling and request updated ExcessReturnAuthorization
 
 ## Success Criteria
 - ReturnShipmentSchedule status set to confirmed
-- CarrierBooking confirmation code generated
-- All compliance_flags satisfied and ReturnShippingDocument issued
+- CarrierBooking reference generated
+- ReturnShippingDocument PDF created and linked
+- All KPIs within target thresholds
 
 ## Compliance Requirements
 - expiry compliance if perishable

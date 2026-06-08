@@ -1,13 +1,13 @@
 # SOP — Authorize Defective Product Return
 **Process ID:** SCOR-DR1.1
 **Framework:** SCOR | **Domain:** Return
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of evaluating and authorizing customer requests to return defective products, issuing RMA and defining return terms
 
 ## Triggers
-- Receipt of CustomerReturnRequest containing defect_evidence and product_serial
+- Receipt of CustomerReturnRequest via API or portal
 
 ## Inputs Required
 - customer return request
@@ -16,8 +16,8 @@ Process of evaluating and authorizing customer requests to return defective prod
 - return policy
 
 ## Process Steps
-1. IF defect_evidence matches warranty_data AND within_return_policy THEN issue RMAAuthorization ELSE reject request
-2. IF product_sector is pharma AND GxP_flag true THEN require compliance_review before authorization
+1. IF defectEvidence.valid == true AND productWarrantyData.expiry > currentDate AND returnPolicy.allowed == true THEN issue RMAAuthorization
+2. IF creditOrReplacementDecision == credit THEN trigger refund ELSE trigger replacement order
 
 ## Expected Outputs
 - RMA authorization
@@ -25,18 +25,16 @@ Process of evaluating and authorizing customer requests to return defective prod
 - credit or replacement decision
 
 ## Business Rules
-- authorization_cycle_time must be <= 48 hours from request receipt
-- RMA must include unique authorization_id and expiration_date
-- GDPR personal_data must be anonymized in all outputs if present
+- authorizationCycleTime must be <= 48 hours
+- RMA must include unique authorization number and expiry date
+- GDPR: mask personal data in DefectEvidence if sector == pharma
 
 ## Exception Handling
-- If defect_evidence is incomplete, auto-request additional evidence and pause process for 72 hours
-- If customer is flagged for fraud, route to manual review and block auto-approval
+- IF no DefectEvidence provided THEN reject request and notify customer within 24 hours
+- IF warranty expired THEN route to SCOR-SR1.3 for goodwill exception review
 
 ## Success Criteria
-- RMAAuthorization generated with status=approved
-- authorization_cycle_time KPI recorded
-- CreditOrReplacementDecision emitted to downstream process
+- RMAAuthorization issued with status=approved AND authorizationCycleTime recorded AND CreditOrReplacementDecision generated
 
 ## Compliance Requirements
 - consumer protection regulations

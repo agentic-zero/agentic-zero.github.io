@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DIG-005",
+  "name": "AI Agent Handoff & Escalation Protocol",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Digital Supply Chain",
+  "category": "Digital",
+  "description": "AI agent to human handoff protocol for cases exceeding autonomous decision thresholds including context transfer, human review, decision capture and agent relearning",
+  "bpmn_elements": {
+    "start_events": ["Threshold Exceeded", "Confidence Below Minimum"],
+    "end_events": ["Human Decision Applied", "Agent Retrained"],
+    "tasks": ["Detect Escalation Trigger", "Package Context for Human", "Notify Human Reviewer", "Present Decision Options", "Human Reviews & Decides", "Apply Decision", "Capture Decision Rationale", "Feed Back to Agent", "Update Decision Rules"],
+    "gateways": ["Urgent?", "Complex?", "Human Available?", "Decision Captured?"],
+    "lanes": ["AI Agent", "Notification System", "Human Reviewer", "Learning System"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-DIG4", "SCOR-DIG3", "SCOR-DIG10", "SCOR-E4"],
+    "secondary": ["SCOR-E1", "SCOR-E8", "SCOR-DIG9"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["agent decision context", "confidence score", "threshold parameters", "escalation rules", "human availability"],
+  "outputs": ["human decision", "decision audit trail", "agent feedback", "updated rules"],
+  "kpis": ["escalation rate", "human response time", "decision capture rate", "agent improvement rate"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "distribution"],
+  "erp_integration": ["Agentic Zero Platform", "workflow systems", "collaboration tools"],
+  "compliance_flags": ["EU AI Act Art.14 human oversight mandatory", "GDPR automated decisions Art.22", "ISO 42001 human control"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "1-4",
+  "source": "OMG BPMN 2.0 + EU AI Act 2024 + Agentic Zero Framework",
+  "confidence": 0.96
+}

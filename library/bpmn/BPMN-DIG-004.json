@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DIG-004",
+  "name": "IoT Event Management & Response",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Digital Supply Chain",
+  "category": "Digital",
+  "description": "IoT event detection and automated response process from sensor trigger to action execution including event classification, rule matching and autonomous or human-assisted response",
+  "bpmn_elements": {
+    "start_events": ["IoT Event Detected"],
+    "end_events": ["Event Resolved", "Escalated to Human"],
+    "tasks": ["Classify Event", "Match Business Rules", "Assess Severity", "Trigger Automated Response", "Notify Stakeholders", "Execute Action", "Verify Resolution", "Log Event"],
+    "gateways": ["Critical Event?", "Auto-Response Available?", "Action Successful?", "Human Required?"],
+    "lanes": ["IoT Platform", "AI Engine", "Operations", "Human Oversight"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-DIG2", "SCOR-DIG4", "SCOR-DIG3", "SCOR-E9"],
+    "secondary": ["SCOR-DIG1", "SCOR-DIG8", "SCOR-E1"],
+    "automation_potential": 0.85
+  },
+  "inputs": ["IoT sensor events", "business rules", "threshold definitions", "response playbooks", "escalation matrix"],
+  "outputs": ["automated response actions", "alerts", "event log", "resolution confirmation"],
+  "kpis": ["event detection latency", "auto-resolution rate", "false positive rate", "MTTR"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "food", "energy"],
+  "erp_integration": ["SAP IoT", "Azure IoT Hub", "AWS IoT", "Siemens MindSphere"],
+  "compliance_flags": ["EU AI Act autonomous systems", "GDPR IoT data", "cybersecurity IEC 62443", "safety standards"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "1-3",
+  "source": "OMG BPMN 2.0 + IEC 62541 OPC UA",
+  "confidence": 0.92
+}

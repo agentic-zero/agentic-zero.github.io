@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DIG-001",
+  "name": "AI-Powered Demand Sensing & Forecasting",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Digital Supply Chain",
+  "category": "Digital",
+  "description": "AI-powered demand sensing process from signal ingestion to forecast publication including ML model execution, consensus override and automated plan update",
+  "bpmn_elements": {
+    "start_events": ["New Data Available"],
+    "end_events": ["Forecast Published", "Manual Override Applied"],
+    "tasks": ["Ingest Demand Signals", "Cleanse & Validate Data", "Run ML Models", "Generate Statistical Forecast", "Apply Market Intelligence", "Consensus Review", "Approve Forecast", "Publish to Planning Systems"],
+    "gateways": ["Data Quality OK?", "Model Confidence High?", "Override Required?", "Approved?"],
+    "lanes": ["AI Engine", "Demand Planning", "Commercial", "Planning System"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.1", "SCOR-DIG6", "SCOR-DIG3", "SCOR-E3"],
+    "secondary": ["SCOR-DIG2", "SCOR-DIG5", "SCOR-E2"],
+    "automation_potential": 0.85
+  },
+  "inputs": ["POS data", "orders", "market signals", "social data", "weather data", "promotions", "historical sales"],
+  "outputs": ["AI demand forecast", "confidence intervals", "bias report", "planning system update"],
+  "kpis": ["forecast accuracy MAPE", "bias", "value of AI vs statistical", "consensus cycle time"],
+  "sector_applicability": ["food", "pharma", "retail", "consumer goods", "manufacturing", "distribution"],
+  "erp_integration": ["SAP IBP", "o9 Solutions", "Kinaxis", "Blue Yonder", "Anaplan", "custom AI"],
+  "compliance_flags": ["GDPR AI automated decisions Art.22", "EU AI Act transparency", "data privacy"],
+  "automation_complexity": "VERY HIGH",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + Gartner AI Supply Chain 2025",
+  "confidence": 0.94
+}

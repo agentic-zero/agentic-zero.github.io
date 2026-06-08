@@ -1,15 +1,16 @@
 # SOP — Manage Supply Chain Contracts
 **Process ID:** SCOR-E6
 **Framework:** SCOR | **Domain:** Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of managing supplier and customer contracts throughout their lifecycle including negotiation, execution, compliance monitoring and renewal across all SCOR domains
 
 ## Triggers
-- New supplier performance data received
-- Contract expiry within 90 days detected
-- Legal requirement update published
+- New supplier onboarding event
+- Contract expiration within 90 days
+- Regulatory change in compliance_flags
+- Quarterly KPI calculation batch job
 
 ## Inputs Required
 - contract templates
@@ -19,9 +20,9 @@ Process of managing supplier and customer contracts throughout their lifecycle i
 - business terms
 
 ## Process Steps
-1. IF contract_compliance_rate < 0.95 THEN generate ComplianceAlert and notify legal team
-2. IF days_until_expiry <= 90 THEN create RenewalSchedule and start negotiation
-3. IF cycle_time > 30 days THEN escalate to contract manager
+1. IF days_until_expiration <= 90 THEN create RenewalSchedule
+2. IF compliance_rate < 0.95 THEN generate ComplianceAlert
+3. IF contract_value_deviation > 0.1 THEN flag for value optimization review
 
 ## Expected Outputs
 - executed contracts
@@ -31,18 +32,19 @@ Process of managing supplier and customer contracts throughout their lifecycle i
 - performance scorecards
 
 ## Business Rules
-- All ExecutedContract must include GDPR data processing agreements
-- Contract value optimization must be recalculated on every PerformanceScorecard update
-- EU AI Act supplier obligations must be flagged in ComplianceAlert for pharma and defense sectors
+- Every Contract must reference at least one LegalRequirement for GDPR or EU AI Act if sector is pharma or defense
+- Contract cycle time must be calculated as execution_date - start_negotiation_date and stored in PerformanceScorecard
+- On-time renewal rate is computed only for contracts with renewal_date within the last 365 days
 
 ## Exception Handling
-- Missing supplier performance data: default to last known scorecard and set 14-day data collection task
-- Non-compliant renewal: auto-reject and route to legal review before execution
+- If LegalRequirement conflicts with BusinessTerm, route to manual legal review before execution
+- If supplier performance data is older than 180 days, reject negotiation start
 
 ## Success Criteria
-- contract_compliance_rate >= 0.98
-- on-time_renewal_rate >= 0.95
-- contract_cycle_time <= 21 days
+- contract_compliance_rate >= 0.95
+- on_time_renewal_rate >= 0.90
+- contract_cycle_time <= 45 days
+- all executed contracts stored in ContractRepository
 
 ## Compliance Requirements
 - GDPR data processing agreements

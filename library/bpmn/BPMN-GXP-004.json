@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-GXP-004",
+  "name": "Validation & Qualification (CSV/Equipment)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "GxP Operations",
+  "category": "Pharma",
+  "description": "Computer system validation and equipment qualification process from validation planning through IQ/OQ/PQ execution to validation report and periodic review",
+  "bpmn_elements": {
+    "start_events": ["Validation Request"],
+    "end_events": ["System Validated", "Validation Failed"],
+    "tasks": ["Prepare Validation Plan", "User Requirements Specification", "Risk Assessment", "Design Qualification", "Installation Qualification", "Operational Qualification", "Performance Qualification", "Validation Report", "Periodic Review"],
+    "gateways": ["Risk Level?", "IQ Passed?", "OQ Passed?", "PQ Passed?"],
+    "lanes": ["IT/Engineering", "Quality Assurance", "Users", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-DIG3", "SCOR-E8", "SCOR-DIG10"],
+    "secondary": ["SCOR-E5", "SCOR-E1", "SCOR-DIG9"],
+    "automation_potential": 0.45
+  },
+  "inputs": ["user requirements", "risk assessment", "validation protocols", "test scripts", "system documentation"],
+  "outputs": ["validation plan", "IQ/OQ/PQ reports", "validation summary report", "validated system"],
+  "kpis": ["validation cycle time", "protocol deviation rate", "first-time pass rate", "periodic review compliance"],
+  "sector_applicability": ["pharma", "biotech", "medical devices"],
+  "erp_integration": ["Veeva Vault", "MasterControl", "ERES systems", "SAP"],
+  "compliance_flags": ["21 CFR Part 11", "EU Annex 11", "GAMP 5", "ICH Q10", "ISO 13485"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-10",
+  "source": "OMG BPMN 2.0 + GAMP 5 + EU Annex 11",
+  "confidence": 0.93
+}

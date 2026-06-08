@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-TRP-001",
+  "name": "Transport Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Logistics",
+  "category": "Transport",
+  "description": "Transport management process from shipment planning to proof of delivery including carrier selection, booking, tracking and freight payment",
+  "bpmn_elements": {
+    "start_events": ["Shipment Order Created"],
+    "end_events": ["Delivery Confirmed", "Exception Resolved"],
+    "tasks": ["Plan Shipment", "Select Carrier", "Book Transport", "Prepare Documents", "Hand Over to Carrier", "Track In Transit", "Manage Exceptions", "Confirm Delivery", "Process Freight Invoice"],
+    "gateways": ["Carrier Available?", "Exception?", "Delivery Confirmed?", "Invoice Match?"],
+    "lanes": ["Logistics", "Carrier", "Customer", "Finance"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.6", "SCOR-D2.7", "SCOR-D2.11", "SCOR-D2.12", "SCOR-P1.4"],
+    "secondary": ["SCOR-E7", "SCOR-DIG5", "SCOR-E6"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["shipment orders", "carrier contracts", "route data", "customs requirements", "delivery addresses"],
+  "outputs": ["carrier bookings", "shipping documents", "tracking data", "proof of delivery", "freight invoices"],
+  "kpis": ["on-time delivery", "freight cost per unit", "carrier performance", "exception rate"],
+  "sector_applicability": ["transport", "distribution", "manufacturing", "food", "pharma", "automotive"],
+  "erp_integration": ["SAP TM", "Oracle TMS", "Blue Yonder", "Manhattan", "project44"],
+  "compliance_flags": ["customs compliance", "dangerous goods ADR", "GDPR shipment data", "driver regulations"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.95
+}

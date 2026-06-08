@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-RMA-001",
+  "name": "Returns Management (RMA)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Reverse Logistics",
+  "category": "Returns",
+  "description": "End-to-end returns management from customer return request to disposition including authorization, receipt, inspection, disposition decision and credit/replacement",
+  "bpmn_elements": {
+    "start_events": ["Return Request Received"],
+    "end_events": ["Return Resolved", "Customer Credited"],
+    "tasks": ["Validate Return Request", "Issue RMA", "Receive Return", "Inspect Condition", "Determine Disposition", "Process Credit/Replacement", "Restock or Scrap", "Notify Customer"],
+    "gateways": ["Within Policy?", "Defective?", "Restock Possible?", "Credit or Replace?"],
+    "lanes": ["Customer Service", "Warehouse", "Quality", "Finance"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-DR1.1", "SCOR-DR1.2", "SCOR-DR1.3", "SCOR-DR1.4", "SCOR-SR1.3"],
+    "secondary": ["SCOR-E6", "SCOR-DIG5"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["return request", "order history", "return policy", "product condition criteria", "credit terms"],
+  "outputs": ["RMA authorization", "received return", "inspection report", "credit note", "restocked inventory"],
+  "kpis": ["RMA cycle time", "return processing accuracy", "credit issuance time", "customer satisfaction"],
+  "sector_applicability": ["distribution", "manufacturing", "food", "pharma", "automotive", "retail"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle", "MS Dynamics"],
+  "compliance_flags": ["consumer protection regulations", "GDPR customer data", "warranty compliance"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.93
+}

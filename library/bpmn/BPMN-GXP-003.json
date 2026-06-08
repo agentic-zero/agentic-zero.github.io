@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-GXP-003",
+  "name": "Deviation & OOS Investigation",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "GxP Operations",
+  "category": "Pharma",
+  "description": "Deviation and out-of-specification investigation process from detection to closure including immediate containment, investigation, root cause analysis and CAPA",
+  "bpmn_elements": {
+    "start_events": ["Deviation Detected"],
+    "end_events": ["Deviation Closed", "Product Rejected"],
+    "tasks": ["Report Deviation", "Immediate Containment", "Initial Assessment", "Phase 1 Investigation", "Phase 2 Investigation", "Root Cause Analysis", "Impact Assessment", "Define CAPA", "QA Review", "Close Deviation"],
+    "gateways": ["Regulatory Reportable?", "Phase 2 Required?", "Root Cause Found?", "Product Impact?"],
+    "lanes": ["Operations", "Quality Control", "Quality Assurance", "Regulatory Affairs"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M4.1", "SCOR-E8", "SCOR-SR1.1"],
+    "secondary": ["SCOR-E9", "SCOR-DIG10", "SCOR-E1"],
+    "automation_potential": 0.50
+  },
+  "inputs": ["deviation report", "batch data", "OOS result", "investigation protocol", "regulatory requirements"],
+  "outputs": ["investigation report", "root cause", "CAPA", "regulatory notification if needed", "batch disposition"],
+  "kpis": ["investigation cycle time", "root cause identification rate", "CAPA effectiveness", "regulatory on-time reporting"],
+  "sector_applicability": ["pharma", "biotech", "medical devices"],
+  "erp_integration": ["Veeva Vault", "MasterControl", "LIMS", "SAP QM"],
+  "compliance_flags": ["GxP 21 CFR 211.192", "EU GMP Chapter 6", "ICH Q10", "FDA OOS guidance"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + FDA OOS Guidance 2006",
+  "confidence": 0.94
+}

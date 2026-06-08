@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DEF-003",
+  "name": "Configuration Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Defense & Regulated",
+  "category": "Defense",
+  "description": "Configuration management process for complex products including baseline establishment, change control, status accounting and configuration audits",
+  "bpmn_elements": {
+    "start_events": ["Configuration Baseline Established"],
+    "end_events": ["Configuration Updated", "Audit Complete"],
+    "tasks": ["Define Configuration Items", "Establish Baseline", "Control Changes", "Record Configuration Status", "Conduct Functional Configuration Audit", "Conduct Physical Configuration Audit", "Update Documentation", "Maintain Configuration Database"],
+    "gateways": ["Change Authorized?", "Baseline Impact?", "Audit Passed?", "Documentation Complete?"],
+    "lanes": ["Configuration Management", "Engineering", "Quality", "Customer/Authority"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M3.2", "SCOR-D1.4", "SCOR-E3"],
+    "secondary": ["SCOR-S3.4", "SCOR-DIG10", "SCOR-E8"],
+    "automation_potential": 0.55
+  },
+  "inputs": ["product design", "BOM", "drawings", "specifications", "change requests"],
+  "outputs": ["configuration baseline", "as-built records", "configuration status", "audit reports"],
+  "kpis": ["configuration accuracy rate", "change cycle time", "audit compliance rate", "documentation completeness"],
+  "sector_applicability": ["defense", "aerospace", "nuclear", "industrial equipment"],
+  "erp_integration": ["SAP PLM", "Windchill", "Teamcenter", "DOORS", "IBM Engineering"],
+  "compliance_flags": ["MIL-HDBK-61B", "AS9100 configuration management", "CMII standards", "export control"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-10",
+  "source": "OMG BPMN 2.0 + MIL-HDBK-61B",
+  "confidence": 0.90
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-OTC-001",
+  "name": "Order-to-Cash",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Order Management",
+  "category": "Commercial",
+  "description": "End-to-end Order-to-Cash process from order receipt to payment collection including order validation, fulfillment, shipping, invoicing and cash application",
+  "bpmn_elements": {
+    "start_events": ["Order Received"],
+    "end_events": ["Order Complete", "Order Cancelled"],
+    "tasks": ["Validate Order", "Check Stock", "Process Payment", "Pick & Pack", "Ship Order", "Send Confirmation", "Generate Invoice", "Apply Cash"],
+    "gateways": ["Items in Stock?", "Payment Approved?", "Credit Check Passed?"],
+    "lanes": ["Sales", "Warehouse", "Finance", "Logistics"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.2", "SCOR-D2.3", "SCOR-D2.8", "SCOR-D2.9", "SCOR-D2.10", "SCOR-D2.11", "SCOR-D2.12", "SCOR-D2.15"],
+    "secondary": ["SCOR-P1.1", "SCOR-S1.1", "SCOR-E3"],
+    "automation_potential": 0.75
+  },
+  "inputs": ["customer order", "inventory data", "credit data", "pricing data", "shipping requirements"],
+  "outputs": ["fulfilled order", "invoice", "cash receipt", "customer confirmation"],
+  "kpis": ["order cycle time", "perfect order rate", "cash conversion cycle", "order accuracy"],
+  "sector_applicability": ["manufacturing", "distribution", "food", "pharma", "transport", "automotive"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle", "MS Dynamics"],
+  "compliance_flags": ["GDPR customer data", "tax compliance", "consumer protection"],
+  "automation_complexity": "LOW",
+  "typical_fte": "2-5",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.96
+}

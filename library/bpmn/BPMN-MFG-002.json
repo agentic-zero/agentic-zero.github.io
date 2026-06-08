@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MFG-002",
+  "name": "Maintenance Work Order Management (MRO)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Asset Maintenance",
+  "category": "Manufacturing",
+  "description": "Maintenance work order process from breakdown or planned maintenance trigger to equipment return to service including diagnosis, parts procurement, execution and history update",
+  "bpmn_elements": {
+    "start_events": ["Breakdown Detected", "PM Schedule Triggered"],
+    "end_events": ["Equipment Returned to Service", "Equipment Decommissioned"],
+    "tasks": ["Create Work Order", "Diagnose Fault", "Check Parts Availability", "Request Parts", "Schedule Maintenance", "Execute Maintenance", "Test & Verify", "Update Equipment History", "Close Work Order"],
+    "gateways": ["Emergency?", "Parts Available?", "Repair Feasible?", "Test Passed?"],
+    "lanes": ["Operations", "Maintenance", "Procurement", "Quality"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-SR2.1", "SCOR-SR2.2", "SCOR-E5", "SCOR-M2.1"],
+    "secondary": ["SCOR-S2.1", "SCOR-DIG2", "SCOR-DIG1"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["breakdown alert", "PM schedule", "equipment history", "spare parts inventory", "maintenance procedures"],
+  "outputs": ["completed work order", "equipment history update", "parts consumption", "OEE data"],
+  "kpis": ["MTTR", "MTBF", "PM compliance rate", "maintenance cost per unit"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "food", "energy", "automotive"],
+  "erp_integration": ["SAP PM", "IBM Maximo", "Oracle EAM", "Infor EAM"],
+  "compliance_flags": ["GxP equipment qualification if pharma", "safety regulations", "GDPR if personal data", "ATEX if applicable"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-10",
+  "source": "OMG BPMN 2.0 + ISO 55001",
+  "confidence": 0.93
+}

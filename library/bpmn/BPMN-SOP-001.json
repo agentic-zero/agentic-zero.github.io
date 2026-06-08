@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-SOP-001",
+  "name": "Sales & Operations Planning (S&OP)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Integrated Planning",
+  "category": "Planning",
+  "description": "Monthly S&OP cycle from data gathering to executive approval including demand review, supply review, pre-S&OP and executive S&OP meeting",
+  "bpmn_elements": {
+    "start_events": ["Month Start"],
+    "end_events": ["Approved S&OP Plan Published"],
+    "tasks": ["Gather Statistical Forecast", "Sales Demand Review", "Adjust Demand Plan", "Supply Capacity Review", "Identify Gaps", "Develop Scenarios", "Pre-S&OP Meeting", "Executive S&OP Meeting", "Approve Plan", "Publish Plan"],
+    "gateways": ["Consensus Reached?", "Gaps Resolved?", "Executive Approval?", "Escalate?"],
+    "lanes": ["Demand Planning", "Supply Planning", "Sales", "Operations", "Finance", "Executive"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-P1.1", "SCOR-P1.2", "SCOR-P1.3", "SCOR-P1.4", "SCOR-P1.5"],
+    "secondary": ["SCOR-E2", "SCOR-DIG6", "SCOR-DIG1"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["historical sales", "market intelligence", "capacity data", "inventory data", "financial targets"],
+  "outputs": ["approved demand plan", "supply plan", "gap analysis", "financial reconciliation", "executive decisions"],
+  "kpis": ["forecast accuracy", "plan adherence", "S&OP cycle time", "gap closure rate"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "chemical", "automotive", "distribution"],
+  "erp_integration": ["SAP IBP", "SAP APO", "Oracle", "Kinaxis", "Blue Yonder", "o9 Solutions"],
+  "compliance_flags": ["financial reporting", "GDPR business data", "regulatory capacity constraints"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "5-15",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.95
+}

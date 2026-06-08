@@ -4,7 +4,7 @@ Process: SCOR-E1
 Name: supply_chain_business_rules_manager
 Framework: SCOR
 Domain: Enable
-Generated: 2026-06-07T18:03:14.763517
+Generated: 2026-06-08T10:29:05.532671
 Compliance: EU AI Act Art.9 risk management, ISO 42001 governance, GDPR data processing rules, regulatory compliance
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,11 @@ class SupplyChainBusinessRulesManagerAgent:
     Process of establishing, maintaining and governing the business rules, policies and decision criteria that guide supply chain operations across all SCOR domains
     
     Capabilities:
-    #   - monitor_regulatory_changes
+    #   - detect_regulatory_changes
     #   - update_business_rules
-    #   - enforce_compliance_thresholds
-    #   - log_and_escalate_exceptions
-    #   - map_rules_to_requirements
+    #   - monitor_compliance
+    #   - perform_gap_analysis
+    #   - validate_policy_framework
     
     Compliance: EU AI Act Art.9 risk management, ISO 42001 governance, GDPR data processing rules, regulatory compliance
     """
@@ -140,42 +140,30 @@ class SupplyChainBusinessRulesManagerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF regulatory_requirement changes THEN update BusinessRule and set review_date = today + 30 days
-        # - IF policy_exception_rate > 0.05 THEN trigger escalation to SCOR-E2
+        # - IF regulatory_requirement.change_detected == true THEN initiate rule_update_cycle
+        # - IF policy_exception_rate > 0.05 THEN escalate to governance_board
+        # - IF rule_coverage_completeness < 0.9 THEN trigger gap_analysis
         
         Business rules:
-        # - rule_compliance_rate must be >= 0.95
-        # - rule_update_cycle_time must be <= 90 days
-        # - All BusinessRule must map to at least one RegulatoryRequirement or ComplianceGuideline
+        # - rule_compliance_rate must be >= 0.95 for all active BusinessRules
+        # - rule_update_cycle_time must be <= 30 days from trigger
+        # - All BusinessRules must map to at least one RegulatoryRequirement or business_strategy objective
         """
         outputs = {}
         
-# Extract inputs safely handling missing keys (edge case)
-        strategy = inputs.get('business strategy', '')
-        regs = inputs.get('regulatory requirements', [])
-        policies = inputs.get('operational policies', [])
-        stakeholder = inputs.get('stakeholder input', '')
-        perf = inputs.get('performance data', {})
-        # Enforce rule: compliance_rate >= 0.95
-        compliance_rate = perf.get('rule_compliance_rate', 0.0)
-        if compliance_rate < 0.95:
-            policies = ['COMPLIANCE_REVIEW_REQUIRED'] + policies
-        # Decision point: regulatory change triggers update + 30-day review
-        update_cycle = perf.get('rule_update_cycle_time', 91)
-        if update_cycle > 90 or 'change' in str(regs).lower():
-            review_date = 'today + 30 days'
-        else:
-            review_date = 'current_cycle'
-        # Enforce rule: every BusinessRule maps to RegulatoryRequirement
-        mapped_rules = [{ 'rule': r, 'maps_to': regs[0] if regs else 'default'} for r in policies]
-        # Populate required outputs dict
-        outputs = {
-            'business rules documentation': 'Derived from strategy: ' + strategy + '; mapped_rules: ' + str(mapped_rules),
-            'decision criteria': {'review_date': review_date, 'update_cycle_ok': update_cycle <= 90},
-            'policy framework': policies,
-            'escalation rules': 'IF policy_exception_rate > 0.05 THEN SCOR-E2',
-            'compliance guidelines': regs if regs else ['DEFAULT_COMPLIANCE']
-        }
+outputs = {}
+        # Extract inputs handling missing data edge case
+        strat = inputs.get('business strategy', '') if isinstance(inputs, dict) else ''
+        regs = inputs.get('regulatory requirements', '') if isinstance(inputs, dict) else ''
+        pols = inputs.get('operational policies', '') if isinstance(inputs, dict) else ''
+        stake = inputs.get('stakeholder input', '') if isinstance(inputs, dict) else ''
+        perf = inputs.get('performance data', '') if isinstance(inputs, dict) else ''
+        # Populate required outputs with derived content
+        outputs['business rules documentation'] = 'Derived rules: ' + strat + ' mapped to ' + regs
+        outputs['decision criteria'] = 'Performance thresholds from ' + perf + ' and stakeholder ' + stake
+        outputs['policy framework'] = 'Integrated policies: ' + pols + ' aligned to strategy'
+        outputs['escalation rules'] = 'Trigger on exception >5% or update cycle >30 days'
+        outputs['compliance guidelines'] = 'Ensure >=95% rate for all rules covering ' + regs
         return outputs
         
         return outputs
@@ -185,10 +173,10 @@ class SupplyChainBusinessRulesManagerAgent:
         Built-in compliance validation
         
         Checks:
-        # - EU AI Act Art.9 risk mapping
-        # - ISO 42001 governance audit
-        # - GDPR data processing validation
-        # - regulatory_requirement to BusinessRule traceability
+        # - EU AI Act Art.9 risk assessment
+        # - ISO 42001 governance validation
+        # - GDPR data processing audit
+        # - regulatory_requirement_mapping
         """
         checks_passed = []
         checks_failed = []
@@ -212,7 +200,7 @@ class SupplyChainBusinessRulesManagerAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['policy_exception_rate > 0.05', 'unresolved exception after 14 days', 'rule_compliance_rate < 0.90', 'rule_update_cycle_time > 120 days']
+        escalation_rules = ['policy_exception_rate > 0.05 to governance_board', 'rule_update_cycle_time > 30 days', 'rule_compliance_rate < 0.95']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})

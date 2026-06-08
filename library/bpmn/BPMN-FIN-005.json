@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-FIN-005",
+  "name": "Trade Finance & Letters of Credit",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Financial Operations",
+  "category": "Finance",
+  "description": "Trade finance process for international transactions including letter of credit application, document preparation, bank submission and payment receipt",
+  "bpmn_elements": {
+    "start_events": ["International Order Confirmed"],
+    "end_events": ["Payment Received", "Dispute Resolved"],
+    "tasks": ["Negotiate Payment Terms", "Apply for LC", "Bank Reviews LC", "Prepare Shipping Documents", "Submit Documents to Bank", "Bank Verifies Documents", "Authorize Payment", "Receive Payment", "Reconcile"],
+    "gateways": ["LC Required?", "Documents Compliant?", "Discrepancy?", "Approved?"],
+    "lanes": ["Exporter", "Exporter Bank", "Importer Bank", "Importer"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.15", "SCOR-D2.6", "SCOR-E6"],
+    "secondary": ["SCOR-E8", "SCOR-DIG9", "SCOR-S3.5"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["sales contract", "LC terms", "shipping documents", "customs data", "bank instructions"],
+  "outputs": ["letter of credit", "compliant documents", "payment authorization", "reconciliation"],
+  "kpis": ["LC cycle time", "document compliance rate", "discrepancy rate", "payment cycle time"],
+  "sector_applicability": ["manufacturing", "defense", "chemical", "food", "pharma"],
+  "erp_integration": ["SAP TRM", "Swift network", "trade finance platforms", "blockchain trade finance"],
+  "compliance_flags": ["UCP 600 LC rules", "export control", "AML compliance", "GDPR financial data", "customs regulations"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + ICC UCP 600",
+  "confidence": 0.90
+}

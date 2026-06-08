@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DIG-002",
+  "name": "Autonomous Replenishment Agent",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Digital Supply Chain",
+  "category": "Digital",
+  "description": "Fully autonomous replenishment process executed by AI agent including demand sensing, reorder calculation, supplier selection, PO generation and confirmation — the core Agentic Zero use case",
+  "bpmn_elements": {
+    "start_events": ["Replenishment Trigger (Automated)"],
+    "end_events": ["PO Confirmed", "Human Review Required"],
+    "tasks": ["Sense Demand Signal", "Calculate Net Requirement", "Check Approved Supplier List", "Calculate Order Quantity", "Apply Business Rules", "Generate PO Draft", "Validate Against Thresholds", "Auto-Approve or Escalate", "Send PO to Supplier", "Confirm Receipt"],
+    "gateways": ["Above Auto-Approve Threshold?", "Preferred Supplier Available?", "Business Rules OK?", "Supplier Confirmed?"],
+    "lanes": ["AI Agent", "ERP System", "Supplier Portal", "Human Oversight"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.1", "SCOR-P1.3", "SCOR-DIG3", "SCOR-DIG4"],
+    "secondary": ["SCOR-E1", "SCOR-DIG9", "SCOR-DIG10"],
+    "automation_potential": 0.95
+  },
+  "inputs": ["inventory levels", "demand forecast", "supplier data", "business rules", "approval thresholds"],
+  "outputs": ["autonomous PO", "supplier confirmation", "audit trail", "exception alerts"],
+  "kpis": ["autonomous rate", "PO cycle time reduction", "stockout reduction", "cost savings"],
+  "sector_applicability": ["distribution", "manufacturing", "retail", "pharma", "food"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Oracle", "Agentic Zero API Gateway"],
+  "compliance_flags": ["EU AI Act Art.14 human oversight", "GDPR automated decisions", "financial controls", "audit trail requirements"],
+  "automation_complexity": "VERY HIGH",
+  "typical_fte": "0.5-2",
+  "source": "OMG BPMN 2.0 + Agentic Zero Pioneer Framework",
+  "confidence": 0.97
+}

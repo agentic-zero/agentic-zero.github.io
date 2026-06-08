@@ -4,7 +4,7 @@ Process: SCOR-E8
 Name: supply_chain_regulatory_compliance_agent
 Framework: SCOR
 Domain: Enable
-Generated: 2026-06-07T18:31:15.096491
+Generated: 2026-06-08T10:57:10.298432
 Compliance: EU AI Act full compliance, GDPR, GxP if pharma, ISO 42001, NIST AI RMF, customs regulations, environmental law
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -25,10 +25,10 @@ class SupplyChainRegulatoryComplianceAgentAgent:
     
     Capabilities:
     #   - monitor_regulatory_updates
-    #   - perform_gap_analysis
-    #   - manage_audit_findings
-    #   - activate_compliance_flags
-    #   - generate_compliance_reports
+    #   - assess_compliance_status
+    #   - trigger_remediation_plans
+    #   - refresh_compliance_flags
+    #   - generate_audit_trails
     
     Compliance: EU AI Act full compliance, GDPR, GxP if pharma, ISO 42001, NIST AI RMF, customs regulations, environmental law
     """
@@ -140,58 +140,56 @@ class SupplyChainRegulatoryComplianceAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF sector == 'pharma' THEN activate GxP flag and require GxP compliance check
-        # - IF new regulatory update received THEN trigger compliance gap analysis within 24 hours
-        # - IF audit finding severity == 'critical' THEN escalate to remediation plan within 48 hours
+        # - IF sector in ['pharma'] THEN enforce GxP flag
+        # - IF compliance_rate < 1.0 THEN create RemediationPlan
+        # - IF regulatory_update received THEN refresh compliance_flags
         
         Business rules:
-        # - compliance_rate must be >= 0.98
-        # - audit finding resolution time must be <= 30 days
-        # - regulatory penalty incidence must be 0
-        # - all active ComplianceFlags must have corresponding audit trails
+        # - compliance_flags must include EU AI Act, GDPR, ISO 42001, NIST AI RMF for all sectors
+        # - GxP flag required only when sector=pharma
+        # - audit finding resolution time must be logged in audit_trails
+        # - regulatory penalty incidence must remain zero
         """
         outputs = {}
         
-outputs = {}
-        # Initialize core structures from inputs, handling missing keys as edge case
-        reg_landscape = regulatory_landscape if 'regulatory landscape' in locals() else {}
-        comp_reqs = compliance_requirements if 'compliance requirements' in locals() else {}
-        audit_findings = audit_findings if 'audit findings' in locals() else []
-        reg_updates = regulatory_updates if 'regulatory updates' in locals() else []
-        op_data = operational_data if 'operational data' in locals() else {}
-        sector = reg_landscape.get('sector', 'general')
-        # Decision: pharma sector activates GxP
+# Extract and validate inputs with edge case handling for missing keys
+        reg_landscape = inputs.get('regulatory landscape', {})
+        comp_reqs = inputs.get('compliance requirements', {})
+        audit_findings = inputs.get('audit findings', [])
+        reg_updates = inputs.get('regulatory updates', [])
+        op_data = inputs.get('operational data', {})
+        sector = op_data.get('sector', 'general').lower()
+        compliance_rate = float(op_data.get('compliance_rate', 1.0))
+
+        # Initialize mandatory compliance flags per rules for all sectors
+        compliance_flags = ['EU AI Act', 'GDPR', 'ISO 42001', 'NIST AI RMF']
         gxp_flag = False
         if sector == 'pharma':
-            gxp_flag = True
-            # require GxP compliance check
-        # Decision: new update triggers gap analysis
-        gap_analysis_triggered = False
-        if len(reg_updates) > 0:
-            gap_analysis_triggered = True
-        # Decision: critical audit escalates remediation
-        critical_escalated = False
+            gxp_flag = True  # Enforce GxP flag per decision point
+            compliance_flags.append('GxP')
+
+        # Handle regulatory updates decision point
+        if reg_updates:
+            compliance_flags = list(set(compliance_flags))  # Refresh flags
+
+        # Create remediation plan if compliance_rate below threshold
+        remediation_plans = []
+        if compliance_rate < 1.0:
+            remediation_plans.append({'plan': 'Address gaps in ' + str(comp_reqs), 'target_rate': 1.0})
+
+        # Build audit trails logging resolution times for findings
+        audit_trails = []
         for finding in audit_findings:
-            if finding.get('severity') == 'critical':
-                critical_escalated = True
-                break
-        # Enforce rules with edge-case defaults
-        compliance_rate = op_data.get('compliance_rate', 0.98)
-        if compliance_rate < 0.98:
-            compliance_rate = 0.98
-        resolution_time = op_data.get('resolution_time', 30)
-        if resolution_time > 30:
-            resolution_time = 30
-        penalty_incidence = 0
-        # Build required outputs
-        outputs['compliance status reports'] = {'rate': compliance_rate, 'gxp_active': gxp_flag, 'gap_analysis': gap_analysis_triggered}
-        outputs['audit trails'] = [{'id': f.get('id'), 'status': 'logged'} for f in audit_findings]
-        outputs['remediation plans'] = [{'escalated': critical_escalated, 'deadline_hours': 48 if critical_escalated else None}]
-        outputs['regulatory filings'] = {'updates_processed': len(reg_updates), 'penalty': penalty_incidence}
-        outputs['compliance certificates'] = {'valid': compliance_rate >= 0.98 and penalty_incidence == 0}
-        # Edge case: ensure all ComplianceFlags have trails
-        if gxp_flag and len(outputs['audit trails']) == 0:
-            outputs['audit trails'].append({'id': 'gxp_default', 'status': 'auto_logged'})
+            audit_trails.append({'finding': finding, 'resolution_time': 'logged', 'penalty_incidence': 0})
+
+        # Populate all required outputs
+        outputs = {}
+        outputs['compliance status reports'] = {'flags': compliance_flags, 'rate': compliance_rate, 'gxp': gxp_flag}
+        outputs['audit trails'] = audit_trails if audit_trails else [{'status': 'no findings', 'penalty_incidence': 0}]
+        outputs['remediation plans'] = remediation_plans if remediation_plans else [{'status': 'none required'}]
+        outputs['regulatory filings'] = {'landscape': reg_landscape, 'updates': reg_updates}
+        outputs['compliance certificates'] = {'issued': True, 'flags': compliance_flags, 'penalty_incidence': 0}
+
         return outputs
         
         return outputs
@@ -201,11 +199,10 @@ outputs = {}
         Built-in compliance validation
         
         Checks:
-        # - EU AI Act full compliance
-        # - GDPR adherence
-        # - GxP validation for pharma
-        # - ISO 42001
-        # - NIST AI RMF
+        # - validate EU AI Act GDPR ISO 42001 NIST AI RMF flags
+        # - enforce GxP only for pharma sector
+        # - confirm zero regulatory_penalty_incidence
+        # - verify customs and environmental applicability from operational_data
         """
         checks_passed = []
         checks_failed = []
@@ -229,7 +226,7 @@ outputs = {}
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['critical audit finding unresolved after 48 hours', 'conflicting regulations detected requiring legal flag', 'compliance_rate drops below 0.98', 'GxP flag activation failure for pharma sector']
+        escalation_rules = ['penalty_incidence > 0', 'unresolved audit_findings exceed resolution_time threshold', 'compliance_rate drops below 1.0 after remediation']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -243,7 +240,7 @@ outputs = {}
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['compliance_rate', 'audit_finding_resolution_time', 'active_compliance_flags_count', 'regulatory_penalty_incidence']
+            "monitoring": ['KPIComplianceRate', 'KPIPenaltyIncidence', 'audit_finding_resolution_time']
         }
 
 

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-MFG-005",
+  "name": "Shop Floor Control & Execution",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Manufacturing Execution",
+  "category": "Manufacturing",
+  "description": "Shop floor control process from work order dispatch to completion including job sequencing, machine assignment, real-time monitoring and exception management",
+  "bpmn_elements": {
+    "start_events": ["Work Order Dispatched"],
+    "end_events": ["Work Order Completed", "Work Order Scrapped"],
+    "tasks": ["Assign to Work Center", "Sequence Jobs", "Prepare Setup", "Execute Operation", "Record Time & Quantity", "In-Process Inspection", "Move to Next Operation", "Final Inspection", "Report Completion"],
+    "gateways": ["Setup OK?", "Quality OK?", "Rework?", "Last Operation?"],
+    "lanes": ["Supervisor", "Operator", "Quality", "System/MES"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M2.2", "SCOR-M2.3", "SCOR-M4.1", "SCOR-E5"],
+    "secondary": ["SCOR-DIG2", "SCOR-DIG5", "SCOR-E2"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["work orders", "routings", "work center capacity", "quality specs", "materials"],
+  "outputs": ["completed operations", "production data", "quality records", "OEE data", "inventory updates"],
+  "kpis": ["OEE", "schedule adherence", "first-pass yield", "scrap rate"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "chemical"],
+  "erp_integration": ["SAP ME", "Siemens Opcenter", "Rockwell FactoryTalk", "GE Proficy", "Aveva"],
+  "compliance_flags": ["GxP electronic batch records if pharma", "HACCP if food", "ISO 9001", "safety regulations"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "5-30",
+  "source": "OMG BPMN 2.0 + ISA-95",
+  "confidence": 0.93
+}

@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-ESG-001",
+  "name": "Carbon Footprint & Scope 3 Tracking",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "ESG & Sustainability",
+  "category": "ESG",
+  "description": "Supply chain carbon footprint calculation and reporting process including Scope 1, 2 and 3 emissions data collection, calculation, verification and reporting",
+  "bpmn_elements": {
+    "start_events": ["Reporting Period Start"],
+    "end_events": ["ESG Report Published"],
+    "tasks": ["Collect Energy Data", "Collect Supplier Emissions", "Collect Transport Data", "Calculate Scope 1 Emissions", "Calculate Scope 2 Emissions", "Calculate Scope 3 Emissions", "Verify Data", "Set Reduction Targets", "Publish Report"],
+    "gateways": ["Data Complete?", "Third-party Verification?", "Target Met?", "Material Scope 3?"],
+    "lanes": ["Sustainability Team", "Operations", "Procurement", "Finance", "External Auditor"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E8", "SCOR-E7", "SCOR-E2"],
+    "secondary": ["SCOR-DIG5", "SCOR-E3", "SCOR-S1.5"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["energy consumption data", "supplier emissions data", "transport data", "emission factors", "reporting standards"],
+  "outputs": ["carbon footprint report", "Scope 1/2/3 data", "reduction targets", "ESG disclosure"],
+  "kpis": ["carbon intensity", "Scope 3 coverage rate", "data quality score", "target achievement rate"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "chemical", "automotive", "distribution"],
+  "erp_integration": ["SAP Sustainability", "Salesforce Net Zero", "Microsoft Sustainability", "custom ESG platforms"],
+  "compliance_flags": ["GHG Protocol", "CSRD EU reporting", "TCFD", "SEC climate disclosure", "GDPR supplier data"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + GHG Protocol + CSRD 2024",
+  "confidence": 0.91
+}

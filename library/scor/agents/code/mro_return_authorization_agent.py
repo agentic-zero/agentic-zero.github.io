@@ -4,7 +4,7 @@ Process: SCOR-DR2.1
 Name: mro_return_authorization_agent
 Framework: SCOR
 Domain: Return
-Generated: 2026-06-07T17:23:13.859546
+Generated: 2026-06-08T10:21:09.870470
 Compliance: asset management policy, GDPR if personal data, environmental if hazardous MRO
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,10 @@ class MroReturnAuthorizationAgentAgent:
     Process of evaluating and authorizing MRO product return requests from customers or internal operations, establishing credit or exchange terms
     
     Capabilities:
-    #   - evaluate_return_request_compliance
-    #   - assess_policy_and_condition
-    #   - issue_credit_or_exchange_terms
-    #   - enforce_regulatory_checks
+    #   - evaluate_return_request
+    #   - apply_return_policy
+    #   - generate_authorization
+    #   - handle_exceptions
     
     Compliance: asset management policy, GDPR if personal data, environmental if hazardous MRO
     """
@@ -139,44 +139,44 @@ class MroReturnAuthorizationAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF product_condition_assessment.compliant == true AND purchase_history.valid == true THEN issue MROReturnAuthorization
-        # - IF return_policy.credit_allowed == true THEN generate CreditTerms ELSE generate ExchangeTerms
+        # - IF product_condition_score >= policy_threshold AND purchase_history_valid THEN create MROReturnAuthorization ELSE reject_request
+        # - IF hazardous_material_flag == true THEN require environmental_compliance_check
+        # - IF personal_data_present THEN enforce GDPR_consent_verification
         
         Business rules:
-        # - authorization_cycle_time <= 48 hours
-        # - GDPR consent required if personal_data present in request
-        # - environmental_compliance_check mandatory if hazardous_mro == true
+        # - authorization_cycle_time <= 48_hours
+        # - credit_recovery_rate >= 0.85
+        # - authorization must reference asset_management_policy_id
+        # - return_instructions must include carrier and tracking_template
         """
         outputs = {}
         
-mro_req = inputs.get('MRO return request', {})
-        purch_hist = inputs.get('purchase history', {})
-        prod_cond = inputs.get('product condition assessment', {})
-        ret_pol = inputs.get('return policy', {})
+# Extract and validate inputs with edge case handling
+        req = mro_return_request if mro_return_request else {}
+        hist = purchase_history if purchase_history else {}
+        assess = product_condition_assessment if product_condition_assessment else {}
+        pol = return_policy if return_policy else {}
+        cond_score = assess.get('condition_score', 0)
+        thresh = pol.get('threshold', 0.7)
+        hist_valid = hist.get('valid', False)
+        haz_flag = req.get('hazardous_material_flag', False)
+        pii_flag = req.get('personal_data_present', False)
+        # Decision point 1: authorization or reject
+        if cond_score >= thresh and hist_valid:
+            auth = {'id': 'MRO-' + str(req.get('id', 'UNK')), 'status': 'approved', 'policy_ref': pol.get('asset_management_policy_id', 'POL-DEFAULT')}
+        else:
+            auth = {'id': None, 'status': 'rejected', 'reason': 'condition or history invalid'}
+        # Decision point 2: hazardous check
+        if haz_flag:
+            auth['env_check'] = 'required'
+        # Decision point 3: GDPR
+        if pii_flag:
+            auth['gdpr_consent'] = req.get('gdpr_consent', False)
+        # Build outputs per rules (cycle time, recovery, refs, instructions)
         outputs = {}
-        # GDPR edge case handling before authorization
-        if mro_req.get('personal_data') and not mro_req.get('gdpr_consent'):
-            outputs['MRO return authorization'] = 'Pending: GDPR consent required'
-            outputs['credit or exchange terms'] = 'None'
-            outputs['return instructions'] = 'Obtain GDPR consent before proceeding'
-            return outputs
-        # Environmental compliance edge case
-        if mro_req.get('hazardous_mro'):
-            outputs['return instructions'] = 'Hazardous return: complete environmental_compliance_check and use certified carrier'
-        else:
-            outputs['return instructions'] = 'Standard return packaging and shipping label'
-        # Core decision point for authorization
-        if prod_cond.get('compliant') is True and purch_hist.get('valid') is True:
-            outputs['MRO return authorization'] = {'status': 'Issued', 'cycle_time_hours': 24}
-        else:
-            outputs['MRO return authorization'] = {'status': 'Denied', 'reason': 'Non-compliant condition or invalid history'}
-            outputs['credit or exchange terms'] = 'None'
-            return outputs
-        # Credit vs exchange decision
-        if ret_pol.get('credit_allowed') is True:
-            outputs['credit or exchange terms'] = {'type': 'CreditTerms', 'amount': purch_hist.get('original_value', 0)}
-        else:
-            outputs['credit or exchange terms'] = {'type': 'ExchangeTerms', 'replacement_sku': mro_req.get('sku')}
+        outputs['MRO return authorization'] = auth
+        outputs['credit or exchange terms'] = {'credit': 0.85 if auth['status'] == 'approved' else 0, 'type': 'credit' if auth['status'] == 'approved' else 'none'}
+        outputs['return instructions'] = {'carrier': pol.get('carrier', 'DEFAULT'), 'tracking_template': pol.get('tracking_template', 'TRK-{id}'), 'deadline_hours': 48}
         return outputs
         
         return outputs
@@ -186,9 +186,9 @@ mro_req = inputs.get('MRO return request', {})
         Built-in compliance validation
         
         Checks:
-        # - GDPR consent verification on personal_data
-        # - environmental_compliance on hazardous_mro
-        # - asset_management_policy on defense sector
+        # - asset_management_policy_reference
+        # - gdpr_consent_verification
+        # - environmental_compliance_for_hazardous
         """
         checks_passed = []
         checks_failed = []
@@ -212,7 +212,7 @@ mro_req = inputs.get('MRO return request', {})
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['defense sector asset_management_policy approval required', 'product_condition_assessment.damaged_beyond_policy', 'cycle_time approaching 48h without decision']
+        escalation_rules = ['hazardous MRO requiring environmental_officer review', 'GDPR personal_data without consent', 'missing purchase_history after 24h auto-request']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -226,7 +226,7 @@ mro_req = inputs.get('MRO return request', {})
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['authorization_cycle_time', 'authorization_accuracy', 'credit_recovery_rate']
+            "monitoring": ['authorization_cycle_time', 'accuracy_kpi', 'credit_recovery_rate']
         }
 
 

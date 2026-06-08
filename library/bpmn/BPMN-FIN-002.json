@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-FIN-002",
+  "name": "Accounts Payable Automation",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Financial Operations",
+  "category": "Finance",
+  "description": "Automated accounts payable process from invoice receipt to payment execution including AI-powered invoice capture, 3-way matching, exception handling and payment processing",
+  "bpmn_elements": {
+    "start_events": ["Invoice Received"],
+    "end_events": ["Payment Executed", "Invoice Rejected"],
+    "tasks": ["Capture Invoice (OCR/AI)", "Validate Invoice Data", "Match PO & GR", "Route for Approval", "Handle Exception", "Post Invoice", "Schedule Payment", "Execute Payment", "Reconcile"],
+    "gateways": ["3-Way Match OK?", "Within Tolerance?", "Approval Required?", "Duplicate?"],
+    "lanes": ["AI/OCR", "Finance", "Approver", "Bank System"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.2", "SCOR-S2.5", "SCOR-E3", "SCOR-DIG3"],
+    "secondary": ["SCOR-E6", "SCOR-DIG9", "SCOR-E8"],
+    "automation_potential": 0.85
+  },
+  "inputs": ["supplier invoices", "purchase orders", "goods receipts", "payment terms", "bank data"],
+  "outputs": ["posted invoices", "payment files", "reconciliation data", "supplier remittances"],
+  "kpis": ["straight-through processing rate", "invoice cycle time", "early payment discount capture", "exception rate"],
+  "sector_applicability": ["manufacturing", "pharma", "distribution", "food", "services", "transport"],
+  "erp_integration": ["SAP FI", "Oracle AP", "MS Dynamics", "Basware", "Coupa"],
+  "compliance_flags": ["tax compliance VAT/GST", "GDPR financial data", "e-invoicing mandate", "anti-fraud controls"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-8",
+  "source": "OMG BPMN 2.0 + IOFM AP Automation Standards",
+  "confidence": 0.94
+}

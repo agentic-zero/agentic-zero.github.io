@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-GXP-001",
+  "name": "Batch Record Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "GxP Operations",
+  "category": "Pharma",
+  "description": "Electronic batch record creation, execution and review process from batch initiation to batch release including in-process controls, reconciliation and QA review",
+  "bpmn_elements": {
+    "start_events": ["Batch Order Released"],
+    "end_events": ["Batch Released", "Batch Rejected"],
+    "tasks": ["Create Batch Record", "Issue Materials", "Execute Production Steps", "Record In-Process Data", "Perform Line Clearance", "Reconcile Materials", "QA Review", "Approve Batch", "Release Batch"],
+    "gateways": ["In-Process OK?", "Reconciliation OK?", "QA Approved?", "Deviation?"],
+    "lanes": ["Production", "Quality Control", "Quality Assurance", "Regulatory"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-M2.3", "SCOR-M4.1", "SCOR-E8"],
+    "secondary": ["SCOR-S2.3", "SCOR-DIG10", "SCOR-E1"],
+    "automation_potential": 0.70
+  },
+  "inputs": ["batch order", "master batch record", "materials", "equipment", "in-process specifications"],
+  "outputs": ["completed batch record", "batch release decision", "QA certificate", "deviation records"],
+  "kpis": ["batch right-first-time rate", "batch record review cycle time", "deviation rate", "batch release time"],
+  "sector_applicability": ["pharma", "biotech", "medical devices", "food"],
+  "erp_integration": ["SAP ECC", "SAP HANA", "Veeva", "MasterControl", "LIMS"],
+  "compliance_flags": ["GxP 21 CFR Part 211", "EU GMP Annex 11", "FDA data integrity", "ALCOA+ principles"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-10",
+  "source": "OMG BPMN 2.0 + ICH Q10 Pharmaceutical Quality System",
+  "confidence": 0.95
+}

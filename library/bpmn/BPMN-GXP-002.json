@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-GXP-002",
+  "name": "Change Control Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "GxP Operations",
+  "category": "Pharma",
+  "description": "Change control process from change request to implementation and closure including risk assessment, regulatory impact assessment, validation requirements and effectiveness check",
+  "bpmn_elements": {
+    "start_events": ["Change Request Initiated"],
+    "end_events": ["Change Closed", "Change Rejected"],
+    "tasks": ["Submit Change Request", "Initial Assessment", "Risk Assessment", "Regulatory Impact Assessment", "Define Validation Plan", "Obtain Approvals", "Implement Change", "Validate Change", "Effectiveness Check", "Close Change"],
+    "gateways": ["Regulatory Impact?", "Validation Required?", "All Approvals Obtained?", "Effective?"],
+    "lanes": ["Initiator", "Quality Assurance", "Regulatory Affairs", "Validation", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E8", "SCOR-E1", "SCOR-DIG10"],
+    "secondary": ["SCOR-M4.1", "SCOR-D1.3", "SCOR-E9"],
+    "automation_potential": 0.55
+  },
+  "inputs": ["change request", "risk data", "regulatory requirements", "validation protocols", "approval matrix"],
+  "outputs": ["change record", "risk assessment", "regulatory filing if needed", "validation report", "training records"],
+  "kpis": ["change cycle time", "on-time implementation rate", "change success rate", "regulatory compliance rate"],
+  "sector_applicability": ["pharma", "biotech", "medical devices", "chemical"],
+  "erp_integration": ["Veeva Vault", "MasterControl", "ETQ", "SAP QM", "Pilgrim"],
+  "compliance_flags": ["GxP ICH Q10", "FDA 21 CFR", "EU GMP", "ISO 13485 medical devices"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + ICH Q10",
+  "confidence": 0.94
+}

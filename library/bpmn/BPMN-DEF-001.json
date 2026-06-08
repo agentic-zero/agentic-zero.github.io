@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-DEF-001",
+  "name": "Controlled Item & Serialization Management",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Defense & Regulated",
+  "category": "Defense",
+  "description": "Controlled item lifecycle management process from registration to disposition including serialization, tracking, custody transfer and disposition reporting",
+  "bpmn_elements": {
+    "start_events": ["Controlled Item Registered"],
+    "end_events": ["Item Disposed", "Item Transferred"],
+    "tasks": ["Register Item", "Assign Serial Number", "Record Custody", "Track Location", "Conduct Inventory", "Process Transfer", "Prepare Disposition", "Approve Disposition", "Report to Authority", "Update Registry"],
+    "gateways": ["Classification Level?", "Transfer Authorized?", "Disposition Approved?", "Audit Required?"],
+    "lanes": ["Inventory Control", "Security", "Management", "Regulatory Authority"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-E8", "SCOR-E3", "SCOR-DIG7", "SCOR-M3.2"],
+    "secondary": ["SCOR-E1", "SCOR-DIG10", "SCOR-S3.4"],
+    "automation_potential": 0.65
+  },
+  "inputs": ["item specifications", "serial numbers", "classification data", "transfer orders", "disposal regulations"],
+  "outputs": ["item registry", "custody records", "audit trail", "regulatory reports", "disposition records"],
+  "kpis": ["inventory accuracy", "audit compliance rate", "custody transfer cycle time", "loss rate"],
+  "sector_applicability": ["defense", "aerospace", "nuclear", "government"],
+  "erp_integration": ["SAP ECC", "Oracle", "defense-specific ERP", "RFID/barcode systems"],
+  "compliance_flags": ["ITAR/EAR export control", "defense acquisition regulations", "government property regulations", "security clearance requirements"],
+  "automation_complexity": "HIGH",
+  "typical_fte": "3-10",
+  "source": "OMG BPMN 2.0 + DFARS regulations",
+  "confidence": 0.91
+}

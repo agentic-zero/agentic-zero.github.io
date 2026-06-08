@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-FIN-001",
+  "name": "Invoice-to-Cash (Accounts Receivable)",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "Financial Operations",
+  "category": "Finance",
+  "description": "Invoice-to-Cash process from invoice generation to cash collection including invoice dispatch, dunning, dispute management and cash application",
+  "bpmn_elements": {
+    "start_events": ["Invoice Generated"],
+    "end_events": ["Cash Applied", "Written Off"],
+    "tasks": ["Send Invoice", "Monitor Payment", "Send Reminder", "Escalate Dunning", "Manage Dispute", "Negotiate Payment Plan", "Receive Payment", "Apply Cash", "Reconcile"],
+    "gateways": ["Payment Received?", "Dispute Raised?", "Overdue?", "Escalate?"],
+    "lanes": ["Finance", "Sales", "Customer", "Management"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-D2.15", "SCOR-E3", "SCOR-E6"],
+    "secondary": ["SCOR-DIG9", "SCOR-E8"],
+    "automation_potential": 0.80
+  },
+  "inputs": ["invoices", "payment terms", "customer data", "bank data", "dunning rules"],
+  "outputs": ["cash receipts", "applied payments", "dispute records", "aging reports", "DSO metrics"],
+  "kpis": ["DSO", "collection rate", "dispute resolution time", "cash application accuracy"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "transport", "services"],
+  "erp_integration": ["SAP FI", "Oracle AR", "MS Dynamics", "SAP HANA"],
+  "compliance_flags": ["tax compliance", "GDPR financial data", "e-invoicing regulations", "financial reporting"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-10",
+  "source": "OMG BPMN 2.0 Standard + APICS/ASCM",
+  "confidence": 0.94
+}

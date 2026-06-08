@@ -1,0 +1,31 @@
+{
+  "process_id": "BPMN-ESG-002",
+  "name": "Supplier Sustainability Assessment",
+  "bpmn_notation": "BPMN 2.0",
+  "domain": "BPMN",
+  "subdomain": "ESG & Sustainability",
+  "category": "ESG",
+  "description": "Supplier sustainability due diligence and assessment process including ESG questionnaire, audit, scoring and improvement plan management",
+  "bpmn_elements": {
+    "start_events": ["Assessment Cycle Start"],
+    "end_events": ["Supplier Approved", "Supplier Disqualified"],
+    "tasks": ["Send ESG Questionnaire", "Review Responses", "Risk Classification", "On-site Audit if High Risk", "Score Supplier", "Identify Gaps", "Agree Improvement Plan", "Monitor Progress", "Update Approved List"],
+    "gateways": ["High Risk?", "Audit Required?", "Score Acceptable?", "Improvement Possible?"],
+    "lanes": ["Procurement", "Sustainability", "Audit Team", "Supplier"]
+  },
+  "scor_mapping": {
+    "primary": ["SCOR-S1.5", "SCOR-E10", "SCOR-E8"],
+    "secondary": ["SCOR-S1.3", "SCOR-E6", "SCOR-E9"],
+    "automation_potential": 0.60
+  },
+  "inputs": ["supplier data", "ESG criteria", "audit protocols", "industry benchmarks", "regulatory requirements"],
+  "outputs": ["supplier ESG score", "risk assessment", "improvement plans", "approved supplier list update"],
+  "kpis": ["supplier ESG score", "high-risk supplier rate", "improvement plan completion", "audit compliance rate"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "chemical"],
+  "erp_integration": ["SAP Ariba", "EcoVadis", "Sedex", "Coupa", "Jaggaer"],
+  "compliance_flags": ["EU Supply Chain Due Diligence Act", "Modern Slavery Act", "GDPR supplier data", "CSRD Scope 3"],
+  "automation_complexity": "MEDIUM",
+  "typical_fte": "2-6",
+  "source": "OMG BPMN 2.0 + UN Global Compact + CSDDD 2024",
+  "confidence": 0.91
+}

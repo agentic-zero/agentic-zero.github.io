@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E8",
+  "name": "Manage Supply Chain Regulatory Compliance",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Regulatory Compliance",
+  "level": "L2",
+  "description": "Process of identifying, monitoring and ensuring compliance with all applicable regulations across the supply chain including EU AI Act, GDPR, GxP, customs, environmental and sector-specific requirements",
+  "inputs": ["regulatory landscape", "compliance requirements", "audit findings", "regulatory updates", "operational data"],
+  "outputs": ["compliance status reports", "audit trails", "remediation plans", "regulatory filings", "compliance certificates"],
+  "kpis": ["compliance rate", "audit finding resolution time", "regulatory penalty incidence", "compliance coverage"],
+  "related_processes": ["SCOR-E1", "SCOR-E3", "SCOR-E9", "SCOR-S1.5"],
+  "sector_applicability": ["pharma", "defense", "chemical", "food", "automotive", "manufacturing", "distribution"],
+  "compliance_flags": ["EU AI Act full compliance", "GDPR", "GxP if pharma", "ISO 42001", "NIST AI RMF", "customs regulations", "environmental law"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.96
+}

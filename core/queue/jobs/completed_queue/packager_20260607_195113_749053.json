@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_195113_749053",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S3.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T19:51:13.749073",
+  "status": "completed",
+  "started_at": "2026-06-07T23:40:19.662537",
+  "completed_at": "2026-06-07T23:43:18.523001",
+  "error": null,
+  "result": {
+    "agent_name": "eto_product_verification_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

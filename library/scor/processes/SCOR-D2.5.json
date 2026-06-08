@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.5",
+  "name": "Build Loads (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of building optimized loads for MTO shipments including load planning, weight and dimension optimization, dangerous goods segregation and carrier assignment",
+  "inputs": ["consolidated orders", "product dimensions and weights", "carrier constraints", "dangerous goods data", "delivery sequence"],
+  "outputs": ["optimized load plans", "carrier assignments", "loading instructions", "dangerous goods manifests"],
+  "kpis": ["load optimization rate", "carrier utilization", "loading accuracy", "dangerous goods compliance rate"],
+  "related_processes": ["SCOR-D2.4", "SCOR-D2.6", "SCOR-D1.4"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["ADR/IMDG dangerous goods", "carrier weight limits", "customs load requirements", "GDPR shipment data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

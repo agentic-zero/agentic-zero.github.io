@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D4.2",
+  "name": "Receive Product at Store",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Retail",
+  "level": "L2",
+  "description": "Process of receiving products at retail stores including delivery verification, quantity check, quality inspection and inventory system update",
+  "inputs": ["delivery schedule", "purchase orders", "delivered products", "receiving equipment", "store inventory system"],
+  "outputs": ["received products", "inventory update", "discrepancy reports", "supplier delivery performance data"],
+  "kpis": ["receiving accuracy", "receiving cycle time", "on-shelf availability", "discrepancy rate"],
+  "related_processes": ["SCOR-D4.1", "SCOR-D4.3", "SCOR-D1.2"],
+  "sector_applicability": ["food", "distribution", "manufacturing", "consumer goods"],
+  "compliance_flags": ["food safety receiving", "GDPR store data", "cold chain compliance", "retail compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

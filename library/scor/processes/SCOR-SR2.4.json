@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR2.4",
+  "name": "Schedule MRO Return Shipment",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of scheduling logistics for MRO product return including carrier selection, packaging and documentation preparation",
+  "inputs": ["MRO return authorization", "item quantity and weight", "supplier location", "carrier options"],
+  "outputs": ["MRO shipment schedule", "carrier booking", "return documentation"],
+  "kpis": ["scheduling cycle time", "return logistics cost", "carrier on-time performance"],
+  "related_processes": ["SCOR-SR2.3", "SCOR-SR2.5"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["dangerous goods if applicable", "customs compliance if cross-border"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170422_289762",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D2.4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:04:22.289776",
+  "status": "completed",
+  "started_at": "2026-06-07T20:47:13.705813",
+  "completed_at": "2026-06-07T20:51:14.092975",
+  "error": null,
+  "result": {
+    "agent_name": "mto_order_consolidation_agent",
+    "ready_for_packager": true
+  }
+}

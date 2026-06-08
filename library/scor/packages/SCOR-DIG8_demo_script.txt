@@ -1,0 +1,6 @@
+1. Open dashboard: Display real-time risk posture across assets, highlighting €47k in avoided breach costs YTD via AI automation.  
+2. Trigger automated scan: Run AI risk assessment on sample environment, auto-prioritizing top threats and mapping to GDPR/ISO 27001 controls in <60 seconds.  
+3. Review compliance report: Show one-click gap analysis with evidence packs, reducing manual audit prep from 40 hours to 2 hours.  
+4. Generate mitigation plan: AI proposes prioritized actions with cost estimates; accept one to simulate €6k quarterly savings.  
+5. Display ROI dashboard: Calculate 8.0x multiplier on €748 price—projected €5.9k annual value from time saved and risk reduction.  
+6. Export executive summary: Produce board-ready PDF with compliance status and ROI metrics for immediate sharing.

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_200314_614181",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M2.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T20:03:14.614201",
+  "status": "completed",
+  "started_at": "2026-06-07T23:49:20.052070",
+  "completed_at": "2026-06-07T23:52:18.217650",
+  "error": null,
+  "result": {
+    "agent_name": "mto_production_scheduler",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

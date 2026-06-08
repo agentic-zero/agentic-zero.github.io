@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M2.3",
+  "name": "Produce and Test (MTO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Make-to-Order",
+  "level": "L2",
+  "description": "Process of executing MTO production operations including manufacturing, assembly, in-process quality control and functional testing against customer specifications",
+  "inputs": ["work orders", "production routings", "quality plans", "test specifications", "tooling and equipment"],
+  "outputs": ["manufactured products", "test results", "in-process quality records", "production completion confirmations"],
+  "kpis": ["production cycle time", "first-pass yield", "in-process defect rate", "test pass rate"],
+  "related_processes": ["SCOR-M2.2", "SCOR-M2.4", "SCOR-M3.1"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical", "food"],
+  "compliance_flags": ["GxP batch manufacturing records if pharma", "ISO 9001 production", "ATEX if explosive atmosphere", "food safety HACCP"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

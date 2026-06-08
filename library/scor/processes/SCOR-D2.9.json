@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.9",
+  "name": "Pick Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of picking MTO finished goods from staging or warehouse locations for outbound shipment preparation",
+  "inputs": ["pick lists", "staging locations", "order documentation", "picking equipment", "scan systems"],
+  "outputs": ["picked products", "pick confirmation", "inventory depletion", "staging for pack"],
+  "kpis": ["pick accuracy", "pick cycle time", "pick productivity", "inventory accuracy post-pick"],
+  "related_processes": ["SCOR-D2.8", "SCOR-D2.10", "SCOR-D1.2"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["GxP if pharma", "GDPR if personal data", "health and safety picking"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

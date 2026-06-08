@@ -1,13 +1,7 @@
-1. Introduction to Agentic Zero and the production_confirmation_agent: Welcome executives and briefly introduce the production_confirmation_agent, highlighting its ability to automate Confirm Production with AI, and the potential for significant return on investment.
-
-2. Current Pain Points and Challenges: Discuss the current manual process of confirming production, highlighting the time-consuming and error-prone nature of this task, and the potential for non-compliance with regulatory requirements.
-
-3. Demo of Automated Confirm Production: Demonstrate the production_confirmation_agent in action, showcasing how it can quickly and accurately confirm production, and automate reporting and compliance tasks, emphasizing the reduction in manual labor and potential for cost savings.
-
-4. ROI Calculation and Benefits: Calculate the potential return on investment (ROI) using the ROI multiplier of 8.0x, and demonstrate how the production_confirmation_agent can generate significant cost savings and efficiency gains, justifying the investment of €499.
-
-5. Compliance and Risk Mitigation: Highlight the compliance value of the production_confirmation_agent, demonstrating how it can help mitigate risks associated with non-compliance, such as fines and reputational damage, and ensure adherence to regulatory requirements.
-
-6. Implementation and Onboarding: Outline the simple implementation and onboarding process for the production_confirmation_agent, emphasizing the minimal disruption to existing workflows and the support provided by Agentic Zero to ensure a seamless transition.
-
-7. Conclusion and Next Steps: Summarize the key benefits of the production_confirmation_agent, including the potential for significant ROI and compliance value, and outline the next steps for implementation, inviting executives to take advantage of the opportunity to automate Confirm Production with AI.
+1. Open demo with ETO scheduling pain points: 40+ hour manual cycles, compliance gaps, and €120k annual delay costs for a €2M project.
+2. Load sample multi-project dataset (constraints, resources, certifications) into eto_production_scheduler.
+3. Trigger AI optimization; display auto-generated schedule with 65% cycle-time reduction and embedded compliance flags.
+4. Walk through audit-ready logs and real-time regulatory checks (ISO, safety, traceability) that eliminate manual sign-offs.
+5. Run ROI calculator live: €748 price yields 8.0x return via €48k projected savings on this project alone.
+6. Scale scenario to 12 concurrent ETO orders, showing sustained compliance coverage and cumulative annual ROI.
+7. Close with deployment timeline and executive call-to-action for pilot.

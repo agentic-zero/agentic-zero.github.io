@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG10",
+  "name": "Manage Agentic Compliance and Audit Trail",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "AI Governance and Audit",
+  "level": "L2",
+  "description": "Process of maintaining complete audit trails for all AI agent decisions and actions, managing regulatory compliance certifications for autonomous systems and ensuring continuous conformity with EU AI Act, ISO 42001 and NIST AI RMF — the Guardian and Auditor process in Agentic Zero",
+  "inputs": ["agent decision logs", "compliance requirements", "audit requests", "regulatory updates", "certification status"],
+  "outputs": ["compliance certificates", "audit reports", "decision audit trail", "regulatory filings", "conformity assessments"],
+  "kpis": ["audit trail completeness", "compliance certification rate", "regulatory filing on-time rate", "non-conformity resolution time"],
+  "related_processes": ["SCOR-DIG3", "SCOR-DIG4", "SCOR-DIG7", "SCOR-E8", "SCOR-E1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.9-17 full compliance", "ISO 42001 certification", "NIST AI RMF govern-map-measure-manage", "GDPR AI transparency", "sector-specific AI regulations", "GxP computer system validation if pharma"],
+  "source": "Scout research — APICS/ASCM Digital Extension + Agentic Zero Guardian Framework",
+  "confidence": 0.98
+}

@@ -1,0 +1,101 @@
+{
+  "process_id": "SCOR-E9",
+  "agent_name": "supply_chain_risk_manager",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T22:46:19.451605",
+  "product_summary": "The Manage Supply Chain Risk agent is a hybrid solution that identifies, assesses, monitors, and mitigates operational, financial, geopolitical, cyber, AI, and regulatory risks across all SCOR domains. It continuously processes risk signals, maintains a dynamic risk register, generates assessments, and produces mitigation plans while validating compliance against EU AI Act, ISO 31000, NIST AI RMF, GDPR, and sector-specific rules. Executives gain real-time visibility into supply chain vulnerabilities and automated KPI recalculation that reduces disruption exposure and strengthens resilience. The agent delivers measurable protection of revenue, reputation, and regulatory standing by embedding risk management directly into daily operations.",
+  "value_proposition": "Transforms supply chain risk management by automating identification, assessment, monitoring, and mitigation across all risk categories while enforcing continuous compliance with global standards.",
+  "technical_summary": "The hybrid agent combines automated modules for process_risk_signals, update_risk_register, generate_risk_assessments, create_mitigation_plans, recalculate_kpis, and validate_compliance with human oversight workflows. It integrates via APIs with SCOR-aligned planning and execution systems, pulling telemetry from operational, financial, and cyber sources to maintain a unified risk register. Compliance engines embedded in the architecture map outputs directly to EU AI Act Art.9, ISO 31000, NIST AI RMF, and GDPR requirements, enabling auditable, real-time risk posture updates.",
+  "integration_guide": "# Integration Guide — supply_chain_risk_manager\n**Process:** Manage Supply Chain Risk\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_risk_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_risk_manager import SupplyChainRiskManagerAgent\n\nagent = SupplyChainRiskManagerAgent()\nresult = agent.execute({\n    \"risk_signals\": your_risk_signals_data,\n    \"operational_data\": your_operational_data_data,\n    \"market_intelligence\": your_market_intelligence_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- risk_signal_api\n- supplier_erp_connector\n- geopolitical_data_api\n- iso31000_audit_logger\n- eu_ai_act_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- mitigation_effectiveness < 0.8\n- defense sector risk detected\n- open compliance violations after validation\n- stale data detected in KPI calculation",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supply_chain_risk_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_risk_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_risk_manager/health — Health check",
+    "GET  /api/v1/agents/supply_chain_risk_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_risk_manager/test   — Run test cases"
+  ],
+  "demo_script": "1. Open dashboard and load live supplier dataset, highlighting €6K+ annual risk exposure flagged by AI.\n2. Trigger automated risk scan; AI surfaces top-3 threats with compliance gaps (e.g., REACH, ESG).\n3. One-click mitigation: AI proposes vetted alternate suppliers and auto-generates audit-ready reports.\n4. Display compliance scorecard: 100% regulatory alignment achieved in <90 seconds vs. prior 4-hour manual process.\n5. Reveal ROI panel: €5,984 net savings per quarter (8.0x multiplier) after €748 subscription.\n6. Export executive summary PDF and schedule pilot rollout for board review.",
+  "demo_inputs": {
+    "risk_signals": "[example_risk_signals]",
+    "operational_data": "[example_operational_data]",
+    "market_intelligence": "[example_market_intelligence]"
+  },
+  "expected_demo_outputs": {
+    "risk_register": "[generated_risk_register]",
+    "risk_assessments": "[generated_risk_assessments]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-E9",
+    "agent_name": "supply_chain_risk_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9 risk management",
+      "ISO 31000 risk management",
+      "NIST AI RMF govern-map-measure-manage",
+      "GDPR risk assessment",
+      "sector-specific risk regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:46:19.451584"
+  },
+  "tags": [
+    "hybrid",
+    "defense",
+    "enable",
+    "manufacturing",
+    "scor",
+    "pharma",
+    "l2",
+    "chemical",
+    "automotive",
+    "distribution",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma firm deploys agent to continuously score 180 API suppliers against ISO 31000 and EU AI Act Art.9 criteria, flags two high-risk sources pre-Brexit customs change, switches volumes and avoids $3.1M in lost sales plus regulatory fines.",
+    "Use case 2: Defense OEM uses agent for geopolitical and single-source risk mapping on 65 critical components, triggers early dual-sourcing that cuts program delay probability from 32% to 11%, saving $7.4M in liquidated damages.",
+    "Use case 3: Chemical producer runs agent-driven logistics disruption forecasts aligned with NIST AI RMF, reroutes 14 shipments ahead of Red Sea closures, eliminating $2.9M in demurrage and air-freight premiums.",
+    "Use case 4: Global food distributor applies GDPR-compliant supplier risk scoring across 420 sites, detects Listeria risk at two cold-chain partners 11 days early, prevents recall and cuts direct costs by $4.2M.",
+    "Use case 5: Automotive Tier-1 runs agent on 1,200+ tier-2/3 battery-material suppliers, predicts cobalt shortage 9 weeks ahead, locks alternative contracts and raises on-time delivery from 81% to 97%, adding $5.8M annual margin."
+  ],
+  "pricing": {
+    "process_id": "SCOR-E9",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-E9_package.json"
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DR1.1",
+  "name": "Authorize Defective Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Deliver Return",
+  "level": "L2",
+  "description": "Process of evaluating and authorizing customer requests to return defective products, issuing RMA and defining return terms",
+  "inputs": ["customer return request", "defect evidence", "product warranty data", "return policy"],
+  "outputs": ["RMA authorization", "return terms", "credit or replacement decision"],
+  "kpis": ["authorization cycle time", "authorization approval rate", "customer satisfaction with return process"],
+  "related_processes": ["SCOR-DR1.2", "SCOR-SR1.3", "SCOR-D1.1"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "automotive", "food"],
+  "compliance_flags": ["consumer protection regulations", "warranty compliance", "GDPR if personal data", "GxP if pharma"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

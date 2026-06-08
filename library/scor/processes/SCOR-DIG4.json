@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG4",
+  "name": "Manage Autonomous Decision Protocols",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Autonomous Operations",
+  "level": "L2",
+  "description": "Process of defining, governing and monitoring the decision protocols used by AI agents to make autonomous supply chain decisions including escalation thresholds, human override mechanisms and decision audit trails",
+  "inputs": ["business rules", "risk thresholds", "regulatory requirements", "agent outputs", "human override signals"],
+  "outputs": ["decision protocols", "escalation framework", "override logs", "decision audit trail", "autonomy level definitions"],
+  "kpis": ["autonomous decision accuracy", "escalation rate", "human override frequency", "decision audit completeness"],
+  "related_processes": ["SCOR-DIG3", "SCOR-DIG10", "SCOR-E1", "SCOR-E8", "SCOR-E9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.14 human oversight", "EU AI Act Art.13 transparency", "ISO 42001 human control", "NIST AI RMF manage", "sector-specific autonomous system regulations"],
+  "source": "Scout research — APICS/ASCM Digital Extension + EU AI Act 2024",
+  "confidence": 0.96
+}

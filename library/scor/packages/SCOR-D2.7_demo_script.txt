@@ -1,0 +1,6 @@
+1. Open with pain point: "Manual carrier selection for MTO shipments takes 45+ minutes per order, risks non-compliance with carrier contracts and regulations, and inflates costs by 12-18%."
+2. Trigger the agent: Input live MTO shipment details (origin, destination, weight, SLA); agent auto-queries approved carrier pool in <8 seconds.
+3. Demonstrate AI selection + rating: Agent ranks top-3 carriers by cost, transit time, and compliance score, surfacing contract clauses and regulatory flags in real time.
+4. Highlight compliance value: One-click audit trail generated for every selection, showing rate validity, carrier certifications, and deviation alerts—reducing audit prep from days to minutes.
+5. Quantify ROI live: Show €4,592 annual savings per user (8.0x multiplier on €574 license) via reduced manual effort, lower spot-buy spend, and avoided compliance penalties.
+6. Close with deployment: "Zero-integration pilot live in 48 hours; full rollout in one week with measurable payback in month one."

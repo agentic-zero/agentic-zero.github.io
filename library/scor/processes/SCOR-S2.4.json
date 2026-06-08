@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S2.4",
+  "name": "Transfer Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Make-to-Order",
+  "level": "L2",
+  "description": "Process of transferring verified MTO materials to production staging areas or work-in-progress inventory with full traceability and system updates",
+  "inputs": ["verification approval", "production orders", "staging locations", "transfer equipment", "WIP inventory data"],
+  "outputs": ["materials in production staging", "inventory transfer records", "WIP update", "production readiness confirmation"],
+  "kpis": ["transfer accuracy", "transfer cycle time", "WIP inventory accuracy", "staging availability"],
+  "related_processes": ["SCOR-S2.3", "SCOR-S2.5", "SCOR-M2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "chemical", "pharma"],
+  "compliance_flags": ["GxP material transfer if pharma", "chain of custody", "GDPR if personal data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

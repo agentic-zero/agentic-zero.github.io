@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR3.2",
+  "name": "Disposition Excess Product",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of determining optimal disposition for excess inventory including return to supplier, liquidation, donation or write-off",
+  "inputs": ["excess inventory list", "product condition", "market value", "supplier return terms", "liquidation options"],
+  "outputs": ["disposition decision", "financial impact assessment", "action plan"],
+  "kpis": ["recovery value rate", "disposition cycle time", "write-off reduction"],
+  "related_processes": ["SCOR-SR3.1", "SCOR-SR3.3"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "automotive"],
+  "compliance_flags": ["expiry and shelf life compliance", "financial write-off policy", "environmental if disposal"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

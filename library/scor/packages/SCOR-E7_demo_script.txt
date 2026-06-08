@@ -1,0 +1,7 @@
+1. Open with executive context: "Current manual supply chain management costs €2M+ annually in inefficiencies and compliance risks; this €748 agent delivers 8x ROI by automating the full network."
+2. Load anonymized live data feed showing fragmented suppliers, routes, and regulatory constraints.
+3. Trigger one-click optimization run; display AI-generated network redesign cutting logistics spend 22% while enforcing ESG and trade-compliance rules.
+4. Walk through automated compliance dashboard: real-time audit trails, risk flags, and export-ready regulatory reports generated in seconds.
+5. Overlay ROI model: projected €6M annual savings (8x multiplier) versus €748 agent cost, with payback in under 10 days.
+6. Simulate quarterly re-optimization to prove ongoing compliance updates and compounding savings without added headcount.
+7. Close: "Ready for pilot deployment this week—confirm next steps for your network."

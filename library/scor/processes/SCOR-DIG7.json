@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG7",
+  "name": "Manage Blockchain and Traceability",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Traceability and Provenance",
+  "level": "L2",
+  "description": "Process of managing distributed ledger and traceability systems to provide immutable audit trails for supply chain transactions, product provenance, compliance certification and agent decision records",
+  "inputs": ["transaction data", "product identifiers", "certification documents", "agent decision logs", "chain of custody data"],
+  "outputs": ["immutable audit trail", "provenance records", "compliance certificates on-chain", "traceability reports", "smart contract executions"],
+  "kpis": ["traceability coverage rate", "audit trail completeness", "smart contract execution rate", "provenance query response time"],
+  "related_processes": ["SCOR-DIG10", "SCOR-DIG5", "SCOR-E8", "SCOR-SR1.5", "SCOR-DR1.3"],
+  "sector_applicability": ["pharma", "food", "defense", "chemical", "automotive", "manufacturing"],
+  "compliance_flags": ["EU AI Act Art.12 audit trail", "GxP serialization if pharma", "food traceability EU 178/2002", "customs blockchain", "GDPR right to erasure vs immutability"],
+  "source": "Scout research — APICS/ASCM Digital Extension + WEF Supply Chain 2025",
+  "confidence": 0.90
+}

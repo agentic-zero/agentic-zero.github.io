@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S3.3",
+  "name": "Verify Engineer-to-Order Product",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of verifying custom-engineered parts against engineering drawings, specifications and contractual requirements including dimensional inspection, material testing and functional validation",
+  "inputs": ["ETO components", "engineering drawings", "specifications", "test procedures", "contractual requirements"],
+  "outputs": ["verification report", "first article inspection results", "acceptance decision", "non-conformance reports"],
+  "kpis": ["engineering specification compliance rate", "inspection cycle time", "first article acceptance rate", "non-conformance rate"],
+  "related_processes": ["SCOR-S3.2", "SCOR-S3.4", "SCOR-M3.1"],
+  "sector_applicability": ["defense", "industrial equipment", "energy", "aerospace"],
+  "compliance_flags": ["AS9100 first article inspection", "defense acquisition", "NADCAP if aerospace", "GDPR if personal data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

@@ -1,0 +1,6 @@
+1. Open with the €748 annual cost vs. 8.0x ROI: show current manual ETO packaging consuming 12+ hours/order and exposing compliance gaps.  
+2. Trigger eto_packaging_agent on a live ETO order; AI auto-generates packaging specs, BOM, and labeling in <90 seconds.  
+3. Run built-in compliance scan: agent flags and resolves regulatory deviations (REACH, ISTA, customer specs) with audit trail.  
+4. Display before/after metrics dashboard: time reduced from 12 h to 1.5 h, error rate from 14 % to 0 %, yielding €6 k+ annual savings per user.  
+5. Export signed compliance packet and costed ROI report; confirm one-click integration to ERP for executive sign-off.  
+6. Close with 8.0x multiplier recap and 30-day pilot offer at no risk.

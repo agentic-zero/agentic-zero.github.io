@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S2.1",
+  "name": "Schedule Product Deliveries (MTO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Make-to-Order",
+  "level": "L2",
+  "description": "Process of scheduling inbound material deliveries aligned to make-to-order production schedules, coordinating supplier delivery windows with production start dates",
+  "inputs": ["production orders", "supplier lead times", "material requirements", "supplier capacity", "transportation schedules"],
+  "outputs": ["delivery schedules", "supplier delivery confirmations", "expedite alerts", "schedule compliance reports"],
+  "kpis": ["schedule adherence rate", "supplier on-time delivery", "expedite rate", "lead time variance"],
+  "related_processes": ["SCOR-S2.2", "SCOR-M2.1", "SCOR-P1.3", "SCOR-S1.1"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "chemical", "industrial equipment"],
+  "compliance_flags": ["GxP if pharma", "contractual compliance", "GDPR if personal data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

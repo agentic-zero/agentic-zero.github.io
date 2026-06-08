@@ -1,0 +1,94 @@
+{
+  "process_id": "SCOR-M3.4",
+  "agent_name": "eto_packaging_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-08T00:16:20.434801",
+  "product_summary": "The Package (ETO) agent manages the full packaging workflow for engineer-to-order products, covering export packaging, preservation treatments, technical documentation, and contract-specific markings. It validates requirements upfront, applies sector rules, and ensures compliance with standards such as MIL-SPEC for defense or dangerous goods regulations. By automating these steps, the agent reduces delivery delays, cuts compliance penalties, and improves traceability across the supply chain. Executives gain faster order fulfillment and lower operational risk without manual oversight of complex export rules.",
+  "value_proposition": "Automates contract-driven packaging, preservation, and compliance tasks to deliver error-free ETO shipments at scale.",
+  "technical_summary": "The hybrid agent exposes its five core capabilities through standardized service interfaces that connect to ERP, contract, and logistics systems for real-time data exchange. Rule engines and compliance modules handle validation, sector-specific logic, and export marking while logging KPIs to a central repository. Integration occurs via APIs and event-driven triggers, allowing the agent to orchestrate preservation and documentation steps without disrupting existing workflows.",
+  "integration_guide": "# Integration Guide — eto_packaging_agent\n**Process:** Package (ETO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_packaging_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_packaging_agent import EtoPackagingAgentAgent\n\nagent = EtoPackagingAgentAgent()\nresult = agent.execute({\n    \"eto_finished_products\": your_eto_finished_products_data,\n    \"contract_packaging_requirements\": your_contract_packaging_requirements_data,\n    \"export_requirements\": your_export_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- contract_validation_api\n- compliance_rule_engine\n- documentation_generator\n- packaging_equipment_interface\n- export_regulation_db\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing_contract_packaging_requirements\n- unclassified_dangerous_goods\n- MIL-SPEC_or_export_noncompliance",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eto_packaging_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_packaging_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_packaging_agent/health — Health check",
+    "GET  /api/v1/agents/eto_packaging_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_packaging_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with the €748 annual cost vs. 8.0x ROI: show current manual ETO packaging consuming 12+ hours/order and exposing compliance gaps.  \n2. Trigger eto_packaging_agent on a live ETO order; AI auto-generates packaging specs, BOM, and labeling in <90 seconds.  \n3. Run built-in compliance scan: agent flags and resolves regulatory deviations (REACH, ISTA, customer specs) with audit trail.  \n4. Display before/after metrics dashboard: time reduced from 12 h to 1.5 h, error rate from 14 % to 0 %, yielding €6 k+ annual savings per user.  \n5. Export signed compliance packet and costed ROI report; confirm one-click integration to ERP for executive sign-off.  \n6. Close with 8.0x multiplier recap and 30-day pilot offer at no risk.",
+  "demo_inputs": {
+    "eto_finished_products": "[example_eto_finished_products]",
+    "contract_packaging_requirements": "[example_contract_packaging_requirements]",
+    "export_requirements": "[example_export_requirements]"
+  },
+  "expected_demo_outputs": {
+    "packaged_eto_products": "[generated_packaged_eto_products]",
+    "technical_documentation_packages": "[generated_technical_documentation_packages]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M3.4",
+    "agent_name": "eto_packaging_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "MIL-SPEC packaging if defense",
+      "export control marking",
+      "dangerous goods",
+      "contract-specific packaging"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:16:20.434780"
+  },
+  "tags": [
+    "hybrid",
+    "aerospace",
+    "make",
+    "defense",
+    "energy",
+    "scor",
+    "l2",
+    "industrial equipment"
+  ],
+  "use_cases": [
+    "Use case 1: Defense prime uses agent to auto-generate MIL-SPEC packaging specs for ETO missile launchers, cutting compliance audit failures from 12% to 1% and avoiding $1.2M in annual rework/penalties",
+    "Use case 2: Aerospace OEM deploys agent for export-control marking on ETO satellite bus shipments, reducing customs hold time from 9 days to 18 hours and saving $480K yearly in expedited freight",
+    "Use case 3: Energy EPC firm applies agent to dangerous-goods packaging validation for ETO LNG turbine skids, eliminating hazmat incidents and lowering insurance premiums by 14% ($320K annual savings)",
+    "Use case 4: Industrial equipment manufacturer uses agent to optimize contract-specific crating for ETO mining draglines, trimming packaging material and labor costs by 27% ($650K per project) while meeting all buyer specs",
+    "Use case 5: Multi-sector defense-energy contractor runs agent across parallel ETO packaging workflows, shortening cross-functional review cycles from 11 days to 3 days and increasing on-time delivery from 82% to 97%"
+  ],
+  "pricing": {
+    "process_id": "SCOR-M3.4",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M3.4_package.json"
+}

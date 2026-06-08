@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG1",
+  "name": "Manage Digital Twin Operations",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Digital Twin Management",
+  "level": "L2",
+  "description": "Process of creating, maintaining and operating digital twin models of supply chain assets, processes and networks to enable real-time simulation, prediction and autonomous decision-making",
+  "inputs": ["IoT sensor data", "ERP data streams", "process models", "historical performance data", "real-time operational data"],
+  "outputs": ["digital twin models", "simulation results", "predictive alerts", "optimization recommendations", "what-if scenarios"],
+  "kpis": ["digital twin accuracy", "simulation cycle time", "prediction accuracy rate", "optimization value generated"],
+  "related_processes": ["SCOR-DIG2", "SCOR-DIG4", "SCOR-DIG6", "SCOR-E5", "SCOR-P1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.9 risk management for AI systems", "ISO 42001 AI lifecycle", "GDPR data minimization in twin models", "digital safety standards"],
+  "source": "Scout research — APICS/ASCM Digital Extension + Gartner 2025",
+  "confidence": 0.91
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M2.2",
+  "name": "Issue Sourced/In-Process Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Make-to-Order",
+  "level": "L2",
+  "description": "Process of issuing materials and WIP to MTO production operations including kitting, staging and releasing to production floor with full traceability",
+  "inputs": ["production schedule", "material pick lists", "WIP inventory", "work orders", "production routings"],
+  "outputs": ["issued materials kits", "WIP transfers", "production floor readiness", "material consumption records"],
+  "kpis": ["kitting accuracy", "material issue cycle time", "WIP accuracy", "production floor wait time"],
+  "related_processes": ["SCOR-M2.1", "SCOR-M2.3", "SCOR-S2.4"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical", "food"],
+  "compliance_flags": ["GxP dispensing if pharma", "ISO 9001", "GDPR if personal data in records"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.13",
+  "name": "Receive and Verify Product by Customer (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of supporting customer receipt and verification of MTO products including proof of delivery confirmation, customer acceptance support and invoice triggering",
+  "inputs": ["shipment tracking data", "proof of delivery", "customer acceptance criteria", "invoice data", "customer feedback"],
+  "outputs": ["delivery confirmation", "customer acceptance record", "invoice trigger", "customer satisfaction data"],
+  "kpis": ["proof of delivery rate", "customer acceptance rate", "invoice cycle time", "delivery exception rate"],
+  "related_processes": ["SCOR-D2.12", "SCOR-D2.14"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["GDPR customer acceptance data", "contractual acceptance terms", "invoice compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

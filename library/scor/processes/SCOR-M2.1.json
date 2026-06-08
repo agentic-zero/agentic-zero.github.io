@@ -1,31 +1,17 @@
 {
   "process_id": "SCOR-M2.1",
-  "name": "Release Production",
+  "name": "Schedule Make-to-Order Production Activities",
   "framework": "SCOR",
   "domain": "Make",
+  "subdomain": "Make-to-Order",
   "level": "L2",
-  "description": "Process of releasing production orders to the shop floor",
-  "inputs": [
-    "production schedules",
-    "work orders"
-  ],
-  "outputs": [
-    "production orders",
-    "material requirements"
-  ],
-  "kpis": [
-    "production lead time",
-    "work-in-progress inventory"
-  ],
-  "related_processes": [
-    "SCOR-M1.1",
-    "SCOR-M3.1"
-  ],
-  "sector_applicability": [
-    "manufacturing",
-    "process industries"
-  ],
-  "compliance_flags": [],
+  "description": "Process of scheduling MTO production activities against customer orders, allocating capacity and sequencing work orders to meet customer delivery commitments",
+  "inputs": ["customer orders", "capacity plans", "material availability", "routing data", "equipment schedules"],
+  "outputs": ["MTO production schedules", "work order releases", "capacity commitments", "delivery date confirmations"],
+  "kpis": ["schedule adherence", "on-time delivery to customer", "capacity utilization", "order cycle time"],
+  "related_processes": ["SCOR-M2.2", "SCOR-S2.1", "SCOR-D2.1", "SCOR-P1.3"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical", "food"],
+  "compliance_flags": ["GxP batch records if pharma", "ISO 9001 production planning", "GDPR customer data"],
   "source": "Scout research — APICS/ASCM",
-  "confidence": 0.9
+  "confidence": 0.93
 }

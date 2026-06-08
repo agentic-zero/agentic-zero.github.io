@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M2.5",
+  "name": "Stage Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Make-to-Order",
+  "level": "L2",
+  "description": "Process of staging MTO finished goods for outbound delivery including final inspection, documentation completion and handover to deliver operations",
+  "inputs": ["packaged products", "delivery schedules", "documentation requirements", "staging area capacity", "customer delivery instructions"],
+  "outputs": ["staged finished goods", "delivery documentation", "handover to deliver", "inventory update"],
+  "kpis": ["staging accuracy", "documentation completeness", "staging cycle time", "delivery readiness rate"],
+  "related_processes": ["SCOR-M2.4", "SCOR-D2.1", "SCOR-M5.1"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical", "food"],
+  "compliance_flags": ["GxP release if pharma", "dangerous goods documentation", "export documentation if applicable", "GDPR customer data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

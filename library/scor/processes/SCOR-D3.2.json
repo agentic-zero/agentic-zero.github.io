@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D3.2",
+  "name": "Receive, Configure, Enter and Validate ETO Order",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of receiving and validating ETO customer requirements including technical specification review, feasibility assessment, risk evaluation and project proposal",
+  "inputs": ["customer technical requirements", "SOW", "feasibility data", "risk assessment", "engineering capacity"],
+  "outputs": ["validated ETO order", "project proposal", "technical baseline", "risk register", "project initiation"],
+  "kpis": ["proposal cycle time", "requirement capture accuracy", "risk identification rate", "customer requirement compliance"],
+  "related_processes": ["SCOR-D3.1", "SCOR-D3.3", "SCOR-M3.1"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["defense acquisition", "export control review", "GDPR customer requirements data", "IP protection"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

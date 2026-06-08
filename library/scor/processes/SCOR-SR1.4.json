@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR1.4",
+  "name": "Schedule Defective Product Return Shipment",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of scheduling and coordinating logistics for returning defective products to supplier including carrier selection and documentation",
+  "inputs": ["return authorization", "product quantity", "supplier address", "carrier contracts"],
+  "outputs": ["shipment schedule", "carrier booking", "return shipping documentation"],
+  "kpis": ["shipment scheduling time", "carrier utilization", "return logistics cost"],
+  "related_processes": ["SCOR-SR1.3", "SCOR-SR1.5", "SCOR-DR1.2"],
+  "sector_applicability": ["manufacturing", "pharma", "automotive", "food", "chemical", "distribution"],
+  "compliance_flags": ["dangerous goods regulations if applicable", "GxP if pharma", "customs compliance if cross-border"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG9",
+  "name": "Manage API and Integration Layer",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Digital Integration",
+  "level": "L2",
+  "description": "Process of managing the API gateway and integration architecture that connects ERP systems, AI agents, IoT platforms, supplier portals and customer systems enabling seamless autonomous operations without system migration",
+  "inputs": ["system interfaces", "API specifications", "integration requirements", "data mappings", "authentication credentials"],
+  "outputs": ["API catalog", "integration flows", "connection health reports", "API performance metrics", "error logs"],
+  "kpis": ["API uptime", "integration error rate", "API response time", "data throughput"],
+  "related_processes": ["SCOR-DIG2", "SCOR-DIG3", "SCOR-DIG5", "SCOR-DIG8", "SCOR-E3"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR API data flows", "EU AI Act system integration", "API security standards OAuth2", "EDI compliance", "SAP RFC/BAPI standards"],
+  "source": "Scout research — APICS/ASCM Digital Extension + Agentic Zero Technical Stack",
+  "confidence": 0.95
+}

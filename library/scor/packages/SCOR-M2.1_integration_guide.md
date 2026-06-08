@@ -1,5 +1,5 @@
-# Integration Guide — production_order_release_agent
-**Process:** Release Production
+# Integration Guide — mto_production_scheduler
+**Process:** Schedule Make-to-Order Production Activities
 **Version:** 1.0.0
 
 ## Prerequisites
@@ -10,17 +10,18 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp production_order_release_agent.py ./agents/
+cp mto_production_scheduler.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.production_order_release_agent import ProductionOrderReleaseAgentAgent
+from agents.mto_production_scheduler import MtoProductionSchedulerAgent
 
-agent = ProductionOrderReleaseAgentAgent()
+agent = MtoProductionSchedulerAgent()
 result = agent.execute({
-    "production_schedules": your_production_schedules_data,
-    "work_orders": your_work_orders_data,
+    "customer_orders": your_customer_orders_data,
+    "capacity_plans": your_capacity_plans_data,
+    "material_availability": your_material_availability_data,
 })
 print(result['outputs'])
 ```
@@ -33,12 +34,16 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP system API
-- production scheduling software
-- inventory management system
+- ERP_CustomerOrder_API
+- APS_CapacityPlan
+- MRP_MaterialAvailability
+- PLM_RoutingData
+- ISO_Approval_Workflow
+- GxP_Batch_Record_System
 
 ## Escalation
 The agent automatically escalates to human when:
-- if production schedule is delayed by more than 24 hours
-- if material requirement cannot be fulfilled within 48 hours
-- if inventory levels are outside acceptable ranges
+- material data missing causing loop
+- post-release EquipmentSchedule conflict
+- pharma sector without GxP record
+- capacity_utilization > 0.95

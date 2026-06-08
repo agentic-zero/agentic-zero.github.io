@@ -1,0 +1,6 @@
+1. Open with the €574 price tag and 8.0x ROI multiplier, stating the agent delivers €4,592+ annual value per user through faster, compliant MTO routing.  
+2. Load a live MTO order with multi-leg constraints; trigger the agent to auto-generate three optimized routes in <30 seconds.  
+3. Display side-by-side comparison: manual routing (45 min, 2 compliance flags) vs. agent output (2 min, zero flags).  
+4. Drill into the compliance panel showing real-time checks for carrier licenses, dangerous-goods rules, and customs docs.  
+5. Surface the ROI dashboard: time saved, error reduction, and projected annual savings tied directly to the 8.0x multiplier.  
+6. Close with one-click deployment option and next-step pilot plan for the executive team.

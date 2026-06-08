@@ -1,31 +1,17 @@
 {
   "process_id": "SCOR-M3.1",
-  "name": "Confirm Production",
+  "name": "Schedule Engineer-to-Order Production Activities",
   "framework": "SCOR",
   "domain": "Make",
+  "subdomain": "Engineer-to-Order",
   "level": "L2",
-  "description": "Process of confirming production completion and updating inventory records",
-  "inputs": [
-    "production orders",
-    "material requirements"
-  ],
-  "outputs": [
-    "confirmed production",
-    "updated inventory records"
-  ],
-  "kpis": [
-    "production accuracy",
-    "inventory accuracy"
-  ],
-  "related_processes": [
-    "SCOR-M1.1",
-    "SCOR-M2.1"
-  ],
-  "sector_applicability": [
-    "manufacturing",
-    "process industries"
-  ],
-  "compliance_flags": [],
+  "description": "Process of scheduling ETO production activities integrating engineering design releases with production planning, managing design changes and coordinating multi-discipline project execution",
+  "inputs": ["engineering releases", "project schedules", "resource plans", "design change notices", "subcontractor schedules"],
+  "outputs": ["ETO production schedules", "resource allocations", "engineering-production interface plans", "milestone tracking"],
+  "kpis": ["schedule adherence", "engineering-production interface efficiency", "design change impact", "project milestone achievement"],
+  "related_processes": ["SCOR-M3.2", "SCOR-S3.1", "SCOR-D3.1", "SCOR-D1.3"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment", "infrastructure"],
+  "compliance_flags": ["defense acquisition regulations", "AS9100 aerospace", "export control ITAR", "project management compliance"],
   "source": "Scout research — APICS/ASCM",
-  "confidence": 0.88
+  "confidence": 0.89
 }

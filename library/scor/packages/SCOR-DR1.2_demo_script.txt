@@ -1,0 +1,5 @@
+1. Open dashboard and load sample defective product data (serial #DP-4821) to show manual scheduling pain: 45-min average per return, 12% compliance error rate.
+2. Trigger AGENT: defective_product_return_scheduler; AI auto-validates warranty, selects optimal carrier slot, and generates compliant return label + audit trail in <90 seconds.
+3. Display real-time compliance panel: GDPR/CCPA data handling, serialized tracking, and automated regulatory filing—zero manual steps.
+4. Run ROI simulator: €699 price vs. 8.0x multiplier shown via live metrics—€5,592 annual savings per user from 78% faster processing and 94% error reduction.
+5. Export executive report with before/after cycle times and compliance score (98%); schedule pilot for next 30 days.

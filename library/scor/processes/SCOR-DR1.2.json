@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DR1.2",
+  "name": "Schedule Defective Product Return Receipt",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Deliver Return",
+  "level": "L2",
+  "description": "Process of scheduling and coordinating the receipt of defective product returns from customers including dock scheduling and inspection resource allocation",
+  "inputs": ["RMA authorization", "customer shipment notice", "warehouse capacity", "inspection resources"],
+  "outputs": ["receipt schedule", "dock appointment", "inspection plan"],
+  "kpis": ["receipt scheduling accuracy", "dock utilization", "inspection resource efficiency"],
+  "related_processes": ["SCOR-DR1.1", "SCOR-DR1.3"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "automotive", "food"],
+  "compliance_flags": ["GxP if pharma", "cold chain if required", "health and safety regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.6",
+  "name": "Route Shipments (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of selecting optimal routing for MTO shipments including mode selection, carrier booking, route optimization and customs clearance planning",
+  "inputs": ["load plans", "delivery requirements", "carrier options", "customs requirements", "cost constraints"],
+  "outputs": ["shipment routes", "carrier bookings", "customs documentation", "routing cost analysis"],
+  "kpis": ["routing optimization savings", "carrier booking accuracy", "customs clearance rate", "on-time shipment departure"],
+  "related_processes": ["SCOR-D2.5", "SCOR-D2.7", "SCOR-E7"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["customs compliance", "export control", "dangerous goods routing", "GDPR shipment data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

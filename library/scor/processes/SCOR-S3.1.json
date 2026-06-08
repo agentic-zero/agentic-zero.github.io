@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S3.1",
+  "name": "Schedule Engineer-to-Order Product Deliveries",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of scheduling deliveries for engineer-to-order materials and components aligned to project milestones, managing long-lead-time items and custom-engineered parts",
+  "inputs": ["project schedules", "engineering BOMs", "supplier engineering lead times", "project milestones", "procurement plans"],
+  "outputs": ["ETO delivery schedules", "long-lead-time alerts", "supplier milestone tracking", "procurement status reports"],
+  "kpis": ["milestone adherence", "long-lead-time management rate", "schedule variance", "supplier engineering compliance"],
+  "related_processes": ["SCOR-S3.2", "SCOR-M3.1", "SCOR-D1.3"],
+  "sector_applicability": ["defense", "industrial equipment", "energy", "aerospace", "construction"],
+  "compliance_flags": ["defense acquisition regulations", "export control ITAR/EAR", "GDPR if personal data", "project compliance requirements"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

@@ -1,0 +1,6 @@
+1. Open demo dashboard and load sample ETO purchase order (custom turbine housing, 47 specs, regulatory docs attached).  
+2. Trigger eto_receiving_inspection_agent; show AI auto-extracting dimensions, serials, and certificates in <8 seconds.  
+3. Run real-time compliance scan against ISO 9001 + customer QC checklist; flag one deviation with audit-ready evidence trail.  
+4. Execute automated disposition (accept/return) and generate signed inspection report, cutting manual steps from 14 to 3.  
+5. Display live ROI panel: 47 minutes saved per receipt × €92 fully-loaded labor rate = €4,324 per event; 8.0x multiplier on €748 price realized in first use.  
+6. Export compliance packet and close with projected annual value (€138k at 32 receipts/year) and one-click deployment option.

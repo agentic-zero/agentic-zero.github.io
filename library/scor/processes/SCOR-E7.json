@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E7",
+  "name": "Manage Supply Chain Network",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Network Management",
+  "level": "L2",
+  "description": "Process of designing, optimizing and managing the supply chain network including node configuration, transportation lanes, warehouse locations and partner relationships",
+  "inputs": ["demand patterns", "cost data", "service requirements", "partner capabilities", "geographic constraints"],
+  "outputs": ["network design", "optimization recommendations", "partner scorecards", "capacity allocation", "network performance reports"],
+  "kpis": ["network optimization savings", "service level achievement", "network resilience score", "partner performance"],
+  "related_processes": ["SCOR-E1", "SCOR-E9", "SCOR-P1.4", "SCOR-D1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["customs and trade compliance", "GDPR cross-border data", "EU AI Act network AI", "environmental footprint regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

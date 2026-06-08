@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.2",
+  "name": "Receive, Configure, Enter and Validate MTO Order",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of receiving and validating MTO customer orders including configuration verification, feasibility assessment, lead time commitment and order acknowledgment",
+  "inputs": ["customer order", "product configurator", "capacity data", "lead time data", "pricing data"],
+  "outputs": ["validated order", "order acknowledgment", "production order trigger", "delivery commitment"],
+  "kpis": ["order validation cycle time", "configuration accuracy", "order acknowledgment on-time rate", "commitment accuracy"],
+  "related_processes": ["SCOR-D2.1", "SCOR-D2.3", "SCOR-M2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical"],
+  "compliance_flags": ["GDPR customer order data", "consumer protection regulations", "contractual compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

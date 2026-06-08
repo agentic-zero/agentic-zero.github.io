@@ -271,43 +271,58 @@
   },
   {
     "process_id": "SCOR-M2.1",
-    "agent_name": "production_order_release_agent",
+    "agent_name": "mto_production_scheduler",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
     "sector_applicability": [
       "manufacturing",
-      "process industries"
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
     ],
-    "compliance_frameworks": [],
+    "compliance_frameworks": [
+      "GxP batch records if pharma",
+      "ISO 9001 production planning",
+      "GDPR customer data"
+    ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
-    "price_eur": 499.0,
-    "complexity_score": 51,
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T15:46:01.711892"
+    "created_at": "2026-06-07T23:52:18.199614"
   },
   {
     "process_id": "SCOR-M3.1",
-    "agent_name": "production_confirmation_agent",
+    "agent_name": "eto_production_scheduler",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
     "sector_applicability": [
-      "manufacturing",
-      "process industries"
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment",
+      "infrastructure"
     ],
-    "compliance_frameworks": [],
+    "compliance_frameworks": [
+      "defense acquisition regulations",
+      "AS9100 aerospace",
+      "export control ITAR",
+      "project management compliance"
+    ],
     "agent_type": "hybrid",
-    "capabilities_count": 3,
-    "price_eur": 499.0,
-    "complexity_score": 51,
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-04T09:40:43.598095"
+    "created_at": "2026-06-08T00:07:18.814592"
   },
   {
     "process_id": "SCOR-M4.1",
@@ -553,5 +568,1696 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-05T10:40:17.991875"
+  },
+  {
+    "process_id": "SCOR-SR2.3",
+    "agent_name": "mro_return_authorization_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "contractual compliance",
+      "GDPR if personal data",
+      "procurement policy"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 748.5,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:25:17.895508"
+  },
+  {
+    "process_id": "SCOR-SR2.4",
+    "agent_name": "mro_return_shipment_scheduler",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "dangerous goods if applicable",
+      "customs compliance if cross-border"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 89,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:28:18.037929"
+  },
+  {
+    "process_id": "SCOR-SR2.5",
+    "agent_name": "mro_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "chain of custody",
+      "environmental compliance",
+      "customs if cross-border"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:31:19.003692"
+  },
+  {
+    "process_id": "SCOR-SR3.1",
+    "agent_name": "excess_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry compliance if perishable",
+      "GDPR if personal data",
+      "financial reporting compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:34:18.911291"
+  },
+  {
+    "process_id": "SCOR-SR3.2",
+    "agent_name": "excess_product_disposition_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry and shelf life compliance",
+      "financial write-off policy",
+      "environmental if disposal"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:37:18.471635"
+  },
+  {
+    "process_id": "SCOR-SR3.3",
+    "agent_name": "excess_product_return_authorization_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "contractual compliance",
+      "GDPR if personal data",
+      "financial reporting"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:40:19.478947"
+  },
+  {
+    "process_id": "SCOR-DR1.2",
+    "agent_name": "defective_product_return_scheduler",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "automotive",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "cold chain if required",
+      "health and safety regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:07:18.922873"
+  },
+  {
+    "process_id": "SCOR-DR1.3",
+    "agent_name": "defective_return_receipt_processor",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "automotive",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "quality inspection standards",
+      "GDPR if personal data in records"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:10:18.788127"
+  },
+  {
+    "process_id": "SCOR-DR1.4",
+    "agent_name": "defective_product_transfer_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "automotive",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP quarantine requirements if pharma",
+      "ISO 9001",
+      "environmental if hazardous"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:13:18.178659"
+  },
+  {
+    "process_id": "SCOR-DR2.1",
+    "agent_name": "authorize_mro_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "asset management policy",
+      "GDPR if personal data",
+      "environmental if hazardous MRO"
+    ],
+    "agent_type": "reactive",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:16:19.190793"
+  },
+  {
+    "process_id": "SCOR-DR3.1",
+    "agent_name": "excess_return_authorization_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "financial reporting compliance",
+      "GDPR if personal data",
+      "expiry compliance if perishable"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:19:19.014258"
+  },
+  {
+    "process_id": "SCOR-SR3.4",
+    "agent_name": "excess_return_shipment_scheduler",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry compliance if perishable",
+      "cold chain if required",
+      "customs if cross-border"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:58:18.543075"
+  },
+  {
+    "process_id": "SCOR-SR3.5",
+    "agent_name": "excess_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry compliance",
+      "chain of custody",
+      "financial credit documentation"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:01:21.150423"
+  },
+  {
+    "process_id": "SCOR-DR1.1",
+    "agent_name": "authorize_defective_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "automotive",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "consumer protection regulations",
+      "warranty compliance",
+      "GDPR if personal data",
+      "GxP if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:04:18.001864"
+  },
+  {
+    "process_id": "SCOR-E1",
+    "agent_name": "supply_chain_business_rules_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9 risk management",
+      "ISO 42001 governance",
+      "GDPR data processing rules",
+      "regulatory compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:22:17.935849"
+  },
+  {
+    "process_id": "SCOR-E2",
+    "agent_name": "supply_chain_performance_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.12 logging",
+      "ISO 42001 performance monitoring",
+      "financial reporting compliance",
+      "GDPR if personal data in metrics"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:25:18.341225"
+  },
+  {
+    "process_id": "SCOR-E3",
+    "agent_name": "supply_chain_data_orchestrator",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR data governance",
+      "EU AI Act Art.10 data quality",
+      "ISO 42001 data management",
+      "data residency regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:28:17.805756"
+  },
+  {
+    "process_id": "SCOR-E4",
+    "agent_name": "supply_chain_workforce_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR employee data",
+      "labor law compliance",
+      "EU AI Act Art.14 human oversight",
+      "health and safety regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:31:18.907775"
+  },
+  {
+    "process_id": "SCOR-E5",
+    "agent_name": "supply_chain_asset_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "ISO 55001 asset management",
+      "EU AI Act infrastructure",
+      "environmental compliance",
+      "safety regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:34:18.930449"
+  },
+  {
+    "process_id": "SCOR-E6",
+    "agent_name": "supply_chain_contract_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR data processing agreements",
+      "contractual compliance",
+      "EU AI Act supplier obligations",
+      "financial regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:37:18.582653"
+  },
+  {
+    "process_id": "SCOR-E7",
+    "agent_name": "supply_chain_network_optimizer",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "customs and trade compliance",
+      "GDPR cross-border data",
+      "EU AI Act network AI",
+      "environmental footprint regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:40:18.344335"
+  },
+  {
+    "process_id": "SCOR-E8",
+    "agent_name": "supply_chain_regulatory_compliance_agent",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act full compliance",
+      "GDPR",
+      "GxP if pharma",
+      "ISO 42001",
+      "NIST AI RMF",
+      "customs regulations",
+      "environmental law"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:43:19.539641"
+  },
+  {
+    "process_id": "SCOR-E9",
+    "agent_name": "supply_chain_risk_manager",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9 risk management",
+      "ISO 31000 risk management",
+      "NIST AI RMF govern-map-measure-manage",
+      "GDPR risk assessment",
+      "sector-specific risk regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:46:19.451584"
+  },
+  {
+    "process_id": "SCOR-E10",
+    "agent_name": "supply_chain_procurement_agent",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR supplier data",
+      "anti-corruption regulations",
+      "EU AI Act procurement AI",
+      "trade compliance",
+      "ESG procurement standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:49:18.065192"
+  },
+  {
+    "process_id": "SCOR-DIG1",
+    "agent_name": "digital_twin_operations_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9 risk management for AI systems",
+      "ISO 42001 AI lifecycle",
+      "GDPR data minimization in twin models",
+      "digital safety standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:52:18.235209"
+  },
+  {
+    "process_id": "SCOR-DIG2",
+    "agent_name": "iot_sensor_stream_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR IoT data collection",
+      "EU AI Act data quality Art.10",
+      "cybersecurity IoT standards",
+      "industry-specific sensor regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:55:21.147350"
+  },
+  {
+    "process_id": "SCOR-DIG3",
+    "agent_name": "lifecycle_governance_agent",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act full compliance Art.9-14",
+      "ISO 42001 AI lifecycle management",
+      "NIST AI RMF govern-map-measure-manage",
+      "GDPR AI decision transparency",
+      "sector GxP if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:58:19.049313"
+  },
+  {
+    "process_id": "SCOR-DIG4",
+    "agent_name": "autonomous_decision_protocol_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.14 human oversight",
+      "EU AI Act Art.13 transparency",
+      "ISO 42001 human control",
+      "NIST AI RMF manage",
+      "sector-specific autonomous system regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:01:18.568123"
+  },
+  {
+    "process_id": "SCOR-DIG5",
+    "agent_name": "digital_supply_chain_visibility_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR location and tracking data",
+      "customs data regulations",
+      "food traceability regulations",
+      "pharma serialization requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:04:17.867252"
+  },
+  {
+    "process_id": "SCOR-DIG6",
+    "agent_name": "predictive_analytics_pipeline_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.10 training data",
+      "GDPR automated decision-making Art.22",
+      "ISO 42001 AI model governance",
+      "model explainability requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:07:17.620953"
+  },
+  {
+    "process_id": "SCOR-DIG7",
+    "agent_name": "blockchain_traceability_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "pharma",
+      "food",
+      "defense",
+      "chemical",
+      "automotive",
+      "manufacturing"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.12 audit trail",
+      "GxP serialization if pharma",
+      "food traceability EU 178/2002",
+      "customs blockchain",
+      "GDPR right to erasure vs immutability"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:10:17.885183"
+  },
+  {
+    "process_id": "SCOR-DIG8",
+    "agent_name": "cybersecurity_digital_risk_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act cybersecurity Art.15",
+      "NIS2 Directive",
+      "ISO 27001",
+      "GDPR data breach",
+      "defense sector security clearances",
+      "OT cybersecurity standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:13:17.946232"
+  },
+  {
+    "process_id": "SCOR-DIG9",
+    "agent_name": "api_integration_layer_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR API data flows",
+      "EU AI Act system integration",
+      "API security standards OAuth2",
+      "EDI compliance",
+      "SAP RFC/BAPI standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:16:18.676558"
+  },
+  {
+    "process_id": "SCOR-DIG10",
+    "agent_name": "agentic_compliance_audit_manager",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9-17 full compliance",
+      "ISO 42001 certification",
+      "NIST AI RMF govern-map-measure-manage",
+      "GDPR AI transparency",
+      "sector-specific AI regulations",
+      "GxP computer system validation if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:19:18.181846"
+  },
+  {
+    "process_id": "SCOR-S2.1",
+    "agent_name": "mto_delivery_scheduler",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "contractual compliance",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:22:18.609928"
+  },
+  {
+    "process_id": "SCOR-S2.2",
+    "agent_name": "mto_product_receiving_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "GxP receiving if pharma",
+      "ISO 9001 incoming inspection",
+      "GDPR if personal data in records"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:25:21.931808"
+  },
+  {
+    "process_id": "SCOR-S2.3",
+    "agent_name": "material_verification_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "GxP material verification if pharma",
+      "AS9100 if aerospace",
+      "ISO 9001",
+      "REACH chemical compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:28:17.901578"
+  },
+  {
+    "process_id": "SCOR-S2.4",
+    "agent_name": "mto_transfer_orchestrator",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "GxP material transfer if pharma",
+      "chain of custody",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:31:18.759335"
+  },
+  {
+    "process_id": "SCOR-S2.5",
+    "agent_name": "supplier_payment_authorizer",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "financial controls compliance",
+      "GDPR financial data",
+      "tax compliance",
+      "anti-fraud controls"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:34:18.816171"
+  },
+  {
+    "process_id": "SCOR-S3.1",
+    "agent_name": "eto_delivery_scheduler",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace",
+      "construction"
+    ],
+    "compliance_frameworks": [
+      "defense acquisition regulations",
+      "export control ITAR/EAR",
+      "GDPR if personal data",
+      "project compliance requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:37:19.296436"
+  },
+  {
+    "process_id": "SCOR-S3.2",
+    "agent_name": "eto_receiving_inspection_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "defense acquisition standards",
+      "AS9100 aerospace",
+      "GDPR if personal data",
+      "export control compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:40:19.634409"
+  },
+  {
+    "process_id": "SCOR-S3.3",
+    "agent_name": "eto_product_verification_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "AS9100 first article inspection",
+      "defense acquisition",
+      "NADCAP if aerospace",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:43:18.504095"
+  },
+  {
+    "process_id": "SCOR-S3.4",
+    "agent_name": "eto_product_transfer_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "configuration management standards",
+      "defense acquisition",
+      "export control",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:46:18.237549"
+  },
+  {
+    "process_id": "SCOR-S3.5",
+    "agent_name": "milestone_payment_authorizer",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "government contracting regulations",
+      "milestone payment compliance",
+      "GDPR financial data",
+      "export control financial"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:49:20.022813"
+  },
+  {
+    "process_id": "SCOR-M2.2",
+    "agent_name": "mto_material_issue_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP dispensing if pharma",
+      "ISO 9001",
+      "GDPR if personal data in records"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:55:18.288450"
+  },
+  {
+    "process_id": "SCOR-M2.3",
+    "agent_name": "produce_and_test_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP batch manufacturing records if pharma",
+      "ISO 9001 production",
+      "ATEX if explosive atmosphere",
+      "food safety HACCP"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:58:19.045076"
+  },
+  {
+    "process_id": "SCOR-M2.4",
+    "agent_name": "mto_packaging_execution_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP packaging if pharma",
+      "dangerous goods packaging regulations",
+      "customer packaging standards",
+      "environmental packaging regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:01:18.410938"
+  },
+  {
+    "process_id": "SCOR-M2.5",
+    "agent_name": "mto_stage_product_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP release if pharma",
+      "dangerous goods documentation",
+      "export documentation if applicable",
+      "GDPR customer data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:04:18.612032"
+  },
+  {
+    "process_id": "SCOR-M3.2",
+    "agent_name": "eto_issue_automation_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "configuration management standards",
+      "AS9100",
+      "defense acquisition",
+      "export control"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:10:18.737642"
+  },
+  {
+    "process_id": "SCOR-M3.3",
+    "agent_name": "eto_produce_and_test_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "AS9100 production and testing",
+      "defense acceptance testing",
+      "export control",
+      "customer witness test protocols"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:13:18.793966"
+  },
+  {
+    "process_id": "SCOR-M3.4",
+    "agent_name": "eto_packaging_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "MIL-SPEC packaging if defense",
+      "export control marking",
+      "dangerous goods",
+      "contract-specific packaging"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:16:20.434780"
+  },
+  {
+    "process_id": "SCOR-M3.5",
+    "agent_name": "eto_stage_product_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "export control ITAR/EAR",
+      "government property regulations",
+      "defense acquisition",
+      "customs compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:19:18.601900"
+  },
+  {
+    "process_id": "SCOR-D2.2",
+    "agent_name": "mto_order_validation_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical"
+    ],
+    "compliance_frameworks": [
+      "GDPR customer order data",
+      "consumer protection regulations",
+      "contractual compliance"
+    ],
+    "agent_type": "reactive",
+    "capabilities_count": 4,
+    "price_eur": 623.75,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:22:18.043083"
+  },
+  {
+    "process_id": "SCOR-D2.3",
+    "agent_name": "mto_resource_reservation_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical"
+    ],
+    "compliance_frameworks": [
+      "GDPR customer data",
+      "contractual delivery obligations",
+      "financial commitment compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 623.75,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:25:19.159533"
+  },
+  {
+    "process_id": "SCOR-D2.4",
+    "agent_name": "mto_order_consolidation_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR customer data",
+      "customs consolidation regulations",
+      "dangerous goods if applicable"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 573.85,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:28:18.063206"
+  },
+  {
+    "process_id": "SCOR-D2.5",
+    "agent_name": "build_loads_optimizer",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ADR/IMDG dangerous goods",
+      "carrier weight limits",
+      "customs load requirements",
+      "GDPR shipment data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 573.85,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:31:19.498450"
+  },
+  {
+    "process_id": "SCOR-D2.6",
+    "agent_name": "mto_shipment_routing_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "customs compliance",
+      "export control",
+      "dangerous goods routing",
+      "GDPR shipment data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 573.85,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:34:17.928416"
+  },
+  {
+    "process_id": "SCOR-D2.7",
+    "agent_name": "carrier_selection_and_shipment_rating_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "carrier compliance requirements",
+      "customs broker regulations",
+      "GDPR shipment data",
+      "trade compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 573.85,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:37:18.203345"
+  },
+  {
+    "process_id": "SCOR-D2.8",
+    "agent_name": "finished_goods_receipt_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "quality release compliance",
+      "GDPR if personal data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:40:19.066631"
+  },
+  {
+    "process_id": "SCOR-D2.9",
+    "agent_name": "mto_pick_execution_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDPR if personal data",
+      "health and safety picking"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:43:19.629593"
   }
 ]

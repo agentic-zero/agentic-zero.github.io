@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DR2.1",
+  "name": "Authorize MRO Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Deliver Return",
+  "level": "L2",
+  "description": "Process of evaluating and authorizing MRO product return requests from customers or internal operations, establishing credit or exchange terms",
+  "inputs": ["MRO return request", "purchase history", "product condition assessment", "return policy"],
+  "outputs": ["MRO return authorization", "credit or exchange terms", "return instructions"],
+  "kpis": ["authorization cycle time", "MRO credit recovery rate", "authorization accuracy"],
+  "related_processes": ["SCOR-SR2.3", "SCOR-SR2.5"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["asset management policy", "GDPR if personal data", "environmental if hazardous MRO"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

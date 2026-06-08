@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.14",
+  "name": "Install Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of installing MTO products at customer site including site preparation support, installation coordination, commissioning and handover",
+  "inputs": ["delivered product", "installation instructions", "site readiness data", "installation team schedule", "commissioning plan"],
+  "outputs": ["installed product", "commissioning records", "customer training completion", "warranty initiation"],
+  "kpis": ["installation on-time rate", "commissioning cycle time", "first-time installation success rate", "customer handover satisfaction"],
+  "related_processes": ["SCOR-D2.13", "SCOR-D2.15"],
+  "sector_applicability": ["industrial equipment", "defense", "energy", "manufacturing systems"],
+  "compliance_flags": ["site safety regulations", "equipment installation certifications", "GDPR if personal data at site", "warranty compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

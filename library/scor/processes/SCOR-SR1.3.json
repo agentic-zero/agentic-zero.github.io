@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR1.3",
+  "name": "Request Defective Product Return Authorization",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of formally requesting return merchandise authorization (RMA) from supplier for defective products",
+  "inputs": ["disposition decision", "defect documentation", "supplier contact data", "return policy"],
+  "outputs": ["RMA request", "return authorization number", "supplier acknowledgment"],
+  "kpis": ["RMA approval rate", "authorization cycle time", "supplier response time"],
+  "related_processes": ["SCOR-SR1.2", "SCOR-SR1.4", "SCOR-DR1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "automotive", "food", "chemical", "distribution"],
+  "compliance_flags": ["GxP if pharma", "GDPR if personal data in documentation", "contractual compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

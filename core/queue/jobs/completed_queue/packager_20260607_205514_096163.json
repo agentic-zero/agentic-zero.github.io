@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_205514_096163",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T20:55:14.096182",
+  "status": "completed",
+  "started_at": "2026-06-08T00:28:18.090844",
+  "completed_at": "2026-06-08T00:31:19.517777",
+  "error": null,
+  "result": {
+    "agent_name": "build_loads_optimizer",
+    "price_eur": 573.85,
+    "ready_for_guardian": true
+  }
+}

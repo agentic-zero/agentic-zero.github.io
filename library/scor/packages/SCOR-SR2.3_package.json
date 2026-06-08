@@ -1,0 +1,95 @@
+{
+  "process_id": "SCOR-SR2.3",
+  "agent_name": "mro_return_authorization_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T21:25:17.895530",
+  "product_summary": "This agent manages the full workflow of requesting return authorizations for MRO items from suppliers while negotiating credit or replacement terms. It applies contractual compliance checks, procurement policy rules, and GDPR safeguards where personal data is involved to reduce risk. Executives gain faster credit recovery, lower manual effort, and improved inventory accuracy without disrupting supplier relationships. The hybrid design balances automation with targeted human review for high-value or disputed returns.",
+  "value_proposition": "Automates MRO return authorization requests and credit negotiations to accelerate value recovery while enforcing procurement and compliance requirements.",
+  "technical_summary": "The hybrid agent combines rule-based compliance engines with LLM-driven negotiation logic, exposing capabilities through standardized APIs for ERP and supplier-portal integration. Event streams track return status in real time, while modular compliance services enforce contractual terms and data-protection policies before any external action. Configuration is handled via policy files that allow procurement teams to adjust thresholds without code changes.",
+  "integration_guide": "# Integration Guide — mro_return_authorization_agent\n**Process:** Request MRO Return Authorization\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mro_return_authorization_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mro_return_authorization_agent import MroReturnAuthorizationAgentAgent\n\nagent = MroReturnAuthorizationAgentAgent()\nresult = agent.execute({\n    \"disposition_decision\": your_disposition_decision_data,\n    \"mro_item_data\": your_mro_item_data_data,\n    \"supplier_contact\": your_supplier_contact_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- procurement_database_api\n- supplier_database_api\n- quality_control_database_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- if supplier denies return authorization\n- if credit terms agreement negotiation fails",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/mro_return_authorization_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mro_return_authorization_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mro_return_authorization_agent/health — Health check",
+    "GET  /api/v1/agents/mro_return_authorization_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mro_return_authorization_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open dashboard and load sample MRO return ticket; highlight €748 annual cost vs. projected 8.0x ROI from 6 hours saved per request.  \n2. Trigger mro_return_authorization_agent; show AI auto-extracting part/serial data from PDF and ERP in <30 seconds.  \n3. Run built-in compliance scan; demonstrate real-time checks against EASA/FAA rules with zero manual flags.  \n4. Generate and e-sign digital authorization; export audit trail for instant regulator-ready PDF.  \n5. Compare before/after metrics: 45 min manual process reduced to 4 min, equating to €5,984 yearly savings at 8.0x multiplier.  \n6. Close with one-click deployment note and Q&A on scaling across fleet.",
+  "demo_inputs": {
+    "disposition_decision": "[example_disposition_decision]",
+    "mro_item_data": "[example_mro_item_data]",
+    "supplier_contact": "[example_supplier_contact]"
+  },
+  "expected_demo_outputs": {
+    "mro_return_authorization": "[generated_mro_return_authorization]",
+    "credit_terms_agreement": "[generated_credit_terms_agreement]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-SR2.3",
+    "agent_name": "mro_return_authorization_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "contractual compliance",
+      "GDPR if personal data",
+      "procurement policy"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 748.5,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:25:17.895508"
+  },
+  "tags": [
+    "hybrid",
+    "defense",
+    "manufacturing",
+    "scor",
+    "energy",
+    "pharma",
+    "l2",
+    "chemical",
+    "return"
+  ],
+  "use_cases": [
+    "Use case 1: In an automotive manufacturing plant, the agent automates MRO return authorization for defective CNC machine spindles, reducing average processing time from 4 days to 3 hours and avoiding $120K in unplanned production downtime per quarter.",
+    "Use case 2: At a pharma facility, the agent enforces contractual and GDP-compliant return requests for contaminated cleanroom filters, cutting compliance audit failures by 95% and eliminating $75K annual regulatory penalty risk.",
+    "Use case 3: In a chemical processing site, the agent streamlines hazardous MRO chemical drum returns with full procurement policy checks, shortening cycle time by 80% and recovering $40K in supplier credits per month that were previously lost to missed deadlines.",
+    "Use case 4: For an energy utility, the agent handles turbine blade MRO returns under strict vendor SLAs, accelerating credit issuance from 45 days to 7 days and improving working capital by $250K annually across 12 sites.",
+    "Use case 5: In defense manufacturing, the agent manages ITAR-controlled MRO component returns with automated multi-level approvals, reducing manual compliance effort by 70% and preventing $500K contract breach exposure per incident."
+  ],
+  "pricing": {
+    "process_id": "SCOR-SR2.3",
+    "complexity_score": 99,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 99/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-SR2.3_package.json"
+}

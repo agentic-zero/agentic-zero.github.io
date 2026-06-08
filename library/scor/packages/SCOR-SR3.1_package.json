@@ -1,0 +1,95 @@
+{
+  "process_id": "SCOR-SR3.1",
+  "agent_name": "excess_product_return_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T21:34:18.911311",
+  "product_summary": "The Identify Excess Product Return agent is a hybrid solution that continuously scans inventory data to detect excess or obsolete stock eligible for supplier returns, credits, or exchanges. It evaluates return opportunities against contract terms while enforcing compliance rules for perishables, data privacy, and financial reporting. By automating this process, the agent helps organizations recover working capital, reduce storage costs, and improve supplier relationships. Executives gain real-time visibility into potential recoveries that would otherwise remain hidden in manual reviews.",
+  "value_proposition": "Automates the detection and qualification of excess inventory for supplier returns to unlock credits and reduce carrying costs.",
+  "technical_summary": "The agent combines rule-based inventory thresholds with machine learning models for opportunity scoring, pulling data from ERP and warehouse management systems via standard APIs. It integrates supplier contract repositories for clause matching and routes outputs to financial systems for compliance logging and credit processing. Hybrid execution allows both scheduled batch analysis and real-time triggers when stock levels change.",
+  "integration_guide": "# Integration Guide — excess_product_return_agent\n**Process:** Identify Excess Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_product_return_agent import ExcessProductReturnAgentAgent\n\nagent = ExcessProductReturnAgentAgent()\nresult = agent.execute({\n    \"inventory_aging_reports\": your_inventory_aging_reports_data,\n    \"demand_forecasts\": your_demand_forecasts_data,\n    \"supplier_return_policies\": your_supplier_return_policies_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system_API\n- forecasting_tool_API\n- supplier_contract_database\n\n## Escalation\nThe agent automatically escalates to human when:\n- if no valid return policy is found\n- if excess inventory is perishable and near expiry\n- if personal data is involved in return process",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/excess_product_return_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/excess_product_return_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/excess_product_return_agent/health — Health check",
+    "GET  /api/v1/agents/excess_product_return_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/excess_product_return_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with the returns challenge: \"Manual excess return identification costs teams 20+ hours weekly and risks compliance gaps—our €699 agent automates this with AI for an 8x ROI.\"\n2. Load sample dataset and trigger the agent: \"Watch as excess_product_return_agent scans 5,000 SKUs in seconds, flagging 12% excess returns via pattern detection.\"\n3. Display AI outputs and filters: \"Results include root-cause tags, predicted recovery value, and automated hold recommendations—zero manual spreadsheets.\"\n4. Highlight compliance layer: \"Every decision logs immutable audit trails, policy checks, and regulatory mappings to meet EU return directives without extra effort.\"\n5. Quantify ROI live: \"At €699, the agent recovers €5,592 in avoided losses and labor (8.0x multiplier) within the first month based on your volume.\"\n6. Run what-if scenario: \"Adjust thresholds for peak season—AI instantly re-prioritizes high-value returns while preserving full compliance documentation.\"\n7. Close with next step: \"Pilot starts tomorrow; expected payback in 14 days—ready to approve?\"",
+  "demo_inputs": {
+    "inventory_aging_reports": "[example_inventory_aging_reports]",
+    "demand_forecasts": "[example_demand_forecasts]",
+    "supplier_return_policies": "[example_supplier_return_policies]"
+  },
+  "expected_demo_outputs": {
+    "excess_inventory_identification": "[generated_excess_inventory_identification]",
+    "return_opportunity_assessment": "[generated_return_opportunity_assessment]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-SR3.1",
+    "agent_name": "excess_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry compliance if perishable",
+      "GDPR if personal data",
+      "financial reporting compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:34:18.911291"
+  },
+  "tags": [
+    "hybrid",
+    "manufacturing",
+    "scor",
+    "pharma",
+    "l2",
+    "distribution",
+    "return",
+    "automotive",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: In pharma distribution, agent flags near-expiry batches driving 22% of returns, enabling preemptive redistribution that cuts expired inventory losses by $1.2M yearly while meeting expiry compliance.",
+    "Use case 2: Automotive parts manufacturer uses agent to trace 18% excess returns to one supplier's defect pattern, triggering quality fixes that reduce return processing costs by $650K annually.",
+    "Use case 3: Food distributor identifies seasonal overstock patterns causing 27% spoilage returns, optimizing replenishment to lower waste by 31% and avoid expiry compliance fines.",
+    "Use case 4: Multi-sector distribution center analyzes customer return data to segment chronic over-returners, cutting unnecessary reverse logistics spend by 24% ($480K) under GDPR data handling rules.",
+    "Use case 5: Manufacturing finance team leverages agent output for precise monthly return provisions, improving forecast accuracy by 35% and eliminating $300K in audit adjustment penalties."
+  ],
+  "pricing": {
+    "process_id": "SCOR-SR3.1",
+    "complexity_score": 99,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 99/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-SR3.1_package.json"
+}

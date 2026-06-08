@@ -1,4 +1,4 @@
-"""
+﻿"""
 AGENTIC ZERO — PIONEER TEAM
 Agent 4: PACKAGER
 Role: Package Builder output into deliverable product
@@ -159,7 +159,7 @@ def call_llm(prompt: str, expect_json: bool = False) -> str:
             messages=[{"role": "user", "content": prompt}],
             max_tokens=PACKAGER_CONFIG["max_tokens"],
             temperature=PACKAGER_CONFIG["temperature"],
-            api_key=os.getenv("GROQ_API_KEY"),
+            api_key=os.getenv("XAI_API_KEY") if os.getenv("GROQ_MODEL", "").startswith("xai/") else os.getenv("GROQ_API_KEY"),
         )
         content = response.choices[0].message.content.strip()
         if expect_json and content.startswith("```"):

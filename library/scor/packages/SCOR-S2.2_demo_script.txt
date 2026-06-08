@@ -1,0 +1,6 @@
+1. Open dashboard and load sample MTO order; highlight 12-minute manual receiving time and compliance gaps (missing serial checks, audit fields).  
+2. Trigger mto_product_receiving_agent; show AI auto-captures ASN, validates specs, and flags deviations in <45 seconds.  
+3. Demonstrate one-click compliance: system generates full audit trail, digital signatures, and regulatory fields without re-keying.  
+4. Execute receive action; display instant ERP update, inventory accuracy lift to 99.8 %, and zero-touch exception routing.  
+5. Open ROI panel: calculate 8.0x return (€5,984 annual savings per user) from 94 % time reduction and avoided compliance penalties.  
+6. Export compliance report and savings summary for executive review; close with deployment timeline and €748 pricing.

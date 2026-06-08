@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260608_005320_294022",
+  "job_type": "review",
+  "payload": {
+    "process_id": "SCOR-DR3.1",
+    "certificate_id": "AZ-CERT-SCOR-DR3.1-20260608"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T00:53:20.294039",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

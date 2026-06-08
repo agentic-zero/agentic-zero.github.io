@@ -1,0 +1,7 @@
+1. Open with executive pain: "Manual MTO reservations cost 12+ hours/week and risk compliance gaps—let's see AI fix both in under 90 seconds."
+2. Trigger agent via dashboard: Input live order; mto_resource_reservation_agent auto-matches resources, checks capacity, and flags regulatory constraints.
+3. Display instant output: Confirmed reservation + delivery date with full audit trail, policy citations, and exception alerts for zero manual rework.
+4. Quantify time/ROI: "This single run saves 2.4 hours; at scale that's €5k annual labor recovery—8.0x multiplier on the €624 price in first month."
+5. Prove compliance value: Walk through immutable logs, automated rule checks, and one-click export ready for audits—eliminating 100% of prior violation exposure.
+6. Side-by-side benchmark: Show legacy spreadsheet vs. agent result to highlight speed, accuracy, and risk reduction for the room.
+7. Close: "Ready to pilot? €624 unlocks €5k+ yearly ROI plus board-level compliance assurance—next step is a 2-week sandbox."

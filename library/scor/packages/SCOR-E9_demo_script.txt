@@ -1,0 +1,6 @@
+1. Open dashboard and load live supplier dataset, highlighting €6K+ annual risk exposure flagged by AI.
+2. Trigger automated risk scan; AI surfaces top-3 threats with compliance gaps (e.g., REACH, ESG).
+3. One-click mitigation: AI proposes vetted alternate suppliers and auto-generates audit-ready reports.
+4. Display compliance scorecard: 100% regulatory alignment achieved in <90 seconds vs. prior 4-hour manual process.
+5. Reveal ROI panel: €5,984 net savings per quarter (8.0x multiplier) after €748 subscription.
+6. Export executive summary PDF and schedule pilot rollout for board review.

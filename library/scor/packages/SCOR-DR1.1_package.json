@@ -1,0 +1,96 @@
+{
+  "process_id": "SCOR-DR1.1",
+  "agent_name": "authorize_defective_product_return_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T22:04:18.001885",
+  "product_summary": "The Authorize Defective Product Return agent streamlines the evaluation of customer requests for defective items by validating evidence, checking warranty eligibility, and issuing RMAs with defined return terms. It enforces compliance with consumer protection regulations, warranty rules, and GDPR requirements while handling time-sensitive exceptions through a hybrid model of automation and oversight. This reduces processing delays, lowers operational costs, and improves customer satisfaction by delivering consistent, auditable outcomes. Executives gain faster resolution cycles and reduced risk exposure across high-volume return scenarios.",
+  "value_proposition": "Automates defective product return authorization with integrated compliance and privacy controls to accelerate resolutions while minimizing regulatory and financial exposure.",
+  "technical_summary": "The hybrid agent orchestrates capabilities such as defect evidence validation, warranty checks, RMA generation, GDPR anonymization, and exception handling through modular service calls and policy engines. It integrates with CRM, warranty databases, and compliance systems via APIs to enable real-time decisioning and audit logging. This architecture supports both fully automated flows and human-in-the-loop escalation for edge cases.",
+  "integration_guide": "# Integration Guide — authorize_defective_product_return_agent\n**Process:** Authorize Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp authorize_defective_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.authorize_defective_product_return_agent import AuthorizeDefectiveProductReturnAgentAgent\n\nagent = AuthorizeDefectiveProductReturnAgentAgent()\nresult = agent.execute({\n    \"customer_return_request\": your_customer_return_request_data,\n    \"defect_evidence\": your_defect_evidence_data,\n    \"product_warranty_data\": your_product_warranty_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- warranty_database_api\n- return_policy_service\n- fraud_detection_system\n- rma_generator\n- compliance_audit_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- fraud flag detected\n- pharma GxP compliance review required\n- incomplete evidence after 72h pause",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/authorize_defective_product_return_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/authorize_defective_product_return_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/authorize_defective_product_return_agent/health — Health check",
+    "GET  /api/v1/agents/authorize_defective_product_return_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/authorize_defective_product_return_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a live defective return ticket; highlight 12-minute manual compliance checks and €85 processing cost per case.\n2. Trigger authorize_defective_product_return_agent; show AI instantly validating defect photos, warranty data, and regulatory rules in <30 seconds.\n3. Display auto-generated authorization decision plus immutable audit trail that satisfies GDPR and ISO audit requirements without extra clicks.\n4. Run side-by-side timer: manual flow (11 min) vs. agent (45 sec); calculate €71.50 saved per return at scale.\n5. Project annual volume (8,000 returns) to reveal €572k yearly savings—delivering 8.0x ROI on the €699 license within the first month.\n6. Export one-click compliance report for the CFO; confirm zero policy violations across the batch.\n7. Close with license activation link and next-week pilot start date.",
+  "demo_inputs": {
+    "customer_return_request": "[example_customer_return_request]",
+    "defect_evidence": "[example_defect_evidence]",
+    "product_warranty_data": "[example_product_warranty_data]"
+  },
+  "expected_demo_outputs": {
+    "rma_authorization": "[generated_rma_authorization]",
+    "return_terms": "[generated_return_terms]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-DR1.1",
+    "agent_name": "authorize_defective_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "automotive",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "consumer protection regulations",
+      "warranty compliance",
+      "GDPR if personal data",
+      "GxP if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:04:18.001864"
+  },
+  "tags": [
+    "hybrid",
+    "manufacturing",
+    "scor",
+    "pharma",
+    "l2",
+    "distribution",
+    "return",
+    "automotive",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Automotive OEM authorizes defective airbag module returns under warranty, cutting average claim cycle time from 14 days to 4 hours and reducing manual review labor costs by 75%.",
+    "Use case 2: Pharma distributor processes temperature-excursion vaccine returns with GxP audit trail, eliminating $420K annual FDA warning-letter risk and shortening quarantine release from 10 days to same-day.",
+    "Use case 3: Food manufacturer auto-approves defective batch returns from retailers, lowering product-recall handling costs by 65% and reducing out-of-stock duration from 7 days to 24 hours.",
+    "Use case 4: Electronics distributor routes GDPR-compliant personal-data-bearing device returns, decreasing data-breach remediation spend by $180K per incident and improving customer refund SLA compliance to 99%.",
+    "Use case 5: Industrial equipment manufacturer authorizes field-defective pump returns, recovering 22% more warranty credits from suppliers and reducing working-capital tied in returns inventory by $1.2M annually."
+  ],
+  "pricing": {
+    "process_id": "SCOR-DR1.1",
+    "complexity_score": 99,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 99/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-DR1.1_package.json"
+}

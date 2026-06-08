@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.10",
+  "name": "Pack Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of packing MTO products for shipment including final packaging, customer-specific labeling, packing list generation and seal/close",
+  "inputs": ["picked products", "packing specifications", "labels", "packing materials", "shipment documentation"],
+  "outputs": ["packed shipments", "packing lists", "shipment labels", "sealed packages"],
+  "kpis": ["packing accuracy", "label compliance rate", "packing cycle time", "damage rate"],
+  "related_processes": ["SCOR-D2.9", "SCOR-D2.11"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["dangerous goods packaging", "GxP if pharma", "customer packaging standards", "GDPR shipment data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

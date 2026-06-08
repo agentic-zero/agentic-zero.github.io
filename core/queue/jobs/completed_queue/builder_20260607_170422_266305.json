@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170422_266305",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-DIG8"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:04:22.266318",
+  "status": "completed",
+  "started_at": "2026-06-07T19:07:13.861407",
+  "completed_at": "2026-06-07T19:11:14.210107",
+  "error": null,
+  "result": {
+    "agent_name": "cybersecurity_digital_risk_manager",
+    "ready_for_packager": true
+  }
+}

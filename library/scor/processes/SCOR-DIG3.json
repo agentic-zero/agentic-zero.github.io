@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG3",
+  "name": "Manage AI Agent Lifecycle",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Agentic AI Operations",
+  "level": "L2",
+  "description": "Process of managing the complete lifecycle of AI agents deployed in supply chain operations including design, certification, deployment, monitoring, retraining and decommissioning — the core Agentic Zero Pioneer Team process",
+  "inputs": ["process definitions", "training data", "compliance requirements", "performance benchmarks", "operational feedback"],
+  "outputs": ["certified AI agents", "deployment packages", "performance reports", "retraining triggers", "audit trails"],
+  "kpis": ["agent certification rate", "agent accuracy", "agent uptime", "retraining frequency", "compliance score"],
+  "related_processes": ["SCOR-DIG4", "SCOR-DIG10", "SCOR-E8", "SCOR-E9", "SCOR-E1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act full compliance Art.9-14", "ISO 42001 AI lifecycle management", "NIST AI RMF govern-map-measure-manage", "GDPR AI decision transparency", "sector GxP if pharma"],
+  "source": "Scout research — APICS/ASCM Digital Extension + Agentic Zero Pioneer Framework",
+  "confidence": 0.97
+}

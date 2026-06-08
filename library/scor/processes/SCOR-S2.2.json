@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S2.2",
+  "name": "Receive Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Make-to-Order",
+  "level": "L2",
+  "description": "Process of receiving, inspecting and verifying MTO materials against purchase orders and quality specifications before releasing to production",
+  "inputs": ["delivery schedule", "purchase orders", "quality specifications", "receiving dock capacity", "inspection criteria"],
+  "outputs": ["goods receipt confirmation", "quality inspection report", "inventory update", "discrepancy alerts"],
+  "kpis": ["receiving accuracy", "inspection cycle time", "goods receipt on-time rate", "quality rejection rate"],
+  "related_processes": ["SCOR-S2.1", "SCOR-S2.3", "SCOR-M2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "chemical", "industrial equipment"],
+  "compliance_flags": ["GxP receiving if pharma", "ISO 9001 incoming inspection", "GDPR if personal data in records"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

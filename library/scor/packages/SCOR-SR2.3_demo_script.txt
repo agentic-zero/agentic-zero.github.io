@@ -1,0 +1,6 @@
+1. Open dashboard and load sample MRO return ticket; highlight €748 annual cost vs. projected 8.0x ROI from 6 hours saved per request.  
+2. Trigger mro_return_authorization_agent; show AI auto-extracting part/serial data from PDF and ERP in <30 seconds.  
+3. Run built-in compliance scan; demonstrate real-time checks against EASA/FAA rules with zero manual flags.  
+4. Generate and e-sign digital authorization; export audit trail for instant regulator-ready PDF.  
+5. Compare before/after metrics: 45 min manual process reduced to 4 min, equating to €5,984 yearly savings at 8.0x multiplier.  
+6. Close with one-click deployment note and Q&A on scaling across fleet.

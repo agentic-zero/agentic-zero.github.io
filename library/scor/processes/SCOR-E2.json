@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E2",
+  "name": "Manage Supply Chain Performance",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Performance Management",
+  "level": "L2",
+  "description": "Process of collecting, analyzing and reporting supply chain performance metrics across all SCOR domains including KPI management, benchmarking and continuous improvement",
+  "inputs": ["operational data", "KPI targets", "benchmark data", "customer requirements", "financial data"],
+  "outputs": ["performance reports", "KPI dashboards", "improvement plans", "executive scorecards", "benchmark analysis"],
+  "kpis": ["KPI achievement rate", "reporting cycle time", "data accuracy", "improvement plan completion rate"],
+  "related_processes": ["SCOR-E1", "SCOR-E3", "SCOR-P1.1", "SCOR-P1.5"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.12 logging", "ISO 42001 performance monitoring", "financial reporting compliance", "GDPR if personal data in metrics"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.95
+}

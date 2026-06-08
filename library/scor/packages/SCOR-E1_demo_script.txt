@@ -1,0 +1,6 @@
+1. Open with executive pain point: Manual supply chain rule updates cause €250k+ annual compliance fines and delays; introduce supply_chain_business_rules_manager as AI automation solution (€748 one-time).
+2. Trigger live rule ingestion: Agent scans ERP data, auto-generates 12 optimized business rules (e.g., supplier lead-time thresholds) in <90 seconds with full audit trail.
+3. Run compliance simulation: Execute scenario showing 100% rule adherence, instant violation flagging, and regulatory report export—reducing audit prep from days to minutes.
+4. Quantify time/cost savings: Display dashboard metrics—14 hours/week manual effort eliminated, equating to €47k annual savings (8.0x ROI multiplier on €748 price).
+5. Stress-test edge case: Agent dynamically adjusts rules for supply disruption, proving resilience and zero compliance drift versus legacy process.
+6. Close with ROI summary: €376k projected first-year value (8.0x), one-click deployment, and compliance risk reduction; invite pilot approval.

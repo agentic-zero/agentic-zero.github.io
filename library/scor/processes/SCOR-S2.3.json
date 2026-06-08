@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S2.3",
+  "name": "Verify Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Make-to-Order",
+  "level": "L2",
+  "description": "Process of verifying MTO received materials against specifications including dimensional checks, material certificates, compliance documentation and batch traceability",
+  "inputs": ["received materials", "specifications", "material certificates", "compliance requirements", "test equipment"],
+  "outputs": ["verification report", "acceptance decision", "certificate of conformance", "traceability records"],
+  "kpis": ["verification cycle time", "first-pass acceptance rate", "certificate compliance rate", "traceability completeness"],
+  "related_processes": ["SCOR-S2.2", "SCOR-S2.4", "SCOR-M2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "chemical", "pharma"],
+  "compliance_flags": ["GxP material verification if pharma", "AS9100 if aerospace", "ISO 9001", "REACH chemical compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

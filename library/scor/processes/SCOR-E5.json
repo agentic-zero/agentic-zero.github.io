@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E5",
+  "name": "Manage Supply Chain Assets",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Asset Management",
+  "level": "L2",
+  "description": "Process of managing physical and digital assets across the supply chain including equipment, facilities, technology infrastructure and IoT devices that support autonomous operations",
+  "inputs": ["asset registry", "maintenance schedules", "asset performance data", "capital plans", "technology roadmap"],
+  "outputs": ["asset utilization reports", "maintenance plans", "lifecycle assessments", "investment recommendations", "asset performance dashboards"],
+  "kpis": ["asset utilization rate", "maintenance compliance rate", "asset uptime", "return on assets"],
+  "related_processes": ["SCOR-E2", "SCOR-E3", "SCOR-M1.1", "SCOR-SR2.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive"],
+  "compliance_flags": ["ISO 55001 asset management", "EU AI Act infrastructure", "environmental compliance", "safety regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

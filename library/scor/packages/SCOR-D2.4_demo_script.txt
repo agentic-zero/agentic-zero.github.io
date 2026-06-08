@@ -1,0 +1,6 @@
+1. Open dashboard and load 50 sample MTO orders; highlight zero manual prep required.  
+2. Trigger mto_order_consolidation_agent; show AI grouping orders in <30 seconds while auto-applying compliance rules (audit flags, regulatory checks).  
+3. Display side-by-side before/after: 4.2 hours manual effort reduced to 6 minutes, with full traceability log.  
+4. Run ROI calculator live: €4,592 monthly savings × 8.0x multiplier = €36,736 annual value vs. €574 one-time price.  
+5. Export signed compliance report; confirm 100% policy adherence and instant audit readiness.  
+6. Close with one-click deployment option and 30-day ROI guarantee.

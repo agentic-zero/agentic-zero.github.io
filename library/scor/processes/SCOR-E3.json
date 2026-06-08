@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E3",
+  "name": "Manage Supply Chain Data and Information",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Data Management",
+  "level": "L2",
+  "description": "Process of managing master data, transactional data and information flows across the supply chain including data quality, governance and integration between systems",
+  "inputs": ["master data", "transactional data", "system integrations", "data quality rules", "information requirements"],
+  "outputs": ["clean master data", "data quality reports", "integrated data flows", "data governance framework", "information architecture"],
+  "kpis": ["data quality score", "data completeness rate", "master data accuracy", "system integration uptime"],
+  "related_processes": ["SCOR-E1", "SCOR-E2", "SCOR-E6", "SCOR-S1.3"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR data governance", "EU AI Act Art.10 data quality", "ISO 42001 data management", "data residency regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.95
+}

@@ -1,0 +1,96 @@
+{
+  "process_id": "SCOR-M2.4",
+  "agent_name": "mto_packaging_execution_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-08T00:01:18.410959",
+  "product_summary": "The Package (MTO) agent orchestrates the end-to-end packaging of made-to-order finished goods by validating customer specifications, applying correct labeling and protective materials, and generating all required compliance records. As a hybrid agent it combines automated rule enforcement with targeted human intervention for exceptions, rework, and sector-specific requirements such as GxP or dangerous-goods regulations. This reduces packaging errors, shortens cycle times, and ensures every shipment meets customer, environmental, and regulatory standards without manual hand-offs. Executives gain predictable throughput, lower compliance risk, and full traceability across the packaging operation.",
+  "value_proposition": "Automates validation, labeling, and compliance enforcement for MTO packaging while routing exceptions to humans for rapid resolution.",
+  "technical_summary": "The hybrid agent exposes five core capabilities as callable services that integrate with ERP, WMS, and labeling systems via APIs; it applies policy engines for sector rules and regulatory checks while maintaining an auditable event log. Real-time monitoring of cycle time and material exceptions feeds dashboards and triggers rework workflows. Human-in-the-loop steps are surfaced through a task queue that preserves full context for operators and records every decision for GxP or dangerous-goods audits.",
+  "integration_guide": "# Integration Guide — mto_packaging_execution_agent\n**Process:** Package (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_packaging_execution_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_packaging_execution_agent import MtoPackagingExecutionAgentAgent\n\nagent = MtoPackagingExecutionAgentAgent()\nresult = agent.execute({\n    \"finished_products\": your_finished_products_data,\n    \"customer_packaging_specifications\": your_customer_packaging_specifications_data,\n    \"labeling_requirements\": your_labeling_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- inventory_system_api\n- crm_spec_retriever\n- wms_batch_tracker\n- mes_timestamp_logger\n- label_printer_compliance_scanner\n- dangerous_goods_regulation_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing customer specs or adherence < 1.0\n- material shortage without documented approval\n- scan mismatch or damage detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/mto_packaging_execution_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mto_packaging_execution_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mto_packaging_execution_agent/health — Health check",
+    "GET  /api/v1/agents/mto_packaging_execution_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mto_packaging_execution_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a 60-second pain point: display a manual MTO packaging workflow (order intake → spec check → label/print → compliance sign-off) taking 47 minutes and risking audit failures.  \n2. Launch mto_packaging_execution_agent; show one-click AI orchestration that auto-validates order specs, selects compliant packaging, and generates labels in <90 seconds.  \n3. Trigger built-in compliance engine: real-time checks against EU packaging regs, auto-creation of audit-ready documentation, and immutable activity log.  \n4. Execute a live sample order; display side-by-side metrics—time reduced from 47 min to 6 min, zero compliance deviations.  \n5. Open ROI calculator: input €699 license fee; instantly project 8.0x annual return via 41 min saved per order × volume, plus avoided non-compliance penalties.  \n6. Export one-page executive summary with quantified ROI, compliance certificate, and recommended rollout timeline; close for Q&A.",
+  "demo_inputs": {
+    "finished_products": "[example_finished_products]",
+    "customer_packaging_specifications": "[example_customer_packaging_specifications]",
+    "labeling_requirements": "[example_labeling_requirements]"
+  },
+  "expected_demo_outputs": {
+    "packaged_products": "[generated_packaged_products]",
+    "customer-specific_labels": "[generated_customer-specific_labels]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M2.4",
+    "agent_name": "mto_packaging_execution_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP packaging if pharma",
+      "dangerous goods packaging regulations",
+      "customer packaging standards",
+      "environmental packaging regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:01:18.410938"
+  },
+  "tags": [
+    "hybrid",
+    "make",
+    "manufacturing",
+    "scor",
+    "automotive",
+    "l2",
+    "chemical",
+    "industrial equipment",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Automotive MTO supplier uses the agent to auto-validate customer packaging standards on 200+ monthly orders, cutting packaging-related chargebacks by 28% and saving $180k annually.",
+    "Use case 2: Chemical manufacturer applies the agent to dangerous goods packaging checks on make-to-order shipments, eliminating 4 regulatory non-compliance incidents per year and avoiding average $75k fines.",
+    "Use case 3: Industrial equipment firm leverages the agent for environmental packaging regulation audits during MTO quoting, reducing excess material spend by 19% and achieving $240k yearly savings.",
+    "Use case 4: Food producer deploys the agent to optimize MTO packaging configurations for shelf-life and sustainability rules, lowering product spoilage rates from 7% to 3% and generating $320k in recovered revenue.",
+    "Use case 5: Manufacturing plant uses the agent to standardize packaging BOMs across 150 MTO SKUs, shortening packaging engineering time by 35% and delivering $95k in annual labor cost reduction."
+  ],
+  "pricing": {
+    "process_id": "SCOR-M2.4",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M2.4_package.json"
+}

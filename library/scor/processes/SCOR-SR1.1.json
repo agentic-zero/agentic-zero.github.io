@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR1.1",
+  "name": "Identify Defective Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of identifying and classifying defective products that require return to supplier, including quality inspection and documentation",
+  "inputs": ["quality inspection results", "defect reports", "product specifications", "supplier contracts"],
+  "outputs": ["defective product identification", "return classification", "defect documentation"],
+  "kpis": ["defect identification rate", "return processing time", "supplier defect rate"],
+  "related_processes": ["SCOR-SR1.2", "SCOR-S1.1", "SCOR-DR1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "automotive", "food", "chemical"],
+  "compliance_flags": ["GxP if pharma", "ISO 9001 quality management", "GDPR if personal data involved"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

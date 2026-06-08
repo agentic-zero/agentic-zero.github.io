@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E1",
+  "name": "Manage Supply Chain Business Rules",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Business Rules Management",
+  "level": "L2",
+  "description": "Process of establishing, maintaining and governing the business rules, policies and decision criteria that guide supply chain operations across all SCOR domains",
+  "inputs": ["business strategy", "regulatory requirements", "operational policies", "stakeholder input", "performance data"],
+  "outputs": ["business rules documentation", "decision criteria", "policy framework", "escalation rules", "compliance guidelines"],
+  "kpis": ["rule compliance rate", "rule update cycle time", "policy exception rate", "rule coverage completeness"],
+  "related_processes": ["SCOR-E2", "SCOR-E8", "SCOR-E9", "SCOR-P1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.9 risk management", "ISO 42001 governance", "GDPR data processing rules", "regulatory compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.94
+}

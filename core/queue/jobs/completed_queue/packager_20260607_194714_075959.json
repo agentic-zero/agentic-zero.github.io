@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_194714_075959",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S3.2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T19:47:14.075978",
+  "status": "completed",
+  "started_at": "2026-06-07T23:37:19.326701",
+  "completed_at": "2026-06-07T23:40:19.651778",
+  "error": null,
+  "result": {
+    "agent_name": "eto_receiving_inspection_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

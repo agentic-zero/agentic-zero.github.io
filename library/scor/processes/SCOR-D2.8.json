@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.8",
+  "name": "Receive Product from Source or Make (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of receiving MTO finished goods from manufacturing or source operations into the deliver staging area with quality verification and inventory update",
+  "inputs": ["production completion notice", "quality release", "finished goods", "packaging verification", "delivery documentation"],
+  "outputs": ["received finished goods", "deliver inventory update", "quality acceptance", "staging confirmation"],
+  "kpis": ["receive accuracy", "quality acceptance rate", "receive cycle time", "inventory accuracy"],
+  "related_processes": ["SCOR-D2.7", "SCOR-D2.9", "SCOR-M2.5"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["GxP if pharma", "quality release compliance", "GDPR if personal data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

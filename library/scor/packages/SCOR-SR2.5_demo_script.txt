@@ -1,0 +1,6 @@
+1. Open dashboard and load sample MRO return ticket; highlight €12k annual manual cost baseline vs. €748 agent price.  
+2. Trigger mro_product_return_agent; AI auto-matches item to supplier contract and flags 3 compliance rules (serial tracking, hazmat cert, 30-day window).  
+3. Agent generates pre-filled RMA, audit PDF, and digital signature packet in <30 seconds; show one-click submission.  
+4. Real-time supplier portal update appears; compliance ledger entry created with immutable timestamp for audit.  
+5. Dashboard displays live ROI: 14 min saved per return, projected 8.0x multiplier (€6k+ annual savings at 50 returns/month).  
+6. Export compliance report and savings summary; close with 90-second Q&A on scaling to full MRO fleet.

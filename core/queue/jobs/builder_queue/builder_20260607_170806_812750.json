@@ -1,0 +1,16 @@
+{
+  "job_id": "builder_20260607_170806_812750",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-DR1.2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:08:06.812762",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

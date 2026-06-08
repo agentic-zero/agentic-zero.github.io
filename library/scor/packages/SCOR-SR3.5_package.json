@@ -1,0 +1,95 @@
+{
+  "process_id": "SCOR-SR3.5",
+  "agent_name": "excess_product_return_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T22:01:21.150442",
+  "product_summary": "The Return Excess Product to Supplier agent manages the complete lifecycle of returning surplus inventory to vendors, encompassing authorization validation, shipment coordination, and credit confirmation. As a hybrid agent, it combines automated processes with human oversight to handle physical logistics and financial reconciliation efficiently. This solution delivers significant business value by minimizing holding costs, ensuring regulatory compliance, and accelerating the recovery of supplier credits to improve cash flow.",
+  "value_proposition": "Automates the end-to-end return execution and compliance workflow to reduce inventory waste and accelerate credit recovery.",
+  "technical_summary": "This hybrid agent orchestrates capabilities including return authorization validation, expiry and accuracy enforcement, carrier pickup coordination, proof-of-delivery monitoring, and automated credit note generation. It integrates with ERP, logistics platforms, and financial systems while enforcing compliance layers for expiry tracking, chain of custody, and audit-ready documentation.",
+  "integration_guide": "# Integration Guide — excess_product_return_agent\n**Process:** Return Excess Product to Supplier\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_product_return_agent import ExcessProductReturnAgentAgent\n\nagent = ExcessProductReturnAgentAgent()\nresult = agent.execute({\n    \"return_shipment_schedule\": your_return_shipment_schedule_data,\n    \"return_authorization\": your_return_authorization_data,\n    \"product_preparation\": your_product_preparation_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- supplier_erp_api\n- planning_system\n- carrier_api\n- finance_system\n- document_repository\n\n## Escalation\nThe agent automatically escalates to human when:\n- product expired beyond policy\n- ProofOfDelivery missing after 48h\n- shipment rejected due to inaccurate contents or missing compliance_flags",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/excess_product_return_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/excess_product_return_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/excess_product_return_agent/health — Health check",
+    "GET  /api/v1/agents/excess_product_return_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/excess_product_return_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with the pain: \"Manual excess returns cost €50K+ yearly in errors, delays, and compliance fines—our €699 agent delivers 8x ROI by automating the full process.\"\n2. Trigger the agent live: Show it scanning ERP data to auto-detect €12K in excess stock eligible for supplier return within policy windows.\n3. Run automated workflow: Agent generates compliant return authorization, shipping docs, and supplier notification in <60 seconds while enforcing audit trails.\n4. Display compliance layer: Real-time checks for regulatory docs, serial tracking, and ESG reporting—reducing audit prep from days to minutes.\n5. Reveal ROI dashboard: Quantify €5,600 recovered this quarter plus 14 hours saved per return, projecting 8x payback in 45 days at scale.\n6. Close with metrics: \"One deployment pays for itself 8x annually; ready for pilot in your environment this week.\"",
+  "demo_inputs": {
+    "return_shipment_schedule": "[example_return_shipment_schedule]",
+    "return_authorization": "[example_return_authorization]",
+    "product_preparation": "[example_product_preparation]"
+  },
+  "expected_demo_outputs": {
+    "returned_excess_shipment": "[generated_returned_excess_shipment]",
+    "proof_of_delivery": "[generated_proof_of_delivery]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-SR3.5",
+    "agent_name": "excess_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry compliance",
+      "chain of custody",
+      "financial credit documentation"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:01:21.150423"
+  },
+  "tags": [
+    "hybrid",
+    "manufacturing",
+    "scor",
+    "pharma",
+    "l2",
+    "distribution",
+    "return",
+    "automotive",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma distributor returns $1.2M excess oncology drugs with full expiry tracking and chain-of-custody logs, securing supplier credits in 7 days instead of 45 and avoiding $180k FDA non-compliance fines",
+    "Use case 2: Food wholesaler automates return of 18 pallets of near-expiry dairy, recovering 82% supplier credit value ($94k) and cutting spoilage write-offs by 37% within one quarter",
+    "Use case 3: Automotive OEM returns excess semiconductor chips with serialized custody documentation, reducing inventory carrying cost by $420k annually and shortening credit cycle from 60 to 10 days",
+    "Use case 4: Manufacturing plant processes 240 excess chemical drums back to supplier with automated financial credit files, eliminating $65k in manual audit remediation costs and improving cash flow by 22%",
+    "Use case 5: National distributor handles 3,800 excess SKUs across 12 warehouses, achieving 94% first-pass credit acceptance and cutting return-processing labor by 1,900 hours ($95k) per year"
+  ],
+  "pricing": {
+    "process_id": "SCOR-SR3.5",
+    "complexity_score": 99,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 99/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-SR3.5_package.json"
+}

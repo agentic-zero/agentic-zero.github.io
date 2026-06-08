@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_120915_985452",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-SR3.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T12:09:15.985475",
+  "status": "completed",
+  "started_at": "2026-06-07T21:37:18.499900",
+  "completed_at": "2026-06-07T21:40:19.494638",
+  "error": null,
+  "result": {
+    "agent_name": "excess_product_return_authorization_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

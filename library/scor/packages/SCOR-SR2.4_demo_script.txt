@@ -1,0 +1,6 @@
+1. Open with executive pain: "Manual MRO return scheduling costs 12+ hours/week and risks €6k+ in compliance penalties per audit—today we'll show the AI agent eliminating both."
+2. Trigger mro_return_shipment_scheduler on a live high-value return; display instant ingestion of shipment data, carrier rules, and regulatory constraints.
+3. Run automated scheduling: agent proposes optimal slot while enforcing real-time compliance checks (customs, hazmat, traceability); one-click approval replaces manual coordination.
+4. Surface ROI dashboard: log 94% time reduction (€5,984 annual labor savings at loaded cost) plus zero compliance flags, delivering 8.0x multiplier on the €748 license within 10 weeks.
+5. Compare before/after audit trail: side-by-side view proves full chain-of-custody documentation generated automatically, cutting audit prep from days to minutes.
+6. Close with next-step offer: "Pilot the agent on your next 20 returns this quarter to lock in the 8x ROI; deployment takes under 48 hours."

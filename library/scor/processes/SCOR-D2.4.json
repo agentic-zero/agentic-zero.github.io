@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.4",
+  "name": "Consolidate Orders (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of consolidating multiple MTO orders for the same customer or delivery destination to optimize shipping costs and delivery efficiency",
+  "inputs": ["confirmed orders", "delivery schedules", "customer shipping preferences", "logistics options", "cost parameters"],
+  "outputs": ["consolidated shipment plans", "optimized delivery schedules", "customer notifications", "shipping cost savings"],
+  "kpis": ["consolidation rate", "shipping cost reduction", "delivery schedule compliance", "customer notification on-time"],
+  "related_processes": ["SCOR-D2.3", "SCOR-D2.5", "SCOR-D1.4"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["GDPR customer data", "customs consolidation regulations", "dangerous goods if applicable"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E4",
+  "name": "Manage Supply Chain Human Resources",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Human Resources Management",
+  "level": "L2",
+  "description": "Process of managing supply chain workforce including skills development, capacity planning, performance management and knowledge transfer to support autonomous operations",
+  "inputs": ["workforce data", "skills requirements", "training plans", "performance data", "organizational structure"],
+  "outputs": ["skills inventory", "training programs", "capacity plans", "performance assessments", "knowledge base"],
+  "kpis": ["skills coverage rate", "training completion rate", "workforce productivity", "knowledge retention rate"],
+  "related_processes": ["SCOR-E1", "SCOR-E2", "SCOR-E5"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR employee data", "labor law compliance", "EU AI Act Art.14 human oversight", "health and safety regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

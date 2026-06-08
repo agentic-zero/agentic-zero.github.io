@@ -1,0 +1,6 @@
+1. Open with the manual Produce and Test (MTO) challenge: 14-day cycle, €5,600 avg. cost, and recurring compliance gaps.  
+2. Launch produce_and_test_agent on a live €12k MTO order and run the full AI workflow in <90 seconds.  
+3. Display automated compliance layer: real-time checks against ISO and customer specs with zero manual sign-offs.  
+4. Show instant output—validated production plan, test scripts, and audit-ready report—reducing cycle time to 2 days.  
+5. Reveal ROI dashboard: €4,480 saved per order; at 10 orders/month the €699 license delivers 8.0x annual return.  
+6. Close with one-click export to ERP and compliance archive, confirming full traceability for executives.

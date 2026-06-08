@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260608_011620_208142",
+  "job_type": "review",
+  "payload": {
+    "process_id": "SCOR-DIG5",
+    "certificate_id": "AZ-CERT-SCOR-DIG5-20260608"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T01:16:20.208158",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

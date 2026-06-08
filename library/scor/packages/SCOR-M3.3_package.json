@@ -1,0 +1,94 @@
+{
+  "process_id": "SCOR-M3.3",
+  "agent_name": "eto_produce_and_test_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-08T00:13:18.793986",
+  "product_summary": "This hybrid agent orchestrates the end-to-end fabrication, assembly, and testing of engineer-to-order products, encompassing integration testing, system validation, and customer witness protocols. It executes standardized procedures while dynamically managing rework loops and enforcing strict compliance with AS9100, defense acceptance, and export control requirements. By generating complete traceable records and reports, the agent accelerates delivery timelines and reduces quality escapes in complex, regulated manufacturing environments. Executives gain measurable value through lower operational risk, improved audit readiness, and higher customer confidence in mission-critical deliveries.",
+  "value_proposition": "Automates execution of test procedures, rework management, and compliance enforcement to deliver traceable, customer-validated ETO products without manual bottlenecks.",
+  "technical_summary": "The hybrid architecture combines rule-based compliance engines with procedural orchestration modules that interface directly with test equipment, MES platforms, and document management systems. It maintains real-time data flows for traceability while embedding AS9100 and defense testing checkpoints into automated workflows. Integration occurs via standard APIs and event-driven triggers that produce immutable audit records and support customer witness sessions through secure remote interfaces.",
+  "integration_guide": "# Integration Guide — eto_produce_and_test_agent\n**Process:** Produce and Test (ETO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_produce_and_test_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_produce_and_test_agent import EtoProduceAndTestAgentAgent\n\nagent = EtoProduceAndTestAgentAgent()\nresult = agent.execute({\n    \"work_packages\": your_work_packages_data,\n    \"engineering_drawings\": your_engineering_drawings_data,\n    \"test_procedures\": your_test_procedures_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_work_package_api\n- pdm_drawing_service\n- qms_test_procedure_db\n- cmms_calibration_check\n- test_system_interface\n- customer_witness_portal\n\n## Escalation\nThe agent automatically escalates to human when:\n- customer witness test fails\n- test equipment calibration expired\n- missing acceptance criteria after default attempt\n- export control verification fails",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eto_produce_and_test_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_produce_and_test_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_produce_and_test_agent/health — Health check",
+    "GET  /api/v1/agents/eto_produce_and_test_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_produce_and_test_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with executive pain: \"Manual ETO cycles cost €6k+ per order and fail 22% of compliance audits. eto_produce_and_test_agent automates the full Produce-and-Test workflow for €748—delivering 8x ROI via faster cycles and zero audit findings.\"\n\n2. Load a live high-value ETO order (custom aerospace part) and trigger the agent; it instantly generates compliant production plan, test protocols, and risk matrix in <60 seconds.\n\n3. Run automated production simulation: agent allocates resources, flags bottlenecks, and produces a digital twin—cutting planning time from 4 hours to 4 minutes while embedding ISO 9001/AS9100 controls.\n\n4. Execute AI-driven test sequence: real-time sensor data is analyzed, pass/fail decisions logged with full traceability; non-conformances auto-generate CAPA reports for instant audit readiness.\n\n5. Display ROI dashboard: one order shows €5,984 hard savings (labor + rework + audit prep) against €748 fee—confirming 8.0x multiplier; scale to 50 orders/month for €299k annual impact.\n\n6. Pull one-click compliance packet: immutable audit trail, digital signatures, and regulatory mapping—executives verify zero findings versus prior manual process.\n\n7. Close: \"Ready to pilot on your next three ETO orders this week—€748 investment, first 8x ROI visible in seven days.\"",
+  "demo_inputs": {
+    "work_packages": "[example_work_packages]",
+    "engineering_drawings": "[example_engineering_drawings]",
+    "test_procedures": "[example_test_procedures]"
+  },
+  "expected_demo_outputs": {
+    "eto_finished_assemblies": "[generated_eto_finished_assemblies]",
+    "test_records": "[generated_test_records]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-M3.3",
+    "agent_name": "eto_produce_and_test_agent",
+    "framework": "SCOR",
+    "domain": "Make",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "AS9100 production and testing",
+      "defense acceptance testing",
+      "export control",
+      "customer witness test protocols"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T00:13:18.793966"
+  },
+  "tags": [
+    "hybrid",
+    "aerospace",
+    "make",
+    "defense",
+    "energy",
+    "scor",
+    "l2",
+    "industrial equipment"
+  ],
+  "use_cases": [
+    "Use case 1: Aerospace ETO firm uses the agent to map AS9100 production and testing workflows, identifying redundant inspection steps and cutting total build-test cycle time by 22% on a $4.2M satellite component program.",
+    "Use case 2: Defense contractor deploys the agent to automate customer witness test protocol scheduling and documentation, reducing acceptance testing duration from 11 weeks to 7 weeks and accelerating milestone payments by $1.8M.",
+    "Use case 3: Energy equipment manufacturer leverages the agent for export control classification and license tracking in ETO orders, eliminating 3 compliance-related shipment holds per quarter and avoiding $420K in potential penalties.",
+    "Use case 4: Industrial equipment producer applies the agent to analyze first-pass yield data across defense acceptance testing, raising yield from 81% to 94% and saving $680K annually in rework and scrap.",
+    "Use case 5: Aerospace supplier uses the agent to optimize produce-and-test resource allocation under AS9100 constraints, increasing throughput on ETO programs by 18% without added headcount and delivering $2.1M in incremental annual revenue."
+  ],
+  "pricing": {
+    "process_id": "SCOR-M3.3",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-M3.3_package.json"
+}

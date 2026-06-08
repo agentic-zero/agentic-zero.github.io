@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.3",
+  "name": "Reserve Resources and Determine Delivery Date (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of reserving production capacity, materials and logistics resources for MTO orders and calculating confirmed delivery dates based on actual availability",
+  "inputs": ["validated order", "capacity availability", "material availability", "routing data", "logistics capacity"],
+  "outputs": ["reserved capacity", "confirmed delivery date", "resource allocation", "supply chain commitment"],
+  "kpis": ["resource reservation accuracy", "delivery date confirmation cycle time", "commitment reliability", "resource utilization"],
+  "related_processes": ["SCOR-D2.2", "SCOR-D2.4", "SCOR-M2.1", "SCOR-S2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical"],
+  "compliance_flags": ["GDPR customer data", "contractual delivery obligations", "financial commitment compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

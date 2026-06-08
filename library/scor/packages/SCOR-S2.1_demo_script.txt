@@ -1,0 +1,6 @@
+1. Open with the €748 investment vs. 8x ROI: "This agent pays for itself in weeks by cutting manual MTO scheduling time 70% while eliminating compliance gaps."
+2. Load sample order data and trigger the agent: "Watch it auto-generate compliant delivery schedules in seconds, applying all regulatory constraints without manual checks."
+3. Display the optimized schedule with built-in audit trail: "Every rule, date, and carrier choice is logged for instant compliance reporting—no extra admin work."
+4. Run side-by-side comparison: "Manual process took 4 hours and risked fines; agent delivers in 12 minutes with zero deviations."
+5. Show live ROI dashboard: "At current volume this yields €5,984 annual savings per user—8x multiplier confirmed."
+6. End with one-click deployment: "Ready to activate enterprise-wide; compliance reports export directly to your audit system."

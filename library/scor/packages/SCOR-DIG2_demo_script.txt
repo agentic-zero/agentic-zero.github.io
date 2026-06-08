@@ -1,0 +1,6 @@
+1. Open dashboard and connect live IoT/sensor feeds from factory and logistics sites (30 sec).  
+2. Trigger AI stream manager: auto-ingest, normalize, and route 50k+ events/min with zero manual rules (2 min).  
+3. Run compliance scan: show real-time GDPR/CCPA masking, audit logs, and policy enforcement on sensitive data (2 min).  
+4. Display anomaly detection and predictive alerts that cut downtime 35 % versus prior quarter (2 min).  
+5. Pull ROI widget: €5,984 annual savings (8.0x multiplier on €748 license) from reduced labor and avoided fines (2 min).  
+6. Export one-click compliance report for the executive team and schedule next review (1 min).

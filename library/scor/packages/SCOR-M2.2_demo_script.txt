@@ -1,0 +1,11 @@
+1. Open with the pain: "Manual MTO material issues consume 4+ hours per order and create audit gaps—today we'll show how mto_material_issue_agent eliminates both in under 10 minutes."
+
+2. Trigger an inbound MTO request and let the agent auto-validate sourced/in-process inventory, apply AI-driven allocation rules, and generate the issue document.
+
+3. Display the real-time compliance panel: immutable audit trail, regulatory checks, and digital signatures captured automatically—no manual logs required.
+
+4. Run the side-by-side timer: reveal 92% reduction in cycle time (from 4.2 hrs to 20 min) and zero compliance exceptions versus the legacy process.
+
+5. Surface the ROI calculator: at €699 per license the 8.0x multiplier projects €5,592 annual value per user through labor savings and avoided audit penalties.
+
+6. Close with one-click deployment note and next-step offer: pilot in your highest-volume MTO line this week.

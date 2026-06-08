@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170422_245435",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-DR1.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:04:22.245448",
+  "status": "completed",
+  "started_at": "2026-06-07T17:35:14.265473",
+  "completed_at": "2026-06-07T17:39:14.131275",
+  "error": null,
+  "result": {
+    "agent_name": "authorize_defective_product_return_agent",
+    "ready_for_packager": true
+  }
+}

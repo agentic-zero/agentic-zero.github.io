@@ -1,5 +1,5 @@
-# Integration Guide — production_confirmation_agent
-**Process:** Confirm Production
+# Integration Guide — eto_production_scheduler
+**Process:** Schedule Engineer-to-Order Production Activities
 **Version:** 1.0.0
 
 ## Prerequisites
@@ -10,17 +10,18 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp production_confirmation_agent.py ./agents/
+cp eto_production_scheduler.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.production_confirmation_agent import ProductionConfirmationAgentAgent
+from agents.eto_production_scheduler import EtoProductionSchedulerAgent
 
-agent = ProductionConfirmationAgentAgent()
+agent = EtoProductionSchedulerAgent()
 result = agent.execute({
-    "production_orders": your_production_orders_data,
-    "material_requirements": your_material_requirements_data,
+    "engineering_releases": your_engineering_releases_data,
+    "project_schedules": your_project_schedules_data,
+    "resource_plans": your_resource_plans_data,
 })
 print(result['outputs'])
 ```
@@ -33,12 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_System_API
-- Inventory_Management_System_API
-- Quality_Control_System_API
+- engineering_system_api
+- plm_source_connector
+- erp_resource_module
+- project_schedule_integration
 
 ## Escalation
 The agent automatically escalates to human when:
-- Production order is incomplete
-- Material requirements are not met
-- Inventory records update fails
+- unresolved design change after 48 hours
+- schedule adherence KPI < 0.9
+- design change impact KPI exceeds threshold

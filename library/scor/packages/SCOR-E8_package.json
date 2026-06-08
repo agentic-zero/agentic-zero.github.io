@@ -1,0 +1,103 @@
+{
+  "process_id": "SCOR-E8",
+  "agent_name": "supply_chain_regulatory_compliance_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T22:43:19.539664",
+  "product_summary": "The Manage Supply Chain Regulatory Compliance agent is a hybrid solution that continuously identifies, monitors, and enforces adherence to critical regulations including the EU AI Act, GDPR, GxP, customs, and environmental laws throughout the supply chain. By leveraging capabilities such as regulatory update monitoring, gap analysis, and compliance reporting, it helps organizations mitigate risks and avoid costly penalties. This agent delivers significant business value by streamlining compliance processes, enhancing operational resilience, and supporting sustainable growth in regulated industries. Executives benefit from automated insights that enable proactive decision-making and full regulatory alignment.",
+  "value_proposition": "Automates continuous monitoring, gap analysis, and reporting across global supply chain regulations to eliminate compliance risks and penalties.",
+  "technical_summary": "This hybrid agent combines AI modules for real-time regulatory monitoring and automated gap analysis with human-in-the-loop workflows for audit findings and flag activation, integrating via APIs with ERP, customs, and external regulatory data sources. It generates compliance reports while aligning to ISO 42001 and NIST AI RMF, enabling scalable deployment across enterprise supply chain systems with conditional GxP extensions for pharma use cases.",
+  "integration_guide": "# Integration Guide — supply_chain_regulatory_compliance_agent\n**Process:** Manage Supply Chain Regulatory Compliance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_regulatory_compliance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_regulatory_compliance_agent import SupplyChainRegulatoryComplianceAgentAgent\n\nagent = SupplyChainRegulatoryComplianceAgentAgent()\nresult = agent.execute({\n    \"regulatory_landscape\": your_regulatory_landscape_data,\n    \"compliance_requirements\": your_compliance_requirements_data,\n    \"audit_findings\": your_audit_findings_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- regulatory_database_api\n- audit_management_system\n- compliance_tracking_engine\n- legal_review_interface\n\n## Escalation\nThe agent automatically escalates to human when:\n- critical audit finding unresolved after 48 hours\n- conflicting regulations detected requiring legal flag\n- compliance_rate drops below 0.98\n- GxP flag activation failure for pharma sector",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supply_chain_regulatory_compliance_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_regulatory_compliance_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_regulatory_compliance_agent/health — Health check",
+    "GET  /api/v1/agents/supply_chain_regulatory_compliance_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_regulatory_compliance_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with executive pain point: \"Global supply chains face €2M+ annual compliance risks from shifting regs; manual processes consume 120+ hours/month.\"\n2. Launch supply_chain_regulatory_compliance_agent live: Input a real supplier dataset and trigger automated regulatory scan across EU/UK/US rulesets.\n3. Demonstrate AI-driven compliance mapping: Agent flags 14 violations in 90 seconds, auto-generates corrective action plans with source citations.\n4. Show real-time audit trail and reporting: One-click export of board-ready compliance dashboard with risk scores and mitigation ROI projections.\n5. Quantify value: Highlight 95% time reduction (€48K annual labor savings) plus avoided fines, delivering 8.0x ROI on the €748 price within first quarter.\n6. Close with deployment path: \"Pilot in 48 hours; full rollout scales value to €400K+ yearly with zero added headcount.\"",
+  "demo_inputs": {
+    "regulatory_landscape": "[example_regulatory_landscape]",
+    "compliance_requirements": "[example_compliance_requirements]",
+    "audit_findings": "[example_audit_findings]"
+  },
+  "expected_demo_outputs": {
+    "compliance_status_reports": "[generated_compliance_status_reports]",
+    "audit_trails": "[generated_audit_trails]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-E8",
+    "agent_name": "supply_chain_regulatory_compliance_agent",
+    "framework": "SCOR",
+    "domain": "Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act full compliance",
+      "GDPR",
+      "GxP if pharma",
+      "ISO 42001",
+      "NIST AI RMF",
+      "customs regulations",
+      "environmental law"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:43:19.539641"
+  },
+  "tags": [
+    "hybrid",
+    "defense",
+    "enable",
+    "manufacturing",
+    "scor",
+    "pharma",
+    "l2",
+    "chemical",
+    "automotive",
+    "distribution",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma firm deploys agent to automate GxP batch traceability across 12 contract manufacturers, cutting FDA audit prep from 240 to 60 hours and avoiding $1.2M in potential warning-letter remediation costs per year",
+    "Use case 2: Global automotive OEM uses agent for real-time customs tariff classification on 8,000 SKUs, reducing duty overpayments by 4.7% and recovering $2.8M annually while eliminating 35% of broker rework hours",
+    "Use case 3: Chemical distributor applies agent to monitor REACH and environmental law changes across 22 EU warehouses, preventing three reportable incidents and saving $950K in fines plus 18 days of operational shutdown risk",
+    "Use case 4: Defense contractor integrates agent for NIST AI RMF and export-control screening on AI-enabled components, shortening supplier qualification cycle from 11 weeks to 4 weeks and securing $4.5M in accelerated program milestones",
+    "Use case 5: Food manufacturer runs agent for GDPR + ISO 42001 compliance on AI demand-forecasting models shared with 45 suppliers, reducing data-breach audit findings to zero and avoiding €850K GDPR penalty exposure while cutting compliance staffing by 2.5 FTE"
+  ],
+  "pricing": {
+    "process_id": "SCOR-E8",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-E8_package.json"
+}

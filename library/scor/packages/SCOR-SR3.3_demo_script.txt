@@ -1,0 +1,6 @@
+1. Open with a live pain-point scenario: Manually processing 200 excess returns/month costs 40 hours and risks 15% non-compliance fines—project €45K annual loss.
+2. Trigger the agent via dashboard: Input a sample return request; AI auto-validates eligibility, checks inventory, and generates authorization in 12 seconds vs. 25 minutes manual.
+3. Display real-time compliance layer: Agent enforces policy rules, creates immutable audit trail, and flags exceptions for review—show exportable report for regulators.
+4. Run ROI calculator live: Input team hours saved (38/month) at €50/hr; €699 price yields 8.2x first-year return via reduced labor and avoided penalties.
+5. Simulate edge-case escalation: Agent routes non-standard return to approver with pre-filled justification, maintaining 100% policy adherence.
+6. Close with metrics dashboard: Summarize 92% faster cycle time, zero compliance incidents, and projected €48K annual savings—offer immediate pilot activation.

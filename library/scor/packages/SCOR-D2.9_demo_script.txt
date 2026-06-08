@@ -1,0 +1,6 @@
+1. Open with the €5.6M annual cost of manual MTO picking errors and compliance gaps; state the €699 agent delivers an 8x ROI within 90 days via full automation.  
+2. Trigger mto_pick_execution_agent on a live order; show real-time AI selection of compliant SKUs while auto-applying regulatory rules.  
+3. Display the side-by-side dashboard: manual process (12 min, 3% error rate) versus agent (45 sec, 0% errors) with immutable audit trail.  
+4. Run a compliance stress test—agent flags and blocks a restricted-item pick, generating a timestamped report for auditors in one click.  
+5. Reveal ROI calculator: €699 fee versus €5,592 quantified savings from labor, rework, and avoided fines, confirming 8.0x multiplier.  
+6. Close with one-click deployment link and 30-day pilot offer, emphasizing zero-code integration and continuous compliance updates.

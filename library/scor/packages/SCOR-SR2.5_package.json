@@ -1,0 +1,95 @@
+{
+  "process_id": "SCOR-SR2.5",
+  "agent_name": "mro_product_return_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T21:31:19.003712",
+  "product_summary": "This hybrid agent manages the complete physical return workflow for MRO products to suppliers, orchestrating return authorization, packaging, shipment logistics, real-time tracking, and credit confirmation. It enforces critical compliance requirements including chain of custody documentation, environmental standards, and cross-border customs procedures throughout the process. By automating these steps, the agent reduces manual handling errors, accelerates supplier credit issuance, and lowers operational costs associated with returns. Executives gain visibility into return cycles and improved working capital through faster, auditable resolutions.",
+  "value_proposition": "Automates the full physical return execution for MRO products while ensuring compliance and timely credit recovery.",
+  "technical_summary": "The hybrid architecture combines orchestration logic for digital workflows such as authorization processing and shipment tracking with interfaces to physical logistics providers and compliance systems. It integrates via APIs with ERP platforms, carrier services, and customs databases to maintain chain-of-custody records and trigger credit confirmations automatically. Environmental and regulatory checks are embedded as policy gates within the agent's execution flow.",
+  "integration_guide": "# Integration Guide — mro_product_return_agent\n**Process:** Return MRO Product to Supplier\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mro_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mro_product_return_agent import MroProductReturnAgentAgent\n\nagent = MroProductReturnAgentAgent()\nresult = agent.execute({\n    \"mro_shipment_schedule\": your_mro_shipment_schedule_data,\n    \"return_authorization\": your_return_authorization_data,\n    \"packaging\": your_packaging_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- supplier_api\n- packaging_provider_api\n- carrier_api\n- gdpr_compliance_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- if return authorization is denied\n- if shipment is lost or damaged\n- if credit confirmation is disputed",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/mro_product_return_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mro_product_return_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mro_product_return_agent/health — Health check",
+    "GET  /api/v1/agents/mro_product_return_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mro_product_return_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open dashboard and load sample MRO return ticket; highlight €12k annual manual cost baseline vs. €748 agent price.  \n2. Trigger mro_product_return_agent; AI auto-matches item to supplier contract and flags 3 compliance rules (serial tracking, hazmat cert, 30-day window).  \n3. Agent generates pre-filled RMA, audit PDF, and digital signature packet in <30 seconds; show one-click submission.  \n4. Real-time supplier portal update appears; compliance ledger entry created with immutable timestamp for audit.  \n5. Dashboard displays live ROI: 14 min saved per return, projected 8.0x multiplier (€6k+ annual savings at 50 returns/month).  \n6. Export compliance report and savings summary; close with 90-second Q&A on scaling to full MRO fleet.",
+  "demo_inputs": {
+    "mro_shipment_schedule": "[example_mro_shipment_schedule]",
+    "return_authorization": "[example_return_authorization]",
+    "packaging": "[example_packaging]"
+  },
+  "expected_demo_outputs": {
+    "returned_mro_shipment": "[generated_returned_mro_shipment]",
+    "proof_of_delivery": "[generated_proof_of_delivery]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-SR2.5",
+    "agent_name": "mro_product_return_agent",
+    "framework": "SCOR",
+    "domain": "Return",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "chain of custody",
+      "environmental compliance",
+      "customs if cross-border"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 99,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T21:31:19.003692"
+  },
+  "tags": [
+    "hybrid",
+    "defense",
+    "manufacturing",
+    "scor",
+    "energy",
+    "pharma",
+    "l2",
+    "chemical",
+    "return"
+  ],
+  "use_cases": [
+    "Use case 1: In a pharma batch plant, the agent automates return of 200 kg unused API lots with full chain-of-custody logs, cutting return cycle time from 14 days to 5 days and recovering $180k in supplier credits annually while eliminating FDA audit findings.",
+    "Use case 2: A chemical manufacturer uses the agent to process returns of 50 drums of off-spec solvents under environmental compliance tracking, reducing hazardous waste disposal costs by $92k per year and shortening credit receipt from 45 to 12 days.",
+    "Use case 3: Defense contractor returns serialized avionics MRO parts with immutable chain-of-custody records, cutting administrative labor by 60% (120 hours/month) and avoiding $250k potential ITAR violation penalties per audit cycle.",
+    "Use case 4: Energy utility returns cross-border turbine blades via the agent, which auto-generates customs declarations and environmental certificates, lowering duty exposure by 18% ($75k/year) and accelerating supplier credit by three weeks.",
+    "Use case 5: Discrete manufacturer automates return of excess high-value tooling to suppliers with full documentation, increasing refund recovery rate from 72% to 96% and generating $140k incremental annual cash flow."
+  ],
+  "pricing": {
+    "process_id": "SCOR-SR2.5",
+    "complexity_score": 99,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 99/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-SR2.5_package.json"
+}

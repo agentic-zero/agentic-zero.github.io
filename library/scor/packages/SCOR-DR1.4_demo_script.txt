@@ -1,0 +1,6 @@
+1. Open with current-state pain: Manual defective returns cost 12+ hours/week in coordination, errors, and audit failures—exposing €40k+ annual compliance risk.
+2. Trigger defective_product_transfer_agent on a live sample return; AI auto-classifies defect, generates compliant transfer docs, and routes to logistics in <90 seconds.
+3. Display real-time compliance layer: automated checks against EU regs, full audit trail, and digital signatures—eliminating 100% of prior manual review steps.
+4. Reveal dashboard metrics: process time reduced from 45 min to 4 min per case, 94% fewer data-entry errors, and instant traceability for regulators.
+5. Run ROI calculator live: at €699 annual fee, 8.0x multiplier projects €5,592 net savings per user in year one via labor and penalty avoidance.
+6. Close with executive summary: one-click deployment, immediate compliance uplift, and scalable ROI across all return channels—ready for pilot this quarter.

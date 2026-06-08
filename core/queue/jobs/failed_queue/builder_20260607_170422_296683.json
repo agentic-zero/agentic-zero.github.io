@@ -1,0 +1,16 @@
+{
+  "job_id": "builder_20260607_170422_296683",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D"
+  },
+  "priority": 5,
+  "retries": 3,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:04:22.296697",
+  "status": "failed",
+  "started_at": "2026-06-07T21:23:14.376066",
+  "completed_at": "2026-06-07T21:23:14.378557",
+  "error": "Builder returned no result",
+  "result": null
+}

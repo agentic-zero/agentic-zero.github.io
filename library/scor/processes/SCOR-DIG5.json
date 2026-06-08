@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG5",
+  "name": "Manage Digital Supply Chain Visibility",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "End-to-End Visibility",
+  "level": "L2",
+  "description": "Process of achieving and maintaining real-time end-to-end visibility across the supply chain network including inventory positions, order status, shipment tracking and supplier operational status",
+  "inputs": ["ERP data", "WMS data", "TMS data", "supplier feeds", "carrier APIs", "IoT streams"],
+  "outputs": ["visibility dashboard", "real-time alerts", "exception reports", "predicted ETAs", "inventory snapshots"],
+  "kpis": ["visibility coverage rate", "data freshness", "exception detection rate", "ETA prediction accuracy"],
+  "related_processes": ["SCOR-DIG2", "SCOR-DIG6", "SCOR-DIG9", "SCOR-E2", "SCOR-E7"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR location and tracking data", "customs data regulations", "food traceability regulations", "pharma serialization requirements"],
+  "source": "Scout research — APICS/ASCM Digital Extension + Gartner Supply Chain 2025",
+  "confidence": 0.93
+}

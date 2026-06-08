@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR1.5",
+  "name": "Return Defective Product to Supplier",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Physical execution of returning defective products to supplier including packaging, labeling, handover to carrier and shipment tracking",
+  "inputs": ["shipment schedule", "return authorization", "packaging materials", "carrier pickup"],
+  "outputs": ["returned shipment", "proof of delivery", "credit note request"],
+  "kpis": ["return completion rate", "on-time return rate", "credit recovery rate"],
+  "related_processes": ["SCOR-SR1.4", "SCOR-DR1.3", "SCOR-S1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "automotive", "food", "chemical", "distribution"],
+  "compliance_flags": ["GxP if pharma", "chain of custody documentation", "customs if cross-border"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

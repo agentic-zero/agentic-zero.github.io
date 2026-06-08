@@ -1,0 +1,6 @@
+1. Open dashboard and load sample excess inventory dataset (500 units across 3 SKUs), highlighting €42k manual scheduling cost baseline.
+2. Trigger AGENT excess_return_shipment_scheduler; AI auto-matches carriers, generates compliant return labels, and flags regulatory holds in <45 seconds.
+3. Display real-time compliance panel: automated checks for EU return directives, customs docs, and audit trails with zero manual edits required.
+4. Review optimized schedule: 3 consolidated shipments cut transit costs 37% and compress cycle time from 11 days to 4.
+5. Run ROI simulator: input €699 license fee; system projects 8.0x return via €5,592 annual savings plus avoided €2.1k compliance penalties.
+6. Export signed shipment plan and compliance report for executive sign-off, closing with one-click ERP sync.

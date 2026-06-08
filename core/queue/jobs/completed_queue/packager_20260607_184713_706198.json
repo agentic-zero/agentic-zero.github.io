@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_184713_706198",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-DIG2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T18:47:13.706212",
+  "status": "completed",
+  "started_at": "2026-06-07T22:52:18.262306",
+  "completed_at": "2026-06-07T22:55:21.164081",
+  "error": null,
+  "result": {
+    "agent_name": "iot_sensor_stream_manager",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

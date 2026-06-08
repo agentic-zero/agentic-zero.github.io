@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170422_267999",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-DIG10"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:04:22.268017",
+  "status": "completed",
+  "started_at": "2026-06-07T19:15:13.760451",
+  "completed_at": "2026-06-07T19:19:13.680486",
+  "error": null,
+  "result": {
+    "agent_name": "agentic_compliance_audit_manager",
+    "ready_for_packager": true
+  }
+}

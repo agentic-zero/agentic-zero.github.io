@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG2",
+  "name": "Manage IoT and Sensor Data Streams",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "IoT Operations",
+  "level": "L2",
+  "description": "Process of managing end-to-end IoT infrastructure including sensor deployment, data ingestion, stream processing and real-time event management to feed autonomous supply chain agents",
+  "inputs": ["sensor readings", "device telemetry", "environmental data", "location data", "equipment signals"],
+  "outputs": ["clean data streams", "real-time event triggers", "anomaly alerts", "sensor performance reports", "data quality metrics"],
+  "kpis": ["sensor uptime", "data latency", "data quality rate", "event detection accuracy"],
+  "related_processes": ["SCOR-DIG1", "SCOR-DIG3", "SCOR-DIG9", "SCOR-E3", "SCOR-M1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR IoT data collection", "EU AI Act data quality Art.10", "cybersecurity IoT standards", "industry-specific sensor regulations"],
+  "source": "Scout research — APICS/ASCM Digital Extension + IDC 2025",
+  "confidence": 0.92
+}

@@ -1,0 +1,6 @@
+1. Launch eto_issue_automation_agent and load a live ETO in-process product issue ticket, noting the 45-minute manual handling baseline.  
+2. Trigger AI analysis to auto-detect root cause, apply compliance rules, and generate a validated corrective action with full audit trail in under 90 seconds.  
+3. Review the auto-produced compliance report and digital sign-off package, confirming zero deviations from ISO and regulatory requirements.  
+4. Execute one-click resolution that updates the product record and closes the issue, demonstrating 95% reduction in cycle time.  
+5. Open the ROI dashboard showing €5,984 annual savings per user, delivering the 8.0x return on the €748 license within the first quarter.  
+6. Export the compliance certificate and savings summary for immediate executive distribution, then invite questions on rollout.

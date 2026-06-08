@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E9",
+  "name": "Manage Supply Chain Risk",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Risk Management",
+  "level": "L2",
+  "description": "Process of identifying, assessing, monitoring and mitigating supply chain risks including operational, financial, geopolitical, cyber, AI and regulatory risks across all SCOR domains",
+  "inputs": ["risk signals", "operational data", "market intelligence", "supplier data", "geopolitical indicators", "AI system outputs"],
+  "outputs": ["risk register", "risk assessments", "mitigation plans", "early warning alerts", "resilience reports", "contingency plans"],
+  "kpis": ["risk identification rate", "mitigation effectiveness", "risk exposure value", "supply chain resilience score"],
+  "related_processes": ["SCOR-E1", "SCOR-E8", "SCOR-P1.5", "SCOR-S1.5"],
+  "sector_applicability": ["pharma", "defense", "chemical", "food", "automotive", "manufacturing", "distribution"],
+  "compliance_flags": ["EU AI Act Art.9 risk management", "ISO 31000 risk management", "NIST AI RMF govern-map-measure-manage", "GDPR risk assessment", "sector-specific risk regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.96
+}

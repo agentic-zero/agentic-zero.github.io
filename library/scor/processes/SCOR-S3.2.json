@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S3.2",
+  "name": "Receive Engineer-to-Order Product",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of receiving custom-engineered components and materials with full engineering documentation, test reports and compliance certificates for ETO production",
+  "inputs": ["ETO delivery", "engineering drawings", "test reports", "certificates", "receiving inspection plan"],
+  "outputs": ["received ETO components", "engineering acceptance report", "inventory update", "project BOM update"],
+  "kpis": ["ETO receiving accuracy", "engineering documentation completeness", "receiving cycle time", "first-pass acceptance"],
+  "related_processes": ["SCOR-S3.1", "SCOR-S3.3", "SCOR-M3.1"],
+  "sector_applicability": ["defense", "industrial equipment", "energy", "aerospace"],
+  "compliance_flags": ["defense acquisition standards", "AS9100 aerospace", "GDPR if personal data", "export control compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

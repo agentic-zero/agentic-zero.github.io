@@ -1,13 +1,6 @@
-1. Introduction to Agentic Zero's production_order_release_agent: Briefly introduce the agent and its value proposition, highlighting how it automates release production with AI, and mention the price point of €499.
-
-2. Current State Overview: Describe the current manual process of release production, emphasizing the time-consuming and error-prone nature of manual workflows, and how this affects the bottom line.
-
-3. Demo of Automated Release Production: Showcase the production_order_release_agent in action, demonstrating how it streamlines and automates the release production process, reducing the need for manual intervention and minimizing errors.
-
-4. ROI Calculation: Explain how the agent can help achieve an 8.0x ROI multiplier by reducing labor costs, increasing efficiency, and improving productivity, and provide a simple calculation to illustrate the potential cost savings.
-
-5. Compliance and Risk Mitigation: Highlight the compliance benefits of using the production_order_release_agent, such as improved audit trails, reduced risk of human error, and increased transparency, and explain how these benefits can help mitigate potential risks and reputational damage.
-
-6. Implementation and Onboarding: Outline the simple implementation and onboarding process for the production_order_release_agent, emphasizing how quickly executives can start seeing the benefits of automation and ROI multiplier.
-
-7. Conclusion and Next Steps: Summarize the key takeaways from the demo, reiterate the value proposition and ROI potential, and provide a clear call to action for the next steps, such as scheduling a follow-up meeting or starting a pilot project.
+1. Open dashboard and load sample MTO order backlog; highlight AI auto-prioritization that cuts manual scheduling from 4 hours to 12 minutes.  
+2. Trigger reschedule after a rush order change; show real-time Gantt update plus automated labor-law and delivery-compliance flags.  
+3. Export compliant schedule PDF with audit trail; note one-click regulatory sign-off that eliminates 30 minutes of admin per batch.  
+4. Display ROI panel: €699 price vs. 8.0x multiplier from 22 hours/week saved and zero compliance penalties in last 90 days.  
+5. Run side-by-side comparison with legacy spreadsheet; quantify €5,600 monthly efficiency gain and risk reduction.  
+6. Close with one-sentence summary: “€699 delivers €5,592 annual value while keeping every schedule audit-ready.”

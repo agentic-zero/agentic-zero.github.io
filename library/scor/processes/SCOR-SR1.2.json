@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR1.2",
+  "name": "Disposition Defective Product",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of determining the appropriate disposition for defective products including repair, rework, scrap, or return to supplier",
+  "inputs": ["defective product identification", "quality assessment", "cost analysis", "supplier agreements"],
+  "outputs": ["disposition decision", "return authorization request", "scrap/rework order"],
+  "kpis": ["disposition cycle time", "recovery rate", "disposition cost"],
+  "related_processes": ["SCOR-SR1.1", "SCOR-SR1.3", "SCOR-DR1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "automotive", "food", "chemical"],
+  "compliance_flags": ["GxP if pharma", "ISO 9001", "environmental compliance if hazardous"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

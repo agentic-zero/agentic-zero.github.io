@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M2.4",
+  "name": "Package (MTO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Make-to-Order",
+  "level": "L2",
+  "description": "Process of packaging MTO finished products according to customer requirements and specifications including labeling, marking, protective packaging and compliance documentation",
+  "inputs": ["finished products", "customer packaging specifications", "labeling requirements", "packaging materials", "shipping requirements"],
+  "outputs": ["packaged products", "customer-specific labels", "packaging records", "packing lists"],
+  "kpis": ["packaging accuracy", "labeling compliance rate", "packaging cycle time", "customer specification adherence"],
+  "related_processes": ["SCOR-M2.3", "SCOR-M2.5", "SCOR-D2.1"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "chemical", "food"],
+  "compliance_flags": ["GxP packaging if pharma", "dangerous goods packaging regulations", "customer packaging standards", "environmental packaging regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

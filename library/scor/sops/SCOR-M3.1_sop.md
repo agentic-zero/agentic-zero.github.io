@@ -1,39 +1,43 @@
-# SOP — Confirm Production
+# SOP — Schedule Engineer-to-Order Production Activities
 **Process ID:** SCOR-M3.1
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-04
+**Generated:** 2026-06-07
 
 ## Purpose
-Process of confirming production completion and updating inventory records
+Process of scheduling ETO production activities integrating engineering design releases with production planning, managing design changes and coordinating multi-discipline project execution
 
 ## Triggers
-- new production order is received
-- production is completed and ready for confirmation
+- Receipt of engineering releases or design change notices from engineering system
 
 ## Inputs Required
-- production orders
-- material requirements
+- engineering releases
+- project schedules
+- resource plans
+- design change notices
+- subcontractor schedules
 
 ## Process Steps
-1. IF production is complete THEN update inventory records
-2. IF material requirements are met THEN confirm production
+1. IF DesignChangeNotice received THEN recalculate ETOProductionSchedule and ResourceAllocation within 24 hours
+2. IF schedule adherence KPI < 0.9 THEN escalate to related process SCOR-M3.2
 
 ## Expected Outputs
-- confirmed production
-- updated inventory records
+- ETO production schedules
+- resource allocations
+- engineering-production interface plans
+- milestone tracking
 
 ## Business Rules
-- rule1: production orders must be validated before confirmation
-- rule2: inventory records must be updated in real-time
-- rule3: production accuracy and inventory accuracy must be measured and reported
+- All ETOProductionSchedule outputs must reference compliance_flags: defense acquisition regulations or ITAR before release
+- ResourceAllocation must integrate inputs from engineering releases and subcontractor schedules with version control
 
 ## Exception Handling
-- exception1: production order is cancelled - update inventory records and notify stakeholders
-- exception2: material requirements are not met - notify production team and adjust production schedule
+- Unresolved design change after 48 hours: freeze ETOProductionSchedule and notify project manager via milestone tracking
 
 ## Success Criteria
-- production accuracy is within acceptable limits
-- inventory records are up-to-date and accurate
-- confirmed production is reported to stakeholders
+- Schedule adherence KPI >= 0.95 AND project milestone achievement = 100% with no open design change impacts
 
 ## Compliance Requirements
+- defense acquisition regulations
+- AS9100 aerospace
+- export control ITAR
+- project management compliance

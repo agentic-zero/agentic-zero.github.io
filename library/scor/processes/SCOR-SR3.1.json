@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR3.1",
+  "name": "Identify Excess Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of identifying excess or obsolete inventory that can be returned to supplier for credit or exchange",
+  "inputs": ["inventory aging reports", "demand forecasts", "supplier return policies", "inventory carrying costs"],
+  "outputs": ["excess inventory identification", "return opportunity assessment", "return priority list"],
+  "kpis": ["excess inventory identification rate", "return opportunity value", "inventory turnover improvement"],
+  "related_processes": ["SCOR-SR3.2", "SCOR-P1.1", "SCOR-DR3.1"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "automotive"],
+  "compliance_flags": ["expiry compliance if perishable", "GDPR if personal data", "financial reporting compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

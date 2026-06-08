@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M3.2",
+  "name": "Issue In-Process Product (ETO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of issuing custom-engineered components and materials to ETO production operations maintaining configuration control and engineering traceability throughout",
+  "inputs": ["engineering BOMs", "configuration documents", "ETO components", "work packages", "production routings"],
+  "outputs": ["issued ETO components", "configuration records", "work package assignments", "traceability records"],
+  "kpis": ["configuration accuracy", "issue cycle time", "traceability completeness", "BOM accuracy"],
+  "related_processes": ["SCOR-M3.1", "SCOR-M3.3", "SCOR-S3.4"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["configuration management standards", "AS9100", "defense acquisition", "export control"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

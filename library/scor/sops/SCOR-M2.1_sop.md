@@ -1,38 +1,48 @@
-# SOP — Release Production
+# SOP — Schedule Make-to-Order Production Activities
 **Process ID:** SCOR-M2.1
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-03
+**Generated:** 2026-06-07
 
 ## Purpose
-Process of releasing production orders to the shop floor
+Process of scheduling MTO production activities against customer orders, allocating capacity and sequencing work orders to meet customer delivery commitments
 
 ## Triggers
-- new Production Schedule is created
-- Work Order is updated
+- New or updated CustomerOrder received from order management system
+- Daily batch of capacity plans refreshed from ERP
 
 ## Inputs Required
-- production schedules
-- work orders
+- customer orders
+- capacity plans
+- material availability
+- routing data
+- equipment schedules
 
 ## Process Steps
-1. IF Production Schedule is available AND Work Order is ready THEN release Production Order
-2. IF Material Requirement is not met THEN adjust Production Order
+1. IF material_availability.status == 'available' AND capacity_plan.utilization < 0.85 THEN release WorkOrder
+2. IF routing_data.setup_time + processing_time > customer_order.due_date THEN escalate to related_process SCOR-M2.2
 
 ## Expected Outputs
-- production orders
-- material requirements
+- MTO production schedules
+- work order releases
+- capacity commitments
+- delivery date confirmations
 
 ## Business Rules
-- rule1: Production Order must be released within a certain timeframe
-- rule2: Material Requirement must be fulfilled before Production Order can start
+- MTOProductionSchedule must achieve schedule_adherence >= 0.95
+- WorkOrder release requires ISO 9001 documented approval
+- GDPR customer data must be anonymized in DeliveryConfirmation
 
 ## Exception Handling
-- exception1: Production Schedule is delayed - re-evaluate Production Order release
-- exception2: Material Requirement cannot be fulfilled - notify production team and adjust Production Order
+- Pharma sector: require GxP batch record attachment before WorkOrder release or block schedule
+- Capacity_utilization > 0.95: auto-trigger related_process SCOR-P1.3 for overtime approval
 
 ## Success Criteria
-- Production Order is successfully released to Shop Floor
-- Material Requirement is fulfilled
-- Production lead time is within acceptable range
+- schedule_adherence >= 0.95
+- on_time_delivery >= 0.98
+- capacity_utilization between 0.70-0.90
+- order_cycle_time <= customer_order.lead_time
 
 ## Compliance Requirements
+- GxP batch records if pharma
+- ISO 9001 production planning
+- GDPR customer data

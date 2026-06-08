@@ -1,0 +1,6 @@
+1. Open with a 60-second pain point: display a manual MTO packaging workflow (order intake → spec check → label/print → compliance sign-off) taking 47 minutes and risking audit failures.  
+2. Launch mto_packaging_execution_agent; show one-click AI orchestration that auto-validates order specs, selects compliant packaging, and generates labels in <90 seconds.  
+3. Trigger built-in compliance engine: real-time checks against EU packaging regs, auto-creation of audit-ready documentation, and immutable activity log.  
+4. Execute a live sample order; display side-by-side metrics—time reduced from 47 min to 6 min, zero compliance deviations.  
+5. Open ROI calculator: input €699 license fee; instantly project 8.0x annual return via 41 min saved per order × volume, plus avoided non-compliance penalties.  
+6. Export one-page executive summary with quantified ROI, compliance certificate, and recommended rollout timeline; close for Q&A.

@@ -1,0 +1,7 @@
+1. Open dashboard showing manual supply chain blind spots and €180k annual compliance penalties from traceability gaps.  
+2. Activate digital_supply_chain_visibility_manager agent; AI ingests live ERP and IoT feeds in <30 seconds.  
+3. Display real-time visibility map with automated risk flagging and supplier scorecards.  
+4. Run one-click compliance audit: agent generates audit-ready reports meeting GDPR and CSRD standards.  
+5. Trigger ROI simulator: input €748 price, output 8.0x multiplier via €6k+ monthly savings in delays and fines.  
+6. Execute live exception resolution: AI reroutes shipment, logs immutable compliance trail.  
+7. Close with deployment timeline and projected 8x annual return within first quarter.

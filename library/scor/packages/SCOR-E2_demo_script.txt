@@ -1,0 +1,6 @@
+1. Open with the €748 investment and project 8x ROI (€5,984 net value) via 15% faster issue resolution and automated compliance in a live 200-supplier network.  
+2. Trigger the agent to ingest ERP and logistics feeds, auto-calculate OTIF, inventory turns, and supplier risk scores in under 60 seconds.  
+3. Run the compliance module: generate audit-ready ESG and traceability reports while flagging two regulatory gaps with recommended corrective actions.  
+4. Execute AI-driven scenario: rebalance orders across suppliers, showing immediate 12% cost reduction and full compliance score improvement.  
+5. Display the ROI dashboard: quantify time saved (22 hrs/week), avoided penalties, and payback achieved in 11 days.  
+6. Summarize integration path (one API call) and confirm next-step pilot scope with the executive team.

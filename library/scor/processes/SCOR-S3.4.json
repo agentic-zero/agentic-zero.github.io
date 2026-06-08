@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S3.4",
+  "name": "Transfer Engineer-to-Order Product",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of transferring verified ETO components to project-specific production areas maintaining full engineering traceability and configuration management",
+  "inputs": ["verified ETO components", "project work orders", "configuration management data", "production staging plans"],
+  "outputs": ["ETO components in production", "configuration records", "traceability update", "project inventory update"],
+  "kpis": ["transfer accuracy", "configuration management compliance", "traceability completeness", "transfer cycle time"],
+  "related_processes": ["SCOR-S3.3", "SCOR-S3.5", "SCOR-M3.1"],
+  "sector_applicability": ["defense", "industrial equipment", "energy", "aerospace"],
+  "compliance_flags": ["configuration management standards", "defense acquisition", "export control", "GDPR if personal data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

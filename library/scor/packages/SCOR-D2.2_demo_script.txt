@@ -1,0 +1,7 @@
+1. Open dashboard and load sample MTO order to illustrate manual baseline (12 min, 3 compliance flags).  
+2. Trigger mto_order_validation_agent to auto-receive and parse order, showing instant data extraction.  
+3. Run AI configuration step, highlighting embedded compliance rules that auto-flag and resolve deviations.  
+4. Execute one-click entry with real-time validation, displaying zero-error output and full audit trail.  
+5. Compare metrics: cycle time reduced from 12 min to 90 sec, eliminating €4,200 annual compliance risk.  
+6. Display ROI calculator: €624 price delivers 8.0x return via 47 hours saved per month.  
+7. Export signed compliance report to close value demonstration.

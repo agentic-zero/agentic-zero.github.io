@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S2.5",
+  "name": "Authorize Supplier Payment (MTO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Make-to-Order",
+  "level": "L2",
+  "description": "Process of authorizing and processing supplier payments for MTO materials upon verified receipt, matching invoices against purchase orders and delivery confirmations",
+  "inputs": ["supplier invoices", "goods receipts", "purchase orders", "payment terms", "quality verification results"],
+  "outputs": ["payment authorizations", "payment confirmations", "supplier account updates", "discrepancy resolutions"],
+  "kpis": ["payment cycle time", "invoice match rate", "on-time payment rate", "discrepancy resolution time"],
+  "related_processes": ["SCOR-S2.4", "SCOR-S1.2", "SCOR-E6"],
+  "sector_applicability": ["manufacturing", "automotive", "defense", "chemical", "pharma"],
+  "compliance_flags": ["financial controls compliance", "GDPR financial data", "tax compliance", "anti-fraud controls"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

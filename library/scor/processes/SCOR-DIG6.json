@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG6",
+  "name": "Manage Predictive Analytics Pipeline",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Predictive Intelligence",
+  "level": "L2",
+  "description": "Process of managing the end-to-end predictive analytics pipeline including model development, validation, deployment and monitoring for demand forecasting, risk prediction, quality prediction and maintenance forecasting",
+  "inputs": ["historical data", "external signals", "market data", "IoT streams", "model performance metrics"],
+  "outputs": ["demand forecasts", "risk predictions", "quality predictions", "maintenance forecasts", "model performance reports"],
+  "kpis": ["forecast accuracy", "model drift rate", "prediction lead time", "model retraining frequency"],
+  "related_processes": ["SCOR-DIG1", "SCOR-DIG3", "SCOR-DIG5", "SCOR-E3", "SCOR-P1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.10 training data", "GDPR automated decision-making Art.22", "ISO 42001 AI model governance", "model explainability requirements"],
+  "source": "Scout research — APICS/ASCM Digital Extension + MIT Operations Research 2025",
+  "confidence": 0.94
+}

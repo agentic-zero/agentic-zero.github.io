@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M3.5",
+  "name": "Stage Product (ETO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of staging ETO products for delivery including final government/customer inspection, data package completion, export licensing and handover to deliver operations",
+  "inputs": ["packaged ETO products", "data packages", "export licenses", "customer inspection schedule", "delivery documentation"],
+  "outputs": ["staged ETO products", "approved data packages", "export clearance", "delivery readiness confirmation"],
+  "kpis": ["staging cycle time", "documentation completeness", "export compliance rate", "customer inspection pass rate"],
+  "related_processes": ["SCOR-M3.4", "SCOR-D3.1"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["export control ITAR/EAR", "government property regulations", "defense acquisition", "customs compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

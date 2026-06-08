@@ -1,0 +1,96 @@
+{
+  "process_id": "SCOR-S2.5",
+  "agent_name": "supplier_payment_authorizer",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T23:34:18.816192",
+  "product_summary": "The Authorize Supplier Payment (MTO) agent manages the end-to-end authorization of supplier payments for made-to-order materials by validating receipt, performing three-way invoice matching against purchase orders and delivery records, and executing compliant payment releases. It combines automated validation with human oversight to detect discrepancies, enforce financial controls, and maintain regulatory adherence across tax, fraud prevention, and data privacy requirements. This reduces payment cycle times, minimizes manual errors, and strengthens audit readiness for finance and procurement teams. By accelerating accurate disbursements while mitigating risk, the agent improves supplier relationships and frees finance staff for higher-value analysis.",
+  "value_proposition": "Automates three-way match validation and compliance verification to accelerate accurate supplier payments while eliminating fraud and discrepancy risks.",
+  "technical_summary": "The hybrid agent integrates with ERP and procurement platforms via APIs to ingest purchase orders, goods receipts, and invoices, then applies rule-based three-way matching logic alongside machine learning models for discrepancy detection. It routes exceptions to human approvers through a workflow interface while logging all actions for compliance reporting and GDPR-compliant data handling. Outputs feed directly into payment gateways with built-in tax and anti-fraud checks.",
+  "integration_guide": "# Integration Guide — supplier_payment_authorizer\n**Process:** Authorize Supplier Payment (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supplier_payment_authorizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supplier_payment_authorizer import SupplierPaymentAuthorizerAgent\n\nagent = SupplierPaymentAuthorizerAgent()\nresult = agent.execute({\n    \"supplier_invoices\": your_supplier_invoices_data,\n    \"goods_receipts\": your_goods_receipts_data,\n    \"purchase_orders\": your_purchase_orders_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system\n- supplier_invoice_api\n- quality_verification_system\n- payment_gateway\n- contract_repository\n\n## Escalation\nThe agent automatically escalates to human when:\n- Invoice amount mismatch >1%\n- QualityVerificationResult.failed\n- Missing tax_compliance data\n- Any anti-fraud or financial_controls violation",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/supplier_payment_authorizer/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supplier_payment_authorizer/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supplier_payment_authorizer/health — Health check",
+    "GET  /api/v1/agents/supplier_payment_authorizer/spec   — Get agent specification",
+    "POST /api/v1/agents/supplier_payment_authorizer/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a live supplier invoice queue; highlight €92K in pending MTO payments and manual approval bottlenecks costing 14 hours/week.\n2. Trigger the agent on a €47K invoice; show real-time PO matching, three-way match validation, and policy compliance scoring in <8 seconds.\n3. Display the compliance dashboard: automated SOX/audit-trail generation, segregation-of-duties check, and flagged duplicate-payment risk with evidence links.\n4. Execute one-click authorization; agent applies digital signature, updates ERP, and emails supplier while logging immutable record for regulators.\n5. Run ROI simulator: input current error rate and labor cost; instantly project €5,984 annual savings per user, delivering 8.0x return on the €748 license within 47 days.\n6. Close with exportable compliance report and next-step deployment timeline for the executive team.",
+  "demo_inputs": {
+    "supplier_invoices": "[example_supplier_invoices]",
+    "goods_receipts": "[example_goods_receipts]",
+    "purchase_orders": "[example_purchase_orders]"
+  },
+  "expected_demo_outputs": {
+    "payment_authorizations": "[generated_payment_authorizations]",
+    "payment_confirmations": "[generated_payment_confirmations]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-S2.5",
+    "agent_name": "supplier_payment_authorizer",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "chemical",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "financial controls compliance",
+      "GDPR financial data",
+      "tax compliance",
+      "anti-fraud controls"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:34:18.816171"
+  },
+  "tags": [
+    "hybrid",
+    "source",
+    "defense",
+    "manufacturing",
+    "scor",
+    "automotive",
+    "l2",
+    "chemical",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: In automotive MTO assembly, the agent cross-checks supplier invoices against real-time BOM changes and delivery confirmations before authorizing $2M+ weekly payments, cutting processing cycle from 4 days to 6 hours and eliminating $180K annual late-payment penalties.",
+    "Use case 2: Defense contractor uses the agent to apply dual anti-fraud and export-control checks on MTO component payments, blocking 4 attempted fraudulent invoices per quarter averaging $420K each and delivering 650% first-year ROI via avoided losses.",
+    "Use case 3: Pharma MTO raw-material payments are routed through the agent for automated tax-compliance validation on cross-border suppliers, preventing $650K in annual VAT and withholding-tax penalties while reducing audit remediation costs by 70%.",
+    "Use case 4: Chemical manufacturer authorizes MTO hazardous-material supplier payments with embedded GDPR financial-data redaction and consent logging, lowering data-breach exposure and potential 4% global-revenue fines while accelerating approvals by 85%.",
+    "Use case 5: Precision manufacturing firm applies the agent to enforce three-way-match financial controls on MTO tooling payments, reducing unauthorized or duplicate payments by 98% and recovering $320K yearly in working-capital leakage."
+  ],
+  "pricing": {
+    "process_id": "SCOR-S2.5",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-S2.5_package.json"
+}

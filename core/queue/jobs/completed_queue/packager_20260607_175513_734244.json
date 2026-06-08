@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_175513_734244",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-DR2.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:55:13.734259",
+  "status": "completed",
+  "started_at": "2026-06-07T22:13:18.205921",
+  "completed_at": "2026-06-07T22:16:19.206391",
+  "error": null,
+  "result": {
+    "agent_name": "authorize_mro_product_return_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

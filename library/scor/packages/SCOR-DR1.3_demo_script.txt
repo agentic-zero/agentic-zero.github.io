@@ -1,0 +1,11 @@
+1. Open with a live manual return scenario (2 min): Process one defective item manually, highlighting 12-min handling time, error-prone logging, and missing compliance audit trail.
+
+2. Trigger the AI agent on the same return (1 min): Input receipt photo and defect details; agent auto-validates against policy, extracts data, and flags regulatory requirements.
+
+3. Display real-time compliance output (2 min): Show instant generation of immutable audit log, EU return directive alignment, and risk-scored documentation.
+
+4. Reveal automated workflow completion (1 min): Item routed to refurbish/credit queue with zero manual re-entry; confirm 94% faster cycle time.
+
+5. Project ROI dashboard (2 min): Input company return volume; calculate €5,592 annual savings per license (8.0x multiplier on €699 price) via reduced labor and avoided fines.
+
+6. Close with executive summary (2 min): Restate compliance risk reduction and 8x ROI; offer pilot deployment metrics within 30 days.

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M3.4",
+  "name": "Package (ETO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of packaging ETO products for delivery including export packaging, preservation treatment, technical documentation packaging and marking per contract requirements",
+  "inputs": ["ETO finished products", "contract packaging requirements", "export requirements", "preservation specifications", "documentation packages"],
+  "outputs": ["packaged ETO products", "technical documentation packages", "export markings", "packaging records"],
+  "kpis": ["packaging specification compliance", "documentation completeness", "packaging cycle time", "preservation effectiveness"],
+  "related_processes": ["SCOR-M3.3", "SCOR-M3.5", "SCOR-D3.1"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["MIL-SPEC packaging if defense", "export control marking", "dangerous goods", "contract-specific packaging"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

@@ -1,0 +1,7 @@
+1. Open with a live defective return ticket; highlight 12-minute manual compliance checks and €85 processing cost per case.
+2. Trigger authorize_defective_product_return_agent; show AI instantly validating defect photos, warranty data, and regulatory rules in <30 seconds.
+3. Display auto-generated authorization decision plus immutable audit trail that satisfies GDPR and ISO audit requirements without extra clicks.
+4. Run side-by-side timer: manual flow (11 min) vs. agent (45 sec); calculate €71.50 saved per return at scale.
+5. Project annual volume (8,000 returns) to reveal €572k yearly savings—delivering 8.0x ROI on the €699 license within the first month.
+6. Export one-click compliance report for the CFO; confirm zero policy violations across the batch.
+7. Close with license activation link and next-week pilot start date.

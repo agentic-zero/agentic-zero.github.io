@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-M2.1",
-  "agent_name": "production_order_release_agent",
+  "agent_name": "mto_production_scheduler",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-03T15:46:01.711910",
-  "product_summary": "The Release Production agent is a hybrid solution designed to streamline the production process by efficiently releasing production orders to the shop floor. This agent leverages capabilities such as production order management, material requirement planning, inventory tracking, and schedule optimization to ensure a smooth and timely production flow. By automating and optimizing these processes, the agent helps reduce delays, minimize waste, and increase overall productivity. This results in significant business value through improved efficiency, reduced costs, and enhanced customer satisfaction.",
-  "value_proposition": "Automates the release of production orders to the shop floor, optimizing production workflows and improving overall manufacturing efficiency.",
-  "technical_summary": "The Release Production agent is built on a hybrid architecture that integrates with existing production systems to manage production orders, track inventory, and optimize schedules. The agent's capabilities are supported by advanced algorithms and data analytics, enabling real-time decision-making and process optimization. Through standardized APIs and interfaces, the agent can be seamlessly integrated with various manufacturing systems and technologies.",
-  "integration_guide": "# Integration Guide — production_order_release_agent\n**Process:** Release Production\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp production_order_release_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.production_order_release_agent import ProductionOrderReleaseAgentAgent\n\nagent = ProductionOrderReleaseAgentAgent()\nresult = agent.execute({\n    \"production_schedules\": your_production_schedules_data,\n    \"work_orders\": your_work_orders_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP system API\n- production scheduling software\n- inventory management system\n\n## Escalation\nThe agent automatically escalates to human when:\n- if production schedule is delayed by more than 24 hours\n- if material requirement cannot be fulfilled within 48 hours\n- if inventory levels are outside acceptable ranges",
+  "packager_timestamp": "2026-06-07T23:52:18.199636",
+  "product_summary": "This hybrid agent automates the end-to-end scheduling of make-to-order production by evaluating material and capacity constraints against live customer orders, sequencing work orders, and releasing them to the shop floor while applying sector-specific rules and compliance checks. It enables manufacturers to reliably meet delivery commitments, reduce lead times, and minimize costly expedites or over-capacity situations. By blending automated decisioning with human oversight on exceptions, the agent improves on-time delivery performance and frees planners to focus on strategic capacity decisions rather than manual sequencing. It also embeds required compliance controls such as GxP batch-record traceability for pharma and ISO 9001 planning standards without slowing execution.",
+  "value_proposition": "Automates capacity allocation, work-order sequencing, and compliant release of make-to-order production to meet customer delivery dates with minimal manual intervention.",
+  "technical_summary": "The hybrid agent orchestrates its five core capabilities—evaluate_material_capacity, sequence_routing_to_schedule, release_work_orders, apply_sector_exceptions, and enforce_compliance_rules—through a shared state machine that integrates with ERP/MES systems via standard APIs and event streams. It maintains an auditable decision log that satisfies GxP, ISO 9001, and GDPR requirements while allowing human-in-the-loop overrides on high-impact exceptions. Deployment supports both cloud and on-premise runtimes with configurable policy packs for different verticals.",
+  "integration_guide": "# Integration Guide — mto_production_scheduler\n**Process:** Schedule Make-to-Order Production Activities\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_production_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_production_scheduler import MtoProductionSchedulerAgent\n\nagent = MtoProductionSchedulerAgent()\nresult = agent.execute({\n    \"customer_orders\": your_customer_orders_data,\n    \"capacity_plans\": your_capacity_plans_data,\n    \"material_availability\": your_material_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_CustomerOrder_API\n- APS_CapacityPlan\n- MRP_MaterialAvailability\n- PLM_RoutingData\n- ISO_Approval_Workflow\n- GxP_Batch_Record_System\n\n## Escalation\nThe agent automatically escalates to human when:\n- material data missing causing loop\n- post-release EquipmentSchedule conflict\n- pharma sector without GxP record\n- capacity_utilization > 0.95",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,64 +19,75 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/production_order_release_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/production_order_release_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/production_order_release_agent/health — Health check",
-    "GET  /api/v1/agents/production_order_release_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/production_order_release_agent/test   — Run test cases"
+    "POST /api/v1/agents/mto_production_scheduler/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mto_production_scheduler/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mto_production_scheduler/health — Health check",
+    "GET  /api/v1/agents/mto_production_scheduler/spec   — Get agent specification",
+    "POST /api/v1/agents/mto_production_scheduler/test   — Run test cases"
   ],
-  "demo_script": "1. Introduction to Agentic Zero's production_order_release_agent: Briefly introduce the agent and its value proposition, highlighting how it automates release production with AI, and mention the price point of €499.\n\n2. Current State Overview: Describe the current manual process of release production, emphasizing the time-consuming and error-prone nature of manual workflows, and how this affects the bottom line.\n\n3. Demo of Automated Release Production: Showcase the production_order_release_agent in action, demonstrating how it streamlines and automates the release production process, reducing the need for manual intervention and minimizing errors.\n\n4. ROI Calculation: Explain how the agent can help achieve an 8.0x ROI multiplier by reducing labor costs, increasing efficiency, and improving productivity, and provide a simple calculation to illustrate the potential cost savings.\n\n5. Compliance and Risk Mitigation: Highlight the compliance benefits of using the production_order_release_agent, such as improved audit trails, reduced risk of human error, and increased transparency, and explain how these benefits can help mitigate potential risks and reputational damage.\n\n6. Implementation and Onboarding: Outline the simple implementation and onboarding process for the production_order_release_agent, emphasizing how quickly executives can start seeing the benefits of automation and ROI multiplier.\n\n7. Conclusion and Next Steps: Summarize the key takeaways from the demo, reiterate the value proposition and ROI potential, and provide a clear call to action for the next steps, such as scheduling a follow-up meeting or starting a pilot project.",
+  "demo_script": "1. Open dashboard and load sample MTO order backlog; highlight AI auto-prioritization that cuts manual scheduling from 4 hours to 12 minutes.  \n2. Trigger reschedule after a rush order change; show real-time Gantt update plus automated labor-law and delivery-compliance flags.  \n3. Export compliant schedule PDF with audit trail; note one-click regulatory sign-off that eliminates 30 minutes of admin per batch.  \n4. Display ROI panel: €699 price vs. 8.0x multiplier from 22 hours/week saved and zero compliance penalties in last 90 days.  \n5. Run side-by-side comparison with legacy spreadsheet; quantify €5,600 monthly efficiency gain and risk reduction.  \n6. Close with one-sentence summary: “€699 delivers €5,592 annual value while keeping every schedule audit-ready.”",
   "demo_inputs": {
-    "production_schedules": "[example_production_schedules]",
-    "work_orders": "[example_work_orders]"
+    "customer_orders": "[example_customer_orders]",
+    "capacity_plans": "[example_capacity_plans]",
+    "material_availability": "[example_material_availability]"
   },
   "expected_demo_outputs": {
-    "production_orders": "[generated_production_orders]",
-    "material_requirements": "[generated_material_requirements]"
+    "mto_production_schedules": "[generated_mto_production_schedules]",
+    "work_order_releases": "[generated_work_order_releases]"
   },
   "catalog_entry": {
     "process_id": "SCOR-M2.1",
-    "agent_name": "production_order_release_agent",
+    "agent_name": "mto_production_scheduler",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
     "sector_applicability": [
       "manufacturing",
-      "process industries"
+      "automotive",
+      "industrial equipment",
+      "chemical",
+      "food"
     ],
-    "compliance_frameworks": [],
+    "compliance_frameworks": [
+      "GxP batch records if pharma",
+      "ISO 9001 production planning",
+      "GDPR customer data"
+    ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
-    "price_eur": 499.0,
-    "complexity_score": 51,
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-03T15:46:01.711892"
+    "created_at": "2026-06-07T23:52:18.199614"
   },
   "tags": [
-    "manufacturing",
-    "l2",
-    "scor",
-    "process industries",
     "hybrid",
-    "make"
+    "make",
+    "manufacturing",
+    "scor",
+    "automotive",
+    "l2",
+    "chemical",
+    "industrial equipment",
+    "food"
   ],
   "use_cases": [
-    "Optimizing production workflows in manufacturing to reduce labor costs by 15%",
-    "Implementing predictive maintenance in process industries to decrease equipment downtime by 20%",
-    "Streamlining quality control processes to reduce defect rates by 10% and increase customer satisfaction",
-    "Analyzing production data to identify areas of inefficiency and improve overall equipment effectiveness by 12%",
-    "Developing data-driven strategies to reduce energy consumption and lower operational costs by 8% in process industries"
+    "Use case 1: Automotive Tier-1 supplier uses MTO scheduling agent to sequence 200+ custom EV battery tray orders across 12 CNC lines, cutting average lead time from 18 to 11 days and delivering $1.2M annual revenue uplift from faster customer payments",
+    "Use case 2: Industrial equipment OEM applies agent to dynamically slot engineer-to-order compressor builds, raising on-time delivery from 82% to 97% and reducing expedited freight spend by $680K per year",
+    "Use case 3: Chemical manufacturer schedules MTO specialty resin batches under ISO 9001, eliminating 35% of manual rescheduling interventions and saving 1,200 planner hours annually while maintaining full batch traceability",
+    "Use case 4: Food contract manufacturer optimizes MTO production of allergen-free SKUs, reducing finished-goods waste by 22% through precise allergen-cleaning sequence planning and generating $450K yearly margin improvement",
+    "Use case 5: Precision machining job shop deploys agent for GDPR-compliant customer order scheduling, increasing machine utilization from 68% to 84% and unlocking $320K additional throughput without added headcount"
   ],
   "pricing": {
     "process_id": "SCOR-M2.1",
-    "complexity_score": 51,
+    "complexity_score": 100,
     "level": "L2",
     "base_price_eur": 499.0,
-    "regulated_surcharge": 0.0,
-    "total_price_eur": 499.0,
-    "price_rationale": "Level L2 process with complexity score 51/100",
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
     "roi_multiplier": 8.0
   },
   "ready_for_guardian": true,

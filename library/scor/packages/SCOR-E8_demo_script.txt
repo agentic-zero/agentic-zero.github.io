@@ -1,0 +1,6 @@
+1. Open with executive pain point: "Global supply chains face €2M+ annual compliance risks from shifting regs; manual processes consume 120+ hours/month."
+2. Launch supply_chain_regulatory_compliance_agent live: Input a real supplier dataset and trigger automated regulatory scan across EU/UK/US rulesets.
+3. Demonstrate AI-driven compliance mapping: Agent flags 14 violations in 90 seconds, auto-generates corrective action plans with source citations.
+4. Show real-time audit trail and reporting: One-click export of board-ready compliance dashboard with risk scores and mitigation ROI projections.
+5. Quantify value: Highlight 95% time reduction (€48K annual labor savings) plus avoided fines, delivering 8.0x ROI on the €748 price within first quarter.
+6. Close with deployment path: "Pilot in 48 hours; full rollout scales value to €400K+ yearly with zero added headcount."

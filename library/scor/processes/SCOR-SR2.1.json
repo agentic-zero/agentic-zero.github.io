@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR2.1",
+  "name": "Identify MRO Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of identifying maintenance, repair and operations (MRO) items requiring return due to over-ordering, wrong specification or end of need",
+  "inputs": ["MRO inventory data", "maintenance records", "purchase orders", "asset management data"],
+  "outputs": ["MRO return identification", "return justification", "item classification"],
+  "kpis": ["MRO return identification rate", "excess MRO rate", "return value recovered"],
+  "related_processes": ["SCOR-SR2.2", "SCOR-S2.1", "SCOR-DR2.1"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["asset management compliance", "GDPR if personal data involved", "environmental if hazardous MRO"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

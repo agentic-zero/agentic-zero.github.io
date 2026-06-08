@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.12",
+  "name": "Ship Product (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of executing MTO shipment dispatch including carrier handover, tracking initiation, customer notification and in-transit monitoring",
+  "inputs": ["loaded vehicle", "shipping documents", "tracking systems", "customer notification templates", "carrier contact data"],
+  "outputs": ["dispatched shipment", "tracking confirmation", "customer notification", "in-transit monitoring"],
+  "kpis": ["on-time dispatch rate", "tracking coverage rate", "customer notification on-time", "in-transit exception rate"],
+  "related_processes": ["SCOR-D2.11", "SCOR-D2.13", "SCOR-DIG5"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["customs export compliance", "dangerous goods transport", "GDPR tracking data", "carrier liability"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

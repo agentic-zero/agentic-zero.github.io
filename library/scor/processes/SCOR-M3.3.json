@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-M3.3",
+  "name": "Produce and Test (ETO)",
+  "framework": "SCOR",
+  "domain": "Make",
+  "subdomain": "Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of fabricating, assembling and testing engineer-to-order products including integration testing, system validation and customer witness testing",
+  "inputs": ["work packages", "engineering drawings", "test procedures", "customer acceptance criteria", "test equipment"],
+  "outputs": ["ETO finished assemblies", "test records", "acceptance test reports", "as-built documentation"],
+  "kpis": ["production cycle time", "test pass rate", "customer acceptance rate", "as-built accuracy"],
+  "related_processes": ["SCOR-M3.2", "SCOR-M3.4", "SCOR-M4.1"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["AS9100 production and testing", "defense acceptance testing", "export control", "customer witness test protocols"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DR1.3",
+  "name": "Receive Defective Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Deliver Return",
+  "level": "L2",
+  "description": "Physical receipt, inspection and verification of defective product returns against RMA authorization including condition assessment and system update",
+  "inputs": ["scheduled return shipment", "RMA documentation", "inspection criteria", "receiving equipment"],
+  "outputs": ["received return confirmation", "inspection report", "system inventory update", "credit trigger"],
+  "kpis": ["receipt accuracy rate", "inspection cycle time", "credit issuance time"],
+  "related_processes": ["SCOR-DR1.2", "SCOR-DR1.4"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "automotive", "food"],
+  "compliance_flags": ["GxP if pharma", "quality inspection standards", "GDPR if personal data in records"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

@@ -325,12 +325,21 @@ def call_llm(prompt: str, expect_json: bool = True) -> str:
 
     rate_limiter.wait()
     try:
+        # Seleccionar API key según el modelo
+        model = BUILDER_CONFIG["model"]
+        if model.startswith("xai/"):
+            api_key = os.getenv("XAI_API_KEY")
+        elif model.startswith("groq/"):
+            api_key = os.getenv("GROQ_API_KEY")
+        else:
+            api_key = os.getenv("GROQ_API_KEY")
+
         response = litellm.completion(
-            model=BUILDER_CONFIG["model"],
+            model=model,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=BUILDER_CONFIG["max_tokens"],
             temperature=BUILDER_CONFIG["temperature"],
-            api_key=os.getenv("GROQ_API_KEY"),
+            api_key=api_key,
         )
         content = response.choices[0].message.content.strip()
         if expect_json:
@@ -383,24 +392,8 @@ Design the agent specification. Return ONLY a JSON object:
   "decision_logic": "brief description of how agent decides",
   "escalation_rules": ["when to escalate to human"],
   "monitoring_metrics": ["metric to track at runtime"],
-  "compliance_checks": [
-    "GDPR: lawful_basis = legitimate_interest (B2B supply chain operations under Art.6(1)(f))",
-    "GDPR: data_minimization = only process data strictly required for this SCOR process",
-    "GDPR: retention_policy = data retained max 7 years aligned with business document retention",
-    "GDPR: transparency = processing purpose documented in SOP and audit trail",
-    "GDPR: data_subject_rights = no personal data of natural persons processed unless strictly necessary",
-    "EU_AI_ACT: risk_classification verified before deployment",
-    "ISO_42001: human_oversight checkpoint at every decision point",
-    "NIST_AI_RMF: govern_map_measure_manage cycle embedded in agent lifecycle"
-  ]
+  "compliance_checks": ["compliance validation to run"]
 }}
-
-CRITICAL GDPR REQUIREMENT:
-Every agent MUST include explicit GDPR compliance checks in the compliance_checks array.
-For B2B supply chain agents, use lawful basis: legitimate interest (Art. 6(1)(f)).
-Define retention policy: maximum 7 years aligned with business document retention laws.
-If the process handles personal data of natural persons (employees, contacts), add explicit consent mechanism.
-Data minimization: only process data strictly required for the specific SCOR process outcome.
 
 Agent type guide:
 - reactive: responds to events/requests

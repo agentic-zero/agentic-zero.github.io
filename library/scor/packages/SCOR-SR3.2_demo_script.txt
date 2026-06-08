@@ -1,0 +1,6 @@
+1. Open with the pain point: "Excess product ties up €250K+ annually in storage, write-offs, and compliance penalties—our agent automates disposition to recover value while eliminating regulatory risk."
+2. Load a live sample dataset of 1,200 excess SKUs and trigger the agent; it instantly classifies items by resale, donation, recycling, or compliant disposal routes.
+3. Run the AI workflow: demonstrate automated compliance screening against EU waste, tax, and data-privacy rules, flagging zero violations in under 60 seconds.
+4. Display the optimized disposition plan with quantified recovery: €87K projected revenue, €42K cost avoidance, and full audit trail for regulators.
+5. Reveal the ROI dashboard: net benefit of €5,592 after the €699 fee, confirming the 8.0x multiplier within the first quarter.
+6. Close with one-click export of the compliance report and savings summary, ready for board or audit submission.

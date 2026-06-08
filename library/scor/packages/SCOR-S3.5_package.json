@@ -1,0 +1,94 @@
+{
+  "process_id": "SCOR-S3.5",
+  "agent_name": "milestone_payment_authorizer",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T23:49:20.022834",
+  "product_summary": "The Authorize Supplier Payment (ETO) agent manages the end-to-end approval of milestone or delivery-based payments to Engineer-to-Order suppliers once custom components have been received and accepted by engineering teams. It validates invoices against contract terms, enforces compliance requirements, and generates secure payment authorizations while applying data masking to protect sensitive financial information. This hybrid agent reduces payment cycle times, minimizes disputes, and ensures adherence to government contracting rules and export controls, delivering faster supplier relationships and lower operational risk for finance and procurement executives.",
+  "value_proposition": "Automates milestone-based payment authorization for ETO suppliers while enforcing contract terms and regulatory compliance to accelerate cash flow and eliminate manual errors.",
+  "technical_summary": "The hybrid agent orchestrates rule-based validation of milestones and invoices with AI-driven acceptance checks, integrating via APIs with ERP, contract management, and engineering systems to pull verified receipt data. It applies data masking and compliance layers for GDPR and export control requirements before generating payment authorizations that feed directly into financial workflows. Architecture supports audit logging and configurable thresholds for government contracting and milestone payment standards.",
+  "integration_guide": "# Integration Guide — milestone_payment_authorizer\n**Process:** Authorize Supplier Payment (ETO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp milestone_payment_authorizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.milestone_payment_authorizer import MilestonePaymentAuthorizerAgent\n\nagent = MilestonePaymentAuthorizerAgent()\nresult = agent.execute({\n    \"milestone_completions\": your_milestone_completions_data,\n    \"engineering_acceptance_reports\": your_engineering_acceptance_reports_data,\n    \"supplier_invoices\": your_supplier_invoices_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_invoice_api\n- engineering_acceptance_db\n- contract_terms_store\n- financial_update_service\n- compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing EngineeringAcceptanceReport\n- invoice mismatch > 2%\n- contract compliance rate < 95%\n- government_contracting compliance_flags detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/milestone_payment_authorizer/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/milestone_payment_authorizer/status — Get agent status and metrics",
+    "GET  /api/v1/agents/milestone_payment_authorizer/health — Health check",
+    "GET  /api/v1/agents/milestone_payment_authorizer/spec   — Get agent specification",
+    "POST /api/v1/agents/milestone_payment_authorizer/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with the manual ETO payment bottleneck: display a queue of 47 supplier milestone requests, highlighting €92k at risk from delays and audit flags.  \n2. Trigger the AI agent live; it ingests POs, contracts and delivery proofs, then auto-matches milestones in 11 seconds.  \n3. Walk through embedded compliance layer: real-time policy checks, dual-approval routing and immutable audit trail generated without extra clicks.  \n4. Show exception handling: one mismatched delivery flagged, routed for human review, then auto-approved after correction—zero manual rework.  \n5. Reveal ROI dashboard: 47 payments processed at €16 average cost vs. prior €128, yielding €5,984 saved in this run alone (8.0x multiplier on €748 license).  \n6. Close with one-click export of compliance report for the CFO and note annual run-rate savings exceeding €190k.",
+  "demo_inputs": {
+    "milestone_completions": "[example_milestone_completions]",
+    "engineering_acceptance_reports": "[example_engineering_acceptance_reports]",
+    "supplier_invoices": "[example_supplier_invoices]"
+  },
+  "expected_demo_outputs": {
+    "milestone_payment_authorizations": "[generated_milestone_payment_authorizations]",
+    "payment_confirmations": "[generated_payment_confirmations]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-S3.5",
+    "agent_name": "milestone_payment_authorizer",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "government contracting regulations",
+      "milestone payment compliance",
+      "GDPR financial data",
+      "export control financial"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:49:20.022813"
+  },
+  "tags": [
+    "hybrid",
+    "source",
+    "aerospace",
+    "defense",
+    "scor",
+    "energy",
+    "l2",
+    "industrial equipment"
+  ],
+  "use_cases": [
+    "Use case 1: Defense contractor automates milestone payments for ETO radar systems under DFARS, cutting authorization cycle from 45 to 7 days and avoiding $1.2M in annual late-payment penalties plus audit remediation costs",
+    "Use case 2: Aerospace OEM authorizes export-controlled supplier payments for satellite components, reducing compliance review labor by 65% and eliminating $800K yearly risk of ITAR violation fines through automated screening",
+    "Use case 3: Energy firm processes GDPR-compliant milestone payments for custom turbine ETO contracts, shortening supplier payment approval from 22 to 4 days and capturing $450K in early-payment discounts per fiscal year",
+    "Use case 4: Industrial equipment manufacturer authorizes payments across 120+ ETO supplier contracts, cutting manual data-entry errors by 92% and recovering $650K annually in duplicate or over-payments flagged by the agent",
+    "Use case 5: Multi-sector defense supplier uses the agent for real-time government-contract payment authorization, reducing days-sales-outstanding by 18 days on average and improving working-capital ROI by 7% through faster cash-flow cycles"
+  ],
+  "pricing": {
+    "process_id": "SCOR-S3.5",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-S3.5_package.json"
+}

@@ -1,0 +1,7 @@
+1. Open eto_product_transfer_agent dashboard and load sample ETO product specs; highlight manual transfer pain points (errors, 14-day cycle, compliance gaps).  
+2. Trigger AI transfer: system auto-maps BOM, drawings, and routing to target ERP while enforcing ISO 9001/traceability rules.  
+3. Display real-time compliance panel: automated checks flag deviations, generate audit-ready logs, and produce signed digital package in <90 seconds.  
+4. Run side-by-side timing: manual process vs. agent shows 92% time reduction and zero rework on this transfer.  
+5. Surface ROI calculator: €748 fee vs. €5,984 recovered per transfer (labor + delay avoidance) yields 8.0x multiplier on first use.  
+6. Export compliance certificate and savings report; confirm data is encrypted and retained per policy for executive sign-off.  
+7. Close with next-step: pilot on live ETO order this week to lock in recurring 8x ROI.

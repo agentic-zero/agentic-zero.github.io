@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D4.3",
+  "name": "Pick Product in Store",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Retail",
+  "level": "L2",
+  "description": "Process of picking products for store replenishment, click-and-collect or e-commerce fulfillment from retail backroom or floor inventory",
+  "inputs": ["replenishment signals", "customer orders", "store inventory", "picking equipment", "planogram data"],
+  "outputs": ["picked products", "inventory depletion records", "pick accuracy data", "fulfillment confirmation"],
+  "kpis": ["pick accuracy", "pick cycle time", "on-shelf availability rate", "click-and-collect fulfillment rate"],
+  "related_processes": ["SCOR-D4.2", "SCOR-D4.4", "SCOR-P1.1"],
+  "sector_applicability": ["food", "distribution", "consumer goods"],
+  "compliance_flags": ["food safety handling", "GDPR customer order data", "health and safety"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

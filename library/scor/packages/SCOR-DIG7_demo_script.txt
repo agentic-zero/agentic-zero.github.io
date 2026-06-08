@@ -1,0 +1,13 @@
+1. Open with executive pain point: "Manual traceability costs €250K/year in audits and delays—our AI agent automates blockchain logging for full compliance at €748, delivering 8.0x ROI via 40% faster recalls."
+
+2. Launch agent dashboard: Show one-click onboarding to existing ERP, auto-generating immutable blockchain records for a sample batch with real-time GPS and certificate uploads.
+
+3. Run live traceability query: Trace a product from supplier to shelf in <10 seconds, highlighting tamper-proof audit trails that satisfy EU regulations without manual intervention.
+
+4. Trigger automated compliance report: Generate a regulator-ready PDF with risk flags flagged by AI, cutting audit prep from 3 days to 15 minutes and proving zero non-compliance incidents.
+
+5. Display ROI simulator: Input current spend metrics to reveal €2M+ annual savings (8.0x multiplier) from reduced waste, avoided fines, and accelerated market access.
+
+6. Simulate edge-case resolution: AI detects a supply-chain anomaly, auto-notifies stakeholders via blockchain, and logs resolution—demonstrating proactive risk mitigation executives can trust.
+
+7. Close with next-step CTA: "Pilot starts tomorrow; first 8.0x ROI visible in 30 days—approve deployment now."

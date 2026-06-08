@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D3.3",
+  "name": "Reserve Resources and Determine Delivery Date (ETO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of reserving engineering, production and logistics resources for ETO projects and establishing contractual delivery milestones and completion dates",
+  "inputs": ["project proposal", "resource availability", "engineering capacity", "subcontractor availability", "risk adjusted schedule"],
+  "outputs": ["resource reservations", "project milestones", "contractual delivery schedule", "resource allocation plan"],
+  "kpis": ["resource reservation accuracy", "milestone reliability", "schedule risk buffer", "resource utilization"],
+  "related_processes": ["SCOR-D3.2", "SCOR-D3.4", "SCOR-M3.1", "SCOR-S3.1"],
+  "sector_applicability": ["defense", "energy", "aerospace", "industrial equipment"],
+  "compliance_flags": ["government contracting schedule compliance", "export control project planning", "GDPR project data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.89
+}

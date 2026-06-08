@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-S3.5",
+  "name": "Authorize Supplier Payment (ETO)",
+  "framework": "SCOR",
+  "domain": "Source",
+  "subdomain": "Source Engineer-to-Order",
+  "level": "L2",
+  "description": "Process of authorizing milestone-based or delivery-based payments for ETO suppliers upon verified receipt and engineering acceptance of custom components",
+  "inputs": ["milestone completions", "engineering acceptance reports", "supplier invoices", "contract payment terms", "project financial data"],
+  "outputs": ["milestone payment authorizations", "payment confirmations", "project cost updates", "supplier financial records"],
+  "kpis": ["payment cycle time", "milestone payment accuracy", "contract compliance rate", "supplier payment satisfaction"],
+  "related_processes": ["SCOR-S3.4", "SCOR-E6", "SCOR-S2.5"],
+  "sector_applicability": ["defense", "industrial equipment", "energy", "aerospace"],
+  "compliance_flags": ["government contracting regulations", "milestone payment compliance", "GDPR financial data", "export control financial"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

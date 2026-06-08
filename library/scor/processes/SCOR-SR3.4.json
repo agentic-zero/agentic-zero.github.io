@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR3.4",
+  "name": "Schedule Excess Product Return Shipment",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of planning and scheduling the logistics for returning excess inventory to supplier",
+  "inputs": ["excess return authorization", "product quantity", "storage location", "carrier options"],
+  "outputs": ["return shipment schedule", "carrier booking", "return shipping documents"],
+  "kpis": ["scheduling efficiency", "return logistics cost", "shipment lead time"],
+  "related_processes": ["SCOR-SR3.3", "SCOR-SR3.5"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "automotive"],
+  "compliance_flags": ["expiry compliance if perishable", "cold chain if required", "customs if cross-border"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

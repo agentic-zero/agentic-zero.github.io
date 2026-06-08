@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.11",
+  "name": "Load Vehicle and Generate Shipping Docs (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of loading MTO shipments onto carrier vehicles and generating all required shipping documentation including bills of lading, customs documents and customer notifications",
+  "inputs": ["packed shipments", "load plan", "carrier vehicle", "documentation requirements", "customs data"],
+  "outputs": ["loaded vehicle", "bill of lading", "customs documentation", "customer shipment notification", "proof of dispatch"],
+  "kpis": ["loading accuracy", "document completeness", "loading cycle time", "on-time departure"],
+  "related_processes": ["SCOR-D2.10", "SCOR-D2.12", "SCOR-D2.6"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["customs documentation compliance", "dangerous goods documentation", "GDPR shipment data", "export compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

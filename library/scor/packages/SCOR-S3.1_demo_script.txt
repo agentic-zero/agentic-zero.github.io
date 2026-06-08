@@ -1,0 +1,7 @@
+1. Open with the €6M annual cost of ETO delivery delays and compliance penalties; state the €748 agent delivers 8.0x ROI via AI automation.  
+2. Paste three live ETO orders (custom specs, regulatory constraints, multi-site logistics) into eto_delivery_scheduler.  
+3. Run the agent; display the AI-optimized schedule with automated compliance flags (ISO, export-control, safety) cleared in <30 seconds.  
+4. Toggle “what-if” scenario to show rescheduling after a supplier delay, proving zero manual rework and maintained audit trail.  
+5. Overlay ROI dashboard: time saved, penalty avoidance, and throughput lift quantified at 8.0x payback within first quarter.  
+6. Export signed compliance report and schedule file; confirm one-click ERP push for immediate execution.  
+7. Close with 90-second recap: €748 investment, 8.0x ROI, full regulatory coverage, ready for pilot.

@@ -3138,3 +3138,233 @@ Sube este archivo y di: **"Continúa desde el Master Context v3.8"**
 
 *v3.8 — 5 Junio 2026 · Fin de jornada*
 *Plan ✅ · Source ✅ · Make ✅ · Deliver 50% · BD ✅ · Venture ✅ · Herald v2.0 ✅ · Web v2 ✅*
+
+# TRABAJOS DEL SABADO 6 DE JUNIO DE 2026
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Versión: 3.9 | Fecha: 6 Junio 2026 | Fin de jornada
+
+---
+
+## 1. IDENTIDAD
+Alberto Muñoz Waissen — Founder & CEO, Agentic Zero powered by Dis-Solutions
+Web: agentic-zero.com (GitHub Pages · HTTPS ✅) | Email: alberto@agentic-zero.com
+LinkedIn: linkedin.com/in/awaissen
+
+---
+
+## 2. ARQUITECTURA
+```
+PIONEER TEAM    Scout → Architect → Builder → Packager → Guardian → Auditor
+COMMERCIAL      Herald v2.0 · BD v1.2 · Venture v1.0
+ORCHESTRATION   Paperclip (Fase 3 · pendiente)
+```
+
+---
+
+## 3. BIBLIOTECA — ESTADO AL 6 JUNIO 2026
+
+```
+PLAN    P1.1-P1.5   ✅ CONDITIONAL
+SOURCE  S1.1-S1.5   ✅ AUTO_APPROVED · Delivery: True
+MAKE    M1.1-M5.1   ✅ todos certificados
+DELIVER D1.1        ✅ CERTIFIED          82%  · Delivery: True  · €1,725
+        D1.2        ✅ AUTO_APPROVED       88%  · Delivery: True
+        D1.3        ✅ APPROVED_WITH_COND  82%  · Delivery: True  · €21,000
+        D1.4        ✅ APPROVED_WITH_COND  86%  · Delivery: True  · €2,100
+        D1.5        ✅ AUTO_APPROVED       92%  · Delivery: True
+        D2.1        ✅ CERTIFIED          80%  · Delivery: True  · €1,500
+        D3.1        ✅ AUTO_APPROVED       88%  · Delivery: True
+        D4.1        ✅ AUTO_APPROVED       88%  · Delivery: True
+```
+
+**SCOR FRAMEWORK COMPLETO ✅ — 8/8 Deliver · Delivery: True en todos**
+
+### Condiciones D1.3 y D1.4
+```
+GDPR issues noted (non-blocking):
+  · Define lawful basis (legitimate interest · Art.6(1)(f)) before client deployment
+  · Define retention policy (max 7 años)
+  · Plan de remediación documentado en guardian.json
+```
+
+---
+
+## 4. AGENTES COMERCIALES
+
+### Herald v2.0 ✅ PRODUCCIÓN
+```
+Ruta:   F:\agentic-zero\commercial\herald\herald.py
+Estado: Operativo · Validado · Listo para primer contacto real
+
+SECUENCIA 4 TOQUES CONSULTIVOS:
+  Touch 1 (LinkedIn · Día 1):   Reconocer dolor desde experiencia campo
+  Touch 2 (Email · Día 4):      Perspectiva experto · consecuencias no medidas
+  Touch 3 (LinkedIn · Día 9):   Solución · tono consultor
+  Touch 4 (Email · Día 14):     ROI + precio desde $600/mes
+
+USO:
+  python herald.py --name "X" --company "Y" --sector pharma --process SCOR-S1.3 --type sequence --language en --pain "pain1,pain2"
+  python herald.py --venture opp_20260604_114909
+  python herald.py --type email --name "X" --company "Y" --sector pharma
+```
+
+### BD Agent v1.2 · Venture v1.0 · Auditor v1.1
+```
+BD:       F:\agentic-zero\commercial\bd\bd_agent.py
+Venture:  F:\agentic-zero\commercial\venture\venture.py
+Auditor:  F:\agentic-zero\pioneer_team\auditor\auditor.py (v1.1 · GDPR fix)
+Builder:  F:\agentic-zero\pioneer_team\builder\builder.py (v1.1 · GDPR explícito)
+```
+
+---
+
+## 5. WEB Y FORMULARIO AUDIT
+
+### agentic-zero.com
+```
+Status:  LIVE · HTTPS ✅
+Repo:    github.com/agentic-zero/agentic-zero.github.io
+Files:   index.html + audit.html
+CTAs:    todos apuntan a /audit
+```
+
+### Formulario audit.html ✅ OPERATIVO
+```
+URL:      agentic-zero.com/audit
+Backend:  EmailJS (service_eq9ckdb · template_5br90kf · public key: _55-V5xnvLJVEGafR)
+Email:    alberto@agentic-zero.com
+4 pasos:  Contacto → Operación (ERP/volumen/equipo) → Pain points → Confirmación
+Adjuntos: Sin adjunto automático (limitación EmailJS free)
+          Success screen solicita enviar BPMN por email reply
+```
+
+### EmailJS credenciales
+```
+Service ID:  service_eq9ckdb
+Template ID: template_5br90kf
+Public Key:  _55-V5xnvLJVEGafR
+```
+
+---
+
+## 6. PRIMER CLIENTE REAL — INMACULADA SIERRA
+
+**Contacto:** inmasire@hotmail.com
+**Empresa:** pequeña empresa de transporte
+**Proceso:** Order-to-Cash (BPMN mapeado)
+**ERP:** SAP ECC en transición a HANA
+**Idioma:** español e inglés
+
+**[PENDIENTE]** Enviar respuesta email desde alberto@agentic-zero.com:
+```
+SUBJECT: Re: Agente para proceso Order-to-Cash — Sí es posible, preciso y rápido
+
+Hola Inmaculada,
+
+¿ES POSIBLE? Sí. Automatizable al 100%.
+¿ES PRECISO? Sí. 50-65% automatización primera versión.
+¿CUÁNTO TIEMPO? 24h desde el AUDIT para proceso biblioteca estándar.
+SAP: No tocamos el ERP. RFC/BAPI en ECC o API REST en HANA.
+
+Necesito:
+1. Volumen aproximado de órdenes por día o mes
+2. ¿En qué fase está la transición a HANA?
+3. ¿Quién valida las órdenes hoy y cuánto tiempo lleva por orden?
+
+Primer AUDIT gratuito. ¿Llamada esta semana 15 minutos?
+
+Alberto Munoz Waissen | Agentic Zero | Powered by Dis-Solutions
+alberto@agentic-zero.com | agentic-zero.com
+```
+
+**[PENDIENTE]** Herald sequence para Inmaculada — procesos interconectados O2C + Capacity Planning + Fleet Management.
+
+---
+
+## 7. PRICING
+```
+Standard:   $600/mes · $7,200/año
+Enterprise: $1,800/mes · $21,600/año
+Swarm:      Add-on · Enterprise · Priced on scope
+AUDIT:      First free
+```
+
+### ROI por sector (3 procesos · 3 FTE)
+```
+Defense 349%·2.7m  Pharma 322%·2.8m  Chemical 285%·3.2m
+Automotive 264%·3.4m  Food 242%·3.7m  Mfg 218%·4.1m  Distrib 196%·4.6m
+```
+
+---
+
+## 8. COMANDOS ESENCIALES
+
+```powershell
+# Activar
+cd F:\agentic-zero && .venv\Scripts\Activate.ps1
+
+# Queue
+cd core\queue && python queue_system.py --status
+
+# Auditor
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+
+# Herald
+cd F:\agentic-zero\commercial\herald
+python herald.py --venture [OPP_ID]
+python herald.py --name "X" --company "Y" --sector transport --type sequence --language es --pain "pain1,pain2"
+
+# BD
+cd F:\agentic-zero\commercial\bd && python bd_agent.py --scan
+
+# Venture
+cd F:\agentic-zero\commercial\venture && python venture.py --pipeline
+```
+
+---
+
+## 9. PENDIENTES
+
+```
+INMEDIATO:
+  1. ⏳ Enviar email a Inmaculada (inmasire@hotmail.com)
+  2. ⏳ Herald sequence para Inmaculada (O2C + interconectados)
+  3. ⏳ Venture --advance oportunidad Inmaculada
+
+COMERCIAL:
+  4. ⏳ Primer AUDIT real con Inmaculada (lunes)
+  5. ⏳ LinkedIn Company Page Agentic Zero
+  6. ⏳ Groq Dev Tier ($9/mes) — eliminar bloqueos diarios
+
+TÉCNICO:
+  7. ⏳ Adjuntos en formulario AUDIT (cuando haya primer ingreso · $8-9/mes)
+  8. ⏳ Activar privacidad WHOIS en IONOS
+  9. ⏳ Resolver www.agentic-zero.com
+
+COMPLETADO HOY:
+  ✅ SCOR Deliver 8/8 · Delivery: True en todos
+  ✅ Auditor v1.1 (GDPR non-blocking · APPROVE_WITH_CONDITIONS)
+  ✅ Builder v1.1 (GDPR explícito en agent spec)
+  ✅ Formulario AUDIT operativo (EmailJS · 4 pasos)
+  ✅ Web actualizada (CTAs → /audit)
+  ✅ Email corporativo activo (alberto@agentic-zero.com · IONOS)
+  ✅ Herald v2.0 listo para producción
+```
+
+---
+
+## 10. GIT
+```
+[6 Jun] Deliver 100% · Auditor v1.1 · Builder v1.1 · AUDIT form · Web v2 · EmailJS
+```
+
+---
+
+## 11. PROTOCOLO DE RECUPERACIÓN
+Sube este archivo y di: **"Continúa desde el Master Context v3.9"**
+
+---
+*v3.9 — 6 Junio 2026 · Fin de jornada*
+*Plan ✅ · Source ✅ · Make ✅ · Deliver ✅ 8/8 · Web ✅ · AUDIT form ✅ · Herald v2.0 ✅*

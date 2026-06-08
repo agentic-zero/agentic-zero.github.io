@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_190313_823542",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-DIG6"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T19:03:13.823558",
+  "status": "completed",
+  "started_at": "2026-06-07T23:04:17.894660",
+  "completed_at": "2026-06-07T23:07:17.636900",
+  "error": null,
+  "result": {
+    "agent_name": "predictive_analytics_pipeline_manager",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

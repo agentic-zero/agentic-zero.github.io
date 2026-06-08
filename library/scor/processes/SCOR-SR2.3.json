@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR2.3",
+  "name": "Request MRO Return Authorization",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of requesting authorization from supplier to return MRO items and negotiating credit or replacement terms",
+  "inputs": ["disposition decision", "MRO item data", "supplier contact", "purchase history"],
+  "outputs": ["MRO return authorization", "credit terms agreement", "return instructions"],
+  "kpis": ["authorization approval rate", "credit negotiation success rate", "authorization cycle time"],
+  "related_processes": ["SCOR-SR2.2", "SCOR-SR2.4", "SCOR-DR2.1"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["contractual compliance", "GDPR if personal data", "procurement policy"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

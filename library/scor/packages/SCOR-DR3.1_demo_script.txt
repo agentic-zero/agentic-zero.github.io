@@ -1,0 +1,6 @@
+1. Open with current-state pain: "Manual excess return reviews take 12 minutes each, with 18% compliance errors costing €45k yearly in fines and restocking delays."
+2. Trigger live agent: Input a sample excess return request (high-volume retailer, €12k value) and run excess_return_authorization_agent.
+3. Show AI analysis: Agent auto-validates policy, flags risk factors, and applies compliance rules in <45 seconds with full audit trail.
+4. Demonstrate decision output: Agent approves or routes with quantified ROI impact (€280 recovered per case) and zero manual intervention.
+5. Display dashboard metrics: Real-time view of 8.0x ROI multiplier, cycle-time reduction from 12 min to 40 sec, and 100% compliance logging.
+6. Close with commercial summary: "At €699, payback occurs in under 3 weeks; schedule pilot to capture first-month savings."

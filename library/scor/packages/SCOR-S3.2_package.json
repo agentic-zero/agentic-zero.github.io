@@ -1,0 +1,94 @@
+{
+  "process_id": "SCOR-S3.2",
+  "agent_name": "eto_receiving_inspection_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T23:40:19.634431",
+  "product_summary": "This hybrid agent manages the intake of custom-engineered components and materials for ETO production by validating engineering documentation, test reports, and compliance certificates while executing inspection workflows. It automatically updates inventory and BOM records, flags exceptions, and enforces standards such as AS9100 aerospace requirements, defense acquisition rules, and export controls. Executives gain faster throughput, reduced compliance risk, and reliable data integrity across complex supply chains. The result is accelerated production readiness with lower manual overhead in regulated manufacturing environments.",
+  "value_proposition": "Automates document validation, compliance verification, and inventory updates for engineer-to-order receipts while routing exceptions for hybrid human-AI resolution.",
+  "technical_summary": "The hybrid agent orchestrates capabilities across document_validation, compliance_checking, inspection_workflow_execution, inventory_bom_update, and exception_handling modules that integrate with ERP, PLM, and quality systems via standardized APIs. It applies rule-based and ML-driven checks against defense, AS9100, export control, and GDPR requirements, escalating edge cases to human operators through configurable workflows. Audit logs and traceability features ensure end-to-end visibility for regulated production environments.",
+  "integration_guide": "# Integration Guide — eto_receiving_inspection_agent\n**Process:** Receive Engineer-to-Order Product\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_receiving_inspection_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_receiving_inspection_agent import EtoReceivingInspectionAgentAgent\n\nagent = EtoReceivingInspectionAgentAgent()\nresult = agent.execute({\n    \"eto_delivery\": your_eto_delivery_data,\n    \"engineering_drawings\": your_engineering_drawings_data,\n    \"test_reports\": your_test_reports_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- document_parser\n- certificate_verifier_api\n- inventory_management_system\n- project_bom_updater\n- export_control_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing certificates after 4 hours\n- documentation mismatch or export control violation\n- first-pass inspection failure requiring rework/rejection",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eto_receiving_inspection_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_receiving_inspection_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_receiving_inspection_agent/health — Health check",
+    "GET  /api/v1/agents/eto_receiving_inspection_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_receiving_inspection_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open demo dashboard and load sample ETO purchase order (custom turbine housing, 47 specs, regulatory docs attached).  \n2. Trigger eto_receiving_inspection_agent; show AI auto-extracting dimensions, serials, and certificates in <8 seconds.  \n3. Run real-time compliance scan against ISO 9001 + customer QC checklist; flag one deviation with audit-ready evidence trail.  \n4. Execute automated disposition (accept/return) and generate signed inspection report, cutting manual steps from 14 to 3.  \n5. Display live ROI panel: 47 minutes saved per receipt × €92 fully-loaded labor rate = €4,324 per event; 8.0x multiplier on €748 price realized in first use.  \n6. Export compliance packet and close with projected annual value (€138k at 32 receipts/year) and one-click deployment option.",
+  "demo_inputs": {
+    "eto_delivery": "[example_eto_delivery]",
+    "engineering_drawings": "[example_engineering_drawings]",
+    "test_reports": "[example_test_reports]"
+  },
+  "expected_demo_outputs": {
+    "received_eto_components": "[generated_received_eto_components]",
+    "engineering_acceptance_report": "[generated_engineering_acceptance_report]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-S3.2",
+    "agent_name": "eto_receiving_inspection_agent",
+    "framework": "SCOR",
+    "domain": "Source",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "industrial equipment",
+      "energy",
+      "aerospace"
+    ],
+    "compliance_frameworks": [
+      "defense acquisition standards",
+      "AS9100 aerospace",
+      "GDPR if personal data",
+      "export control compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T23:40:19.634409"
+  },
+  "tags": [
+    "hybrid",
+    "source",
+    "aerospace",
+    "defense",
+    "scor",
+    "energy",
+    "l2",
+    "industrial equipment"
+  ],
+  "use_cases": [
+    "Use case 1: Aerospace firm receives custom AS9100-certified landing gear ETO units; agent auto-validates 200+ spec checkpoints and generates compliant traceability docs, cutting receipt-to-floor time from 72h to 18h and reducing expedited shipping penalties by $180k/year",
+    "Use case 2: Defense prime receives export-controlled ETO radar modules; agent enforces ITAR screening and dual-control logging at intake, eliminating 100% of prior audit findings and avoiding $1.2M in potential debarment costs",
+    "Use case 3: Energy OEM receives custom turbine blades under defense acquisition flow-downs; agent performs real-time configuration matching and serial tracking, reducing inventory write-offs from spec mismatches by 92% ($420k annual savings)",
+    "Use case 4: Industrial equipment supplier receives GDPR-sensitive ETO control panels with embedded operator data; agent redacts and logs personal data at receipt, achieving zero regulatory incidents versus 3 prior incidents costing €250k in fines",
+    "Use case 5: Aerospace MRO receives ETO avionics under AS9100 and export controls; agent automates first-article inspection reports and deviation routing, lowering average receipt cycle time by 65% and freeing 1.8 FTEs for value-added work"
+  ],
+  "pricing": {
+    "process_id": "SCOR-S3.2",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-S3.2_package.json"
+}

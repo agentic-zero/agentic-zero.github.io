@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D4.4",
+  "name": "Stock Shelf",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Retail",
+  "level": "L2",
+  "description": "Process of stocking retail shelves and display areas ensuring planogram compliance, FIFO rotation, price label accuracy and optimal product placement",
+  "inputs": ["received products", "planogram data", "shelf capacity", "pricing data", "promotional instructions"],
+  "outputs": ["stocked shelves", "planogram compliance records", "price accuracy", "promotional compliance"],
+  "kpis": ["on-shelf availability", "planogram compliance rate", "out-of-stock rate", "shelf replenishment cycle time"],
+  "related_processes": ["SCOR-D4.3", "SCOR-D4.2", "SCOR-P1.1"],
+  "sector_applicability": ["food", "distribution", "consumer goods"],
+  "compliance_flags": ["food safety FIFO", "pricing accuracy regulations", "promotional compliance", "GDPR if loyalty data"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

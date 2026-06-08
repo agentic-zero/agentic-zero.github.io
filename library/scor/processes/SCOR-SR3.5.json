@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR3.5",
+  "name": "Return Excess Product to Supplier",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Physical execution of excess product return to supplier including preparation, shipment execution and credit confirmation",
+  "inputs": ["return shipment schedule", "return authorization", "product preparation", "carrier pickup"],
+  "outputs": ["returned excess shipment", "proof of delivery", "credit note"],
+  "kpis": ["return completion rate", "credit recovery rate", "return accuracy"],
+  "related_processes": ["SCOR-SR3.4", "SCOR-DR3.1"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "automotive"],
+  "compliance_flags": ["expiry compliance", "chain of custody", "financial credit documentation"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

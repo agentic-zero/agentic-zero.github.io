@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DR1.4",
+  "name": "Transfer Defective Product Return",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Deliver Return",
+  "level": "L2",
+  "description": "Process of transferring received defective returns to appropriate disposition location including quarantine, repair, scrap or refurbishment areas",
+  "inputs": ["inspection report", "disposition decision", "warehouse locations", "transfer resources"],
+  "outputs": ["product transfer completion", "location update", "disposition initiation"],
+  "kpis": ["transfer cycle time", "transfer accuracy", "quarantine compliance rate"],
+  "related_processes": ["SCOR-DR1.3", "SCOR-SR1.2"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "automotive", "food"],
+  "compliance_flags": ["GxP quarantine requirements if pharma", "ISO 9001", "environmental if hazardous"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.92
+}

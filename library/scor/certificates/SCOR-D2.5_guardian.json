@@ -1,0 +1,68 @@
+{
+  "process_id": "SCOR-D2.5",
+  "guardian_timestamp": "2026-06-08T01:45:20.216458",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-D2.5-20260608",
+    "process_id": "SCOR-D2.5",
+    "agent_name": "build_loads_optimizer",
+    "issued_at": "2026-06-08T01:45:20.216413",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-08",
+    "overall_status": "certified",
+    "overall_score": 0.84,
+    "eu_ai_act": {
+      "risk_level": "minimal",
+      "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
+      "prohibited": false,
+      "requirements": [
+        "Voluntary codes of conduct recommended",
+        "No mandatory requirements"
+      ],
+      "article_references": [
+        "Recital 47 — Minimal risk AI systems"
+      ]
+    },
+    "iso_42001": {
+      "compliant": true,
+      "score": 0.7,
+      "gaps": [
+        "Full ISO 42001 assessment requires manual review"
+      ],
+      "recommendations": [
+        "Complete formal ISO 42001 gap analysis before production deployment"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [],
+    "rejection_reasons": [],
+    "human_review_required": false,
+    "notes": "Guardian review completed. Risk level: minimal. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": true,
+  "requires_human_sign_off": false,
+  "remediation_plan": [
+    "ISO 42001: Full ISO 42001 assessment requires manual review",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

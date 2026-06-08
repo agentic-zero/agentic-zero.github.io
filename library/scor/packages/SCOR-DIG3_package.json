@@ -1,0 +1,101 @@
+{
+  "process_id": "SCOR-DIG3",
+  "agent_name": "lifecycle_governance_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-07T22:58:19.049335",
+  "product_summary": "This agent oversees the end-to-end lifecycle of AI agents in supply chain operations, encompassing design, certification, deployment, ongoing monitoring, retraining, and decommissioning. It ensures full compliance with regulatory frameworks such as the EU AI Act, ISO 42001, and NIST AI RMF while maintaining transparency under GDPR. By automating critical processes like performance monitoring and audit trail management, it minimizes operational risks and enhances reliability in complex supply chain environments. Executives benefit from reduced compliance costs and improved decision-making through certified, high-performing AI agents.",
+  "value_proposition": "Transforms AI agent management in supply chains by orchestrating the full lifecycle from design to decommissioning with built-in compliance validation and performance oversight.",
+  "technical_summary": "The hybrid agent integrates performance monitoring and compliance validation modules with retraining trigger generation and certification orchestration capabilities to manage AI agent lifecycles. It maintains comprehensive audit trails and supports sector-specific GxP requirements for pharma applications while aligning with EU AI Act Articles 9-14 and other standards. Architecture enables seamless integration with existing supply chain systems through standardized APIs for deployment and monitoring workflows.",
+  "integration_guide": "# Integration Guide — lifecycle_governance_agent\n**Process:** Manage AI Agent Lifecycle\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp lifecycle_governance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.lifecycle_governance_agent import LifecycleGovernanceAgentAgent\n\nagent = LifecycleGovernanceAgentAgent()\nresult = agent.execute({\n    \"process_definitions\": your_process_definitions_data,\n    \"training_data\": your_training_data_data,\n    \"compliance_requirements\": your_compliance_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- deployment_registry\n- compliance_engine\n- monitoring_system\n- runtime_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- retraining_loop_exceeds_3_in_30_days\n- certification_fails_EU_AI_Act_documentation\n- GDPR_explainability_missing_in_audit",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/lifecycle_governance_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/lifecycle_governance_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/lifecycle_governance_agent/health — Health check",
+    "GET  /api/v1/agents/lifecycle_governance_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/lifecycle_governance_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open dashboard showing manual AI agent lifecycle costs (€120K/yr) and compliance gaps (3 audit findings).\n2. Deploy lifecycle_governance_agent; auto-onboard two agents with built-in policy checks in <60 seconds.\n3. Trigger live compliance scan: agent flags and remediates a GDPR violation automatically, logging full audit trail.\n4. Simulate agent decommissioning: process completes with zero manual steps, cutting prior 4-hour task to 2 minutes.\n5. Display ROI dashboard: €748 price yields 8.0x return via 92% effort reduction and zero compliance penalties.\n6. Export one-click executive report for board review, confirming sustained 8x multiplier over 12 months.\n7. Close with implementation timeline: live in 5 days, first measurable ROI within 30 days.",
+  "demo_inputs": {
+    "process_definitions": "[example_process_definitions]",
+    "training_data": "[example_training_data]",
+    "compliance_requirements": "[example_compliance_requirements]"
+  },
+  "expected_demo_outputs": {
+    "certified_ai_agents": "[generated_certified_ai_agents]",
+    "deployment_packages": "[generated_deployment_packages]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-DIG3",
+    "agent_name": "lifecycle_governance_agent",
+    "framework": "SCOR-Digital",
+    "domain": "Digital Enable",
+    "level": "L2",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act full compliance Art.9-14",
+      "ISO 42001 AI lifecycle management",
+      "NIST AI RMF govern-map-measure-manage",
+      "GDPR AI decision transparency",
+      "sector GxP if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-07T22:58:19.049313"
+  },
+  "tags": [
+    "scor-digital",
+    "hybrid",
+    "defense",
+    "manufacturing",
+    "pharma",
+    "l2",
+    "chemical",
+    "automotive",
+    "digital enable",
+    "distribution",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma company uses lifecycle agent to govern and validate AI agents for batch-release prediction under GxP + EU AI Act Art.9-14, cutting audit preparation time by 60% and avoiding €1.2M in delayed-release penalties per site.",
+    "Use case 2: Automotive OEM applies the agent to manage over-the-air AI model updates for ADAS perception systems per ISO 42001 and NIST RMF, reducing validation cycle time from 14 weeks to 5 weeks and saving $4.8M annually across 3 platforms.",
+    "Use case 3: Chemical plant deploys the agent for continuous monitoring and retraining of process-safety AI agents, achieving 35% fewer unplanned shutdowns and $2.7M yearly savings in lost production while maintaining full NIST traceability.",
+    "Use case 4: Defense contractor uses the agent to enforce end-to-end governance of logistics-optimization AI agents under GDPR and sector controls, cutting model-risk assessment effort by 50% and accelerating contract delivery by 3 months.",
+    "Use case 5: Food & beverage manufacturer runs the agent for real-time quality-inspection AI agents, securing EU AI Act high-risk compliance and ISO 42001 certification, which lowers product recall incidents by 40% and saves €1.9M in waste and brand-damage costs per year."
+  ],
+  "pricing": {
+    "process_id": "SCOR-DIG3",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-DIG3_package.json"
+}

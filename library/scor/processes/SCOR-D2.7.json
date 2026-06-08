@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.7",
+  "name": "Select Carriers and Rate Shipments (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of selecting carriers and rating MTO shipments based on service requirements, cost optimization and carrier performance",
+  "inputs": ["routing plans", "carrier rate cards", "service requirements", "carrier performance data", "budget constraints"],
+  "outputs": ["carrier selections", "rated shipments", "carrier performance scorecards", "freight cost records"],
+  "kpis": ["carrier selection accuracy", "freight cost per unit", "carrier performance score", "rate accuracy"],
+  "related_processes": ["SCOR-D2.6", "SCOR-D2.8", "SCOR-E6"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["carrier compliance requirements", "customs broker regulations", "GDPR shipment data", "trade compliance"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

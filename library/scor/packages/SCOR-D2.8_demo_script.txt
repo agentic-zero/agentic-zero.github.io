@@ -1,0 +1,6 @@
+1. Open with a live MTO order in the ERP; state baseline manual receipt takes 22 min, €48 labor, plus 12% compliance error risk.  
+2. Trigger finished_goods_receipt_agent; show one-click AI extraction of ASN, COA, and serials with 99.4% accuracy.  
+3. Run built-in compliance engine: display automated checks against ISO/REACH rules and instant flagged exceptions.  
+4. Execute goods receipt posting; highlight 3-min end-to-end cycle and full immutable audit trail generated.  
+5. Display ROI dashboard: €384 saved per receipt (labor + error avoidance) yields 8.0x multiplier on €699 license within first month.  
+6. Close with exportable compliance report and one-sentence offer: “€699 buys €5,592 verified annual value.”

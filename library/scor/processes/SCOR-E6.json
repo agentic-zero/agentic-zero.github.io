@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E6",
+  "name": "Manage Supply Chain Contracts",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Contract Management",
+  "level": "L2",
+  "description": "Process of managing supplier and customer contracts throughout their lifecycle including negotiation, execution, compliance monitoring and renewal across all SCOR domains",
+  "inputs": ["contract templates", "negotiation parameters", "supplier performance data", "legal requirements", "business terms"],
+  "outputs": ["executed contracts", "contract repository", "compliance alerts", "renewal schedules", "performance scorecards"],
+  "kpis": ["contract compliance rate", "contract cycle time", "on-time renewal rate", "contract value optimization"],
+  "related_processes": ["SCOR-S1.4", "SCOR-E1", "SCOR-E8", "SCOR-DR1.1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR data processing agreements", "contractual compliance", "EU AI Act supplier obligations", "financial regulations"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR2.5",
+  "name": "Return MRO Product to Supplier",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Physical execution of MRO product return to supplier including packaging, shipment and credit confirmation tracking",
+  "inputs": ["MRO shipment schedule", "return authorization", "packaging", "carrier pickup"],
+  "outputs": ["returned MRO shipment", "proof of delivery", "credit confirmation"],
+  "kpis": ["return completion rate", "credit recovery rate", "return cycle time"],
+  "related_processes": ["SCOR-SR2.4", "SCOR-DR2.1"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["chain of custody", "environmental compliance", "customs if cross-border"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.90
+}

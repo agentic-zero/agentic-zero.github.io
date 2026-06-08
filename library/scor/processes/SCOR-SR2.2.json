@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR2.2",
+  "name": "Disposition MRO Product",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of determining appropriate disposition for MRO items including return to supplier, internal reuse, donation or disposal",
+  "inputs": ["MRO return identification", "item condition assessment", "supplier return policy", "reuse opportunities"],
+  "outputs": ["disposition decision", "return or reuse plan", "disposal instructions"],
+  "kpis": ["disposition cycle time", "MRO recovery value", "reuse rate"],
+  "related_processes": ["SCOR-SR2.1", "SCOR-SR2.3"],
+  "sector_applicability": ["manufacturing", "pharma", "chemical", "energy", "defense"],
+  "compliance_flags": ["environmental compliance", "hazardous materials regulations", "asset disposal policy"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-DIG8",
+  "name": "Manage Cybersecurity and Digital Risk",
+  "framework": "SCOR-Digital",
+  "domain": "Digital Enable",
+  "subdomain": "Digital Risk Management",
+  "level": "L2",
+  "description": "Process of managing cybersecurity risks across digital supply chain infrastructure including AI agent security, API security, data breach prevention, supply chain cyber attacks and OT/IT convergence security",
+  "inputs": ["threat intelligence", "vulnerability assessments", "security logs", "incident reports", "penetration test results"],
+  "outputs": ["security posture report", "vulnerability remediation plans", "incident response procedures", "security certifications", "risk assessments"],
+  "kpis": ["security incident rate", "vulnerability remediation time", "security coverage", "mean time to detect"],
+  "related_processes": ["SCOR-DIG3", "SCOR-DIG9", "SCOR-E8", "SCOR-E9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act cybersecurity Art.15", "NIS2 Directive", "ISO 27001", "GDPR data breach", "defense sector security clearances", "OT cybersecurity standards"],
+  "source": "Scout research — APICS/ASCM Digital Extension + ENISA 2025",
+  "confidence": 0.93
+}

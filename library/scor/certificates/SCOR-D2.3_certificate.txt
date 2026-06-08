@@ -1,0 +1,28 @@
+
+AGENTIC ZERO — COMPLIANCE CERTIFICATE
+======================================
+Certificate ID:  AZ-CERT-SCOR-D2.3-20260608
+Process ID:      SCOR-D2.3
+Agent:           mto_resource_reservation_agent
+Issued:          2026-06-08
+Valid Until:     2027-06-08
+Issued By:       Guardian Agent — Agentic Zero Pioneer Team
+
+OVERALL STATUS:  CERTIFIED
+Overall Score:   84%
+
+COMPLIANCE SUMMARY
+──────────────────
+EU AI Act:       LIMITED RISK
+ISO/IEC 42001:   COMPLIANT (70%)
+NIST AI RMF:     100% overall
+GDPR AI:         ISSUES FOUND
+Quality:         100%
+
+
+
+
+
+No human review required
+
+Guardian review completed. Risk level: limited. Quality: 100%

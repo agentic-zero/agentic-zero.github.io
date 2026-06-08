@@ -1,0 +1,7 @@
+1. Open with the manual MTO bottleneck: 14 hours per build load, €4,600 fully loaded cost, and recurring compliance gaps that trigger audit findings.  
+2. Trigger build_loads_optimizer on a live project package; show AI auto-extracting quantities, applying load rules, and flagging three compliance deviations in <90 seconds.  
+3. Display the optimized load list with embedded audit trail and one-click sign-off, eliminating four manual review cycles.  
+4. Run side-by-side timer: manual process 14 h vs. agent 1.8 h; capture €3,700 direct savings on this load alone.  
+5. Project annual volume (48 loads) to surface €177 k yearly savings—8.0× ROI on the €574 license within the first month.  
+6. Export the compliance report and confirm it meets ISO/API traceability requirements without extra documentation effort.  
+7. Close: one-click deployment to the next project and offer of a 30-day pilot ROI dashboard.

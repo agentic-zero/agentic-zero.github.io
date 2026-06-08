@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-SR3.3",
+  "name": "Request Excess Product Return Authorization",
+  "framework": "SCOR",
+  "domain": "Return",
+  "subdomain": "Source Return",
+  "level": "L2",
+  "description": "Process of negotiating and obtaining authorization from supplier to return excess inventory for credit, exchange or future order offset",
+  "inputs": ["disposition decision", "excess inventory data", "supplier terms", "negotiation parameters"],
+  "outputs": ["excess return authorization", "credit terms", "return quantity approval"],
+  "kpis": ["authorization success rate", "credit terms quality", "negotiation cycle time"],
+  "related_processes": ["SCOR-SR3.2", "SCOR-SR3.4", "SCOR-DR3.1"],
+  "sector_applicability": ["manufacturing", "distribution", "pharma", "food", "automotive"],
+  "compliance_flags": ["contractual compliance", "GDPR if personal data", "financial reporting"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.91
+}

@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-D2.15",
+  "name": "Invoice (MTO)",
+  "framework": "SCOR",
+  "domain": "Deliver",
+  "subdomain": "Deliver Make-to-Order",
+  "level": "L2",
+  "description": "Process of generating and sending customer invoices for MTO products upon delivery or milestone completion, managing payment terms and accounts receivable",
+  "inputs": ["delivery confirmation", "order data", "pricing data", "payment terms", "customer billing data"],
+  "outputs": ["customer invoices", "accounts receivable records", "payment tracking", "revenue recognition trigger"],
+  "kpis": ["invoice cycle time", "invoice accuracy rate", "payment collection rate", "days sales outstanding"],
+  "related_processes": ["SCOR-D2.14", "SCOR-D2.13", "SCOR-E6"],
+  "sector_applicability": ["manufacturing", "automotive", "industrial equipment", "distribution"],
+  "compliance_flags": ["tax compliance", "GDPR customer financial data", "e-invoicing regulations", "revenue recognition standards"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

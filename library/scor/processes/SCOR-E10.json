@@ -1,0 +1,17 @@
+{
+  "process_id": "SCOR-E10",
+  "name": "Manage Supply Chain Procurement",
+  "framework": "SCOR",
+  "domain": "Enable",
+  "subdomain": "Procurement Management",
+  "level": "L2",
+  "description": "Process of managing strategic procurement activities including category management, supplier development, spend analysis and procurement policy governance that enables all Source domain processes",
+  "inputs": ["spend data", "supplier market data", "category strategies", "procurement policies", "business requirements"],
+  "outputs": ["category strategies", "supplier development plans", "spend analytics", "procurement policies", "savings reports"],
+  "kpis": ["savings achieved", "supplier development score", "spend under management", "procurement cycle time"],
+  "related_processes": ["SCOR-S1.1", "SCOR-S1.4", "SCOR-E6", "SCOR-E3"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR supplier data", "anti-corruption regulations", "EU AI Act procurement AI", "trade compliance", "ESG procurement standards"],
+  "source": "Scout research — APICS/ASCM",
+  "confidence": 0.93
+}

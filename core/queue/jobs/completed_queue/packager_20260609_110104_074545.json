@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_110104_074545",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-SPM-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T11:01:04.074572",
+  "status": "completed",
+  "started_at": "2026-06-09T11:05:12.128763",
+  "completed_at": "2026-06-09T11:05:39.326328",
+  "error": null,
+  "result": {
+    "agent_name": "supplier_performance_autonomous_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

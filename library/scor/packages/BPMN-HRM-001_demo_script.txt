@@ -1,0 +1,6 @@
+1. Launch production_scheduling_hybrid_agent and load last quarter’s live factory data to set context.  
+2. Run AI schedule optimization, showing automated handling of capacity, shifts, and material constraints in under 60 seconds.  
+3. Activate compliance module; demonstrate automatic flagging of labor-law, safety, and audit-rule violations with one-click remediation.  
+4. Introduce a live disruption (machine failure) and execute instant rescheduling while preserving compliance status.  
+5. Open ROI dashboard: display hours saved, throughput gain, and €5,984 projected annual benefit (8.0x on €748).  
+6. Export signed compliance report and schedule file for immediate executive and auditor use; close with next-step integration plan.

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_110443_917498",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-GXP-003"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T11:04:43.917516",
+  "status": "completed",
+  "started_at": "2026-06-09T16:10:17.776082",
+  "completed_at": "2026-06-09T16:10:34.223261",
+  "error": null,
+  "result": {
+    "agent_name": "deviation_oos_investigation_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

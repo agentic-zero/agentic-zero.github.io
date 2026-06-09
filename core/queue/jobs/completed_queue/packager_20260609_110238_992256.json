@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_110238_992256",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-GXP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T11:02:38.992272",
+  "status": "completed",
+  "started_at": "2026-06-09T16:08:31.176182",
+  "completed_at": "2026-06-09T16:08:50.769038",
+  "error": null,
+  "result": {
+    "agent_name": "gxp_batch_record_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_114217_901358",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-DIG-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T11:42:17.901370",
+  "status": "completed",
+  "started_at": "2026-06-09T11:10:32.001429",
+  "completed_at": "2026-06-09T11:11:11.688105",
+  "error": null,
+  "result": {
+    "agent_name": "demand_sensing_forecast_agent",
+    "ready_for_packager": true
+  }
+}

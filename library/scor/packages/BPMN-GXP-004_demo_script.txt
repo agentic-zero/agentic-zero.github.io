@@ -1,0 +1,6 @@
+1. Open dashboard and load a sample equipment CSV with 200+ records; highlight manual validation pain points (2 min).  
+2. Launch gxp_csv_validation_orchestrator; AI auto-maps requirements to GxP clauses and flags 14 compliance gaps (2 min).  
+3. Review AI-generated validation protocol and risk-based test scripts; confirm 21 CFR Part 11 electronic signature readiness (2 min).  
+4. Execute automated qualification workflow; show real-time deviation detection and CAPA suggestions (2 min).  
+5. Generate final qualification report with full audit trail and digital signatures; export for QA approval (1 min).  
+6. Display ROI dashboard: €5,592 validated savings (8.0x multiplier) from 14 hours reduced effort at €50/hr (1 min).

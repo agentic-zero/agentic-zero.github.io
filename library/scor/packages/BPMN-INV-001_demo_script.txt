@@ -1,0 +1,6 @@
+1. Open with current pain: Manual replenishment causing €45k annual stockouts and overstock; reference compliance gaps in audit logs.
+2. Activate inventory_replenishment_agent live; show real-time sensor/ERP ingestion and AI demand forecasting in <30 seconds.
+3. Trigger automated replenishment order; highlight policy guardrails enforcing SOX/GDPR traceability and instant approval routing.
+4. Display compliance dashboard: immutable audit trail, exception alerts, and one-click regulatory report generation.
+5. Run ROI calculator: input €699 price, output 8.0x multiplier with quantified €5.6k first-year savings from reduced carrying costs and avoided fines.
+6. Show integration handoff to ERP/finance system and scheduled re-forecast; close with next-steps and pilot timeline.

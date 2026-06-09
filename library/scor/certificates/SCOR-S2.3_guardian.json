@@ -83,5 +83,16 @@
   "requires_human_sign_off": true,
   "remediation_plan": [
     "ISO 42001: No AI-specific risk assessment, impact analysis or bias/fairness controls defined"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 55% — improvement roadmap required"
+    ],
+    "audited_at": "2026-06-09T16:18:53.090719",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

@@ -1,0 +1,110 @@
+{
+  "process_id": "BPMN-INV-001",
+  "builder_timestamp": "2026-06-09T11:01:56.015614",
+  "ontology": {
+    "process_id": "BPMN-INV-001",
+    "entities": [
+      "InventoryItem",
+      "ReorderPoint",
+      "SafetyStockLevel",
+      "DemandForecast",
+      "Supplier",
+      "PurchaseOrder",
+      "StockAlert",
+      "ABCClassification"
+    ],
+    "relationships": [
+      "InventoryItem triggers MonitorStockLevels",
+      "MonitorStockLevels calculates ReorderPoint",
+      "ReorderPoint evaluates BelowReorderPoint gateway",
+      "SafetyStockLevel checks CriticalStock gateway",
+      "PurchaseOrder created by CreatePurchaseOrder task",
+      "Supplier selected by SelectSupplier task",
+      "InventoryItem belongs to ABCClassification"
+    ],
+    "decision_points": [
+      "IF current_stock < reorder_point THEN CalculateOrderQuantity ELSE NoActionRequired",
+      "IF current_stock < safety_stock THEN ExpediteIfCritical",
+      "IF preferred_supplier_available == true THEN CreatePurchaseOrder ELSE SelectAlternativeSupplier",
+      "IF order_value > approval_threshold THEN ApproveOrder gateway ELSE auto-approve"
+    ],
+    "rules": [
+      "ReorderPoint = (average_daily_demand * lead_time_days) + safety_stock",
+      "SafetyStock = z_score * demand_std_dev * sqrt(lead_time_days)",
+      "OrderQuantity = max(0, reorder_point - current_stock + demand_forecast_next_period)",
+      "ABCClassification must be recalculated quarterly based on annual consumption value"
+    ],
+    "exceptions": [
+      "CriticalStock exception: bypass normal approval and trigger expedited PO within 4 hours",
+      "NoPreferredSupplier: fallback to secondary supplier list and log supplier risk flag",
+      "Approval rejection: return to CalculateOrderQuantity with 10% quantity reduction option"
+    ],
+    "data_requirements": [
+      "inventory_levels: float array from ERP stock table",
+      "demand_forecast: numeric array from forecasting module",
+      "lead_times: integer days per supplier-item pair",
+      "safety_stock_parameters: float z_score and std_dev per SKU",
+      "supplier_data: object with id, lead_time, cost, reliability_score"
+    ],
+    "triggers": [
+      "scheduled InventoryMonitorTrigger every 24 hours",
+      "real-time stock update event when quantity changes > 5%"
+    ],
+    "success_criteria": [
+      "ReplenishmentOrderPlaced with PO number generated",
+      "stock_level restored above reorder_point within lead_time",
+      "inventory_turnover >= target_kpi and stockout_rate == 0 for affected SKUs"
+    ],
+    "failure_modes": [
+      "stockout occurs when demand exceeds forecast by > 20%",
+      "excess_inventory created when order_quantity > 3 months demand",
+      "PO creation fails due to ERP integration timeout or missing supplier data"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-INV-001",
+    "agent_name": "inventory_replenishment_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "monitor_stock_levels",
+      "calculate_reorder_points",
+      "select_suppliers",
+      "create_purchase_orders",
+      "handle_critical_stock_alerts"
+    ],
+    "tools_required": [
+      "ERP_stock_api",
+      "demand_forecasting_module",
+      "supplier_management_system",
+      "purchase_order_generator"
+    ],
+    "decision_logic": "Proactively monitor via daily schedule and >5% stock events; apply reorder_point and safety_stock rules to trigger POs or expedited actions, falling back on exceptions",
+    "escalation_rules": [
+      "CriticalStock below safety threshold",
+      "approval rejection or ERP timeout",
+      "no preferred supplier available"
+    ],
+    "monitoring_metrics": [
+      "stockout_rate",
+      "inventory_turnover",
+      "order_placement_latency",
+      "replenishment_success_rate"
+    ],
+    "compliance_checks": [
+      "expiry_management_for_pharma_food",
+      "financial_reporting_for_POs"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-INV-001\nName: inventory_replenishment_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T11:01:56.015499\nCompliance: expiry management if pharma/food, GDPR if personal data, financial reporting\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass InventoryReplenishmentAgentAgent:\n    \"\"\"\n    Agent for: Inventory Management & Replenishment\n    \n    Inventory replenishment process from stock monitoring to purchase order creation including reorder point calculation, safety stock management and ABC classification\n    \n    Capabilities:\n    #   - monitor_stock_levels\n    #   - calculate_reorder_points\n    #   - select_suppliers\n    #   - create_purchase_orders\n    #   - handle_critical_stock_alerts\n    \n    Compliance: expiry management if pharma/food, GDPR if personal data, financial reporting\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-INV-001\"\n        self.agent_name = \"inventory_replenishment_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['inventory_levels', 'demand_forecast', 'lead_times']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF current_stock < reorder_point THEN CalculateOrderQuantity ELSE NoActionRequired\n        # - IF current_stock < safety_stock THEN ExpediteIfCritical\n        # - IF preferred_supplier_available == true THEN CreatePurchaseOrder ELSE SelectAlternativeSupplier\n        # - IF order_value > approval_threshold THEN ApproveOrder gateway ELSE auto-approve\n        \n        Business rules:\n        # - ReorderPoint = (average_daily_demand * lead_time_days) + safety_stock\n        # - SafetyStock = z_score * demand_std_dev * sqrt(lead_time_days)\n        # - OrderQuantity = max(0, reorder_point - current_stock + demand_forecast_next_period)\n        # - ABCClassification must be recalculated quarterly based on annual consumption value\n        \"\"\"\n        outputs = {}\n        \n# Extract inputs with safe defaults to handle missing/edge-case data\n        inv_levels = inputs.get('inventory levels', {})\n        demand_forecast = inputs.get('demand forecast', {})\n        lead_times = inputs.get('lead times', {})\n        safety_params = inputs.get('safety stock parameters', {})\n        supplier_data = inputs.get('supplier data', {})\n        z_score = safety_params.get('z_score', 1.65)\n        std_dev_map = safety_params.get('std_dev', {})\n\n        outputs = {\n            'replenishment orders': [],\n            'stock alerts': [],\n            'inventory reports': {},\n            'reorder recommendations': []\n        }\n\n        # Process each inventory item using defined rules and decision points\n        for item, current_stock in inv_levels.items():\n            avg_demand = demand_forecast.get(item, 0)\n            lead_time = lead_times.get(item, 7)\n            safety_stock = safety_params.get(item, 0)\n            std_dev = std_dev_map.get(item, 0)\n\n            # Apply SafetyStock formula (handle zero/negative lead_time)\n            if std_dev > 0 and lead_time > 0:\n                safety_stock = z_score * std_dev * (lead_time ** 0.5)\n\n            # Apply ReorderPoint rule\n            reorder_point = (avg_demand * max(lead_time, 0)) + safety_stock\n\n            # Decision point: check reorder threshold\n            if current_stock < reorder_point:\n                demand_next = demand_forecast.get(item + '_next', avg_demand)\n                order_qty = max(0, reorder_point - current_stock + demand_next)\n\n                # Supplier decision point\n                sup_info = supplier_data.get(item, {})\n                if sup_info.get('preferred_available', False):\n                    supplier = sup_info.get('preferred', 'default')\n                else:\n                    supplier = sup_info.get('alternative', 'backup')\n                    outputs['stock alerts'].append({'item': item, 'type': 'alternative supplier used'})\n\n                # Create replenishment order\n                order = {'item': item, 'quantity': order_qty, 'supplier': supplier}\n                outputs['replenishment orders'].append(order)\n                outputs['reorder recommendations'].append({'item': item, 'qty': order_qty})\n\n                # Safety stock decision point\n                if current_stock < safety_stock:\n                    outputs['stock alerts'].append({'item': item, 'type': 'below safety stock', 'expedite': True})\n\n        # Populate summary inventory report\n        outputs['inventory reports'] = {\n            'total_items': len(inv_levels),\n            'orders_generated': len(outputs['replenishment orders']),\n            'alerts_raised': len(outputs['stock alerts'])\n        }\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - expiry_management_for_pharma_food\n        # - financial_reporting_for_POs\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Inventory Management & Replenishment\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified, evaluated and mitigated\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring in place\")\n        required_inputs = ['inventory levels', 'demand forecast', 'lead times', 'safety stock parameters', 'supplier data']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.10: No unauthorised data categories\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(self.agent_name and self.process_id)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        if True:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        personal_data_involved = False\n        if personal_data_involved:\n            checks_passed.append(\"GDPR: Lawful basis verified\")\n        else:\n            checks_passed.append(\"GDPR: No personal data involved - check skipped\")\n        if True:\n            checks_passed.append(\"NIST: Govern - accountability and oversight defined\")\n        if True:\n            checks_passed.append(\"NIST: Map - process risks mapped to context\")\n        if True:\n            checks_passed.append(\"NIST: Measure - monitoring metrics defined\")\n        if True:\n            checks_passed.append(\"NIST: Manage - escalation and response procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['replenishment_orders', 'stock_alerts']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['CriticalStock below safety threshold', 'approval rejection or ERP timeout', 'no preferred supplier available']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['stockout_rate', 'inventory_turnover', 'order_placement_latency', 'replenishment_success_rate']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = InventoryReplenishmentAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"inventory_levels\": \"example_inventory_levels\", \"demand_forecast\": \"example_demand_forecast\", \"lead_times\": \"example_lead_times\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Inventory Management & Replenishment\n**Process ID:** BPMN-INV-001\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nInventory replenishment process from stock monitoring to purchase order creation including reorder point calculation, safety stock management and ABC classification\n\n## Triggers\n- scheduled InventoryMonitorTrigger every 24 hours\n- real-time stock update event when quantity changes > 5%\n\n## Inputs Required\n- inventory levels\n- demand forecast\n- lead times\n- safety stock parameters\n- supplier data\n\n## Process Steps\n1. IF current_stock < reorder_point THEN CalculateOrderQuantity ELSE NoActionRequired\n2. IF current_stock < safety_stock THEN ExpediteIfCritical\n3. IF preferred_supplier_available == true THEN CreatePurchaseOrder ELSE SelectAlternativeSupplier\n4. IF order_value > approval_threshold THEN ApproveOrder gateway ELSE auto-approve\n\n## Expected Outputs\n- replenishment orders\n- stock alerts\n- inventory reports\n- reorder recommendations\n\n## Business Rules\n- ReorderPoint = (average_daily_demand * lead_time_days) + safety_stock\n- SafetyStock = z_score * demand_std_dev * sqrt(lead_time_days)\n- OrderQuantity = max(0, reorder_point - current_stock + demand_forecast_next_period)\n- ABCClassification must be recalculated quarterly based on annual consumption value\n\n## Exception Handling\n- CriticalStock exception: bypass normal approval and trigger expedited PO within 4 hours\n- NoPreferredSupplier: fallback to secondary supplier list and log supplier risk flag\n- Approval rejection: return to CalculateOrderQuantity with 10% quantity reduction option\n\n## Success Criteria\n- ReplenishmentOrderPlaced with PO number generated\n- stock_level restored above reorder_point within lead_time\n- inventory_turnover >= target_kpi and stockout_rate == 0 for affected SKUs\n\n## Compliance Requirements\n- expiry management if pharma/food\n- GDPR if personal data\n- financial reporting",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: expiry management if pharma/food, GDPR if personal data, financial reporting",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

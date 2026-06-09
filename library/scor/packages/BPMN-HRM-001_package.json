@@ -1,0 +1,97 @@
+{
+  "process_id": "BPMN-HRM-001",
+  "agent_name": "production_scheduling_hybrid_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T11:05:12.107950",
+  "product_summary": "The Production Scheduling agent manages the full lifecycle of work orders from release through execution to completion by coordinating capacity allocation, material staging, and integrated quality control steps. As a hybrid agent, it combines automated decision-making with human oversight at critical points to optimize shop-floor efficiency while maintaining regulatory compliance across pharma, food, and industrial environments. Executives gain real-time visibility into production performance through automated KPI logging and exception handling, which reduces delays, minimizes waste, and improves on-time delivery rates. This directly supports cost control and audit readiness without requiring constant manual intervention from planning teams.",
+  "value_proposition": "Automates end-to-end production scheduling and execution while enforcing compliance gateways and optimizing resource allocation across hybrid operations.",
+  "technical_summary": "The hybrid agent orchestrates its core capabilities—material availability verification, machine capacity allocation, schedule generation, decision gateway enforcement, and KPI/exception logging—through configurable workflows that integrate with ERP, MES, and SCADA systems. It supports modular compliance extensions for GxP batch records, HACCP, ISO 9001, and ATEX requirements, allowing dynamic rule application based on product type and facility. Architecture emphasizes audit trails and human-in-the-loop checkpoints to balance automation speed with regulatory traceability.",
+  "integration_guide": "# Integration Guide — production_scheduling_hybrid_agent\n**Process:** Production Scheduling\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp production_scheduling_hybrid_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.production_scheduling_hybrid_agent import ProductionSchedulingHybridAgentAgent\n\nagent = ProductionSchedulingHybridAgentAgent()\nresult = agent.execute({\n    \"production_orders\": your_production_orders_data,\n    \"bom\": your_bom_data,\n    \"routing\": your_routing_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- SAP_PP_API\n- ERP_BOM_routing\n- Quality_System_API\n- Capacity_Planning_Tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- CapacityAvailable false after 2 attempts\n- ReworkRequired >2 times\n- Material staging timeout >4 hours",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/production_scheduling_hybrid_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/production_scheduling_hybrid_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/production_scheduling_hybrid_agent/health — Health check",
+    "GET  /api/v1/agents/production_scheduling_hybrid_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/production_scheduling_hybrid_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Launch production_scheduling_hybrid_agent and load last quarter’s live factory data to set context.  \n2. Run AI schedule optimization, showing automated handling of capacity, shifts, and material constraints in under 60 seconds.  \n3. Activate compliance module; demonstrate automatic flagging of labor-law, safety, and audit-rule violations with one-click remediation.  \n4. Introduce a live disruption (machine failure) and execute instant rescheduling while preserving compliance status.  \n5. Open ROI dashboard: display hours saved, throughput gain, and €5,984 projected annual benefit (8.0x on €748).  \n6. Export signed compliance report and schedule file for immediate executive and auditor use; close with next-step integration plan.",
+  "demo_inputs": {
+    "production_orders": "[example_production_orders]",
+    "bom": "[example_bom]",
+    "routing": "[example_routing]"
+  },
+  "expected_demo_outputs": {
+    "production_schedule": "[generated_production_schedule]",
+    "work_instructions": "[generated_work_instructions]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-HRM-001",
+    "agent_name": "production_scheduling_hybrid_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "chemical",
+      "automotive",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "GxP batch records if pharma",
+      "HACCP if food",
+      "ISO 9001",
+      "ATEX if applicable"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T11:05:12.107929"
+  },
+  "tags": [
+    "",
+    "hybrid",
+    "defense",
+    "manufacturing",
+    "food",
+    "chemical",
+    "automotive",
+    "pharma",
+    "bpmn"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma batch scheduling agent reschedules 12 lots around a bioreactor failure while auto-generating GxP batch records, cutting unplanned downtime from 18 h to 4 h and recovering $240 k in lost revenue per event",
+    "Use case 2: Food plant scheduling agent enforces HACCP critical-control-point sequencing across three lines, reducing finished-goods spoilage by 22 % and saving $1.1 M annually in write-offs",
+    "Use case 3: Automotive Tier-1 supplier uses the agent for mixed-model sequencing on two assembly lines, lifting OEE from 78 % to 91 % and generating $3.4 M extra throughput per year with no added headcount",
+    "Use case 4: Chemical site agent produces ATEX-compliant shift schedules that eliminate zone-1 exposure violations, avoiding two regulatory shutdowns per year valued at $850 k each",
+    "Use case 5: Defense contractor scheduling agent maintains ISO 9001 traceability and due-date adherence at 99.2 %, unlocking $1.8 M in contractual on-time-delivery bonuses previously forfeited"
+  ],
+  "pricing": {
+    "process_id": "BPMN-HRM-001",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-HRM-001_package.json"
+}

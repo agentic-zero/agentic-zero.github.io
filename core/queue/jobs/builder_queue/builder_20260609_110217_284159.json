@@ -1,0 +1,16 @@
+{
+  "job_id": "builder_20260609_110217_284159",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-TRP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T11:02:17.284172",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

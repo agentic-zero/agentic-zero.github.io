@@ -1,0 +1,6 @@
+1. Open gxp_batch_record_agent dashboard and load a new production batch; AI instantly pulls ERP data and prior records to auto-generate 80% of the batch record in <30 seconds.  
+2. Run real-time compliance scan: agent flags three potential deviations against 21 CFR Part 11 and EU GMP rules, auto-suggests CAPA entries with full audit trail.  
+3. Execute one-click electronic review/approval workflow; system timestamps every action and locks the record for immutable storage.  
+4. Export audit-ready PDF and raw JSON package; show side-by-side comparison proving 100% traceability versus 45-minute manual assembly.  
+5. Display ROI dashboard: 12 minutes saved per batch at scale equals 8.0x annual return on the €699 license within first quarter.  
+6. Summarize: full GxP automation delivered in under 10 minutes with zero compliance gaps and quantified 8x ROI.

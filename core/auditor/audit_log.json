@@ -10812,5 +10812,4431 @@
     },
     "audited_at": "2026-06-09T10:06:01.753138",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D1.2",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:48.965257",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D1.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.059112",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D1.4",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 86,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 80,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.151972",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D1.5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 80,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.247846",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D3.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.338808",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D4.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 60% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 60,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.449897",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR2.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.618032",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR2.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.719040",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR2.5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:49.846399",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR3.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.024845",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR3.2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.131002",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR3.3",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.248475",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR1.2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.343192",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR1.3",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.447804",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR1.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.544173",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR2.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.700269",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR3.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.804128",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR3.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.896527",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-SR3.5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:50.984304",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DR1.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.075347",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.169605",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.263336",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E3",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.348942",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.446733",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.528052",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E6",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.623546",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E7",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.712402",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E8",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.791410",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E9",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.874686",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-E10",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:51.964810",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.055562",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG2",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.163317",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG3",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.266217",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG4",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.349303",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.431901",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG6",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.524068",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG7",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.607686",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG8",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.686543",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG9",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.772965",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-DIG10",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 70% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 70,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.850494",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S2.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:52.929328",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S2.2",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 62% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 62,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.014208",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S2.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 55% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 87,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 55,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.090719",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S2.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.174805",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S2.5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 62% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 62,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.260704",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S3.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 55% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 87,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 55,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.343563",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S3.2",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.427446",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S3.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 78% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 78,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 42,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.513356",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S3.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.596688",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-S3.5",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.681909",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M2.1",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.759004",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M2.2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 42% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 42,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.843398",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M2.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 80% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 80,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 52,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:53.928279",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M2.4",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.016405",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M2.5",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.100503",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M3.1",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 62% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 62,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.189716",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M3.2",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.269600",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M3.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.348352",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M3.4",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.432820",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-M3.5",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 81% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 81,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 55,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.519529",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D2.8",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.598486",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D2.9",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 42% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 42,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.678758",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D2.10",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.764686",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D2.14",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.850160",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D3.2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 86,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:54.937422",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D3.3",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 58% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.018823",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D4.2",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 55% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 87,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 55,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.108338",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D4.3",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 82,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 58,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.226458",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "SCOR-D4.4",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 45% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 85,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 45,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.321919",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-OTC-001",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 86,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.416108",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-PTP-001",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 42% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 42,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.503155",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-MRP-001",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "EU AI Act gaps require documentation: art_9, art_10, art_11",
+      "ISO/IEC 42001 at 47% — improvement roadmap required"
+    ],
+    "checks": {
+      "overall_score": 85,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 47,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.589589",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-WMS-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.681018",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-WMS-002",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.769553",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-SOP-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.908533",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-IBP-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:55.995331",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-QMS-001",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 84% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 84,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 68,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.084073",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-HRM-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 68% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 90,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 68,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.170523",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-SPM-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 82,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.256135",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-INV-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 92,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.341870",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-GXP-001",
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "escalate": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 62% — monitor evolution"
+    ],
+    "checks": {
+      "overall_score": 88,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 62,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "CLEAR",
+        "personal_data": false,
+        "detail": "Clear"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.423324",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  },
+  {
+    "process_id": "BPMN-GXP-002",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "escalate": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "checks": {
+      "overall_score": 86,
+      "eu_ai_act": {
+        "risk_level": "high",
+        "articles": {
+          "art_9": "GAP",
+          "art_10": "GAP",
+          "art_11": "GAP"
+        },
+        "status": "GAP"
+      },
+      "iso_42001": {
+        "score": 78,
+        "status": "PASS",
+        "note": "Acceptable for library"
+      },
+      "nist_ai_rmf": {
+        "score": 100,
+        "status": "PASS"
+      },
+      "gdpr_ai": {
+        "status": "ISSUES",
+        "personal_data": true,
+        "detail": "['Personal data detected: define lawful basis for processing', 'Data minimization: ensure only necessary data is processed', 'Retention policy: define how long data is retained']"
+      },
+      "quality": {
+        "score": 100,
+        "status": "PASS",
+        "issues": []
+      },
+      "artifacts": {
+        "checks": {
+          "sop": true,
+          "builder_json": true,
+          "package_json": true,
+          "certificate": true,
+          "agent_code": true
+        },
+        "status": "PASS"
+      }
+    },
+    "audited_at": "2026-06-09T16:18:56.521533",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 ]

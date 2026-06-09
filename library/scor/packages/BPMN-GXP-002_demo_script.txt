@@ -1,0 +1,6 @@
+1. Open dashboard and load sample change request: Narrate baseline manual process (avg. 14 days, €8k cost, audit risk) vs. AI automation goal.
+2. Submit change via agent: Show AI auto-classifies impact, generates risk assessment, and drafts compliant documentation in <60 seconds.
+3. Run real-time compliance scan: Display automated checks against GxP/FDA/EMA rules with zero deviations flagged and full audit trail created.
+4. Execute AI-orchestrated workflow: Route to approvers with pre-filled justifications; complete e-signature cycle in minutes, not days.
+5. Review ROI dashboard: Highlight metrics—time reduced 85%, €5.6k savings per change, 8.0x multiplier on €699 license—projected annual value.
+6. Export compliance report and close loop: Demonstrate one-click regulatory submission package and archived traceability for inspection readiness.

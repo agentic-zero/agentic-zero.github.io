@@ -1,0 +1,6 @@
+1. Open dashboard showing €2.4M annual supplier spend; highlight 12% leakage from manual scorecards and compliance gaps.  
+2. Trigger agent: it auto-ingests ERP, contract and audit data in <60 seconds, producing AI risk and performance scores.  
+3. Display compliance module: agent flags 4 suppliers violating ESG clauses and auto-generates remediation tasks with audit trails.  
+4. Run ROI simulator: agent calculates 8.0x return (€5,984 net benefit) from recovered savings and avoided penalties within first quarter.  
+5. Show autonomous workflow: agent sends performance alerts to suppliers, updates contracts and logs everything for SOX/ISO audit.  
+6. Close with one-click pilot activation at €748, confirming 10-minute setup and immediate compliance reporting.

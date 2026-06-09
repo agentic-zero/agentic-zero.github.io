@@ -1,0 +1,6 @@
+1. Open with a live deviation alert from the QMS, highlighting manual investigation delays costing €50K+ per event in lost batches and compliance risk.
+2. Trigger the agent to auto-ingest batch records, deviations, and sensor data, then surface root-cause hypotheses ranked by probability within 90 seconds.
+3. Demonstrate built-in compliance layer: 21 CFR Part 11 audit trail, automated CAPA linkage, and one-click regulatory report generation ready for QA sign-off.
+4. Run side-by-side timing: traditional 12-hour manual process vs. agent completing full investigation and report in under 8 minutes.
+5. Display ROI dashboard: €5,592 annual savings per user at 8.0x multiplier, payback in <3 weeks at €699 price, plus reduced FDA warning-letter exposure.
+6. Close with executive summary slide showing risk reduction metrics and offer immediate pilot deployment for their top three recurring OOS types.

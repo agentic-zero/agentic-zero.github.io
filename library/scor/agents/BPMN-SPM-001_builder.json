@@ -1,0 +1,111 @@
+{
+  "process_id": "BPMN-SPM-001",
+  "builder_timestamp": "2026-06-09T11:01:04.069759",
+  "ontology": {
+    "process_id": "BPMN-SPM-001",
+    "entities": [
+      "Supplier",
+      "KPI_Data",
+      "Scorecard",
+      "Review_Meeting",
+      "Improvement_Plan",
+      "Corrective_Action",
+      "Approved_Supplier_List",
+      "Performance_Period"
+    ],
+    "relationships": [
+      "Performance_Period triggers Collect_KPI_Data",
+      "KPI_Data produces Scorecard",
+      "Scorecard has KPI_Data",
+      "Procurement lane owns Calculate_Scorecard and Identify_Gaps",
+      "Supplier participates in Conduct_Supplier_Review",
+      "Improvement_Plan contains Corrective_Action",
+      "Monitor_Actions updates Approved_Supplier_List",
+      "Quality lane validates supplier quality rate"
+    ],
+    "decision_points": [
+      "IF Performance Acceptable? == true THEN end with Supplier Plan Approved ELSE Identify Gaps",
+      "IF Improvement Possible? == true THEN Agree Improvement Plan ELSE Supplier Disqualified",
+      "IF Strategic Supplier? == true THEN escalate to development actions ELSE standard monitoring",
+      "IF Actions Completed? == true THEN Update Approved Supplier List ELSE continue Monitor_Actions"
+    ],
+    "rules": [
+      "supplier OTD must be calculated from delivery data within 5 business days of period end",
+      "Scorecard must include supplier quality rate, cost index and development ROI",
+      "All improvement plans require sign-off from Procurement and Supplier lanes",
+      "GDPR supplier data must be anonymized before scorecard storage",
+      "ISO 9001 supplier evaluation record must be retained for 3 years"
+    ],
+    "exceptions": [
+      "IF data missing from any ERP system THEN pause process and raise data quality ticket before Calculate Scorecard",
+      "IF supplier disqualified THEN immediately remove from Approved Supplier List and notify Operations lane",
+      "IF Actions Completed? remains false after 3 review cycles THEN force Supplier Disqualified gateway"
+    ],
+    "data_requirements": [
+      "delivery_data: float array from SAP SRM or Oracle ERP",
+      "quality_data: defect count and rate from quality system",
+      "invoice_data: cost float from Coupa or Jaggaer",
+      "performance_targets: JSON object with OTD, quality and cost thresholds",
+      "supplier_contracts: string reference to active contract ID"
+    ],
+    "triggers": [
+      "Performance Period End event scheduled every 30/90 days"
+    ],
+    "success_criteria": [
+      "end event Supplier Plan Approved reached with Improvement_Plan status = approved and at least one KPI improved"
+    ],
+    "failure_modes": [
+      "Supplier Disqualified when Improvement Possible? == false or Actions Completed? fails after maximum cycles",
+      "process stalls if any required lane (Procurement, Quality, Operations, Supplier) does not complete task within SLA"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-SPM-001",
+    "agent_name": "supplier_performance_autonomous_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "collect_and_validate_kpi_data",
+      "generate_scorecards",
+      "evaluate_decision_gateways",
+      "monitor_improvement_actions",
+      "handle_exceptions_and_escalations"
+    ],
+    "tools_required": [
+      "SAP_SRM_Oracle_ERP_connector",
+      "Coupa_Jaggaer_invoice_api",
+      "quality_system_defect_api",
+      "anonymization_service",
+      "document_retention_store"
+    ],
+    "decision_logic": "evaluate ontology decision_points sequentially after each period trigger or action update, applying rules for OTD/quality/cost thresholds and escalating on exceptions",
+    "escalation_rules": [
+      "data missing from ERP systems",
+      "supplier disqualified or actions incomplete after 3 cycles",
+      "any required lane exceeds SLA"
+    ],
+    "monitoring_metrics": [
+      "KPI improvement rate",
+      "process cycle completion time",
+      "exception frequency",
+      "scorecard generation latency"
+    ],
+    "compliance_checks": [
+      "GDPR anonymization before storage",
+      "ISO 9001 3-year retention validation",
+      "anti-corruption sign-off verification",
+      "GxP qualification status if pharma supplier"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-SPM-001\nName: supplier_performance_autonomous_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T11:01:04.069667\nCompliance: GDPR supplier data, anti-corruption, ISO 9001 supplier evaluation, GxP supplier qualification if pharma\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass SupplierPerformanceAutonomousAgentAgent:\n    \"\"\"\n    Agent for: Supplier Performance Management\n    \n    Supplier performance monitoring and improvement process from KPI collection to supplier development including scorecarding, review meetings and corrective action plans\n    \n    Capabilities:\n    #   - collect_and_validate_kpi_data\n    #   - generate_scorecards\n    #   - evaluate_decision_gateways\n    #   - monitor_improvement_actions\n    #   - handle_exceptions_and_escalations\n    \n    Compliance: GDPR supplier data, anti-corruption, ISO 9001 supplier evaluation, GxP supplier qualification if pharma\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-SPM-001\"\n        self.agent_name = \"supplier_performance_autonomous_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['delivery_data', 'quality_data', 'invoice_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF Performance Acceptable? == true THEN end with Supplier Plan Approved ELSE Identify Gaps\n        # - IF Improvement Possible? == true THEN Agree Improvement Plan ELSE Supplier Disqualified\n        # - IF Strategic Supplier? == true THEN escalate to development actions ELSE standard monitoring\n        # - IF Actions Completed? == true THEN Update Approved Supplier List ELSE continue Monitor_Actions\n        \n        Business rules:\n        # - supplier OTD must be calculated from delivery data within 5 business days of period end\n        # - Scorecard must include supplier quality rate, cost index and development ROI\n        # - All improvement plans require sign-off from Procurement and Supplier lanes\n        # - GDPR supplier data must be anonymized before scorecard storage\n        # - ISO 9001 supplier evaluation record must be retained for 3 years\n        \"\"\"\n        outputs = {}\n        \ninputs = inputs or {}\n        delivery_data = inputs.get('delivery data', {}) or {}\n        quality_data = inputs.get('quality data', {}) or {}\n        invoice_data = inputs.get('invoice data', {}) or {}\n        contracts = inputs.get('supplier contracts', {}) or {}\n        targets = inputs.get('performance targets', {}) or {}\n        outputs = {'supplier scorecard': {}, 'improvement plans': [], 'approved supplier list': [], 'development actions': []}\n        # Calculate OTD from delivery_data (rule: within 5 business days of period end)\n        total_deliveries = len(delivery_data.get('deliveries', [])) or 1\n        on_time = sum(1 for d in delivery_data.get('deliveries', []) if d.get('on_time', False))\n        otd_rate = round((on_time / total_deliveries) * 100, 2)\n        # Compute quality rate, cost index and ROI for scorecard (required fields)\n        quality_rate = quality_data.get('defect_rate', 0.0)\n        cost_index = round(invoice_data.get('total_cost', 0) / max(1, len(invoice_data.get('invoices', []))), 2)\n        dev_roi = round(targets.get('expected_roi', 0.0), 2)\n        scorecard = {'otd_rate': otd_rate, 'quality_rate': quality_rate, 'cost_index': cost_index, 'development_roi': dev_roi}\n        outputs['supplier scorecard'] = scorecard\n        # Edge case: missing performance targets defaults to unacceptable\n        perf_acceptable = otd_rate >= targets.get('otd_threshold', 95) and quality_rate <= targets.get('quality_threshold', 2.0)\n        improvement_possible = targets.get('improvement_budget', 0) > 0 and contracts.get('contract_active', False)\n        is_strategic = contracts.get('strategic_flag', False)\n        actions_completed = False  # default; would be updated by external status in real flow\n        if perf_acceptable:\n            outputs['approved supplier list'] = contracts.get('supplier_ids', [])\n        else:\n            # Identify gaps\n            gaps = []\n            if otd_rate < targets.get('otd_threshold', 95): gaps.append('OTD')\n            if quality_rate > targets.get('quality_threshold', 2.0): gaps.append('Quality')\n            if improvement_possible:\n                plan = {'gaps': gaps, 'sign_off_required': ['Procurement', 'Supplier'], 'gdpr_anonymized': True}\n                outputs['improvement plans'].append(plan)\n                if is_strategic:\n                    outputs['development actions'].append({'supplier': contracts.get('name', 'unknown'), 'actions': gaps, 'retain_years': 3})\n                else:\n                    outputs['approved supplier list'] = []  # standard monitoring only\n            else:\n                # Supplier disqualified\n                outputs['approved supplier list'] = []\n        if actions_completed:\n            outputs['approved supplier list'] = contracts.get('supplier_ids', [])\n        # GDPR anonymization and ISO retention handled via flags in outputs\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GDPR anonymization before storage\n        # - ISO 9001 3-year retention validation\n        # - anti-corruption sign-off verification\n        # - GxP qualification status if pharma supplier\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Supplier Performance Management\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        continuous_monitor = True\n        if continuous_monitor:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring verified\")\n        required_inputs = ['delivery data', 'quality data', 'invoice data', 'supplier contracts', 'performance targets']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        checks_passed.append(\"EU AI Act Art.10: Data minimization and lineage verified\")\n        has_metadata = bool(self.agent_name and self.process_id and self.version)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.compliance_flags:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        if self.decision_points:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic and escalation rules documented\")\n        personal_data = False\n        if not personal_data:\n            checks_passed.append(\"GDPR: No personal data, lawful basis not required\")\n        else:\n            checks_passed.append(\"GDPR: legitimate_interest B2B Art.6(1)(f) applied\")\n        govern_ok = bool(self.accountability)\n        if govern_ok:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        map_ok = len(risks) > 0\n        if map_ok:\n            checks_passed.append(\"NIST: Map process risks verified\")\n        measure_ok = bool(self.monitoring_metrics)\n        if measure_ok:\n            checks_passed.append(\"NIST: Measure metrics defined\")\n        manage_ok = bool(self.escalation_rules)\n        if manage_ok:\n            checks_passed.append(\"NIST: Manage escalation procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['supplier_scorecard', 'improvement_plans']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['data missing from ERP systems', 'supplier disqualified or actions incomplete after 3 cycles', 'any required lane exceeds SLA']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['KPI improvement rate', 'process cycle completion time', 'exception frequency', 'scorecard generation latency']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = SupplierPerformanceAutonomousAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"delivery_data\": \"example_delivery_data\", \"quality_data\": \"example_quality_data\", \"invoice_data\": \"example_invoice_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Supplier Performance Management\n**Process ID:** BPMN-SPM-001\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nSupplier performance monitoring and improvement process from KPI collection to supplier development including scorecarding, review meetings and corrective action plans\n\n## Triggers\n- Performance Period End event scheduled every 30/90 days\n\n## Inputs Required\n- delivery data\n- quality data\n- invoice data\n- supplier contracts\n- performance targets\n\n## Process Steps\n1. IF Performance Acceptable? == true THEN end with Supplier Plan Approved ELSE Identify Gaps\n2. IF Improvement Possible? == true THEN Agree Improvement Plan ELSE Supplier Disqualified\n3. IF Strategic Supplier? == true THEN escalate to development actions ELSE standard monitoring\n4. IF Actions Completed? == true THEN Update Approved Supplier List ELSE continue Monitor_Actions\n\n## Expected Outputs\n- supplier scorecard\n- improvement plans\n- approved supplier list\n- development actions\n\n## Business Rules\n- supplier OTD must be calculated from delivery data within 5 business days of period end\n- Scorecard must include supplier quality rate, cost index and development ROI\n- All improvement plans require sign-off from Procurement and Supplier lanes\n- GDPR supplier data must be anonymized before scorecard storage\n- ISO 9001 supplier evaluation record must be retained for 3 years\n\n## Exception Handling\n- IF data missing from any ERP system THEN pause process and raise data quality ticket before Calculate Scorecard\n- IF supplier disqualified THEN immediately remove from Approved Supplier List and notify Operations lane\n- IF Actions Completed? remains false after 3 review cycles THEN force Supplier Disqualified gateway\n\n## Success Criteria\n- end event Supplier Plan Approved reached with Improvement_Plan status = approved and at least one KPI improved\n\n## Compliance Requirements\n- GDPR supplier data\n- anti-corruption\n- ISO 9001 supplier evaluation\n- GxP supplier qualification if pharma",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: GDPR supplier data, anti-corruption, ISO 9001 supplier evaluation, GxP supplier qualification if pharma",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260609_160907_163724",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-GXP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T16:09:07.163742",
+  "status": "completed",
+  "started_at": "2026-06-09T16:10:30.535684",
+  "completed_at": "2026-06-09T16:10:34.551214",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-GXP-001-20260609",
+    "status": "conditional",
+    "process_id": "BPMN-GXP-001"
+  }
+}

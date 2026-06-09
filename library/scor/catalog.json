@@ -2780,5 +2780,198 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-09T09:39:37.402956"
+  },
+  {
+    "process_id": "BPMN-HRM-001",
+    "agent_name": "production_scheduling_hybrid_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "chemical",
+      "automotive",
+      "defense"
+    ],
+    "compliance_frameworks": [
+      "GxP batch records if pharma",
+      "HACCP if food",
+      "ISO 9001",
+      "ATEX if applicable"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T11:05:12.107929"
+  },
+  {
+    "process_id": "BPMN-SPM-001",
+    "agent_name": "supplier_performance_autonomous_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "automotive",
+      "chemical",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GDPR supplier data",
+      "anti-corruption",
+      "ISO 9001 supplier evaluation",
+      "GxP supplier qualification if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T11:05:39.312015"
+  },
+  {
+    "process_id": "BPMN-INV-001",
+    "agent_name": "inventory_replenishment_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "distribution",
+      "manufacturing",
+      "retail",
+      "pharma",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "expiry management if pharma/food",
+      "GDPR if personal data",
+      "financial reporting"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T11:06:00.293954"
+  },
+  {
+    "process_id": "BPMN-GXP-001",
+    "agent_name": "gxp_batch_record_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "GxP 21 CFR Part 211",
+      "EU GMP Annex 11",
+      "FDA data integrity",
+      "ALCOA+ principles"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T16:09:07.134635"
+  },
+  {
+    "process_id": "BPMN-GXP-002",
+    "agent_name": "gxp_change_control_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices",
+      "chemical"
+    ],
+    "compliance_frameworks": [
+      "GxP ICH Q10",
+      "FDA 21 CFR",
+      "EU GMP",
+      "ISO 13485 medical devices"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T16:10:14.002116"
+  },
+  {
+    "process_id": "BPMN-GXP-003",
+    "agent_name": "deviation_oos_investigation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "GxP 21 CFR 211.192",
+      "EU GMP Chapter 6",
+      "ICH Q10",
+      "FDA OOS guidance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T16:10:34.204452"
+  },
+  {
+    "process_id": "BPMN-GXP-004",
+    "agent_name": "gxp_csv_validation_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "21 CFR Part 11",
+      "EU Annex 11",
+      "GAMP 5",
+      "ICH Q10",
+      "ISO 13485"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T16:11:01.950420"
   }
 ]

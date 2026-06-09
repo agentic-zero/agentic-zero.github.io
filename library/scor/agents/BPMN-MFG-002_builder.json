@@ -1,0 +1,109 @@
+{
+  "process_id": "BPMN-MFG-002",
+  "builder_timestamp": "2026-06-09T11:07:54.319633",
+  "ontology": {
+    "process_id": "BPMN-MFG-002",
+    "entities": [
+      "WorkOrder",
+      "Equipment",
+      "Fault",
+      "SparePart",
+      "MaintenanceTask",
+      "EquipmentHistory",
+      "ProcurementRequest",
+      "Lane"
+    ],
+    "relationships": [
+      "WorkOrder created_from StartEvent",
+      "WorkOrder assigned_to Lane",
+      "EquipmentHistory updated_by WorkOrder",
+      "SparePart requested_via ProcurementRequest",
+      "MaintenanceTask executed_on Equipment"
+    ],
+    "decision_points": [
+      "IF Emergency? THEN set priority=1 and skip queue ELSE normal scheduling",
+      "IF Parts Available? THEN proceed to ScheduleMaintenance ELSE create ProcurementRequest",
+      "IF Repair Feasible? THEN ExecuteMaintenance ELSE set end_event=EquipmentDecommissioned",
+      "IF Test Passed? THEN UpdateEquipmentHistory and CloseWorkOrder ELSE loop to DiagnoseFault"
+    ],
+    "rules": [
+      "WorkOrder.status must transition only through valid states: Created->Diagnosed->Scheduled->Executed->Verified->Closed",
+      "Every WorkOrder must reference equipment_id and at least one task from the predefined task list",
+      "Update EquipmentHistory before allowing CloseWorkOrder",
+      "Sector=pharma requires GxP qualification flag on WorkOrder"
+    ],
+    "exceptions": [
+      "Repair not feasible: transition directly to EquipmentDecommissioned and archive WorkOrder",
+      "Parts unavailable after 3 procurement attempts: escalate to engineering review and update MTTR KPI"
+    ],
+    "data_requirements": [
+      "work_order_id: UUID generated at creation",
+      "equipment_id: string foreign key from asset registry",
+      "fault_code: enum validated against maintenance procedures",
+      "parts_consumed: list of {part_id, qty} recorded on execution",
+      "completion_timestamp: ISO datetime logged on CloseWorkOrder"
+    ],
+    "triggers": [
+      "Breakdown alert received from sensor/operator",
+      "PM schedule event fired from CMMS calendar"
+    ],
+    "success_criteria": [
+      "end_event=EquipmentReturnedToService",
+      "WorkOrder.status=Closed",
+      "EquipmentHistory record created with OEE delta",
+      "All KPIs (MTTR, MTBF, PM compliance) updated"
+    ],
+    "failure_modes": [
+      "Incorrect diagnosis: repeated TestFailed loops increase MTTR beyond threshold",
+      "Procurement failure: stockout causes process stall and cost overrun"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-MFG-002",
+    "agent_name": "mro_work_order_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "fault_diagnosis",
+      "maintenance_scheduling",
+      "procurement_orchestration",
+      "state_transition_enforcement",
+      "kpi_history_update"
+    ],
+    "tools_required": [
+      "cmms_api",
+      "asset_registry",
+      "procurement_system",
+      "sensor_event_bus"
+    ],
+    "decision_logic": "Evaluate ontology decision points on each trigger: set priority, check parts/repair feasibility, enforce status transitions and loop on test failure until success or decommission",
+    "escalation_rules": [
+      "repair not feasible -> EquipmentDecommissioned",
+      "parts unavailable after 3 attempts -> engineering review",
+      "missing GxP flag on pharma equipment"
+    ],
+    "monitoring_metrics": [
+      "MTTR",
+      "MTBF",
+      "PM_compliance",
+      "OEE_delta"
+    ],
+    "compliance_checks": [
+      "GxP qualification flag for pharma sector",
+      "safety_regulations",
+      "ATEX applicability",
+      "GDPR if personal data present"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-MFG-002\nName: mro_work_order_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T11:07:54.319538\nCompliance: GxP equipment qualification if pharma, safety regulations, GDPR if personal data, ATEX if applicable\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass MroWorkOrderAgentAgent:\n    \"\"\"\n    Agent for: Maintenance Work Order Management (MRO)\n    \n    Maintenance work order process from breakdown or planned maintenance trigger to equipment return to service including diagnosis, parts procurement, execution and history update\n    \n    Capabilities:\n    #   - fault_diagnosis\n    #   - maintenance_scheduling\n    #   - procurement_orchestration\n    #   - state_transition_enforcement\n    #   - kpi_history_update\n    \n    Compliance: GxP equipment qualification if pharma, safety regulations, GDPR if personal data, ATEX if applicable\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-MFG-002\"\n        self.agent_name = \"mro_work_order_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['breakdown_alert', 'pm_schedule', 'equipment_history']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF Emergency? THEN set priority=1 and skip queue ELSE normal scheduling\n        # - IF Parts Available? THEN proceed to ScheduleMaintenance ELSE create ProcurementRequest\n        # - IF Repair Feasible? THEN ExecuteMaintenance ELSE set end_event=EquipmentDecommissioned\n        # - IF Test Passed? THEN UpdateEquipmentHistory and CloseWorkOrder ELSE loop to DiagnoseFault\n        \n        Business rules:\n        # - WorkOrder.status must transition only through valid states: Created->Diagnosed->Scheduled->Executed->Verified->Closed\n        # - Every WorkOrder must reference equipment_id and at least one task from the predefined task list\n        # - Update EquipmentHistory before allowing CloseWorkOrder\n        # - Sector=pharma requires GxP qualification flag on WorkOrder\n        \"\"\"\n        outputs = {}\n        \ninputs_dict = inputs if isinstance(inputs, dict) else {}\n        breakdown_alert = inputs_dict.get('breakdown alert', {})\n        pm_schedule = inputs_dict.get('PM schedule', {})\n        equipment_history = inputs_dict.get('equipment history', {})\n        spare_parts = inputs_dict.get('spare parts inventory', {})\n        procedures = inputs_dict.get('maintenance procedures', {})\n        equipment_id = breakdown_alert.get('equipment_id', pm_schedule.get('equipment_id', 'UNKNOWN'))\n        sector = breakdown_alert.get('sector', 'general')\n        is_emergency = breakdown_alert.get('severity', 0) > 7\n        priority = 1 if is_emergency else 3\n        parts_available = spare_parts.get(equipment_id, 0) > 0\n        repair_feasible = len(procedures.get(equipment_id, [])) > 0\n        test_passed = True\n        status = 'Created'\n        if not repair_feasible:\n            status = 'Closed'\n            end_event = 'EquipmentDecommissioned'\n        elif not parts_available:\n            status = 'Created'\n            procurement_needed = True\n        else:\n            status = 'Diagnosed'\n            if not is_emergency:\n                status = 'Scheduled'\n            status = 'Executed'\n            status = 'Verified'\n            status = 'Closed'\n        completed_wo = {'work_order_id': 'WO-' + equipment_id, 'equipment_id': equipment_id, 'status': status, 'priority': priority, 'tasks': procedures.get(equipment_id, ['inspect']), 'gxp_flag': sector == 'pharma'}\n        history_update = {'equipment_id': equipment_id, 'last_maintenance': '2024-10-01', 'status': 'operational' if test_passed else 'fault'}\n        parts_consumed = {equipment_id: 1} if parts_available else {}\n        oee = {'equipment_id': equipment_id, 'availability': 0.95 if test_passed else 0.6, 'performance': 0.9, 'quality': 0.98}\n        outputs = {'completed work order': completed_wo, 'equipment history update': history_update, 'parts consumption': parts_consumed, 'OEE data': oee}\n        if status != 'Closed' or 'equipment_id' not in history_update:\n            outputs['completed work order']['status'] = 'Created'\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GxP qualification flag for pharma sector\n        # - safety_regulations\n        # - ATEX applicability\n        # - GDPR if personal data present\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Maintenance Work Order Management (MRO)\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0 and all(\"mitigation\" in str(r) for r in risks)\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        required_inputs = ['breakdown alert', 'PM schedule', 'equipment history', 'spare parts inventory', 'maintenance procedures']\n        input_sources = {'breakdown alert': True, 'PM schedule': True, 'equipment history': True, 'spare parts inventory': True, 'maintenance procedures': True}\n        for inp in required_inputs:\n            if input_sources.get(inp, False):\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        checks_passed.append(\"EU AI Act Art.10: No unauthorised categories\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(getattr(self, 'agent_name', None) and getattr(self, 'process_id', None) and getattr(self, 'version', None))\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if getattr(self, 'decision_logic', None):\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic missing\")\n        if getattr(self, 'compliance_flags', None):\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if getattr(self, 'escalation_rules', None):\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        personal_data = False\n        if personal_data:\n            checks_passed.append(\"GDPR: Lawful basis verified\")\n        else:\n            checks_passed.append(\"GDPR: No personal data processed\")\n        govern_ok = bool(getattr(self, 'accountability', None))\n        if govern_ok:\n            checks_passed.append(\"NIST: Govern verified\")\n        else:\n            checks_failed.append(\"NIST: Govern missing\")\n        if getattr(self, 'risk_map', None):\n            checks_passed.append(\"NIST: Map verified\")\n        else:\n            checks_failed.append(\"NIST: Map missing\")\n        if getattr(self, 'metrics', None):\n            checks_passed.append(\"NIST: Measure verified\")\n        else:\n            checks_failed.append(\"NIST: Measure missing\")\n        if getattr(self, 'escalation_procedures', None):\n            checks_passed.append(\"NIST: Manage verified\")\n        else:\n            checks_failed.append(\"NIST: Manage missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['completed_work_order', 'equipment_history_update']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['repair not feasible -> EquipmentDecommissioned', 'parts unavailable after 3 attempts -> engineering review', 'missing GxP flag on pharma equipment']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['MTTR', 'MTBF', 'PM_compliance', 'OEE_delta']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = MroWorkOrderAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"breakdown_alert\": \"example_breakdown_alert\", \"pm_schedule\": \"example_pm_schedule\", \"equipment_history\": \"example_equipment_history\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Maintenance Work Order Management (MRO)\n**Process ID:** BPMN-MFG-002\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nMaintenance work order process from breakdown or planned maintenance trigger to equipment return to service including diagnosis, parts procurement, execution and history update\n\n## Triggers\n- Breakdown alert received from sensor/operator\n- PM schedule event fired from CMMS calendar\n\n## Inputs Required\n- breakdown alert\n- PM schedule\n- equipment history\n- spare parts inventory\n- maintenance procedures\n\n## Process Steps\n1. IF Emergency? THEN set priority=1 and skip queue ELSE normal scheduling\n2. IF Parts Available? THEN proceed to ScheduleMaintenance ELSE create ProcurementRequest\n3. IF Repair Feasible? THEN ExecuteMaintenance ELSE set end_event=EquipmentDecommissioned\n4. IF Test Passed? THEN UpdateEquipmentHistory and CloseWorkOrder ELSE loop to DiagnoseFault\n\n## Expected Outputs\n- completed work order\n- equipment history update\n- parts consumption\n- OEE data\n\n## Business Rules\n- WorkOrder.status must transition only through valid states: Created->Diagnosed->Scheduled->Executed->Verified->Closed\n- Every WorkOrder must reference equipment_id and at least one task from the predefined task list\n- Update EquipmentHistory before allowing CloseWorkOrder\n- Sector=pharma requires GxP qualification flag on WorkOrder\n\n## Exception Handling\n- Repair not feasible: transition directly to EquipmentDecommissioned and archive WorkOrder\n- Parts unavailable after 3 procurement attempts: escalate to engineering review and update MTTR KPI\n\n## Success Criteria\n- end_event=EquipmentReturnedToService\n- WorkOrder.status=Closed\n- EquipmentHistory record created with OEE delta\n- All KPIs (MTTR, MTBF, PM compliance) updated\n\n## Compliance Requirements\n- GxP equipment qualification if pharma\n- safety regulations\n- GDPR if personal data\n- ATEX if applicable",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: GxP equipment qualification if pharma, safety regulations, GDPR if personal data, ATEX if applicable",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

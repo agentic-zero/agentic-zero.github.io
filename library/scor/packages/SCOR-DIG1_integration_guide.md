@@ -34,15 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- MQTT_client
-- SAP_Oracle_connector
-- OPC_UA_client
-- simulation_engine
-- EU_AI_Act_logger
+- IoTDataStreamAPI
+- ERPSimulator
+- SimulationEngine
+- ISO42001AuditLogger
+- ModelRetrainingPipeline
 
 ## Escalation
 The agent automatically escalates to human when:
 - prediction_accuracy_rate < 0.90
-- digital_twin_accuracy < 0.95
-- IoTSensorData missing >5 minutes
-- ProcessModel version mismatch
+- digital_twin_accuracy < 0.95 after retraining attempt
+- IoT latency >5s or ERP unavailability persisting beyond exception handling

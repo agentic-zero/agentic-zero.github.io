@@ -34,12 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- carrier_booking_api
-- inventory_storage_system
-- compliance_validation_engine
+- carrier_api
+- wms_storage_api
+- compliance_engine
+- document_generator
 
 ## Escalation
 The agent automatically escalates to human when:
-- no valid CarrierOption available
-- expiry date within 7 days
-- cross-border customs mismatch
+- No valid CarrierOption available after filtering
+- Missing expiry data for perishables
+- CarrierBooking capacity failure after 3 retries

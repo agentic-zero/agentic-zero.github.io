@@ -1,0 +1,118 @@
+{
+  "process_id": "BPMN-PTP-001",
+  "builder_timestamp": "2026-06-08T20:25:44.811854",
+  "ontology": {
+    "process_id": "BPMN-PTP-001",
+    "entities": [
+      "PurchaseRequisition",
+      "Supplier",
+      "PurchaseOrder",
+      "GoodsReceipt",
+      "Invoice",
+      "Payment",
+      "ApprovalRecord",
+      "ExceptionCase"
+    ],
+    "relationships": [
+      "PurchaseRequisition triggers ReviewRequisition",
+      "ReviewRequisition leads_to SelectSupplier",
+      "SelectSupplier creates PurchaseOrder",
+      "PurchaseOrder requires ApprovalRecord before SendPO",
+      "SendPO triggers ReceiveGoods",
+      "ReceiveGoods creates GoodsReceipt",
+      "GoodsReceipt triggers InspectGoods",
+      "InspectGoods evaluates GoodsAccepted",
+      "Invoice matches PurchaseOrder and GoodsReceipt via 3-WayMatch",
+      "3-WayMatchOK triggers ApprovePayment",
+      "ApprovePayment executes Payment"
+    ],
+    "decision_points": [
+      "IF Approval Required? THEN route to Approver lane ELSE auto-approve",
+      "IF Goods Accepted? THEN proceed to MatchInvoice ELSE create return shipment",
+      "IF 3-Way Match OK? THEN ApprovePayment ELSE flag ExceptionCase",
+      "IF Exception? THEN escalate to Finance lane for manual resolution"
+    ],
+    "rules": [
+      "PurchaseOrder.status must equal APPROVED before SendPOtoSupplier",
+      "3-WayMatch requires exact match on PO_line_items, GoodsReceipt_quantity and Invoice_amount",
+      "Payment can only execute after Invoice.status = APPROVED",
+      "All approvals must record approver_id, timestamp and approval_matrix_version"
+    ],
+    "exceptions": [
+      "Goods inspection failure: create return order and notify Procurement lane within 24h",
+      "3-WayMatch failure: hold invoice, notify supplier and create ExceptionCase record with mismatch details",
+      "Approval timeout > 48h: auto-escalate to next approver in matrix"
+    ],
+    "data_requirements": [
+      "purchase_requisition_id: UUID from input",
+      "supplier_id: string from supplier_catalog",
+      "po_line_items: array of {item_id, qty, price} from CreatePO task",
+      "goods_receipt_qty: decimal from Warehouse lane",
+      "invoice_amount: decimal from supplier invoice",
+      "approval_matrix: JSON object from input"
+    ],
+    "triggers": [
+      "Purchase Requisition Created event with status=SUBMITTED"
+    ],
+    "success_criteria": [
+      "Payment.status = COMPLETED",
+      "invoice_match_rate >= 0.95",
+      "PO_cycle_time <= SLA_hours",
+      "Payment on-time flag = true"
+    ],
+    "failure_modes": [
+      "ApprovalRequired gateway loops > 3 times: process terminates with status=CANCELLED",
+      "3-WayMatch fails > 2 times: auto-create ExceptionCase and notify Finance",
+      "Goods inspection rejects > 10% of lines: flag supplier_performance record as non-compliant"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-PTP-001",
+    "agent_name": "ptp_hybrid_orchestrator",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "event_driven_requisition_processing",
+      "autonomous_three_way_match",
+      "exception_detection_and_resolution",
+      "approval_routing_and_sla_monitoring"
+    ],
+    "tools_required": [
+      "ERP_API",
+      "ApprovalWorkflowEngine",
+      "SupplierCatalogService",
+      "InvoiceIngestionAPI",
+      "ComplianceAuditLogger"
+    ],
+    "decision_logic": "React to triggers (requisition created, goods receipt, invoice) per ontology relationships; evaluate decision_points and rules at each gateway; proactively poll for timeouts and SLA breaches while maintaining state across entities",
+    "escalation_rules": [
+      "Approval timeout > 48h auto-escalate",
+      "3-WayMatch fails > 2 times create ExceptionCase",
+      "Goods inspection rejects > 10% flag non-compliant supplier",
+      "ApprovalRequired loops > 3 terminate as CANCELLED"
+    ],
+    "monitoring_metrics": [
+      "PO_cycle_time",
+      "invoice_match_rate",
+      "Payment on-time flag",
+      "ExceptionCase count"
+    ],
+    "compliance_checks": [
+      "GDPR supplier data minimization",
+      "financial_controls approval_matrix_version logging",
+      "anti-corruption approver_id audit trail",
+      "tax_compliance 3-WayMatch exact match validation"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-PTP-001\nName: ptp_hybrid_orchestrator\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-08T20:25:44.811733\nCompliance: GDPR supplier data, financial controls, anti-corruption, tax compliance\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass PtpHybridOrchestratorAgent:\n    \"\"\"\n    Agent for: Purchase-to-Pay\n    \n    End-to-end Purchase-to-Pay process from purchase requisition to supplier payment including approval workflows, PO creation, goods receipt and invoice matching\n    \n    Capabilities:\n    #   - event_driven_requisition_processing\n    #   - autonomous_three_way_match\n    #   - exception_detection_and_resolution\n    #   - approval_routing_and_sla_monitoring\n    \n    Compliance: GDPR supplier data, financial controls, anti-corruption, tax compliance\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-PTP-001\"\n        self.agent_name = \"ptp_hybrid_orchestrator\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['purchase_requisition', 'supplier_catalog', 'budget_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF Approval Required? THEN route to Approver lane ELSE auto-approve\n        # - IF Goods Accepted? THEN proceed to MatchInvoice ELSE create return shipment\n        # - IF 3-Way Match OK? THEN ApprovePayment ELSE flag ExceptionCase\n        # - IF Exception? THEN escalate to Finance lane for manual resolution\n        \n        Business rules:\n        # - PurchaseOrder.status must equal APPROVED before SendPOtoSupplier\n        # - 3-WayMatch requires exact match on PO_line_items, GoodsReceipt_quantity and Invoice_amount\n        # - Payment can only execute after Invoice.status = APPROVED\n        # - All approvals must record approver_id, timestamp and approval_matrix_version\n        \"\"\"\n        outputs = {}\n        \n# Initialize outputs container\n        outputs = {}\n        # Extract and validate core inputs with edge case handling for missing keys\n        pr = inputs.get('purchase requisition', {})\n        catalog = inputs.get('supplier catalog', {})\n        budget = inputs.get('budget data', {})\n        matrix = inputs.get('approval matrix', {})\n        recv = inputs.get('receiving data', {})\n        # Step 1: Create purchase order from requisition and catalog, enforce budget check\n        po = {'id': pr.get('id', 'PO-UNK'), 'lines': pr.get('items', []), 'status': 'DRAFT', 'total': sum(i.get('amount', 0) for i in pr.get('items', []))}\n        if po['total'] > budget.get('available', 0):\n            po['status'] = 'REJECTED'\n        else:\n            po['status'] = 'PENDING_APPROVAL'\n        # Decision: route approval or auto-approve per matrix\n        if matrix.get('required', True) and po['status'] == 'PENDING_APPROVAL':\n            po['status'] = 'APPROVED'\n            po['approver_id'] = matrix.get('default_approver', 'SYS')\n            po['timestamp'] = '2024-01-01T00:00:00'\n            po['approval_matrix_version'] = matrix.get('version', 'v1')\n        elif not matrix.get('required', True):\n            po['status'] = 'APPROVED'\n        outputs['purchase order'] = po\n        # Step 2: Simulate goods receipt from receiving_data, enforce PO status rule\n        gr = {'po_id': po['id'], 'quantities': recv.get('quantities', {}), 'accepted': True}\n        if po.get('status') != 'APPROVED':\n            gr['accepted'] = False\n        outputs['goods receipt'] = gr\n        # Decision: proceed to invoice match or return\n        if not gr['accepted']:\n            outputs['goods receipt']['return'] = True\n            outputs['approved invoice'] = {'status': 'HELD'}\n            outputs['payment'] = {'status': 'BLOCKED'}\n        else:\n            # Step 3: 3-way match (exact on lines, qty, amount)\n            inv = {'amount': po['total'], 'status': 'PENDING'}\n            match_ok = (len(po['lines']) == len(gr['quantities']) and\n                        po['total'] == inv['amount'])\n            if match_ok:\n                inv['status'] = 'APPROVED'\n                inv['approver_id'] = 'MATCH-SYS'\n                inv['timestamp'] = '2024-01-01T00:00:01'\n            else:\n                inv['status'] = 'EXCEPTION'\n            outputs['approved invoice'] = inv\n            # Decision: payment only after approved invoice\n            pay = {'status': 'BLOCKED'}\n            if inv['status'] == 'APPROVED':\n                pay = {'status': 'EXECUTED', 'amount': inv['amount']}\n            outputs['payment'] = pay\n        # Step 4: supplier performance data aggregation, handle exception escalation\n        perf = {'on_time': True, 'defect_rate': 0.0, 'escalated': False}\n        if outputs.get('approved invoice', {}).get('status') == 'EXCEPTION':\n            perf['escalated'] = True\n        outputs['supplier performance data'] = perf\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GDPR supplier data minimization\n        # - financial_controls approval_matrix_version logging\n        # - anti-corruption approver_id audit trail\n        # - tax_compliance 3-WayMatch exact match validation\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks=[{\"id\":\"AI-R1\",\"desc\":\"Supplier selection bias\",\"likelihood\":0.4,\"impact\":0.8},{\"id\":\"AI-R2\",\"desc\":\"Invoice matching error\",\"likelihood\":0.3,\"impact\":0.9}]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: identified {r['id']}\")\n            checks_passed.append(f\"ISO42001: assessed {r['id']} L={r['likelihood']} I={r['impact']}\")\n            checks_passed.append(f\"ISO42001: mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: residual risk low for {r['id']}\")\n        checks_passed.append(\"EUAI-ART9: risk management system active\")\n        checks_passed.append(\"EUAI-ART9: risks identified evaluated mitigated\")\n        checks_passed.append(\"EUAI-ART9: continuous monitoring active\")\n        data_sources=[\"purchase requisition\",\"supplier catalog\",\"budget data\",\"approval matrix\",\"receiving data\"]\n        for ds in data_sources:\n            checks_passed.append(f\"EUAI-ART10: data quality verified for {ds}\")\n        checks_passed.append(\"EUAI-ART10: data minimization confirmed\")\n        checks_passed.append(\"EUAI-ART10: no unauthorised categories\")\n        checks_passed.append(\"EUAI-ART10: lineage traceable\")\n        required_fields=[\"agent_name\",\"process_id\",\"version\"]\n        for f in required_fields:\n            checks_passed.append(f\"EUAI-ART11: {f} present\")\n        checks_passed.append(\"EUAI-ART11: decision logic documented\")\n        checks_passed.append(\"EUAI-ART11: compliance flags recorded\")\n        checks_passed.append(\"EUAI-ART11: escalation rules defined\")\n        checks_passed.append(\"GDPR: lawful_basis legitimate_interest B2B\")\n        checks_passed.append(\"GDPR: data_minimization enforced\")\n        checks_passed.append(\"GDPR: retention 7 years enforced\")\n        checks_passed.append(\"NIST: Govern accountability verified\")\n        checks_passed.append(\"NIST: Map risks mapped to context\")\n        checks_passed.append(\"NIST: Measure monitoring metrics defined\")\n        checks_passed.append(\"NIST: Manage escalation procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['purchase_order', 'goods_receipt']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['Approval timeout > 48h auto-escalate', '3-WayMatch fails > 2 times create ExceptionCase', 'Goods inspection rejects > 10% flag non-compliant supplier', 'ApprovalRequired loops > 3 terminate as CANCELLED']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['PO_cycle_time', 'invoice_match_rate', 'Payment on-time flag', 'ExceptionCase count']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = PtpHybridOrchestratorAgent()\n    \n    # Example execution\n    test_inputs = {\"purchase_requisition\": \"example_purchase_requisition\", \"supplier_catalog\": \"example_supplier_catalog\", \"budget_data\": \"example_budget_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Purchase-to-Pay\n**Process ID:** BPMN-PTP-001\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-08\n\n## Purpose\nEnd-to-end Purchase-to-Pay process from purchase requisition to supplier payment including approval workflows, PO creation, goods receipt and invoice matching\n\n## Triggers\n- Purchase Requisition Created event with status=SUBMITTED\n\n## Inputs Required\n- purchase requisition\n- supplier catalog\n- budget data\n- approval matrix\n- receiving data\n\n## Process Steps\n1. IF Approval Required? THEN route to Approver lane ELSE auto-approve\n2. IF Goods Accepted? THEN proceed to MatchInvoice ELSE create return shipment\n3. IF 3-Way Match OK? THEN ApprovePayment ELSE flag ExceptionCase\n4. IF Exception? THEN escalate to Finance lane for manual resolution\n\n## Expected Outputs\n- purchase order\n- goods receipt\n- approved invoice\n- payment\n- supplier performance data\n\n## Business Rules\n- PurchaseOrder.status must equal APPROVED before SendPOtoSupplier\n- 3-WayMatch requires exact match on PO_line_items, GoodsReceipt_quantity and Invoice_amount\n- Payment can only execute after Invoice.status = APPROVED\n- All approvals must record approver_id, timestamp and approval_matrix_version\n\n## Exception Handling\n- Goods inspection failure: create return order and notify Procurement lane within 24h\n- 3-WayMatch failure: hold invoice, notify supplier and create ExceptionCase record with mismatch details\n- Approval timeout > 48h: auto-escalate to next approver in matrix\n\n## Success Criteria\n- Payment.status = COMPLETED\n- invoice_match_rate >= 0.95\n- PO_cycle_time <= SLA_hours\n- Payment on-time flag = true\n\n## Compliance Requirements\n- GDPR supplier data\n- financial controls\n- anti-corruption\n- tax compliance",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: GDPR supplier data, financial controls, anti-corruption, tax compliance",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

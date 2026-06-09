@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_114217_884103",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-WMS-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T11:42:17.884116",
+  "status": "completed",
+  "started_at": "2026-06-08T20:43:54.262240",
+  "completed_at": "2026-06-08T20:48:01.115736",
+  "error": null,
+  "result": {
+    "agent_name": "inbound_warehouse_automation_agent",
+    "ready_for_packager": true
+  }
+}

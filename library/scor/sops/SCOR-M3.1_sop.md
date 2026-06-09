@@ -1,13 +1,15 @@
 # SOP — Schedule Engineer-to-Order Production Activities
 **Process ID:** SCOR-M3.1
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of scheduling ETO production activities integrating engineering design releases with production planning, managing design changes and coordinating multi-discipline project execution
 
 ## Triggers
-- Receipt of engineering releases or design change notices from engineering system
+- New EngineeringRelease published in PLM
+- ProjectSchedule baseline approved
+- DesignChangeNotice issued with severity >= medium
 
 ## Inputs Required
 - engineering releases
@@ -17,8 +19,8 @@ Process of scheduling ETO production activities integrating engineering design r
 - subcontractor schedules
 
 ## Process Steps
-1. IF DesignChangeNotice received THEN recalculate ETOProductionSchedule and ResourceAllocation within 24 hours
-2. IF schedule adherence KPI < 0.9 THEN escalate to related process SCOR-M3.2
+1. IF DesignChangeNotice received AND impact > threshold THEN trigger schedule recalculation and notify stakeholders
+2. IF engineering releases missing THEN hold production scheduling and escalate to engineering
 
 ## Expected Outputs
 - ETO production schedules
@@ -27,14 +29,18 @@ Process of scheduling ETO production activities integrating engineering design r
 - milestone tracking
 
 ## Business Rules
-- All ETOProductionSchedule outputs must reference compliance_flags: defense acquisition regulations or ITAR before release
-- ResourceAllocation must integrate inputs from engineering releases and subcontractor schedules with version control
+- All ETOProductionSchedule entries must reference at least one EngineeringRelease before activation
+- ResourceAllocation must not exceed ResourcePlan capacity by more than 5%
+- DesignChangeNotice processing must complete within 48 hours for ITAR-controlled items
 
 ## Exception Handling
-- Unresolved design change after 48 hours: freeze ETOProductionSchedule and notify project manager via milestone tracking
+- Major design change (>20% scope) requires full re-baseline of MilestoneTracking and approval from project manager before schedule update
+- SubcontractorSchedule conflicts trigger manual override flag and fallback to internal resource buffer
 
 ## Success Criteria
-- Schedule adherence KPI >= 0.95 AND project milestone achievement = 100% with no open design change impacts
+- schedule_adherence >= 0.95 measured as (actual vs planned milestone dates)
+- engineering_production_interface_efficiency >= 0.90 (interface plan tasks completed on time)
+- design_change_impact <= 0.15 (percentage of milestones delayed by changes)
 
 ## Compliance Requirements
 - defense acquisition regulations

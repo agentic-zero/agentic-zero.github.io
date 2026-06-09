@@ -1,4 +1,4 @@
-# Integration Guide — eto_issue_automation_agent
+# Integration Guide — eto_component_issue_agent
 **Process:** Issue In-Process Product (ETO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_issue_automation_agent.py ./agents/
+cp eto_component_issue_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_issue_automation_agent import EtoIssueAutomationAgentAgent
+from agents.eto_component_issue_agent import EtoComponentIssueAgentAgent
 
-agent = EtoIssueAutomationAgentAgent()
+agent = EtoComponentIssueAgentAgent()
 result = agent.execute({
     "engineering_boms": your_engineering_boms_data,
     "configuration_documents": your_configuration_documents_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- PLM_system_api
-- MES_workpackage_interface
-- inventory_master_query
-- sha256_generator
-- compliance_signature_checker
+- PLM_API
+- ERP_API
+- MES_API
+- Audit_Log_System
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing configuration signature routes to compliance queue
-- BOM mismatch auto-creates discrepancy and notifies engineering within 4 hours
-- Traceability break from override requires quality sign-off
+- BOM version mismatch or missing Configuration_Document
+- traceability_completeness < 100%
+- export_control or AS9100 flag violation

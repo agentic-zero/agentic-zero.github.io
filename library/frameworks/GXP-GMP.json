@@ -1,0 +1,17 @@
+{
+  "process_id": "GXP-GMP",
+  "name": "Good Manufacturing Practice (GMP) — EU Annex 11",
+  "framework": "EU GMP + Annex 11",
+  "domain": "GxP",
+  "level": "L1",
+  "description": "Good Manufacturing Practice compliance for pharmaceutical manufacturing including computerized systems validation (Annex 11), data integrity (ALCOA+), batch record management and quality system requirements",
+  "inputs": ["manufacturing procedures", "validation documentation", "batch records", "equipment qualification", "data integrity controls"],
+  "outputs": ["GMP-compliant products", "batch release decisions", "validation reports", "data integrity evidence", "audit trails"],
+  "kpis": ["batch right-first-time rate", "data integrity compliance", "Annex 11 validation coverage", "GMP audit findings"],
+  "related_processes": ["GXP-GDP", "BPMN-GXP-001", "BPMN-GXP-004", "SCOR-M2.3", "SCOR-E8"],
+  "sector_applicability": ["pharma", "biotech", "medical devices", "API manufacturers"],
+  "compliance_flags": ["EU GMP Part I & II", "EU Annex 11", "21 CFR Part 211", "ICH Q10", "ALCOA+ data integrity"],
+  "automation_potential": 0.65,
+  "source": "EU GMP Guidelines + Annex 11 + ICH Q10",
+  "confidence": 0.96
+}

@@ -1,14 +1,14 @@
 # SOP — Package (ETO)
 **Process ID:** SCOR-M3.4
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of packaging ETO products for delivery including export packaging, preservation treatment, technical documentation packaging and marking per contract requirements
 
 ## Triggers
-- Receipt of ETO finished products from SCOR-M3.3 with status 'complete'
-- Availability of signed contract packaging requirements
+- Receipt of ETO finished products from SCOR-M3.3
+- Availability of signed contract packaging requirements and documentation packages
 
 ## Inputs Required
 - ETO finished products
@@ -18,9 +18,9 @@ Process of packaging ETO products for delivery including export packaging, prese
 - documentation packages
 
 ## Process Steps
-1. IF Sector == 'defense' THEN apply MIL-SPEC packaging and set Compliance_Flag
-2. IF Export_Requirement contains dangerous_goods THEN apply IATA/IMO labeling and special containment
-3. IF contract packaging requirements specify preservation THEN execute Preservation_Specification before final sealing
+1. IF sector_applicability contains 'defense' THEN enforce MIL-SPEC packaging
+2. IF export_requirements present THEN apply export control marking and dangerous goods checks
+3. IF contract_packaging_requirements contain preservation specs THEN execute preservation treatment before final packaging
 
 ## Expected Outputs
 - packaged ETO products
@@ -29,20 +29,21 @@ Process of packaging ETO products for delivery including export packaging, prese
 - packaging records
 
 ## Business Rules
-- All contract packaging requirements must be validated before packaging starts
-- Export markings must match destination country regulations
-- Documentation_Package must be included inside and outside the shipping container
-- Packaging cycle time must be logged for KPI calculation
+- All packaged ETO products must achieve packaging specification compliance = true
+- Technical documentation packages must achieve documentation completeness = 100%
+- Packaging cycle time must not exceed contract SLA
+- Export markings and preservation treatment must match contract and regulatory requirements
 
 ## Exception Handling
-- Missing contract packaging requirements: halt process and trigger procurement exception workflow
-- Dangerous goods without proper classification: escalate to compliance officer before proceeding
+- Dangerous goods: route to certified handler and add UN-compliant labeling before standard packaging
+- Contract-specific packaging conflict: escalate to contract admin and hold until resolved
 
 ## Success Criteria
-- packaging_specification_compliance == 100%
-- documentation_completeness == true
-- preservation_effectiveness test passed
-- Packaging_Record created and linked to contract_id
+- packaging_specification_compliance == true
+- documentation_completeness == 100%
+- packaging_cycle_time <= contract SLA
+- preservation_effectiveness == true
+- All outputs (PackagedETOProduct, TechnicalDocumentationPackage, ExportMarking, PackagingRecord) generated
 
 ## Compliance Requirements
 - MIL-SPEC packaging if defense

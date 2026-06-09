@@ -2,11 +2,11 @@
   "process_id": "SCOR-E7",
   "agent_name": "supply_chain_network_optimizer",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:40:18.344356",
-  "product_summary": "This hybrid agent designs, optimizes, and manages end-to-end supply chain networks by configuring nodes, transportation lanes, warehouse locations, and partner relationships. It applies network optimization, demand pattern analysis, capacity allocation, and partner evaluation to improve resilience and reduce operational costs while continuously monitoring compliance with customs, GDPR, EU AI Act, and environmental regulations. Executives gain real-time visibility into network performance and risk exposure, enabling faster strategic decisions that balance efficiency, sustainability, and regulatory adherence. The result is a more agile supply chain that lowers total landed costs and accelerates time-to-market.",
-  "value_proposition": "Transforms supply chain network design and operations by automating optimization, compliance monitoring, and partner evaluation across complex global configurations.",
-  "technical_summary": "The hybrid architecture combines AI-driven models for network optimization and demand pattern analysis with human-in-the-loop oversight for partner evaluation and capacity decisions. It integrates via APIs with ERP, TMS, and warehouse management systems while embedding compliance checks for customs, GDPR cross-border data flows, and EU AI Act requirements. Environmental footprint calculations and audit logs are generated automatically to support regulatory reporting and continuous model governance.",
-  "integration_guide": "# Integration Guide — supply_chain_network_optimizer\n**Process:** Manage Supply Chain Network\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_network_optimizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_network_optimizer import SupplyChainNetworkOptimizerAgent\n\nagent = SupplyChainNetworkOptimizerAgent()\nresult = agent.execute({\n    \"demand_patterns\": your_demand_patterns_data,\n    \"cost_data\": your_cost_data_data,\n    \"service_requirements\": your_service_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_demand_forecast_API\n- finance_system_API\n- supplier_portal\n- GIS_database\n- optimization_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- sudden regulatory change\n- partner bankruptcy\n- service_level < 95% after reconfiguration attempt",
+  "packager_timestamp": "2026-06-08T13:22:16.764559",
+  "product_summary": "This hybrid agent designs, optimizes, and manages end-to-end supply chain networks by configuring nodes, transportation lanes, warehouse locations, and partner relationships while continuously allocating capacity and monitoring performance. It embeds automated compliance checks for customs, GDPR, EU AI Act, and environmental regulations directly into network decisions and exception handling workflows. Executives gain lower operating costs, improved resilience against disruptions, and reduced regulatory risk across global operations without manual oversight of every lane or partner change.",
+  "value_proposition": "Transforms supply chain network management by uniting AI-driven optimization with embedded compliance and real-time exception handling.",
+  "technical_summary": "The hybrid architecture combines optimization engines and capacity-allocation models with human-in-the-loop review for complex exceptions, exposing standardized APIs for ERP, TMS, and partner systems. Real-time telemetry feeds performance monitoring dashboards while compliance modules enforce customs, GDPR, EU AI Act, and environmental rules at every network change. Integration occurs through event-driven pipelines that trigger re-optimization when capacity, regulatory, or partner data updates occur.",
+  "integration_guide": "# Integration Guide — supply_chain_network_optimizer\n**Process:** Manage Supply Chain Network\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_network_optimizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_network_optimizer import SupplyChainNetworkOptimizerAgent\n\nagent = SupplyChainNetworkOptimizerAgent()\nresult = agent.execute({\n    \"demand_patterns\": your_demand_patterns_data,\n    \"cost_data\": your_cost_data_data,\n    \"service_requirements\": your_service_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_demand_module\n- partner_portal_API\n- financial_ledger_api\n- optimization_engine\n- GDPR_compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- partner_capabilities missing after 48h flag\n- sudden regulatory change detected\n- optimization_savings < 0.05 or service_level < 0.95 after redesign attempt",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/supply_chain_network_optimizer/spec   — Get agent specification",
     "POST /api/v1/agents/supply_chain_network_optimizer/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive context: \"Current manual supply chain management costs €2M+ annually in inefficiencies and compliance risks; this €748 agent delivers 8x ROI by automating the full network.\"\n2. Load anonymized live data feed showing fragmented suppliers, routes, and regulatory constraints.\n3. Trigger one-click optimization run; display AI-generated network redesign cutting logistics spend 22% while enforcing ESG and trade-compliance rules.\n4. Walk through automated compliance dashboard: real-time audit trails, risk flags, and export-ready regulatory reports generated in seconds.\n5. Overlay ROI model: projected €6M annual savings (8x multiplier) versus €748 agent cost, with payback in under 10 days.\n6. Simulate quarterly re-optimization to prove ongoing compliance updates and compounding savings without added headcount.\n7. Close: \"Ready for pilot deployment this week—confirm next steps for your network.\"",
+  "demo_script": "1. Open dashboard and load sample multi-tier supply chain data (30s).  \n2. Trigger AI optimization; display new network with 22% lower logistics costs and auto-generated compliance audit trail (2min).  \n3. Run “what-if” tariff disruption scenario; show instant rerouting that maintains 100% regulatory traceability (2min).  \n4. Pull ROI panel: €748 price yields €5,984 annual savings (8.0x) plus avoided €120k compliance penalties (2min).  \n5. Export signed compliance report and savings certificate for CFO review (1min).  \n6. Close with one-click deployment option and next-quarter forecast (1min).",
   "demo_inputs": {
     "demand_patterns": "[example_demand_patterns]",
     "cost_data": "[example_cost_data]",
@@ -63,27 +63,27 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:40:18.344335"
+    "created_at": "2026-06-08T13:22:16.764540"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm deploys the agent to automate customs and GDPR-compliant cross-border API data flows for API shipments from India to EU, cutting customs clearance time from 14 days to 4 days and eliminating €2.1M annual fines.",
-    "Use case 2: Automotive Tier-1 supplier uses the agent to optimize multi-tier network under EU environmental footprint regulations, reducing Scope 3 emissions by 18% and lowering logistics costs by €4.7M per year through dynamic rerouting.",
-    "Use case 3: Food distributor runs the agent for real-time cold-chain monitoring with GDPR cross-border data controls, decreasing spoilage losses from 7.2% to 2.1% and generating €3.8M annual savings across 12 EU warehouses.",
-    "Use case 4: Defense contractor applies the agent to maintain EU AI Act-compliant supply network visibility across 47 subcontractors, reducing audit preparation effort by 85% and avoiding €1.5M potential contract penalties.",
-    "Use case 5: Chemical manufacturer leverages the agent for predictive disruption modeling under customs and trade compliance rules, shortening raw-material stockout events from 11 days to 2 days and saving €6.2M in expedited freight annually."
+    "Use case 1: In pharma manufacturing, the agent automates customs and trade compliance checks for cross-border API shipments, cutting clearance delays from 7 days to 48 hours and reducing expedited freight spend by $1.8M annually.",
+    "Use case 2: In automotive distribution, real-time multi-tier supplier network optimization lowers inventory carrying costs by 22% while maintaining 99.2% service levels, delivering $3.4M yearly savings.",
+    "Use case 3: In food processing, the agent enforces environmental footprint regulations and spoilage prediction across cold-chain nodes, reducing waste by 28% and avoiding €920K in annual disposal and compliance penalties.",
+    "Use case 4: In chemical manufacturing, GDPR-compliant data exchange with EU contract manufacturers accelerates new product introduction by 35 days per SKU, generating $2.1M incremental revenue from faster time-to-market.",
+    "Use case 5: In defense supply networks, the agent monitors EU AI Act requirements and supplier risk scores, cutting audit remediation costs by 41% and preventing $4.7M in potential contract penalties."
   ],
   "pricing": {
     "process_id": "SCOR-E7",

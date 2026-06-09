@@ -34,14 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- regulatory_update_feed
 - decision_log_store
-- cryptographic_hasher
-- certification_registry_api
-- conformity_assessment_engine
+- regulatory_update_api
+- certification_status_db
+- audit_report_generator
+- GxP_validation_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- non_conformity unresolved past resolution_deadline
-- certification_status expired or pending on critical audit
-- audit_trail_completeness < 1.0 after reconciliation attempt
+- non_conformity detected with unresolved SLA timer
+- certification_status expired
+- GxP_validation missing for pharma sector
+- audit_trail_completeness < 1.0 after reconciliation

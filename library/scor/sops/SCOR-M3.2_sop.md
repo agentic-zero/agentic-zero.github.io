@@ -1,14 +1,14 @@
 # SOP — Issue In-Process Product (ETO)
 **Process ID:** SCOR-M3.2
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of issuing custom-engineered components and materials to ETO production operations maintaining configuration control and engineering traceability throughout
 
 ## Triggers
-- WorkPackage status changed to 'Released' in MES
-- ProductionRouting step reached 'Material Issue'
+- WorkPackage status changed to 'released' with linked ProductionRouting
+- New ETOComponent batch arrives from receiving with configuration_documents attached
 
 ## Inputs Required
 - engineering BOMs
@@ -18,7 +18,8 @@ Process of issuing custom-engineered components and materials to ETO production 
 - production routings
 
 ## Process Steps
-1. IF EngineeringBOM version == ConfigurationDocument version THEN proceed to issue ETOComponent ELSE hold for engineering review
+1. IF configuration_documents.version == engineering_BOMs.version AND all compliance_flags satisfied THEN issue ETOComponent
+2. IF traceability_completeness == true THEN close WorkPackage assignment
 
 ## Expected Outputs
 - issued ETO components
@@ -27,18 +28,18 @@ Process of issuing custom-engineered components and materials to ETO production 
 - traceability records
 
 ## Business Rules
-- rule1: All issued ETOComponent must retain original serial/lot traceability from source
-- rule2: ConfigurationRecord must be created before any WorkPackage assignment
-- rule3: Issue cycle time must be logged with timestamp at each ETOComponent release
+- Maintain configuration control: every ETOComponent must have linked ConfigurationRecord before issuance
+- Enforce engineering traceability: all inputs and outputs must log to TraceabilityRecord with timestamp and user_id
+- Sector compliance: defense and aerospace require AS9100 and export_control checks before output
 
 ## Exception Handling
-- Missing configuration signature: route to compliance queue and block issuance until signed
-- BOM mismatch detected: auto-create discrepancy record and notify engineering within 4 hours
+- If BOM_accuracy < 1.0: block issuance and route to engineering review queue
+- If export_control flag active: require dual authorization before generating IssuedETOComponent
 
 ## Success Criteria
-- configuration_accuracy >= 99.5%
-- traceability_completeness == 100%
-- issue_cycle_time <= target defined in WorkPackage
+- configuration_accuracy == 1.0
+- traceability_completeness == true
+- all IssuedETOComponent have non-null ConfigurationRecord and TraceabilityRecord
 
 ## Compliance Requirements
 - configuration management standards

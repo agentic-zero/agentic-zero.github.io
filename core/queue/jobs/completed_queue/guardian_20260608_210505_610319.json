@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260608_210505_610319",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-OTC-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T21:05:05.610336",
+  "status": "completed",
+  "started_at": "2026-06-08T21:14:06.507021",
+  "completed_at": "2026-06-08T21:14:10.229349",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-OTC-001-20260608",
+    "status": "conditional",
+    "process_id": "BPMN-OTC-001"
+  }
+}

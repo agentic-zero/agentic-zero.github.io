@@ -1,4 +1,4 @@
-# Integration Guide — defective_product_return_scheduler
+# Integration Guide — defective_return_receipt_scheduler
 **Process:** Schedule Defective Product Return Receipt
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp defective_product_return_scheduler.py ./agents/
+cp defective_return_receipt_scheduler.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.defective_product_return_scheduler import DefectiveProductReturnSchedulerAgent
+from agents.defective_return_receipt_scheduler import DefectiveReturnReceiptSchedulerAgent
 
-agent = DefectiveProductReturnSchedulerAgent()
+agent = DefectiveReturnReceiptSchedulerAgent()
 result = agent.execute({
     "rma_authorization": your_rma_authorization_data,
     "customer_shipment_notice": your_customer_shipment_notice_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- erp_rma_api
-- warehouse_management_system
-- compliance_engine
-- scheduling_optimizer
-- notification_service
+- RMA_validation_API
+- Warehouse_capacity_API
+- Scheduling_engine
+- Compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- insufficient capacity after proposing next slot
-- missing GxP or cold-chain data after hold
-- unresolved resource conflict exceeding 90% utilization
+- Missing or invalid RMA
+- Insufficient resources after reallocation
+- Cold chain or GxP violation risk

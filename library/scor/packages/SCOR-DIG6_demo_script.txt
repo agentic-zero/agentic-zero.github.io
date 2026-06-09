@@ -1,6 +1,6 @@
-1. Open with executive pain: "Manual predictive analytics pipelines cost €6K+ monthly in delays and compliance risks—our AI agent automates the full process for €748."
-2. Trigger live pipeline: Run a sample forecast; agent auto-ingests data, builds models, and outputs predictions in <60 seconds vs. 4-hour manual baseline.
-3. Highlight compliance layer: Display real-time audit trail, GDPR/CCPA flags, and one-click regulatory report—zero manual documentation required.
-4. Surface ROI dashboard: Show 8.0x multiplier metrics—€5,984 net value per deployment, 92% faster cycle time, and 40% reduction in compliance audit hours.
-5. Stress-test edge case: Simulate data drift; agent auto-detects, retrains, and logs changes with full traceability for executives and regulators.
-6. Close with action: "Deploy today for immediate 8x ROI and audit-ready compliance—next step is a 15-minute pilot on your data."
+1. Open with the €748 investment and 8.0x ROI target: show current manual pipeline costs (€6k+/month in analyst time and compliance remediation) versus the automated outcome.
+2. Trigger the agent on a live dataset; display one-click pipeline initialization that replaces 4–6 hours of manual ETL and model training.
+3. Run the built-in compliance scan: highlight automatic GDPR/CCPA checks, audit logs, and risk flagging completed in <60 seconds with zero manual review.
+4. Execute the predictive run and surface results: accuracy metrics, bias detection, and regulatory sign-off report generated instantly.
+5. Project the ROI dashboard: calculate 8.0x return via 22 hours saved per cycle, reduced audit penalties, and faster time-to-insight, confirming payback in under one week.
+6. Close with next-step deployment options and a 30-day compliance-assured pilot.

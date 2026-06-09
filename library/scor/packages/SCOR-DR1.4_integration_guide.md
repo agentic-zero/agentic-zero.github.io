@@ -34,13 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- warehouse_management_api
-- transfer_resource_scheduler
-- compliance_validator
-- kpi_monitor
+- warehouse_management_system
+- compliance_checker_api
+- transfer_scheduler
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing disposition decision triggers SCOR-DR1.3
-- Hazardous material detected
-- Transfer accuracy < 99% or cycle_time exceeded
+- Hazardous product missing environmental compliance or override
+- Missing DispositionDecision escalate to SCOR-DR1.3
+- Transfer cycle time breach or resource unavailable

@@ -1,14 +1,13 @@
 # SOP — Pick Product (MTO)
 **Process ID:** SCOR-D2.9
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of picking MTO finished goods from staging or warehouse locations for outbound shipment preparation
 
 ## Triggers
-- PickList released from SCOR-D2.8
-- OrderDocumentation status == released
+- PickList received from order fulfillment system (SCOR-D2.8)
 
 ## Inputs Required
 - pick lists
@@ -18,8 +17,7 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - scan systems
 
 ## Process Steps
-1. IF scan_result == mismatch THEN flag_exception_and_hold_product
-2. IF pick_quantity < PickList.required_qty THEN trigger_repick_or_backorder
+1. IF scan_result == 'match' THEN decrement InventoryRecord and generate PickConfirmation ELSE flag exception and hold item
 
 ## Expected Outputs
 - picked products
@@ -28,18 +26,18 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - staging for pack
 
 ## Business Rules
-- PickList must be validated against OrderDocumentation before execution
-- All picks require ScanSystem confirmation to update InventoryRecord
-- Compliance: apply GxP audit trail if sector == pharma
+- ScanSystem must confirm every item before PickConfirmation is issued
+- Only MTO finished goods from designated StagingLocation may be picked
+- PickList must be fully completed before staging for pack
 
 ## Exception Handling
-- Missing item at StagingLocation: log shortage, notify SCOR-D2.8, create backorder record
-- Scan failure: require manual override with supervisor approval and dual sign-off
+- Item not found at StagingLocation: trigger supervisor alert and create replenishment request
+- Scan mismatch: quarantine item and log discrepancy for inventory audit
 
 ## Success Criteria
-- pick_accuracy >= 99.5%
-- PickConfirmation generated within SLA
-- InventoryRecord updated with no discrepancies
+- PickConfirmation generated for 100% of PickList items
+- InventoryRecord updated with depletion
+- PickedProduct staged at PackStagingLocation
 
 ## Compliance Requirements
 - GxP if pharma

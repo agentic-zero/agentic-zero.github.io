@@ -4,7 +4,7 @@ Process: SCOR-D2.2
 Name: mto_order_validation_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-07T20:43:14.091411
+Generated: 2026-06-08T15:48:29.063645
 Compliance: GDPR customer order data, consumer protection regulations, contractual compliance
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,9 @@ class MtoOrderValidationAgentAgent:
     Process of receiving and validating MTO customer orders including configuration verification, feasibility assessment, lead time commitment and order acknowledgment
     
     Capabilities:
-    #   - validate_customer_order_configuration
-    #   - check_capacity_leadtime_pricing
-    #   - generate_validated_order_and_acknowledgment
-    #   - emit_production_trigger
+    #   - order_receipt_validation
+    #   - configuration_capacity_leadtime_pricing_check
+    #   - acknowledgment_and_trigger_generation
     
     Compliance: GDPR customer order data, consumer protection regulations, contractual compliance
     """
@@ -139,38 +138,48 @@ class MtoOrderValidationAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF configuration valid AND capacity sufficient AND lead time feasible THEN commit order ELSE reject or renegotiate
+        # - IF configuration_valid == true AND capacity_available >= required AND lead_time_feasible == true THEN commit_delivery_date ELSE return rejection_reason
         
         Business rules:
-        # - Validate all customer order fields against product configurator before proceeding
-        # - Order acknowledgment must be issued within SLA time window
-        # - GDPR consent flag required on all customer order data
+        # - order_validation_cycle_time <= 4 hours
+        # - configuration_accuracy >= 99 percent
+        # - order_acknowledgment_on_time_rate >= 98 percent
+        # - GDPR consent flag must be true on CustomerOrder
+        # - contractual_terms must match pricing_data before commitment
         """
         outputs = {}
         
-# Extract inputs with safe defaults for edge cases (missing keys or None)
-        cust_order = inputs.get('customer order') or {}
-        prod_config = inputs.get('product configurator') or {}
-        cap_data = inputs.get('capacity data') or {}
-        lt_data = inputs.get('lead time data') or {}
-        price_data = inputs.get('pricing data') or {}
-
-        # Rule: GDPR consent flag required; reject early if missing
-        if not cust_order.get('gdpr_consent', False):
-            return {'validated order': None, 'order acknowledgment': 'Rejected: GDPR consent missing', 'production order trigger': None, 'delivery commitment': None}
-
-        # Validate all order fields against configurator before any further processing
-        order_fields = cust_order.get('fields', {})
-        if not all(k in prod_config for k in order_fields):
-            return {'validated order': None, 'order acknowledgment': 'Rejected: configuration invalid', 'production order trigger': None, 'delivery commitment': None}
-
-        # Decision point: check capacity + lead time feasibility
-        if cap_data.get('sufficient', False) and lt_data.get('feasible', False):
-            validated = dict(cust_order)
-            validated['price'] = price_data.get('unit_price')
-            outputs = {'validated order': validated, 'order acknowledgment': 'Committed within SLA', 'production order trigger': {'sku': validated.get('sku'), 'qty': validated.get('qty')}, 'delivery commitment': lt_data.get('date')}
+# Extract and validate inputs with edge case handling for missing keys
+        cust_order = inputs.get('customer order', {}) or {}
+        prod_cfg = inputs.get('product configurator', {}) or {}
+        cap_data = inputs.get('capacity data', {}) or {}
+        lt_data = inputs.get('lead time data', {}) or {}
+        price_data = inputs.get('pricing data', {}) or {}
+        # GDPR consent check per rules
+        if not cust_order.get('gdpr_consent_flag', False):
+            return {'validated order': None, 'order acknowledgment': 'Rejected: GDPR consent required', 'production order trigger': False, 'delivery commitment': None}
+        # Contractual terms match check
+        if cust_order.get('contractual_terms') != price_data.get('terms'):
+            return {'validated order': None, 'order acknowledgment': 'Rejected: terms mismatch', 'production order trigger': False, 'delivery commitment': None}
+        # Decision point evaluation
+        cfg_valid = prod_cfg.get('configuration_valid', False)
+        cap_avail = cap_data.get('capacity_available', 0)
+        req_qty = cust_order.get('required_quantity', 0)
+        lt_feas = lt_data.get('lead_time_feasible', False)
+        outputs = {}
+        if cfg_valid and cap_avail >= req_qty and lt_feas:
+            # Commit path
+            outputs['validated order'] = dict(cust_order, validation_status='valid')
+            outputs['order acknowledgment'] = 'Order accepted within SLA'
+            outputs['production order trigger'] = True
+            outputs['delivery commitment'] = lt_data.get('commit_date')
         else:
-            outputs = {'validated order': None, 'order acknowledgment': 'Rejected or renegotiate', 'production order trigger': None, 'delivery commitment': None}
+            # Rejection path with reason
+            reason = 'configuration' if not cfg_valid else ('capacity' if cap_avail < req_qty else 'lead time')
+            outputs['validated order'] = None
+            outputs['order acknowledgment'] = f'Rejected: {reason} infeasible'
+            outputs['production order trigger'] = False
+            outputs['delivery commitment'] = None
         return outputs
         
         return outputs
@@ -180,9 +189,9 @@ class MtoOrderValidationAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - GDPR_consent_flag_presence
-        # - consumer_protection_field_validation
-        # - contractual_SLA_tracking
+        # - gdpr_consent_flag_verification
+        # - contractual_terms_pricing_match
+        # - consumer_protection_regulations
         """
         checks_passed = []
         checks_failed = []
@@ -206,7 +215,7 @@ class MtoOrderValidationAgentAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['configuration mismatch requires sales review', 'capacity shortfall triggers sourcing/delay decision', 'SLA breach on acknowledgment']
+        escalation_rules = ['invalid configuration options', 'capacity overload detected', 'validation cycle exceeds 4 hours']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -220,7 +229,7 @@ class MtoOrderValidationAgentAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['validation_error_rate', 'acknowledgment_on_time_percentage', 'GDPR_consent_compliance']
+            "monitoring": ['order_validation_cycle_time', 'configuration_accuracy', 'order_acknowledgment_on_time_rate']
         }
 
 

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_162426_771406",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.11"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T16:24:26.771423",
+  "status": "completed",
+  "started_at": "2026-06-08T20:30:45.017468",
+  "completed_at": "2026-06-08T20:32:49.841225",
+  "error": null,
+  "result": {
+    "agent_name": "load_vehicle_generate_shipping_docs_agent",
+    "price_eur": 573.85,
+    "ready_for_guardian": true
+  }
+}

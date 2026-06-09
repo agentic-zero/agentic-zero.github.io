@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_demand_forecast_API
-- finance_system_API
-- supplier_portal
-- GIS_database
+- ERP_demand_module
+- partner_portal_API
+- financial_ledger_api
 - optimization_engine
+- GDPR_compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- sudden regulatory change
-- partner bankruptcy
-- service_level < 95% after reconfiguration attempt
+- partner_capabilities missing after 48h flag
+- sudden regulatory change detected
+- optimization_savings < 0.05 or service_level < 0.95 after redesign attempt

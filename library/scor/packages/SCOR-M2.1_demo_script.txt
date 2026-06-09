@@ -1,6 +1,6 @@
-1. Open dashboard and load sample MTO order backlog; highlight AI auto-prioritization that cuts manual scheduling from 4 hours to 12 minutes.  
-2. Trigger reschedule after a rush order change; show real-time Gantt update plus automated labor-law and delivery-compliance flags.  
-3. Export compliant schedule PDF with audit trail; note one-click regulatory sign-off that eliminates 30 minutes of admin per batch.  
-4. Display ROI panel: €699 price vs. 8.0x multiplier from 22 hours/week saved and zero compliance penalties in last 90 days.  
-5. Run side-by-side comparison with legacy spreadsheet; quantify €5,600 monthly efficiency gain and risk reduction.  
-6. Close with one-sentence summary: “€699 delivers €5,592 annual value while keeping every schedule audit-ready.”
+1. Open with a live make-to-order scenario showing 14-day manual scheduling delays and €42k weekly overtime exposure.  
+2. Trigger mto_production_scheduler via single prompt; display AI-optimized schedule generated in 38 seconds.  
+3. Highlight ROI dashboard: 11.2 hours/week recovered, equating to €5,592 annual savings per scheduler (8.0x multiplier on €699 license).  
+4. Run compliance audit view: real-time validation against ISO 9001 and delivery SLAs with immutable logs.  
+5. Export signed schedule and audit trail to ERP; confirm zero manual rework required.  
+6. Close with one-click ROI calculator confirming payback in 11 days and projected 8.0x annual return.

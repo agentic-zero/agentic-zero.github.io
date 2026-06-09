@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- engineering_system_api
-- plm_source_connector
-- erp_resource_module
-- project_schedule_integration
+- PLM_engineering_release_api
+- ERP_resource_plan_api
+- supplier_portal_integration
+- KPI_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- unresolved design change after 48 hours
-- schedule adherence KPI < 0.9
-- design change impact KPI exceeds threshold
+- Design change exceeds 15% variance requiring new baseline
+- ITAR compliance flag blocks publication
+- Unresolved resource conflict after interface plan revision

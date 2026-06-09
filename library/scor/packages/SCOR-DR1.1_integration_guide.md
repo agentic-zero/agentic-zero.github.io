@@ -1,4 +1,4 @@
-# Integration Guide — authorize_defective_product_return_agent
+# Integration Guide — defective_return_rma_authorizer
 **Process:** Authorize Defective Product Return
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp authorize_defective_product_return_agent.py ./agents/
+cp defective_return_rma_authorizer.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.authorize_defective_product_return_agent import AuthorizeDefectiveProductReturnAgentAgent
+from agents.defective_return_rma_authorizer import DefectiveReturnRmaAuthorizerAgent
 
-agent = AuthorizeDefectiveProductReturnAgentAgent()
+agent = DefectiveReturnRmaAuthorizerAgent()
 result = agent.execute({
     "customer_return_request": your_customer_return_request_data,
     "defect_evidence": your_defect_evidence_data,
@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- warranty_database_api
-- return_policy_service
-- fraud_detection_system
+- customer_request_api
+- warranty_db
+- return_policy_engine
 - rma_generator
-- compliance_audit_logger
+- notification_service
 
 ## Escalation
 The agent automatically escalates to human when:
-- fraud flag detected
-- pharma GxP compliance review required
-- incomplete evidence after 72h pause
+- no DefectEvidence provided
+- warranty expired
+- authorizationCycleTime exceeds 48h

@@ -1,7 +1,6 @@
-1. Open dashboard showing current manual contract volume (47 active suppliers) and baseline costs (€312k annual admin spend).
-2. Trigger AI ingestion of 3 new supplier contracts; demo auto-extraction of terms, obligations, and compliance gaps in <60 seconds.
-3. Run real-time compliance scan against EU supply-chain regulations; highlight flagged clauses and one-click remediation suggestions with audit logs.
-4. Execute automated negotiation simulation on pricing and SLAs, showing 14% cost reduction on a sample contract while preserving compliance score >95%.
-5. Approve revised contracts via integrated workflow; display instant generation of immutable audit trail and risk register update.
-6. Reveal ROI dashboard: €312k baseline reduced to €39k, delivering 8.0x multiplier on €748 license within first quarter.
-7. Close with compliance certification export and projected annual savings of €273k for executive review.
+1. Open dashboard and load sample supplier contract; AI instantly flags 3 compliance gaps (e.g., ESG clauses, data-privacy terms) and suggests fixes in <30 seconds.  
+2. Approve AI-generated redlines; system auto-updates contract, creates audit trail, and routes for e-signature—reducing cycle time from 14 days to 2.  
+3. Trigger bulk review of 50 active contracts; AI surfaces renewal risks and non-compliant payment terms, quantifying €47k exposure.  
+4. Run ROI simulator: input €748 license fee; dashboard shows 8.0x multiplier via €5,984 annual savings from faster cycles, avoided penalties, and 22% fewer disputes.  
+5. Export compliance report with full version history and regulatory mapping (GDPR, CSRD); one-click share with legal and finance.  
+6. Close with live before/after metrics: 85% less manual review time and guaranteed 8x ROI within first quarter.

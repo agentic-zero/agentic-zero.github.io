@@ -1,0 +1,11 @@
+1. Open dashboard: Display live Order-to-Cash pipeline with AI agent status, highlighting 92% automation rate and real-time compliance score (GDPR + SOX).
+
+2. Ingest sample order: Trigger agent to process PO; show instant validation, ERP sync, and exception handling without manual touch.
+
+3. Run compliance audit: Generate one-click audit trail export proving every step is logged, approved, and immutable for regulators.
+
+4. Quantify time savings: Reveal analytics panel—order cycle reduced from 14 days to 2 days, equating to €5,592 monthly savings (8.0x ROI on €699 price).
+
+5. Execute payment collection: Demonstrate AI dunning sequence that lifts collection rate to 98%, with automated revenue recognition entries.
+
+6. Close with ROI summary: Project annual value (€67k+) and offer 30-day pilot; invite questions on integration timeline.

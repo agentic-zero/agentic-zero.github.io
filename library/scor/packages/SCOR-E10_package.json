@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-E10",
-  "agent_name": "supply_chain_procurement_agent",
+  "agent_name": "supply_chain_procurement_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:49:18.065213",
-  "product_summary": "This hybrid agent oversees strategic procurement activities, encompassing category management, supplier development, spend analysis, and policy governance to support all Source domain processes. It leverages capabilities such as analyzing spend and market data, generating category strategies, and enforcing compliance with regulations like GDPR and ESG standards. By doing so, it delivers significant business value through cost savings, risk mitigation, and optimized supplier relationships. Executives benefit from enhanced visibility and data-driven decision-making in procurement operations.",
-  "value_proposition": "Transforms strategic procurement by combining AI-driven spend analysis and strategy generation with human oversight to drive savings while enforcing compliance.",
-  "technical_summary": "The hybrid architecture combines AI models for spend analysis and strategy generation with human-in-the-loop monitoring for supplier development and compliance enforcement. It integrates seamlessly with enterprise procurement systems, market data feeds, and compliance databases while adhering to standards such as the EU AI Act and trade regulations. Data flows are secured under GDPR to protect supplier information throughout the process.",
-  "integration_guide": "# Integration Guide — supply_chain_procurement_agent\n**Process:** Manage Supply Chain Procurement\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_procurement_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_procurement_agent import SupplyChainProcurementAgentAgent\n\nagent = SupplyChainProcurementAgentAgent()\nresult = agent.execute({\n    \"spend_data\": your_spend_data_data,\n    \"supplier_market_data\": your_supplier_market_data_data,\n    \"category_strategies\": your_category_strategies_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_spend_data_api\n- supplier_market_data_feed\n- strategy_repository\n- compliance_audit_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- Trade compliance violation: halt and escalate to legal with audit log\n- Missing BusinessRequirement: default to prior strategy and flag for review\n- ESG or regulatory breach detected",
+  "packager_timestamp": "2026-06-08T13:31:17.207755",
+  "product_summary": "The Manage Supply Chain Procurement agent is a hybrid AI system that oversees strategic procurement activities, including category management, supplier development, spend analysis, and policy governance. It enables seamless execution of all Source domain processes while ensuring adherence to critical compliance standards such as GDPR, anti-corruption regulations, and ESG procurement standards. By leveraging capabilities like spend data analysis and KPI monitoring, it delivers measurable cost savings and operational efficiencies. This agent provides executives with actionable insights to optimize procurement strategies and mitigate risks across the supply chain.",
+  "value_proposition": "Transforms strategic procurement by automating spend analysis, category strategy generation, and compliance enforcement to drive sustainable savings and risk reduction.",
+  "technical_summary": "The hybrid agent architecture combines machine learning models for spend analysis and category strategy with rule-based engines for KPI monitoring and compliance enforcement. It integrates with enterprise procurement platforms and data warehouses via secure APIs to process real-time supplier and spend data while embedding controls for GDPR, EU AI Act, trade compliance, and ESG standards. Generated outputs such as savings reports and strategy recommendations flow through standardized interfaces to downstream Source domain systems.",
+  "integration_guide": "# Integration Guide — supply_chain_procurement_manager\n**Process:** Manage Supply Chain Procurement\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_procurement_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_procurement_manager import SupplyChainProcurementManagerAgent\n\nagent = SupplyChainProcurementManagerAgent()\nresult = agent.execute({\n    \"spend_data\": your_spend_data_data,\n    \"supplier_market_data\": your_supplier_market_data_data,\n    \"category_strategies\": your_category_strategies_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_spend_data_connector\n- supplier_market_data_api\n- analytics_engine\n- compliance_validation_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- anti-corruption flag raised\n- SpendUnderManagement < 0.7 or savings target missed requiring audit\n- SupplierMarketData missing or >90 days old\n- GDPR/EU AI Act/ESG non-compliance detected",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/supply_chain_procurement_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/supply_chain_procurement_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/supply_chain_procurement_agent/health — Health check",
-    "GET  /api/v1/agents/supply_chain_procurement_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/supply_chain_procurement_agent/test   — Run test cases"
+    "POST /api/v1/agents/supply_chain_procurement_manager/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_procurement_manager/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_procurement_manager/health — Health check",
+    "GET  /api/v1/agents/supply_chain_procurement_manager/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_procurement_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open with pain point: \"Manual procurement costs €250K+/yr in delays and fines—our agent automates end-to-end at €748.\"\n2. Trigger AI sourcing: Run live query for approved suppliers; agent filters 200+ options in seconds using compliance rules (ISO, ESG, sanctions).\n3. Execute compliance gate: Show real-time audit trail—every PO auto-tagged with regulatory proof, cutting audit prep from days to minutes.\n4. Optimize order: Agent negotiates 12% savings via dynamic pricing; display before/after cost and 8.0x ROI projection on-screen.\n5. Simulate exception handling: Flag and reroute a high-risk supplier; quantify avoided fine (€45K) plus 40% cycle-time reduction.\n6. Close with metrics dashboard: \"€748 investment yields €6K+ annual return—full payback in <6 weeks, zero compliance incidents.\"\n7. Offer pilot: \"Deploy in your environment this week; track first €100K procurement for verified ROI.\"",
+  "demo_script": "1. Open dashboard: Display live procurement queue and AI agent status, highlighting automated task intake from ERP systems.  \n2. Trigger AI sourcing: Input a sample RFQ; show agent auto-identifying 3 compliant suppliers in <30 seconds while flagging regulatory gaps.  \n3. Run compliance audit: Execute real-time checks for ESG, sanctions, and contract clauses, exporting an audit-ready report.  \n4. Quantify savings: Reveal dashboard metrics—€47k annual savings from negotiated terms and 14 hours/week time reduction.  \n5. Project ROI: Calculate live 8.0x return (€5,984 net value) against €748 price, including payback in 6 weeks.  \n6. Close loop: Approve PO via agent, auto-update ERP, and schedule next-cycle optimization for sustained compliance.",
   "demo_inputs": {
     "spend_data": "[example_spend_data]",
     "supplier_market_data": "[example_supplier_market_data]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-E10",
-    "agent_name": "supply_chain_procurement_agent",
+    "agent_name": "supply_chain_procurement_manager",
     "framework": "SCOR",
     "domain": "Enable",
     "level": "L2",
@@ -64,27 +64,27 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:49:18.065192"
+    "created_at": "2026-06-08T13:31:17.207734"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma company uses agent to auto-screen 200+ API suppliers for anti-corruption and trade compliance, cutting qualification cycle from 12 weeks to 3 weeks and avoiding $1.2M in potential fines",
-    "Use case 2: Automotive manufacturer deploys agent for ESG-scored supplier bidding on $50M annual steel contracts, achieving 18% cost reduction while maintaining full GDPR supplier data audit trails",
-    "Use case 3: Defense contractor's agent performs real-time EU AI Act and export-control checks on 500+ components, reducing compliance violation risk by 95% and saving $800K in avoided penalties",
-    "Use case 4: Chemical firm uses agent to optimize multi-tier supplier allocation under ESG standards, lowering Scope 3 emissions by 22% and raw-material spend by $3.4M within first year",
-    "Use case 5: Food distributor's agent automates GDPR-compliant supplier data processing and anti-corruption screening for 1,200 vendors, cutting manual review effort by 70% and reducing data-breach exposure by $2M"
+    "Use case 1: In pharma manufacturing, the agent automates GDPR-compliant supplier data screening and anti-corruption due diligence, cutting supplier onboarding from 45 days to 7 days and reducing compliance violation risk by 60% for $1.8M annual savings.",
+    "Use case 2: In automotive sector procurement, AI-driven ESG supplier scoring under EU standards identifies lower-risk vendors, achieving 12% reduction in raw material costs while maintaining trade compliance and avoiding $950K in potential penalties.",
+    "Use case 3: For defense contractors, the agent enforces real-time trade compliance and anti-corruption checks during sourcing, preventing 3 blocked shipments per quarter and delivering $2.4M in avoided fines plus faster contract fulfillment.",
+    "Use case 4: In chemical distribution, predictive demand matching with ESG procurement standards reduces excess inventory by 18%, lowering carrying costs by $1.1M yearly while ensuring EU AI Act transparency in all AI-assisted decisions.",
+    "Use case 5: In food manufacturing, automated supplier risk monitoring for trade compliance and anti-corruption flags issues 14 days earlier, cutting supply disruption losses by 22% and generating $780K in recovered revenue annually."
   ],
   "pricing": {
     "process_id": "SCOR-E10",

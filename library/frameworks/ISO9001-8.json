@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-8",
+  "name": "Operation — Planning and Control",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "8",
+  "level": "L1",
+  "description": "Operational planning and control including customer communication, design and development, control of externally provided processes, production and service provision, release and control of nonconforming outputs",
+  "inputs": ["customer requirements", "product specifications", "supplier data", "process parameters", "quality plans"],
+  "outputs": ["controlled products/services", "inspection records", "nonconformance reports", "release decisions", "supplier evaluations"],
+  "kpis": ["first-pass yield", "customer complaint rate", "supplier quality rate", "nonconformance closure rate"],
+  "related_processes": ["ISO9001-6", "ISO9001-7", "ISO9001-9", "BPMN-QMS-001"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 8", "GxP if pharma", "HACCP if food", "IATF 16949 if automotive"],
+  "automation_potential": 0.75,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

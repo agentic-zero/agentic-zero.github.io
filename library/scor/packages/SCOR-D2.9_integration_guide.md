@@ -36,11 +36,11 @@ print(result['outputs'])
 ## Tools Required
 - WMS_API
 - ScanSystem_interface
-- InventoryService
-- NotificationBus
+- InventoryManagementSystem
+- PickList_trigger_listener
 
 ## Escalation
 The agent automatically escalates to human when:
-- scan_failure requires supervisor dual sign-off
-- missing_item triggers SCOR-D2.8 notification and backorder
-- pharma sector with GxP violation
+- Item not found at StagingLocation
+- Quantity mismatch after scan
+- Pick cycle time exceeds KPI threshold

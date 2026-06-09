@@ -1,6 +1,6 @@
-1. Open with the pain: "Manual excess returns cost €50K+ yearly in errors, delays, and compliance fines—our €699 agent delivers 8x ROI by automating the full process."
-2. Trigger the agent live: Show it scanning ERP data to auto-detect €12K in excess stock eligible for supplier return within policy windows.
-3. Run automated workflow: Agent generates compliant return authorization, shipping docs, and supplier notification in <60 seconds while enforcing audit trails.
-4. Display compliance layer: Real-time checks for regulatory docs, serial tracking, and ESG reporting—reducing audit prep from days to minutes.
-5. Reveal ROI dashboard: Quantify €5,600 recovered this quarter plus 14 hours saved per return, projecting 8x payback in 45 days at scale.
-6. Close with metrics: "One deployment pays for itself 8x annually; ready for pilot in your environment this week."
+1. Open with live excess inventory dashboard showing €45K tied-up stock and manual return delays risking supplier contract penalties.
+2. Trigger excess_product_return_agent on flagged SKUs; AI instantly validates eligibility against supplier agreements and regulatory timelines.
+3. Agent auto-generates compliant return authorization, shipping docs, and audit trail in <60 seconds, eliminating 4.2 hours of manual compliance work.
+4. Execute automated supplier submission and track real-time status, accelerating refund cycle from 14 days to 3 days.
+5. Display ROI panel: €5,592 recovered value per run (8.0x on €699 license) plus 92% reduction in compliance exceptions.
+6. Export one-click executive report with full traceability for audit and finance sign-off; close with 10-minute Q&A on scaling.

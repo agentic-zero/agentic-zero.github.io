@@ -1,13 +1,14 @@
 # SOP — Produce and Test (ETO)
 **Process ID:** SCOR-M3.3
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of fabricating, assembling and testing engineer-to-order products including integration testing, system validation and customer witness testing
 
 ## Triggers
-- Receipt of approved work packages and engineering drawings from SCOR-M3.2
+- WorkPackage status changed to RELEASED in ERP
+- EngineeringDrawing revision APPROVED in PDM
 
 ## Inputs Required
 - work packages
@@ -17,8 +18,8 @@ Process of fabricating, assembling and testing engineer-to-order products includ
 - test equipment
 
 ## Process Steps
-1. IF integration test fails THEN trigger rework loop before customer witness testing
-2. IF customer witness test fails THEN escalate to quality review board and log non-conformance
+1. IF integration test fails THEN execute rework loop before customer witness testing
+2. IF customer witness test fails THEN log defect and trigger SCOR-M3.4 disposition
 
 ## Expected Outputs
 - ETO finished assemblies
@@ -27,19 +28,19 @@ Process of fabricating, assembling and testing engineer-to-order products includ
 - as-built documentation
 
 ## Business Rules
-- AS9100 production and testing: all ETOFinishedAssembly must have traceable serial numbers and test records
-- Defense acceptance testing: customer sign-off required on AcceptanceTestReport before release
-- Export control: verify end-user certificates before shipping ETOFinishedAssembly in defense or aerospace sectors
+- All outputs must include AS9100 traceability stamps
+- CustomerAcceptanceCriteria must be validated before final sign-off
+- Export control flagged items require dual authorization before shipment
 
 ## Exception Handling
-- Missing customer acceptance criteria: default to sector-specific standards (AS9100 or MIL-STD) and flag for manual review
-- Test equipment calibration expired: halt process and schedule recalibration before resuming
+- Missing test equipment: pause process and escalate to procurement with 4-hour SLA
+- Customer witness unavailable: substitute with recorded video validation plus remote sign-off
 
 ## Success Criteria
-- ProductionCycleTime <= target
-- TestPassRate >= 98%
-- CustomerAcceptanceRate >= 95%
-- AsBuiltAccuracy >= 99.5%
+- TestPassRate >= 98 percent
+- CustomerAcceptanceRate = 100 percent
+- AsBuiltAccuracy = 100 percent match to drawings
+- all outputs delivered within ProductionCycleTime target
 
 ## Compliance Requirements
 - AS9100 production and testing

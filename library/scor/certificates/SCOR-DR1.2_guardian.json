@@ -1,11 +1,11 @@
 {
   "process_id": "SCOR-DR1.2",
-  "guardian_timestamp": "2026-06-08T00:57:20.113792",
+  "guardian_timestamp": "2026-06-08T14:31:16.099151",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-DR1.2-20260608",
     "process_id": "SCOR-DR1.2",
-    "agent_name": "defective_product_return_scheduler",
-    "issued_at": "2026-06-08T00:57:20.113723",
+    "agent_name": "defective_return_receipt_scheduler",
+    "issued_at": "2026-06-08T14:31:16.099108",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
@@ -91,7 +91,7 @@
       "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
       "Overall score 84% meets threshold — approved with GDPR remediation plan required"
     ],
-    "audited_at": "2026-06-08T09:30:29.480518",
+    "audited_at": "2026-06-08T17:21:10.662527",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

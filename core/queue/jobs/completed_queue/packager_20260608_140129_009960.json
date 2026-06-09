@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_140129_009960",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.15"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:01:29.009974",
+  "status": "completed",
+  "started_at": "2026-06-08T16:15:33.058548",
+  "completed_at": "2026-06-08T16:18:31.575798",
+  "error": null,
+  "result": {
+    "agent_name": "mto_invoice_generation_agent",
+    "price_eur": 573.85,
+    "ready_for_guardian": true
+  }
+}

@@ -1,0 +1,30 @@
+
+AGENTIC ZERO — COMPLIANCE CERTIFICATE
+======================================
+Certificate ID:  AZ-CERT-BPMN-PTP-001-20260608
+Process ID:      BPMN-PTP-001
+Agent:           ptp_hybrid_orchestrator
+Issued:          2026-06-08
+Valid Until:     2027-06-08
+Issued By:       Guardian Agent — Agentic Zero Pioneer Team
+
+OVERALL STATUS:  CONDITIONAL
+Overall Score:   84%
+
+COMPLIANCE SUMMARY
+──────────────────
+EU AI Act:       HIGH RISK
+ISO/IEC 42001:   GAPS FOUND (42%)
+NIST AI RMF:     100% overall
+GDPR AI:         CLEAR
+Quality:         100%
+
+CONDITIONS
+────────────────────
+• Risk management system (Art. 9)
+• Data governance measures (Art. 10)
+• Technical documentation (Art. 11)
+
+HUMAN REVIEW REQUIRED
+
+Guardian review completed. Risk level: high. Quality: 100%

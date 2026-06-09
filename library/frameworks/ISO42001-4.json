@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-4",
+  "name": "AI Context — Organization and Interested Parties",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "4",
+  "level": "L1",
+  "description": "Understanding the organizational context for AI management including AI-specific interested parties, regulatory environment, AI use case scope and AIMS (AI Management System) boundary definition",
+  "inputs": ["AI use case inventory", "regulatory requirements", "stakeholder AI expectations", "organizational AI strategy"],
+  "outputs": ["AIMS scope", "AI interested party register", "AI context analysis", "AI use case register"],
+  "kpis": ["AI use case coverage", "stakeholder engagement rate", "regulatory compliance coverage"],
+  "related_processes": ["ISO42001-5", "ISO42001-6", "SCOR-DIG3", "SCOR-E8"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 4", "EU AI Act context assessment", "GDPR AI context"],
+  "automation_potential": 0.55,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

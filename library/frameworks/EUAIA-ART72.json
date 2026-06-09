@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART72",
+  "name": "Post-Market Monitoring",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "72",
+  "level": "L1",
+  "description": "Post-market monitoring system for high-risk AI including proactive data collection, performance analysis, incident reporting to national authorities and serious incident management",
+  "inputs": ["deployment performance data", "user feedback", "incident reports", "monitoring metrics", "market surveillance data"],
+  "outputs": ["post-market monitoring plan", "performance reports", "incident notifications", "corrective actions", "market surveillance data"],
+  "kpis": ["incident detection rate", "reporting timeliness", "corrective action effectiveness", "monitoring coverage"],
+  "related_processes": ["EUAIA-ART12", "EUAIA-ART9", "ISO42001-9", "ISO42001-10", "SCOR-DIG10"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.72 mandatory", "serious incident reporting", "national authority notification"],
+  "automation_potential": 0.80,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

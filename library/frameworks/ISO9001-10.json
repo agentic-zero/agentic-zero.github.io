@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-10",
+  "name": "Improvement — Nonconformity and Continual Improvement",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "10",
+  "level": "L1",
+  "description": "Management of nonconformities and corrective actions, continual improvement of the QMS suitability adequacy and effectiveness",
+  "inputs": ["nonconformance reports", "audit findings", "customer complaints", "performance gaps", "improvement opportunities"],
+  "outputs": ["corrective actions", "improvement projects", "updated procedures", "lessons learned", "QMS improvements"],
+  "kpis": ["corrective action cycle time", "recurrence rate", "improvement project completion", "QMS effectiveness trend"],
+  "related_processes": ["ISO9001-9", "ISO9001-8", "BPMN-QMS-001"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 10", "CAPA requirements", "continual improvement mandate"],
+  "automation_potential": 0.65,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

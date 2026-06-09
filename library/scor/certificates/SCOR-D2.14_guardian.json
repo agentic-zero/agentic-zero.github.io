@@ -1,0 +1,92 @@
+{
+  "process_id": "SCOR-D2.14",
+  "guardian_timestamp": "2026-06-08T21:00:07.747088",
+  "certificate": {
+    "certificate_id": "AZ-CERT-SCOR-D2.14-20260608",
+    "process_id": "SCOR-D2.14",
+    "agent_name": "mto_product_installation_agent",
+    "issued_at": "2026-06-08T21:00:07.747041",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-08",
+    "overall_status": "conditional",
+    "overall_score": 0.82,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.58,
+      "gaps": [
+        "No explicit AI risk assessment, impact assessment or risk treatment process defined",
+        "Missing transparency, explainability and audit logging mechanisms for AI decisions",
+        "Insufficient human oversight and accountability assignment beyond basic escalation",
+        "No performance evaluation, continual improvement or AI objective monitoring framework"
+      ],
+      "recommendations": [
+        "Implement ISO 42001 Clause 6 risk and impact assessment procedures tailored to installation decisions",
+        "Add decision logging and explainability outputs for commissioning and compliance enforcement steps",
+        "Define formal human-AI responsibility matrix and oversight checkpoints",
+        "Establish KPI-driven performance evaluation and management review cycles for the agent"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: No explicit AI risk assessment, impact assessment or risk treatment process defined",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

@@ -2,11 +2,11 @@
   "process_id": "SCOR-SR3.4",
   "agent_name": "excess_return_shipment_scheduler",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T21:58:18.543094",
-  "product_summary": "This hybrid agent automates the end-to-end planning and scheduling of excess inventory returns to suppliers by evaluating product attributes, selecting optimal carriers, and generating compliant shipment schedules. It enforces critical rules around expiry dates for perishables, cold-chain integrity, and cross-border customs requirements to minimize regulatory risk and waste. By streamlining what is typically a manual, error-prone process, the agent reduces holding costs, accelerates cash recovery from returns, and improves supplier relationships through reliable execution. Executives gain predictable logistics outcomes without expanding operational headcount.",
-  "value_proposition": "Automates excess inventory return logistics while enforcing expiry, cold-chain, and customs compliance to cut costs and risk.",
-  "technical_summary": "The hybrid agent orchestrates four core capabilities—evaluate_product_attributes, filter_carrier_options, generate_return_shipment_schedule, and enforce_compliance_rules—through a rules-plus-model architecture that switches between deterministic checks and probabilistic optimization. It integrates via APIs with inventory management systems, carrier platforms, and external compliance databases to ingest product data and output scheduled shipments. Logging and audit hooks ensure traceability for regulated categories such as perishables and cross-border goods.",
-  "integration_guide": "# Integration Guide — excess_return_shipment_scheduler\n**Process:** Schedule Excess Product Return Shipment\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_return_shipment_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_return_shipment_scheduler import ExcessReturnShipmentSchedulerAgent\n\nagent = ExcessReturnShipmentSchedulerAgent()\nresult = agent.execute({\n    \"excess_return_authorization\": your_excess_return_authorization_data,\n    \"product_quantity\": your_product_quantity_data,\n    \"storage_location\": your_storage_location_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- carrier_booking_api\n- inventory_storage_system\n- compliance_validation_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- no valid CarrierOption available\n- expiry date within 7 days\n- cross-border customs mismatch",
+  "packager_timestamp": "2026-06-08T12:40:21.499336",
+  "product_summary": "This reactive agent manages the full workflow of planning and scheduling returns for excess inventory back to suppliers, triggered by inventory signals. It validates authorizations, applies relevant compliance rules such as expiry, cold chain, and customs requirements, then selects carriers and produces all booking documents. By handling these steps automatically, the agent reduces holding costs, prevents regulatory penalties, and accelerates cash recovery from surplus stock while preserving supplier relationships.",
+  "value_proposition": "Automates compliance-aware scheduling and documentation for excess inventory returns to cut processing time and errors.",
+  "technical_summary": "The agent follows a reactive event-driven architecture that listens for excess-inventory triggers and orchestrates its five core capabilities in sequence. It integrates with inventory management systems for authorization checks, external compliance databases for perishable or cross-border rules, and carrier APIs for real-time scheduling and document generation. All outputs are produced as structured booking payloads ready for downstream logistics execution.",
+  "integration_guide": "# Integration Guide — excess_return_shipment_scheduler\n**Process:** Schedule Excess Product Return Shipment\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_return_shipment_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_return_shipment_scheduler import ExcessReturnShipmentSchedulerAgent\n\nagent = ExcessReturnShipmentSchedulerAgent()\nresult = agent.execute({\n    \"excess_return_authorization\": your_excess_return_authorization_data,\n    \"product_quantity\": your_product_quantity_data,\n    \"storage_location\": your_storage_location_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- carrier_api\n- wms_storage_api\n- compliance_engine\n- document_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- No valid CarrierOption available after filtering\n- Missing expiry data for perishables\n- CarrierBooking capacity failure after 3 retries",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/excess_return_shipment_scheduler/spec   — Get agent specification",
     "POST /api/v1/agents/excess_return_shipment_scheduler/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load sample excess inventory dataset (500 units across 3 SKUs), highlighting €42k manual scheduling cost baseline.\n2. Trigger AGENT excess_return_shipment_scheduler; AI auto-matches carriers, generates compliant return labels, and flags regulatory holds in <45 seconds.\n3. Display real-time compliance panel: automated checks for EU return directives, customs docs, and audit trails with zero manual edits required.\n4. Review optimized schedule: 3 consolidated shipments cut transit costs 37% and compress cycle time from 11 days to 4.\n5. Run ROI simulator: input €699 license fee; system projects 8.0x return via €5,592 annual savings plus avoided €2.1k compliance penalties.\n6. Export signed shipment plan and compliance report for executive sign-off, closing with one-click ERP sync.",
+  "demo_script": "1. Open with excess inventory pain: €120K annual losses from delayed returns, manual scheduling errors, and compliance gaps (e.g., EU WEEE/REACH).\n2. Trigger AGENT excess_return_shipment_scheduler with live SKU feed; AI auto-matches carriers, dates, and routes in <30 seconds.\n3. Display real-time compliance layer: automated checks for hazardous goods declarations, customs docs, and carbon reporting—flagging zero violations.\n4. Review optimized shipment plan: 4-day faster cycle time vs. manual, 22% lower freight spend, full audit trail exported for regulators.\n5. Run ROI calculator: €699 price yields 8.0x multiplier via €5,592 net annual savings per site; scale to 12 sites = €67K+ yearly impact.\n6. Close with one-click deployment option and 30-day compliance certification report for board sign-off.",
   "demo_inputs": {
     "excess_return_authorization": "[example_excess_return_authorization]",
     "product_quantity": "[example_product_quantity]",
@@ -53,32 +53,32 @@
       "cold chain if required",
       "customs if cross-border"
     ],
-    "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "agent_type": "reactive",
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 99,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T21:58:18.543075"
+    "created_at": "2026-06-08T12:40:21.499318"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "reactive",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: Pharma distributor schedules return of 2,400 expired vaccine units with cold-chain compliance, cutting spoilage losses by $87k and avoiding $120k FDA fines per quarter",
-    "Use case 2: Food manufacturer automates return shipments of 18 pallets of near-expiry dairy across 3 temperature zones, reducing carrier costs 22% and recovering $41k in resale value monthly",
-    "Use case 3: Automotive supplier coordinates cross-border return of 650 defective ECUs with customs documentation, shortening cycle time from 11 days to 4 days and freeing $290k in working capital per shipment batch",
-    "Use case 4: National distributor processes 340 excess electronics returns monthly via optimized carrier selection and expiry checks, lowering reverse-logistics spend 19% and improving inventory turns by 0.8x annually",
-    "Use case 5: Contract manufacturer schedules returns of $1.2M in surplus specialty chemicals under hazmat rules, achieving 31% lower freight spend and 98% on-time pickup compliance versus prior manual process"
+    "Use case 1: Pharma manufacturer schedules cold-chain return of 12 pallets of near-expiry biologics, cutting product write-off from 18% to 4% and recovering $420k in inventory value per quarter",
+    "Use case 2: European food distributor automates expiry-compliant returns of 8 tons of chilled dairy weekly, reducing spoilage disposal fees by 32% and avoiding €95k in annual regulatory fines",
+    "Use case 3: Automotive OEM coordinates cross-border return of 2,400 excess electronic modules, shortening customs clearance from 6 days to 18 hours and freeing $1.1M in working capital monthly",
+    "Use case 4: Contract manufacturer returns 15,000 units of overproduced circuit boards with full traceability, lowering reverse-logistics cost per unit from $4.80 to $2.10 and saving $380k yearly",
+    "Use case 5: Multi-temperature distribution hub schedules consolidated returns of frozen and ambient goods, cutting shipment frequency by 28% and reducing carrier spend by $275k annually while maintaining 100% compliance"
   ],
   "pricing": {
     "process_id": "SCOR-SR3.4",

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_092643_478785",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-QMS-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T09:26:43.478803",
+  "status": "completed",
+  "started_at": "2026-06-09T09:36:33.473715",
+  "completed_at": "2026-06-09T09:39:37.418889",
+  "error": null,
+  "result": {
+    "agent_name": "capa_lifecycle_orchestrator",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

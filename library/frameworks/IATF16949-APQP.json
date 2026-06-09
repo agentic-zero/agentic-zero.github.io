@@ -1,0 +1,18 @@
+{
+  "process_id": "IATF16949-APQP",
+  "name": "Advanced Product Quality Planning (APQP)",
+  "framework": "IATF 16949:2016",
+  "domain": "IATF 16949",
+  "clause": "APQP",
+  "level": "L1",
+  "description": "Structured product quality planning process for automotive supply chain from concept through production launch including design FMEA, process FMEA, control plans and production part approval",
+  "inputs": ["customer requirements", "design specifications", "process capabilities", "historical quality data", "risk assessments"],
+  "outputs": ["APQP plan", "design FMEA", "process FMEA", "control plan", "PPAP submission"],
+  "kpis": ["APQP phase gate compliance", "PPAP approval rate", "launch defect rate", "customer approval cycle time"],
+  "related_processes": ["IATF16949-PPAP", "ISO9001-8", "BPMN-MFG-003", "SCOR-D1.3"],
+  "sector_applicability": ["automotive", "automotive suppliers Tier 1/2/3"],
+  "compliance_flags": ["IATF 16949:2016", "VDA 6.3", "customer-specific requirements", "AIAG APQP manual"],
+  "automation_potential": 0.55,
+  "source": "IATF 16949:2016 + AIAG APQP Manual",
+  "confidence": 0.95
+}

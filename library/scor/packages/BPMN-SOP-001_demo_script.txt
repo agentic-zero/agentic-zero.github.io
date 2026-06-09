@@ -1,0 +1,7 @@
+1. Open dashboard and load live S&OP dataset (sales forecasts, inventory, capacity constraints) to establish baseline manual process time and error rate.  
+2. Trigger sop_process_orchestrator; AI ingests data, runs demand-supply optimization, and surfaces an aligned plan in <60 seconds.  
+3. Highlight automated compliance layer: real-time checks against SOX, GDPR, and internal margin policies with flagged exceptions and audit trail.  
+4. Display side-by-side ROI calculator: €699 annual fee vs. quantified 8.0x multiplier (€5,592 net value) from reduced stock-outs, lower expediting costs, and freed planner hours.  
+5. Execute one-click scenario simulation (e.g., +15% demand spike) showing revised plan, compliance re-validation, and updated ROI impact.  
+6. Export board-ready PDF report with plan, compliance certificate, and ROI summary for immediate executive distribution.  
+7. Close with 60-second recap: full S&OP cycle automated, compliance assured, 8x return delivered.

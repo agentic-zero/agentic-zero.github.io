@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- rma_database_api
-- inventory_management_system
-- inspection_scanning_tool
-- notification_service
-- gdpr_masking_service
+- dock_scan_API
+- RMA_lookup_service
+- inventory_update_API
+- inspection_criteria_engine
+- exception_ticket_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- RMA mismatch or missing RMADocument
-- Inspection timeout exceeding cycle KPI
-- Personal data detected in records
+- serial mismatch or RMA invalid
+- inspection cycle_time exceeds KPI
+- GxP immutability violation detected

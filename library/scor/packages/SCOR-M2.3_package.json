@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-M2.3",
-  "agent_name": "produce_and_test_agent",
+  "agent_name": "mto_produce_test_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:58:19.045094",
-  "product_summary": "The Produce and Test (MTO) agent executes make-to-order production workflows that span manufacturing, assembly, in-process quality control, and functional testing against customer specifications. As a hybrid agent it manages routing, defect rework, compliance logging, and real-time yield monitoring while adhering to standards such as GxP batch records, ISO 9001, ATEX, and HACCP. Executives gain faster order fulfillment, reduced scrap, and audit-ready traceability without expanding manual oversight. The result is scalable, compliant custom production that lowers operational risk and improves delivery performance.",
-  "value_proposition": "Automates end-to-end MTO production, testing, compliance logging, and yield optimization to deliver specification-compliant output with minimal manual intervention.",
-  "technical_summary": "The hybrid agent exposes capabilities including execute_production_routing, perform_in_process_testing, log_compliance_records, handle_defect_rework, and monitor_yield_kpis to orchestrate manufacturing steps. It integrates with MES, ERP, and quality systems through standardized APIs while maintaining separate rule-based and model-driven decision paths for regulated versus flexible operations. Real-time KPI streams and automated compliance records feed directly into existing dashboards and audit repositories.",
-  "integration_guide": "# Integration Guide — produce_and_test_agent\n**Process:** Produce and Test (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp produce_and_test_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.produce_and_test_agent import ProduceAndTestAgentAgent\n\nagent = ProduceAndTestAgentAgent()\nresult = agent.execute({\n    \"work_orders\": your_work_orders_data,\n    \"production_routings\": your_production_routings_data,\n    \"quality_plans\": your_quality_plans_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_workorder_api\n- MES_routing_execution\n- QMS_quality_plan\n- test_equipment_interface\n- compliance_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- equipment failure or missing quality plan\n- test pass rate < 95% after root-cause attempt\n- non-conforming result requiring deviation record",
+  "packager_timestamp": "2026-06-08T17:34:41.731107",
+  "product_summary": "The Produce and Test (MTO) agent at Agentic Zero executes make-to-order production operations, encompassing manufacturing, assembly, in-process quality control, and functional testing aligned with customer specifications. As a hybrid agent, it combines automated workflows with human oversight to monitor yield and defect metrics while applying relevant compliance rules across industries. This delivers significant business value by streamlining production processes, reducing errors, and ensuring regulatory adherence, ultimately accelerating time-to-delivery and enhancing product quality for manufacturers.",
+  "value_proposition": "Automates end-to-end MTO production operations with integrated quality control, compliance enforcement, and record generation to reduce defects and accelerate compliant order fulfillment.",
+  "technical_summary": "The hybrid architecture integrates execution capabilities such as production routing and in-process testing with real-time monitoring of metrics and compliance modules tailored to standards like GxP, ISO 9001, ATEX, and HACCP. It connects seamlessly with existing manufacturing execution systems (MES) and enterprise resource planning (ERP) platforms to generate completion records automatically. This setup enables scalable deployment across pharma, food, and industrial sectors with built-in adaptability for specific regulatory environments.",
+  "integration_guide": "# Integration Guide — mto_produce_test_agent\n**Process:** Produce and Test (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_produce_test_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_produce_test_agent import MtoProduceTestAgentAgent\n\nagent = MtoProduceTestAgentAgent()\nresult = agent.execute({\n    \"work_orders\": your_work_orders_data,\n    \"production_routings\": your_production_routings_data,\n    \"quality_plans\": your_quality_plans_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_work_order_api\n- MES_routing_execution\n- test_equipment_interface\n- quality_record_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- first_pass_yield < 0.95 or test_pass_rate < 1.0 requiring root cause or rework\n- missing calibration or compliance record blocks execution\n- customer spec change or equipment downtime",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/produce_and_test_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/produce_and_test_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/produce_and_test_agent/health — Health check",
-    "GET  /api/v1/agents/produce_and_test_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/produce_and_test_agent/test   — Run test cases"
+    "POST /api/v1/agents/mto_produce_test_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mto_produce_test_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mto_produce_test_agent/health — Health check",
+    "GET  /api/v1/agents/mto_produce_test_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mto_produce_test_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with the manual Produce and Test (MTO) challenge: 14-day cycle, €5,600 avg. cost, and recurring compliance gaps.  \n2. Launch produce_and_test_agent on a live €12k MTO order and run the full AI workflow in <90 seconds.  \n3. Display automated compliance layer: real-time checks against ISO and customer specs with zero manual sign-offs.  \n4. Show instant output—validated production plan, test scripts, and audit-ready report—reducing cycle time to 2 days.  \n5. Reveal ROI dashboard: €4,480 saved per order; at 10 orders/month the €699 license delivers 8.0x annual return.  \n6. Close with one-click export to ERP and compliance archive, confirming full traceability for executives.",
+  "demo_script": "1. Open with executive problem: \"Manual MTO cycles cost 40+ hours per batch and create compliance gaps; mto_produce_test_agent automates the full Produce-and-Test workflow.\"\n2. Launch agent live: Enter one MTO order; agent instantly generates compliant production plan, test protocols, and risk matrix in <60 seconds.\n3. Demonstrate compliance value: Show real-time audit trail, regulatory mapping (ISO/FDA), and automated sign-off that eliminates 90% of manual documentation.\n4. Run end-to-end test: Execute AI-driven test suite; agent flags deviations, produces pass/fail report, and logs immutable evidence for audit readiness.\n5. Quantify ROI on screen: Display €699 price against 8.0x multiplier—€5,592 net value per deployment—plus 35 hours saved per cycle.\n6. Close with action: \"One license pays for itself in the first week; ready for pilot approval today.\"",
   "demo_inputs": {
     "work_orders": "[example_work_orders]",
     "production_routings": "[example_production_routings]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-M2.3",
-    "agent_name": "produce_and_test_agent",
+    "agent_name": "mto_produce_test_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -61,25 +61,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:58:19.045076"
+    "created_at": "2026-06-08T17:34:41.731089"
   },
   "tags": [
     "hybrid",
-    "make",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "chemical",
+    "food",
+    "automotive",
     "industrial equipment",
-    "food"
+    "make",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: In automotive MTO, the agent automates custom order scheduling and testing workflows, cutting average lead time from 18 days to 11 days and increasing on-time delivery from 78% to 96%.",
-    "Use case 2: In pharma batch manufacturing, the agent auto-generates GxP-compliant records during production and testing, reducing manual documentation effort by 45% and shortening FDA audit preparation from 12 days to 4 days.",
-    "Use case 3: In chemical plants handling ATEX zones, the agent embeds real-time explosive-atmosphere checks into MTO testing sequences, eliminating 3-5 unplanned shutdowns per year and saving $420k in lost production.",
-    "Use case 4: In food production, the agent enforces HACCP critical-control-point logging within every MTO batch test, reducing contamination-related batch rejections by 60% and avoiding an estimated $1.2M annual recall exposure.",
-    "Use case 5: In industrial equipment ISO 9001 lines, the agent drives closed-loop test data capture and non-conformance routing, lifting first-pass yield from 82% to 94% and cutting rework labor costs by 28%."
+    "Use case 1: Automotive MTO supplier uses the agent to auto-generate compliant work orders and test protocols for custom EV battery trays, cutting order-to-production lead time from 14 days to 6 days and reducing engineering rework by 35%.",
+    "Use case 2: Chemical plant deploys the agent for ATEX-compliant batch scheduling and real-time hazard checks on make-to-order solvent blends, lowering compliance audit non-conformances from 8 to 1 per year and avoiding €240k in potential fines.",
+    "Use case 3: Food processor applies the agent to HACCP-integrated MTO runs for private-label sauces, reducing batch rejection rate from 4.2% to 0.8% and saving €180k annually in raw-material waste.",
+    "Use case 4: Industrial equipment OEM uses the agent to produce ISO 9001-traceable test records for custom hydraulic valves, shortening final-inspection cycle by 42% and increasing on-time delivery from 78% to 96%.",
+    "Use case 5: Pharma CMO leverages the agent for GxP electronic batch records in make-to-order clinical-trial drug packaging, cutting manual review hours by 65% and accelerating batch release from 5 days to 36 hours."
   ],
   "pricing": {
     "process_id": "SCOR-M2.3",

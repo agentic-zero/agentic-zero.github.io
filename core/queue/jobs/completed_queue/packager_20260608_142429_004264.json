@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_142429_004264",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D4.4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:24:29.004280",
+  "status": "completed",
+  "started_at": "2026-06-08T16:49:32.901551",
+  "completed_at": "2026-06-08T16:52:30.370891",
+  "error": null,
+  "result": {
+    "agent_name": "shelf_stocking_agent",
+    "price_eur": 598.8,
+    "ready_for_guardian": true
+  }
+}

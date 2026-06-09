@@ -1,4 +1,4 @@
-# Integration Guide — authorize_mro_product_return_agent
+# Integration Guide — mro_return_authorization_agent
 **Process:** Authorize MRO Product Return
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp authorize_mro_product_return_agent.py ./agents/
+cp mro_return_authorization_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.authorize_mro_product_return_agent import AuthorizeMroProductReturnAgentAgent
+from agents.mro_return_authorization_agent import MroReturnAuthorizationAgentAgent
 
-agent = AuthorizeMroProductReturnAgentAgent()
+agent = MroReturnAuthorizationAgentAgent()
 result = agent.execute({
     "mro_return_request": your_mro_return_request_data,
     "purchase_history": your_purchase_history_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- MROReturnRequest_API
-- PurchaseHistory_DB
-- ReturnPolicyEngine
-- ProductConditionAssessmentService
-- ComplianceChecker
+- erp_api
+- policy_engine
+- product_assessment_api
+- compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing required fields route to manual review queue
-- Pharma or defense sector requires additional regulatory approval
-- Hazardous MRO without environmental compliance check
+- hazardous MRO requiring environmental_officer review
+- GDPR personal_data without consent
+- missing purchase_history after 24h auto-request

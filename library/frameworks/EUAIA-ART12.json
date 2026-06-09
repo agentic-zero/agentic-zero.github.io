@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART12",
+  "name": "Record-Keeping and Logging",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "12",
+  "level": "L1",
+  "description": "Automatic logging requirements for high-risk AI systems to enable post-market monitoring, investigation of incidents and demonstration of compliance with requirements",
+  "inputs": ["AI system outputs", "decision logs", "input data logs", "system events", "human oversight actions"],
+  "outputs": ["audit logs", "decision audit trail", "incident records", "compliance evidence", "monitoring reports"],
+  "kpis": ["log completeness rate", "log retention compliance", "incident traceability rate"],
+  "related_processes": ["EUAIA-ART9", "EUAIA-ART72", "ISO42001-9", "SCOR-DIG10"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.12 mandatory", "GDPR audit logs", "data retention requirements"],
+  "automation_potential": 0.95,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

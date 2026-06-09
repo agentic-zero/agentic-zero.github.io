@@ -1,0 +1,18 @@
+{
+  "process_id": "IATF16949-PPAP",
+  "name": "Production Part Approval Process (PPAP)",
+  "framework": "IATF 16949:2016",
+  "domain": "IATF 16949",
+  "clause": "PPAP",
+  "level": "L1",
+  "description": "Production part approval process to demonstrate that supplier production processes can produce parts meeting customer requirements consistently at production rates",
+  "inputs": ["engineering drawings", "material certifications", "dimensional results", "capability studies", "control plans"],
+  "outputs": ["PPAP submission package", "customer approval", "PSW (Part Submission Warrant)", "capability data"],
+  "kpis": ["PPAP first-time approval rate", "submission completeness", "approval cycle time", "Cpk achievement"],
+  "related_processes": ["IATF16949-APQP", "ISO9001-8", "SCOR-S1.3"],
+  "sector_applicability": ["automotive", "automotive suppliers Tier 1/2/3"],
+  "compliance_flags": ["IATF 16949:2016", "AIAG PPAP manual", "customer-specific requirements", "VDA 2"],
+  "automation_potential": 0.60,
+  "source": "IATF 16949:2016 + AIAG PPAP Manual 4th Edition",
+  "confidence": 0.95
+}

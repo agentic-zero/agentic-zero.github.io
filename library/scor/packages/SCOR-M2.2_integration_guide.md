@@ -1,4 +1,4 @@
-# Integration Guide — mto_material_issue_agent
+# Integration Guide — mto_material_issue_controller
 **Process:** Issue Sourced/In-Process Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_material_issue_agent.py ./agents/
+cp mto_material_issue_controller.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_material_issue_agent import MtoMaterialIssueAgentAgent
+from agents.mto_material_issue_controller import MtoMaterialIssueControllerAgent
 
-agent = MtoMaterialIssueAgentAgent()
+agent = MtoMaterialIssueControllerAgent()
 result = agent.execute({
     "production_schedule": your_production_schedule_data,
     "material_pick_lists": your_material_pick_lists_data,
@@ -34,14 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_API
-- WMS_API
-- Scan_Verification_System
-- GxP_Batch_Recorder
+- ERP_workorder_api
+- WMS_picklist_api
+- inventory_system_lot_lookup
+- shop_floor_terminal_interface
+- barcode_scanner_validation
 
 ## Escalation
 The agent automatically escalates to human when:
-- kitting_accuracy <99.5%
-- missing pick-list items
-- unresolved WIP discrepancy
-- GxP batch traceability failure
+- missing lot number detected
+- negative WIP balance found
+- kitting accuracy below 99% after recount
+- WorkOrder status not released

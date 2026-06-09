@@ -1,13 +1,13 @@
 # SOP — Ship Product (MTO)
 **Process ID:** SCOR-D2.12
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of executing MTO shipment dispatch including carrier handover, tracking initiation, customer notification and in-transit monitoring
 
 ## Triggers
-- LoadedVehicle status == ready AND ShippingDocument validated
+- SCOR-D2.11 completion event with LoadedVehicle payload
 
 ## Inputs Required
 - loaded vehicle
@@ -17,8 +17,8 @@ Process of executing MTO shipment dispatch including carrier handover, tracking 
 - carrier contact data
 
 ## Process Steps
-1. IF dangerous_goods_flag == true THEN apply DG transport rules and carrier approval
-2. IF export_compliance_check == false THEN hold shipment and trigger customs review
+1. IF LoadedVehicle.status == 'ready' AND ShippingDocument.compliance == true THEN execute CarrierHandover
+2. IF carrier accepts handover THEN start TrackingSystem and send CustomerNotification
 
 ## Expected Outputs
 - dispatched shipment
@@ -27,18 +27,19 @@ Process of executing MTO shipment dispatch including carrier handover, tracking 
 - in-transit monitoring
 
 ## Business Rules
-- dispatch only after LoadedVehicle and ShippingDocument both present
-- tracking_initiation must complete within 15 minutes of carrier handover
-- customer_notification must use approved template and include shipment_id + ETA
+- dispatch_time must be <= planned_dispatch_time + 30min for on-time KPI
+- tracking_coverage must include GPS + carrier_API for 100% coverage
+- GDPR: anonymize customer tracking data after 30 days
+- dangerous_goods: attach UN_number and MSDS to ShippingDocument
 
 ## Exception Handling
-- missing tracking confirmation: auto-retry 3 times then escalate to carrier contact
-- GDPR data flag: anonymize tracking data after 90 days
+- IF customs_export_compliance fails THEN hold shipment and notify compliance_officer
+- IF carrier rejects handover THEN fallback to secondary_carrier from CarrierContactData within 2 hours
 
 ## Success Criteria
-- on-time dispatch rate >= 98%
-- tracking confirmation received within SLA
-- customer notification sent within 5 minutes of dispatch
+- on-time dispatch rate >= 95%
+- tracking confirmation received within 15min of handover
+- customer notification sent before vehicle departure
 
 ## Compliance Requirements
 - customs export compliance

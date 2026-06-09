@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-5",
+  "name": "Leadership and Quality Policy",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "5",
+  "level": "L1",
+  "description": "Leadership commitment, quality policy establishment and communication, organizational roles responsibilities and authorities for the QMS",
+  "inputs": ["strategic direction", "quality objectives", "organizational structure", "resource plans"],
+  "outputs": ["quality policy", "quality objectives", "role assignments", "management commitment evidence"],
+  "kpis": ["policy communication rate", "objective achievement rate", "management review frequency"],
+  "related_processes": ["ISO9001-4", "ISO9001-6", "ISO9001-9"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 5", "corporate governance"],
+  "automation_potential": 0.30,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

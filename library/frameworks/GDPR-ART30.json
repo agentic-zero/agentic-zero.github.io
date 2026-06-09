@@ -1,0 +1,18 @@
+{
+  "process_id": "GDPR-ART30",
+  "name": "Records of Processing Activities (ROPA)",
+  "framework": "GDPR (EU) 2016/679",
+  "domain": "GDPR",
+  "article": "30",
+  "level": "L1",
+  "description": "Maintenance of records of processing activities including controller and processor obligations, mandatory ROPA content and management of processing records as accountability evidence",
+  "inputs": ["processing activities", "data categories", "purposes", "retention periods", "security measures", "transfers"],
+  "outputs": ["ROPA document", "processing activity records", "transfer mapping", "security measure documentation"],
+  "kpis": ["ROPA completeness", "update frequency", "transfer coverage", "security measure documentation rate"],
+  "related_processes": ["GDPR-ART5", "GDPR-ART13", "SCOR-E3", "SCOR-E8"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR Art.30 mandatory", "DPA audit readiness", "accountability principle"],
+  "automation_potential": 0.65,
+  "source": "GDPR (EU) 2016/679",
+  "confidence": 0.97
+}

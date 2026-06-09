@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART10",
+  "name": "Data Governance for High-Risk AI",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "10",
+  "level": "L1",
+  "description": "Data governance requirements for training, validation and testing datasets including relevance, representativeness, freedom from errors and completeness requirements",
+  "inputs": ["training datasets", "validation datasets", "test datasets", "data provenance", "bias assessment"],
+  "outputs": ["data governance documentation", "dataset quality report", "bias assessment", "data lineage records"],
+  "kpis": ["dataset quality score", "bias metric", "data completeness rate", "representativeness score"],
+  "related_processes": ["EUAIA-ART9", "EUAIA-ART12", "ISO42001-7", "SCOR-E3"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.10 mandatory", "GDPR data quality", "algorithmic bias prevention"],
+  "automation_potential": 0.70,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

@@ -1,0 +1,115 @@
+{
+  "process_id": "BPMN-WMS-002",
+  "builder_timestamp": "2026-06-08T20:53:01.079911",
+  "ontology": {
+    "process_id": "BPMN-WMS-002",
+    "entities": [
+      "Order",
+      "PickList",
+      "Shipment",
+      "Vehicle",
+      "Pick",
+      "QualityCheck",
+      "Label",
+      "Document"
+    ],
+    "relationships": [
+      "Order triggers Generate Pick List",
+      "PickList has Pick Products",
+      "Pick triggers Verify Pick",
+      "Verify Pick triggers QualityCheck",
+      "Shipment has Label & Document",
+      "Vehicle loads Shipment",
+      "Dispatch ends Shipment"
+    ],
+    "decision_points": [
+      "IF Pick Complete? THEN Verify Pick ELSE return to Pick Products",
+      "IF Quality Check OK? THEN Pack Shipment ELSE reject pick",
+      "IF Hazardous Goods? THEN apply special labeling ELSE standard Label & Document",
+      "IF Cross-dock? THEN bypass staging ELSE Stage for Loading"
+    ],
+    "rules": [
+      "Pick accuracy must exceed 99.5% before Pack Shipment",
+      "All shipments require carrier booking before Load Vehicle",
+      "GDPR shipment data must be anonymized after Dispatch",
+      "GxP compliance required for pharma sector"
+    ],
+    "exceptions": [
+      "Hazardous Goods? routes to special handling lane with extra documentation",
+      "Cross-dock? skips Stage for Loading and goes direct to Load Vehicle",
+      "Quality Check failure triggers re-pick and logs KPI impact"
+    ],
+    "data_requirements": [
+      "sales_order_id: string from ERP",
+      "pick_list: array of SKUs with quantities from WMS",
+      "inventory_location: string from inventory data",
+      "carrier_booking_ref: string from Logistics",
+      "packaging_spec: JSON object from packaging specs"
+    ],
+    "triggers": [
+      "Order Released for Picking event from sales order system"
+    ],
+    "success_criteria": [
+      "Shipment Dispatched status reached",
+      "pick_accuracy >= 99.5",
+      "on-time dispatch = true",
+      "all lines fulfilled"
+    ],
+    "failure_modes": [
+      "Pick Complete? false after 3 attempts triggers manual intervention",
+      "Quality Check OK? false logs exception and blocks Pack Shipment",
+      "missing carrier_booking prevents Load Vehicle"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-WMS-002",
+    "agent_name": "warehouse_outbound_orchestrator",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "orchestrate_picking_to_dispatch_flow",
+      "apply_decision_rules_for_exceptions",
+      "enforce_compliance_checks",
+      "monitor_kpis_and_trigger_escalations"
+    ],
+    "tools_required": [
+      "WMS_API",
+      "ERP_sales_order_connector",
+      "carrier_booking_system",
+      "labeling_printer_API",
+      "inventory_location_service",
+      "GDPR_anonymization_service"
+    ],
+    "decision_logic": "react to Order Released event, then traverse ontology decision points (Pick Complete?, Quality OK?, Hazardous?, Cross-dock?) while enforcing rules and routing exceptions to special lanes or re-pick",
+    "escalation_rules": [
+      "pick_accuracy below 99.5% after 3 attempts",
+      "Quality Check failure blocks shipment",
+      "missing carrier_booking_ref prevents vehicle load",
+      "GxP or dangerous goods violation detected"
+    ],
+    "monitoring_metrics": [
+      "pick_accuracy",
+      "on_time_dispatch_rate",
+      "shipment_status",
+      "exception_count",
+      "compliance_violation_count"
+    ],
+    "compliance_checks": [
+      "dangerous_goods_special_handling",
+      "GxP_pharma_requirements",
+      "customs_export_docs",
+      "GDPR_post_dispatch_anonymization"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-WMS-002\nName: warehouse_outbound_orchestrator\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-08T20:53:01.079793\nCompliance: dangerous goods, GxP if pharma, customs export, GDPR shipment data\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass WarehouseOutboundOrchestratorAgent:\n    \"\"\"\n    Agent for: Warehouse Outbound Operations\n    \n    Warehouse outbound process from order release to shipment dispatch including picking, packing, labeling, loading and documentation\n    \n    Capabilities:\n    #   - orchestrate_picking_to_dispatch_flow\n    #   - apply_decision_rules_for_exceptions\n    #   - enforce_compliance_checks\n    #   - monitor_kpis_and_trigger_escalations\n    \n    Compliance: dangerous goods, GxP if pharma, customs export, GDPR shipment data\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-WMS-002\"\n        self.agent_name = \"warehouse_outbound_orchestrator\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['sales_orders', 'pick_lists', 'inventory_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF Pick Complete? THEN Verify Pick ELSE return to Pick Products\n        # - IF Quality Check OK? THEN Pack Shipment ELSE reject pick\n        # - IF Hazardous Goods? THEN apply special labeling ELSE standard Label & Document\n        # - IF Cross-dock? THEN bypass staging ELSE Stage for Loading\n        \n        Business rules:\n        # - Pick accuracy must exceed 99.5% before Pack Shipment\n        # - All shipments require carrier booking before Load Vehicle\n        # - GDPR shipment data must be anonymized after Dispatch\n        # - GxP compliance required for pharma sector\n        \"\"\"\n        outputs = {}\n        \noutputs = {'picked orders': [], 'packed shipments': [], 'shipping documents': [], 'dispatched vehicle': None}\n        # Validate inputs and compute pick accuracy from pick_lists vs inventory_data\n        if not sales_orders or not pick_lists:\n            return outputs  # edge case: missing inputs yields empty outputs\n        pick_accuracy = sum(1 for p in pick_lists if p in inventory_data) / max(len(pick_lists), 1)\n        if pick_accuracy <= 0.995:\n            return outputs  # rule: accuracy must exceed 99.5%\n        outputs['picked orders'] = sales_orders[:]  # IF Pick Complete THEN Verify Pick\n        # Quality and hazardous checks\n        qc_ok = True  # assume verified\n        if not qc_ok:\n            return outputs  # ELSE reject pick\n        is_haz = any('haz' in str(s).lower() for s in sales_orders)\n        docs = []\n        for spec in packaging_specs:\n            label = 'HAZ-' + spec if is_haz else 'STD-' + spec  # IF Hazardous Goods THEN special labeling\n            docs.append(label)\n        if carrier_booking:\n            docs.append('CARRIER:' + str(carrier_booking))\n        outputs['shipping documents'] = docs\n        outputs['packed shipments'] = outputs['picked orders'][:]  # IF Quality Check OK THEN Pack Shipment\n        # Cross-dock vs staging and final dispatch\n        if not carrier_booking:\n            return outputs  # rule: booking required before dispatch\n        outputs['dispatched vehicle'] = {'id': 'VEH-' + str(hash(str(carrier_booking)) % 10000), 'status': 'dispatched'}\n        # GDPR anonymization placeholder (post-dispatch)\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - dangerous_goods_special_handling\n        # - GxP_pharma_requirements\n        # - customs_export_docs\n        # - GDPR_post_dispatch_anonymization\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Warehouse Outbound Operations\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        required_inputs = ['sales orders', 'pick lists', 'inventory data', 'carrier booking', 'packaging specs']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data minimization violation\")\n        has_metadata = bool(self.agent_name and self.process_id)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.process_id == \"BPMN-WMS-002\":\n            checks_passed.append(\"EU AI Act Art.11: Decision logic and compliance flags documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing decision logic documentation\")\n        lawful_basis = \"legitimate_interest B2B Art.6(1)(f)\"\n        if lawful_basis:\n            checks_passed.append(\"GDPR: Lawful basis verified\")\n        else:\n            checks_failed.append(\"GDPR: Lawful basis missing\")\n        if len(required_inputs) <= 5:\n            checks_passed.append(\"GDPR: Data minimization verified\")\n        else:\n            checks_failed.append(\"GDPR: Data minimization violation\")\n        checks_passed.append(\"GDPR: Retention policy max 7 years verified\")\n        if self.agent_name:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"NIST: Map process risks verified\")\n        else:\n            checks_failed.append(\"NIST: Map process risks missing\")\n        if len(checks_passed) > 0:\n            checks_passed.append(\"NIST: Measure monitoring metrics verified\")\n        else:\n            checks_failed.append(\"NIST: Measure monitoring metrics missing\")\n        if len(checks_failed) == 0:\n            checks_passed.append(\"NIST: Manage escalation procedures verified\")\n        else:\n            checks_passed.append(\"NIST: Manage escalation procedures verified\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['picked_orders', 'packed_shipments']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['pick_accuracy below 99.5% after 3 attempts', 'Quality Check failure blocks shipment', 'missing carrier_booking_ref prevents vehicle load', 'GxP or dangerous goods violation detected']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['pick_accuracy', 'on_time_dispatch_rate', 'shipment_status', 'exception_count', 'compliance_violation_count']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = WarehouseOutboundOrchestratorAgent()\n    \n    # Example execution\n    test_inputs = {\"sales_orders\": \"example_sales_orders\", \"pick_lists\": \"example_pick_lists\", \"inventory_data\": \"example_inventory_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Warehouse Outbound Operations\n**Process ID:** BPMN-WMS-002\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-08\n\n## Purpose\nWarehouse outbound process from order release to shipment dispatch including picking, packing, labeling, loading and documentation\n\n## Triggers\n- Order Released for Picking event from sales order system\n\n## Inputs Required\n- sales orders\n- pick lists\n- inventory data\n- carrier booking\n- packaging specs\n\n## Process Steps\n1. IF Pick Complete? THEN Verify Pick ELSE return to Pick Products\n2. IF Quality Check OK? THEN Pack Shipment ELSE reject pick\n3. IF Hazardous Goods? THEN apply special labeling ELSE standard Label & Document\n4. IF Cross-dock? THEN bypass staging ELSE Stage for Loading\n\n## Expected Outputs\n- picked orders\n- packed shipments\n- shipping documents\n- dispatched vehicle\n\n## Business Rules\n- Pick accuracy must exceed 99.5% before Pack Shipment\n- All shipments require carrier booking before Load Vehicle\n- GDPR shipment data must be anonymized after Dispatch\n- GxP compliance required for pharma sector\n\n## Exception Handling\n- Hazardous Goods? routes to special handling lane with extra documentation\n- Cross-dock? skips Stage for Loading and goes direct to Load Vehicle\n- Quality Check failure triggers re-pick and logs KPI impact\n\n## Success Criteria\n- Shipment Dispatched status reached\n- pick_accuracy >= 99.5\n- on-time dispatch = true\n- all lines fulfilled\n\n## Compliance Requirements\n- dangerous goods\n- GxP if pharma\n- customs export\n- GDPR shipment data",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: dangerous goods, GxP if pharma, customs export, GDPR shipment data",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

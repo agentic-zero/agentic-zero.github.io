@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ProjectSchedule API
-- EngineeringBOM revision service
-- SupplierEngineeringLeadTime DB
-- compliance validation engine
+- project_management_api
+- plm_system
+- supplier_portal
+- erp_integration
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing SupplierEngineeringLeadTime or compliance_flags
-- schedule variance remains >5% after update
-- export-controlled item without ITAR/EAR flag
+- schedule_variance > 10_percent
+- missing ITAR/EAR compliance_flags on defense sector
+- supplier data missing and confidence < 0.5

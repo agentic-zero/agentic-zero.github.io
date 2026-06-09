@@ -1,4 +1,4 @@
-# Integration Guide — build_loads_optimizer
+# Integration Guide — load_plan_optimizer
 **Process:** Build Loads (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp build_loads_optimizer.py ./agents/
+cp load_plan_optimizer.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.build_loads_optimizer import BuildLoadsOptimizerAgent
+from agents.load_plan_optimizer import LoadPlanOptimizerAgent
 
-agent = BuildLoadsOptimizerAgent()
+agent = LoadPlanOptimizerAgent()
 result = agent.execute({
     "consolidated_orders": your_consolidated_orders_data,
     "product_dimensions_and_weights": your_product_dimensions_and_weights_data,
@@ -35,13 +35,11 @@ print(result['outputs'])
 
 ## Tools Required
 - optimization_solver
-- PIM_product_api
-- carrier_master_api
+- carrier_api
 - compliance_db
-- route_planning_system
+- product_master
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing product dimensions or GDPR data
-- No carrier meets constraints (trigger SCOR-D2.6)
-- Optimization solver timeout
+- optimization rate <70% after 3 iterations
+- carrier-dg constraint conflict

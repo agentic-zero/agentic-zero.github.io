@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260607_211514_157643",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.10"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T21:15:14.157663",
+  "status": "completed",
+  "started_at": "2026-06-08T12:29:08.532336",
+  "completed_at": "2026-06-08T12:31:19.505422",
+  "error": null,
+  "result": {
+    "agent_name": "mto_packing_compliance_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

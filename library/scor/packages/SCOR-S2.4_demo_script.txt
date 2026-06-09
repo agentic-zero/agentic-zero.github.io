@@ -1,11 +1,6 @@
-1. Open with ROI framing: "This €748 agent delivers 8x ROI by automating end-to-end MTO transfers, cutting manual effort from 4 hours to under 10 minutes while enforcing full audit compliance."
-
-2. Trigger an MTO request: Input a cross-entity transfer (product, quantity, sites); show the orchestrator instantly parsing requirements and pulling ERP data.
-
-3. Demonstrate AI optimization: Review AI-generated routing, cost, and timing recommendations; confirm automated selection of lowest-risk, highest-margin path.
-
-4. Run compliance layer: Execute built-in checks for tax, export controls, and inter-company rules; display real-time pass/fail report with immutable audit trail.
-
-5. Complete transfer and log results: Watch the agent orchestrate approvals, bookings, and notifications; surface the generated compliance packet and time-stamped ledger entry.
-
-6. Reveal ROI dashboard: Present live metrics—hours saved, error reduction, and calculated €5,984 annual value—directly tying €748 price to 8x multiplier within first quarter.
+1. Open with the €748 investment and 8.0x ROI target: show a live dashboard projecting €5,984 annual value from reduced manual transfers and avoided compliance penalties.  
+2. Trigger a sample MTO transfer request; the orchestrator ingests order data and auto-generates a compliant transfer plan in <30 seconds.  
+3. Run the built-in compliance engine: display real-time checks against regulatory rules, audit trail creation, and one-click sign-off that eliminates 90 % of manual review time.  
+4. Execute the optimized transfer workflow: highlight AI-driven routing that cuts processing steps from 14 to 4 and reduces cycle time by 65 %.  
+5. Surface the ROI meter: compare before/after metrics (labor hours, error rate, compliance incidents) to prove payback inside the first month.  
+6. Close with next-step options: pilot deployment timeline and scaling to additional MTO processes for further 8.0x multiples.

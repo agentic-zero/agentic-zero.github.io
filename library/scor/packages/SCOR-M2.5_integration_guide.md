@@ -1,4 +1,4 @@
-# Integration Guide — mto_stage_product_agent
+# Integration Guide — mto_product_staging_agent
 **Process:** Stage Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_stage_product_agent.py ./agents/
+cp mto_product_staging_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_stage_product_agent import MtoStageProductAgentAgent
+from agents.mto_product_staging_agent import MtoProductStagingAgentAgent
 
-agent = MtoStageProductAgentAgent()
+agent = MtoProductStagingAgentAgent()
 result = agent.execute({
     "packaged_products": your_packaged_products_data,
     "delivery_schedules": your_delivery_schedules_data,
@@ -35,12 +35,14 @@ print(result['outputs'])
 
 ## Tools Required
 - WMS_API
-- ERP_delivery_schedule
-- barcode_scan_interface
-- compliance_master_data_service
+- document_validation_service
+- inventory_transaction_logger
+- capacity_monitoring_sensor
+- compliance_rule_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing dangerous_goods_documentation or GxP release
-- StagingArea capacity exceeded after overflow attempt
-- staging_accuracy < 99.5% or cycle_time breach
+- dangerous_goods_documentation missing
+- staging_accuracy below 0.99 after retry
+- inventory_update timeout or mismatch
+- staging_area full with no alternate route

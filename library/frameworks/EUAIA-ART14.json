@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART14",
+  "name": "Human Oversight",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "14",
+  "level": "L1",
+  "description": "Human oversight measures for high-risk AI systems enabling human monitoring, understanding, override and intervention capabilities throughout the AI system operation",
+  "inputs": ["AI system outputs", "oversight protocols", "human reviewer assignments", "override mechanisms", "escalation rules"],
+  "outputs": ["human oversight records", "override logs", "intervention records", "oversight effectiveness metrics"],
+  "kpis": ["human oversight coverage", "override utilization rate", "intervention response time", "oversight effectiveness"],
+  "related_processes": ["EUAIA-ART13", "EUAIA-ART9", "SCOR-DIG4", "SCOR-DIG5", "BPMN-DIG-005"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.14 mandatory", "human-in-the-loop requirements", "GDPR automated decision Art.22"],
+  "automation_potential": 0.60,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

@@ -34,15 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- risk_signal_api
-- supplier_erp_connector
-- geopolitical_data_api
-- iso31000_audit_logger
-- eu_ai_act_checker
+- risk_monitoring_feeds_api
+- geopolitical_indicators_api
+- supplier_data_interface
+- operational_data_sc_or_e1_e8
+- iso31000_nist_reference_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- mitigation_effectiveness < 0.8
-- defense sector risk detected
-- open compliance violations after validation
-- stale data detected in KPI calculation
+- AI system outputs unavailable or data latency >24h requiring human validation
+- geopolitical indicator >0.7 triggering ContingencyPlan
+- RiskExposureValue exceeds threshold with incomplete data

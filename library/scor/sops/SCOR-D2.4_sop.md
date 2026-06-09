@@ -1,13 +1,14 @@
 # SOP — Consolidate Orders (MTO)
 **Process ID:** SCOR-D2.4
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of consolidating multiple MTO orders for the same customer or delivery destination to optimize shipping costs and delivery efficiency
 
 ## Triggers
-- New ConfirmedOrder received that matches existing open orders on customer_id or delivery_destination
+- New ConfirmedOrder received with status='confirmed'
+- DeliverySchedule updated for existing orders
 
 ## Inputs Required
 - confirmed orders
@@ -17,8 +18,8 @@ Process of consolidating multiple MTO orders for the same customer or delivery d
 - cost parameters
 
 ## Process Steps
-1. IF orders share customer_id OR delivery_destination AND delivery_window_overlap >= 24h THEN consolidate
-2. IF projected_cost_savings >= cost_threshold THEN approve consolidation ELSE keep separate
+1. IF orders.share(customerId OR deliveryDestination) AND totalCost(sameDestination) < sum(individualCosts) THEN create ConsolidatedShipmentPlan
+2. IF LogisticsOption.compliance == 'dangerousGoods' THEN route to separate handling workflow
 
 ## Expected Outputs
 - consolidated shipment plans
@@ -27,18 +28,18 @@ Process of consolidating multiple MTO orders for the same customer or delivery d
 - shipping cost savings
 
 ## Business Rules
-- Only consolidate orders with status='confirmed'
-- Apply GDPR masking to all customer data in ConsolidatedShipmentPlan
-- Dangerous goods flag requires separate shipment unless hazmat certification present
+- Consolidation allowed only for orders with matching customerId or deliveryDestination
+- Customer data access must satisfy GDPR compliance flag before consolidation
+- ConsolidatedShipmentPlan must reduce total shipping cost by minimum 5% to be valid
 
 ## Exception Handling
-- Mismatched delivery windows > 48h: split into separate shipments and log reason
-- Customs consolidation regulations violated: flag for manual review and block auto-consolidation
+- Orders with conflicting delivery dates cannot be consolidated: split into separate plans and log exception
+- Customs consolidation regulations violated: abort plan and notify compliance officer
 
 ## Success Criteria
-- consolidation_rate >= 0.7
-- shipping_cost_reduction >= 0.15
-- customer_notification_sent within 4h of plan creation
+- ConsolidationRate >= 0.6
+- ShippingCostReduction >= 0.05
+- CustomerNotification sent within 4 hours of plan creation
 
 ## Compliance Requirements
 - GDPR customer data

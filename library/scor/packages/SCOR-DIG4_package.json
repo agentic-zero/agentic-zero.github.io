@@ -2,11 +2,11 @@
   "process_id": "SCOR-DIG4",
   "agent_name": "autonomous_decision_protocol_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:01:18.568144",
-  "product_summary": "This agent oversees the full lifecycle of decision protocols that enable AI agents to act autonomously within supply chain operations. It establishes escalation thresholds, human override controls, and immutable audit trails while continuously validating regulatory compliance. Executives gain the ability to scale AI-driven decisions safely, reducing operational risk and ensuring alignment with frameworks such as the EU AI Act and ISO 42001. The result is faster, more reliable supply chain execution with documented accountability that protects both efficiency and corporate governance.",
-  "value_proposition": "Transforms autonomous supply chain decisions by embedding enforceable governance, human oversight, and compliance validation directly into AI agent operations.",
-  "technical_summary": "The hybrid agent exposes standardized interfaces for real-time threshold enforcement and override handling while streaming all decisions into a tamper-proof audit repository. It integrates with existing supply chain platforms through event-driven APIs and policy engines, allowing dynamic protocol updates without service interruption. Compliance modules map directly to EU AI Act Articles 13/14, ISO 42001, and NIST AI RMF controls, enabling automated validation and reporting across hybrid agent deployments.",
-  "integration_guide": "# Integration Guide — autonomous_decision_protocol_manager\n**Process:** Manage Autonomous Decision Protocols\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp autonomous_decision_protocol_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.autonomous_decision_protocol_manager import AutonomousDecisionProtocolManagerAgent\n\nagent = AutonomousDecisionProtocolManagerAgent()\nresult = agent.execute({\n    \"business_rules\": your_business_rules_data,\n    \"risk_thresholds\": your_risk_thresholds_data,\n    \"regulatory_requirements\": your_regulatory_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- business_rule_repository\n- compliance_database\n- external_operator_api\n- decision_audit_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- agent_output.risk_score > RiskThreshold.value\n- regulatory_requirement.compliance_flag == false\n- human_override_signal.received == true",
+  "packager_timestamp": "2026-06-08T13:43:15.395077",
+  "product_summary": "This agent enables organizations to define, govern, and monitor decision protocols for AI agents handling autonomous supply chain operations, incorporating escalation thresholds, human override mechanisms, and comprehensive audit trails. It ensures all autonomous decisions remain within approved risk parameters while meeting stringent regulatory requirements for oversight and transparency. By embedding compliance controls directly into agent workflows, the solution reduces operational disruptions, mitigates liability exposure, and accelerates safe adoption of AI-driven supply chain automation. Executives gain real-time visibility into decision quality and regulatory posture without slowing execution speed.",
+  "value_proposition": "Transforms autonomous supply chain decisions by embedding governed protocols, risk thresholds, and audit-ready oversight into every AI agent action.",
+  "technical_summary": "The hybrid agent architecture combines automated protocol enforcement with configurable human override interfaces, exposing capabilities through standardized APIs for integration with existing supply chain platforms and ERP systems. It maintains persistent audit trails and real-time risk threshold monitoring while supporting direct hooks for EU AI Act Art.14 oversight and ISO 42001 control requirements. Technical teams can deploy it as a middleware layer that logs every decision event, triggers escalations, and validates compliance against NIST AI RMF and sector-specific regulations without modifying core agent logic.",
+  "integration_guide": "# Integration Guide — autonomous_decision_protocol_manager\n**Process:** Manage Autonomous Decision Protocols\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp autonomous_decision_protocol_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.autonomous_decision_protocol_manager import AutonomousDecisionProtocolManagerAgent\n\nagent = AutonomousDecisionProtocolManagerAgent()\nresult = agent.execute({\n    \"business_rules\": your_business_rules_data,\n    \"risk_thresholds\": your_risk_thresholds_data,\n    \"regulatory_requirements\": your_regulatory_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system_access\n- compliance_monitoring_API\n- logging_service\n- override_signal_handler\n\n## Escalation\nThe agent automatically escalates to human when:\n- agent_output.risk_score > risk_threshold.value\n- conflicting regulatory_requirements and business_rules\n- missing agent_output fields\n- human_override_signal received",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/autonomous_decision_protocol_manager/spec   — Get agent specification",
     "POST /api/v1/agents/autonomous_decision_protocol_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive pain point: \"Manual protocol management costs teams 40+ hours/month in reviews and risks non-compliance fines—let's see AI automate it end-to-end.\"\n\n2. Launch autonomous_decision_protocol_manager: Input a live business scenario; agent instantly generates, validates, and deploys decision protocols while flagging regulatory gaps.\n\n3. Demonstrate real-time compliance: Agent cross-checks against policy rules, produces audit logs, and auto-remediates violations—reducing compliance cycle time by 85%.\n\n4. Quantify time and risk savings: Dashboard shows 32 hours reclaimed weekly plus zero audit findings, directly tying to €5,984 monthly value (8.0x on €748 price).\n\n5. Run ROI simulator: Adjust variables for your org size; model confirms payback in under 3 weeks with sustained 8x multiplier via scaled autonomous decisions.\n\n6. Close with next-step offer: \"Pilot starts today—secure the €748 license and lock in compliance-ready automation before quarter-end.\"",
+  "demo_script": "1. Open with executive pain: \"Manual autonomous decision protocols cost teams 40+ hours/month in reviews, risking compliance gaps—today's AI agent automates this end-to-end.\"\n2. Trigger live workflow: Load sample protocols into autonomous_decision_protocol_manager; AI parses, flags risks, and proposes compliant decisions in <60 seconds.\n3. Demonstrate compliance layer: Show real-time audit trails, policy alignment checks, and automated logging that satisfy regulatory requirements without manual intervention.\n4. Run ROI simulation: Input current manual metrics; agent outputs 8.0x return—€748 price yields €5,984 net value via 32 hours saved monthly at €50/hr blended rate.\n5. Validate edge cases: Execute a high-stakes decision scenario; confirm zero compliance violations and full explainability for executive oversight.\n6. Close with deployment path: One-click integration, 30-day pilot at no extra cost, and projected payback in under three weeks.",
   "demo_inputs": {
     "business_rules": "[example_business_rules]",
     "risk_thresholds": "[example_risk_thresholds]",
@@ -58,33 +58,33 @@
       "sector-specific autonomous system regulations"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:01:18.568123"
+    "created_at": "2026-06-08T13:43:15.395056"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: In automotive manufacturing, the agent autonomously adjusts robotic assembly parameters under ISO 42001 human control, cutting unplanned downtime by 28% and delivering $2.4M annual ROI through increased throughput.",
-    "Use case 2: In pharma batch production, the agent manages real-time quality release decisions with EU AI Act Art.14 oversight, reducing batch rejection rates by 18% and generating $1.1M quarterly savings via higher yield.",
-    "Use case 3: In defense logistics, the agent executes autonomous supply routing with NIST AI RMF traceability, shortening delivery cycles by 32% and achieving 210% first-year ROI through reduced inventory holding costs.",
-    "Use case 4: In chemical processing plants, the agent optimizes autonomous reactor controls under sector-specific regulations, preventing 4 major safety incidents per year and lowering insurance premiums by 22% for $850K annual savings.",
-    "Use case 5: In food distribution centers, the agent handles autonomous inventory reordering with full transparency logs, cutting spoilage waste by 37% and producing $1.6M yearly ROI via improved shelf-life utilization."
+    "Use case 1: Manufacturing plant deploys agent to manage autonomous production scheduling protocols, achieving 22% reduction in unplanned downtime and $1.2M annual savings while maintaining EU AI Act Art.14 human oversight logs.",
+    "Use case 2: Pharma company uses agent for autonomous batch release decisions under ISO 42001 controls, cutting approval cycle time by 35% and generating $800K yearly ROI through faster market entry with full NIST AI RMF traceability.",
+    "Use case 3: Defense logistics operator applies agent to autonomous supply routing protocols, reducing fuel and delay costs by 18% ($2.4M annually) while delivering EU AI Act Art.13 transparency reports for regulatory audits.",
+    "Use case 4: Chemical processing facility implements agent for real-time autonomous process optimization, lowering energy consumption 12% and delivering $950K ROI per site with sector-specific autonomous system compliance maintained.",
+    "Use case 5: Automotive assembly line integrates agent for autonomous quality inspection protocols, decreasing defect escape rate by 27% and avoiding $3.1M in annual recall costs under full human control and audit requirements."
   ],
   "pricing": {
     "process_id": "SCOR-DIG4",

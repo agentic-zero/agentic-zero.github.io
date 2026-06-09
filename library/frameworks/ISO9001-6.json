@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-6",
+  "name": "Planning — Risk and Opportunity Management",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "6",
+  "level": "L1",
+  "description": "Actions to address risks and opportunities, quality objectives and planning to achieve them, planning of changes to the QMS",
+  "inputs": ["context analysis", "stakeholder needs", "quality policy", "performance data", "change triggers"],
+  "outputs": ["risk register", "opportunity register", "quality objectives", "action plans", "change plans"],
+  "kpis": ["risk mitigation effectiveness", "objective achievement rate", "change success rate"],
+  "related_processes": ["ISO9001-4", "ISO9001-5", "ISO9001-8", "ISO9001-9"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 6", "ISO 31000 risk management"],
+  "automation_potential": 0.65,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

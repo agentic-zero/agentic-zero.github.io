@@ -1,4 +1,4 @@
-# Integration Guide — supply_chain_workforce_manager
+# Integration Guide — supply_chain_hr_automator
 **Process:** Manage Supply Chain Human Resources
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp supply_chain_workforce_manager.py ./agents/
+cp supply_chain_hr_automator.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.supply_chain_workforce_manager import SupplyChainWorkforceManagerAgent
+from agents.supply_chain_hr_automator import SupplyChainHrAutomatorAgent
 
-agent = SupplyChainWorkforceManagerAgent()
+agent = SupplyChainHrAutomatorAgent()
 result = agent.execute({
     "workforce_data": your_workforce_data_data,
     "skills_requirements": your_skills_requirements_data,
@@ -35,13 +35,12 @@ print(result['outputs'])
 
 ## Tools Required
 - HRIS_API
-- ERP_performance_connector
-- planning_system_interface
-- GDPR_anonymizer
-- human_oversight_approval_gateway
+- ERP_data_connector
+- compliance_checker
+- org_chart_parser
 
 ## Escalation
 The agent automatically escalates to human when:
-- health_and_safety violation detected
-- EU AI Act Art.14 human oversight required on CapacityPlan
-- related_process SCOR-E1 unavailable
+- EU_AI_Act_Art14 human oversight required for automated assessments
+- missing workforce data after 48h
+- non-compliant training plan detected

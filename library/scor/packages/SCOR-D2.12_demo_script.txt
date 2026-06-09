@@ -1,0 +1,6 @@
+1. Open dashboard and contrast manual Ship Product (MTO) cycle (45 min avg, 12% compliance flags) with one-click AI dispatch.  
+2. Trigger mto_shipment_dispatch_agent; show real-time order ingestion, carrier selection, and auto-generated docs.  
+3. Run built-in compliance scan—highlight instant regulatory checks and zero-touch audit trail.  
+4. Display live metrics: cycle time reduced to 6 min, error rate to 0.8%, €4,592 monthly labor & penalty savings.  
+5. Calculate ROI on-screen: €574 price × 8.0x multiplier = €4,592 net value per month, payback in <4 days.  
+6. Export compliance report and savings summary for CFO review; close with next-step pilot proposal.

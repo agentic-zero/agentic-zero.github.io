@@ -1,4 +1,4 @@
-# Integration Guide — mto_shipment_routing_agent
+# Integration Guide — mto_shipment_router
 **Process:** Route Shipments (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_shipment_routing_agent.py ./agents/
+cp mto_shipment_router.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_shipment_routing_agent import MtoShipmentRoutingAgentAgent
+from agents.mto_shipment_router import MtoShipmentRouterAgent
 
-agent = MtoShipmentRoutingAgentAgent()
+agent = MtoShipmentRouterAgent()
 result = agent.execute({
     "load_plans": your_load_plans_data,
     "delivery_requirements": your_delivery_requirements_data,
@@ -34,12 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- carrier_booking_api
-- customs_compliance_system
-- routing_optimization_engine
-- load_plan_listener
+- load_plan_api
+- carrier_booking_system
+- customs_clearance_db
+- optimization_engine
+- export_control_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- Carrier booking accuracy drops below 98%
-- Customs clearance rate falls below 90%
+- export control restriction detected
+- customs_clearance_rate < 0.95
+- no valid CarrierOption within CostConstraint

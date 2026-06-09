@@ -1,0 +1,6 @@
+1. Open with MTO pain points: 12-min manual verification per order, 8% error rate, and missing audit trails costing €4.6k/month in rework and compliance risk.  
+2. Trigger mto_delivery_verification_agent on a live inbound MTO; show real-time AI scan, photo match, and spec validation in <90 seconds.  
+3. Highlight built-in compliance: automatic capture of serial numbers, timestamps, and digital signatures that satisfy ISO and customer audit requirements.  
+4. Display exception dashboard: flag one mismatched item, auto-generate corrective-action ticket and compliance log without manual entry.  
+5. Run ROI calculator live: €574 agent cost vs. €4,592 monthly savings (labor + error reduction) = 8.0x multiplier achieved in first month.  
+6. Export one-click compliance report and close with 10-minute Q&A on deployment timeline.

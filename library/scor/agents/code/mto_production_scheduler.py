@@ -4,7 +4,7 @@ Process: SCOR-M2.1
 Name: mto_production_scheduler
 Framework: SCOR
 Domain: Make
-Generated: 2026-06-07T20:03:14.609230
+Generated: 2026-06-08T15:08:31.118587
 Compliance: GxP batch records if pharma, ISO 9001 production planning, GDPR customer data
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,10 @@ class MtoProductionSchedulerAgent:
     Process of scheduling MTO production activities against customer orders, allocating capacity and sequencing work orders to meet customer delivery commitments
     
     Capabilities:
-    #   - evaluate_material_capacity
-    #   - sequence_routing_to_schedule
-    #   - release_work_orders
-    #   - apply_sector_exceptions
-    #   - enforce_compliance_rules
+    #   - generate_mto_production_schedule
+    #   - sequence_work_orders
+    #   - validate_material_capacity_routing
+    #   - release_work_orders_with_commitments
     
     Compliance: GxP batch records if pharma, ISO 9001 production planning, GDPR customer data
     """
@@ -140,57 +139,44 @@ class MtoProductionSchedulerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF material_availability.status == 'available' AND capacity_plan.utilization < 0.85 THEN release WorkOrder
-        # - IF routing_data.setup_time + processing_time > customer_order.due_date THEN escalate to related_process SCOR-M2.2
+        # - IF material_availability.quantity < work_order.required_qty THEN hold release and escalate to procurement
+        # - IF capacity_utilization > 0.9 THEN sequence by customer_priority DESC then due_date ASC
+        # - IF routing_data.changeover_time > 4h THEN batch similar orders before sequencing
         
         Business rules:
-        # - MTOProductionSchedule must achieve schedule_adherence >= 0.95
-        # - WorkOrder release requires ISO 9001 documented approval
-        # - GDPR customer data must be anonymized in DeliveryConfirmation
+        # - MTOProductionSchedule must confirm capacity_commitment before releasing any WorkOrder
+        # - All WorkOrders must have delivery_confirmation timestamp before customer commit
+        # - Schedule must achieve on_time_delivery >= 0.95 and schedule_adherence >= 0.92
         """
         outputs = {}
         
-# Initialize outputs dict and lists for required artifacts
-        outputs = {}
-        mto_schedules = []
-        work_orders = []
-        capacity_commits = []
-        delivery_confs = []
-        # Extract inputs with safe defaults for edge cases (missing/empty data)
-        cust_orders = inputs.get('customer orders', []) or []
+outputs = {'MTO production schedules': [], 'work order releases': [], 'capacity commitments': [], 'delivery date confirmations': []}
+        orders = inputs.get('customer orders', []) or []
         cap_plans = inputs.get('capacity plans', {}) or {}
-        mat_avails = inputs.get('material availability', {}) or {}
-        routing_dat = inputs.get('routing data', {}) or {}
+        mat_avail = inputs.get('material availability', {}) or {}
+        routing = inputs.get('routing data', {}) or {}
         equip_sched = inputs.get('equipment schedules', {}) or {}
-        # Iterate orders; handle missing keys and enforce rules/decision points
-        for order in cust_orders:
-            oid = order.get('id')
-            if not oid:
-                continue  # edge case: skip malformed order
-            # GDPR anonymization in delivery confirmation
-            anon_order = {'id': oid, 'due_date': order.get('due_date')}
-            mat = mat_avails.get(oid, {'status': 'unavailable'})
-            cap = cap_plans.get(order.get('product'), {'utilization': 1.0})
-            route = routing_dat.get(order.get('product'), {'setup_time': 0, 'processing_time': 0})
-            total_time = route.get('setup_time', 0) + route.get('processing_time', 0)
-            due = order.get('due_date', float('inf'))
-            # Decision point: escalate if timing violation
-            if total_time > due:
-                continue  # escalate to SCOR-M2.2 (no further processing here)
-            # Decision point + rule: release only if available and utilization ok; require ISO approval
-            if mat.get('status') == 'available' and cap.get('utilization', 1.0) < 0.85:
-                wo = {'order_id': oid, 'approval': 'ISO 9001 documented'}
-                work_orders.append(wo)
-                # Enforce schedule_adherence >= 0.95 rule
-                sched = {'order_id': oid, 'adherence': 0.95, 'details': 'MTO schedule', 'equip': equip_sched}
-                mto_schedules.append(sched)
-                capacity_commits.append({'order_id': oid, 'commitment': 'reserved'})
-                delivery_confs.append({'order_id': oid, 'confirmation': 'date confirmed', 'data': anon_order})
-        # Populate required outputs
-        outputs['MTO production schedules'] = mto_schedules
-        outputs['work order releases'] = work_orders
-        outputs['capacity commitments'] = capacity_commits
-        outputs['delivery date confirmations'] = delivery_confs
+        if not orders:
+            return outputs
+        sorted_orders = sorted(orders, key=lambda o: (-o.get('customer_priority', 0), o.get('due_date', '')))
+        if routing.get('changeover_time', 0) > 4:
+            sorted_orders = sorted(sorted_orders, key=lambda o: o.get('product_type', ''))
+        for order in sorted_orders:
+            wo_id = 'WO-' + str(order.get('id', ''))
+            req_qty = order.get('qty', 0)
+            mat_qty = mat_avail.get(order.get('material', ''), {}).get('quantity', 0)
+            if mat_qty < req_qty:
+                outputs['work order releases'].append({'id': wo_id, 'status': 'held', 'escalation': 'procurement'})
+                continue
+            util = cap_plans.get('utilization', 0)
+            if util > 0.9:
+                pass
+            commit = {'wo_id': wo_id, 'capacity': cap_plans.get('available', 0), 'confirmed': True}
+            outputs['capacity commitments'].append(commit)
+            schedule = {'wo_id': wo_id, 'start': equip_sched.get('next_slot', ''), 'end': order.get('due_date', ''), 'on_time': True}
+            outputs['MTO production schedules'].append(schedule)
+            outputs['work order releases'].append({'id': wo_id, 'status': 'released', 'timestamp': 'now'})
+            outputs['delivery date confirmations'].append({'wo_id': wo_id, 'timestamp': 'now', 'date': order.get('due_date', '')})
         return outputs
         
         return outputs
@@ -200,9 +186,9 @@ class MtoProductionSchedulerAgent:
         Built-in compliance validation
         
         Checks:
-        # - ISO9001_documented_approval
-        # - GxP_batch_record_attachment
-        # - GDPR_anonymization_in_DeliveryConfirmation
+        # - ISO_9001_production_planning
+        # - GDPR_customer_data_handling
+        # - GxP_batch_record_audit_if_pharma
         """
         checks_passed = []
         checks_failed = []
@@ -226,7 +212,7 @@ class MtoProductionSchedulerAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['material data missing causing loop', 'post-release EquipmentSchedule conflict', 'pharma sector without GxP record', 'capacity_utilization > 0.95']
+        escalation_rules = ['material shortage hold and escalate to procurement', 'rush priority=1 order requires documented capacity override approval', 'equipment downtime >2h triggers reschedule within 4h']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -240,7 +226,7 @@ class MtoProductionSchedulerAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['schedule_adherence', 'capacity_utilization', 'on_time_delivery', 'order_cycle_time']
+            "monitoring": ['on_time_delivery', 'schedule_adherence', 'capacity_utilization']
         }
 
 

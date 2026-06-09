@@ -2,11 +2,11 @@
   "process_id": "SCOR-E2",
   "agent_name": "supply_chain_performance_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:25:18.341247",
-  "product_summary": "The Manage Supply Chain Performance agent collects, analyzes, and reports supply chain metrics across all SCOR domains, automating KPI management, benchmarking, and continuous improvement initiatives. This hybrid agent delivers real-time visibility into operational performance while embedding compliance controls for EU AI Act, ISO 42001, and financial reporting standards. By validating data and generating actionable improvement plans, it reduces manual reporting cycles and enables faster, evidence-based decisions that improve supply chain efficiency and resilience. Executives gain a single source of truth that links day-to-day metrics directly to strategic outcomes and regulatory obligations.",
-  "value_proposition": "Transforms supply chain oversight by automating KPI calculation, dashboard generation, and continuous improvement across every SCOR domain while enforcing compliance logging.",
-  "technical_summary": "The hybrid agent combines kpi_calculation and data_validation services with dashboard_generation and improvement_planning modules, pulling structured data from ERP, WMS, and TMS sources through standardized connectors. It produces auditable logs that satisfy EU AI Act Art.12, ISO 42001, and financial reporting requirements, applying GDPR safeguards only when personal data appears in metrics. Integration occurs via event-driven APIs and scheduled batch jobs, allowing the agent to operate alongside existing SCOR-aligned performance platforms without disrupting current data flows.",
-  "integration_guide": "# Integration Guide — supply_chain_performance_manager\n**Process:** Manage Supply Chain Performance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_performance_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_performance_manager import SupplyChainPerformanceManagerAgent\n\nagent = SupplyChainPerformanceManagerAgent()\nresult = agent.execute({\n    \"operational_data\": your_operational_data_data,\n    \"kpi_targets\": your_kpi_targets_data,\n    \"benchmark_data\": your_benchmark_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_mes_connector\n- apics_benchmark_api\n- planning_module_interface\n- audit_log_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing OperationalData after validation\n- ImprovementPlan completion <0.85 after 30 days\n- Compliance violation or schema drift detected",
+  "packager_timestamp": "2026-06-08T13:07:17.731307",
+  "product_summary": "This hybrid agent automates the end-to-end management of supply chain performance by collecting operational KPI data across all SCOR domains, analyzing results against benchmarks, and generating actionable improvement plans. It delivers real-time dashboards and continuous improvement recommendations while enforcing compliance with EU AI Act, ISO 42001, financial reporting, and GDPR requirements. Executives gain a single source of truth for performance visibility that reduces manual reporting effort and accelerates decision-making. The result is faster identification of bottlenecks, improved supplier and logistics efficiency, and lower risk of regulatory non-compliance.",
+  "value_proposition": "Automates KPI collection, dashboard generation, and compliance-checked improvement planning across the entire supply chain.",
+  "technical_summary": "The hybrid agent integrates with existing operational systems through the consume_operational_kpi_data capability and produces outputs via generate_kpi_dashboard and create_improvement_plans functions. It embeds compliance logic from apply_compliance_rules to enforce EU AI Act Art.12 logging, ISO 42001 monitoring, and GDPR safeguards whenever personal data appears in metrics. Architecture supports both deterministic rule execution and model-driven analysis, enabling seamless connection to ERP, warehouse, and transportation platforms while maintaining full audit trails.",
+  "integration_guide": "# Integration Guide — supply_chain_performance_manager\n**Process:** Manage Supply Chain Performance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_performance_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_performance_manager import SupplyChainPerformanceManagerAgent\n\nagent = SupplyChainPerformanceManagerAgent()\nresult = agent.execute({\n    \"operational_data\": your_operational_data_data,\n    \"kpi_targets\": your_kpi_targets_data,\n    \"benchmark_data\": your_benchmark_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_mes_api\n- apics_benchmark_db\n- kpi_calculator\n- compliance_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- reporting cycle time >24 hours to SCOR-E1\n- missing compliance metadata on PerformanceReport",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/supply_chain_performance_manager/spec   — Get agent specification",
     "POST /api/v1/agents/supply_chain_performance_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open with the €748 investment and project 8x ROI (€5,984 net value) via 15% faster issue resolution and automated compliance in a live 200-supplier network.  \n2. Trigger the agent to ingest ERP and logistics feeds, auto-calculate OTIF, inventory turns, and supplier risk scores in under 60 seconds.  \n3. Run the compliance module: generate audit-ready ESG and traceability reports while flagging two regulatory gaps with recommended corrective actions.  \n4. Execute AI-driven scenario: rebalance orders across suppliers, showing immediate 12% cost reduction and full compliance score improvement.  \n5. Display the ROI dashboard: quantify time saved (22 hrs/week), avoided penalties, and payback achieved in 11 days.  \n6. Summarize integration path (one API call) and confirm next-step pilot scope with the executive team.",
+  "demo_script": "1. Open dashboard: Load live supply chain data for 3 regions; highlight AI agent auto-ingesting ERP feeds in <30 seconds vs. 4-hour manual process.  \n2. Run performance optimization: Trigger agent to identify bottlenecks; display AI-recommended rerouting that cuts lead time 22% and inventory costs €47k/month.  \n3. Surface compliance module: Show real-time audit of supplier ESG and customs rules; flag 2 non-compliant routes with auto-generated remediation plans.  \n4. Quantify ROI live: Calculate 8.0x multiplier on €748 price—project €5.98M annual value from efficiency + avoided fines; export one-page executive summary.  \n5. Simulate exception handling: Inject a sudden tariff change; demonstrate agent updating forecasts and compliance docs in 90 seconds with full audit trail.  \n6. Close with next-step CTA: Offer 14-day pilot scoped to one product line, targeting first €100k savings within 30 days.",
   "demo_inputs": {
     "operational_data": "[example_operational_data]",
     "kpi_targets": "[example_kpi_targets]",
@@ -57,33 +57,33 @@
       "GDPR if personal data in metrics"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:25:18.341225"
+    "created_at": "2026-06-08T13:07:17.731288"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: In automotive manufacturing, the agent logs real-time supplier OTIF metrics per EU AI Act Art.12, cutting expedited freight spend by 22% and delivering $1.8M annual savings.",
-    "Use case 2: In pharma cold-chain distribution, ISO 42001 performance monitoring flags temperature excursions 48 hours earlier, reducing product write-offs by 18% and recovering $650K yearly.",
-    "Use case 3: In food processing, demand-sensing analytics improve forecast accuracy from 72% to 94%, lowering finished-goods inventory carrying costs by 31% ($2.4M annually) while satisfying financial reporting compliance.",
-    "Use case 4: In chemical manufacturing, the agent detects quality drift in tier-2 suppliers within one batch cycle, preventing $3.1M in batch rejections and regulatory fines.",
-    "Use case 5: In defense logistics, predictive disruption scoring reduces line-stoppage risk by 37%, avoiding $4.7M in program delay penalties and maintaining full audit traceability."
+    "Use case 1: Manufacturing agent continuously tracks supplier OTIF and inventory turns, cutting excess safety stock by 22% and delivering $1.2M annual working-capital release while maintaining 99.3% service level",
+    "Use case 2: Pharma supply-chain agent logs all performance metrics per EU AI Act Art.12 and ISO 42001, reducing audit preparation time by 65% and eliminating €800K potential non-compliance penalties",
+    "Use case 3: Automotive distribution agent optimizes multi-tier logistics KPIs, lowering freight spend 17% ($2.4M/year) and improving dock-to-dock cycle time by 12 days",
+    "Use case 4: Food-sector agent monitors cold-chain performance and spoilage risk, cutting product waste 28% and generating $950K annual margin recovery while meeting financial-reporting compliance",
+    "Use case 5: Defense contractor agent provides real-time supplier-risk scoring with full GDPR-compliant metric logging, reducing critical-part stockout exposure by 35% and avoiding $4M program-delay costs"
   ],
   "pricing": {
     "process_id": "SCOR-E2",

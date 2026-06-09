@@ -1,14 +1,14 @@
 # SOP — Stage Product (ETO)
 **Process ID:** SCOR-M3.5
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of staging ETO products for delivery including final government/customer inspection, data package completion, export licensing and handover to deliver operations
 
 ## Triggers
-- receipt of PackagedETOProduct and DataPackage from SCOR-M3.4
-- availability of ExportLicense and CustomerInspectionSchedule
+- Receipt of packaged ETO products and complete data packages from SCOR-M3.4
+- Customer inspection schedule confirmation received
 
 ## Inputs Required
 - packaged ETO products
@@ -18,8 +18,8 @@ Process of staging ETO products for delivery including final government/customer
 - delivery documentation
 
 ## Process Steps
-1. IF export_license.status == 'valid' AND ITAR_compliance == true THEN proceed_to_staging ELSE hold_for_compliance_review
-2. IF customer_inspection.result == 'pass' THEN generate DeliveryReadinessConfirmation ELSE initiate_rework
+1. IF ExportLicense.status == 'valid' AND compliance_flags contains 'ITAR/EAR' THEN proceed_to_inspection ELSE hold_for_license_renewal
+2. IF customer_inspection.result == 'pass' THEN complete_data_package ELSE trigger_rework_and_reschedule
 
 ## Expected Outputs
 - staged ETO products
@@ -28,17 +28,17 @@ Process of staging ETO products for delivery including final government/customer
 - delivery readiness confirmation
 
 ## Business Rules
-- export_control: all ExportLicense must validate against ITAR/EAR before ExportClearance issuance
-- documentation: DataPackage must contain 100% required fields per government property regulations
-- staging: PackagedETOProduct must complete final inspection within staging_cycle_time <= KPI threshold
+- rule1: All DataPackage fields must achieve documentation_completeness >= 100% before ApprovedDataPackage generation
+- rule2: ExportClearance requires explicit ITAR/EAR and customs_compliance sign-off prior to handover
+- rule3: Staging cycle time must be logged with timestamp at each sub-step for KPI calculation
 
 ## Exception Handling
-- inspection_failure: if CustomerInspectionPassRate < 100% then route to M3.4 rework and log failure in DeliveryDocumentation
-- license_rejection: if ExportLicense invalid then pause process and notify compliance officer with 24h escalation
+- exception: Customer inspection fails - route PackagedETOProduct back to M3.4 for rework and reset inspection schedule
+- exception: Export license expires mid-process - pause all outputs and escalate to compliance officer with 24h SLA
 
 ## Success Criteria
-- all outputs produced: StagedETOProduct, ApprovedDataPackage, ExportClearance, DeliveryReadinessConfirmation
-- KPIs met: staging_cycle_time <= target, documentation_completeness == 100%, export_compliance_rate >= 99%, customer_inspection_pass_rate >= 95%
+- All four outputs (staged ETO products, approved data packages, export clearance, delivery readiness confirmation) generated with non-null values
+- Export compliance rate KPI == 100% and customer inspection pass rate KPI >= threshold defined in schedule
 
 ## Compliance Requirements
 - export control ITAR/EAR

@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO31000-P3",
+  "name": "Risk Treatment and Monitoring",
+  "framework": "ISO 31000:2018",
+  "domain": "ISO 31000",
+  "clause": "Risk Treatment + Monitoring",
+  "level": "L1",
+  "description": "Selection and implementation of risk treatment options including avoidance, reduction, sharing and retention, followed by continuous monitoring, review and recording of risk management outcomes",
+  "inputs": ["risk evaluation results", "treatment options", "resource availability", "monitoring metrics", "review schedule"],
+  "outputs": ["treatment plans", "residual risk assessments", "monitoring reports", "review records", "improvement actions"],
+  "kpis": ["treatment implementation rate", "residual risk level", "monitoring compliance", "review effectiveness"],
+  "related_processes": ["ISO31000-P2", "ISO31000-P1", "SCOR-E9", "ISO42001-10"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 31000:2018", "risk treatment documentation", "continuous monitoring"],
+  "automation_potential": 0.75,
+  "source": "ISO 31000:2018 Standard",
+  "confidence": 0.95
+}

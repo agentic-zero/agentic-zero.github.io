@@ -1,6 +1,6 @@
-1. Open with ETO pain points: manual verification delays (avg. 14 days) and compliance gaps costing €250k+ annually in rework/penalties.  
-2. Launch eto_product_verification_agent on a live sample order; show AI parsing specs, drawings, and regulations in <90 seconds.  
-3. Run automated compliance checks against ISO/IEC and customer requirements, flagging deviations with audit-ready logs.  
-4. Display side-by-side results: 92% faster verification vs. manual process, zero missed compliance items.  
-5. Calculate live ROI: €748 price yields 8.0x return via €6k+ per-order savings and 3-week cycle-time reduction.  
-6. Summarize integration path and compliance certification output for immediate executive sign-off.
+1. Open with the compliance gap: Manual ETO verification creates audit failures and €50k+ annual rework risk; position the €748 agent as the automated control layer.  
+2. Load a live complex order; run eto_product_verification_agent to auto-check specs, regulations, and supplier data in <60 seconds.  
+3. Display the instant compliance report with flagged deviations and traceable audit trail, eliminating manual sign-off delays.  
+4. Reveal ROI dashboard: 8.0x multiplier shown via 12 hours saved per order, equating to €6k+ annual value per engineer.  
+5. Simulate one-click escalation to ERP, proving zero-disruption integration and sustained compliance posture.  
+6. Close with procurement summary: €748 investment, 8.0x ROI, 10-minute deployment, ready for pilot approval.

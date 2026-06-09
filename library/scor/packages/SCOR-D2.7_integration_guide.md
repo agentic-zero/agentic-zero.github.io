@@ -1,4 +1,4 @@
-# Integration Guide — carrier_selection_and_shipment_rating_agent
+# Integration Guide — carrier_selector_and_shipment_rater
 **Process:** Select Carriers and Rate Shipments (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp carrier_selection_and_shipment_rating_agent.py ./agents/
+cp carrier_selector_and_shipment_rater.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.carrier_selection_and_shipment_rating_agent import CarrierSelectionAndShipmentRatingAgentAgent
+from agents.carrier_selector_and_shipment_rater import CarrierSelectorAndShipmentRaterAgent
 
-agent = CarrierSelectionAndShipmentRatingAgentAgent()
+agent = CarrierSelectorAndShipmentRaterAgent()
 result = agent.execute({
     "routing_plans": your_routing_plans_data,
     "carrier_rate_cards": your_carrier_rate_cards_data,
@@ -34,12 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- carrier_rate_api
-- performance_scorecard_db
-- compliance_checker
-- routing_plan_interface
+- routing_plan_ingest
+- carrier_rate_card_db
+- performance_scorecard_api
+- erp_budget_feed
 
 ## Escalation
 The agent automatically escalates to human when:
-- no_carrier_meets_requirements escalate to manual review
-- rate_card_expired trigger refresh and pause
+- no carrier meets budget_constraint
+- customs_broker_regulations violated

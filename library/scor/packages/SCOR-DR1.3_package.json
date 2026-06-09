@@ -2,11 +2,11 @@
   "process_id": "SCOR-DR1.3",
   "agent_name": "defective_return_receipt_processor",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:10:18.788148",
-  "product_summary": "The Receive Defective Product Return agent manages the physical intake and verification of returned products under RMA authorization. It performs inspections, assesses product conditions, and updates systems accordingly while triggering credits or handling exceptions as needed. This hybrid agent ensures compliance with industry standards such as GxP for pharma and GDPR for data privacy. By streamlining returns processing, it reduces operational costs, minimizes errors, and enhances customer satisfaction through faster resolutions.",
-  "value_proposition": "Automates physical receipt, inspection, and verification of defective returns against RMA records to deliver accurate inventory updates and compliant credit processing.",
-  "technical_summary": "The hybrid architecture combines sensor-driven inspection execution with modular AI services for rma_validation, exception_handling, and report_generation. It integrates directly with inventory, ERP, and compliance systems to maintain real-time updates and audit trails while supporting conditional triggers for credit issuance.",
-  "integration_guide": "# Integration Guide — defective_return_receipt_processor\n**Process:** Receive Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp defective_return_receipt_processor.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.defective_return_receipt_processor import DefectiveReturnReceiptProcessorAgent\n\nagent = DefectiveReturnReceiptProcessorAgent()\nresult = agent.execute({\n    \"scheduled_return_shipment\": your_scheduled_return_shipment_data,\n    \"rma_documentation\": your_rma_documentation_data,\n    \"inspection_criteria\": your_inspection_criteria_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- rma_database_api\n- inventory_management_system\n- inspection_scanning_tool\n- notification_service\n- gdpr_masking_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- RMA mismatch or missing RMADocument\n- Inspection timeout exceeding cycle KPI\n- Personal data detected in records",
+  "packager_timestamp": "2026-06-08T12:52:12.406881",
+  "product_summary": "The Receive Defective Product Return agent orchestrates the physical intake, inspection, and verification of defective items against authorized RMAs, performing condition assessments and triggering downstream system actions. It combines human oversight with automated checks to validate serials, evaluate quality criteria, update inventory records, and issue credits while routing exceptions to quarantine. This delivers executive value by shortening return cycle times, reducing revenue leakage from inaccurate processing, and ensuring audit-ready compliance in regulated sectors. Organizations gain faster customer resolutions and tighter control over reverse logistics costs.",
+  "value_proposition": "Automates end-to-end defective return handling from physical receipt through RMA validation, inspection, inventory updates, and credit emission while enforcing compliance guardrails.",
+  "technical_summary": "The hybrid agent connects physical inspection stations to backend services via RMA validation and serial-matching APIs, then calls inventory_system and credit_trigger endpoints based on inspection_criteria results. Exception paths invoke quarantine handling with full audit logging to satisfy GxP or GDPR requirements. It is designed for event-driven integration with existing ERP and quality-management platforms.",
+  "integration_guide": "# Integration Guide — defective_return_receipt_processor\n**Process:** Receive Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp defective_return_receipt_processor.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.defective_return_receipt_processor import DefectiveReturnReceiptProcessorAgent\n\nagent = DefectiveReturnReceiptProcessorAgent()\nresult = agent.execute({\n    \"scheduled_return_shipment\": your_scheduled_return_shipment_data,\n    \"rma_documentation\": your_rma_documentation_data,\n    \"inspection_criteria\": your_inspection_criteria_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- dock_scan_API\n- RMA_lookup_service\n- inventory_update_API\n- inspection_criteria_engine\n- exception_ticket_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- serial mismatch or RMA invalid\n- inspection cycle_time exceeds KPI\n- GxP immutability violation detected",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/defective_return_receipt_processor/spec   — Get agent specification",
     "POST /api/v1/agents/defective_return_receipt_processor/test   — Run test cases"
   ],
-  "demo_script": "1. Open with a live manual return scenario (2 min): Process one defective item manually, highlighting 12-min handling time, error-prone logging, and missing compliance audit trail.\n\n2. Trigger the AI agent on the same return (1 min): Input receipt photo and defect details; agent auto-validates against policy, extracts data, and flags regulatory requirements.\n\n3. Display real-time compliance output (2 min): Show instant generation of immutable audit log, EU return directive alignment, and risk-scored documentation.\n\n4. Reveal automated workflow completion (1 min): Item routed to refurbish/credit queue with zero manual re-entry; confirm 94% faster cycle time.\n\n5. Project ROI dashboard (2 min): Input company return volume; calculate €5,592 annual savings per license (8.0x multiplier on €699 price) via reduced labor and avoided fines.\n\n6. Close with executive summary (2 min): Restate compliance risk reduction and 8x ROI; offer pilot deployment metrics within 30 days.",
+  "demo_script": "1. Open with manual pain: Process one defective return by hand (photo upload, form fill, compliance checklist), logging 18 minutes and €42 labor cost.\n2. Launch AGENT defective_return_receipt_processor on identical return; AI auto-captures images, validates serial/warranty, and generates compliant receipt in 47 seconds.\n3. Display real-time compliance layer: AI flags EU consumer-rights rules, attaches audit trail, and exports PDF with zero manual edits.\n4. Reveal dashboard metrics: 94% faster cycle time, €38 saved per return, projected annual volume of 1,200 returns = €45,600 savings.\n5. Calculate live ROI: €699 price ÷ €5,592 net annual value = 8.0x multiplier within first month.\n6. Close with one-click deployment link and 30-day compliance guarantee; invite pilot on next 50 returns.",
   "demo_inputs": {
     "scheduled_return_shipment": "[example_scheduled_return_shipment]",
     "rma_documentation": "[example_rma_documentation]",
@@ -54,31 +54,31 @@
       "GDPR if personal data in records"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 6,
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 99,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:10:18.788127"
+    "created_at": "2026-06-08T12:52:12.406862"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
+    "hybrid",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: In pharma distribution, the agent automates GxP-compliant inspection and documentation of returned defective drug batches, reducing manual audit prep time from 40 hours to 4 hours per incident and avoiding $250k annual FDA fine risk.",
-    "Use case 2: In automotive manufacturing, the agent routes defective part returns through standardized quality inspection and supplier chargeback workflows, cutting average return cycle time from 14 days to 3 days and recovering $180k yearly in supplier credits.",
-    "Use case 3: In food distribution, the agent enforces safety-standard checks on returned defective perishables with automated disposal logging, reducing spoilage-related losses by 35% and saving $120k annually through faster inventory write-offs.",
-    "Use case 4: In general manufacturing, the agent processes high-volume defective component returns with real-time root-cause tagging, lowering repeat-defect rates by 22% and delivering $95k yearly savings in rework and scrap costs.",
-    "Use case 5: In multi-sector distribution centers, the agent handles GDPR-compliant customer data capture during defective returns while auto-generating refund and restock decisions, reducing processing labor by 65% and improving customer refund SLA compliance to 99%."
+    "Use case 1: Pharma distributor deploys agent for GxP-compliant defective return logging and inspection, cutting batch release delays from 14 days to 4 days and avoiding $750K in annual regulatory fines",
+    "Use case 2: Automotive OEM uses agent to route returns through automated quality inspection, recovering $1.2M in salvage value per year by reducing average processing time from 7 days to 48 hours",
+    "Use case 3: Food manufacturer accelerates perishable return quarantine and disposal documentation, reducing spoilage write-offs by 28% and saving $420K annually in waste and recall costs",
+    "Use case 4: Medical device distributor automates GDPR-compliant personal data redaction during returns, lowering manual compliance labor by 65% and eliminating $180K yearly in audit remediation expenses",
+    "Use case 5: Electronics manufacturer feeds return defect data into supplier scorecards via the agent, cutting repeat defect rates by 35% and delivering $950K annual reduction in rework and warranty claims"
   ],
   "pricing": {
     "process_id": "SCOR-DR1.3",

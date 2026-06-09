@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-S3.4",
-  "agent_name": "eto_product_transfer_agent",
+  "agent_name": "eto_component_transfer_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:46:18.237570",
-  "product_summary": "This hybrid agent manages the end-to-end transfer of verified Engineer-to-Order components into project-specific production environments while preserving complete engineering traceability and configuration integrity. It automatically validates compliance, enforces export controls and sector-specific rules, and updates inventory records without manual intervention. By handling GDPR exceptions and defense acquisition requirements in a single workflow, the agent reduces regulatory risk and accelerates time-to-production for complex, high-value projects. Executives gain predictable throughput and auditable processes that support both operational scaling and contract compliance.",
-  "value_proposition": "Automates verified ETO component transfers with built-in traceability, compliance enforcement, and inventory synchronization to eliminate manual handoffs and regulatory delays.",
-  "technical_summary": "The hybrid architecture combines rule-based validation engines for configuration compliance and export controls with event-driven traceability logging that writes directly to engineering and ERP systems via secure APIs. It executes inventory updates only after all checks pass and routes GDPR exceptions through a dedicated handling module. Integration points include configuration management databases, production scheduling platforms, and audit repositories to maintain defense-grade configuration control across the transfer lifecycle.",
-  "integration_guide": "# Integration Guide — eto_product_transfer_agent\n**Process:** Transfer Engineer-to-Order Product\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_product_transfer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_product_transfer_agent import EtoProductTransferAgentAgent\n\nagent = EtoProductTransferAgentAgent()\nresult = agent.execute({\n    \"verified_eto_components\": your_verified_eto_components_data,\n    \"project_work_orders\": your_project_work_orders_data,\n    \"configuration_management_data\": your_configuration_management_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- configuration_management_api\n- export_control_checker\n- traceability_logger\n- inventory_system_api\n- staging_plan_validator\n\n## Escalation\nThe agent automatically escalates to human when:\n- export_control_violation_or_hold\n- missing_verified_eto_status\n- traceability_loss_or_mismatch\n- gdpr_personal_data_without_consent",
+  "packager_timestamp": "2026-06-08T17:22:32.578745",
+  "product_summary": "This hybrid agent manages the end-to-end transfer of verified Engineer-to-Order components into project-specific production environments while preserving complete engineering traceability and configuration integrity. It validates work order compliance, executes transfers with automated logging, and applies mandatory export control and GDPR checks before updating inventory and configuration records. By embedding defense acquisition and configuration management standards into every step, the agent reduces manual oversight, minimizes compliance risk, and accelerates project execution for complex, regulated manufacturing programs. Executives gain faster throughput and audit-ready documentation without increasing headcount.",
+  "value_proposition": "Automates verified ETO component transfers with built-in traceability, compliance enforcement, and configuration updates to eliminate manual handoffs and regulatory exposure.",
+  "technical_summary": "The hybrid agent combines rule-based validation engines with workflow orchestration to interface with PLM, ERP, and MES platforms via secure APIs. It maintains immutable audit logs for every transfer action and invokes external compliance services for export control and personal-data checks before committing inventory and configuration changes. Integration occurs through event-driven triggers from work-order systems, ensuring real-time synchronization while supporting both on-premise and cloud-hosted defense environments.",
+  "integration_guide": "# Integration Guide — eto_component_transfer_agent\n**Process:** Transfer Engineer-to-Order Product\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_component_transfer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_component_transfer_agent import EtoComponentTransferAgentAgent\n\nagent = EtoComponentTransferAgentAgent()\nresult = agent.execute({\n    \"verified_eto_components\": your_verified_eto_components_data,\n    \"project_work_orders\": your_project_work_orders_data,\n    \"configuration_management_data\": your_configuration_management_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- configuration_management_db\n- project_work_order_system\n- traceability_logger\n- inventory_update_api\n- compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing configuration_management_data\n- export_control flag triggered\n- traceability_completeness < 100%\n- GDPR personal_data detected",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/eto_product_transfer_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/eto_product_transfer_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/eto_product_transfer_agent/health — Health check",
-    "GET  /api/v1/agents/eto_product_transfer_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/eto_product_transfer_agent/test   — Run test cases"
+    "POST /api/v1/agents/eto_component_transfer_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_component_transfer_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_component_transfer_agent/health — Health check",
+    "GET  /api/v1/agents/eto_component_transfer_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_component_transfer_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open eto_product_transfer_agent dashboard and load sample ETO product specs; highlight manual transfer pain points (errors, 14-day cycle, compliance gaps).  \n2. Trigger AI transfer: system auto-maps BOM, drawings, and routing to target ERP while enforcing ISO 9001/traceability rules.  \n3. Display real-time compliance panel: automated checks flag deviations, generate audit-ready logs, and produce signed digital package in <90 seconds.  \n4. Run side-by-side timing: manual process vs. agent shows 92% time reduction and zero rework on this transfer.  \n5. Surface ROI calculator: €748 fee vs. €5,984 recovered per transfer (labor + delay avoidance) yields 8.0x multiplier on first use.  \n6. Export compliance certificate and savings report; confirm data is encrypted and retained per policy for executive sign-off.  \n7. Close with next-step: pilot on live ETO order this week to lock in recurring 8x ROI.",
+  "demo_script": "1. Open with a live pain-point example: Display a stalled ETO component transfer (manual hand-offs, missing specs, compliance gaps) and note the €6k+ hidden cost per incident.\n2. Launch eto_component_transfer_agent on the same case; show AI auto-extracting BOM, drawings, and regulatory requirements in <60 seconds.\n3. Run the transfer workflow: AI validates against ISO/REACH rules, generates compliant documentation, and routes approvals with full audit trail.\n4. Reveal real-time dashboard: 94% reduction in cycle time, zero compliance flags, and quantified savings of €5,984 on this single transfer.\n5. Calculate ROI on-screen: €5,984 savings ÷ €748 price = 8.0x multiplier, with payback in under one use.\n6. Close with compliance proof: Export the immutable audit log and one-click regulatory report; invite executives to schedule a pilot on their next ETO order.",
   "demo_inputs": {
     "verified_eto_components": "[example_verified_eto_components]",
     "project_work_orders": "[example_project_work_orders]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-S3.4",
-    "agent_name": "eto_product_transfer_agent",
+    "agent_name": "eto_component_transfer_agent",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L2",
@@ -54,30 +54,30 @@
       "GDPR if personal data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:46:18.237549"
+    "created_at": "2026-06-08T17:22:32.578727"
   },
   "tags": [
-    "hybrid",
-    "source",
-    "aerospace",
     "defense",
-    "scor",
-    "energy",
+    "hybrid",
     "l2",
-    "industrial equipment"
+    "aerospace",
+    "source",
+    "energy",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Defense contractor transfers ETO missile launcher configurations, automating export control and configuration management checks to cut compliance audit prep from 120 hours to 30 hours per transfer, avoiding $250K in potential fines.",
-    "Use case 2: Aerospace firm migrates ETO satellite propulsion systems, reducing BOM and drawing transfer errors from 12% to under 1% via automated validation, shortening certification cycle by 8 weeks and saving $1.2M in rework.",
-    "Use case 3: Industrial equipment manufacturer transfers custom CNC machine ETO data, cutting manual data re-entry labor by 75% and eliminating 95% of downstream production errors, delivering $450K annual savings on high-volume orders.",
-    "Use case 4: Energy sector company transfers ETO turbine blade designs under defense acquisition rules, accelerating compliant handoff between engineering and production teams by 40%, reducing project delay costs by $600K per major order.",
-    "Use case 5: Aerospace supplier handles GDPR-sensitive ETO avionics transfers, automating redaction and access logging to achieve 100% audit pass rate and cut compliance staffing needs by 2 FTEs, yielding $180K yearly ROI."
+    "Use case 1: Aerospace OEM transfers ETO satellite payload configurations between PLM and ERP systems while enforcing ITAR export control and configuration management baselines, cutting transfer cycle time from 14 days to 3 days and eliminating 92% of manual compliance checks.",
+    "Use case 2: Defense contractor migrates 1,200+ ETO vehicle variants under DoD 5010.12-M acquisition rules, achieving 100% traceability audit pass rate and reducing configuration reconciliation labor by 1,200 hours per program.",
+    "Use case 3: Industrial equipment manufacturer transfers custom compressor ETO orders across sites with full revision history and BOM validation, shortening order-to-manufacturing release from 21 days to 5 days and cutting engineering change orders by 67%.",
+    "Use case 4: Energy firm exports ETO turbine packages to international sites under EAR and GDPR constraints, automating redaction of controlled technical data and personal customer information, reducing compliance review cost by $180k per project.",
+    "Use case 5: Aerospace supplier converts legacy ETO landing-gear designs into current PLM while preserving configuration baselines for FAA/EASA certification, accelerating airworthiness data package delivery by 75% and avoiding $2M in potential certification delays."
   ],
   "pricing": {
     "process_id": "SCOR-S3.4",

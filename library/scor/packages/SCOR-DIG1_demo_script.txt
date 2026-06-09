@@ -1,6 +1,6 @@
-1. Open dashboard: Load live digital twin of factory floor; highlight AI auto-sync reducing manual updates by 85%.
-2. Trigger automation: Execute one-click process optimization; show real-time anomaly detection and compliance rule enforcement (ISO 27001/GDPR).
-3. Compliance audit: Run instant audit trail export; demonstrate zero-deviation logging and automated reporting that cuts audit prep from 40 hrs to <5 min.
-4. ROI simulator: Input current ops costs (€120k/yr); display 8.0x multiplier yielding €960k annual value—net €959k after €748 license.
-5. Scale scenario: Apply to 3 additional twins; project 6-week payback and 92% risk reduction via predictive compliance.
-6. Executive summary: Recap €748 investment vs. €960k validated return; offer pilot deployment in 48 hrs.
+1. Open dashboard: Display live digital twin of factory floor; highlight €748 annual license vs. projected 8x ROI (€5,984) via automated operations.
+2. Trigger manual-equivalent task: Run a sample equipment calibration; log time (12 min) and compliance gaps (missing audit trail).
+3. Activate AI agent: Execute same task in 45 seconds with automated parameter optimization and real-time twin sync.
+4. Run compliance module: Auto-generate ISO-aligned audit report, flag zero deviations, and export signed ledger for executives.
+5. Display ROI dashboard: Show live metrics—labor hours saved, downtime reduced, and compliance cost avoidance—confirming 8.0x multiplier within first quarter.
+6. Scale scenario: Apply agent to second twin instance; illustrate marginal cost near zero and compounded ROI growth.

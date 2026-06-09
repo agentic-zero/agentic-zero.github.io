@@ -4,7 +4,7 @@ Process: SCOR-D2.12
 Name: mto_shipment_dispatch_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-07T21:23:14.334400
+Generated: 2026-06-08T16:28:26.171116
 Compliance: customs export compliance, dangerous goods transport, GDPR tracking data, carrier liability
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,11 @@ class MtoShipmentDispatchAgentAgent:
     Process of executing MTO shipment dispatch including carrier handover, tracking initiation, customer notification and in-transit monitoring
     
     Capabilities:
-    #   - validate_dispatch_conditions
-    #   - initiate_carrier_handover
-    #   - manage_tracking_and_notifications
-    #   - monitor_in_transit
-    #   - apply_compliance_rules
+    #   - carrier_handover_execution
+    #   - tracking_system_activation
+    #   - customer_notification_generation
+    #   - in_transit_monitoring
+    #   - exception_handling
     
     Compliance: customs export compliance, dangerous goods transport, GDPR tracking data, carrier liability
     """
@@ -140,44 +140,59 @@ class MtoShipmentDispatchAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF dangerous_goods_flag == true THEN apply DG transport rules and carrier approval
-        # - IF export_compliance_check == false THEN hold shipment and trigger customs review
+        # - IF LoadedVehicle.status == 'ready' AND ShippingDocument.compliance == true THEN execute CarrierHandover
+        # - IF carrier accepts handover THEN start TrackingSystem and send CustomerNotification
         
         Business rules:
-        # - dispatch only after LoadedVehicle and ShippingDocument both present
-        # - tracking_initiation must complete within 15 minutes of carrier handover
-        # - customer_notification must use approved template and include shipment_id + ETA
+        # - dispatch_time must be <= planned_dispatch_time + 30min for on-time KPI
+        # - tracking_coverage must include GPS + carrier_API for 100% coverage
+        # - GDPR: anonymize customer tracking data after 30 days
+        # - dangerous_goods: attach UN_number and MSDS to ShippingDocument
         """
         outputs = {}
         
 outputs = {}
-        # Validate core dispatch prerequisites per rules
-        loaded = inputs.get('loaded vehicle')
-        docs = inputs.get('shipping documents')
-        if not (loaded and docs):
+        lv = inputs.get('loaded vehicle', {})
+        sd = inputs.get('shipping documents', {})
+        ts = inputs.get('tracking systems', {})
+        ct = inputs.get('customer notification templates', {})
+        cc = inputs.get('carrier contact data', {})
+        # edge case: missing critical inputs
+        if not lv or not sd:
             outputs['dispatched shipment'] = None
             outputs['tracking confirmation'] = None
             outputs['customer notification'] = None
             outputs['in-transit monitoring'] = None
             return outputs
-        # Apply decision-point logic
-        if inputs.get('dangerous_goods_flag'):
-            outputs['dispatched shipment'] = {'status': 'approved_dg', 'carrier_approval': inputs.get('carrier contact data')}
-        elif not inputs.get('export_compliance_check', True):
-            outputs['dispatched shipment'] = {'status': 'held', 'reason': 'customs_review'}
+        # decision point 1
+        if lv.get('status') == 'ready' and sd.get('compliance') is True:
+            # rule: dangerous_goods attachment
+            if sd.get('is_dangerous'):
+                sd['UN_number'] = sd.get('UN_number', 'UN0000')
+                sd['MSDS'] = sd.get('MSDS', 'attached')
+            # assume CarrierHandover
+            handover_ok = cc.get('available', True)
+            # decision point 2
+            if handover_ok:
+                # rule: tracking coverage
+                coverage = 'GPS' in ts and 'carrier_API' in ts
+                outputs['tracking confirmation'] = {'coverage': '100%' if coverage else 'partial', 'systems': ts}
+                # rule: dispatch_time KPI
+                dispatch_ok = lv.get('dispatch_time', 0) <= lv.get('planned_dispatch_time', 0) + 30
+                outputs['dispatched shipment'] = {'status': 'dispatched', 'on_time': dispatch_ok, 'docs': sd}
+                outputs['customer notification'] = ct.get('shipped', 'Your order has been dispatched')
+                # GDPR flag for later anonymization
+                outputs['in-transit monitoring'] = {'active': True, 'anonymize_after_days': 30}
+            else:
+                outputs['dispatched shipment'] = None
+                outputs['tracking confirmation'] = None
+                outputs['customer notification'] = None
+                outputs['in-transit monitoring'] = None
+        else:
+            outputs['dispatched shipment'] = None
             outputs['tracking confirmation'] = None
             outputs['customer notification'] = None
             outputs['in-transit monitoring'] = None
-            return outputs
-        else:
-            outputs['dispatched shipment'] = {'status': 'dispatched', 'vehicle': loaded}
-        # Tracking initiation (must finish <15 min of handover)
-        outputs['tracking confirmation'] = {'system': inputs.get('tracking systems'), 'eta_window_min': 15}
-        # Customer notification using approved template + required fields
-        template = inputs.get('customer notification templates')
-        outputs['customer notification'] = {'template': template, 'fields': ['shipment_id', 'ETA']}
-        # Activate monitoring
-        outputs['in-transit monitoring'] = {'active': True, 'carrier': inputs.get('carrier contact data')}
         return outputs
         
         return outputs
@@ -188,9 +203,9 @@ outputs = {}
         
         Checks:
         # - customs_export_compliance
-        # - dangerous_goods_transport
-        # - gdpr_tracking_anonymization
-        # - carrier_liability
+        # - dangerous_goods UN_number_MSDS attachment
+        # - GDPR anonymization_timer
+        # - carrier_liability_coverage
         """
         checks_passed = []
         checks_failed = []
@@ -214,7 +229,7 @@ outputs = {}
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['missing tracking after 3 retries', 'export compliance failure', 'late dispatch KPI breach']
+        escalation_rules = ['customs_export_compliance failure to compliance_officer', 'secondary_carrier handover failure within 2h', 'notification_failure from invalid customer_email']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -228,7 +243,7 @@ outputs = {}
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['on_time_dispatch_rate', 'tracking_confirmation_latency', 'notification_send_time']
+            "monitoring": ['on-time dispatch rate', 'tracking_confirmation_latency', 'customer_notification_success_rate']
         }
 
 

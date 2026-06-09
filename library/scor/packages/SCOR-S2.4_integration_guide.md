@@ -34,15 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- verification_system_api
-- erp_production_order_api
-- wms_staging_api
-- equipment_sensor_feed
-- inventory_db_writer
-- auth_service
+- inventory_management_api
+- production_order_system
+- staging_location_manager
+- transfer_equipment_interface
+- audit_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- equipment unavailable beyond SLA timer
-- quantity mismatch > 0 or unlogged lot_ids
-- missing chain_of_custody or compliance_flags
+- Missing VerificationApproval
+- StagingLocation unavailable after reroute attempt
+- transfer accuracy < 99.5%
+- WIP update cycle time breach

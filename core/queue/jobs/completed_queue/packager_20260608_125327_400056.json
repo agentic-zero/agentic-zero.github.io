@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_125327_400056",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M3.2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T12:53:27.400078",
+  "status": "completed",
+  "started_at": "2026-06-08T15:24:33.366164",
+  "completed_at": "2026-06-08T15:27:34.101975",
+  "error": null,
+  "result": {
+    "agent_name": "eto_issuance_orchestrator",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

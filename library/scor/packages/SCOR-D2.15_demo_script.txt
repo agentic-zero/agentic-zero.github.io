@@ -1,0 +1,11 @@
+1. Open with pain: "Manual MTO invoicing costs €4,600+ per year in labor and €2,100 in compliance risk—our AI agent eliminates both at €574 annual cost for 8.0x ROI."
+
+2. Upload sample invoice: Agent auto-extracts line items, PO match, and tax codes in <8 seconds while flagging any MTO-specific regulatory gaps.
+
+3. Run compliance scan: Real-time check against EU VAT, audit trails, and internal policy; one-click report generated for finance and external auditors.
+
+4. Execute auto-approval workflow: Agent routes clean invoices for payment and escalates exceptions with suggested resolution, cutting cycle time from 6 days to minutes.
+
+5. Display live ROI dashboard: Shows €4,592 net annual savings, 92% reduction in manual touches, and 100% audit-pass rate since deployment.
+
+6. Close with next step: "Pilot starts this week—€574 investment returns €4,592 in year one; approve to activate."

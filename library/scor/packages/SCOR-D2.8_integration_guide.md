@@ -1,4 +1,4 @@
-# Integration Guide — finished_goods_receipt_agent
+# Integration Guide — mto_receive_finished_goods_agent
 **Process:** Receive Product from Source or Make (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp finished_goods_receipt_agent.py ./agents/
+cp mto_receive_finished_goods_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.finished_goods_receipt_agent import FinishedGoodsReceiptAgentAgent
+from agents.mto_receive_finished_goods_agent import MtoReceiveFinishedGoodsAgentAgent
 
-agent = FinishedGoodsReceiptAgentAgent()
+agent = MtoReceiveFinishedGoodsAgentAgent()
 result = agent.execute({
     "production_completion_notice": your_production_completion_notice_data,
     "quality_release": your_quality_release_data,
@@ -34,13 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- production_notice_api
-- quality_management_system
-- inventory_database
-- packaging_scanner
+- wms_api
+- qa_system_connector
+- manufacturing_notice_listener
+- inventory_db_writer
+- compliance_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- PackagingVerification fails
-- Missing QualityRelease after hold timeout
-- receive_accuracy below threshold
+- QualityRelease rejected or packaging failed
+- Missing DeliveryDocumentation after SLA window
+- System write failure on DeliverInventoryUpdate
+- ReceiveAccuracy or InventoryAccuracy below target

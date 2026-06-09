@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_095358_161944",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D2.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T09:53:58.161957",
+  "status": "completed",
+  "started_at": "2026-06-08T15:48:29.080305",
+  "completed_at": "2026-06-08T15:52:30.476614",
+  "error": null,
+  "result": {
+    "agent_name": "mto_resource_reservation_agent",
+    "ready_for_packager": true
+  }
+}

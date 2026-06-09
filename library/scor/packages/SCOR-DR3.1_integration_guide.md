@@ -1,4 +1,4 @@
-# Integration Guide — excess_return_authorization_agent
+# Integration Guide — excess_return_authorizer
 **Process:** Authorize Excess Product Return
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp excess_return_authorization_agent.py ./agents/
+cp excess_return_authorizer.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.excess_return_authorization_agent import ExcessReturnAuthorizationAgentAgent
+from agents.excess_return_authorizer import ExcessReturnAuthorizerAgent
 
-agent = ExcessReturnAuthorizationAgentAgent()
+agent = ExcessReturnAuthorizerAgent()
 result = agent.execute({
     "excess_return_request": your_excess_return_request_data,
     "inventory_data": your_inventory_data_data,
@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- CRM_API
-- WMS_API
-- ERP_API
-- Policy_Engine
-- Forecasting_Service
+- customer_system_api
+- erp_inventory_query
+- policy_store_access
+- compliance_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- credit_terms negotiation timeout after 72 hours
-- missing GDPR consent flag
-- perishable expiry violation
+- pharma expiry compliance failure
+- GDPR consent missing
+- ReturnPolicy violation without negotiable quantity
+- process timeout from missing data

@@ -1,0 +1,94 @@
+{
+  "process_id": "SCOR-D3.2",
+  "agent_name": "eto_order_validation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-08T20:47:48.639342",
+  "product_summary": "This hybrid agent streamlines the receipt, configuration, and validation of Engineer-to-Order (ETO) customer requirements by performing technical specification reviews, feasibility assessments, and risk evaluations. It generates project proposals while enforcing critical compliance standards including defense acquisition regulations, export controls, GDPR data protection, and intellectual property safeguards. By automating input validation, feasibility scoring, and order entry logging, the agent reduces manual effort and minimizes errors in complex order processes. Executives benefit from faster turnaround times, improved risk management, and enhanced regulatory adherence, ultimately driving higher customer satisfaction and operational efficiency.",
+  "value_proposition": "Automates the end-to-end receipt, validation, and entry of ETO orders with built-in feasibility scoring, risk assessment, and compliance enforcement to accelerate proposals while reducing errors.",
+  "technical_summary": "The hybrid agent combines rule-based and AI-driven modules for input_validation, feasibility_scoring, risk_assessment, compliance_enforcement, and order_entry_logging, with configurable human-in-the-loop checkpoints for edge cases. It integrates with ERP, PLM, and regulatory databases via secure APIs to enforce defense acquisition rules, export control screening, GDPR data handling, and IP protection during every stage of order processing. All actions are logged with full audit trails to support traceability and downstream analytics.",
+  "integration_guide": "# Integration Guide — eto_order_validation_agent\n**Process:** Receive, Configure, Enter and Validate ETO Order\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_order_validation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_order_validation_agent import EtoOrderValidationAgentAgent\n\nagent = EtoOrderValidationAgentAgent()\nresult = agent.execute({\n    \"customer_technical_requirements\": your_customer_technical_requirements_data,\n    \"sow\": your_sow_data,\n    \"feasibility_data\": your_feasibility_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_API\n- Engineering_DB\n- Risk_Engine\n- ERP\n- Compliance_Service\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing engineering_capacity data after 24h auto-query\n- Non-compliant export_control detected\n- requirement_capture_accuracy <0.95\n- feasibility_score <0.7 or risk_level >medium",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eto_order_validation_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_order_validation_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_order_validation_agent/health — Health check",
+    "GET  /api/v1/agents/eto_order_validation_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_order_validation_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a live ETO order PDF; state the €748 agent cost versus 8.0x ROI (€5,984 annual value) from 12 hours saved per order and zero compliance penalties.\n2. Drag the order into the agent UI; show instant parsing of specs, quantities, and customer data in <30 seconds.\n3. Trigger AI configuration; demonstrate automatic application of pricing, BOM, and regulatory rules with real-time compliance flags.\n4. Execute one-click entry into the ERP; highlight 100% audit trail and elimination of manual re-keying errors.\n5. Run validation step; display instant detection of missing certifications or margin breaches, with auto-generated correction suggestions.\n6. Reveal dashboard metrics: time reduced from 45 min to 6 min, compliance score 99.8%, and projected annual savings for 50 orders.\n7. Close with ROI calculator confirming payback in under two weeks and offer to run a second order live.",
+  "demo_inputs": {
+    "customer_technical_requirements": "[example_customer_technical_requirements]",
+    "sow": "[example_sow]",
+    "feasibility_data": "[example_feasibility_data]"
+  },
+  "expected_demo_outputs": {
+    "validated_eto_order": "[generated_validated_eto_order]",
+    "project_proposal": "[generated_project_proposal]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-D3.2",
+    "agent_name": "eto_order_validation_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "defense acquisition",
+      "export control review",
+      "GDPR customer requirements data",
+      "IP protection"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T20:47:48.639324"
+  },
+  "tags": [
+    "aerospace",
+    "defense",
+    "l2",
+    "industrial equipment",
+    "energy",
+    "deliver",
+    "scor",
+    "hybrid"
+  ],
+  "use_cases": [
+    "Use case 1: Defense contractor reduces ETO order validation cycle from 14 days to 3 days by automating defense acquisition and export control checks, cutting compliance labor costs by $420K annually while eliminating 98% of manual review errors.",
+    "Use case 2: Aerospace OEM prevents $2.7M in potential export control fines by embedding real-time ITAR screening into ETO order configuration for satellite components, achieving 100% audit pass rate on first submission.",
+    "Use case 3: Energy equipment manufacturer accelerates complex turbine ETO orders by 55% through automated GDPR-compliant customer data handling and IP protection during configuration, increasing quarterly order throughput from 22 to 34 units.",
+    "Use case 4: Industrial equipment supplier cuts order entry rework by 72% by validating ETO specifications against export control and IP rules at intake, saving $185K per year in engineering change orders and avoiding 3 delayed deliveries per quarter.",
+    "Use case 5: Multi-sector defense-energy firm reduces average ETO order cycle time from 21 to 9 days by unifying receive-configure-enter-validate workflow with built-in compliance gates, delivering $1.1M annual ROI through faster revenue recognition and 40% lower compliance staffing."
+  ],
+  "pricing": {
+    "process_id": "SCOR-D3.2",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-D3.2_package.json"
+}

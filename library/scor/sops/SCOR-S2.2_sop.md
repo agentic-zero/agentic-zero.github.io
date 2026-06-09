@@ -1,14 +1,14 @@
 # SOP — Receive Product (MTO)
 **Process ID:** SCOR-S2.2
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of receiving, inspecting and verifying MTO materials against purchase orders and quality specifications before releasing to production
 
 ## Triggers
-- ASN or delivery notification received from supplier
-- Physical truck arrival logged at receiving dock via RFID/scan
+- ASN or delivery notification received matching open PurchaseOrder
+- Scheduled receipt date/time from DeliverySchedule reached
 
 ## Inputs Required
 - delivery schedule
@@ -18,9 +18,8 @@ Process of receiving, inspecting and verifying MTO materials against purchase or
 - inspection criteria
 
 ## Process Steps
-1. IF received quantity matches PurchaseOrder AND passes InspectionCriteria THEN create GoodsReceiptConfirmation ELSE create DiscrepancyAlert
-2. IF ReceivingDock capacity exceeded THEN queue delivery and log delay
-3. IF quality rejection rate > threshold THEN quarantine batch and notify supplier
+1. IF all line items match PurchaseOrder AND pass InspectionCriteria THEN generate GoodsReceiptConfirmation ELSE create DiscrepancyAlert
+2. IF QualityInspectionReport status == PASS THEN trigger InventoryUpdate ELSE hold material and notify procurement
 
 ## Expected Outputs
 - goods receipt confirmation
@@ -29,19 +28,18 @@ Process of receiving, inspecting and verifying MTO materials against purchase or
 - discrepancy alerts
 
 ## Business Rules
-- GoodsReceiptConfirmation must be created within 4 hours of physical arrival
-- QualityInspectionReport must reference ISO 9001 criteria and GxP rules if pharma sector
-- All data fields in DiscrepancyAlert must be logged with timestamp and user_id for GDPR compliance
-- InventoryUpdate must be atomic and rollback on failure
+- Every MTO receipt must validate quantity and specs against PurchaseOrder before any InventoryUpdate
+- Inspection must complete within inspection criteria before goods receipt confirmation is issued
+- Receiving dock capacity must not be exceeded without rescheduling
 
 ## Exception Handling
-- Partial delivery: create partial GoodsReceiptConfirmation, flag remaining quantity in DeliverySchedule, and generate backorder alert
-- Damaged goods: bypass normal inspection, create immediate DiscrepancyAlert with photo evidence, and quarantine batch
+- Quantity or spec mismatch: create DiscrepancyAlert, quarantine material, block InventoryUpdate until resolution
+- Dock capacity exceeded: reject delivery or reroute to overflow staging and update DeliverySchedule
 
 ## Success Criteria
-- GoodsReceiptConfirmation created with 100% match to PurchaseOrder
-- QualityInspectionReport completed within KPI inspection_cycle_time
-- InventoryUpdate posted with zero discrepancy and receiving_accuracy >= 99.5%
+- receiving_accuracy == 100% (zero discrepancies)
+- inspection_cycle_time <= defined SLA
+- goods_receipt_on_time_rate >= 98%
 
 ## Compliance Requirements
 - GxP receiving if pharma

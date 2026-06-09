@@ -1,16 +1,15 @@
 # SOP — Manage API and Integration Layer
 **Process ID:** SCOR-DIG9
 **Framework:** SCOR-Digital | **Domain:** Digital Enable
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of managing the API gateway and integration architecture that connects ERP systems, AI agents, IoT platforms, supplier portals and customer systems enabling seamless autonomous operations without system migration
 
 ## Triggers
-- New system interface registered in API catalog
-- Integration requirement updated via SCOR-DIG5 or SCOR-DIG8
-- Scheduled KPI collection job runs
-- Error log threshold breach detected
+- New integration requirements received
+- System interface change detected
+- Scheduled health check interval reached
 
 ## Inputs Required
 - system interfaces
@@ -20,9 +19,9 @@ Process of managing the API gateway and integration architecture that connects E
 - authentication credentials
 
 ## Process Steps
-1. IF API response time > 500ms THEN trigger performance alert and scale resources
-2. IF integration error rate > 1% THEN pause flow and initiate retry with logging
-3. IF authentication credential expires THEN refresh token or switch to backup credential
+1. IF API response time > 500ms THEN trigger ConnectionHealthReport and alert
+2. IF integration error rate > 0.5% THEN pause IntegrationFlow and log to ErrorLog
+3. IF OAuth2 token expires THEN refresh AuthenticationCredential before next request
 
 ## Expected Outputs
 - API catalog
@@ -32,20 +31,18 @@ Process of managing the API gateway and integration architecture that connects E
 - error logs
 
 ## Business Rules
-- All API flows must enforce OAuth2 authentication before execution
-- Data mappings must validate GDPR compliance on any personal data fields
-- API uptime must be monitored every 60 seconds with metrics stored in time-series DB
-- Integration flows must follow SAP RFC/BAPI or EDI standards when connecting ERP systems
+- All API calls must enforce OAuth2 and log to ErrorLog
+- Data mappings must comply with GDPR and EDI standards before activation
+- API uptime must be monitored every 60 seconds with results stored in APIPerformanceMetric
 
 ## Exception Handling
-- IF credential refresh fails THEN log error, notify admin, and fallback to read-only mode without executing writes
-- IF data mapping validation fails on EU AI Act flagged system THEN quarantine flow and require manual approval
+- Authentication failure: retry 3 times with exponential backoff then create ErrorLog entry and notify admin
+- Data mapping mismatch: reject flow, store rejected payload in ErrorLog, require manual review before retry
 
 ## Success Criteria
-- API uptime >= 99.9% over 24h window
-- integration_error_rate <= 0.5%
-- API response time <= 300ms p95
-- All connection health reports show green status with no open error logs
+- API uptime >= 99.9%
+- integration error rate <= 0.1%
+- All IntegrationFlows report connection health status green
 
 ## Compliance Requirements
 - GDPR API data flows

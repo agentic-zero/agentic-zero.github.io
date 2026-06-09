@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_114217_882564",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-PTP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T11:42:17.882577",
+  "status": "completed",
+  "started_at": "2026-06-08T20:20:44.853000",
+  "completed_at": "2026-06-08T20:25:44.815656",
+  "error": null,
+  "result": {
+    "agent_name": "ptp_hybrid_orchestrator",
+    "ready_for_packager": true
+  }
+}

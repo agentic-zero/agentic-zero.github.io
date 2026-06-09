@@ -2,11 +2,11 @@
   "process_id": "SCOR-E6",
   "agent_name": "supply_chain_contract_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:37:18.582674",
-  "product_summary": "The Manage Supply Chain Contracts agent oversees the full lifecycle of supplier and customer contracts across all SCOR domains, from negotiation and execution through ongoing compliance monitoring and renewal. It uses hybrid capabilities to track expiry and performance, surface compliance alerts, refine renewal terms, and resolve exceptions with intelligent defaults. By embedding controls for GDPR data processing agreements, EU AI Act supplier obligations, and financial regulations, the agent reduces contractual risk and accelerates value capture. Executives gain predictable contract outcomes, lower operational overhead, and stronger supply-chain resilience without added headcount.",
-  "value_proposition": "Automates end-to-end contract lifecycle management to enforce compliance and continuously optimize renewal economics across the supply chain.",
-  "technical_summary": "The hybrid agent combines rule-based monitoring services with lightweight machine-learning models that ingest contract metadata from ERP, CLM, and SCM platforms via standard APIs. It maintains separate compliance modules for GDPR, contractual, EU AI Act, and financial requirements, emitting alerts and default-handling workflows through event-driven integrations. All processing occurs within customer-controlled environments, preserving data residency and audit trails while allowing human-in-the-loop overrides on high-impact exceptions.",
-  "integration_guide": "# Integration Guide — supply_chain_contract_manager\n**Process:** Manage Supply Chain Contracts\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_contract_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_contract_manager import SupplyChainContractManagerAgent\n\nagent = SupplyChainContractManagerAgent()\nresult = agent.execute({\n    \"contract_templates\": your_contract_templates_data,\n    \"negotiation_parameters\": your_negotiation_parameters_data,\n    \"supplier_performance_data\": your_supplier_performance_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ContractRepository API\n- SupplierPerformanceData feed\n- LegalRequirement database\n- NegotiationParameter engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- contract_compliance_rate < 0.95 notify legal team\n- cycle_time > 30 days escalate to contract manager\n- non-compliant renewal auto-reject and route to legal review",
+  "packager_timestamp": "2026-06-08T13:19:17.982299",
+  "product_summary": "The Manage Supply Chain Contracts agent is a hybrid solution that oversees the full lifecycle of supplier and customer contracts across SCOR domains, from negotiation and execution to compliance monitoring and renewal. It leverages capabilities such as expiration tracking, compliance alerts, legal validation, performance scorecards, and negotiation triggers to minimize risks and ensure regulatory adherence. Executives benefit from reduced contract disputes, optimized supplier relationships, and proactive handling of GDPR, EU AI Act, and financial obligations. This drives cost savings and operational resilience in complex global supply chains.",
+  "value_proposition": "Automates contract lifecycle management to eliminate compliance gaps and manual renewal delays while optimizing supplier performance.",
+  "technical_summary": "As a hybrid agent, it integrates with ERP, CLM, and SCOR-aligned systems via APIs to monitor contract data streams in real time and apply rule-based engines for alerts and validations. Core modules handle capabilities like performance scorecard calculations and negotiation parameter triggers, with built-in compliance layers for GDPR data processing and EU AI Act obligations. Architecture supports both automated workflows and human-in-the-loop escalations for edge cases.",
+  "integration_guide": "# Integration Guide — supply_chain_contract_manager\n**Process:** Manage Supply Chain Contracts\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_contract_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_contract_manager import SupplyChainContractManagerAgent\n\nagent = SupplyChainContractManagerAgent()\nresult = agent.execute({\n    \"contract_templates\": your_contract_templates_data,\n    \"negotiation_parameters\": your_negotiation_parameters_data,\n    \"supplier_performance_data\": your_supplier_performance_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ContractRepository\n- SupplierPerformanceDataAPI\n- ComplianceChecker\n- NotificationService\n- LegalRequirementValidator\n\n## Escalation\nThe agent automatically escalates to human when:\n- LegalRequirement conflicts with BusinessTerm\n- supplier performance data older than 180 days\n- contract executed without required compliance_flags",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/supply_chain_contract_manager/spec   — Get agent specification",
     "POST /api/v1/agents/supply_chain_contract_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard showing current manual contract volume (47 active suppliers) and baseline costs (€312k annual admin spend).\n2. Trigger AI ingestion of 3 new supplier contracts; demo auto-extraction of terms, obligations, and compliance gaps in <60 seconds.\n3. Run real-time compliance scan against EU supply-chain regulations; highlight flagged clauses and one-click remediation suggestions with audit logs.\n4. Execute automated negotiation simulation on pricing and SLAs, showing 14% cost reduction on a sample contract while preserving compliance score >95%.\n5. Approve revised contracts via integrated workflow; display instant generation of immutable audit trail and risk register update.\n6. Reveal ROI dashboard: €312k baseline reduced to €39k, delivering 8.0x multiplier on €748 license within first quarter.\n7. Close with compliance certification export and projected annual savings of €273k for executive review.",
+  "demo_script": "1. Open dashboard and load sample supplier contract; AI instantly flags 3 compliance gaps (e.g., ESG clauses, data-privacy terms) and suggests fixes in <30 seconds.  \n2. Approve AI-generated redlines; system auto-updates contract, creates audit trail, and routes for e-signature—reducing cycle time from 14 days to 2.  \n3. Trigger bulk review of 50 active contracts; AI surfaces renewal risks and non-compliant payment terms, quantifying €47k exposure.  \n4. Run ROI simulator: input €748 license fee; dashboard shows 8.0x multiplier via €5,984 annual savings from faster cycles, avoided penalties, and 22% fewer disputes.  \n5. Export compliance report with full version history and regulatory mapping (GDPR, CSRD); one-click share with legal and finance.  \n6. Close with live before/after metrics: 85% less manual review time and guaranteed 8x ROI within first quarter.",
   "demo_inputs": {
     "contract_templates": "[example_contract_templates]",
     "negotiation_parameters": "[example_negotiation_parameters]",
@@ -57,33 +57,33 @@
       "financial regulations"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:37:18.582653"
+    "created_at": "2026-06-08T13:19:17.982277"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma company uses agent to auto-detect missing GDPR data processing clauses in 200+ clinical trial supplier contracts, cutting audit prep time from 120 hours to 15 hours and avoiding €10M+ potential fines",
-    "Use case 2: Automotive manufacturer applies agent to enforce EU AI Act supplier obligations across tier-1 contracts, identifying 35 non-compliant AI components and renegotiating terms to save $4.2M in sourcing costs within one quarter",
-    "Use case 3: Defense contractor deploys agent to monitor contractual compliance on 500+ subcontractor agreements, reducing quarterly manual review effort from 180 hours to 22 hours and eliminating 2 regulatory findings per audit cycle",
-    "Use case 4: Chemical firm leverages agent to flag financial regulation breaches in hazardous material supply contracts, preventing 3 contract terminations and preserving $6.8M in annual revenue",
-    "Use case 5: Food distributor standardizes GDPR-compliant clauses across 150 logistics partner contracts, accelerating renewal cycle by 45% and reducing legal review spend by $180K per year"
+    "Use case 1: In pharma manufacturing, the agent automates GDPR data processing agreement reviews across 150+ annual API supplier contracts, cutting external legal spend by 65% ($420K/year) and shortening cycle time from 18 days to 4 days.",
+    "Use case 2: For automotive tier-1 suppliers, the agent scans 80+ just-in-time component contracts for financial regulation clauses, identifying unfavorable escalation terms that enable renegotiation and deliver $1.8M annual cost avoidance.",
+    "Use case 3: In defense supply chains, the agent enforces contractual compliance checks on 30 classified subsystem contracts, reducing audit failure risk by 95% and avoiding potential $4M+ termination penalties per incident.",
+    "Use case 4: Chemical distributors use the agent to validate EU AI Act supplier obligations in 45 logistics AI-vendor contracts, preventing regulatory fines of €10M+ while accelerating onboarding by 3 weeks per contract.",
+    "Use case 5: Food sector processors deploy the agent on 200+ cold-chain distribution agreements, flagging non-compliant payment and recall clauses that recover $950K in annual overpayments and reduce recall exposure by 40%."
   ],
   "pricing": {
     "process_id": "SCOR-E6",

@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.4",
-  "guardian_timestamp": "2026-06-08T01:44:20.351618",
+  "guardian_timestamp": "2026-06-08T18:52:36.357383",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.4-20260608",
     "process_id": "SCOR-D2.4",
-    "agent_name": "mto_order_consolidation_agent",
-    "issued_at": "2026-06-08T01:44:20.351571",
+    "agent_name": "consolidate_orders_mto_agent",
+    "issued_at": "2026-06-08T18:52:36.357339",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.84,
+    "overall_score": 0.78,
     "eu_ai_act": {
       "risk_level": "limited",
       "risk_rationale": "Process involves AI interaction with users",
@@ -24,13 +24,18 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.42,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No evidence of formal AI risk assessment or impact assessment process",
+        "Missing documented policies for transparency, accountability, and human oversight",
+        "Insufficient performance evaluation, monitoring, and continual improvement mechanisms",
+        "Lack of data governance and lifecycle controls beyond basic compliance flags"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement ISO 42001-aligned AI risk management and impact assessment procedures",
+        "Define and document AI policy, roles, and escalation with measurable KPIs",
+        "Establish internal audit and performance monitoring for the hybrid agent"
       ]
     },
     "nist_ai_rmf": {
@@ -63,7 +68,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review",
+    "ISO 42001: No evidence of formal AI risk assessment or impact assessment process",
     "GDPR: Personal data detected: define lawful basis for processing"
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-9",
+  "name": "AI Performance Evaluation — Monitoring and Audit",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "9",
+  "level": "L1",
+  "description": "Monitoring and measurement of AI system performance including model drift detection, bias monitoring, fairness metrics, internal AI audit program and management review of the AIMS",
+  "inputs": ["AI performance data", "bias metrics", "fairness indicators", "audit findings", "incident data", "stakeholder feedback"],
+  "outputs": ["AI performance reports", "bias monitoring reports", "AI audit reports", "AIMS management review", "improvement actions"],
+  "kpis": ["model accuracy", "bias metric scores", "fairness indicators", "audit completion rate", "AIMS effectiveness"],
+  "related_processes": ["ISO42001-10", "ISO42001-6", "SCOR-E2", "SCOR-DIG10"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 9", "EU AI Act Art.12 logging", "EU AI Act Art.72 monitoring", "NIST AI RMF Measure"],
+  "automation_potential": 0.85,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

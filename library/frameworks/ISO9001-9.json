@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-9",
+  "name": "Performance Evaluation — Monitoring and Internal Audit",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "9",
+  "level": "L1",
+  "description": "Monitoring, measurement, analysis and evaluation of QMS performance including customer satisfaction, internal audit program and management review",
+  "inputs": ["KPI data", "customer feedback", "audit findings", "process performance data", "supplier performance data"],
+  "outputs": ["performance reports", "audit reports", "management review minutes", "improvement actions", "customer satisfaction data"],
+  "kpis": ["audit completion rate", "finding closure rate", "customer satisfaction score", "KPI achievement rate"],
+  "related_processes": ["ISO9001-10", "ISO9001-6", "SCOR-E2"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 9", "internal audit independence", "GDPR audit data"],
+  "automation_potential": 0.80,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

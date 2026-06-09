@@ -1,13 +1,14 @@
 # SOP — Transfer Engineer-to-Order Product
 **Process ID:** SCOR-S3.4
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of transferring verified ETO components to project-specific production areas maintaining full engineering traceability and configuration management
 
 ## Triggers
-- receipt of verified ETO components + matching project work orders with staging plans
+- Arrival of verified ETO components linked to an open ProjectWorkOrder
+- ProductionStagingPlan status changed to ready
 
 ## Inputs Required
 - verified ETO components
@@ -16,7 +17,8 @@ Process of transferring verified ETO components to project-specific production a
 - production staging plans
 
 ## Process Steps
-1. IF configuration_management_data.compliance == true AND export_control_clearance == true THEN execute transfer ELSE hold for review
+1. IF ConfigurationManagementData.is_complete == true AND compliance_flags satisfied THEN execute transfer ELSE route to exception queue
+2. IF transfer_cycle_time > KPI_threshold THEN escalate to process owner
 
 ## Expected Outputs
 - ETO components in production
@@ -25,19 +27,19 @@ Process of transferring verified ETO components to project-specific production a
 - project inventory update
 
 ## Business Rules
-- rule1: full engineering traceability must be recorded in TraceabilityUpdate for every VerifiedETOComponent
-- rule2: configuration_management_compliance must be validated before any ProductionArea move
-- rule3: sector_applicability check required for defense/aerospace (export_control flag)
+- Maintain 100% engineering traceability on every VerifiedETOComponent
+- Apply configuration management standards to all ConfigurationRecord outputs
+- Enforce export_control and defense_acquisition compliance before any physical movement
 
 ## Exception Handling
-- missing verified status on ETO component: route to SCOR-S3.3 for re-verification
-- GDPR personal data detected: anonymize or obtain consent before ConfigurationRecord creation
+- Missing or invalid ConfigurationManagementData: hold transfer and trigger SCOR-S3.3 verification retry
+- Export control flag triggered: block transfer and notify compliance officer with full audit log
 
 ## Success Criteria
-- transfer_accuracy >= 99.5%
-- configuration_management_compliance == true
+- transfer_accuracy == 100%
 - traceability_completeness == 100%
-- transfer_cycle_time <= defined SLA
+- configuration_management_compliance == true
+- all outputs written to ConfigurationRecord and ProjectInventoryUpdate
 
 ## Compliance Requirements
 - configuration management standards

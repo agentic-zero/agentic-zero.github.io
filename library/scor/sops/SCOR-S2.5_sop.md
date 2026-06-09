@@ -1,13 +1,13 @@
 # SOP — Authorize Supplier Payment (MTO)
 **Process ID:** SCOR-S2.5
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of authorizing and processing supplier payments for MTO materials upon verified receipt, matching invoices against purchase orders and delivery confirmations
 
 ## Triggers
-- SupplierInvoice received AND GoodsReceipt confirmed AND QualityVerificationResult available
+- SupplierInvoice received in ERP with linked po_id after GoodsReceipt.verified_date is not null
 
 ## Inputs Required
 - supplier invoices
@@ -17,8 +17,7 @@ Process of authorizing and processing supplier payments for MTO materials upon v
 - quality verification results
 
 ## Process Steps
-1. IF SupplierInvoice.amount == PurchaseOrder.amount AND GoodsReceipt.quantity >= PurchaseOrder.quantity AND QualityVerificationResult.status == 'passed' THEN create PaymentAuthorization
-2. IF payment_terms.net_days elapsed AND no discrepancies THEN trigger PaymentConfirmation
+1. IF SupplierInvoice.amount == PurchaseOrder.amount AND GoodsReceipt.received_qty == PurchaseOrder.ordered_qty AND QualityVerificationResult.status == 'passed' THEN create PaymentAuthorization with status='approved'
 
 ## Expected Outputs
 - payment authorizations
@@ -27,21 +26,16 @@ Process of authorizing and processing supplier payments for MTO materials upon v
 - discrepancy resolutions
 
 ## Business Rules
-- Invoice must three-way match with PO and GoodsReceipt before authorization
-- Payment must comply with financial_controls and anti-fraud rules
-- Apply payment_terms.discount if paid within discount_period
-- Log all payment data under GDPR_financial_data and tax_compliance
+- Three-way match (invoice, PO, goods receipt) required before PaymentAuthorization creation
+- PaymentAuthorization.due_date must respect PaymentTerms.net_days from GoodsReceipt.date
+- PaymentAuthorization.amount must equal SupplierInvoice.amount after tax adjustments
 
 ## Exception Handling
-- Invoice amount mismatch > 1% triggers DiscrepancyResolution and holds PaymentAuthorization
-- QualityVerificationResult.failed blocks payment and routes to SCOR-S2.4 for return
-- Missing tax_compliance data rejects authorization and logs for audit
+- IF any three-way match field differs by >0.01 THEN create DiscrepancyResolution with status='open' and block PaymentAuthorization
+- IF QualityVerificationResult.status == 'failed' THEN reject SupplierInvoice and notify supplier via email workflow
 
 ## Success Criteria
-- PaymentAuthorization created with status 'approved'
-- SupplierAccount balance updated
-- PaymentConfirmation sent within payment_cycle_time SLA
-- invoice_match_rate == 100% for the transaction
+- PaymentAuthorization.status == 'approved' AND SupplierAccount.last_payment_date updated AND discrepancy_count == 0
 
 ## Compliance Requirements
 - financial controls compliance

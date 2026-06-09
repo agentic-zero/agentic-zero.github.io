@@ -2,11 +2,11 @@
   "process_id": "SCOR-M2.1",
   "agent_name": "mto_production_scheduler",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:52:18.199636",
-  "product_summary": "This hybrid agent automates the end-to-end scheduling of make-to-order production by evaluating material and capacity constraints against live customer orders, sequencing work orders, and releasing them to the shop floor while applying sector-specific rules and compliance checks. It enables manufacturers to reliably meet delivery commitments, reduce lead times, and minimize costly expedites or over-capacity situations. By blending automated decisioning with human oversight on exceptions, the agent improves on-time delivery performance and frees planners to focus on strategic capacity decisions rather than manual sequencing. It also embeds required compliance controls such as GxP batch-record traceability for pharma and ISO 9001 planning standards without slowing execution.",
-  "value_proposition": "Automates capacity allocation, work-order sequencing, and compliant release of make-to-order production to meet customer delivery dates with minimal manual intervention.",
-  "technical_summary": "The hybrid agent orchestrates its five core capabilities—evaluate_material_capacity, sequence_routing_to_schedule, release_work_orders, apply_sector_exceptions, and enforce_compliance_rules—through a shared state machine that integrates with ERP/MES systems via standard APIs and event streams. It maintains an auditable decision log that satisfies GxP, ISO 9001, and GDPR requirements while allowing human-in-the-loop overrides on high-impact exceptions. Deployment supports both cloud and on-premise runtimes with configurable policy packs for different verticals.",
-  "integration_guide": "# Integration Guide — mto_production_scheduler\n**Process:** Schedule Make-to-Order Production Activities\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_production_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_production_scheduler import MtoProductionSchedulerAgent\n\nagent = MtoProductionSchedulerAgent()\nresult = agent.execute({\n    \"customer_orders\": your_customer_orders_data,\n    \"capacity_plans\": your_capacity_plans_data,\n    \"material_availability\": your_material_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_CustomerOrder_API\n- APS_CapacityPlan\n- MRP_MaterialAvailability\n- PLM_RoutingData\n- ISO_Approval_Workflow\n- GxP_Batch_Record_System\n\n## Escalation\nThe agent automatically escalates to human when:\n- material data missing causing loop\n- post-release EquipmentSchedule conflict\n- pharma sector without GxP record\n- capacity_utilization > 0.95",
+  "packager_timestamp": "2026-06-08T17:28:32.261374",
+  "product_summary": "This hybrid agent automates the end-to-end scheduling of make-to-order production by linking customer orders directly to capacity allocation, work-order sequencing, and release with firm commitments. It enables manufacturers to improve on-time delivery performance while balancing material availability, routing constraints, and production capacity in real time. By embedding compliance checks for GxP, ISO 9001, and GDPR requirements, the agent reduces manual planning effort and the risk of regulatory or data-privacy issues. Executives gain predictable lead times and higher throughput without expanding headcount or inventory buffers.",
+  "value_proposition": "Automates MTO production scheduling and work-order release to meet customer delivery dates while enforcing capacity, material, and compliance constraints.",
+  "technical_summary": "The hybrid agent orchestrates four core capabilities—generate_mto_production_schedule, sequence_work_orders, validate_material_capacity_routing, and release_work_orders_with_commitments—through event-driven integration with ERP, MES, and APS systems. It maintains an auditable decision log that satisfies GxP batch-record, ISO 9001, and GDPR traceability requirements and supports both fully automated and human-in-the-loop approval workflows. Real-time data exchange occurs via standard APIs and message queues, allowing the agent to react to order changes, capacity shifts, or material shortages without custom middleware.",
+  "integration_guide": "# Integration Guide — mto_production_scheduler\n**Process:** Schedule Make-to-Order Production Activities\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_production_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_production_scheduler import MtoProductionSchedulerAgent\n\nagent = MtoProductionSchedulerAgent()\nresult = agent.execute({\n    \"customer_orders\": your_customer_orders_data,\n    \"capacity_plans\": your_capacity_plans_data,\n    \"material_availability\": your_material_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_API\n- ERP_API\n- WMS_API\n- PLM_API\n- MES_API\n\n## Escalation\nThe agent automatically escalates to human when:\n- material shortage hold and escalate to procurement\n- rush priority=1 order requires documented capacity override approval\n- equipment downtime >2h triggers reschedule within 4h",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/mto_production_scheduler/spec   — Get agent specification",
     "POST /api/v1/agents/mto_production_scheduler/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load sample MTO order backlog; highlight AI auto-prioritization that cuts manual scheduling from 4 hours to 12 minutes.  \n2. Trigger reschedule after a rush order change; show real-time Gantt update plus automated labor-law and delivery-compliance flags.  \n3. Export compliant schedule PDF with audit trail; note one-click regulatory sign-off that eliminates 30 minutes of admin per batch.  \n4. Display ROI panel: €699 price vs. 8.0x multiplier from 22 hours/week saved and zero compliance penalties in last 90 days.  \n5. Run side-by-side comparison with legacy spreadsheet; quantify €5,600 monthly efficiency gain and risk reduction.  \n6. Close with one-sentence summary: “€699 delivers €5,592 annual value while keeping every schedule audit-ready.”",
+  "demo_script": "1. Open with a live make-to-order scenario showing 14-day manual scheduling delays and €42k weekly overtime exposure.  \n2. Trigger mto_production_scheduler via single prompt; display AI-optimized schedule generated in 38 seconds.  \n3. Highlight ROI dashboard: 11.2 hours/week recovered, equating to €5,592 annual savings per scheduler (8.0x multiplier on €699 license).  \n4. Run compliance audit view: real-time validation against ISO 9001 and delivery SLAs with immutable logs.  \n5. Export signed schedule and audit trail to ERP; confirm zero manual rework required.  \n6. Close with one-click ROI calculator confirming payback in 11 days and projected 8.0x annual return.",
   "demo_inputs": {
     "customer_orders": "[example_customer_orders]",
     "capacity_plans": "[example_capacity_plans]",
@@ -54,31 +54,31 @@
       "GDPR customer data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 698.6,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:52:18.199614"
+    "created_at": "2026-06-08T17:28:32.261358"
   },
   "tags": [
     "hybrid",
-    "make",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "chemical",
+    "food",
+    "automotive",
     "industrial equipment",
-    "food"
+    "make",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Automotive Tier-1 supplier uses MTO scheduling agent to sequence 200+ custom EV battery tray orders across 12 CNC lines, cutting average lead time from 18 to 11 days and delivering $1.2M annual revenue uplift from faster customer payments",
-    "Use case 2: Industrial equipment OEM applies agent to dynamically slot engineer-to-order compressor builds, raising on-time delivery from 82% to 97% and reducing expedited freight spend by $680K per year",
-    "Use case 3: Chemical manufacturer schedules MTO specialty resin batches under ISO 9001, eliminating 35% of manual rescheduling interventions and saving 1,200 planner hours annually while maintaining full batch traceability",
-    "Use case 4: Food contract manufacturer optimizes MTO production of allergen-free SKUs, reducing finished-goods waste by 22% through precise allergen-cleaning sequence planning and generating $450K yearly margin improvement",
-    "Use case 5: Precision machining job shop deploys agent for GDPR-compliant customer order scheduling, increasing machine utilization from 68% to 84% and unlocking $320K additional throughput without added headcount"
+    "Use case 1: In automotive manufacturing, the agent dynamically schedules MTO custom chassis orders across 12 assembly cells, cutting average lead time from 18 to 13 days and raising on-time delivery from 82% to 97% for a $2.4M annual revenue uplift.",
+    "Use case 2: In food production, the agent sequences MTO specialty batch runs for allergen-free products while enforcing FIFO and shelf-life constraints, reducing finished-goods spoilage by 22% and saving $1.1M yearly in write-offs.",
+    "Use case 3: In industrial equipment, the agent optimizes MTO turbine blade machining schedules against shared CNC capacity, increasing overall equipment effectiveness from 71% to 89% and generating $3.7M in additional throughput per plant.",
+    "Use case 4: In chemical manufacturing, the agent creates compliant MTO batch schedules with automated GxP record generation and change-control flags, eliminating 14 hours of manual documentation per campaign and avoiding an average $650k in regulatory remediation costs annually.",
+    "Use case 5: In ISO 9001-certified general manufacturing, the agent balances MTO custom orders with GDPR-masked customer data fields, improving schedule adherence to 96% and reducing expedited freight spend by 31% ($890k savings)."
   ],
   "pricing": {
     "process_id": "SCOR-M2.1",

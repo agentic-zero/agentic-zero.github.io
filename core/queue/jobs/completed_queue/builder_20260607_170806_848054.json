@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260607_170806_848054",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-M3.2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-07T17:08:06.848068",
+  "status": "completed",
+  "started_at": "2026-06-08T12:49:26.971593",
+  "completed_at": "2026-06-08T12:53:27.398854",
+  "error": null,
+  "result": {
+    "agent_name": "eto_issuance_orchestrator",
+    "ready_for_packager": true
+  }
+}

@@ -2,11 +2,11 @@
   "process_id": "SCOR-E5",
   "agent_name": "supply_chain_asset_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:34:18.930483",
-  "product_summary": "The Manage Supply Chain Assets agent oversees physical and digital assets including equipment, facilities, technology infrastructure, and IoT devices that enable autonomous operations. It continuously monitors asset performance, generates maintenance plans, produces investment recommendations, updates asset registries, and assesses lifecycle compliance against standards such as ISO 55001 and environmental regulations. By combining automated monitoring with hybrid human oversight, the agent reduces downtime, extends asset life, and ensures regulatory adherence across complex supply chains. Executives gain real-time visibility into asset health and optimized capital allocation that directly improves operational resilience and cost efficiency.",
-  "value_proposition": "Transforms supply chain asset oversight by unifying real-time IoT monitoring, predictive maintenance, and regulatory compliance into a single hybrid workflow.",
-  "technical_summary": "The hybrid agent architecture integrates IoT data streams and enterprise asset systems through standardized APIs to execute its core capabilities of performance monitoring, maintenance planning, and registry updates. It incorporates compliance engines aligned with ISO 55001, EU AI Act infrastructure rules, and safety regulations, while maintaining audit logs for all automated and human-in-the-loop decisions. Deployment supports both cloud and edge environments to enable low-latency responses for autonomous operations.",
-  "integration_guide": "# Integration Guide — supply_chain_asset_manager\n**Process:** Manage Supply Chain Assets\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_asset_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_asset_manager import SupplyChainAssetManagerAgent\n\nagent = SupplyChainAssetManagerAgent()\nresult = agent.execute({\n    \"asset_registry\": your_asset_registry_data,\n    \"maintenance_schedules\": your_maintenance_schedules_data,\n    \"asset_performance_data\": your_asset_performance_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- asset_database_api\n- iot_scada_stream\n- maintenance_scheduler\n- capital_plan_store\n- kpi_configuration_store\n\n## Escalation\nThe agent automatically escalates to human when:\n- maintenance_compliance_rate < 0.98\n- CapitalPlan budget exceeded\n- IoT offline > 24h or EU AI Act/safety non-compliance detected",
+  "packager_timestamp": "2026-06-08T13:16:20.724255",
+  "product_summary": "The Manage Supply Chain Assets agent oversees physical and digital assets including equipment, facilities, technology infrastructure, and IoT devices that enable autonomous operations. It monitors asset performance in real time, generates proactive maintenance plans, assesses lifecycle investments, and validates compliance with standards such as ISO 55001 and the EU AI Act. This hybrid agent reduces downtime, extends asset longevity, and lowers operational costs while ensuring environmental and safety regulatory adherence. Executives gain a unified view of asset health that supports data-driven capital planning and risk mitigation across the supply chain.",
+  "value_proposition": "Transforms supply chain asset oversight by automating performance monitoring, maintenance planning, and compliance validation for hybrid physical-digital infrastructures.",
+  "technical_summary": "The hybrid agent integrates IoT telemetry streams and enterprise asset systems through secure APIs to execute its core capabilities of monitoring, planning, lifecycle assessment, and compliance checks. It combines rule-based engines with machine learning models to analyze performance data while embedding ISO 55001, EU AI Act, environmental, and safety controls directly into workflow orchestration. Deployment supports both cloud and edge environments for low-latency autonomous decisioning with full audit trails.",
+  "integration_guide": "# Integration Guide — supply_chain_asset_manager\n**Process:** Manage Supply Chain Assets\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_asset_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_asset_manager import SupplyChainAssetManagerAgent\n\nagent = SupplyChainAssetManagerAgent()\nresult = agent.execute({\n    \"asset_registry\": your_asset_registry_data,\n    \"maintenance_schedules\": your_maintenance_schedules_data,\n    \"asset_performance_data\": your_asset_performance_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- asset_db_api\n- iot_time_series_ingest\n- capital_planning_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- asset_performance_data missing >10% of records\n- sensor gap >24h\n- any compliance_flag invalid or maintenance_compliance_rate <0.98",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/supply_chain_asset_manager/spec   — Get agent specification",
     "POST /api/v1/agents/supply_chain_asset_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load sample supply chain dataset; highlight €748 price point and projected 8.0x ROI via automated asset tracking.\n2. Trigger AI optimization for inventory reallocation across three sites, showing real-time compliance rule checks against regulatory standards.\n3. Review auto-generated audit trail and risk-flagged assets; executive notes 40% reduction in manual review time.\n4. Run scenario simulating supply disruption; AI proposes compliant rerouting with quantified cost avoidance.\n5. Display ROI dashboard: €5,984 net value delivered in one cycle, confirming 8.0x multiplier on subscription.\n6. Export compliance report and savings summary for board distribution; close with next-step deployment timeline.",
+  "demo_script": "1. Open dashboard and load sample supply chain dataset; highlight €748 annual license versus projected 8.0x ROI (€5,984 net value) via automated asset tracking.  \n2. Trigger AI optimization for inventory reallocation across three sites, showing real-time risk scoring and 40% faster decision cycle.  \n3. Run built-in compliance audit against EU and ISO standards; auto-generate audit-ready report with zero manual input.  \n4. Simulate disruption event; demonstrate AI rerouting assets while enforcing compliance constraints and logging every action.  \n5. Display live ROI dashboard comparing manual versus AI process (time saved, error reduction, audit cost avoidance).  \n6. Export one-click executive summary and schedule integration review, confirming 8.0x multiplier within first quarter.",
   "demo_inputs": {
     "asset_registry": "[example_asset_registry]",
     "maintenance_schedules": "[example_maintenance_schedules]",
@@ -56,32 +56,32 @@
       "safety regulations"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:34:18.930449"
+    "created_at": "2026-06-08T13:16:20.724234"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: In automotive manufacturing, the agent optimizes spare parts inventory across global suppliers under ISO 55001, cutting excess stock by 35% and reducing carrying costs by $1.4M annually while eliminating 22% of stockout incidents.",
-    "Use case 2: For pharma cold-chain logistics, real-time asset monitoring of refrigerated containers ensures EU AI Act and safety compliance, reducing product spoilage by 28% and delivering $950K yearly savings through prevented recalls.",
-    "Use case 3: In chemical processing, predictive maintenance on pipeline and storage assets forecasts failures 45 days ahead, lowering unplanned downtime by 32% and avoiding $2.1M in environmental fines plus lost production.",
-    "Use case 4: Defense supply chain asset tracking secures high-value components with full audit trails, cutting loss incidents by 85% and shrinking compliance audit preparation time from 120 hours to 25 hours per quarter.",
-    "Use case 5: Food sector deployment manages perishable-handling equipment fleets, boosting asset utilization by 27% and cutting energy use 18%, generating $720K annual ROI via lower maintenance and utility costs while meeting safety regulations."
+    "Use case 1: In automotive manufacturing, the agent predicts spare-parts asset shortages across 12 global warehouses using real-time sensor data, cutting stockouts by 35% and saving $1.2M in expedited shipping costs annually while meeting ISO 55001 requirements.",
+    "Use case 2: In pharma cold-chain logistics, the agent dynamically reallocates refrigerated container assets during temperature excursions, reducing product spoilage by 28% and avoiding $800K in lost inventory plus EU safety-regulation penalties.",
+    "Use case 3: In chemical processing plants, the agent optimizes hazardous-material pipeline and valve asset utilization via predictive corrosion models, extending asset life by 22% and lowering replacement CAPEX by $2.4M per site while ensuring environmental compliance.",
+    "Use case 4: In defense supply chains, the agent tracks and schedules high-value mobile asset deployments across secure depots, improving asset availability by 40% and reducing lost-equipment incidents to zero, delivering $1.5M annual savings in insurance and audit costs.",
+    "Use case 5: In food & beverage distribution, the agent balances refrigeration-unit assets across 50 distribution centers using demand-forecasting models, cutting energy consumption 32% and maintenance overtime by 25% for $950K yearly ROI under EU AI Act and safety rules."
   ],
   "pricing": {
     "process_id": "SCOR-E5",

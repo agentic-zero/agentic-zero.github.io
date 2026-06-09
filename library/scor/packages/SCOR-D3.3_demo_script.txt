@@ -1,0 +1,6 @@
+1. Open with the manual ETO bottleneck: show a live spreadsheet of 12 overlapping projects, highlighting €42k in last-quarter penalties from resource conflicts and missed compliance deadlines.  
+2. Trigger eto_resource_reservation_agent via one-click in the CRM; narrate that the €748 agent now owns the entire Reserve Resources and Determine Delivery Date (ETO) workflow.  
+3. Display real-time AI allocation: agent reserves engineering slots across three sites while enforcing ISO 9001 and customer contract constraints, cutting manual coordination from 47 minutes to 19 seconds.  
+4. Reveal the compliance dashboard: auto-generated audit trail, risk flags, and digital sign-off that satisfy both internal policy and external auditors—no extra tooling required.  
+5. Run the ROI calculator live: input current annual volume, apply the 8.0x multiplier, and show €5,984 net annual value per deployment plus 11 hours/week freed for billable work.  
+6. Close with one-slide summary: €748 investment, 8.0x return, zero compliance incidents in the pilot—ask for pilot approval on two additional ETO lines.

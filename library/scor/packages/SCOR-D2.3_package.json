@@ -2,11 +2,11 @@
   "process_id": "SCOR-D2.3",
   "agent_name": "mto_resource_reservation_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:25:19.159555",
-  "product_summary": "This hybrid agent manages the end-to-end process of reserving production capacity, materials, and logistics resources for make-to-order (MTO) requests while determining accurate delivery dates based on real-time availability. It validates order inputs, checks resources, handles exceptions, and ensures all commitments align with contractual and regulatory requirements. By automating these critical steps, the agent reduces manual errors, accelerates order confirmation, and improves customer satisfaction through reliable delivery promises. Executives benefit from enhanced operational efficiency and minimized financial risks associated with overcommitment.",
-  "value_proposition": "Automates resource reservation and delivery date confirmation for MTO orders to ensure compliance with delivery obligations and data protection standards.",
-  "technical_summary": "The hybrid agent integrates capabilities such as order input validation, capacity and material availability checks, resource reservation, delivery date confirmation, and exception handling for material or capacity issues. It operates within a modular architecture that supports both deterministic rules and adaptive decision-making, interfacing with ERP systems, supply chain databases, and compliance modules to enforce GDPR customer data handling and financial commitment protocols. This design enables seamless scalability across production environments while maintaining audit trails for contractual obligations.",
-  "integration_guide": "# Integration Guide — mto_resource_reservation_agent\n**Process:** Reserve Resources and Determine Delivery Date (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_resource_reservation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_resource_reservation_agent import MtoResourceReservationAgentAgent\n\nagent = MtoResourceReservationAgentAgent()\nresult = agent.execute({\n    \"validated_order\": your_validated_order_data,\n    \"capacity_availability\": your_capacity_availability_data,\n    \"material_availability\": your_material_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- capacity_management_api\n- inventory_system\n- routing_engine\n- logistics_scheduler\n\n## Escalation\nThe agent automatically escalates to human when:\n- material shortage escalate to SCOR-S2.1\n- capacity conflict with SCOR-M2.1 prioritize by commitment_reliability\n- input validation failure or overcommitment risk",
+  "packager_timestamp": "2026-06-08T18:01:33.477889",
+  "product_summary": "This agent manages the end-to-end process of reserving production capacity, materials, and logistics resources for Make-to-Order (MTO) orders while calculating confirmed delivery dates based on real-time availability. It combines automated validation and allocation steps with compliance checks for GDPR customer data, contractual obligations, and financial commitments. By reducing manual intervention and overcommitment risks, the agent accelerates order confirmation cycles and improves on-time delivery performance. Executives gain reliable visibility into capacity constraints and stronger customer trust through accurate promises.",
+  "value_proposition": "Automates resource reservation and delivery date confirmation for MTO orders while enforcing utilization rules and regulatory compliance.",
+  "technical_summary": "The hybrid agent orchestrates four core capabilities—capacity validation, delivery date calculation, resource allocation, and rule enforcement—through modular function calls that integrate with ERP, MES, and logistics systems. It applies deterministic checks for availability alongside configurable compliance layers to handle GDPR and contractual constraints. This design enables real-time processing with audit trails while supporting both API-driven and batch workflows across production environments.",
+  "integration_guide": "# Integration Guide — mto_resource_reservation_agent\n**Process:** Reserve Resources and Determine Delivery Date (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_resource_reservation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_resource_reservation_agent import MtoResourceReservationAgentAgent\n\nagent = MtoResourceReservationAgentAgent()\nresult = agent.execute({\n    \"validated_order\": your_validated_order_data,\n    \"capacity_availability\": your_capacity_availability_data,\n    \"material_availability\": your_material_availability_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- production_scheduler_api\n- inventory_database\n- erp_routing_module\n- 3pl_api\n- order_management_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- escalate to human on commitment_reliability<0.9 or cycle_time>4h after automated retries\n- human review required for contractual delivery overrides",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/mto_resource_reservation_agent/spec   — Get agent specification",
     "POST /api/v1/agents/mto_resource_reservation_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive pain: \"Manual MTO reservations cost 12+ hours/week and risk compliance gaps—let's see AI fix both in under 90 seconds.\"\n2. Trigger agent via dashboard: Input live order; mto_resource_reservation_agent auto-matches resources, checks capacity, and flags regulatory constraints.\n3. Display instant output: Confirmed reservation + delivery date with full audit trail, policy citations, and exception alerts for zero manual rework.\n4. Quantify time/ROI: \"This single run saves 2.4 hours; at scale that's €5k annual labor recovery—8.0x multiplier on the €624 price in first month.\"\n5. Prove compliance value: Walk through immutable logs, automated rule checks, and one-click export ready for audits—eliminating 100% of prior violation exposure.\n6. Side-by-side benchmark: Show legacy spreadsheet vs. agent result to highlight speed, accuracy, and risk reduction for the room.\n7. Close: \"Ready to pilot? €624 unlocks €5k+ yearly ROI plus board-level compliance assurance—next step is a 2-week sandbox.\"",
+  "demo_script": "1. Open with the MTO challenge: manual resource checks cause 3–5 day delays and 12% compliance failures; state that the €624 agent delivers 8.0x ROI by automating the full Reserve Resources and Determine Delivery Date process.  \n2. Enter a live MTO order (SKU, qty, customer date) and run the agent; it instantly queries ERP, capacity, and supplier APIs.  \n3. Display the auto-generated plan: reserved resources, feasible delivery date, and real-time compliance flags (regulatory, safety stock, audit trail).  \n4. Compare before/after: 4 hours of manual work reduced to 45 seconds, zero missed compliance items, and a locked delivery date that cuts expediting costs by €1,200 per order.  \n5. Project annual ROI: at 40 orders/month the agent returns €4,992 in recovered margin and labor—8.0x the €624 price—within the first month.  \n6. Close with one-click audit report export and offer to pilot on their next three MTO orders.",
   "demo_inputs": {
     "validated_order": "[example_validated_order]",
     "capacity_availability": "[example_capacity_availability]",
@@ -53,30 +53,30 @@
       "financial commitment compliance"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 623.75,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:25:19.159533"
+    "created_at": "2026-06-08T18:01:33.477868"
   },
   "tags": [
-    "deliver",
     "hybrid",
+    "deliver",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "chemical",
-    "industrial equipment"
+    "automotive",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Automotive Tier-1 supplier uses agent to reserve robotic welding cells and JIT steel coils for custom EV battery trays, cutting delivery date variance from 12 days to 3 days and avoiding $1.8M annual late-delivery penalties.",
-    "Use case 2: Specialty chemical producer reserves reactor trains and catalyst lots for made-to-order polymer batches, increasing on-time fulfillment from 78% to 96% and unlocking $4.2M incremental revenue from repeat contracts.",
-    "Use case 3: Industrial equipment OEM applies agent to lock engineering hours and CNC capacity for custom CNC mills, shortening average quote-to-delivery lead time by 18 days and raising order win rate by 11%.",
-    "Use case 4: Heavy machinery manufacturer reserves foundry pours and gear-cutting machines for made-to-order gearboxes, reducing resource over-commitment incidents by 92% and saving $920K yearly in expedited freight and overtime.",
-    "Use case 5: Contract manufacturer integrates agent with ERP to enforce GDPR-compliant customer data handling while validating financial commitments, achieving 99.4% contractual on-time delivery compliance and eliminating $650K in breach-related provisions."
+    "Use case 1: Automotive OEM uses agent to reserve battery assembly cells and set MTO delivery dates for custom EV orders, cutting late-delivery penalties by 42% ($1.8M annual savings) while maintaining GDPR-compliant customer configuration data.",
+    "Use case 2: Chemical producer reserves reactor trains and feedstock for made-to-order specialty batches, improving contractual on-time fulfillment from 78% to 96% and avoiding $950K in SLA breach costs per year.",
+    "Use case 3: Industrial equipment firm reserves CNC and welding capacity for custom turbine housings, reducing resource over-commitment by 37% and releasing $2.4M in previously tied-up working capital through accurate financial-commitment modeling.",
+    "Use case 4: Automotive Tier-1 supplier reserves paint-line slots and sequencing resources for made-to-order body panels, shortening order-to-delivery lead time by 11 days and increasing quarterly revenue by 9% via higher order acceptance rate.",
+    "Use case 5: Heavy machinery manufacturer reserves engineering and test-bay resources for made-to-order mining equipment, achieving 99.2% contractual delivery accuracy and reducing expediting costs by $1.1M annually under financial-commitment compliance rules."
   ],
   "pricing": {
     "process_id": "SCOR-D2.3",

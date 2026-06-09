@@ -1,0 +1,6 @@
+1. Load executive dashboard with live sample data: current inventory, supplier lead times, and demand forecasts for a mid-size manufacturer.
+2. Activate mrp_autonomous_planner; AI instantly generates an optimized MRP plan, cutting excess stock by 23% while maintaining 99.2% service level.
+3. Display ROI calculator: €748 license cost vs. €5,984 projected annual savings (8.0x multiplier) from reduced carrying costs and avoided stock-outs.
+4. Run compliance module: automated checks against ISO 14001 and EU supply-chain due-diligence rules, producing an audit-ready report in <30 seconds.
+5. Simulate sudden supplier disruption; AI re-plans in real time, rerouting orders and updating compliance flags without manual intervention.
+6. Export one-page executive summary showing quantified ROI, compliance score, and recommended next deployment steps.

@@ -1,4 +1,4 @@
-# Integration Guide — mto_order_consolidation_agent
+# Integration Guide — consolidate_orders_mto_agent
 **Process:** Consolidate Orders (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_order_consolidation_agent.py ./agents/
+cp consolidate_orders_mto_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_order_consolidation_agent import MtoOrderConsolidationAgentAgent
+from agents.consolidate_orders_mto_agent import ConsolidateOrdersMtoAgentAgent
 
-agent = MtoOrderConsolidationAgentAgent()
+agent = ConsolidateOrdersMtoAgentAgent()
 result = agent.execute({
     "confirmed_orders": your_confirmed_orders_data,
     "delivery_schedules": your_delivery_schedules_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- order_management_api
-- delivery_schedule_service
-- logistics_cost_calculator
-- notification_gateway
-- customs_regulation_checker
+- ERP_order_feed
+- logistics_API
+- carrier_delivery_feed
+- GDPR_compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- customs consolidation regulations violated
-- dangerous goods without hazmat certification
-- mismatched delivery windows >48h
+- customs regulations violated
+- conflicting delivery dates
+- missing cost data

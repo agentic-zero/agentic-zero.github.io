@@ -1,7 +1,6 @@
-1. Open with pain point: "Manual procurement costs €250K+/yr in delays and fines—our agent automates end-to-end at €748."
-2. Trigger AI sourcing: Run live query for approved suppliers; agent filters 200+ options in seconds using compliance rules (ISO, ESG, sanctions).
-3. Execute compliance gate: Show real-time audit trail—every PO auto-tagged with regulatory proof, cutting audit prep from days to minutes.
-4. Optimize order: Agent negotiates 12% savings via dynamic pricing; display before/after cost and 8.0x ROI projection on-screen.
-5. Simulate exception handling: Flag and reroute a high-risk supplier; quantify avoided fine (€45K) plus 40% cycle-time reduction.
-6. Close with metrics dashboard: "€748 investment yields €6K+ annual return—full payback in <6 weeks, zero compliance incidents."
-7. Offer pilot: "Deploy in your environment this week; track first €100K procurement for verified ROI."
+1. Open dashboard: Display live procurement queue and AI agent status, highlighting automated task intake from ERP systems.  
+2. Trigger AI sourcing: Input a sample RFQ; show agent auto-identifying 3 compliant suppliers in <30 seconds while flagging regulatory gaps.  
+3. Run compliance audit: Execute real-time checks for ESG, sanctions, and contract clauses, exporting an audit-ready report.  
+4. Quantify savings: Reveal dashboard metrics—€47k annual savings from negotiated terms and 14 hours/week time reduction.  
+5. Project ROI: Calculate live 8.0x return (€5,984 net value) against €748 price, including payback in 6 weeks.  
+6. Close loop: Approve PO via agent, auto-update ERP, and schedule next-cycle optimization for sustained compliance.

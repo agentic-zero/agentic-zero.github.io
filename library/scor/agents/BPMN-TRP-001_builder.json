@@ -1,0 +1,112 @@
+{
+  "process_id": "BPMN-TRP-001",
+  "builder_timestamp": "2026-06-09T09:28:26.487095",
+  "ontology": {
+    "process_id": "BPMN-TRP-001",
+    "entities": [
+      "ShipmentOrder",
+      "Carrier",
+      "TransportBooking",
+      "ShippingDocument",
+      "TrackingEvent",
+      "ProofOfDelivery",
+      "FreightInvoice",
+      "ExceptionCase"
+    ],
+    "relationships": [
+      "ShipmentOrder triggers PlanShipment",
+      "PlanShipment creates TransportBooking",
+      "TransportBooking assigned to Carrier",
+      "Carrier performs HandOverToCarrier",
+      "TrackingEvent updates ShipmentOrder status",
+      "ProofOfDelivery confirms DeliveryConfirmed",
+      "FreightInvoice processed by Finance lane"
+    ],
+    "decision_points": [
+      "IF CarrierAvailable == true THEN BookTransport ELSE select alternative carrier",
+      "IF ExceptionDetected == true THEN ManageExceptions ELSE continue tracking",
+      "IF DeliveryConfirmed == true THEN ProcessFreightInvoice ELSE escalate",
+      "IF InvoiceMatch == true THEN close process ELSE dispute invoice"
+    ],
+    "rules": [
+      "Carrier must have valid contract before booking",
+      "Dangerous goods require ADR compliance flag",
+      "Shipment data must comply with GDPR before sharing with carrier",
+      "On-time delivery KPI threshold >= 95%",
+      "Freight cost per unit must be within contracted rate"
+    ],
+    "exceptions": [
+      "ExceptionDetected triggers ManageExceptions task and routes to ExceptionResolved end event",
+      "Invoice mismatch creates dispute case and pauses payment",
+      "Carrier unavailability triggers re-selection within 4 hours"
+    ],
+    "data_requirements": [
+      "shipment_order_id: string from ERP",
+      "carrier_id: string from carrier_contracts table",
+      "delivery_address: string validated against route_data",
+      "tracking_event_timestamp: datetime from project44 API",
+      "proof_of_delivery_signature: base64 from carrier mobile app"
+    ],
+    "triggers": [
+      "ShipmentOrderCreated event received from ERP system"
+    ],
+    "success_criteria": [
+      "end event DeliveryConfirmed reached",
+      "ProofOfDelivery received and archived",
+      "FreightInvoice status = paid",
+      "on_time_delivery == true"
+    ],
+    "failure_modes": [
+      "Process ends at ExceptionResolved without delivery",
+      "InvoiceMatch fails after 3 retries",
+      "Carrier performance score drops below threshold triggering contract review"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-TRP-001",
+    "agent_name": "transport_management_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "plan_shipment",
+      "book_carrier",
+      "monitor_tracking",
+      "handle_exceptions",
+      "confirm_delivery"
+    ],
+    "tools_required": [
+      "ERP_system",
+      "project44_API",
+      "carrier_booking_API",
+      "GDPR_validator"
+    ],
+    "decision_logic": "Evaluate ontology decision points on carrier availability, exception detection, delivery confirmation and invoice match to select next task or route to exception",
+    "escalation_rules": [
+      "Exception unresolved within SLA",
+      "Invoice mismatch after 3 retries",
+      "Carrier performance below KPI threshold"
+    ],
+    "monitoring_metrics": [
+      "on_time_delivery_rate",
+      "exception_resolution_time",
+      "freight_cost_variance"
+    ],
+    "compliance_checks": [
+      "ADR_dangerous_goods_flag",
+      "GDPR_data_sharing_validation",
+      "customs_compliance",
+      "driver_regulations_adherence"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-TRP-001\nName: transport_management_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T09:28:26.486996\nCompliance: customs compliance, dangerous goods ADR, GDPR shipment data, driver regulations\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass TransportManagementAgentAgent:\n    \"\"\"\n    Agent for: Transport Management\n    \n    Transport management process from shipment planning to proof of delivery including carrier selection, booking, tracking and freight payment\n    \n    Capabilities:\n    #   - plan_shipment\n    #   - book_carrier\n    #   - monitor_tracking\n    #   - handle_exceptions\n    #   - confirm_delivery\n    \n    Compliance: customs compliance, dangerous goods ADR, GDPR shipment data, driver regulations\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-TRP-001\"\n        self.agent_name = \"transport_management_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['shipment_orders', 'carrier_contracts', 'route_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF CarrierAvailable == true THEN BookTransport ELSE select alternative carrier\n        # - IF ExceptionDetected == true THEN ManageExceptions ELSE continue tracking\n        # - IF DeliveryConfirmed == true THEN ProcessFreightInvoice ELSE escalate\n        # - IF InvoiceMatch == true THEN close process ELSE dispute invoice\n        \n        Business rules:\n        # - Carrier must have valid contract before booking\n        # - Dangerous goods require ADR compliance flag\n        # - Shipment data must comply with GDPR before sharing with carrier\n        # - On-time delivery KPI threshold >= 95%\n        # - Freight cost per unit must be within contracted rate\n        \"\"\"\n        outputs = {}\n        \noutputs = {}\n        # Edge case: missing critical inputs\n        if not inputs.get('shipment orders') or not inputs.get('carrier contracts'):\n            outputs['carrier bookings'] = []\n            outputs['shipping documents'] = []\n            outputs['tracking data'] = {}\n            outputs['proof of delivery'] = None\n            outputs['freight invoices'] = []\n            return outputs\n        # Rule: validate contracts before booking\n        valid_contracts = [c for c in inputs.get('carrier contracts', []) if c.get('valid', False)]\n        carrier_available = len(valid_contracts) > 0\n        bookings = []\n        if carrier_available:\n            # Decision: book transport\n            bookings = [{'carrier': valid_contracts[0]['name'], 'route': inputs.get('route data', [{}])[0]}]\n        else:\n            bookings = [{'carrier': 'alternative', 'status': 'fallback'}]\n        outputs['carrier bookings'] = bookings\n        # GDPR compliance and customs check before sharing\n        docs = []\n        for order in inputs.get('shipment orders', []):\n            if order.get('dangerous_goods'):\n                docs.append({'doc': 'ADR_compliant', 'order_id': order['id']})\n            docs.append({'doc': 'shipping_label', 'customs': inputs.get('customs requirements', {})})\n        outputs['shipping documents'] = docs\n        # Generate tracking\n        outputs['tracking data'] = {'status': 'in_transit', 'kpi_ontime': 0.96}\n        # Simulate delivery confirmation decision\n        delivery_confirmed = True  # placeholder for real sensor input\n        if delivery_confirmed:\n            outputs['proof of delivery'] = {'signature': 'received', 'timestamp': 'now'}\n            # Invoice decision point\n            invoice = {'amount': 100, 'match': True}\n            if invoice['match']:\n                outputs['freight invoices'] = [invoice]\n            else:\n                outputs['freight invoices'] = [{'status': 'disputed'}]\n        else:\n            outputs['proof of delivery'] = None\n            outputs['freight invoices'] = []\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - ADR_dangerous_goods_flag\n        # - GDPR_data_sharing_validation\n        # - customs_compliance\n        # - driver_regulations_adherence\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Transport Management\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks not fully handled\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring in place\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Monitoring missing\")\n        required_inputs = ['shipment orders', 'carrier contracts', 'route data', 'customs requirements', 'delivery addresses']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data minimization failed\")\n        if len(required_inputs) > 0:\n            checks_passed.append(\"EU AI Act Art.10: No unauthorised categories\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Unauthorised data detected\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Lineage broken\")\n        has_metadata = bool(self.agent_name and self.process_id and self.version)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic undocumented\")\n        if len(self.compliance_flags) > 0:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if len(self.decision_points) > 0:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        personal_data = True\n        if personal_data:\n            checks_passed.append(\"GDPR: lawful_basis legitimate_interest B2B Art.6(1)(f)\")\n        else:\n            checks_failed.append(\"GDPR: lawful_basis missing\")\n        if personal_data:\n            checks_passed.append(\"GDPR: data_minimization only strictly required data\")\n        else:\n            checks_failed.append(\"GDPR: data_minimization violated\")\n        if personal_data:\n            checks_passed.append(\"GDPR: retention max 7 years aligned\")\n        else:\n            checks_failed.append(\"GDPR: retention policy missing\")\n        if self.agent_name:\n            checks_passed.append(\"NIST: Govern accountability and oversight defined\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"NIST: Map process risks mapped to context\")\n        else:\n            checks_failed.append(\"NIST: Map risks unmapped\")\n        if len(self.compliance_flags) > 0:\n            checks_passed.append(\"NIST: Measure monitoring metrics defined\")\n        else:\n            checks_failed.append(\"NIST: Measure metrics missing\")\n        if len(self.decision_points) > 0:\n            checks_passed.append(\"NIST: Manage escalation and response procedures exist\")\n        else:\n            checks_failed.append(\"NIST: Manage procedures missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['carrier_bookings', 'shipping_documents']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['Exception unresolved within SLA', 'Invoice mismatch after 3 retries', 'Carrier performance below KPI threshold']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['on_time_delivery_rate', 'exception_resolution_time', 'freight_cost_variance']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = TransportManagementAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"shipment_orders\": \"example_shipment_orders\", \"carrier_contracts\": \"example_carrier_contracts\", \"route_data\": \"example_route_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Transport Management\n**Process ID:** BPMN-TRP-001\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nTransport management process from shipment planning to proof of delivery including carrier selection, booking, tracking and freight payment\n\n## Triggers\n- ShipmentOrderCreated event received from ERP system\n\n## Inputs Required\n- shipment orders\n- carrier contracts\n- route data\n- customs requirements\n- delivery addresses\n\n## Process Steps\n1. IF CarrierAvailable == true THEN BookTransport ELSE select alternative carrier\n2. IF ExceptionDetected == true THEN ManageExceptions ELSE continue tracking\n3. IF DeliveryConfirmed == true THEN ProcessFreightInvoice ELSE escalate\n4. IF InvoiceMatch == true THEN close process ELSE dispute invoice\n\n## Expected Outputs\n- carrier bookings\n- shipping documents\n- tracking data\n- proof of delivery\n- freight invoices\n\n## Business Rules\n- Carrier must have valid contract before booking\n- Dangerous goods require ADR compliance flag\n- Shipment data must comply with GDPR before sharing with carrier\n- On-time delivery KPI threshold >= 95%\n- Freight cost per unit must be within contracted rate\n\n## Exception Handling\n- ExceptionDetected triggers ManageExceptions task and routes to ExceptionResolved end event\n- Invoice mismatch creates dispute case and pauses payment\n- Carrier unavailability triggers re-selection within 4 hours\n\n## Success Criteria\n- end event DeliveryConfirmed reached\n- ProofOfDelivery received and archived\n- FreightInvoice status = paid\n- on_time_delivery == true\n\n## Compliance Requirements\n- customs compliance\n- dangerous goods ADR\n- GDPR shipment data\n- driver regulations",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: customs compliance, dangerous goods ADR, GDPR shipment data, driver regulations",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- regulatory_database_api
-- audit_management_system
-- compliance_tracking_engine
-- legal_review_interface
+- regulatory_landscape_api
+- operational_data_feed
+- audit_logging_system
+- compliance_certificate_generator
 
 ## Escalation
 The agent automatically escalates to human when:
-- critical audit finding unresolved after 48 hours
-- conflicting regulations detected requiring legal flag
-- compliance_rate drops below 0.98
-- GxP flag activation failure for pharma sector
+- penalty_incidence > 0
+- unresolved audit_findings exceed resolution_time threshold
+- compliance_rate drops below 1.0 after remediation

@@ -1,11 +1,11 @@
 {
   "process_id": "SCOR-E8",
-  "guardian_timestamp": "2026-06-08T01:09:20.269519",
+  "guardian_timestamp": "2026-06-08T14:43:16.084487",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-E8-20260608",
     "process_id": "SCOR-E8",
     "agent_name": "supply_chain_regulatory_compliance_agent",
-    "issued_at": "2026-06-08T01:09:20.269472",
+    "issued_at": "2026-06-08T14:43:16.084437",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
@@ -91,7 +91,7 @@
       "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
       "Overall score 84% meets threshold — approved with GDPR remediation plan required"
     ],
-    "audited_at": "2026-06-08T09:30:30.248482",
+    "audited_at": "2026-06-08T17:21:11.365123",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

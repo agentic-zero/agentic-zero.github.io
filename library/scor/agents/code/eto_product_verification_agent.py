@@ -4,7 +4,7 @@ Process: SCOR-S3.3
 Name: eto_product_verification_agent
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-07T19:51:13.743233
+Generated: 2026-06-08T14:56:26.348993
 Compliance: AS9100 first article inspection, defense acquisition, NADCAP if aerospace, GDPR if personal data
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,10 @@ class EtoProductVerificationAgentAgent:
     Process of verifying custom-engineered parts against engineering drawings, specifications and contractual requirements including dimensional inspection, material testing and functional validation
     
     Capabilities:
-    #   - dimensional_inspection_verification
-    #   - material_test_validation
-    #   - non_conformance_report_generation
-    #   - acceptance_decision_execution
+    #   - perform_first_article_inspection
+    #   - validate_compliance
+    #   - generate_verification_report
+    #   - handle_non_conformance
     
     Compliance: AS9100 first article inspection, defense acquisition, NADCAP if aerospace, GDPR if personal data
     """
@@ -139,61 +139,46 @@ class EtoProductVerificationAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF all dimensional measurements within tolerance THEN proceed to material testing ELSE create Non_Conformance_Report
-        # - IF material test results match Specification THEN proceed to functional validation ELSE create Non_Conformance_Report
-        # - IF functional validation passes contractual requirements THEN set Acceptance_Decision=accepted ELSE set Acceptance_Decision=rejected
+        # - IF dimensional_tolerance_check == pass AND material_test == pass AND functional_validation == pass THEN Acceptance_Decision = accept ELSE Non_Conformance_Report
         
         Business rules:
-        # - All ETO_Components must complete dimensional inspection before material testing
-        # - First_Article_Inspection_Result must be generated for every new ETO part per AS9100
-        # - Non_Conformance_Report must include root cause and disposition within 24 hours of detection
+        # - compliance_rate >= 0.98 for AS9100 first article
+        # - inspection_cycle_time <= 48 hours
+        # - NADCAP certification required if sector == aerospace
         """
         outputs = {}
         
-# Assume inputs dict available in scope; initialize outputs and NCR list
-        outputs = {'verification report': {}, 'first article inspection results': {}, 'acceptance decision': 'rejected', 'non-conformance reports': []}
-        ncr_list = []
-        # Edge case: missing or empty required inputs
-        req = ['ETO components', 'engineering drawings', 'specifications', 'test procedures', 'contractual requirements']
-        if not all(k in inputs and inputs[k] for k in req):
-            ncr_list.append({'id': 'NCR-INIT-001', 'root_cause': 'Missing input data', 'disposition': 'Reject batch', 'timestamp': 'immediate'})
-            outputs['non-conformance reports'] = ncr_list
-            outputs['acceptance decision'] = 'rejected'
-            return outputs
-        # Rule: dimensional inspection must precede material testing; simulate check on all ETO components
-        eto_comps = inputs['ETO components']
-        eng_draw = inputs['engineering drawings']
-        specs = inputs['specifications']
-        dim_ok = len(eto_comps) == len(eng_draw) and all('tolerance' in d for d in eng_draw)
-        if not dim_ok:
-            ncr_list.append({'id': 'NCR-DIM-001', 'root_cause': 'Dimensional data mismatch', 'disposition': 'Rework or scrap', 'timestamp': 'within 24h'})
-            outputs['non-conformance reports'] = ncr_list
-            outputs['first article inspection results'] = {'status': 'failed', 'details': 'Dimensional inspection incomplete'}
-            return outputs
-        # Decision: IF dimensional within tolerance THEN material test ELSE NCR
-        mat_ok = len(specs) > 0 and all('material' in s for s in specs)
-        if not mat_ok:
-            ncr_list.append({'id': 'NCR-MAT-001', 'root_cause': 'Material spec mismatch', 'disposition': 'Re-test or reject', 'timestamp': 'within 24h'})
-            outputs['non-conformance reports'] = ncr_list
-            outputs['acceptance decision'] = 'rejected'
-            return outputs
-        # Rule: generate FAI result for every new ETO part
-        fai_results = {'part_count': len(eto_comps), 'inspection_date': 'current', 'status': 'complete per AS9100'}
-        outputs['first article inspection results'] = fai_results
-        # Decision: IF material matches spec THEN functional validation ELSE NCR
-        test_proc = inputs['test procedures']
-        func_ok = len(test_proc) > 0
-        if not func_ok:
-            ncr_list.append({'id': 'NCR-FUNC-001', 'root_cause': 'Missing test procedures', 'disposition': 'Halt validation', 'timestamp': 'within 24h'})
-            outputs['non-conformance reports'] = ncr_list
-            return outputs
-        # Decision: IF functional passes contractual THEN accept ELSE reject
-        contracts = inputs['contractual requirements']
-        pass_contract = len(contracts) > 0 and all('acceptance' in c for c in contracts)
-        outputs['acceptance decision'] = 'accepted' if pass_contract else 'rejected'
-        # Build verification report summarizing all steps
-        outputs['verification report'] = {'dim_status': 'pass' if dim_ok else 'fail', 'mat_status': 'pass' if mat_ok else 'fail', 'func_status': 'pass' if pass_contract else 'fail', 'ncr_count': len(ncr_list)}
-        outputs['non-conformance reports'] = ncr_list
+# Initialize outputs dict and non-conformance list for edge-case tracking
+        outputs = {'verification report': '', 'first article inspection results': {}, 'acceptance decision': 'reject', 'non-conformance reports': []}
+        non_conformance_reports = []
+        # Edge case: validate presence of all inputs to avoid incomplete processing
+        if not all([eto_components, engineering_drawings, specifications, test_procedures, contractual_requirements]):
+            non_conformance_reports.append('Missing required input data')
+        # Mock verification steps (replace with real logic in production)
+        dimensional_tolerance_check = 'pass' if len(engineering_drawings) > 0 else 'fail'
+        material_test = 'pass' if 'material' in str(specifications).lower() else 'fail'
+        functional_validation = 'pass' if len(test_procedures) > 0 else 'fail'
+        compliance_rate = 0.99  # Simulated AS9100 check
+        inspection_cycle_time = 24  # Simulated hours
+        sector = 'aerospace'  # Example; derive from inputs in real use
+        # Apply decision point logic
+        if dimensional_tolerance_check == 'pass' and material_test == 'pass' and functional_validation == 'pass':
+            acceptance_decision = 'accept'
+        else:
+            acceptance_decision = 'reject'
+            non_conformance_reports.append('Failed one or more core checks')
+        # Enforce rules with edge-case handling
+        if compliance_rate < 0.98:
+            non_conformance_reports.append('AS9100 compliance below threshold')
+        if inspection_cycle_time > 48:
+            non_conformance_reports.append('Inspection cycle time exceeded')
+        if sector == 'aerospace' and 'NADCAP' not in str(contractual_requirements):
+            non_conformance_reports.append('NADCAP certification missing for aerospace')
+        # Populate final outputs
+        outputs['verification report'] = 'Verification completed with ' + str(len(non_conformance_reports)) + ' issues'
+        outputs['first article inspection results'] = {'dimensional': dimensional_tolerance_check, 'material': material_test, 'functional': functional_validation}
+        outputs['acceptance decision'] = acceptance_decision
+        outputs['non-conformance reports'] = non_conformance_reports
         return outputs
         
         return outputs
@@ -203,9 +188,9 @@ class EtoProductVerificationAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - AS9100 first_article_inspection
-        # - NADCAP test_requirements
-        # - GDPR data_handling_if_applicable
+        # - AS9100 first article inspection
+        # - NADCAP certification for aerospace
+        # - GDPR redaction if personal data
         """
         checks_passed = []
         checks_failed = []
@@ -229,7 +214,7 @@ class EtoProductVerificationAgentAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['Missing engineering drawings: request from engineering within 4 hours', 'NADCAP test failure: escalate to quality manager and pause lot', 'NCR rate exceeds 5 percent']
+        escalation_rules = ['missing material_cert', 'non_conformance_rate exceeds threshold', 'personal_data handling required']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -243,7 +228,7 @@ class EtoProductVerificationAgentAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['engineering_specification_compliance_rate', 'inspection_cycle_time', 'NCR_rate']
+            "monitoring": ['inspection_cycle_time', 'compliance_rate', 'first_article_acceptance_rate']
         }
 
 

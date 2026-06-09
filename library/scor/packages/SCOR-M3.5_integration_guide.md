@@ -1,4 +1,4 @@
-# Integration Guide — eto_stage_product_agent
+# Integration Guide — eto_product_staging_agent
 **Process:** Stage Product (ETO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_stage_product_agent.py ./agents/
+cp eto_product_staging_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_stage_product_agent import EtoStageProductAgentAgent
+from agents.eto_product_staging_agent import EtoProductStagingAgentAgent
 
-agent = EtoStageProductAgentAgent()
+agent = EtoProductStagingAgentAgent()
 result = agent.execute({
     "packaged_eto_products": your_packaged_eto_products_data,
     "data_packages": your_data_packages_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- PLM_system_api
-- government_export_portal
-- customer_ERP_connector
-- regulatory_compliance_db
-- internal_audit_logger
+- export_license_verifier
+- documentation_completeness_checker
+- inspection_scheduler_api
+- kpi_calculator
+- timestamp_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- ExportLicense invalid or ITAR violation (24h compliance officer)
-- CustomerInspectionPassRate < 100% after rework limit
-- documentation_completeness < 100% requiring manual entry
+- Export license expires mid-process (24h SLA to compliance officer)
+- Customer inspection fails (route back to M3.4)

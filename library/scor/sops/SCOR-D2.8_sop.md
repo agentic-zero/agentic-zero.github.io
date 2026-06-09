@@ -1,13 +1,13 @@
 # SOP — Receive Product from Source or Make (MTO)
 **Process ID:** SCOR-D2.8
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of receiving MTO finished goods from manufacturing or source operations into the deliver staging area with quality verification and inventory update
 
 ## Triggers
-- Receipt of ProductionCompletionNotice with matching finished goods physical arrival
+- ProductionCompletionNotice received AND FinishedGoods physically arrive at deliver staging area
 
 ## Inputs Required
 - production completion notice
@@ -17,7 +17,8 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - delivery documentation
 
 ## Process Steps
-1. IF QualityRelease.status == 'valid' AND PackagingVerification.result == 'pass' THEN generate QualityAcceptance ELSE route to hold queue
+1. IF QualityRelease.status == 'approved' AND PackagingVerification.result == 'pass' THEN proceed to QualityAcceptance ELSE hold for exception handling
+2. IF DeliveryDocumentation.complete == true THEN update DeliverInventory ELSE request missing docs
 
 ## Expected Outputs
 - received finished goods
@@ -26,17 +27,19 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - staging confirmation
 
 ## Business Rules
-- All inputs (production completion notice, quality release, packaging verification, delivery documentation) must be present and non-null before staging confirmation
-- QualityAcceptance must be issued before DeliverInventory update is committed
+- QualityRelease must be present before QualityAcceptance is issued
+- DeliverInventory.accuracy must be verified within receive_cycle_time SLA
+- All FinishedGoods must have packaging_verification before staging_confirmation
 
 ## Exception Handling
-- PackagingVerification fails: reject shipment and create exception record with failure code
-- Missing QualityRelease: hold goods in quarantine and notify source process SCOR-M2.5
+- PackagingVerification fails: reject FinishedGoods, log defect, notify source process SCOR-M2.5
+- Missing QualityRelease: place goods in quality_hold status and trigger compliance alert
 
 ## Success Criteria
 - QualityAcceptance issued
 - DeliverInventory updated with 100% accuracy
-- StagingConfirmation generated within receive cycle time KPI
+- StagingConfirmation timestamp recorded
+- All KPIs (receive_accuracy, quality_acceptance_rate) exceed threshold
 
 ## Compliance Requirements
 - GxP if pharma

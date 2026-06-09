@@ -1,14 +1,13 @@
 # SOP — Verify Product (MTO)
 **Process ID:** SCOR-S2.3
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of verifying MTO received materials against specifications including dimensional checks, material certificates, compliance documentation and batch traceability
 
 ## Triggers
-- ERP goods receipt event for MTO purchase order line item
-- TestEquipment scan of ReceivedMaterial batch_id
+- SCOR-S2.2 signals material receipt for MTO order
 
 ## Inputs Required
 - received materials
@@ -18,9 +17,7 @@ Process of verifying MTO received materials against specifications including dim
 - test equipment
 
 ## Process Steps
-1. IF dimensional checks pass AND material certificates match THEN set AcceptanceDecision=ACCEPT
-2. IF compliance_requirements unmet THEN set AcceptanceDecision=REJECT and trigger quarantine
-3. IF traceability completeness < 100% THEN request additional batch records before finalizing VerificationReport
+1. IF dimensional checks pass AND material certificates valid AND compliance requirements met THEN set AcceptanceDecision=accepted ELSE set AcceptanceDecision=rejected
 
 ## Expected Outputs
 - verification report
@@ -29,21 +26,16 @@ Process of verifying MTO received materials against specifications including dim
 - traceability records
 
 ## Business Rules
-- All ReceivedMaterial must have matching material certificates before verification starts
-- Verification cycle time must be logged for every batch
-- CertificateOfConformance requires signature and timestamp for ISO 9001 compliance
-- GxP material verification mandatory if sector=pharma
+- batch_traceability must be recorded for every ReceivedMaterial
+- CertificateOfConformance must be generated only when AcceptanceDecision=accepted
+- compliance_flags must be checked based on sector_applicability before finalizing VerificationReport
 
 ## Exception Handling
-- Missing material certificates: pause process and request supplier documents within 24h
-- Dimensional deviation within tolerance: log as conditional accept with engineering sign-off
-- AS9100 aerospace lot: enforce 100% traceability or escalate to SCOR-S2.4
+- If MaterialCertificate missing then quarantine ReceivedMaterial and trigger supplier notification
+- If first-pass acceptance fails then log KPI deviation and route to SCOR-S2.4
 
 ## Success Criteria
-- AcceptanceDecision=ACCEPT
-- first-pass acceptance rate >= 95%
-- traceability completeness = 100%
-- VerificationReport generated and CertificateOfConformance issued within KPI cycle time
+- AcceptanceDecision=accepted AND TraceabilityRecord complete AND verification cycle time under KPI threshold
 
 ## Compliance Requirements
 - GxP material verification if pharma

@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DR3.1",
-  "agent_name": "excess_return_authorization_agent",
+  "agent_name": "excess_return_authorizer",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:19:19.014278",
-  "product_summary": "This hybrid agent manages the full lifecycle of excess inventory return requests by validating submissions against policy and inventory rules, negotiating credit terms, and generating authorizations with defined quantities and conditions. It ensures adherence to financial reporting standards, GDPR requirements for any personal data, and expiry compliance for perishables while minimizing unauthorized returns. Executives benefit from reduced inventory losses, faster resolution cycles, and stronger supplier relationships through consistent, auditable processes. Overall, it transforms reactive return handling into a controlled, value-preserving workflow that protects margins and operational efficiency.",
-  "value_proposition": "Automates evaluation, negotiation, and authorization of excess returns to minimize losses while enforcing compliance and optimal credit terms.",
-  "technical_summary": "The hybrid agent orchestrates its four core capabilities—validate_excess_return_request, check_policy_inventory_constraints, generate_authorization_with_terms, and negotiate_credit_terms—through a coordinated workflow that interfaces with inventory management, ERP, and compliance modules. It incorporates conditional checks for financial reporting, GDPR, and perishable expiry rules directly into decision logic for real-time enforcement. Integration occurs via standardized APIs for request intake and term output, with audit logging to support downstream financial and regulatory systems.",
-  "integration_guide": "# Integration Guide — excess_return_authorization_agent\n**Process:** Authorize Excess Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_return_authorization_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_return_authorization_agent import ExcessReturnAuthorizationAgentAgent\n\nagent = ExcessReturnAuthorizationAgentAgent()\nresult = agent.execute({\n    \"excess_return_request\": your_excess_return_request_data,\n    \"inventory_data\": your_inventory_data_data,\n    \"customer_purchase_history\": your_customer_purchase_history_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_API\n- WMS_API\n- ERP_API\n- Policy_Engine\n- Forecasting_Service\n\n## Escalation\nThe agent automatically escalates to human when:\n- credit_terms negotiation timeout after 72 hours\n- missing GDPR consent flag\n- perishable expiry violation",
+  "packager_timestamp": "2026-06-08T13:01:13.497601",
+  "product_summary": "This reactive agent evaluates and authorizes excess inventory return requests by assessing eligibility against policies, negotiating credit terms, and defining acceptable quantities and conditions. It streamlines a traditionally manual process that often leads to delays, disputes, and compliance risks. By automating approvals while enforcing financial, GDPR, and expiry rules, the agent reduces operational overhead and protects margins. Executives gain faster resolution of customer returns with consistent, auditable outcomes that support better inventory planning.",
+  "value_proposition": "Automates evaluation, negotiation, and authorization of excess returns to reduce processing time and compliance risk while protecting working capital.",
+  "technical_summary": "The reactive agent orchestrates its capabilities—evaluate_excess_return_request, check_return_policy_and_inventory, determine_approved_quantity_and_credit_terms, generate_return_authorization, and handle_compliance_exceptions—through event-driven triggers from ERP or CRM systems. It integrates with inventory, financial, and customer-data repositories while embedding checks for financial reporting, GDPR, and perishable-goods expiry rules. Output artifacts such as return authorizations are generated with full audit trails for downstream accounting and logistics workflows.",
+  "integration_guide": "# Integration Guide — excess_return_authorizer\n**Process:** Authorize Excess Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_return_authorizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_return_authorizer import ExcessReturnAuthorizerAgent\n\nagent = ExcessReturnAuthorizerAgent()\nresult = agent.execute({\n    \"excess_return_request\": your_excess_return_request_data,\n    \"inventory_data\": your_inventory_data_data,\n    \"customer_purchase_history\": your_customer_purchase_history_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- customer_system_api\n- erp_inventory_query\n- policy_store_access\n- compliance_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- pharma expiry compliance failure\n- GDPR consent missing\n- ReturnPolicy violation without negotiable quantity\n- process timeout from missing data",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/excess_return_authorization_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/excess_return_authorization_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/excess_return_authorization_agent/health — Health check",
-    "GET  /api/v1/agents/excess_return_authorization_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/excess_return_authorization_agent/test   — Run test cases"
+    "POST /api/v1/agents/excess_return_authorizer/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/excess_return_authorizer/status — Get agent status and metrics",
+    "GET  /api/v1/agents/excess_return_authorizer/health — Health check",
+    "GET  /api/v1/agents/excess_return_authorizer/spec   — Get agent specification",
+    "POST /api/v1/agents/excess_return_authorizer/test   — Run test cases"
   ],
-  "demo_script": "1. Open with current-state pain: \"Manual excess return reviews take 12 minutes each, with 18% compliance errors costing €45k yearly in fines and restocking delays.\"\n2. Trigger live agent: Input a sample excess return request (high-volume retailer, €12k value) and run excess_return_authorization_agent.\n3. Show AI analysis: Agent auto-validates policy, flags risk factors, and applies compliance rules in <45 seconds with full audit trail.\n4. Demonstrate decision output: Agent approves or routes with quantified ROI impact (€280 recovered per case) and zero manual intervention.\n5. Display dashboard metrics: Real-time view of 8.0x ROI multiplier, cycle-time reduction from 12 min to 40 sec, and 100% compliance logging.\n6. Close with commercial summary: \"At €699, payback occurs in under 3 weeks; schedule pilot to capture first-month savings.\"",
+  "demo_script": "1. Open with pain point: \"Manual excess returns cost €50K+/year in delays, errors, and compliance fines—our AI agent automates the full workflow.\"\n\n2. Trigger agent: Launch excess_return_authorizer on a sample €12K return request; AI instantly pulls order data, validates policy, and flags risk.\n\n3. Show compliance layer: Real-time audit trail, regulatory checks (GDPR, tax), and auto-generated approval report—zero manual sign-offs needed.\n\n4. Execute authorization: AI approves/rejects in <30 seconds with confidence score; demo override path for edge cases while logging every decision.\n\n5. Quantify ROI live: Dashboard shows 8.0x multiplier—€699 price yields €5,592 annual savings via 85% faster processing and eliminated fines.\n\n6. Close with proof: \"Deploy today, first ROI visible in week one—next step is 15-min pilot on your data.\"",
   "demo_inputs": {
     "excess_return_request": "[example_excess_return_request]",
     "inventory_data": "[example_inventory_data]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DR3.1",
-    "agent_name": "excess_return_authorization_agent",
+    "agent_name": "excess_return_authorizer",
     "framework": "SCOR",
     "domain": "Return",
     "level": "L2",
@@ -53,32 +53,32 @@
       "GDPR if personal data",
       "expiry compliance if perishable"
     ],
-    "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "agent_type": "reactive",
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 99,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:19:19.014258"
+    "created_at": "2026-06-08T13:01:13.497583"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "reactive",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: Pharma distributor uses agent to auto-authorize excess drug returns with expiry and financial compliance checks, cutting expired stock write-offs by 28% and recovering $1.2M annually",
-    "Use case 2: Food manufacturer processes excess perishable returns via agent-enforced expiry rules, reducing spoilage waste by 35% and avoiding $800K in compliance penalties yearly",
-    "Use case 3: Automotive parts distributor automates excess component returns with inventory-financial reconciliation, lowering holding costs by 22% and freeing $2.5M in working capital",
-    "Use case 4: Manufacturing firm authorizes raw material over-returns under GDPR and reporting rules, shortening approval cycle from 14 days to 2 days and saving 1,200 labor hours per quarter",
-    "Use case 5: Multi-sector wholesaler deploys agent for excess returns across pharma and food lines, achieving 40% faster processing and $950K annual savings from reduced manual audits and fines"
+    "Use case 1: Pharma distributor authorizes excess vaccine returns with automated expiry and batch compliance checks, cutting manual review time by 70% and reducing expired stock write-offs by $420K annually",
+    "Use case 2: Automotive OEM processes dealer excess component returns under financial reporting compliance, accelerating credit issuance from 14 days to 3 days and improving dealer cash flow by 22%",
+    "Use case 3: Food wholesaler handles perishable goods returns with expiry-date validation and automated destruction logging, lowering spoilage losses by 18% and avoiding $180K in potential regulatory penalties",
+    "Use case 4: Manufacturing plant authorizes supplier returns of excess raw materials with full audit trails for financial compliance, reducing inventory carrying costs by 12% ($95K/year) through faster restocking decisions",
+    "Use case 5: Multi-channel distributor manages retailer excess stock returns with GDPR-compliant personal data redaction, decreasing return processing costs by 35% and increasing repeat order volume by 9% via improved partner satisfaction"
   ],
   "pricing": {
     "process_id": "SCOR-DR3.1",

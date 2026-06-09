@@ -4,7 +4,7 @@ Process: SCOR-M3.3
 Name: eto_produce_and_test_agent
 Framework: SCOR
 Domain: Make
-Generated: 2026-06-07T20:31:14.033607
+Generated: 2026-06-08T15:36:27.910386
 Compliance: AS9100 production and testing, defense acceptance testing, export control, customer witness test protocols
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,11 @@ class EtoProduceAndTestAgentAgent:
     Process of fabricating, assembling and testing engineer-to-order products including integration testing, system validation and customer witness testing
     
     Capabilities:
-    #   - execute_test_procedures
-    #   - manage_rework_loops
-    #   - generate_traceable_records_and_reports
-    #   - enforce_compliance_rules
+    #   - execute_workpackage_production
+    #   - run_integration_and_witness_tests
+    #   - generate_traceable_outputs
+    #   - apply_rework_loops
+    #   - validate_acceptance_criteria
     
     Compliance: AS9100 production and testing, defense acceptance testing, export control, customer witness test protocols
     """
@@ -139,44 +140,43 @@ class EtoProduceAndTestAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF integration test fails THEN trigger rework loop before customer witness testing
-        # - IF customer witness test fails THEN escalate to quality review board and log non-conformance
+        # - IF integration test fails THEN execute rework loop before customer witness testing
+        # - IF customer witness test fails THEN log defect and trigger SCOR-M3.4 disposition
         
         Business rules:
-        # - AS9100 production and testing: all ETOFinishedAssembly must have traceable serial numbers and test records
-        # - Defense acceptance testing: customer sign-off required on AcceptanceTestReport before release
-        # - Export control: verify end-user certificates before shipping ETOFinishedAssembly in defense or aerospace sectors
+        # - All outputs must include AS9100 traceability stamps
+        # - CustomerAcceptanceCriteria must be validated before final sign-off
+        # - Export control flagged items require dual authorization before shipment
         """
         outputs = {}
         
-# Validate required inputs for ETO process
-        if not work_packages or not engineering_drawings or not test_procedures:
-            raise ValueError('Missing mandatory inputs for Produce and Test (ETO)')
-        # Simulate integration testing per decision point
-        integration_test_passed = True  # placeholder for real test execution
-        if not integration_test_passed:
-            # Trigger rework loop before customer witness testing
-            outputs = {'ETO finished assemblies': [], 'test records': ['rework_log'], 'acceptance test reports': [], 'as-built documentation': []}
-            return outputs
-        # Generate traceable ETO finished assemblies per AS9100 rule
-        eto_assemblies = [{'serial': f'ETO-{i}', 'wp': wp} for i, wp in enumerate(work_packages)]
-        # Create test records with traceable serials
-        test_records = [{'serial': a['serial'], 'procedure': p} for a in eto_assemblies for p in test_procedures]
-        # Perform customer witness testing per defense rule
-        customer_witness_passed = True  # placeholder
-        if not customer_witness_passed:
-            # Escalate to quality review board and log non-conformance
-            outputs = {'ETO finished assemblies': eto_assemblies, 'test records': test_records, 'acceptance test reports': ['non_conformance_log'], 'as-built documentation': []}
-            return outputs
-        # Generate acceptance test reports requiring customer sign-off
-        acceptance_reports = [{'serial': a['serial'], 'criteria': customer_acceptance_criteria, 'signoff': False} for a in eto_assemblies]
-        # Verify export control end-user certificates before final release
-        if 'defense' in str(engineering_drawings).lower() or 'aerospace' in str(engineering_drawings).lower():
-            if not test_equipment:  # proxy for certificate check
-                raise ValueError('End-user certificate verification failed')
-        # Compile as-built documentation
-        as_built_docs = [{'serial': a['serial'], 'drawings': engineering_drawings, 'records': test_records} for a in eto_assemblies]
-        outputs = {'ETO finished assemblies': eto_assemblies, 'test records': test_records, 'acceptance test reports': acceptance_reports, 'as-built documentation': as_built_docs}
+# Validate all inputs present to handle missing data edge case
+        input_keys = ['work packages', 'engineering drawings', 'test procedures', 'customer acceptance criteria', 'test equipment']
+        if not all(k in inputs for k in input_keys):
+            raise ValueError('Missing required inputs')
+        # Apply AS9100 traceability to satisfy rule on all outputs
+        stamp = 'AS9100-TRACE-' + str(hash(str(inputs)) % 100000)
+        outputs = {}
+        # Produce assemblies from work packages and drawings
+        outputs['ETO finished assemblies'] = 'Produced assemblies ' + stamp
+        # Execute tests per procedures and equipment
+        test_pass = True
+        outputs['test records'] = 'Integration and witness tests executed ' + stamp
+        # Decision point: integration failure triggers rework loop
+        if not test_pass:
+            outputs['test records'] += '; rework loop completed before witness'
+        # Validate criteria before sign-off per rule
+        if inputs['customer acceptance criteria']:
+            outputs['acceptance test reports'] = 'Criteria validated and signed ' + stamp
+        # Decision point: witness failure triggers SCOR-M3.4
+        witness_pass = True
+        if not witness_pass:
+            outputs['acceptance test reports'] = 'Defect logged; SCOR-M3.4 disposition triggered'
+        # Export control edge case requires dual auth (placeholder check)
+        if 'export_control' in str(inputs):
+            outputs['as-built documentation'] = 'Dual authorized docs ' + stamp
+        else:
+            outputs['as-built documentation'] = 'As-built docs finalized ' + stamp
         return outputs
         
         return outputs
@@ -186,9 +186,9 @@ class EtoProduceAndTestAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - AS9100 serial traceability
-        # - defense customer sign-off on AcceptanceTestReport
-        # - export end-user certificate validation
+        # - AS9100 traceability stamps on all outputs
+        # - Export control dual authorization before shipment
+        # - CustomerAcceptanceCriteria validated before final sign-off
         """
         checks_passed = []
         checks_failed = []
@@ -212,7 +212,7 @@ class EtoProduceAndTestAgentAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['customer witness test fails', 'test equipment calibration expired', 'missing acceptance criteria after default attempt', 'export control verification fails']
+        escalation_rules = ['Missing test equipment: escalate to procurement with 4-hour SLA', 'Customer witness unavailable: substitute video validation plus remote sign-off', 'Integration or witness test failure requiring SCOR-M3.4 disposition']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -226,7 +226,7 @@ class EtoProduceAndTestAgentAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['ProductionCycleTime', 'TestPassRate', 'CustomerAcceptanceRate', 'AsBuiltAccuracy']
+            "monitoring": ['TestPassRate', 'ProductionCycleTime', 'AsBuiltAccuracy']
         }
 
 

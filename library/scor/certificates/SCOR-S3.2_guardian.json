@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-S3.2",
-  "guardian_timestamp": "2026-06-08T01:28:20.297686",
+  "guardian_timestamp": "2026-06-08T18:36:37.175166",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-S3.2-20260608",
     "process_id": "SCOR-S3.2",
-    "agent_name": "eto_receiving_inspection_agent",
-    "issued_at": "2026-06-08T01:28:20.297639",
+    "agent_name": "eto_receiving_automation_agent",
+    "issued_at": "2026-06-08T18:36:37.175123",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
-    "overall_score": 0.9,
+    "overall_score": 0.88,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,13 +37,17 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.58,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No explicit AI risk assessment, impact assessment or lifecycle monitoring processes defined",
+        "Missing provisions for AI-specific continual improvement, internal audit, and management review",
+        "Insufficient transparency, accountability, and human oversight delineation for hybrid agent decisions"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement formal AI risk and impact assessment aligned with ISO 42001 Clause 6.1",
+        "Add AI performance monitoring, bias/fairness checks (where applicable), and documented continual improvement mechanisms",
+        "Define clear human-AI responsibility boundaries and escalation logging for auditability"
       ]
     },
     "nist_ai_rmf": {
@@ -76,17 +80,6 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review"
-  ],
-  "auditor_review": {
-    "decision": "AUTO_APPROVE",
-    "delivery": true,
-    "restricted": false,
-    "conditions": [
-      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 70% — monitor evolution"
-    ],
-    "audited_at": "2026-06-08T09:30:31.260935",
-    "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  }
+    "ISO 42001: No explicit AI risk assessment, impact assessment or lifecycle monitoring processes defined"
+  ]
 }

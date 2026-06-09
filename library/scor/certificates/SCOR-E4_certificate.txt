@@ -3,7 +3,7 @@ AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
 Certificate ID:  AZ-CERT-SCOR-E4-20260608
 Process ID:      SCOR-E4
-Agent:           supply_chain_workforce_manager
+Agent:           supply_chain_hr_automator
 Issued:          2026-06-08
 Valid Until:     2027-06-08
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team

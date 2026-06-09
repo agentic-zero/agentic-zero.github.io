@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-4",
+  "name": "Context of the Organization",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "4",
+  "level": "L1",
+  "description": "Understanding the organization and its context, interested parties, scope of QMS and the QMS itself including processes and their interactions",
+  "inputs": ["strategic direction", "internal issues", "external issues", "stakeholder needs", "regulatory requirements"],
+  "outputs": ["QMS scope", "process map", "interested party register", "context analysis"],
+  "kpis": ["scope completeness", "stakeholder coverage", "context review frequency"],
+  "related_processes": ["ISO9001-5", "ISO9001-6", "ISO9001-9"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution", "services"],
+  "compliance_flags": ["ISO 9001:2015 Clause 4", "GDPR context analysis", "regulatory landscape"],
+  "automation_potential": 0.50,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

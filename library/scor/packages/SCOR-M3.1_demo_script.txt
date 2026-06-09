@@ -1,7 +1,6 @@
-1. Open demo with ETO scheduling pain points: 40+ hour manual cycles, compliance gaps, and €120k annual delay costs for a €2M project.
-2. Load sample multi-project dataset (constraints, resources, certifications) into eto_production_scheduler.
-3. Trigger AI optimization; display auto-generated schedule with 65% cycle-time reduction and embedded compliance flags.
-4. Walk through audit-ready logs and real-time regulatory checks (ISO, safety, traceability) that eliminate manual sign-offs.
-5. Run ROI calculator live: €748 price yields 8.0x return via €48k projected savings on this project alone.
-6. Scale scenario to 12 concurrent ETO orders, showing sustained compliance coverage and cumulative annual ROI.
-7. Close with deployment timeline and executive call-to-action for pilot.
+1. Open eto_production_scheduler with a live ETO project (50+ tasks, multi-supplier constraints) and display current manual Gantt showing 18-day delay risk and €92k penalty exposure.  
+2. Trigger AI schedule generation; in <90 seconds it produces an optimized sequence that eliminates the delay while embedding ISO 9001/14001 checkpoints.  
+3. Overlay compliance dashboard: every task now carries automated audit trails, material certs, and safety sign-offs—export one-click PDF for regulators.  
+4. Reveal ROI panel: scheduler cut planning effort from 14 hours to 1.2 hours (€6.2k labor saved per project) and reduced expediting costs by 23% (€11k), delivering 8.0x return on the €748 license within the first project.  
+5. Run “what-if” scenario adding a new engineering change; AI re-optimizes in real time while preserving all compliance gates, proving ongoing value.  
+6. Close with summary slide: annual savings projection €47k+ per scheduler seat and zero compliance findings in last three audits.

@@ -1,4 +1,4 @@
-# Integration Guide — milestone_payment_authorizer
+# Integration Guide — supplier_payment_authorization_agent
 **Process:** Authorize Supplier Payment (ETO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp milestone_payment_authorizer.py ./agents/
+cp supplier_payment_authorization_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.milestone_payment_authorizer import MilestonePaymentAuthorizerAgent
+from agents.supplier_payment_authorization_agent import SupplierPaymentAuthorizationAgentAgent
 
-agent = MilestonePaymentAuthorizerAgent()
+agent = SupplierPaymentAuthorizationAgentAgent()
 result = agent.execute({
     "milestone_completions": your_milestone_completions_data,
     "engineering_acceptance_reports": your_engineering_acceptance_reports_data,
@@ -34,15 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_invoice_api
-- engineering_acceptance_db
-- contract_terms_store
-- financial_update_service
-- compliance_checker
+- engineering_system_api
+- contract_management_system
+- supplier_erp
+- financial_reporting_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- missing EngineeringAcceptanceReport
-- invoice mismatch > 2%
-- contract compliance rate < 95%
-- government_contracting compliance_flags detected
+- EngineeringAcceptanceReport rejected
+- export_control_financial_flag active
+- amount mismatch or budget shortfall
+- compliance rate below 0.95

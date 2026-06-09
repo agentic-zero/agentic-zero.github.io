@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-D2.7",
-  "agent_name": "carrier_selection_and_shipment_rating_agent",
+  "agent_name": "carrier_selector_and_shipment_rater",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:37:18.203366",
-  "product_summary": "The Select Carriers and Rate Shipments (MTO) agent is a hybrid solution that automates the selection of optimal carriers and rating of shipments based on service requirements, cost optimization, and carrier performance. It ensures adherence to carrier compliance, customs regulations, GDPR for shipment data, and trade compliance through integrated verification processes. By leveraging capabilities such as optimal carrier selection, shipment rating, trade compliance verification, and rate card monitoring, this agent delivers significant business value through reduced shipping costs, improved operational efficiency, and minimized compliance risks for MTO shipments.",
+  "packager_timestamp": "2026-06-08T18:13:32.458227",
+  "product_summary": "The Select Carriers and Rate Shipments (MTO) agent is a hybrid solution that automates the evaluation and selection of carriers for made-to-order shipments by balancing service requirements, cost efficiency, and historical performance data. It ensures adherence to critical compliance standards including carrier regulations, customs broker rules, GDPR for shipment data, and broader trade compliance. By generating rated shipment options and monitoring ongoing performance, this agent delivers significant business value through reduced shipping costs, minimized compliance risks, and improved supply chain reliability for executives overseeing logistics operations.",
   "value_proposition": "Automates carrier selection and shipment rating for MTO processes to achieve cost optimization and regulatory compliance.",
-  "technical_summary": "This hybrid agent integrates capabilities including select_optimal_carrier, rate_shipment, verify_trade_compliance, and monitor_rate_card_validity to process MTO shipments. It combines AI-driven decision making with rule-based compliance checks to ensure seamless integration with existing logistics and ERP systems while maintaining data privacy under GDPR. The architecture supports real-time monitoring of rate cards and carrier performance metrics for dynamic optimization.",
-  "integration_guide": "# Integration Guide — carrier_selection_and_shipment_rating_agent\n**Process:** Select Carriers and Rate Shipments (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp carrier_selection_and_shipment_rating_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.carrier_selection_and_shipment_rating_agent import CarrierSelectionAndShipmentRatingAgentAgent\n\nagent = CarrierSelectionAndShipmentRatingAgentAgent()\nresult = agent.execute({\n    \"routing_plans\": your_routing_plans_data,\n    \"carrier_rate_cards\": your_carrier_rate_cards_data,\n    \"service_requirements\": your_service_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- carrier_rate_api\n- performance_scorecard_db\n- compliance_checker\n- routing_plan_interface\n\n## Escalation\nThe agent automatically escalates to human when:\n- no_carrier_meets_requirements escalate to manual review\n- rate_card_expired trigger refresh and pause",
+  "technical_summary": "This hybrid agent leverages capabilities such as evaluate_carrier_options and generate_rated_shipments to process real-time data from multiple sources while integrating with compliance modules for carrier requirements, customs regulations, GDPR data handling, and trade standards. It monitors performance data to continuously refine recommendations and can be deployed across existing logistics platforms via API integrations. The architecture supports both automated decision-making and human oversight for complex scenarios.",
+  "integration_guide": "# Integration Guide — carrier_selector_and_shipment_rater\n**Process:** Select Carriers and Rate Shipments (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp carrier_selector_and_shipment_rater.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.carrier_selector_and_shipment_rater import CarrierSelectorAndShipmentRaterAgent\n\nagent = CarrierSelectorAndShipmentRaterAgent()\nresult = agent.execute({\n    \"routing_plans\": your_routing_plans_data,\n    \"carrier_rate_cards\": your_carrier_rate_cards_data,\n    \"service_requirements\": your_service_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- routing_plan_ingest\n- carrier_rate_card_db\n- performance_scorecard_api\n- erp_budget_feed\n\n## Escalation\nThe agent automatically escalates to human when:\n- no carrier meets budget_constraint\n- customs_broker_regulations violated",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/carrier_selection_and_shipment_rating_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/carrier_selection_and_shipment_rating_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/carrier_selection_and_shipment_rating_agent/health — Health check",
-    "GET  /api/v1/agents/carrier_selection_and_shipment_rating_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/carrier_selection_and_shipment_rating_agent/test   — Run test cases"
+    "POST /api/v1/agents/carrier_selector_and_shipment_rater/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/carrier_selector_and_shipment_rater/status — Get agent status and metrics",
+    "GET  /api/v1/agents/carrier_selector_and_shipment_rater/health — Health check",
+    "GET  /api/v1/agents/carrier_selector_and_shipment_rater/spec   — Get agent specification",
+    "POST /api/v1/agents/carrier_selector_and_shipment_rater/test   — Run test cases"
   ],
-  "demo_script": "1. Open with pain point: \"Manual carrier selection for MTO shipments takes 45+ minutes per order, risks non-compliance with carrier contracts and regulations, and inflates costs by 12-18%.\"\n2. Trigger the agent: Input live MTO shipment details (origin, destination, weight, SLA); agent auto-queries approved carrier pool in <8 seconds.\n3. Demonstrate AI selection + rating: Agent ranks top-3 carriers by cost, transit time, and compliance score, surfacing contract clauses and regulatory flags in real time.\n4. Highlight compliance value: One-click audit trail generated for every selection, showing rate validity, carrier certifications, and deviation alerts—reducing audit prep from days to minutes.\n5. Quantify ROI live: Show €4,592 annual savings per user (8.0x multiplier on €574 license) via reduced manual effort, lower spot-buy spend, and avoided compliance penalties.\n6. Close with deployment: \"Zero-integration pilot live in 48 hours; full rollout in one week with measurable payback in month one.\"",
+  "demo_script": "1. Open with a live MTO shipment request (origin/destination, 12 pallets, hazmat flag) and display the 47-minute manual workflow: carrier research, rate shopping across 6 portals, and compliance checklist.\n2. Trigger the agent; it auto-queries approved carriers, applies real-time rates, and runs built-in compliance filters (sanctions, dangerous-goods rules, Incoterms) in 38 seconds.\n3. Side-by-side screen shows the agent’s recommended carrier, €2,184 landed cost, and green compliance score versus the manual option at €2,917 with two red flags.\n4. Click “Audit Trail” to reveal timestamped logs, regulatory citations, and digital signatures—ready for export to finance and customs.\n5. ROI panel calculates €733 saved per shipment; at 120 MTO shipments/month this yields €1.05 M annual impact, delivering 8.0x return on the €574 license within 11 days.\n6. One-click “Approve & Book” pushes the rated order to the TMS; demo ends with the executive seeing the transaction post in under two minutes.",
   "demo_inputs": {
     "routing_plans": "[example_routing_plans]",
     "carrier_rate_cards": "[example_carrier_rate_cards]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-D2.7",
-    "agent_name": "carrier_selection_and_shipment_rating_agent",
+    "agent_name": "carrier_selector_and_shipment_rater",
     "framework": "SCOR",
     "domain": "Deliver",
     "level": "L2",
@@ -60,24 +60,24 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:37:18.203345"
+    "created_at": "2026-06-08T18:13:32.458206"
   },
   "tags": [
-    "deliver",
     "hybrid",
+    "deliver",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "distribution",
-    "industrial equipment"
+    "automotive",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Automotive MTO supplier uses agent to rate and select trade-compliant carriers for cross-border parts shipments, cutting customs delays from 3 days to 4 hours and saving $180K annually in expedited fees.",
-    "Use case 2: Industrial equipment manufacturer applies agent for real-time carrier rating on oversized MTO orders, reducing freight spend 14% and delivering $320K yearly savings through optimized LTL vs. FTL choices.",
-    "Use case 3: Distribution center for manufacturing goods leverages agent to enforce carrier compliance and GDPR shipment data rules, eliminating $95K in potential regulatory fines while shortening carrier selection cycle from 2 days to 45 minutes.",
-    "Use case 4: Automotive parts plant deploys agent for MTO rate shopping with customs-broker-integrated carriers, improving on-time delivery from 82% to 97% and avoiding $250K in production line stoppage costs per quarter.",
-    "Use case 5: Industrial equipment distributor uses agent to rate compliant carriers for hazardous MTO shipments, lowering insurance premiums 22% and generating $110K annual savings through reduced risk exposure and fewer rejected loads."
+    "Use case 1: Automotive MTO plant uses the agent to auto-select carriers meeting hazardous materials compliance for engine shipments, cutting per-unit logistics costs by 18% and eliminating $120k annual customs fines.",
+    "Use case 2: Industrial equipment manufacturer rates 200+ custom orders weekly via the agent, reducing carrier quote cycle from 48 hours to 3 hours and increasing on-time delivery to 97% to avoid $75k monthly delay penalties.",
+    "Use case 3: Distribution network for GDPR-regulated EU shipments applies the agent to enforce data-handling carrier rules, avoiding €250k regulatory fines while lowering average freight spend by 14% through compliant rate shopping.",
+    "Use case 4: Manufacturing firm integrates trade-compliance screening in carrier selection for MTO parts to Mexico, preventing 12 shipment holds per month that previously cost $4,200 each in storage and expedites.",
+    "Use case 5: Automotive supplier uses the agent for real-time multi-carrier rating on variable MTO volumes, achieving 22% lower annual transportation spend and 35% fewer manual rating errors across 1,500 monthly shipments."
   ],
   "pricing": {
     "process_id": "SCOR-D2.7",

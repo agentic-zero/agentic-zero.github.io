@@ -1,14 +1,14 @@
 # SOP — Package (MTO)
 **Process ID:** SCOR-M2.4
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of packaging MTO finished products according to customer requirements and specifications including labeling, marking, protective packaging and compliance documentation
 
 ## Triggers
-- Completion signal from SCOR-M2.3 with finished_product_id
-- Customer order release containing packaging specifications
+- Completion signal from SCOR-M2.3
+- Customer order status changed to ready_for_packaging
 
 ## Inputs Required
 - finished products
@@ -18,9 +18,9 @@ Process of packaging MTO finished products according to customer requirements an
 - shipping requirements
 
 ## Process Steps
-1. IF sector == 'pharma' THEN enforce GxP packaging and add ComplianceFlag
-2. IF ShippingRequirement contains 'dangerous_goods' THEN apply IATA/ADR packaging rules
-3. IF customer_spec_adherence < 1.0 THEN trigger rework before shipment
+1. IF ShippingRequirement contains dangerous_goods THEN apply_dangerous_goods_compliant_packaging
+2. IF LabelingRequirement includes pharma THEN enforce_GxP_labeling
+3. IF PackagingMaterial.stock < required_quantity THEN trigger_procurement_or_exception
 
 ## Expected Outputs
 - packaged products
@@ -29,18 +29,18 @@ Process of packaging MTO finished products according to customer requirements an
 - packing lists
 
 ## Business Rules
-- All CustomerSpecificLabel must match LabelingRequirement exactly
-- Packaging cycle time must be logged in PackagingRecord
-- Environmental packaging regulations must be checked before material selection
+- Packaging accuracy must equal 100 percent before release
+- Labeling compliance rate must be 100 percent for customer-specific labels
+- All packaging records must be created and stored within 24 hours of completion
 
 ## Exception Handling
-- Missing customer specs: halt process and request clarification from order management
-- Material shortage: substitute only with documented approval and update PackagingRecord
+- Missing customer packaging specifications: halt process and request clarification from sales
+- Insufficient packaging materials: route to procurement and log delay in PackagingRecord
 
 ## Success Criteria
-- packaging_accuracy == 1.0
-- labeling_compliance_rate == 1.0
-- PackingList matches PackagedProduct contents exactly
+- PackagedProduct created with 100 percent customer specification adherence
+- All KPIs (packaging accuracy, labeling compliance rate, cycle time) within defined thresholds
+- PackingList and PackagingRecord generated and linked to order
 
 ## Compliance Requirements
 - GxP packaging if pharma

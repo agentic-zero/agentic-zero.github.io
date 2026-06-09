@@ -1,6 +1,6 @@
-1. Open with ROI framing: "This €748 agent delivers 8x ROI by cutting MRO return authorization from 45 minutes to under 3 minutes while enforcing 100% policy compliance."
-2. Display live dashboard: Pull a sample return request and show the agent's instant policy check against warranty, condition, and supplier rules with zero manual review.
-3. Run authorization: Execute the agent on-screen; it auto-approves or routes with full audit trail, highlighting eliminated approval bottlenecks and reduced error risk.
-4. Reveal compliance layer: Expand the generated compliance report showing timestamped decisions, regulatory references, and immutable logs ready for audit export.
-5. Quantify ROI: Overlay metrics—time saved per return, monthly volume, and calculated annual savings equaling €5,984 (8x multiplier) with payback in week one.
-6. Close with next-step offer: "Deploy in your environment today; we’ll benchmark your first 50 returns and confirm the 8x ROI within 14 days."
+1. Open with current-state pain: "Manual MRO return authorization costs 12 min per request, creates audit gaps, and risks €50k+ in non-compliance fines annually."
+2. Trigger live request: Paste a sample return ticket into mro_return_authorization_agent; AI instantly extracts part data, warranty status, and supplier terms.
+3. Show automated compliance layer: Agent runs real-time checks against EASA/FAA rules and internal policy, flags deviations, and generates a full audit trail in <30 seconds.
+4. Execute one-click authorization: AI recommends approve/deny with confidence score; executive approves—system auto-updates ERP and emails all stakeholders.
+5. Display ROI dashboard: Highlight 8.0x multiplier—€748 annual license delivers €6k+ yearly savings via 85% time reduction and zero compliance incidents.
+6. Close with proof: "Zero-touch processing at 8x ROI; pilot can start this week."

@@ -4,7 +4,7 @@ Process: SCOR-S2.5
 Name: supplier_payment_authorizer
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-07T19:39:13.870246
+Generated: 2026-06-08T14:44:26.932448
 Compliance: financial controls compliance, GDPR financial data, tax compliance, anti-fraud controls
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -25,9 +25,9 @@ class SupplierPaymentAuthorizerAgent:
     
     Capabilities:
     #   - three_way_match_validation
-    #   - compliance_verification
-    #   - payment_authorization
-    #   - discrepancy_detection
+    #   - payment_authorization_creation
+    #   - discrepancy_resolution_handling
+    #   - quality_verification_integration
     
     Compliance: financial controls compliance, GDPR financial data, tax compliance, anti-fraud controls
     """
@@ -139,53 +139,42 @@ class SupplierPaymentAuthorizerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF SupplierInvoice.amount == PurchaseOrder.amount AND GoodsReceipt.quantity >= PurchaseOrder.quantity AND QualityVerificationResult.status == 'passed' THEN create PaymentAuthorization
-        # - IF payment_terms.net_days elapsed AND no discrepancies THEN trigger PaymentConfirmation
+        # - IF SupplierInvoice.amount == PurchaseOrder.amount AND GoodsReceipt.received_qty == PurchaseOrder.ordered_qty AND QualityVerificationResult.status == 'passed' THEN create PaymentAuthorization with status='approved'
         
         Business rules:
-        # - Invoice must three-way match with PO and GoodsReceipt before authorization
-        # - Payment must comply with financial_controls and anti-fraud rules
-        # - Apply payment_terms.discount if paid within discount_period
-        # - Log all payment data under GDPR_financial_data and tax_compliance
+        # - Three-way match (invoice, PO, goods receipt) required before PaymentAuthorization creation
+        # - PaymentAuthorization.due_date must respect PaymentTerms.net_days from GoodsReceipt.date
+        # - PaymentAuthorization.amount must equal SupplierInvoice.amount after tax adjustments
         """
         outputs = {}
         
-supplier_invoices = inputs.get('supplier invoices', [])
-    goods_receipts = inputs.get('goods receipts', [])
-    purchase_orders = inputs.get('purchase orders', [])
-    payment_terms = inputs.get('payment terms', {})
-    quality_results = inputs.get('quality verification results', {})
-    outputs = {
-        'payment authorizations': [],
-        'payment confirmations': [],
-        'supplier account updates': [],
-        'discrepancy resolutions': []
-    }
-    invoice = supplier_invoices[0] if supplier_invoices else {}
-    gr = goods_receipts[0] if goods_receipts else {}
-    po = purchase_orders[0] if purchase_orders else {}
-    quality_passed = quality_results.get('status', '') == 'passed'
-    amount_match = invoice.get('amount') == po.get('amount')
-    quantity_match = gr.get('quantity', 0) >= po.get('quantity', 0)
-    discrepancies = []
-    if not amount_match:
-        discrepancies.append('amount mismatch')
-    if not quantity_match:
-        discrepancies.append('quantity mismatch')
-    if not quality_passed:
-        discrepancies.append('quality failed')
-    if amount_match and quantity_match and quality_passed:
-        auth = {'authorization_id': 'PA-' + str(hash(str(invoice))), 'amount': invoice.get('amount'), 'po_ref': po.get('id')}
-        outputs['payment authorizations'].append(auth)
-        outputs['supplier account updates'].append({'supplier_id': po.get('supplier_id'), 'update': 'authorized', 'amount': invoice.get('amount')})
-    else:
-        outputs['discrepancy resolutions'].append({'type': 'three_way_match_failure', 'details': discrepancies, 'resolution': 'manual_review'})
-    net_elapsed = payment_terms.get('net_days_elapsed', False)
-    if net_elapsed and len(outputs['discrepancy resolutions']) == 0:
-        outputs['payment confirmations'].append({'confirmation_id': 'PC-' + str(hash(str(po))), 'status': 'triggered'})
-    if payment_terms.get('within_discount_period', False) and len(outputs['payment authorizations']) > 0:
-        outputs['supplier account updates'].append({'supplier_id': po.get('supplier_id'), 'update': 'discount_applied', 'rate': payment_terms.get('discount_rate', 0)})
-    return outputs
+outputs = {'payment authorizations': [], 'payment confirmations': [], 'supplier account updates': [], 'discrepancy resolutions': []}
+        # Group inputs by common keys for matching (assume shared supplier_id and po_id)
+        po_map = {po['po_id']: po for po in purchase_orders}
+        gr_map = {gr['po_id']: gr for gr in goods_receipts}
+        qv_map = {qv['po_id']: qv for qv in quality_verification_results}
+        for inv in supplier_invoices:
+            po_id = inv.get('po_id')
+            po = po_map.get(po_id)
+            gr = gr_map.get(po_id)
+            qv = qv_map.get(po_id)
+            pt = next((p for p in payment_terms if p.get('supplier_id') == inv.get('supplier_id')), None)
+            if not po or not gr or not qv or not pt:
+                outputs['discrepancy resolutions'].append({'invoice_id': inv.get('invoice_id'), 'reason': 'missing reference documents'})
+                continue
+            # Three-way match per rules and decision point
+            amount_match = inv['amount'] == po['amount']
+            qty_match = gr['received_qty'] == po['ordered_qty']
+            quality_ok = qv['status'] == 'passed'
+            if amount_match and qty_match and quality_ok:
+                due_date = gr['date'] + pt['net_days']
+                auth = {'invoice_id': inv['invoice_id'], 'amount': inv['amount'], 'due_date': due_date, 'status': 'approved'}
+                outputs['payment authorizations'].append(auth)
+                outputs['payment confirmations'].append({'authorization_id': auth['invoice_id'], 'status': 'confirmed'})
+                outputs['supplier account updates'].append({'supplier_id': inv['supplier_id'], 'adjustment': -inv['amount']})
+            else:
+                outputs['discrepancy resolutions'].append({'invoice_id': inv['invoice_id'], 'reason': 'three-way match failed'})
+        return outputs
         
         return outputs
 
@@ -194,10 +183,10 @@ supplier_invoices = inputs.get('supplier invoices', [])
         Built-in compliance validation
         
         Checks:
-        # - financial_controls_compliance
-        # - GDPR_financial_data
-        # - tax_compliance
-        # - anti_fraud_controls
+        # - three_way_match_audit_trail
+        # - tax_adjustment_validation
+        # - anti_fraud_pattern_check
+        # - GDPR_financial_data_masking
         """
         checks_passed = []
         checks_failed = []
@@ -221,7 +210,7 @@ supplier_invoices = inputs.get('supplier invoices', [])
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['Invoice amount mismatch >1%', 'QualityVerificationResult.failed', 'Missing tax_compliance data', 'Any anti-fraud or financial_controls violation']
+        escalation_rules = ['three-way mismatch exceeds 0.01 tolerance', "QualityVerificationResult.status == 'failed'", 'missing data blocks authorization beyond SLA']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -235,7 +224,7 @@ supplier_invoices = inputs.get('supplier invoices', [])
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['invoice_match_rate', 'payment_cycle_time', 'discrepancy_resolution_time']
+            "monitoring": ['payment_cycle_time', 'discrepancy_count', 'on_time_payment_rate', 'authorization_success_ratio']
         }
 
 

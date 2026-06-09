@@ -1,0 +1,7 @@
+1. Open dashboard and quantify baseline: 12 min per receipt, 9% error rate, €4.2k annual compliance audit exposure.  
+2. Trigger store_product_receiving_agent on live inbound shipment; AI scans, matches PO, and flags expiry/ temperature deviations in <45 seconds.  
+3. Display real-time compliance panel: automated supplier validation, digital chain-of-custody, and instant audit trail export (GDPR/HACCP ready).  
+4. Show exception workflow: agent auto-creates ticket and notifies QA, eliminating manual follow-up.  
+5. Reveal ROI calculator: 8.0x multiplier on €599 license = €4.8k net annual value per store via 78% time reduction and zero audit findings.  
+6. Run side-by-side comparison: manual vs. agent; executives see 10-min process collapse to 2 min with full traceability.  
+7. Close: one-click deployment to pilot store, 30-day ROI proof, and volume discount for chain rollout.

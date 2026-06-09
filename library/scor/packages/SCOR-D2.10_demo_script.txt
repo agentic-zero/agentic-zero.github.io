@@ -1,0 +1,7 @@
+1. Open dashboard and load sample MTO order; highlight one-click launch of mto_packing_agent (€699 annual cost displayed).  
+2. Run AI packing sequence; show automated material selection, weight validation, and label generation while flagging two compliance rules (hazardous-goods separation, EU packaging regs).  
+3. Display real-time audit trail and digital sign-off; confirm 100 % traceability for regulatory review.  
+4. Reveal metrics panel: 14 min → 3 min per order, 92 % error reduction, equating to 47 hours/week saved.  
+5. Calculate live ROI: €5,600 monthly labor & compliance savings yields 8.0x multiplier on €699 price within first month.  
+6. Compare side-by-side manual vs. agent run; note zero compliance deviations and instant report export for executives.  
+7. Close with one-page ROI summary and next-step pilot offer.

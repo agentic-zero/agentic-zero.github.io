@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_194545_683574",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.14"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T19:45:45.683595",
+  "status": "completed",
+  "started_at": "2026-06-08T20:38:49.423401",
+  "completed_at": "2026-06-08T20:41:49.331778",
+  "error": null,
+  "result": {
+    "agent_name": "mto_product_installation_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

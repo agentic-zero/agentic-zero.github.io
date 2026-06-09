@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_095358_165048",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D2.7"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T09:53:58.165061",
+  "status": "completed",
+  "started_at": "2026-06-08T16:04:27.405317",
+  "completed_at": "2026-06-08T16:08:27.421681",
+  "error": null,
+  "result": {
+    "agent_name": "carrier_selector_and_shipment_rater",
+    "ready_for_packager": true
+  }
+}

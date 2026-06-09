@@ -1,0 +1,18 @@
+{
+  "process_id": "NIST-MEASURE",
+  "name": "MEASURE — AI Risk Analysis and Metrics",
+  "framework": "NIST AI RMF 1.0",
+  "domain": "NIST AI RMF",
+  "function": "MEASURE",
+  "level": "L1",
+  "description": "Analyzing and assessing AI risks using quantitative and qualitative methods including trustworthiness metrics, bias measurement, robustness testing and performance benchmarking",
+  "inputs": ["AI system outputs", "test datasets", "performance benchmarks", "bias indicators", "robustness test results"],
+  "outputs": ["risk metrics", "trustworthiness scores", "bias measurements", "robustness reports", "performance benchmarks"],
+  "kpis": ["measurement coverage", "metric reliability", "benchmark achievement", "bias score trends"],
+  "related_processes": ["NIST-MAP", "NIST-MANAGE", "ISO42001-9", "SCOR-E2"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["NIST AI RMF 1.0 MEASURE", "EU AI Act performance metrics", "ISO 42001 evaluation"],
+  "automation_potential": 0.80,
+  "source": "NIST AI RMF 1.0 — NIST AI 100-1",
+  "confidence": 0.96
+}

@@ -1,0 +1,88 @@
+{
+  "process_id": "BPMN-MRP-001",
+  "guardian_timestamp": "2026-06-08T21:14:23.027878",
+  "certificate": {
+    "certificate_id": "AZ-CERT-BPMN-MRP-001-20260608",
+    "process_id": "BPMN-MRP-001",
+    "agent_name": "mrp_autonomous_planner",
+    "issued_at": "2026-06-08T21:14:23.027832",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-08",
+    "overall_status": "conditional",
+    "overall_score": 0.85,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.47,
+      "gaps": [
+        "Clause 5 (Leadership): no accountability/oversight mechanisms defined in logic",
+        "Clause 7 (Support): monitoring metrics listed but not integrated into executable checks",
+        "Clause 8 (Operation): compliance_checks uses only static appends with minimal conditionals",
+        "Clause 9 (Performance): KPIs defined externally, not evaluated inside compliance function",
+        "Clause 10 (Improvement): escalation rules exist but no remediation logic or feedback loop in code"
+      ],
+      "recommendations": [
+        "Replace static appends with dynamic conditional checks using likelihood*impact thresholds",
+        "Add explicit leadership roles and approval gates into _compliance_checks",
+        "Integrate real KPI evaluation and data-quality scoring at runtime",
+        "Implement closed-loop remediation triggered by exception_rate and escalation rules"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": false,
+      "lawful_basis_defined": true,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": []
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Clause 5 (Leadership): no accountability/oversight mechanisms defined in logic"
+  ]
+}

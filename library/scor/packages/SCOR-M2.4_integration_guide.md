@@ -1,4 +1,4 @@
-# Integration Guide — mto_packaging_execution_agent
+# Integration Guide — mto_packaging_agent
 **Process:** Package (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_packaging_execution_agent.py ./agents/
+cp mto_packaging_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_packaging_execution_agent import MtoPackagingExecutionAgentAgent
+from agents.mto_packaging_agent import MtoPackagingAgentAgent
 
-agent = MtoPackagingExecutionAgentAgent()
+agent = MtoPackagingAgentAgent()
 result = agent.execute({
     "finished_products": your_finished_products_data,
     "customer_packaging_specifications": your_customer_packaging_specifications_data,
@@ -34,15 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- inventory_system_api
-- crm_spec_retriever
-- wms_batch_tracker
-- mes_timestamp_logger
-- label_printer_compliance_scanner
-- dangerous_goods_regulation_checker
+- inventory_api
+- labeling_system
+- compliance_engine
+- packaging_execution_interface
+- record_repository
 
 ## Escalation
 The agent automatically escalates to human when:
-- missing customer specs or adherence < 1.0
-- material shortage without documented approval
-- scan mismatch or damage detected
+- Missing customer packaging specifications
+- Insufficient packaging materials after procurement trigger

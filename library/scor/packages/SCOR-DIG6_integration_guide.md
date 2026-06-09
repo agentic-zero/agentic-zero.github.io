@@ -34,15 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- data_lake_query
-- kafka_consumer
-- model_registry
-- explainability_generator
-- performance_tracker
+- data_ingestion_api
+- model_training_orchestrator
+- compliance_audit_engine
+- explainability_metadata_generator
 
 ## Escalation
 The agent automatically escalates to human when:
-- GDPR_Art22 flag present
-- drift >0.05 after two retraining cycles
-- ISO_42001 metadata missing
-- data_quality_alert triggered
+- GDPR Art.22 violation detected
+- EU AI Act Art.10 training data non-compliance
+- persistent model_drift_rate > 0.05 after retraining attempt

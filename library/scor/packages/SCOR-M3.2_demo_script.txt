@@ -1,6 +1,6 @@
-1. Launch eto_issue_automation_agent and load a live ETO in-process product issue ticket, noting the 45-minute manual handling baseline.  
-2. Trigger AI analysis to auto-detect root cause, apply compliance rules, and generate a validated corrective action with full audit trail in under 90 seconds.  
-3. Review the auto-produced compliance report and digital sign-off package, confirming zero deviations from ISO and regulatory requirements.  
-4. Execute one-click resolution that updates the product record and closes the issue, demonstrating 95% reduction in cycle time.  
-5. Open the ROI dashboard showing €5,984 annual savings per user, delivering the 8.0x return on the €748 license within the first quarter.  
-6. Export the compliance certificate and savings summary for immediate executive distribution, then invite questions on rollout.
+1. Open the Agentic Zero dashboard and load a live ETO issue ticket; highlight the €748 annual license versus projected 8.0x ROI from reduced rework and audit penalties.  
+2. Trigger eto_component_issue_agent to auto-ingest the ticket, extract components, and flag compliance gaps against ISO and customer specs in under 30 seconds.  
+3. Display the AI-generated resolution plan with traceable audit logs, proving full regulatory compliance without manual documentation.  
+4. Run the side-by-side timer: show manual process (historically 4.2 hours) versus agent runtime (7 minutes), quantifying €6,200 annual labor savings per engineer.  
+5. Export the signed compliance report and ROI dashboard; confirm the 8.0x multiplier is achieved within the first quarter of deployment.  
+6. Close with one-click deployment to production, locking in the €748 price point and immediate compliance coverage for the executive team.

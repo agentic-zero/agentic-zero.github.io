@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- MQTT_client
-- TLS_1.3_module
-- data_anonymizer
+- stream_ingestion_api
 - anomaly_detection_engine
-- failover_controller
+- encryption_module
+- compliance_validator
 
 ## Escalation
 The agent automatically escalates to human when:
-- sensor_offline_exceeding_5min
-- data_quality_rate_below_0.95_after_quarantine
-- persistent_false_anomaly_alerts
+- data_gap exceeds 5 minutes or uptime below 0.99
+- pharma location_data absent
+- unresolvable compliance or encryption failure

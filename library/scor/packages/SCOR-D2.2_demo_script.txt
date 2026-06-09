@@ -1,7 +1,7 @@
-1. Open dashboard and load sample MTO order to illustrate manual baseline (12 min, 3 compliance flags).  
-2. Trigger mto_order_validation_agent to auto-receive and parse order, showing instant data extraction.  
-3. Run AI configuration step, highlighting embedded compliance rules that auto-flag and resolve deviations.  
-4. Execute one-click entry with real-time validation, displaying zero-error output and full audit trail.  
-5. Compare metrics: cycle time reduced from 12 min to 90 sec, eliminating €4,200 annual compliance risk.  
-6. Display ROI calculator: €624 price delivers 8.0x return via 47 hours saved per month.  
-7. Export signed compliance report to close value demonstration.
+1. Load sample MTO order into mto_order_validation_agent; agent auto-receives and parses in <30 seconds, eliminating manual intake.
+2. Trigger AI configuration; agent applies rules, flags variances, and proposes compliant specs while logging every decision for audit.
+3. Execute automated entry; system posts validated order to ERP with zero manual keystrokes, cutting entry time from 12 min to 45 sec.
+4. Run real-time compliance validation; agent scores order 98/100 against regulatory and internal policies, surfacing only two low-risk items.
+5. Display live dashboard: 94% reduction in rework, 11 hours saved per 100 orders, and full audit trail ready for export.
+6. Calculate ROI on-screen: at €624 per agent, 8.0x multiplier projects €4,992 annual value per user from time and error-cost savings.
+7. Close with one-click deployment option, confirming production-ready compliance and immediate ROI tracking.

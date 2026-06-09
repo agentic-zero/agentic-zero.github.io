@@ -4,7 +4,7 @@ Process: SCOR-D2.9
 Name: mto_pick_execution_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-07T21:11:14.312328
+Generated: 2026-06-08T16:16:26.980254
 Compliance: GxP if pharma, GDPR if personal data, health and safety picking
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,10 @@ class MtoPickExecutionAgentAgent:
     Process of picking MTO finished goods from staging or warehouse locations for outbound shipment preparation
     
     Capabilities:
-    #   - validate_picklist_against_order
-    #   - execute_scanned_picks
-    #   - update_inventory_records
-    #   - handle_pick_exceptions
+    #   - enforce_100_percent_scan_compliance
+    #   - real_time_inventory_depletion
+    #   - exception_detection_and_routing
+    #   - kpi_cycle_time_monitoring
     
     Compliance: GxP if pharma, GDPR if personal data, health and safety picking
     """
@@ -139,58 +139,47 @@ class MtoPickExecutionAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF scan_result == mismatch THEN flag_exception_and_hold_product
-        # - IF pick_quantity < PickList.required_qty THEN trigger_repick_or_backorder
+        # - IF ScanSystem barcode matches PickList item THEN proceed to next pick ELSE flag exception
+        # - IF inventory quantity >= PickList quantity THEN deplete inventory ELSE halt and notify
         
         Business rules:
-        # - PickList must be validated against OrderDocumentation before execution
-        # - All picks require ScanSystem confirmation to update InventoryRecord
-        # - Compliance: apply GxP audit trail if sector == pharma
+        # - ScanSystem must be used for every pick to enforce 100% scan compliance
+        # - PickList must be completed within KPI pick cycle time threshold
+        # - InventoryRecord must be updated in real-time after each pick confirmation
         """
         outputs = {}
         
-# Validate PickList against OrderDocumentation per rules
-        if not pick_lists or not order_documentation:
-            outputs = {'picked products': [], 'pick confirmation': 'validation_failed', 'inventory depletion': 0, 'staging for pack': []}
-            return outputs
-        validated = all(item in order_documentation for item in pick_lists)  # basic cross-check
-        if not validated:
-            outputs = {'picked products': [], 'pick confirmation': 'invalid_picklist', 'inventory depletion': 0, 'staging for pack': []}
-            return outputs
-        # Initialize outputs and tracking vars
-        picked_products = []
-        pick_confirmations = []
-        inventory_depletion = 0
-        staging_for_pack = []
-        # Process each pick with scan confirmation and decision points
-        for pick_item in pick_lists:
-            scan_result = scan_systems.get(pick_item, 'match') if isinstance(scan_systems, dict) else 'match'
-            if scan_result == 'mismatch':
-                # DECISION POINT: flag exception
-                pick_confirmations.append('flagged_exception_hold')
-                continue
-            pick_qty = pick_item.get('qty', 0) if isinstance(pick_item, dict) else 1
-            required_qty = order_documentation.get(pick_item, 0) if isinstance(order_documentation, dict) else pick_qty
-            if pick_qty < required_qty:
-                # DECISION POINT: trigger repick/backorder
-                pick_confirmations.append('repick_or_backorder')
-                continue
-            # Apply GxP audit if pharma
-            if 'sector' in order_documentation and order_documentation['sector'] == 'pharma':
-                pick_confirmations.append('gxp_audit_logged')
-            # Update outputs
-            picked_products.append(pick_item)
-            inventory_depletion += pick_qty
-            staging_loc = staging_locations[0] if staging_locations else 'default_staging'
-            staging_for_pack.append({'item': pick_item, 'location': staging_loc})
-            pick_confirmations.append('scan_confirmed')
-        # Populate final outputs dict
-        outputs = {
-            'picked products': picked_products,
-            'pick confirmation': pick_confirmations,
-            'inventory depletion': inventory_depletion,
-            'staging for pack': staging_for_pack
+outputs = {
+            'picked products': [],
+            'pick confirmation': False,
+            'inventory depletion': {},
+            'staging for pack': None
         }
+        # Validate required inputs exist and are non-empty
+        if not inputs.get('pick lists') or not inputs.get('scan systems'):
+            return outputs  # edge case: missing critical inputs, halt
+        pick_list = inputs['pick lists']
+        scan_system = inputs['scan systems']
+        staging_loc = inputs.get('staging locations', {})
+        # Enforce 100% scan compliance per rule
+        for item in pick_list:
+            barcode = item.get('barcode')
+            qty = item.get('quantity', 0)
+            inv_qty = item.get('inventory_qty', 0)
+            # Decision: scan match check
+            if scan_system.get(barcode) != barcode:
+                outputs['pick confirmation'] = 'exception: scan mismatch'
+                return outputs  # halt on exception
+            # Decision: inventory quantity check
+            if inv_qty < qty:
+                outputs['pick confirmation'] = 'exception: insufficient inventory'
+                return outputs  # halt and notify
+            # Real-time depletion and pick recording
+            outputs['picked products'].append(item)
+            outputs['inventory depletion'][barcode] = inv_qty - qty
+        # All scans passed and quantities valid
+        outputs['pick confirmation'] = True
+        outputs['staging for pack'] = staging_loc.get('default', 'STAGE-01')
         return outputs
         
         return outputs
@@ -200,9 +189,9 @@ class MtoPickExecutionAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - GxP_audit_trail_if_pharma
-        # - GDPR_personal_data_minimization
-        # - health_safety_picking_protocol
+        # - GxP_validation_if_pharma
+        # - GDPR_personal_data_handling
+        # - health_and_safety_picking_rules
         """
         checks_passed = []
         checks_failed = []
@@ -226,7 +215,7 @@ class MtoPickExecutionAgentAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['scan_failure requires supervisor dual sign-off', 'missing_item triggers SCOR-D2.8 notification and backorder', 'pharma sector with GxP violation']
+        escalation_rules = ['Item not found at StagingLocation', 'Quantity mismatch after scan', 'Pick cycle time exceeds KPI threshold']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -240,7 +229,7 @@ class MtoPickExecutionAgentAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['pick_accuracy', 'PickConfirmation_SLA', 'inventory_discrepancy_rate']
+            "monitoring": ['scan_compliance_rate', 'pick_accuracy', 'inventory_update_latency', 'cycle_time_adherence']
         }
 
 

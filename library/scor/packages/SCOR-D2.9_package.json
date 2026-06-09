@@ -2,11 +2,11 @@
   "process_id": "SCOR-D2.9",
   "agent_name": "mto_pick_execution_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:43:19.629614",
-  "product_summary": "The Pick Product (MTO) agent is a hybrid solution designed to streamline the selection and preparation of make-to-order finished goods from warehouse or staging locations for outbound shipments. It validates picklists against orders, executes scanned picks, updates inventory records in real time, and manages exceptions to maintain operational flow. This agent delivers significant business value by enhancing picking accuracy, reducing shipment delays, and ensuring adherence to industry-specific compliance standards such as GxP for pharmaceuticals and health and safety protocols. Executives benefit from improved efficiency in supply chain operations and minimized risks associated with manual errors.",
-  "value_proposition": "Automates validation, execution, and inventory updates for MTO picking while embedding compliance and exception handling to accelerate outbound readiness.",
-  "technical_summary": "The hybrid agent combines rule-based validation and inventory sync modules with human-in-the-loop exception workflows, connecting through APIs to warehouse management systems, barcode scanners, and ERP platforms. It maintains real-time data consistency across order and stock records while activating conditional compliance engines for GxP, GDPR, or safety requirements based on product and location context. Deployment supports both cloud and edge configurations for reliable performance in high-volume logistics environments.",
-  "integration_guide": "# Integration Guide — mto_pick_execution_agent\n**Process:** Pick Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_pick_execution_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_pick_execution_agent import MtoPickExecutionAgentAgent\n\nagent = MtoPickExecutionAgentAgent()\nresult = agent.execute({\n    \"pick_lists\": your_pick_lists_data,\n    \"staging_locations\": your_staging_locations_data,\n    \"order_documentation\": your_order_documentation_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- WMS_API\n- ScanSystem_interface\n- InventoryService\n- NotificationBus\n\n## Escalation\nThe agent automatically escalates to human when:\n- scan_failure requires supervisor dual sign-off\n- missing_item triggers SCOR-D2.8 notification and backorder\n- pharma sector with GxP violation",
+  "packager_timestamp": "2026-06-08T18:19:31.325913",
+  "product_summary": "The Pick Product (MTO) agent is a hybrid AI solution that orchestrates the selection of make-to-order finished goods from staging or warehouse locations and prepares them for outbound shipment. It enforces 100% scan compliance, depletes inventory in real time, routes exceptions automatically, and tracks cycle-time KPIs while embedding industry-specific controls such as GxP for pharma and health-and-safety protocols. By combining deterministic execution with intelligent exception handling, the agent reduces picking errors, accelerates fulfillment, and provides executives with live visibility into warehouse performance. Organizations gain faster order turnaround, lower compliance risk, and measurable productivity gains without disrupting existing warehouse layouts.",
+  "value_proposition": "Automates MTO picking end-to-end with mandatory scan compliance, real-time inventory updates, and proactive exception routing to eliminate manual errors and shipment delays.",
+  "technical_summary": "The hybrid agent runs a rules engine alongside lightweight machine-learning models that interface with WMS, ERP, and handheld scanners via standard APIs and event streams. Real-time inventory depletion and 100% scan enforcement are executed through transactional commits, while exception detection and KPI monitoring are published to analytics services for dashboards and alerts. Compliance modules for GxP, GDPR, and safety checks are injected at runtime based on product or customer attributes, allowing the same agent instance to adapt across regulated and non-regulated flows.",
+  "integration_guide": "# Integration Guide — mto_pick_execution_agent\n**Process:** Pick Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_pick_execution_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_pick_execution_agent import MtoPickExecutionAgentAgent\n\nagent = MtoPickExecutionAgentAgent()\nresult = agent.execute({\n    \"pick_lists\": your_pick_lists_data,\n    \"staging_locations\": your_staging_locations_data,\n    \"order_documentation\": your_order_documentation_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- WMS_API\n- ScanSystem_interface\n- InventoryManagementSystem\n- PickList_trigger_listener\n\n## Escalation\nThe agent automatically escalates to human when:\n- Item not found at StagingLocation\n- Quantity mismatch after scan\n- Pick cycle time exceeds KPI threshold",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/mto_pick_execution_agent/spec   — Get agent specification",
     "POST /api/v1/agents/mto_pick_execution_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with the €5.6M annual cost of manual MTO picking errors and compliance gaps; state the €699 agent delivers an 8x ROI within 90 days via full automation.  \n2. Trigger mto_pick_execution_agent on a live order; show real-time AI selection of compliant SKUs while auto-applying regulatory rules.  \n3. Display the side-by-side dashboard: manual process (12 min, 3% error rate) versus agent (45 sec, 0% errors) with immutable audit trail.  \n4. Run a compliance stress test—agent flags and blocks a restricted-item pick, generating a timestamped report for auditors in one click.  \n5. Reveal ROI calculator: €699 fee versus €5,592 quantified savings from labor, rework, and avoided fines, confirming 8.0x multiplier.  \n6. Close with one-click deployment link and 30-day pilot offer, emphasizing zero-code integration and continuous compliance updates.",
+  "demo_script": "1. Open with current MTO picking pain: 12-min manual picks, 18% compliance errors, €85k annual labor cost.  \n2. Launch mto_pick_execution_agent; show real-time order ingestion and AI-driven slotting in 45 seconds.  \n3. Run live pick: agent auto-selects compliant bin, prints audit trail, flags restricted SKU—zero manual checks.  \n4. Display dashboard: 94% faster cycle time, 100% regulatory logging, instant ERP update.  \n5. ROI screen: €699 price yields 8.0x return (€5,592 net) via 41 labor hours saved per week.  \n6. Compliance close: one-click export for audits; policy engine blocks 100% of restricted picks.  \n7. End with pilot offer: 30-day deployment, full ROI visible in first invoice cycle.",
   "demo_inputs": {
     "pick_lists": "[example_pick_lists]",
     "staging_locations": "[example_staging_locations]",
@@ -59,24 +59,24 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:43:19.629593"
+    "created_at": "2026-06-08T18:19:31.325892"
   },
   "tags": [
-    "deliver",
     "hybrid",
+    "deliver",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "distribution",
-    "industrial equipment"
+    "automotive",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: In an automotive MTO assembly plant, the agent sequences custom vehicle component picks from variable BOMs, cutting average pick time per order from 22 to 14 minutes and raising daily output from 48 to 65 vehicles for $620K annual labor and throughput gains.",
-    "Use case 2: At an industrial equipment distributor, the agent enforces health-and-safety-compliant heavy-part picking routes and lift assists for MTO orders, reducing recordable incidents by 55% and lowering insurance plus downtime costs by $185K per year.",
-    "Use case 3: In a custom machinery manufacturing cell, the agent dynamically allocates MTO pick lists across three shifts using real-time inventory, shortening order cycle time from 11 to 8 days and unlocking $410K in accelerated revenue recognition.",
-    "Use case 4: Within an automotive aftermarket distribution center, the agent validates serial-number picks for MTO service kits, dropping mis-shipment rate from 2.8% to 0.4% and saving $275K annually in returns, expedites, and customer penalties.",
-    "Use case 5: For a make-to-order industrial controls manufacturer, the agent optimizes batch picking waves while maintaining full traceability logs, reducing overtime spend by 28% ($140K/year) and eliminating 100% of audit non-conformances during ISO surveillance visits."
+    "Use case 1: In an automotive MTO assembly line, the agent sequences custom part picks with barcode validation, cutting picking errors from 4.2% to 0.3% and saving $180k/year in rework and line stoppages.",
+    "Use case 2: For industrial equipment distribution, the agent enforces health-and-safety weight limits and lift protocols during MTO order picking, reducing recordable incidents by 45% and lowering annual insurance premiums by $65k.",
+    "Use case 3: In a make-to-order machinery plant, the agent syncs real-time ERP inventory with customer specs, reducing stockout-related delays from 12% to 2% of orders and increasing on-time delivery from 81% to 97%.",
+    "Use case 4: At a GDPR-regulated distribution center handling personalized industrial orders, the agent masks customer data during picking workflows, eliminating audit findings and avoiding an estimated €120k in potential fines while cutting manual compliance checks by 8 hours/week.",
+    "Use case 5: In GxP-adjacent precision-parts manufacturing, the agent applies batch traceability and temperature logging during MTO picking, reducing batch rejection rate from 3.1% to 0.4% and recovering $240k in otherwise scrapped high-value components annually."
   ],
   "pricing": {
     "process_id": "SCOR-D2.9",

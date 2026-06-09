@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART13",
+  "name": "Transparency and User Information",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "13",
+  "level": "L1",
+  "description": "Transparency requirements for high-risk AI systems including instructions for use, capability and limitation disclosure and information enabling users to interpret AI outputs correctly",
+  "inputs": ["AI system capabilities", "limitation assessments", "use case definitions", "user profile", "output interpretability"],
+  "outputs": ["instructions for use", "transparency documentation", "user guidance", "limitation disclosures", "interpretability reports"],
+  "kpis": ["user comprehension rate", "documentation completeness", "transparency audit score"],
+  "related_processes": ["EUAIA-ART14", "EUAIA-ART11", "ISO42001-7", "SCOR-DIG4"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.13 mandatory", "explainability requirements", "user rights"],
+  "automation_potential": 0.50,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

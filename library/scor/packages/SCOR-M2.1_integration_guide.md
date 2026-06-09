@@ -34,16 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_CustomerOrder_API
-- APS_CapacityPlan
-- MRP_MaterialAvailability
-- PLM_RoutingData
-- ISO_Approval_Workflow
-- GxP_Batch_Record_System
+- CRM_API
+- ERP_API
+- WMS_API
+- PLM_API
+- MES_API
 
 ## Escalation
 The agent automatically escalates to human when:
-- material data missing causing loop
-- post-release EquipmentSchedule conflict
-- pharma sector without GxP record
-- capacity_utilization > 0.95
+- material shortage hold and escalate to procurement
+- rush priority=1 order requires documented capacity override approval
+- equipment downtime >2h triggers reschedule within 4h

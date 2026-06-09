@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_095358_159760",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-M3.4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T09:53:58.159772",
+  "status": "completed",
+  "started_at": "2026-06-08T15:36:27.924971",
+  "completed_at": "2026-06-08T15:40:27.716461",
+  "error": null,
+  "result": {
+    "agent_name": "eto_packaging_compliance_agent",
+    "ready_for_packager": true
+  }
+}

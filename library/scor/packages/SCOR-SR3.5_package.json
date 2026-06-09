@@ -2,11 +2,11 @@
   "process_id": "SCOR-SR3.5",
   "agent_name": "excess_product_return_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:01:21.150442",
-  "product_summary": "The Return Excess Product to Supplier agent manages the complete lifecycle of returning surplus inventory to vendors, encompassing authorization validation, shipment coordination, and credit confirmation. As a hybrid agent, it combines automated processes with human oversight to handle physical logistics and financial reconciliation efficiently. This solution delivers significant business value by minimizing holding costs, ensuring regulatory compliance, and accelerating the recovery of supplier credits to improve cash flow.",
-  "value_proposition": "Automates the end-to-end return execution and compliance workflow to reduce inventory waste and accelerate credit recovery.",
-  "technical_summary": "This hybrid agent orchestrates capabilities including return authorization validation, expiry and accuracy enforcement, carrier pickup coordination, proof-of-delivery monitoring, and automated credit note generation. It integrates with ERP, logistics platforms, and financial systems while enforcing compliance layers for expiry tracking, chain of custody, and audit-ready documentation.",
-  "integration_guide": "# Integration Guide — excess_product_return_agent\n**Process:** Return Excess Product to Supplier\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_product_return_agent import ExcessProductReturnAgentAgent\n\nagent = ExcessProductReturnAgentAgent()\nresult = agent.execute({\n    \"return_shipment_schedule\": your_return_shipment_schedule_data,\n    \"return_authorization\": your_return_authorization_data,\n    \"product_preparation\": your_product_preparation_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- supplier_erp_api\n- planning_system\n- carrier_api\n- finance_system\n- document_repository\n\n## Escalation\nThe agent automatically escalates to human when:\n- product expired beyond policy\n- ProofOfDelivery missing after 48h\n- shipment rejected due to inaccurate contents or missing compliance_flags",
+  "packager_timestamp": "2026-06-08T12:43:16.833655",
+  "product_summary": "The Return Excess Product to Supplier agent orchestrates the full physical and administrative workflow for returning surplus inventory to vendors. It manages return authorization, carrier scheduling, expiry verification, shipment execution, and credit confirmation while enforcing chain-of-custody and regulatory requirements. For executives, the agent reduces excess inventory carrying costs, accelerates credit recovery, and lowers compliance risk in regulated supply chains such as pharmaceuticals and perishables.",
+  "value_proposition": "Automates end-to-end excess product returns to suppliers, combining physical logistics execution with compliant credit documentation to recover value and eliminate manual coordination.",
+  "technical_summary": "The hybrid agent orchestrates its listed capabilities through a combination of deterministic workflow engines and AI exception handlers that integrate with ERP, WMS, and carrier APIs. It maintains immutable audit trails for expiry compliance and chain-of-custody verification while generating standardized credit documents that post directly to financial systems. Secure event-driven interfaces allow real-time status updates between internal platforms and external logistics partners.",
+  "integration_guide": "# Integration Guide — excess_product_return_agent\n**Process:** Return Excess Product to Supplier\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp excess_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.excess_product_return_agent import ExcessProductReturnAgentAgent\n\nagent = ExcessProductReturnAgentAgent()\nresult = agent.execute({\n    \"return_shipment_schedule\": your_return_shipment_schedule_data,\n    \"return_authorization\": your_return_authorization_data,\n    \"product_preparation\": your_product_preparation_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system\n- TMS_API\n- Finance_system\n- Document_verification_API\n\n## Escalation\nThe agent automatically escalates to human when:\n- product damaged during CarrierPickup\n- CreditNote rejected by supplier\n- expiry < 30 days",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/excess_product_return_agent/spec   — Get agent specification",
     "POST /api/v1/agents/excess_product_return_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with the pain: \"Manual excess returns cost €50K+ yearly in errors, delays, and compliance fines—our €699 agent delivers 8x ROI by automating the full process.\"\n2. Trigger the agent live: Show it scanning ERP data to auto-detect €12K in excess stock eligible for supplier return within policy windows.\n3. Run automated workflow: Agent generates compliant return authorization, shipping docs, and supplier notification in <60 seconds while enforcing audit trails.\n4. Display compliance layer: Real-time checks for regulatory docs, serial tracking, and ESG reporting—reducing audit prep from days to minutes.\n5. Reveal ROI dashboard: Quantify €5,600 recovered this quarter plus 14 hours saved per return, projecting 8x payback in 45 days at scale.\n6. Close with metrics: \"One deployment pays for itself 8x annually; ready for pilot in your environment this week.\"",
+  "demo_script": "1. Open with live excess inventory dashboard showing €45K tied-up stock and manual return delays risking supplier contract penalties.\n2. Trigger excess_product_return_agent on flagged SKUs; AI instantly validates eligibility against supplier agreements and regulatory timelines.\n3. Agent auto-generates compliant return authorization, shipping docs, and audit trail in <60 seconds, eliminating 4.2 hours of manual compliance work.\n4. Execute automated supplier submission and track real-time status, accelerating refund cycle from 14 days to 3 days.\n5. Display ROI panel: €5,592 recovered value per run (8.0x on €699 license) plus 92% reduction in compliance exceptions.\n6. Export one-click executive report with full traceability for audit and finance sign-off; close with 10-minute Q&A on scaling.",
   "demo_inputs": {
     "return_shipment_schedule": "[example_return_shipment_schedule]",
     "return_authorization": "[example_return_authorization]",
@@ -60,25 +60,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:01:21.150423"
+    "created_at": "2026-06-08T12:43:16.833637"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
+    "hybrid",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: Pharma distributor returns $1.2M excess oncology drugs with full expiry tracking and chain-of-custody logs, securing supplier credits in 7 days instead of 45 and avoiding $180k FDA non-compliance fines",
-    "Use case 2: Food wholesaler automates return of 18 pallets of near-expiry dairy, recovering 82% supplier credit value ($94k) and cutting spoilage write-offs by 37% within one quarter",
-    "Use case 3: Automotive OEM returns excess semiconductor chips with serialized custody documentation, reducing inventory carrying cost by $420k annually and shortening credit cycle from 60 to 10 days",
-    "Use case 4: Manufacturing plant processes 240 excess chemical drums back to supplier with automated financial credit files, eliminating $65k in manual audit remediation costs and improving cash flow by 22%",
-    "Use case 5: National distributor handles 3,800 excess SKUs across 12 warehouses, achieving 94% first-pass credit acceptance and cutting return-processing labor by 1,900 hours ($95k) per year"
+    "Use case 1: Pharma distributor automates return of excess antibiotics 60 days pre-expiry with full chain-of-custody logging and credit docs, recovering 98% of invoice value and cutting compliance-fine exposure by $200K/year",
+    "Use case 2: Food wholesaler routes excess dairy before expiry via the agent, triggering automated supplier credits and reducing spoilage write-offs by 35% ($480K annual savings)",
+    "Use case 3: Automotive OEM returns excess electronic components with instant financial credit documentation, shortening credit-note cycle from 45 to 12 days and freeing $1.2M quarterly working capital",
+    "Use case 4: Manufacturing plant processes over-ordered specialty resins back to supplier, automating expiry and custody checks to cut return-cycle time from 5 days to 4 hours and lowering labor spend by 60%",
+    "Use case 5: Multi-sector distribution center uses the agent for consolidated excess-product returns, lifting net recovery rate on returned inventory from 72% to 91% and generating $850K incremental annual credits"
   ],
   "pricing": {
     "process_id": "SCOR-SR3.5",

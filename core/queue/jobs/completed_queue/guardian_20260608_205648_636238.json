@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260608_205648_636238",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "SCOR-D4.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T20:56:48.636256",
+  "status": "completed",
+  "started_at": "2026-06-08T21:00:26.339638",
+  "completed_at": "2026-06-08T21:00:30.540635",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-SCOR-D4.3-20260608",
+    "status": "conditional",
+    "process_id": "SCOR-D4.3"
+  }
+}

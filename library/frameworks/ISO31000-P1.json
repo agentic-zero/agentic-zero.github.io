@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO31000-P1",
+  "name": "Risk Management Principles and Framework",
+  "framework": "ISO 31000:2018",
+  "domain": "ISO 31000",
+  "clause": "Principles + Framework",
+  "level": "L1",
+  "description": "Establishment of risk management principles and framework including leadership commitment, integration, design, implementation, evaluation and improvement of risk management across the organization",
+  "inputs": ["organizational context", "risk appetite", "stakeholder requirements", "existing risk practices", "regulatory requirements"],
+  "outputs": ["risk management framework", "risk management policy", "integration plan", "mandate and commitment"],
+  "kpis": ["framework maturity score", "integration coverage", "leadership engagement rate"],
+  "related_processes": ["ISO31000-P2", "ISO42001-6", "EUAIA-ART9", "SCOR-E9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 31000:2018", "enterprise risk management", "corporate governance"],
+  "automation_potential": 0.40,
+  "source": "ISO 31000:2018 Standard",
+  "confidence": 0.95
+}

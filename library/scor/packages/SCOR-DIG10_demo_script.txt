@@ -1,6 +1,6 @@
-1. Open with executive pain points: manual compliance consumes 40+ hours/month; launch agentic_compliance_audit_manager to show instant AI automation of the full Manage Agentic Compliance and Audit Trail process.  
-2. Trigger a live audit on sample transaction data; display real-time AI classification, risk scoring, and policy mapping in under 60 seconds.  
-3. Reveal the immutable, AI-generated audit trail with one-click export and regulator-ready formatting, eliminating manual logging.  
-4. Surface compliance gaps and auto-remediation recommendations; quantify risk reduction and avoided fines.  
-5. Present ROI dashboard: €748 price yields 8.0x multiplier via 32 hours saved per cycle plus €5,984+ annual risk-mitigation value.  
-6. Run a before/after comparison showing manual effort versus agent output; close with deployment timeline and next-step pilot.
+1. Open with executive pain point: "Manual compliance audits consume 120+ hours/quarter at €15k risk exposure—our agent automates this end-to-end."
+2. Trigger live audit: Prompt agentic_compliance_audit_manager with a sample regulatory scenario; AI instantly maps controls and flags gaps in <30 seconds.
+3. Display automated audit trail: Show real-time, immutable log generation with AI explanations, eliminating 90% of manual documentation effort.
+4. Run ROI calculator: Input current workload; reveal €6k+ annual savings per user (8.0x multiplier on €748) via reduced hours and avoided fines.
+5. Simulate remediation: Agent proposes and applies compliant fixes; executives see risk score drop from high to low in one click.
+6. Summarize value: "€748 delivers 8x ROI plus continuous compliance—ready for pilot deployment this quarter."

@@ -1,6 +1,6 @@
-1. Open with a live supplier invoice queue; highlight €92K in pending MTO payments and manual approval bottlenecks costing 14 hours/week.
-2. Trigger the agent on a €47K invoice; show real-time PO matching, three-way match validation, and policy compliance scoring in <8 seconds.
-3. Display the compliance dashboard: automated SOX/audit-trail generation, segregation-of-duties check, and flagged duplicate-payment risk with evidence links.
-4. Execute one-click authorization; agent applies digital signature, updates ERP, and emails supplier while logging immutable record for regulators.
-5. Run ROI simulator: input current error rate and labor cost; instantly project €5,984 annual savings per user, delivering 8.0x return on the €748 license within 47 days.
-6. Close with exportable compliance report and next-step deployment timeline for the executive team.
+1. Open with the manual MTO payment bottleneck: 22 min avg. per invoice, 14% error rate, and audit flags costing €6k+ yearly in rework and penalties.  
+2. Trigger the supplier_payment_authorizer agent on a live €47k invoice; show instant data extraction, three-way match, and policy check in <45 seconds.  
+3. Highlight built-in compliance: real-time SAP/ERP segregation-of-duties validation, EU VAT rule enforcement, and immutable audit trail generated automatically.  
+4. Display the ROI dashboard: 8.0x multiplier on the €748 license—€5,984 net annual value from 91% time reduction and zero compliance incidents in the last 90 days.  
+5. Run a second edge-case invoice requiring manager override; agent routes, logs, and closes the loop while preserving full traceability for auditors.  
+6. Summarize: one-click deployment, 3-week payback, and scalable to 100% of MTO volume without added headcount.

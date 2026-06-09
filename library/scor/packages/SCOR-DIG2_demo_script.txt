@@ -1,6 +1,6 @@
-1. Open dashboard and connect live IoT/sensor feeds from factory and logistics sites (30 sec).  
-2. Trigger AI stream manager: auto-ingest, normalize, and route 50k+ events/min with zero manual rules (2 min).  
-3. Run compliance scan: show real-time GDPR/CCPA masking, audit logs, and policy enforcement on sensitive data (2 min).  
-4. Display anomaly detection and predictive alerts that cut downtime 35 % versus prior quarter (2 min).  
-5. Pull ROI widget: €5,984 annual savings (8.0x multiplier on €748 license) from reduced labor and avoided fines (2 min).  
-6. Export one-click compliance report for the executive team and schedule next review (1 min).
+1. Open with executive pain points: "Manual IoT/sensor stream management costs €6k+/month in labor and exposes firms to €50k+ compliance fines; this agent automates the full pipeline at €748."
+2. Trigger live stream ingestion: Show AI auto-classifying 10k+ sensor events/sec from multiple protocols while enforcing encryption and access logs for GDPR/CCPA traceability.
+3. Run compliance module: Demonstrate instant policy checks, redaction of PII, and one-click audit export that reduces compliance prep from days to minutes.
+4. Execute AI optimization: Highlight predictive scaling and anomaly routing that cuts data-processing latency 65% and eliminates 12 hours/week of manual oversight.
+5. Display ROI dashboard: Real-time calc shows €5,984 monthly savings (8.0x multiplier) via reduced headcount and avoided fines, with payback in <2 weeks.
+6. Close with deployment: One-command rollout to existing IoT gateways; schedule 15-min technical review for your environment.

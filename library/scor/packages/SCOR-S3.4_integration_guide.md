@@ -1,4 +1,4 @@
-# Integration Guide — eto_product_transfer_agent
+# Integration Guide — eto_component_transfer_agent
 **Process:** Transfer Engineer-to-Order Product
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_product_transfer_agent.py ./agents/
+cp eto_component_transfer_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_product_transfer_agent import EtoProductTransferAgentAgent
+from agents.eto_component_transfer_agent import EtoComponentTransferAgentAgent
 
-agent = EtoProductTransferAgentAgent()
+agent = EtoComponentTransferAgentAgent()
 result = agent.execute({
     "verified_eto_components": your_verified_eto_components_data,
     "project_work_orders": your_project_work_orders_data,
@@ -34,15 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- configuration_management_api
-- export_control_checker
+- configuration_management_db
+- project_work_order_system
 - traceability_logger
-- inventory_system_api
-- staging_plan_validator
+- inventory_update_api
+- compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- export_control_violation_or_hold
-- missing_verified_eto_status
-- traceability_loss_or_mismatch
-- gdpr_personal_data_without_consent
+- missing configuration_management_data
+- export_control flag triggered
+- traceability_completeness < 100%
+- GDPR personal_data detected

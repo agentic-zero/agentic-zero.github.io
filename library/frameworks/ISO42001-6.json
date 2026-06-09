@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-6",
+  "name": "AI Planning — Risk Assessment and Objectives",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "6",
+  "level": "L1",
+  "description": "AI-specific risk and impact assessment, AI system objectives, planning for AI system changes including bias risk, safety risk, security risk and societal impact assessment",
+  "inputs": ["AI use case register", "risk assessment methodology", "AI objectives", "impact assessment frameworks", "bias testing data"],
+  "outputs": ["AI risk register", "impact assessments", "bias assessments", "AI objectives", "risk treatment plans"],
+  "kpis": ["AI risk identification rate", "impact assessment coverage", "bias metric scores", "objective achievement"],
+  "related_processes": ["ISO42001-5", "ISO42001-8", "ISO42001-9", "SCOR-E9", "SCOR-DIG4"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 6", "EU AI Act Art.9 risk management", "NIST AI RMF Map", "algorithmic impact assessment"],
+  "automation_potential": 0.60,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

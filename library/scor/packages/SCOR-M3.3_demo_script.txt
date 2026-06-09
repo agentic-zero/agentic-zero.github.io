@@ -1,13 +1,7 @@
-1. Open with executive pain: "Manual ETO cycles cost €6k+ per order and fail 22% of compliance audits. eto_produce_and_test_agent automates the full Produce-and-Test workflow for €748—delivering 8x ROI via faster cycles and zero audit findings."
-
-2. Load a live high-value ETO order (custom aerospace part) and trigger the agent; it instantly generates compliant production plan, test protocols, and risk matrix in <60 seconds.
-
-3. Run automated production simulation: agent allocates resources, flags bottlenecks, and produces a digital twin—cutting planning time from 4 hours to 4 minutes while embedding ISO 9001/AS9100 controls.
-
-4. Execute AI-driven test sequence: real-time sensor data is analyzed, pass/fail decisions logged with full traceability; non-conformances auto-generate CAPA reports for instant audit readiness.
-
-5. Display ROI dashboard: one order shows €5,984 hard savings (labor + rework + audit prep) against €748 fee—confirming 8.0x multiplier; scale to 50 orders/month for €299k annual impact.
-
-6. Pull one-click compliance packet: immutable audit trail, digital signatures, and regulatory mapping—executives verify zero findings versus prior manual process.
-
-7. Close: "Ready to pilot on your next three ETO orders this week—€748 investment, first 8x ROI visible in seven days."
+1. Open Agentic Zero dashboard and launch eto_produce_and_test_agent; display €748 price tag and 8.0x ROI multiplier on screen.  
+2. Paste one real ETO order spec; agent auto-generates compliant production workflow in <60 seconds.  
+3. Trigger AI-driven test suite; show 92% reduction in manual test hours with pass/fail and regulatory flags.  
+4. Open compliance panel; highlight automated audit trail, version control, and sign-off logs ready for ISO/export review.  
+5. Run ROI calculator live: input hours saved × team rate = €5,984 net value (8.0x return).  
+6. Export one-click report for executives showing time, cost, and compliance metrics.  
+7. Close with 30-second recap: full ETO automation at €748 delivering 8.0x ROI and zero compliance gaps.

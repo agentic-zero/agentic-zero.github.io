@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260608_211106_392097",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-MRP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T21:11:06.392115",
+  "status": "completed",
+  "started_at": "2026-06-08T21:14:17.348725",
+  "completed_at": "2026-06-08T21:14:23.030692",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-MRP-001-20260608",
+    "status": "conditional",
+    "process_id": "BPMN-MRP-001"
+  }
+}

@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.2",
-  "guardian_timestamp": "2026-06-08T01:42:20.187753",
+  "guardian_timestamp": "2026-06-08T18:50:35.918673",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.2-20260608",
     "process_id": "SCOR-D2.2",
     "agent_name": "mto_order_validation_agent",
-    "issued_at": "2026-06-08T01:42:20.187713",
+    "issued_at": "2026-06-08T18:50:35.918632",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.84,
+    "overall_score": 0.81,
     "eu_ai_act": {
       "risk_level": "limited",
       "risk_rationale": "Process involves AI interaction with users",
@@ -24,13 +24,17 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.55,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No explicit AI risk/impact assessment or lifecycle controls",
+        "Missing transparency, auditability and human oversight mechanisms beyond basic escalation",
+        "No evidence of performance monitoring, bias controls or continual improvement processes"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement formal AI risk assessment and impact analysis per ISO 42001",
+        "Add decision logging, explainability features and defined human-in-the-loop review",
+        "Establish metrics for ongoing monitoring and improvement of the order validation process"
       ]
     },
     "nist_ai_rmf": {
@@ -63,7 +67,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review",
+    "ISO 42001: No explicit AI risk/impact assessment or lifecycle controls",
     "GDPR: Personal data detected: define lawful basis for processing"
   ]
 }

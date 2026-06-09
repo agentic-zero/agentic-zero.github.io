@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO9001-7",
+  "name": "Support — Resources, Competence and Communication",
+  "framework": "ISO 9001:2015",
+  "domain": "ISO 9001",
+  "clause": "7",
+  "level": "L1",
+  "description": "Management of resources including people, infrastructure, environment, monitoring resources, organizational knowledge, competence, awareness, communication and documented information",
+  "inputs": ["resource requirements", "competence needs", "infrastructure inventory", "communication needs", "document control requirements"],
+  "outputs": ["resource allocation", "training records", "competence assessments", "controlled documents", "communication plans"],
+  "kpis": ["competence coverage rate", "training completion rate", "document control compliance", "infrastructure availability"],
+  "related_processes": ["ISO9001-5", "ISO9001-6", "ISO9001-8"],
+  "sector_applicability": ["manufacturing", "pharma", "food", "automotive", "defense", "distribution"],
+  "compliance_flags": ["ISO 9001:2015 Clause 7", "GDPR employee data", "document retention requirements"],
+  "automation_potential": 0.70,
+  "source": "ISO 9001:2015 Standard",
+  "confidence": 0.97
+}

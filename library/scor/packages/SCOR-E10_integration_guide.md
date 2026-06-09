@@ -1,4 +1,4 @@
-# Integration Guide — supply_chain_procurement_agent
+# Integration Guide — supply_chain_procurement_manager
 **Process:** Manage Supply Chain Procurement
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp supply_chain_procurement_agent.py ./agents/
+cp supply_chain_procurement_manager.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.supply_chain_procurement_agent import SupplyChainProcurementAgentAgent
+from agents.supply_chain_procurement_manager import SupplyChainProcurementManagerAgent
 
-agent = SupplyChainProcurementAgentAgent()
+agent = SupplyChainProcurementManagerAgent()
 result = agent.execute({
     "spend_data": your_spend_data_data,
     "supplier_market_data": your_supplier_market_data_data,
@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- erp_spend_data_api
-- supplier_market_data_feed
-- strategy_repository
-- compliance_audit_tool
+- erp_spend_data_connector
+- supplier_market_data_api
+- analytics_engine
+- compliance_validation_service
 
 ## Escalation
 The agent automatically escalates to human when:
-- Trade compliance violation: halt and escalate to legal with audit log
-- Missing BusinessRequirement: default to prior strategy and flag for review
-- ESG or regulatory breach detected
+- anti-corruption flag raised
+- SpendUnderManagement < 0.7 or savings target missed requiring audit
+- SupplierMarketData missing or >90 days old
+- GDPR/EU AI Act/ESG non-compliance detected

@@ -4,7 +4,7 @@ Process: SCOR-S2.4
 Name: mto_transfer_orchestrator
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-07T19:35:14.530765
+Generated: 2026-06-08T14:40:26.301541
 Compliance: GxP material transfer if pharma, chain of custody, GDPR if personal data
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,11 @@ class MtoTransferOrchestratorAgent:
     Process of transferring verified MTO materials to production staging areas or work-in-progress inventory with full traceability and system updates
     
     Capabilities:
-    #   - verify_approvals_and_orders
-    #   - execute_staged_transfers
-    #   - maintain_chain_of_custody
-    #   - handle_quantity_exceptions
+    #   - verify_approvals_and_triggers
+    #   - execute_capacity_aware_transfers
+    #   - enforce_full_traceability
+    #   - update_wip_inventory
+    #   - handle_routing_exceptions
     
     Compliance: GxP material transfer if pharma, chain of custody, GDPR if personal data
     """
@@ -139,32 +140,51 @@ class MtoTransferOrchestratorAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF verification_approval.status == 'approved' AND production_order.status == 'released' THEN initiate transfer
-        # - IF material.quantity_verified == production_order.quantity THEN proceed to staging ELSE flag discrepancy
+        # - IF VerificationApproval.status == 'approved' AND ProductionOrder.status == 'released' THEN execute transfer
+        # - IF StagingLocation.capacity >= MaterialBatch.quantity THEN assign location ELSE queue transfer
         
         Business rules:
-        # - Transfer must record chain_of_custody with timestamp and operator_id
-        # - WIP_inventory.accuracy must be updated within 5 minutes of physical move
-        # - Full traceability required: lot_id and serial_numbers must be logged
+        # - Require full traceability: log material_id, batch_id, timestamp, source_location, target_location on every transfer
+        # - Update WIP inventory within 5 minutes of physical move
+        # - Transfer only materials with verification approval
         """
         outputs = {}
         
-# Check primary decision point for transfer initiation
-        if verification_approval.get('status') == 'approved' and production_orders.get('status') == 'released':
-            # Verify quantities per second decision point and handle discrepancy edge case
-            if verification_approval.get('quantity_verified') == production_orders.get('quantity'):
-                # Record full traceability and chain of custody per rules
-                custody_record = {'timestamp': 'now', 'operator_id': 'agent_001', 'lot_id': production_orders.get('lot_id'), 'serial_numbers': production_orders.get('serial_numbers', [])}
-                # Simulate physical move and WIP accuracy update within 5 min rule
-                wip_update = {'accuracy': 'updated', 'timestamp': 'now+5min', 'inventory_data': wip_inventory_data}
-                # Populate required outputs
-                outputs = {'materials in production staging': staging_locations, 'inventory transfer records': custody_record, 'WIP update': wip_update, 'production readiness confirmation': 'ready'}
+# Check core decision point for transfer execution
+        verification = verification_approval
+        prod_order = production_orders
+        if verification.get('status') == 'approved' and prod_order.get('status') == 'released':
+            # Full traceability log per rule
+            transfer_record = {
+                'material_id': verification.get('material_id'),
+                'batch_id': verification.get('batch_id'),
+                'timestamp': '2024-10-01T12:00:00Z',
+                'source_location': verification.get('source_location'),
+                'target_location': staging_locations.get('primary')
+            }
+            # Capacity check decision point
+            if staging_locations.get('capacity', 0) >= verification.get('quantity', 0):
+                assigned_location = staging_locations.get('primary')
+                queue_status = 'assigned'
             else:
-                # Edge case: quantity mismatch flagged, no transfer
-                outputs = {'materials in production staging': None, 'inventory transfer records': {'discrepancy': True}, 'WIP update': wip_inventory_data, 'production readiness confirmation': 'on_hold'}
+                assigned_location = None
+                queue_status = 'queued'
+            # Populate required outputs
+            outputs = {
+                'materials in production staging': [{'material_id': verification.get('material_id'), 'location': assigned_location, 'quantity': verification.get('quantity')}],
+                'inventory transfer records': [transfer_record],
+                'WIP update': {'material_id': verification.get('material_id'), 'updated_at': 'within_5min', 'status': 'moved'},
+                'production readiness confirmation': {'ready': True, 'queue_status': queue_status}
+            }
         else:
-            # Edge case: approvals not met, abort process
-            outputs = {'materials in production staging': None, 'inventory transfer records': {'initiated': False}, 'WIP update': wip_inventory_data, 'production readiness confirmation': 'pending'}
+            # Edge case: no transfer without approval
+            outputs = {
+                'materials in production staging': [],
+                'inventory transfer records': [],
+                'WIP update': {'status': 'no_change'},
+                'production readiness confirmation': {'ready': False, 'reason': 'verification_or_order_not_valid'}
+            }
+        return outputs
         
         return outputs
 
@@ -173,9 +193,9 @@ class MtoTransferOrchestratorAgent:
         Built-in compliance validation
         
         Checks:
-        # - gxP_chain_of_custody_validation
-        # - full_lot_serial_traceability
-        # - gdpr_personal_data_handling_if_present
+        # - full_chain_of_custody_logging
+        # - GxP_material_verification
+        # - GDPR_personal_data_handling_if_applicable
         """
         checks_passed = []
         checks_failed = []
@@ -199,7 +219,7 @@ class MtoTransferOrchestratorAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['equipment unavailable beyond SLA timer', 'quantity mismatch > 0 or unlogged lot_ids', 'missing chain_of_custody or compliance_flags']
+        escalation_rules = ['Missing VerificationApproval', 'StagingLocation unavailable after reroute attempt', 'transfer accuracy < 99.5%', 'WIP update cycle time breach']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -213,7 +233,7 @@ class MtoTransferOrchestratorAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['transfer_accuracy_percent', 'cycle_time_vs_sla', 'wip_inventory_update_latency', 'traceability_completeness']
+            "monitoring": ['transfer_accuracy', 'wip_update_latency', 'traceability_completeness', 'staging_utilization']
         }
 
 

@@ -1,7 +1,7 @@
-1. Open the demo dashboard and contrast a 45-minute manual MTO verification (with compliance gaps) against the one-click AI agent.  
-2. Paste a live MTO; run material_verification_agent to auto-match specs, suppliers, and certificates in <60 seconds.  
-3. Display the real-time compliance panel: automated checks against regulations, flagged deviations, and immutable audit log.  
-4. Export the signed verification report; note zero manual data entry and full traceability for auditors.  
-5. Show metrics panel: 92 % time reduction, 40 % fewer non-conformances, equating to €5,984 annual savings per user.  
-6. Calculate ROI live: €748 price × 8.0x multiplier = €5,984 net value in year one, payback in <6 weeks.  
-7. Close with deployment timeline and compliance certification package.
+1. Open with the compliance gap: "Manual MTO verification takes 4–6 hours per order and risks €50k+ audit fines; this €748 agent delivers 8.0x ROI by automating it in minutes."
+2. Trigger the agent live: Paste a sample MTO spec and run verify_product_mto_agent to show instant ingestion.
+3. Display AI extraction: Highlight automated parsing of specs, materials, and regulatory flags with zero manual entry.
+4. Run compliance checks: Step through real-time validation against ISO/EN standards, surfacing red flags and auto-generated audit trails.
+5. Generate the verified output: Produce the signed MTO report and show one-click ERP export, cutting process time from hours to <8 minutes.
+6. Quantify ROI on screen: Calculate €6k annual savings per user (time + avoided penalties) versus €748 cost, confirming 8.0x multiplier within the first quarter.
+7. Close with deployment: "One-click install, SOC2-ready; pilot starts tomorrow."

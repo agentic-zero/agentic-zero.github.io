@@ -34,16 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- erp_work_package_api
-- pdm_drawing_service
-- qms_test_procedure_db
-- cmms_calibration_check
-- test_system_interface
-- customer_witness_portal
+- ERP_API
+- PDM_API
+- TestEquipment_Interface
+- QA_System
+- VideoValidation_Tool
 
 ## Escalation
 The agent automatically escalates to human when:
-- customer witness test fails
-- test equipment calibration expired
-- missing acceptance criteria after default attempt
-- export control verification fails
+- Missing test equipment: escalate to procurement with 4-hour SLA
+- Customer witness unavailable: substitute video validation plus remote sign-off
+- Integration or witness test failure requiring SCOR-M3.4 disposition

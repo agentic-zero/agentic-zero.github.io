@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-D2.4",
-  "agent_name": "mto_order_consolidation_agent",
+  "agent_name": "consolidate_orders_mto_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:28:18.063228",
-  "product_summary": "The Consolidate Orders (MTO) agent is a hybrid solution that automatically groups multiple made-to-order requests from the same customer or delivery destination. It applies order matching, consolidation planning, and cost-savings calculations to reduce shipping expenses and improve delivery efficiency. Built-in GDPR data masking and compliance validation ensure all operations meet regulatory requirements for customer data, customs, and dangerous goods. Executives gain measurable logistics savings and faster fulfillment cycles without added manual oversight.",
-  "value_proposition": "Automates consolidation of multiple MTO orders to cut shipping costs and accelerate delivery while enforcing full compliance.",
-  "technical_summary": "The hybrid architecture combines rule-based consolidation logic with AI-driven order_matching and planning modules that pull data from ERP and logistics platforms via standardized APIs. Cost-savings calculations run in real time alongside gdpr_data_masking and compliance_validation services to protect sensitive fields and flag regulatory issues. Results are pushed back to order-management and shipping systems for automated execution and audit logging.",
-  "integration_guide": "# Integration Guide — mto_order_consolidation_agent\n**Process:** Consolidate Orders (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_order_consolidation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_order_consolidation_agent import MtoOrderConsolidationAgentAgent\n\nagent = MtoOrderConsolidationAgentAgent()\nresult = agent.execute({\n    \"confirmed_orders\": your_confirmed_orders_data,\n    \"delivery_schedules\": your_delivery_schedules_data,\n    \"customer_shipping_preferences\": your_customer_shipping_preferences_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- order_management_api\n- delivery_schedule_service\n- logistics_cost_calculator\n- notification_gateway\n- customs_regulation_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- customs consolidation regulations violated\n- dangerous goods without hazmat certification\n- mismatched delivery windows >48h",
+  "packager_timestamp": "2026-06-08T18:04:32.501301",
+  "product_summary": "The Consolidate Orders (MTO) agent is a hybrid system that automatically groups multiple make-to-order shipments for the same customer or delivery destination. It applies order matching, cost optimization, and shipment consolidation to reduce logistics spend and accelerate delivery cycles. The agent also performs compliance checks for GDPR, customs rules, and dangerous goods before sending automated customer notifications. Executives gain measurable savings in freight costs and improved fulfillment reliability without added manual oversight.",
+  "value_proposition": "Automates consolidation of multiple MTO orders to cut shipping costs and improve delivery efficiency while enforcing regulatory compliance.",
+  "technical_summary": "The hybrid architecture pairs ML-driven order matching and cost optimization with deterministic compliance engines for customs and dangerous-goods rules. It integrates with ERP, WMS, and carrier systems through standard APIs, ingesting real-time order streams and outputting consolidated shipment instructions plus GDPR-compliant notifications. All processing occurs within audited workflows that log every consolidation decision for traceability.",
+  "integration_guide": "# Integration Guide — consolidate_orders_mto_agent\n**Process:** Consolidate Orders (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp consolidate_orders_mto_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.consolidate_orders_mto_agent import ConsolidateOrdersMtoAgentAgent\n\nagent = ConsolidateOrdersMtoAgentAgent()\nresult = agent.execute({\n    \"confirmed_orders\": your_confirmed_orders_data,\n    \"delivery_schedules\": your_delivery_schedules_data,\n    \"customer_shipping_preferences\": your_customer_shipping_preferences_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_order_feed\n- logistics_API\n- carrier_delivery_feed\n- GDPR_compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- customs regulations violated\n- conflicting delivery dates\n- missing cost data",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/mto_order_consolidation_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/mto_order_consolidation_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/mto_order_consolidation_agent/health — Health check",
-    "GET  /api/v1/agents/mto_order_consolidation_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/mto_order_consolidation_agent/test   — Run test cases"
+    "POST /api/v1/agents/consolidate_orders_mto_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/consolidate_orders_mto_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/consolidate_orders_mto_agent/health — Health check",
+    "GET  /api/v1/agents/consolidate_orders_mto_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/consolidate_orders_mto_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load 50 sample MTO orders; highlight zero manual prep required.  \n2. Trigger mto_order_consolidation_agent; show AI grouping orders in <30 seconds while auto-applying compliance rules (audit flags, regulatory checks).  \n3. Display side-by-side before/after: 4.2 hours manual effort reduced to 6 minutes, with full traceability log.  \n4. Run ROI calculator live: €4,592 monthly savings × 8.0x multiplier = €36,736 annual value vs. €574 one-time price.  \n5. Export signed compliance report; confirm 100% policy adherence and instant audit readiness.  \n6. Close with one-click deployment option and 30-day ROI guarantee.",
+  "demo_script": "1. Open with pain: \"Manual MTO consolidation costs 12+ hours/week and risks audit flags—today we'll show the AI fix in under 10 minutes.\"\n2. Trigger agent: Run consolidate_orders_mto_agent on live sample orders; display instant grouping, duplicate removal, and MTO rule application.\n3. Show compliance layer: Highlight automated checks for regulatory fields, audit trail creation, and zero-deviation enforcement—no manual review needed.\n4. Quantify speed: Side-by-side timer proves 92% time reduction (from 45 min to 3.5 min per batch).\n5. Reveal ROI: €574 annual cost vs. 8.0x multiplier yields €4,592+ yearly savings via labor and error avoidance.\n6. Executive close: One-click deployment; schedule pilot to lock in first-quarter ROI.",
   "demo_inputs": {
     "confirmed_orders": "[example_confirmed_orders]",
     "delivery_schedules": "[example_delivery_schedules]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-D2.4",
-    "agent_name": "mto_order_consolidation_agent",
+    "agent_name": "consolidate_orders_mto_agent",
     "framework": "SCOR",
     "domain": "Deliver",
     "level": "L2",
@@ -59,24 +59,24 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:28:18.063206"
+    "created_at": "2026-06-08T18:04:32.501281"
   },
   "tags": [
-    "deliver",
     "hybrid",
+    "deliver",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "distribution",
-    "industrial equipment"
+    "automotive",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Automotive OEM consolidates 200+ dealer MTO orders weekly into 12 consolidated production batches, cutting per-unit logistics costs by 28% and reducing expedited freight spend by $1.2M annually.",
-    "Use case 2: Industrial equipment manufacturer groups 50 fragmented MTO orders into single production runs, slashing machine setup/changeover time by 35% and increasing monthly throughput by 22 units.",
-    "Use case 3: Global distributor consolidates cross-border MTO orders under customs regulations, reducing brokerage fees and duties by 18% while shortening average clearance time from 5 days to 2 days.",
-    "Use case 4: Manufacturing firm handling dangerous goods consolidates compliant MTO shipments, eliminating $450K in potential regulatory fines and cutting specialized packaging costs by 31% per quarter.",
-    "Use case 5: Automotive supplier merges GDPR-compliant customer order data across 8 regions, reducing duplicate procurement by 24% and lowering working capital tied in raw materials by $800K per year."
+    "Use case 1: Automotive OEM consolidates 120 dealer MTO orders into weekly container shipments, cutting per-unit freight costs by 23% and delivering $1.8M annual logistics savings.",
+    "Use case 2: Industrial equipment maker groups 35 custom MTO orders for batch production, reducing machine setup time by 38% and increasing monthly output by 21 units.",
+    "Use case 3: Cross-border distributor consolidates 80 MTO orders under customs regulations, lowering brokerage and duty fees by 31% for $940K yearly savings.",
+    "Use case 4: Manufacturing plant consolidates MTO orders containing dangerous goods, reducing specialized handling and insurance costs by 27% while passing all compliance audits.",
+    "Use case 5: Automotive supplier processes GDPR-regulated customer MTO data in consolidated workflows, cutting manual data handling labor by 55% and avoiding potential regulatory penalties."
   ],
   "pricing": {
     "process_id": "SCOR-D2.4",

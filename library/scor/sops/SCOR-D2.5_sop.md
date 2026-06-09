@@ -1,14 +1,13 @@
 # SOP — Build Loads (MTO)
 **Process ID:** SCOR-D2.5
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of building optimized loads for MTO shipments including load planning, weight and dimension optimization, dangerous goods segregation and carrier assignment
 
 ## Triggers
-- Receipt of consolidated orders from SCOR-D2.4
-- Update to product master or carrier constraints
+- Receipt of ConsolidatedOrder batch from SCOR-D2.4
 
 ## Inputs Required
 - consolidated orders
@@ -19,8 +18,8 @@ Process of building optimized loads for MTO shipments including load planning, w
 
 ## Process Steps
 1. IF Product contains dangerous goods THEN apply ADR/IMDG segregation rules before adding to LoadPlan
-2. IF Carrier weight or dimension limit exceeded THEN split LoadPlan and reassign Carrier
-3. IF delivery sequence conflicts with load stability THEN reorder sequence and re-optimize LoadPlan
+2. IF total weight exceeds CarrierConstraint.max_weight THEN split into multiple LoadPlans
+3. IF load utilization < 85% THEN trigger re-optimization or carrier change
 
 ## Expected Outputs
 - optimized load plans
@@ -29,19 +28,20 @@ Process of building optimized loads for MTO shipments including load planning, w
 - dangerous goods manifests
 
 ## Business Rules
-- Load optimization rate must exceed 85% by volume and weight
-- Carrier utilization must be >= 75% before final assignment
-- All dangerous goods must have compliant manifests before carrier assignment
-- Total load weight must not exceed carrier limit by more than 0 kg
+- LoadPlan.total_weight <= CarrierConstraint.max_weight
+- Dangerous goods must be segregated by compatibility class per ADR/IMDG
+- LoadPlan must respect DeliverySequence order
+- GDPR-compliant data handling for all shipment fields
 
 ## Exception Handling
-- Missing product dimensions: flag order and route to manual review queue
-- No carrier meets constraints: trigger fallback to SCOR-D2.6 and log KPI violation
+- If optimization rate < 70% after 3 iterations, escalate to manual planner with partial LoadPlan
+- If carrier constraints conflict with dangerous goods, reject and return to order consolidation
 
 ## Success Criteria
-- All outputs generated with load optimization rate >= 85%
+- load optimization rate >= 90%
 - dangerous goods compliance rate = 100%
-- carrier assignments accepted by carriers
+- carrier utilization >= 85%
+- all outputs generated without validation errors
 
 ## Compliance Requirements
 - ADR/IMDG dangerous goods

@@ -4,7 +4,7 @@ Process: SCOR-D2.3
 Name: mto_resource_reservation_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-07T20:47:13.688974
+Generated: 2026-06-08T15:52:30.473853
 Compliance: GDPR customer data, contractual delivery obligations, financial commitment compliance
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,10 @@ class MtoResourceReservationAgentAgent:
     Process of reserving production capacity, materials and logistics resources for MTO orders and calculating confirmed delivery dates based on actual availability
     
     Capabilities:
-    #   - validate_order_inputs
-    #   - check_capacity_and_material_availability
-    #   - reserve_resources
-    #   - confirm_delivery_date
-    #   - handle_material_or_capacity_exceptions
+    #   - validate_capacity_and_material_availability
+    #   - calculate_confirmed_delivery_date
+    #   - reserve_capacity_and_allocate_resources
+    #   - enforce_utilization_and_gdpr_rules
     
     Compliance: GDPR customer data, contractual delivery obligations, financial commitment compliance
     """
@@ -140,45 +139,44 @@ class MtoResourceReservationAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF CapacityAvailability >= order_quantity AND MaterialAvailability >= order_quantity THEN reserve_capacity ELSE calculate_next_available_slot
-        # - IF LogisticsCapacity < required_transport THEN delay_delivery_date_by_days(3)
+        # - IF CapacityAvailability >= order_quantity AND MaterialAvailability = true THEN reserve capacity and calculate date ELSE escalate to related process SCOR-D2.4
         
         Business rules:
-        # - resource_reservation_accuracy >= 0.95
-        # - delivery_date_confirmation_cycle_time <= 4 hours
-        # - GDPR: mask customer_data fields before storage
-        # - contractual_delivery_obligations: commit only if all inputs validated
+        # - rule1: delivery date must be calculated only from actual availability data with cycle time < 4 hours
+        # - rule2: all customer data handling must satisfy GDPR compliance flag before reservation
+        # - rule3: resource utilization KPI must remain >= 85% after allocation
         """
         outputs = {}
         
-validated_order = inputs.get('validated order', {})
-        capacity_availability = inputs.get('capacity availability', 0)
-        material_availability = inputs.get('material availability', 0)
-        routing_data = inputs.get('routing data', {})
-        logistics_capacity = inputs.get('logistics capacity', 0)
-        order_quantity = validated_order.get('quantity', 0)  # edge case: default 0
-        required_transport = routing_data.get('transport_units', order_quantity)
-        all_inputs_valid = all([validated_order, capacity_availability >= 0, material_availability >= 0, routing_data, logistics_capacity >= 0])
-        outputs = {}
-        if not all_inputs_valid:
-            outputs['supply chain commitment'] = False  # contractual rule
-            outputs['reserved capacity'] = 0
-            outputs['confirmed delivery date'] = None
-            outputs['resource allocation'] = {}
-            return outputs
-        if capacity_availability >= order_quantity and material_availability >= order_quantity:
-            reserved = min(capacity_availability, material_availability, order_quantity)  # accuracy >=0.95 implied by exact min
-            outputs['reserved capacity'] = reserved
-            next_slot = 0
+# GDPR compliance check (rule2) before any data processing or reservation
+        v_order = inputs.get('validated_order', {})
+        if not v_order.get('gdpr_compliance_flag', False):
+            return {'reserved_capacity': 0, 'confirmed_delivery_date': None, 'resource_allocation': {}, 'supply_chain_commitment': 'Escalated: GDPR non-compliance'}
+        order_qty = v_order.get('quantity', 0)
+        cap_avail = inputs.get('capacity_availability', 0)
+        mat_avail = inputs.get('material_availability', False)
+        # Decision point evaluation
+        if cap_avail >= order_qty and mat_avail:
+            # Rule1 enforcement: only use actual availability data when cycle_time < 4
+            r_data = inputs.get('routing_data', {})
+            if r_data.get('cycle_time_hours', 99) >= 4:
+                return {'reserved_capacity': 0, 'confirmed_delivery_date': None, 'resource_allocation': {}, 'supply_chain_commitment': 'Escalated: cycle time violation'}
+            # Calculate delivery date strictly from availability inputs
+            log_cap = inputs.get('logistics_capacity', {})
+            base_days = log_cap.get('transit_days', 0) + r_data.get('processing_days', 0)
+            deliv_date = 'T+' + str(base_days) + ' from availability snapshot'
+            res_cap = order_qty
+            alloc = {'capacity_reserved': res_cap, 'logistics_assigned': log_cap.get('available_units', 0)}
+            # Rule3 KPI guard
+            post_util = cap_avail - res_cap
+            if post_util < 85:
+                commit = 'Escalated: KPI utilization below 85%'
+            else:
+                commit = 'Supply chain committed'
+            return {'reserved_capacity': res_cap, 'confirmed_delivery_date': deliv_date, 'resource_allocation': alloc, 'supply_chain_commitment': commit}
         else:
-            outputs['reserved capacity'] = 0
-            next_slot = 5  # calculate_next_available_slot placeholder
-        delivery_delay = 3 if logistics_capacity < required_transport else 0
-        base_date = 7 + next_slot + delivery_delay  # days from today placeholder
-        outputs['confirmed delivery date'] = base_date
-        outputs['resource allocation'] = {'capacity': outputs['reserved capacity'], 'logistics': max(0, logistics_capacity - delivery_delay)}  # edge case clamp
-        outputs['supply chain commitment'] = bool(outputs['reserved capacity'] > 0 and all_inputs_valid)
-        return outputs  # GDPR masking omitted as no customer_data persisted here
+            # Escalation path per decision point
+            return {'reserved_capacity': 0, 'confirmed_delivery_date': None, 'resource_allocation': {}, 'supply_chain_commitment': 'Escalated to SCOR-D2.4'}
         
         return outputs
 
@@ -187,9 +185,9 @@ validated_order = inputs.get('validated order', {})
         Built-in compliance validation
         
         Checks:
-        # - GDPR customer_data masking
-        # - contractual_delivery_obligations validation
-        # - financial_commitment compliance
+        # - gdpr_customer_data_flag
+        # - contractual_delivery_obligations
+        # - financial_commitment_compliance
         """
         checks_passed = []
         checks_failed = []
@@ -213,7 +211,7 @@ validated_order = inputs.get('validated order', {})
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['material shortage escalate to SCOR-S2.1', 'capacity conflict with SCOR-M2.1 prioritize by commitment_reliability', 'input validation failure or overcommitment risk']
+        escalation_rules = ['escalate to human on commitment_reliability<0.9 or cycle_time>4h after automated retries', 'human review required for contractual delivery overrides']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -227,7 +225,7 @@ validated_order = inputs.get('validated order', {})
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['resource_reservation_accuracy', 'delivery_date_confirmation_cycle_time', 'resource_utilization']
+            "monitoring": ['commitment_reliability', 'resource_utilization_kpi', 'cycle_time']
         }
 
 

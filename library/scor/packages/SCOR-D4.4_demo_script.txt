@@ -1,0 +1,6 @@
+1. Open with pain: "Manual shelf stocking costs 12+ hours/week per store, with 15% compliance gaps on rotation and expiry rules."
+2. Launch agent: Trigger shelf_stocking_agent live; it scans inventory via vision, auto-plans optimal restock sequence, and executes robotic placement.
+3. Show real-time compliance: Agent flags and logs expiry/rotation violations instantly, generating audit-ready reports that cut compliance review time by 90%.
+4. Quantify time savings: Display dashboard—stocking cycle drops from 45 min to 6 min per aisle, freeing 10+ hours/week.
+5. Reveal ROI: At €599, the 8.0x multiplier delivers €4,792 annual value per store via labor reduction and avoided stock-outs.
+6. Close with proof: One-click export of before/after metrics and compliance certificate for exec review; offer 14-day pilot.

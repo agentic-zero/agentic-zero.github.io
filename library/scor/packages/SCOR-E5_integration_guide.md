@@ -34,14 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- asset_database_api
-- iot_scada_stream
-- maintenance_scheduler
-- capital_plan_store
-- kpi_configuration_store
+- asset_db_api
+- iot_time_series_ingest
+- capital_planning_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- maintenance_compliance_rate < 0.98
-- CapitalPlan budget exceeded
-- IoT offline > 24h or EU AI Act/safety non-compliance detected
+- asset_performance_data missing >10% of records
+- sensor gap >24h
+- any compliance_flag invalid or maintenance_compliance_rate <0.98

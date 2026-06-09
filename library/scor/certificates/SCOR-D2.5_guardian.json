@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.5",
-  "guardian_timestamp": "2026-06-08T01:45:20.216458",
+  "guardian_timestamp": "2026-06-08T18:53:35.961408",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.5-20260608",
     "process_id": "SCOR-D2.5",
-    "agent_name": "build_loads_optimizer",
-    "issued_at": "2026-06-08T01:45:20.216413",
+    "agent_name": "load_plan_optimizer",
+    "issued_at": "2026-06-08T18:53:35.961368",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.84,
+    "overall_score": 0.8,
     "eu_ai_act": {
       "risk_level": "minimal",
       "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
@@ -23,13 +23,18 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.48,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No documented AI risk assessment or impact analysis process",
+        "Missing transparency, explainability and audit trail requirements",
+        "Insufficient human oversight and accountability mechanisms beyond basic escalation",
+        "No evidence of data governance, bias mitigation or continual improvement procedures"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement ISO 42001-aligned AI risk management and impact assessment framework",
+        "Add mandatory decision logging, explainability outputs and human-in-the-loop controls",
+        "Establish performance monitoring, bias testing and management review cycles"
       ]
     },
     "nist_ai_rmf": {
@@ -62,7 +67,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review",
+    "ISO 42001: No documented AI risk assessment or impact analysis process",
     "GDPR: Personal data detected: define lawful basis for processing"
   ]
 }

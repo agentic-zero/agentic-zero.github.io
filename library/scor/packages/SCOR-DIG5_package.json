@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DIG5",
-  "agent_name": "digital_supply_chain_visibility_manager",
+  "agent_name": "digital_supply_chain_visibility_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:04:17.867273",
-  "product_summary": "The Manage Digital Supply Chain Visibility agent delivers real-time end-to-end visibility into inventory positions, order status, shipment tracking, and supplier operations across the entire network. By leveraging hybrid capabilities for data ingestion and exception detection, it enables proactive decision-making and risk mitigation for supply chain leaders. This results in improved operational efficiency, reduced costs from disruptions, and ensured compliance with critical regulations like GDPR and industry-specific traceability requirements. Executives gain actionable insights through dashboards and KPI monitoring to optimize their global operations.",
-  "value_proposition": "Transforms supply chain operations by automating real-time visibility, exception detection, and predictive insights across all network nodes.",
-  "technical_summary": "The hybrid agent architecture integrates multisource data ingestion with real-time exception detection and ETA prediction models to process diverse supply chain data streams. It generates dynamic dashboards and monitors KPIs while enforcing compliance with GDPR for location data, customs regulations, and sector-specific requirements such as food traceability and pharma serialization. Seamless integration with existing ERP, TMS, and IoT platforms ensures scalable deployment across hybrid environments.",
-  "integration_guide": "# Integration Guide — digital_supply_chain_visibility_manager\n**Process:** Manage Digital Supply Chain Visibility\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp digital_supply_chain_visibility_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.digital_supply_chain_visibility_manager import DigitalSupplyChainVisibilityManagerAgent\n\nagent = DigitalSupplyChainVisibilityManagerAgent()\nresult = agent.execute({\n    \"erp_data\": your_erp_data_data,\n    \"wms_data\": your_wms_data_data,\n    \"tms_data\": your_tms_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_api\n- wms_api\n- tms_api\n- carrier_rest_endpoints\n- iot_mqtt_client\n- ml_eta_model\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing supplier feed persisting >15min\n- api authentication failure\n- eta model accuracy drops below 85%",
+  "packager_timestamp": "2026-06-08T13:46:14.366983",
+  "product_summary": "The Manage Digital Supply Chain Visibility agent delivers real-time end-to-end monitoring of inventory positions, order status, shipment tracking, and supplier operations across complex networks. It continuously tracks data freshness, generates alerts on disruptions, produces exception reports, and recalculates ETAs while enforcing regulatory compliance for location data, customs, food traceability, and pharma serialization. Executives gain a unified operational view that reduces blind spots, accelerates response times, and lowers risk exposure in global supply chains. This hybrid agent combines automated monitoring with targeted human oversight to drive measurable improvements in resilience and efficiency.",
+  "value_proposition": "Transforms supply chain decision-making by unifying real-time visibility, automated exception handling, and compliance enforcement into a single hybrid workflow.",
+  "technical_summary": "The hybrid agent integrates with ERP, TMS, WMS, and IoT data streams through standardized APIs while maintaining separate pipelines for automated monitoring and human-in-the-loop review. Core modules handle data freshness checks, real-time alert generation, inventory snapshot updates, ETA recalculation, and rule-based compliance enforcement for GDPR, customs, and industry-specific serialization requirements. It exposes exception reports and audit logs via secure endpoints to support downstream analytics and regulatory reporting systems.",
+  "integration_guide": "# Integration Guide — digital_supply_chain_visibility_agent\n**Process:** Manage Digital Supply Chain Visibility\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp digital_supply_chain_visibility_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.digital_supply_chain_visibility_agent import DigitalSupplyChainVisibilityAgentAgent\n\nagent = DigitalSupplyChainVisibilityAgentAgent()\nresult = agent.execute({\n    \"erp_data\": your_erp_data_data,\n    \"wms_data\": your_wms_data_data,\n    \"tms_data\": your_tms_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_connector\n- wms_connector\n- tms_connector\n- carrier_api_client\n- iot_stream_processor\n- gdpr_compliance_validator\n\n## Escalation\nThe agent automatically escalates to human when:\n- visibility_coverage_rate < 0.80\n- compliance violation on location data\n- ETA accuracy < 0.80 for >30 minutes",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/digital_supply_chain_visibility_manager/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/digital_supply_chain_visibility_manager/status — Get agent status and metrics",
-    "GET  /api/v1/agents/digital_supply_chain_visibility_manager/health — Health check",
-    "GET  /api/v1/agents/digital_supply_chain_visibility_manager/spec   — Get agent specification",
-    "POST /api/v1/agents/digital_supply_chain_visibility_manager/test   — Run test cases"
+    "POST /api/v1/agents/digital_supply_chain_visibility_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/digital_supply_chain_visibility_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/digital_supply_chain_visibility_agent/health — Health check",
+    "GET  /api/v1/agents/digital_supply_chain_visibility_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/digital_supply_chain_visibility_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard showing manual supply chain blind spots and €180k annual compliance penalties from traceability gaps.  \n2. Activate digital_supply_chain_visibility_manager agent; AI ingests live ERP and IoT feeds in <30 seconds.  \n3. Display real-time visibility map with automated risk flagging and supplier scorecards.  \n4. Run one-click compliance audit: agent generates audit-ready reports meeting GDPR and CSRD standards.  \n5. Trigger ROI simulator: input €748 price, output 8.0x multiplier via €6k+ monthly savings in delays and fines.  \n6. Execute live exception resolution: AI reroutes shipment, logs immutable compliance trail.  \n7. Close with deployment timeline and projected 8x annual return within first quarter.",
+  "demo_script": "1. Open with executive context: \"Current manual supply chain tracking costs €250K+ annually in delays and audit failures—our agent automates visibility end-to-end.\"\n2. Trigger live scan: Run the agent on a sample multi-tier supply network, showing instant mapping of 200+ nodes in under 60 seconds.\n3. Demonstrate compliance layer: Auto-flag two regulatory gaps (e.g., ESG and customs) with one-click audit trail export, proving zero manual reporting.\n4. Quantify efficiency: Display before/after metrics—agent reduces visibility cycle from 14 days to 4 hours, directly enabling the 8.0x ROI.\n5. Run ROI calculator: Input €748 price live; output shows €5,984 net annual value per deployment via labor and risk reduction.\n6. Close with pilot offer: \"Deploy in one business unit this week—full 8.0x return visible in first 30 days or we extend at no cost.\"",
   "demo_inputs": {
     "erp_data": "[example_erp_data]",
     "wms_data": "[example_wms_data]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DIG5",
-    "agent_name": "digital_supply_chain_visibility_manager",
+    "agent_name": "digital_supply_chain_visibility_agent",
     "framework": "SCOR-Digital",
     "domain": "Digital Enable",
     "level": "L2",
@@ -57,33 +57,33 @@
       "pharma serialization requirements"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 6,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:04:17.867252"
+    "created_at": "2026-06-08T13:46:14.366964"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma manufacturer uses real-time serialization tracking to meet DSCSA requirements, cutting counterfeit detection time from 14 days to 2 hours and avoiding $2M in annual regulatory fines.",
-    "Use case 2: Food distributor implements end-to-end lot-level visibility to comply with traceability regulations, reducing recall execution from 72 hours to 6 hours and cutting product waste costs by 35%.",
-    "Use case 3: Automotive OEM gains live supplier shipment visibility across borders, reducing customs hold delays by 60% and saving $1.2M yearly in expedited freight and line-stoppage penalties.",
-    "Use case 4: Chemical company monitors temperature and location of hazardous shipments with GDPR-compliant data handling, lowering spoilage incidents by 22% and eliminating $800K in compliance violation risks.",
-    "Use case 5: Defense contractor tracks serialized components through multi-tier supply chain, shortening audit preparation from 3 weeks to 4 days and reducing inventory carrying costs by 18% via accurate real-time stock visibility."
+    "Use case 1: Pharma manufacturer uses serialization tracking to achieve 100% batch-level compliance, cutting regulatory audit failures by 80% and avoiding average $500K FDA fines per incident.",
+    "Use case 2: Food distributor implements real-time traceability across 12 countries, reducing contamination recall scope from 14 days to 4 hours and lowering recall costs by 65%.",
+    "Use case 3: Automotive OEM gains live visibility into tier-2 supplier delays, enabling dynamic rerouting that decreases line-stoppage events by 35% and saves $2.1M annually in expedited freight.",
+    "Use case 4: Chemical company automates customs data validation and carrier tracking, shortening average border hold time from 3.2 days to 18 hours and reducing demurrage fees by 42%.",
+    "Use case 5: Defense contractor deploys GDPR-compliant location monitoring for classified shipments, eliminating 92% of audit discrepancies and avoiding potential contract penalties exceeding $1.8M per year."
   ],
   "pricing": {
     "process_id": "SCOR-DIG5",

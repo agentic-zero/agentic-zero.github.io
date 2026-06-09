@@ -34,15 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_system
-- supplier_invoice_api
-- quality_verification_system
-- payment_gateway
-- contract_repository
+- ERP_api
+- WMS_api
+- QMS_api
+- email_workflow_tool
+- Supplier_master_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- Invoice amount mismatch >1%
-- QualityVerificationResult.failed
-- Missing tax_compliance data
-- Any anti-fraud or financial_controls violation
+- three-way mismatch exceeds 0.01 tolerance
+- QualityVerificationResult.status == 'failed'
+- missing data blocks authorization beyond SLA

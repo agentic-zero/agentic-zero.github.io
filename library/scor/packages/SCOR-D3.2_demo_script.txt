@@ -1,0 +1,7 @@
+1. Open with a live ETO order PDF; state the €748 agent cost versus 8.0x ROI (€5,984 annual value) from 12 hours saved per order and zero compliance penalties.
+2. Drag the order into the agent UI; show instant parsing of specs, quantities, and customer data in <30 seconds.
+3. Trigger AI configuration; demonstrate automatic application of pricing, BOM, and regulatory rules with real-time compliance flags.
+4. Execute one-click entry into the ERP; highlight 100% audit trail and elimination of manual re-keying errors.
+5. Run validation step; display instant detection of missing certifications or margin breaches, with auto-generated correction suggestions.
+6. Reveal dashboard metrics: time reduced from 45 min to 6 min, compliance score 99.8%, and projected annual savings for 50 orders.
+7. Close with ROI calculator confirming payback in under two weeks and offer to run a second order live.

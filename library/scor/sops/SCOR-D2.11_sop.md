@@ -1,13 +1,13 @@
 # SOP — Load Vehicle and Generate Shipping Docs (MTO)
 **Process ID:** SCOR-D2.11
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of loading MTO shipments onto carrier vehicles and generating all required shipping documentation including bills of lading, customs documents and customer notifications
 
 ## Triggers
-- PackedShipment status == packed AND LoadPlan status == approved AND CarrierVehicle status == available
+- All inputs (packed shipments, load plan, carrier vehicle, documentation requirements, customs data) received and validated
 
 ## Inputs Required
 - packed shipments
@@ -17,9 +17,8 @@ Process of loading MTO shipments onto carrier vehicles and generating all requir
 - customs data
 
 ## Process Steps
-1. IF customsData.requiresExportLicense == true THEN generateExportLicenseDoc
-2. IF loadPlan.totalWeight > carrierVehicle.maxPayload THEN rejectLoadAndAlert
-3. IF packedShipment.containsDangerousGoods == true THEN requireDangerousGoodsDeclaration
+1. IF CustomsData contains export-controlled items THEN require export_compliance flag before generating CustomsDocumentation
+2. IF PackedShipment contains dangerous goods THEN enforce dangerous_goods_documentation rule before loading
 
 ## Expected Outputs
 - loaded vehicle
@@ -29,21 +28,19 @@ Process of loading MTO shipments onto carrier vehicles and generating all requir
 - proof of dispatch
 
 ## Business Rules
-- All PackedShipment items must match LoadPlan before loading
-- BillOfLading must include carrierVehicle.id, PackedShipment.ids and departureTimestamp
-- CustomsDocumentation must comply with destinationCountry regulations
-- LoadingCycleTime must be recorded with start and end timestamps
+- All PackedShipment must match LoadPlan quantities before CarrierVehicle departure
+- BillOfLading must be generated only after 100% loading accuracy verified
+- GDPR shipment data must be anonymized in CustomerShipmentNotification
 
 ## Exception Handling
-- IF loading accuracy < 100% THEN halt departure and trigger recount
-- IF documentCompleteness < 100% THEN block ProofOfDispatch and queue missing documents
-- IF carrierVehicle unavailable THEN reroute to SCOR-D2.12
+- IF documentation incomplete THEN block ProofOfDispatch and route to manual review queue
+- IF carrier vehicle capacity exceeded THEN reject LoadPlan and trigger replanning with SCOR-D2.10
 
 ## Success Criteria
-- loadingAccuracy == 100%
-- documentCompleteness == 100%
-- onTimeDeparture == true
-- ProofOfDispatch generated with all output entities
+- loading accuracy == 100%
+- document completeness == true
+- on-time departure == true
+- ProofOfDispatch generated with valid carrier signature
 
 ## Compliance Requirements
 - customs documentation compliance

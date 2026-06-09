@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- supplier_erp_api
-- planning_system
-- carrier_api
-- finance_system
-- document_repository
+- ERP_system
+- TMS_API
+- Finance_system
+- Document_verification_API
 
 ## Escalation
 The agent automatically escalates to human when:
-- product expired beyond policy
-- ProofOfDelivery missing after 48h
-- shipment rejected due to inaccurate contents or missing compliance_flags
+- product damaged during CarrierPickup
+- CreditNote rejected by supplier
+- expiry < 30 days

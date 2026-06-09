@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DIG8",
-  "agent_name": "cybersecurity_digital_risk_manager",
+  "agent_name": "cyber_risk_orchestrator",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:13:17.946254",
-  "product_summary": "This hybrid agent oversees cybersecurity risk management throughout digital supply chain infrastructure, addressing threats to AI agents, APIs, data integrity, supply chain attacks, and OT/IT convergence. It delivers continuous threat intelligence analysis, vulnerability remediation, incident response, risk reporting, and compliance logging aligned with standards such as the EU AI Act, NIS2, ISO 27001, GDPR, and defense-sector requirements. Executives gain reduced breach exposure, streamlined regulatory adherence, and resilient operations that protect critical assets and supplier ecosystems. The result is lower financial and reputational risk while accelerating secure digital transformation.",
-  "value_proposition": "Transforms cybersecurity risk management by unifying threat intelligence, automated incident response, and multi-standard compliance across AI, API, and OT/IT supply chains.",
-  "technical_summary": "The hybrid agent combines rule-based orchestration with machine-learning models to ingest telemetry from APIs, OT sensors, and AI workloads, then executes threat_intelligence_analysis and vulnerability_remediation_planning workflows. It integrates via standard connectors with SIEM, SOAR, and GRC platforms while logging compliance_flag events for NIS2, ISO 27001, and GDPR reporting. Incident_response_execution modules trigger containment playbooks and produce risk_assessment outputs consumable by existing ticketing and audit systems.",
-  "integration_guide": "# Integration Guide — cybersecurity_digital_risk_manager\n**Process:** Manage Cybersecurity and Digital Risk\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp cybersecurity_digital_risk_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.cybersecurity_digital_risk_manager import CybersecurityDigitalRiskManagerAgent\n\nagent = CybersecurityDigitalRiskManagerAgent()\nresult = agent.execute({\n    \"threat_intelligence\": your_threat_intelligence_data,\n    \"vulnerability_assessments\": your_vulnerability_assessments_data,\n    \"security_logs\": your_security_logs_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- threat_intel_feed_api\n- vulnerability_scanner\n- siem_log_ingestor\n- compliance_checker\n- incident_workflow_orchestrator\n\n## Escalation\nThe agent automatically escalates to human when:\n- critical incident detected\n- defense sector clearance failure\n- VulnerabilityRemediationTime exceeds SLA",
+  "packager_timestamp": "2026-06-08T13:55:14.871450",
+  "product_summary": "The Manage Cybersecurity and Digital Risk agent is a hybrid AI system that oversees and mitigates threats across digital supply chain infrastructure, covering AI agent security, API protection, data breach prevention, supply chain attacks, and OT/IT convergence. It delivers continuous threat intelligence analysis, vulnerability assessment, incident detection and response, plus remediation planning while generating compliance reports aligned to EU AI Act Art.15, NIS2, ISO 27001, GDPR, and defense-sector standards. Executives gain reduced breach exposure, lower regulatory penalties, and a unified view of digital risk without expanding headcount. The agent therefore strengthens resilience and accelerates secure digital transformation at scale.",
+  "value_proposition": "Transforms cybersecurity risk management across digital supply chains by unifying threat intelligence, vulnerability assessment, incident response, and compliance reporting into a single automated workflow.",
+  "technical_summary": "The hybrid agent combines rule-based orchestration with adaptive ML models to execute threat intelligence analysis, vulnerability assessment, and risk-assessment regeneration across connected systems. It integrates via standard APIs and OT protocols with existing SIEM, vulnerability scanners, and identity platforms while maintaining segmented data flows that satisfy defense clearances and OT cybersecurity standards. Automated remediation planning and compliance reporting modules feed directly into ISO 27001 and NIS2 dashboards for continuous audit readiness.",
+  "integration_guide": "# Integration Guide — cyber_risk_orchestrator\n**Process:** Manage Cybersecurity and Digital Risk\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp cyber_risk_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.cyber_risk_orchestrator import CyberRiskOrchestratorAgent\n\nagent = CyberRiskOrchestratorAgent()\nresult = agent.execute({\n    \"threat_intelligence\": your_threat_intelligence_data,\n    \"vulnerability_assessments\": your_vulnerability_assessments_data,\n    \"security_logs\": your_security_logs_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- threat_intel_feed_api\n- vulnerability_scanner\n- siem_log_ingestor\n- incident_workflow_engine\n- report_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- CRITICAL incident_severity triggers compliance team notification\n- defense sector inputs missing security_clearance route to SCOR-E9\n- NIS2 non-compliance or remediation KPI breach escalate to human oversight",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/cybersecurity_digital_risk_manager/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/cybersecurity_digital_risk_manager/status — Get agent status and metrics",
-    "GET  /api/v1/agents/cybersecurity_digital_risk_manager/health — Health check",
-    "GET  /api/v1/agents/cybersecurity_digital_risk_manager/spec   — Get agent specification",
-    "POST /api/v1/agents/cybersecurity_digital_risk_manager/test   — Run test cases"
+    "POST /api/v1/agents/cyber_risk_orchestrator/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/cyber_risk_orchestrator/status — Get agent status and metrics",
+    "GET  /api/v1/agents/cyber_risk_orchestrator/health — Health check",
+    "GET  /api/v1/agents/cyber_risk_orchestrator/spec   — Get agent specification",
+    "POST /api/v1/agents/cyber_risk_orchestrator/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard: Display real-time risk posture across assets, highlighting €47k in avoided breach costs YTD via AI automation.  \n2. Trigger automated scan: Run AI risk assessment on sample environment, auto-prioritizing top threats and mapping to GDPR/ISO 27001 controls in <60 seconds.  \n3. Review compliance report: Show one-click gap analysis with evidence packs, reducing manual audit prep from 40 hours to 2 hours.  \n4. Generate mitigation plan: AI proposes prioritized actions with cost estimates; accept one to simulate €6k quarterly savings.  \n5. Display ROI dashboard: Calculate 8.0x multiplier on €748 price—projected €5.9k annual value from time saved and risk reduction.  \n6. Export executive summary: Produce board-ready PDF with compliance status and ROI metrics for immediate sharing.",
+  "demo_script": "1. Open cyber_risk_orchestrator dashboard and display live enterprise risk score with AI-flagged top-5 exposures.\n2. Run automated compliance scan against GDPR, ISO 27001 and NIST; show instant gap report with remediation cost estimates.\n3. Trigger AI-orchestrated mitigation workflow on highest-risk item and confirm one-click policy update plus ticket creation in existing tools.\n4. Generate executive risk report highlighting €47k projected annual savings from prevented incidents and 92% reduction in manual audit hours.\n5. Display ROI calculator: €748 annual fee versus 8.0x multiplier yielding €5.98k net value in first month alone.\n6. Export signed compliance attestation and schedule recurring automated board updates.",
   "demo_inputs": {
     "threat_intelligence": "[example_threat_intelligence]",
     "vulnerability_assessments": "[example_vulnerability_assessments]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DIG8",
-    "agent_name": "cybersecurity_digital_risk_manager",
+    "agent_name": "cyber_risk_orchestrator",
     "framework": "SCOR-Digital",
     "domain": "Digital Enable",
     "level": "L2",
@@ -59,33 +59,33 @@
       "OT cybersecurity standards"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 6,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:13:17.946232"
+    "created_at": "2026-06-08T13:55:14.871432"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Manufacturing plant uses agent to map OT assets against NIS2 Directive and ISO 27001, identifying 47 unpatched PLCs and generating remediation plan that cuts breach probability by 65% and avoids €2.4M in potential downtime costs within 90 days",
-    "Use case 2: Pharma company deploys agent for EU AI Act Art.15 and GDPR data-breach compliance on AI-driven drug-discovery platform, automating risk assessments that reduce external audit preparation time from 6 weeks to 9 days and prevent €20M GDPR fine exposure",
-    "Use case 3: Defense contractor leverages agent to maintain security-clearance-linked access controls and continuous monitoring, detecting insider-threat anomalies 14 days earlier on average and reducing clearance-related project delays by 40% (saving €1.8M per program)",
-    "Use case 4: Chemical firm applies agent to OT cybersecurity standards and NIS2 reporting, producing automated incident reports that shorten regulatory notification windows from 72h to 18h and lower cyber-insurance premiums by 22% (€480k annual savings)",
-    "Use case 5: Automotive supplier uses agent for ISO 27001 and supply-chain risk mapping across 120 tier-2 vendors, eliminating 31 high-risk connections and cutting third-party breach remediation costs by €950k while achieving zero major audit findings in first year"
+    "Use case 1: Manufacturing OT network mapped to NIS2 Directive in 2 weeks, identifying 12 critical gaps and avoiding €1.8M potential fines with 65% faster remediation than manual audits",
+    "Use case 2: Pharma firm runs GDPR data-breach impact simulations via the agent, cutting incident response costs by 45% and reducing regulatory fine exposure from €4M to under €500K",
+    "Use case 3: Defense contractor automates security-clearance evidence collection for 200+ systems, reducing audit preparation effort by 70% and eliminating zero-tolerance compliance violations",
+    "Use case 4: Chemical plant achieves ISO 27001 certification in 5 months using agent-driven gap analysis, lowering cyber-insurance premiums by 28% and delivering 4.2× ROI in year one",
+    "Use case 5: Automotive supplier validates EU AI Act Art.15 cybersecurity controls on production AI models, preventing a €3.5M recall by flagging high-risk vulnerabilities pre-deployment"
   ],
   "pricing": {
     "process_id": "SCOR-DIG8",

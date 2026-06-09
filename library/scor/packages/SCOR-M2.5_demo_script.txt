@@ -1,6 +1,6 @@
-1. Open the mto_stage_product_agent dashboard and load a sample MTO order to show one-click initiation versus manual staging.
-2. Trigger AI automation to stage the product, highlighting auto-generated specs, routing, and documentation in under 60 seconds.
-3. Run the built-in compliance module to validate regulatory, quality, and audit requirements with real-time flags and pass/fail scoring.
-4. Export the complete audit trail and compliance report to demonstrate traceability for executives and regulators.
-5. Display the ROI dashboard comparing manual effort (hours/cost) against automated output, confirming the 8.0x multiplier on the €699 price point.
-6. Simulate a scaled batch run of five orders to project annual savings and payback within the first month.
+1. Open with executive pain: "Manual MTO staging costs teams 12+ hours per order and risks compliance gaps—today we'll show how mto_product_staging_agent eliminates both in minutes."
+2. Trigger live run: Input a sample MTO order; agent auto-maps specs, generates staging plan, and flags regulatory requirements in <90 seconds.
+3. Surface compliance value: Walk through built-in audit trail, automated checks against ISO/REACH rules, and one-click exportable compliance report.
+4. Quantify time savings: Display before/after metrics—manual 14 hours reduced to 1.2 hours—directly feeding the 8.0x ROI model.
+5. Run ROI calculator: Input €699 license fee; agent projects €5,592 annual savings per user, confirming 8.0x multiplier within first quarter.
+6. Close with next step: "Ready for pilot? One-click deploy to your sandbox delivers first compliant, staged order in under 10 minutes."

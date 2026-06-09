@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-M3.2",
-  "guardian_timestamp": "2026-06-08T01:38:20.278336",
+  "guardian_timestamp": "2026-06-08T18:46:37.152878",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-M3.2-20260608",
     "process_id": "SCOR-M3.2",
-    "agent_name": "eto_issue_automation_agent",
-    "issued_at": "2026-06-08T01:38:20.278281",
+    "agent_name": "eto_component_issue_agent",
+    "issued_at": "2026-06-08T18:46:37.152839",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
-    "overall_score": 0.9,
+    "overall_score": 0.92,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,12 +38,16 @@
     },
     "iso_42001": {
       "compliant": true,
-      "score": 0.7,
+      "score": 0.78,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No explicit AI risk assessment or impact analysis process defined",
+        "Missing mechanisms for AI performance monitoring, model drift detection, or continual improvement",
+        "Limited transparency and explainability provisions for automated decisions"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement formal AI risk management and impact assessment aligned with ISO 42001 clauses 6.1 and 8.2",
+        "Add ongoing monitoring, logging of AI decision rationale, and periodic re-validation of hybrid capabilities",
+        "Establish stakeholder communication and human oversight protocols for all escalated cases"
       ]
     },
     "nist_ai_rmf": {
@@ -76,7 +80,7 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review"
+    "ISO 42001: No explicit AI risk assessment or impact analysis process defined"
   ],
   "auditor_review": {
     "decision": "AUTO_APPROVE",
@@ -84,9 +88,9 @@
     "restricted": false,
     "conditions": [
       "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 70% — monitor evolution"
+      "ISO/IEC 42001 at 78% — monitor evolution"
     ],
-    "audited_at": "2026-06-08T09:30:31.939030",
+    "audited_at": "2026-06-08T19:44:48.202778",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_115308_518838",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S2.2"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T11:53:08.518853",
+  "status": "completed",
+  "started_at": "2026-06-08T14:10:21.642668",
+  "completed_at": "2026-06-08T14:13:16.140345",
+  "error": null,
+  "result": {
+    "agent_name": "mto_receiving_automation_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

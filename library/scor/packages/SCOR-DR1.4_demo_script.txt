@@ -1,6 +1,13 @@
-1. Open with current-state pain: Manual defective returns cost 12+ hours/week in coordination, errors, and audit failures—exposing €40k+ annual compliance risk.
-2. Trigger defective_product_transfer_agent on a live sample return; AI auto-classifies defect, generates compliant transfer docs, and routes to logistics in <90 seconds.
-3. Display real-time compliance layer: automated checks against EU regs, full audit trail, and digital signatures—eliminating 100% of prior manual review steps.
-4. Reveal dashboard metrics: process time reduced from 45 min to 4 min per case, 94% fewer data-entry errors, and instant traceability for regulators.
-5. Run ROI calculator live: at €699 annual fee, 8.0x multiplier projects €5,592 net savings per user in year one via labor and penalty avoidance.
-6. Close with executive summary: one-click deployment, immediate compliance uplift, and scalable ROI across all return channels—ready for pilot this quarter.
+1. Open with pain point: "Manual defective returns cost €5,600+ per month in errors, delays, and compliance fines—our €699 agent delivers 8x ROI by automating the full Transfer Defective Product Return process."
+
+2. Trigger agent via dashboard: Input a sample defective SKU; agent instantly validates product data, serial numbers, and warranty status against ERP and regulatory databases.
+
+3. Demonstrate compliance layer: Agent auto-applies EU return regulations, generates audit-ready documentation, and flags any deviations with red-line explanations for legal traceability.
+
+4. Execute automated transfer: Agent routes the return to the correct warehouse, updates inventory, creates shipping labels, and notifies finance—completing in 45 seconds what previously took 22 minutes.
+
+5. Surface ROI dashboard: Display live metrics showing €5,592 monthly savings (8.0x multiplier), 94% reduction in compliance incidents, and payback in under 4 days.
+
+6. Run exception handling demo: Force a non-compliant item; agent blocks transfer, logs the issue, and produces a ready-to-send regulatory report—eliminating manual risk.
+
+7. Close with action: "Deploy today for immediate 8x ROI and full compliance coverage; pilot results available for your review."

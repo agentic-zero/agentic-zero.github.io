@@ -2,11 +2,11 @@
   "process_id": "SCOR-DIG6",
   "agent_name": "predictive_analytics_pipeline_manager",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:07:17.620975",
-  "product_summary": "This agent oversees the complete lifecycle of predictive analytics models, from development and validation to deployment and ongoing monitoring, supporting critical functions like demand forecasting and risk prediction. By enforcing compliance with regulations such as the EU AI Act and GDPR, it ensures ethical and transparent AI operations. Executives benefit from reduced operational risks, improved forecast accuracy, and streamlined governance, ultimately driving better strategic decisions and cost savings.",
-  "value_proposition": "Automates end-to-end management of predictive analytics pipelines with built-in compliance and monitoring to deliver reliable forecasting outcomes.",
-  "technical_summary": "The hybrid agent integrates model_training_and_retraining with drift_monitoring and automated_deployment capabilities to maintain model performance over time. It incorporates compliance_enforcement for standards including ISO 42001 and model explainability, alongside fallback_handling for robust operations. This architecture allows seamless integration into existing data pipelines while ensuring adherence to GDPR Art.22 and EU AI Act requirements through continuous oversight.",
-  "integration_guide": "# Integration Guide — predictive_analytics_pipeline_manager\n**Process:** Manage Predictive Analytics Pipeline\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp predictive_analytics_pipeline_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.predictive_analytics_pipeline_manager import PredictiveAnalyticsPipelineManagerAgent\n\nagent = PredictiveAnalyticsPipelineManagerAgent()\nresult = agent.execute({\n    \"historical_data\": your_historical_data_data,\n    \"external_signals\": your_external_signals_data,\n    \"market_data\": your_market_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- data_lake_query\n- kafka_consumer\n- model_registry\n- explainability_generator\n- performance_tracker\n\n## Escalation\nThe agent automatically escalates to human when:\n- GDPR_Art22 flag present\n- drift >0.05 after two retraining cycles\n- ISO_42001 metadata missing\n- data_quality_alert triggered",
+  "packager_timestamp": "2026-06-08T13:49:13.374728",
+  "product_summary": "This agent oversees the complete lifecycle of predictive analytics models, from development and validation to deployment and ongoing monitoring. It supports critical business functions such as demand forecasting, risk prediction, quality assurance, and maintenance scheduling. By ensuring compliance with regulations like the EU AI Act and GDPR, it minimizes risks while maximizing the reliability of forecasts. Executives benefit from reduced operational disruptions and data-driven decision-making that enhances efficiency and profitability.",
+  "value_proposition": "Automates end-to-end predictive analytics pipeline management with built-in compliance enforcement and automated retraining triggers to deliver reliable forecasts at scale.",
+  "technical_summary": "This hybrid agent combines model_retraining_trigger, performance_monitoring, forecast_validation, and data_fallback_handling modules into a unified pipeline that integrates with existing data lakes and ML platforms. It embeds compliance_enforcement logic for EU AI Act Art.10, GDPR Art.22, ISO 42001, and model explainability requirements directly into deployment and monitoring workflows. The architecture supports both real-time and batch inference modes while maintaining audit trails for regulatory reporting.",
+  "integration_guide": "# Integration Guide — predictive_analytics_pipeline_manager\n**Process:** Manage Predictive Analytics Pipeline\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp predictive_analytics_pipeline_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.predictive_analytics_pipeline_manager import PredictiveAnalyticsPipelineManagerAgent\n\nagent = PredictiveAnalyticsPipelineManagerAgent()\nresult = agent.execute({\n    \"historical_data\": your_historical_data_data,\n    \"external_signals\": your_external_signals_data,\n    \"market_data\": your_market_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- data_ingestion_api\n- model_training_orchestrator\n- compliance_audit_engine\n- explainability_metadata_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- GDPR Art.22 violation detected\n- EU AI Act Art.10 training data non-compliance\n- persistent model_drift_rate > 0.05 after retraining attempt",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/predictive_analytics_pipeline_manager/spec   — Get agent specification",
     "POST /api/v1/agents/predictive_analytics_pipeline_manager/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive pain: \"Manual predictive analytics pipelines cost €6K+ monthly in delays and compliance risks—our AI agent automates the full process for €748.\"\n2. Trigger live pipeline: Run a sample forecast; agent auto-ingests data, builds models, and outputs predictions in <60 seconds vs. 4-hour manual baseline.\n3. Highlight compliance layer: Display real-time audit trail, GDPR/CCPA flags, and one-click regulatory report—zero manual documentation required.\n4. Surface ROI dashboard: Show 8.0x multiplier metrics—€5,984 net value per deployment, 92% faster cycle time, and 40% reduction in compliance audit hours.\n5. Stress-test edge case: Simulate data drift; agent auto-detects, retrains, and logs changes with full traceability for executives and regulators.\n6. Close with action: \"Deploy today for immediate 8x ROI and audit-ready compliance—next step is a 15-minute pilot on your data.\"",
+  "demo_script": "1. Open with the €748 investment and 8.0x ROI target: show current manual pipeline costs (€6k+/month in analyst time and compliance remediation) versus the automated outcome.\n2. Trigger the agent on a live dataset; display one-click pipeline initialization that replaces 4–6 hours of manual ETL and model training.\n3. Run the built-in compliance scan: highlight automatic GDPR/CCPA checks, audit logs, and risk flagging completed in <60 seconds with zero manual review.\n4. Execute the predictive run and surface results: accuracy metrics, bias detection, and regulatory sign-off report generated instantly.\n5. Project the ROI dashboard: calculate 8.0x return via 22 hours saved per cycle, reduced audit penalties, and faster time-to-insight, confirming payback in under one week.\n6. Close with next-step deployment options and a 30-day compliance-assured pilot.",
   "demo_inputs": {
     "historical_data": "[example_historical_data]",
     "external_signals": "[example_external_signals]",
@@ -63,27 +63,27 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:07:17.620953"
+    "created_at": "2026-06-08T13:49:13.374706"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: In automotive manufacturing, the agent manages a predictive maintenance pipeline with ISO 42001 governance and model explainability, cutting unplanned downtime by 22% and delivering $1.8M annual savings.",
-    "Use case 2: In pharma production, the agent oversees a batch-yield prediction pipeline meeting EU AI Act Art.10 data requirements, increasing yield by 12% and generating $3.4M extra revenue per facility.",
-    "Use case 3: In chemical processing, the agent runs a demand-forecasting pipeline under GDPR Art.22 controls, reducing inventory holding costs by 18% and freeing $2.1M in working capital.",
-    "Use case 4: In food distribution, the agent maintains a spoilage-prediction pipeline with full ISO 42001 audit trails, lowering waste by 27% and saving $950K yearly across three warehouses.",
-    "Use case 5: In defense logistics, the agent governs a parts-failure prediction pipeline ensuring model explainability, improving mission readiness by 15% and avoiding $4.2M in expedited procurement costs."
+    "Use case 1: In automotive manufacturing, the agent manages a predictive maintenance pipeline on sensor data to forecast equipment failures 72 hours ahead, cutting unplanned downtime by 28% and delivering $1.8M annual savings while satisfying ISO 42001 model governance and EU AI Act Art.10 data-quality rules.",
+    "Use case 2: In pharma batch production, the agent orchestrates a yield-prediction pipeline that flags out-of-spec batches 48 hours early, reducing scrapped batches by 22% and generating $3.4M yearly savings under GDPR Art.22 automated-decision safeguards and full model explainability.",
+    "Use case 3: In chemical processing plants, the agent runs a real-time process-optimization pipeline that predicts catalyst deactivation, extending catalyst life by 19% and saving $2.1M per plant annually while maintaining ISO 42001 audit trails and EU AI Act training-data compliance.",
+    "Use case 4: In food distribution, the agent governs a demand-forecasting pipeline that reduces spoilage by 31% through dynamic inventory allocation, producing $4.7M annual waste-reduction ROI with documented model explainability and GDPR Art.22 human-oversight controls.",
+    "Use case 5: In defense logistics, the agent manages a spare-parts demand pipeline that improves forecast accuracy to 94%, lowering emergency procurement costs by 37% ($5.2M yearly) while enforcing ISO 42001 governance and EU AI Act Art.10 data-quality requirements."
   ],
   "pricing": {
     "process_id": "SCOR-DIG6",

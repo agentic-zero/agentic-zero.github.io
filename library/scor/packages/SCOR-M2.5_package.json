@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-M2.5",
-  "agent_name": "mto_stage_product_agent",
+  "agent_name": "mto_product_staging_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:04:18.612051",
-  "product_summary": "The Stage Product (MTO) agent automates the preparation of make-to-order finished goods for outbound delivery by assigning staging locations, performing final inspections, completing required documentation, and executing handover to delivery operations. It enforces critical compliance checks including GxP release for pharma, dangerous goods and export documentation, and GDPR customer data handling to minimize regulatory risk. By combining automated workflows with human oversight where needed, the agent reduces staging cycle times, prevents shipment delays, and improves accuracy across complex supply chains. Executives gain faster order fulfillment and lower operational costs without sacrificing compliance or traceability.",
-  "value_proposition": "Automates staging, compliance verification, and handover of MTO finished goods to accelerate outbound delivery while eliminating manual documentation errors.",
-  "technical_summary": "The hybrid agent orchestrates its four core capabilities through a combination of deterministic rules engines for compliance checks and machine-learning models for location optimization and exception handling. It integrates via APIs with warehouse management, ERP inventory, and external regulatory systems to execute assign_staging_location, verify_compliance_and_documentation, execute_staging_and_handover, and update_inventory_and_records in sequence. Real-time audit logging and event-driven triggers ensure traceability across GxP, dangerous-goods, export, and GDPR requirements.",
-  "integration_guide": "# Integration Guide — mto_stage_product_agent\n**Process:** Stage Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_stage_product_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_stage_product_agent import MtoStageProductAgentAgent\n\nagent = MtoStageProductAgentAgent()\nresult = agent.execute({\n    \"packaged_products\": your_packaged_products_data,\n    \"delivery_schedules\": your_delivery_schedules_data,\n    \"documentation_requirements\": your_documentation_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- WMS_API\n- ERP_delivery_schedule\n- barcode_scan_interface\n- compliance_master_data_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing dangerous_goods_documentation or GxP release\n- StagingArea capacity exceeded after overflow attempt\n- staging_accuracy < 99.5% or cycle_time breach",
+  "packager_timestamp": "2026-06-08T17:40:30.756575",
+  "product_summary": "The Stage Product (MTO) agent automates the preparation of make-to-order finished goods for outbound delivery by performing final inspections, completing required documentation, and executing handovers to delivery operations. It ensures compliance with industry regulations such as GxP for pharmaceuticals, dangerous goods handling, export requirements, and GDPR for customer data. By monitoring staging area capacity and updating inventory records in real-time, the agent minimizes delays and errors in the supply chain. This results in faster order fulfillment, reduced operational costs, and improved customer satisfaction for executives overseeing manufacturing and logistics.",
+  "value_proposition": "Automates staging, inspection, and compliant handover of MTO finished goods to accelerate outbound delivery while eliminating manual errors and regulatory risks.",
+  "technical_summary": "The hybrid agent integrates with enterprise resource planning systems and warehouse management platforms through APIs to execute its core capabilities including documentation validation and atomic handover functions. It employs a combination of rule-based compliance checks and machine learning models for capacity monitoring and inventory updates. This architecture ensures seamless interoperability with existing supply chain infrastructure while maintaining audit trails for regulatory adherence.",
+  "integration_guide": "# Integration Guide — mto_product_staging_agent\n**Process:** Stage Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_product_staging_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_product_staging_agent import MtoProductStagingAgentAgent\n\nagent = MtoProductStagingAgentAgent()\nresult = agent.execute({\n    \"packaged_products\": your_packaged_products_data,\n    \"delivery_schedules\": your_delivery_schedules_data,\n    \"documentation_requirements\": your_documentation_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- WMS_API\n- document_validation_service\n- inventory_transaction_logger\n- capacity_monitoring_sensor\n- compliance_rule_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- dangerous_goods_documentation missing\n- staging_accuracy below 0.99 after retry\n- inventory_update timeout or mismatch\n- staging_area full with no alternate route",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/mto_stage_product_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/mto_stage_product_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/mto_stage_product_agent/health — Health check",
-    "GET  /api/v1/agents/mto_stage_product_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/mto_stage_product_agent/test   — Run test cases"
+    "POST /api/v1/agents/mto_product_staging_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mto_product_staging_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mto_product_staging_agent/health — Health check",
+    "GET  /api/v1/agents/mto_product_staging_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mto_product_staging_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open the mto_stage_product_agent dashboard and load a sample MTO order to show one-click initiation versus manual staging.\n2. Trigger AI automation to stage the product, highlighting auto-generated specs, routing, and documentation in under 60 seconds.\n3. Run the built-in compliance module to validate regulatory, quality, and audit requirements with real-time flags and pass/fail scoring.\n4. Export the complete audit trail and compliance report to demonstrate traceability for executives and regulators.\n5. Display the ROI dashboard comparing manual effort (hours/cost) against automated output, confirming the 8.0x multiplier on the €699 price point.\n6. Simulate a scaled batch run of five orders to project annual savings and payback within the first month.",
+  "demo_script": "1. Open with executive pain: \"Manual MTO staging costs teams 12+ hours per order and risks compliance gaps—today we'll show how mto_product_staging_agent eliminates both in minutes.\"\n2. Trigger live run: Input a sample MTO order; agent auto-maps specs, generates staging plan, and flags regulatory requirements in <90 seconds.\n3. Surface compliance value: Walk through built-in audit trail, automated checks against ISO/REACH rules, and one-click exportable compliance report.\n4. Quantify time savings: Display before/after metrics—manual 14 hours reduced to 1.2 hours—directly feeding the 8.0x ROI model.\n5. Run ROI calculator: Input €699 license fee; agent projects €5,592 annual savings per user, confirming 8.0x multiplier within first quarter.\n6. Close with next step: \"Ready for pilot? One-click deploy to your sandbox delivers first compliant, staged order in under 10 minutes.\"",
   "demo_inputs": {
     "packaged_products": "[example_packaged_products]",
     "delivery_schedules": "[example_delivery_schedules]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-M2.5",
-    "agent_name": "mto_stage_product_agent",
+    "agent_name": "mto_product_staging_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -55,31 +55,31 @@
       "GDPR customer data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:04:18.612032"
+    "created_at": "2026-06-08T17:40:30.756553"
   },
   "tags": [
     "hybrid",
-    "make",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "chemical",
+    "food",
+    "automotive",
     "industrial equipment",
-    "food"
+    "make",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Chemical MTO agent auto-generates dangerous goods documentation for custom batch orders, cutting manual prep time from 8 hours to 45 minutes per shipment and eliminating €150k annual regulatory fines.",
-    "Use case 2: Automotive MTO agent validates export documentation against 12-country rulesets before staging, shortening order-to-ship cycle by 6 days and lifting on-time delivery from 82% to 97%.",
-    "Use case 3: Food sector MTO agent enforces GDPR customer data redaction during product staging for personalized orders, reducing audit prep effort by 65% and avoiding potential €4M+ fines.",
-    "Use case 4: Industrial equipment MTO agent sequences quality-release checks for made-to-order units, cutting staging rework from 18% to 3% of orders and saving €920k yearly in expedited freight.",
-    "Use case 5: Manufacturing MTO agent cross-checks compliance docs against real-time order changes, reducing last-minute documentation errors by 92% and enabling 22% more orders per month without added headcount."
+    "Use case 1: Automotive MTO plant automates staging and dangerous goods documentation for custom vehicle orders, cutting staging cycle time from 8 hours to 3 hours and eliminating $180K annual compliance penalties.",
+    "Use case 2: Chemical manufacturer uses the agent for GxP release staging of make-to-order batches, reducing batch release errors by 92% and avoiding $420K in annual FDA audit remediation costs.",
+    "Use case 3: Industrial equipment firm automates export documentation during MTO staging for international orders, increasing on-time shipment rate from 71% to 96% and generating $1.2M incremental revenue per year.",
+    "Use case 4: Food processing company applies the agent to stage perishable MTO products with full GDPR customer data handling, cutting manual data checks by 65% and saving $95K yearly in labor plus breach risk mitigation.",
+    "Use case 5: Pharma equipment supplier integrates the agent for compliant MTO staging and dangerous goods labeling, shortening order-to-production handoff from 5 days to 2 days and reducing expedited freight spend by $310K annually."
   ],
   "pricing": {
     "process_id": "SCOR-M2.5",

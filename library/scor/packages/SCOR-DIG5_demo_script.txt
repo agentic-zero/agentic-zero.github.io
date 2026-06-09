@@ -1,7 +1,6 @@
-1. Open dashboard showing manual supply chain blind spots and €180k annual compliance penalties from traceability gaps.  
-2. Activate digital_supply_chain_visibility_manager agent; AI ingests live ERP and IoT feeds in <30 seconds.  
-3. Display real-time visibility map with automated risk flagging and supplier scorecards.  
-4. Run one-click compliance audit: agent generates audit-ready reports meeting GDPR and CSRD standards.  
-5. Trigger ROI simulator: input €748 price, output 8.0x multiplier via €6k+ monthly savings in delays and fines.  
-6. Execute live exception resolution: AI reroutes shipment, logs immutable compliance trail.  
-7. Close with deployment timeline and projected 8x annual return within first quarter.
+1. Open with executive context: "Current manual supply chain tracking costs €250K+ annually in delays and audit failures—our agent automates visibility end-to-end."
+2. Trigger live scan: Run the agent on a sample multi-tier supply network, showing instant mapping of 200+ nodes in under 60 seconds.
+3. Demonstrate compliance layer: Auto-flag two regulatory gaps (e.g., ESG and customs) with one-click audit trail export, proving zero manual reporting.
+4. Quantify efficiency: Display before/after metrics—agent reduces visibility cycle from 14 days to 4 hours, directly enabling the 8.0x ROI.
+5. Run ROI calculator: Input €748 price live; output shows €5,984 net annual value per deployment via labor and risk reduction.
+6. Close with pilot offer: "Deploy in one business unit this week—full 8.0x return visible in first 30 days or we extend at no cost."

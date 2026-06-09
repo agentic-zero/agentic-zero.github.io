@@ -1,0 +1,18 @@
+{
+  "process_id": "GDPR-ART13",
+  "name": "GDPR Transparency and Data Subject Rights",
+  "framework": "GDPR (EU) 2016/679",
+  "domain": "GDPR",
+  "article": "13-22",
+  "level": "L1",
+  "description": "Transparency obligations and data subject rights management including right to access, rectification, erasure, restriction, portability and objection, including rights related to automated decision-making",
+  "inputs": ["data subject requests", "personal data inventory", "processing records", "automated decision systems", "retention data"],
+  "outputs": ["privacy notices", "data subject request responses", "automated decision explanations", "erasure records", "portability exports"],
+  "kpis": ["request response time", "rights fulfillment rate", "transparency score", "automated decision explainability"],
+  "related_processes": ["GDPR-ART5", "GDPR-ART30", "EUAIA-ART13", "SCOR-DIG10"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR Art.13-14 information", "GDPR Art.15-22 rights", "GDPR Art.22 automated decisions"],
+  "automation_potential": 0.70,
+  "source": "GDPR (EU) 2016/679",
+  "confidence": 0.97
+}

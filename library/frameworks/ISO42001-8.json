@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-8",
+  "name": "AI Operation — System Lifecycle and Controls",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "8",
+  "level": "L1",
+  "description": "Operational control of AI systems throughout their lifecycle including development controls, validation, deployment controls, human oversight mechanisms, incident management and supply chain AI controls",
+  "inputs": ["AI system designs", "validation protocols", "deployment plans", "human oversight rules", "supplier AI assessments"],
+  "outputs": ["validated AI systems", "deployment records", "human oversight logs", "incident reports", "supplier AI assessments"],
+  "kpis": ["AI validation pass rate", "human oversight compliance", "AI incident rate", "deployment success rate"],
+  "related_processes": ["ISO42001-7", "ISO42001-9", "SCOR-DIG3", "SCOR-DIG4", "SCOR-DIG10"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 8", "EU AI Act Art.9-14 operations", "NIST AI RMF Manage", "GxP computer validation if pharma"],
+  "automation_potential": 0.75,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

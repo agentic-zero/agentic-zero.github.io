@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_140930_800378",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D3.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:09:30.800396",
+  "status": "completed",
+  "started_at": "2026-06-08T16:24:32.828768",
+  "completed_at": "2026-06-08T16:27:31.746242",
+  "error": null,
+  "result": {
+    "agent_name": "eto_resource_reservation_scheduler",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

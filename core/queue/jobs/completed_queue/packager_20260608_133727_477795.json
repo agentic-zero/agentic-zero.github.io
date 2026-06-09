@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_133727_477795",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T13:37:27.477811",
+  "status": "completed",
+  "started_at": "2026-06-08T15:57:33.082209",
+  "completed_at": "2026-06-08T16:00:34.344655",
+  "error": null,
+  "result": {
+    "agent_name": "mto_pick_execution_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

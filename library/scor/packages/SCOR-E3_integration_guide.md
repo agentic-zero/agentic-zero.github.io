@@ -1,4 +1,4 @@
-# Integration Guide — supply_chain_data_orchestrator
+# Integration Guide — supply_chain_data_governance_agent
 **Process:** Manage Supply Chain Data and Information
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp supply_chain_data_orchestrator.py ./agents/
+cp supply_chain_data_governance_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.supply_chain_data_orchestrator import SupplyChainDataOrchestratorAgent
+from agents.supply_chain_data_governance_agent import SupplyChainDataGovernanceAgentAgent
 
-agent = SupplyChainDataOrchestratorAgent()
+agent = SupplyChainDataGovernanceAgentAgent()
 result = agent.execute({
     "master_data": your_master_data_data,
     "transactional_data": your_transactional_data_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- data_validation_engine
-- erp_integration_api
-- gdpr_compliance_tool
-- reporting_dashboard
+- validation_engine
+- monitoring_api
+- erp_mdm_connector
+- remediation_workflow_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing source data after 24h steward review window
-- Integration downtime >4h after failover attempt
-- Persistent data_quality_score <0.95 after cleansing
+- data_quality_score < 0.95 after remediation attempt
+- system_integration_uptime < 99.5%
+- missing source data requiring steward review

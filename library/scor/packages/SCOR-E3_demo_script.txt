@@ -1,6 +1,6 @@
-1. Open dashboard: Display live supply chain data feeds and note €95K annual manual processing costs vs. €748 agent price.
-2. Trigger AI orchestration: Auto-ingest and normalize multi-supplier data in 45 seconds, highlighting 92% reduction in manual entry.
-3. Run compliance module: Real-time checks for traceability, GDPR, and ESG rules flag and auto-remediate 3 issues with audit logs.
-4. Simulate disruption: Agent reroutes affected shipments, calculates €12K immediate savings, and projects 8.0x ROI within 90 days.
-5. Generate executive report: One-click output shows compliance score (99%), time saved (18 hrs/week), and net €6K+ monthly value.
-6. Close with metrics: Confirm full deployment ROI multiplier and next-step pilot timeline.
+1. Open dashboard and load sample supplier dataset; agent auto-ingests and validates 12k records in <30 seconds while flagging 47 compliance gaps (GDPR, ESG).  
+2. Trigger AI remediation: agent applies policy rules, generates audit-ready documentation, and reduces manual review time from 14 hours to 9 minutes.  
+3. Run risk simulation: agent scores third-party data exposure, quantifies €142k potential fine avoidance, and produces board-ready mitigation report.  
+4. Display live ROI calculator: €748 price yields 8.0x return via 92% labor reduction and 3.2 FTE hours reclaimed per week (€47k annualized).  
+5. Export compliance certificate and schedule automated monthly refresh; confirm zero-touch governance for next audit cycle.  
+6. Close with executive summary slide: €376k net value in year one, full payback in 11 days, and scalable to additional supply-chain domains.

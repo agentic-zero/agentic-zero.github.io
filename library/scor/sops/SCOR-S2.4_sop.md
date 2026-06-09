@@ -1,14 +1,14 @@
 # SOP — Transfer Product (MTO)
 **Process ID:** SCOR-S2.4
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of transferring verified MTO materials to production staging areas or work-in-progress inventory with full traceability and system updates
 
 ## Triggers
-- Receipt of verification_approval with status approved
-- ProductionOrder status changed to released with staging_location assigned
+- Receipt of VerificationApproval with status approved
+- ProductionOrder status changed to released
 
 ## Inputs Required
 - verification approval
@@ -19,7 +19,7 @@ Process of transferring verified MTO materials to production staging areas or wo
 
 ## Process Steps
 1. IF verification_approval.status == 'approved' AND production_order.status == 'released' THEN initiate transfer
-2. IF material.quantity_verified == production_order.quantity THEN proceed to staging ELSE flag discrepancy
+2. IF staging_location.capacity >= material.quantity THEN assign location ELSE queue transfer
 
 ## Expected Outputs
 - materials in production staging
@@ -28,18 +28,19 @@ Process of transferring verified MTO materials to production staging areas or wo
 - production readiness confirmation
 
 ## Business Rules
-- Transfer must record chain_of_custody with timestamp and operator_id
-- WIP_inventory.accuracy must be updated within 5 minutes of physical move
-- Full traceability required: lot_id and serial_numbers must be logged
+- rule1: Maintain full chain-of-custody traceability for every Material transfer
+- rule2: Update WIPInventoryData and create InventoryTransferRecord within 5 minutes of physical move
+- rule3: Require GxP signature if sector == 'pharma'
 
 ## Exception Handling
-- IF transfer_equipment unavailable THEN queue request and alert logistics with SLA timer
-- IF quantity mismatch > 0 THEN halt transfer, create audit record, and notify quality
+- Material quantity mismatch: flag discrepancy, hold transfer, and trigger manual audit before proceeding
+- StagingLocation unavailable: reroute to alternate location and update ProductionOrder
 
 ## Success Criteria
-- Materials physically at staging_location
-- InventoryTransferRecord created with 100% quantity match
-- WIPInventory updated and ProductionReadinessConfirmation emitted
+- Material physically located in StagingLocation
+- InventoryTransferRecord created with 100% traceability
+- WIPInventoryData accuracy == 100%
+- ProductionReadinessConfirmation emitted
 
 ## Compliance Requirements
 - GxP material transfer if pharma

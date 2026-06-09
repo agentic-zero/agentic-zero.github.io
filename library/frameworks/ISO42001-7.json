@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-7",
+  "name": "AI Support — Resources, Competence and Data Governance",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "7",
+  "level": "L1",
+  "description": "Management of AI-specific resources including computational infrastructure, training data governance, AI competence development, awareness programs and AI system documentation",
+  "inputs": ["AI infrastructure inventory", "training data catalog", "competence requirements", "documentation standards", "communication needs"],
+  "outputs": ["AI resource plan", "data governance framework", "AI competence matrix", "AI system documentation", "awareness training records"],
+  "kpis": ["AI competence coverage", "data quality score", "documentation completeness", "training completion rate"],
+  "related_processes": ["ISO42001-6", "ISO42001-8", "SCOR-E3", "SCOR-DIG3", "SCOR-E4"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 7", "EU AI Act Art.10 data governance", "GDPR training data", "EU AI Act Art.4 literacy"],
+  "automation_potential": 0.65,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

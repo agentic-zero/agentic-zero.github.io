@@ -1,0 +1,18 @@
+{
+  "process_id": "IATF16949-8D",
+  "name": "8D Problem Solving",
+  "framework": "IATF 16949:2016",
+  "domain": "IATF 16949",
+  "clause": "8D",
+  "level": "L1",
+  "description": "8 Disciplines problem solving methodology for automotive quality issues from team formation through root cause identification, corrective actions, verification and prevention of recurrence",
+  "inputs": ["customer complaint", "defect data", "process data", "product samples", "historical incidents"],
+  "outputs": ["8D report", "containment actions", "root cause analysis", "corrective actions", "preventive actions", "lessons learned"],
+  "kpis": ["8D cycle time", "root cause identification rate", "corrective action effectiveness", "recurrence rate"],
+  "related_processes": ["IATF16949-APQP", "ISO9001-10", "BPMN-QMS-001", "SCOR-E8"],
+  "sector_applicability": ["automotive", "automotive suppliers", "manufacturing"],
+  "compliance_flags": ["IATF 16949:2016", "customer 8D requirements", "VDA problem solving", "AIAG CQI standards"],
+  "automation_potential": 0.55,
+  "source": "IATF 16949:2016 + Ford 8D Methodology",
+  "confidence": 0.94
+}

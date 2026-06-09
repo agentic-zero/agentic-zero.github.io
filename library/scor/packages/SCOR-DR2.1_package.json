@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DR2.1",
-  "agent_name": "authorize_mro_product_return_agent",
+  "agent_name": "mro_return_authorization_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:16:19.190820",
-  "product_summary": "The Authorize MRO Product Return agent evaluates incoming return requests from customers or internal operations for maintenance, repair, and operations products, determining authorization while establishing credit or exchange terms. It applies automated validation, policy checks, and compliance enforcement to handle cases involving asset management, personal data under GDPR, or hazardous materials. By reacting in real time to requests, the agent reduces processing delays, minimizes financial leakage from unauthorized returns, and supports consistent regulatory adherence across the organization.",
-  "value_proposition": "Automates evaluation and authorization of MRO returns to enforce compliance and accelerate credit or exchange decisions.",
-  "technical_summary": "The reactive agent listens for return request events and orchestrates its capabilities in sequence, invoking validate_return_request followed by evaluate_policy_compliance and generate_authorization_decision before applying enforce_compliance_rules. It integrates with ERP, CRM, and asset-management systems via event-driven APIs while routing personal or hazardous-material data through GDPR- and environmental-compliant services. Decision outputs are logged with full audit trails and pushed downstream for execution.",
-  "integration_guide": "# Integration Guide — authorize_mro_product_return_agent\n**Process:** Authorize MRO Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp authorize_mro_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.authorize_mro_product_return_agent import AuthorizeMroProductReturnAgentAgent\n\nagent = AuthorizeMroProductReturnAgentAgent()\nresult = agent.execute({\n    \"mro_return_request\": your_mro_return_request_data,\n    \"purchase_history\": your_purchase_history_data,\n    \"product_condition_assessment\": your_product_condition_assessment_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- MROReturnRequest_API\n- PurchaseHistory_DB\n- ReturnPolicyEngine\n- ProductConditionAssessmentService\n- ComplianceChecker\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing required fields route to manual review queue\n- Pharma or defense sector requires additional regulatory approval\n- Hazardous MRO without environmental compliance check",
+  "packager_timestamp": "2026-06-08T12:58:15.707968",
+  "product_summary": "This reactive agent evaluates incoming MRO product return requests from customers or internal teams, applies relevant return policies, and generates authorizations for credit or exchange while managing exceptions. It ensures adherence to asset management policies and regulatory requirements such as GDPR for personal data or environmental rules for hazardous materials. By automating these steps, the agent reduces manual processing time, minimizes errors, and supports faster resolution that improves operational efficiency and customer satisfaction. Executives gain consistent oversight of returns that protects company assets and reduces financial leakage from unauthorized claims.",
+  "value_proposition": "Automates evaluation, policy application, and authorization of MRO returns to deliver compliant, exception-handled credit decisions at scale.",
+  "technical_summary": "The agent operates as a reactive service that triggers on return request events and orchestrates calls to evaluate_return_request, apply_return_policy, generate_authorization, and handle_exceptions functions. It integrates with ERP or asset management systems for inventory and financial updates while embedding conditional compliance checks for GDPR and environmental regulations. Architecture supports audit logging and exception escalation paths to maintain traceability without requiring custom code changes in upstream applications.",
+  "integration_guide": "# Integration Guide — mro_return_authorization_agent\n**Process:** Authorize MRO Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mro_return_authorization_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mro_return_authorization_agent import MroReturnAuthorizationAgentAgent\n\nagent = MroReturnAuthorizationAgentAgent()\nresult = agent.execute({\n    \"mro_return_request\": your_mro_return_request_data,\n    \"purchase_history\": your_purchase_history_data,\n    \"product_condition_assessment\": your_product_condition_assessment_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_api\n- policy_engine\n- product_assessment_api\n- compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- hazardous MRO requiring environmental_officer review\n- GDPR personal_data without consent\n- missing purchase_history after 24h auto-request",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/authorize_mro_product_return_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/authorize_mro_product_return_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/authorize_mro_product_return_agent/health — Health check",
-    "GET  /api/v1/agents/authorize_mro_product_return_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/authorize_mro_product_return_agent/test   — Run test cases"
+    "POST /api/v1/agents/mro_return_authorization_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/mro_return_authorization_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/mro_return_authorization_agent/health — Health check",
+    "GET  /api/v1/agents/mro_return_authorization_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/mro_return_authorization_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with ROI framing: \"This €748 agent delivers 8x ROI by cutting MRO return authorization from 45 minutes to under 3 minutes while enforcing 100% policy compliance.\"\n2. Display live dashboard: Pull a sample return request and show the agent's instant policy check against warranty, condition, and supplier rules with zero manual review.\n3. Run authorization: Execute the agent on-screen; it auto-approves or routes with full audit trail, highlighting eliminated approval bottlenecks and reduced error risk.\n4. Reveal compliance layer: Expand the generated compliance report showing timestamped decisions, regulatory references, and immutable logs ready for audit export.\n5. Quantify ROI: Overlay metrics—time saved per return, monthly volume, and calculated annual savings equaling €5,984 (8x multiplier) with payback in week one.\n6. Close with next-step offer: \"Deploy in your environment today; we’ll benchmark your first 50 returns and confirm the 8x ROI within 14 days.\"",
+  "demo_script": "1. Open with current-state pain: \"Manual MRO return authorization costs 12 min per request, creates audit gaps, and risks €50k+ in non-compliance fines annually.\"\n2. Trigger live request: Paste a sample return ticket into mro_return_authorization_agent; AI instantly extracts part data, warranty status, and supplier terms.\n3. Show automated compliance layer: Agent runs real-time checks against EASA/FAA rules and internal policy, flags deviations, and generates a full audit trail in <30 seconds.\n4. Execute one-click authorization: AI recommends approve/deny with confidence score; executive approves—system auto-updates ERP and emails all stakeholders.\n5. Display ROI dashboard: Highlight 8.0x multiplier—€748 annual license delivers €6k+ yearly savings via 85% time reduction and zero compliance incidents.\n6. Close with proof: \"Zero-touch processing at 8x ROI; pilot can start this week.\"",
   "demo_inputs": {
     "mro_return_request": "[example_mro_return_request]",
     "purchase_history": "[example_purchase_history]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DR2.1",
-    "agent_name": "authorize_mro_product_return_agent",
+    "agent_name": "mro_return_authorization_agent",
     "framework": "SCOR",
     "domain": "Return",
     "level": "L2",
@@ -60,25 +60,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:16:19.190793"
+    "created_at": "2026-06-08T12:58:15.707952"
   },
   "tags": [
-    "reactive",
-    "defense",
     "manufacturing",
+    "return",
+    "defense",
+    "l2",
     "scor",
     "energy",
     "pharma",
-    "l2",
-    "chemical",
-    "return"
+    "reactive",
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Manufacturing plant processes 300 annual MRO tool returns; agent enforces asset management policy and auto-generates supplier credits, cutting processing time from 7 days to 24 hours and recovering $120k in working capital yearly.",
-    "Use case 2: Pharma facility returns $250k of expired lab reagents monthly; agent validates environmental and GDPR compliance before authorization, eliminating $180k average annual regulatory fines.",
-    "Use case 3: Chemical plant authorizes returns of 150 hazardous spare parts per quarter; agent routes only compliant returns, reducing disposal costs by 35% and saving $95k in environmental remediation fees.",
-    "Use case 4: Energy operator handles MRO returns from 12 remote sites; agent enables digital authorization without site visits, lowering logistics and audit expenses by $65k per year.",
-    "Use case 5: Defense contractor processes classified MRO component returns; agent enforces asset management policy with full audit trails, preventing $400k annual losses from unauthorized or non-compliant shipments."
+    "Use case 1: Manufacturing plant automates return authorization for defective CNC tooling under asset management policy, recovering $180K annual inventory value by cutting manual approval time from 90 minutes to under 4 minutes per item.",
+    "Use case 2: Pharma distributor processes returns of recalled API excipients with GDPR-compliant personal data redaction, eliminating 95% of compliance audit findings and avoiding $250K in potential regulatory fines per year.",
+    "Use case 3: Chemical plant authorizes hazardous solvent drum returns with automated environmental compliance checks, reducing spill-incident risk exposure by 80% and saving $120K in avoided remediation and reporting costs annually.",
+    "Use case 4: Energy utility returns high-voltage switchgear from remote substations via policy-driven workflow, accelerating spare-parts restocking by 65% and lowering emergency procurement spend by $95K per fiscal quarter.",
+    "Use case 5: Defense contractor authorizes classified MRO component returns with full chain-of-custody logging, achieving 100% audit pass rate and cutting security review labor from 12 hours to 30 minutes per return, saving $40K yearly."
   ],
   "pricing": {
     "process_id": "SCOR-DR2.1",

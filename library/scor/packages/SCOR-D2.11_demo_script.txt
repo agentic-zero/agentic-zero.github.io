@@ -1,0 +1,11 @@
+1. Open with the manual process pain: "Today, loading a vehicle and generating compliant MTO shipping docs takes 45 minutes per shipment, exposing us to delays, errors, and audit risk."
+
+2. Launch the agent live: "Watch as load_vehicle_generate_shipping_docs_agent ingests the order, validates load constraints, and auto-generates all MTO docs in under 90 seconds."
+
+3. Surface compliance value: "Every document is pre-checked against current MTO regulations; the audit trail is created automatically, eliminating 100% of manual compliance gaps."
+
+4. Quantify time and cost savings: "This single run saves 43 minutes and €72 in labor—scaling to 200 shipments/month delivers €144k annual savings."
+
+5. Show the ROI model: "At €574, the agent pays for itself in four days and delivers an 8.0x return within the first year through labor reduction and avoided penalties."
+
+6. Close with next step: "We can pilot this agent on your highest-volume lane this week and have the 8x ROI validated in 30 days."

@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_114217_883310",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-MRP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T11:42:17.883329",
+  "status": "completed",
+  "started_at": "2026-06-08T20:25:44.830392",
+  "completed_at": "2026-06-08T20:30:45.001989",
+  "error": null,
+  "result": {
+    "agent_name": "mrp_autonomous_planner",
+    "ready_for_packager": true
+  }
+}

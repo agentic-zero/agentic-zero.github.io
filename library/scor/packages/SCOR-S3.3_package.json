@@ -2,11 +2,11 @@
   "process_id": "SCOR-S3.3",
   "agent_name": "eto_product_verification_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:43:18.504116",
-  "product_summary": "The Verify Engineer-to-Order Product agent performs end-to-end validation of custom-engineered components by cross-checking dimensional measurements, material properties, and functional performance against drawings, specifications, and contracts. It supports hybrid execution that combines automated inspection tools with human oversight to generate non-conformance reports and execute acceptance decisions. Executives gain faster release cycles, reduced scrap and rework costs, and documented compliance with standards such as AS9100 and defense acquisition requirements. The agent also flags GDPR considerations when personal data appears in test records, lowering regulatory and quality risk across aerospace and defense programs.",
-  "value_proposition": "Automates dimensional inspection, material validation, and acceptance decisions for custom parts while producing audit-ready compliance documentation.",
-  "technical_summary": "The hybrid agent orchestrates specialized capabilities for dimensional verification, material test validation, non-conformance reporting, and acceptance execution through APIs that connect to CMMs, spectrometers, and ERP or PLM systems. It embeds rule engines aligned with AS9100 first-article and NADCAP requirements, with optional human-in-the-loop checkpoints for edge cases. Integration occurs via secure event-driven workflows that log every measurement and decision for traceability and downstream analytics.",
-  "integration_guide": "# Integration Guide — eto_product_verification_agent\n**Process:** Verify Engineer-to-Order Product\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_product_verification_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_product_verification_agent import EtoProductVerificationAgentAgent\n\nagent = EtoProductVerificationAgentAgent()\nresult = agent.execute({\n    \"eto_components\": your_eto_components_data,\n    \"engineering_drawings\": your_engineering_drawings_data,\n    \"specifications\": your_specifications_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_integration\n- PLM_drawing_access\n- CMM_data_interface\n- lab_system_API\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing engineering drawings: request from engineering within 4 hours\n- NADCAP test failure: escalate to quality manager and pause lot\n- NCR rate exceeds 5 percent",
+  "packager_timestamp": "2026-06-08T17:19:31.655141",
+  "product_summary": "This agent automates the verification of custom-engineered parts in engineer-to-order processes by performing first article inspections, material testing, and functional validations against engineering drawings and specifications. It ensures compliance with standards such as AS9100 and defense acquisition requirements while generating detailed reports and managing non-conformances. By streamlining these critical quality assurance steps, it reduces time-to-market, minimizes costly rework, and enhances product reliability for manufacturers in aerospace and defense sectors.",
+  "value_proposition": "Automates first article inspection and compliance validation for custom-engineered parts to eliminate manual errors and accelerate contractual acceptance.",
+  "technical_summary": "The hybrid agent architecture combines AI-driven analysis for dimensional inspections and material testing with human-in-the-loop oversight for complex validations. It integrates with CAD systems, ERP platforms, and testing equipment via APIs to perform capabilities such as first article inspection per AS9100 and non-conformance handling. Compliance modules ensure adherence to defense acquisition and NADCAP standards while maintaining GDPR for any personal data involved.",
+  "integration_guide": "# Integration Guide — eto_product_verification_agent\n**Process:** Verify Engineer-to-Order Product\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_product_verification_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_product_verification_agent import EtoProductVerificationAgentAgent\n\nagent = EtoProductVerificationAgentAgent()\nresult = agent.execute({\n    \"eto_components\": your_eto_components_data,\n    \"engineering_drawings\": your_engineering_drawings_data,\n    \"specifications\": your_specifications_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CMM_data_reader\n- material_cert_validator\n- test_procedure_executor\n- GDPR_redaction_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing material_cert\n- non_conformance_rate exceeds threshold\n- personal_data handling required",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/eto_product_verification_agent/spec   — Get agent specification",
     "POST /api/v1/agents/eto_product_verification_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with ETO pain points: manual verification delays (avg. 14 days) and compliance gaps costing €250k+ annually in rework/penalties.  \n2. Launch eto_product_verification_agent on a live sample order; show AI parsing specs, drawings, and regulations in <90 seconds.  \n3. Run automated compliance checks against ISO/IEC and customer requirements, flagging deviations with audit-ready logs.  \n4. Display side-by-side results: 92% faster verification vs. manual process, zero missed compliance items.  \n5. Calculate live ROI: €748 price yields 8.0x return via €6k+ per-order savings and 3-week cycle-time reduction.  \n6. Summarize integration path and compliance certification output for immediate executive sign-off.",
+  "demo_script": "1. Open with the compliance gap: Manual ETO verification creates audit failures and €50k+ annual rework risk; position the €748 agent as the automated control layer.  \n2. Load a live complex order; run eto_product_verification_agent to auto-check specs, regulations, and supplier data in <60 seconds.  \n3. Display the instant compliance report with flagged deviations and traceable audit trail, eliminating manual sign-off delays.  \n4. Reveal ROI dashboard: 8.0x multiplier shown via 12 hours saved per order, equating to €6k+ annual value per engineer.  \n5. Simulate one-click escalation to ERP, proving zero-disruption integration and sustained compliance posture.  \n6. Close with procurement summary: €748 investment, 8.0x ROI, 10-minute deployment, ready for pilot approval.",
   "demo_inputs": {
     "eto_components": "[example_eto_components]",
     "engineering_drawings": "[example_engineering_drawings]",
@@ -60,24 +60,24 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:43:18.504095"
+    "created_at": "2026-06-08T17:19:31.655124"
   },
   "tags": [
-    "hybrid",
-    "source",
-    "aerospace",
     "defense",
-    "scor",
-    "energy",
+    "hybrid",
     "l2",
-    "industrial equipment"
+    "aerospace",
+    "source",
+    "energy",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Aerospace supplier deploys agent to verify ETO avionics enclosures against AS9100 first article inspection, cutting inspection cycle from 36 hours to 6 hours and reducing late-delivery penalties by $1.2M annually",
-    "Use case 2: Defense prime contractor uses agent for ETO radar subsystem compliance checks under defense acquisition regulations, lowering audit failure rate from 22% to 3% and avoiding $2.8M in rework and delay costs per program",
-    "Use case 3: Energy equipment OEM applies agent to validate custom pressure vessels for NADCAP welding requirements, decreasing non-conformance reports by 65% and saving $850K yearly in scrap and re-inspection",
-    "Use case 4: Industrial equipment manufacturer in defense-adjacent sector automates ETO hydraulic actuator verification for AS9100 and GDPR data-handling clauses, shortening compliance documentation time by 70% and enabling 15% more bids won per quarter",
-    "Use case 5: Aerospace tier-1 uses agent to cross-check ETO landing-gear components against full NADCAP and AS9100 traceability, reducing first-article rejection rate from 18% to 4% and accelerating customer acceptance by 12 days on average"
+    "Use case 1: Aerospace OEM deploys the agent to automate AS9100 first article inspection on ETO avionics housings, cutting inspection cycle time from 5 days to 2 days and accelerating customer delivery by 3 weeks per unit.",
+    "Use case 2: Defense prime contractor uses the agent to validate ETO missile guidance assemblies against DFARS and defense acquisition regulations, reducing audit non-conformances by 80% and avoiding $1.2M in annual rework and penalty costs.",
+    "Use case 3: Energy equipment supplier runs the agent on custom subsea valve ETO orders to confirm material traceability and pressure-test records, lowering scrap and re-test costs by 35% ($450K/year) while shortening FAT approval from 14 days to 6 days.",
+    "Use case 4: NADCAP-certified aerospace machine shop applies the agent to verify special-process ETO turbine blades, achieving 100% first-pass process compliance and reducing customer source-inspection visits by 60%, saving $180K in travel and delay costs annually.",
+    "Use case 5: Industrial equipment manufacturer uses the agent to cross-check ETO custom gearboxes against customer specs and AS9100-equivalent requirements, cutting engineering change orders by 70% and reducing order-to-shipment lead time from 16 weeks to 11 weeks."
   ],
   "pricing": {
     "process_id": "SCOR-S3.3",

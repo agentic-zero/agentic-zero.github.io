@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- capacity_management_api
-- inventory_system
-- routing_engine
-- logistics_scheduler
+- production_scheduler_api
+- inventory_database
+- erp_routing_module
+- 3pl_api
+- order_management_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- material shortage escalate to SCOR-S2.1
-- capacity conflict with SCOR-M2.1 prioritize by commitment_reliability
-- input validation failure or overcommitment risk
+- escalate to human on commitment_reliability<0.9 or cycle_time>4h after automated retries
+- human review required for contractual delivery overrides

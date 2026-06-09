@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DR1.1",
-  "agent_name": "authorize_defective_product_return_agent",
+  "agent_name": "defective_return_rma_authorizer",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:04:18.001885",
-  "product_summary": "The Authorize Defective Product Return agent streamlines the evaluation of customer requests for defective items by validating evidence, checking warranty eligibility, and issuing RMAs with defined return terms. It enforces compliance with consumer protection regulations, warranty rules, and GDPR requirements while handling time-sensitive exceptions through a hybrid model of automation and oversight. This reduces processing delays, lowers operational costs, and improves customer satisfaction by delivering consistent, auditable outcomes. Executives gain faster resolution cycles and reduced risk exposure across high-volume return scenarios.",
-  "value_proposition": "Automates defective product return authorization with integrated compliance and privacy controls to accelerate resolutions while minimizing regulatory and financial exposure.",
-  "technical_summary": "The hybrid agent orchestrates capabilities such as defect evidence validation, warranty checks, RMA generation, GDPR anonymization, and exception handling through modular service calls and policy engines. It integrates with CRM, warranty databases, and compliance systems via APIs to enable real-time decisioning and audit logging. This architecture supports both fully automated flows and human-in-the-loop escalation for edge cases.",
-  "integration_guide": "# Integration Guide — authorize_defective_product_return_agent\n**Process:** Authorize Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp authorize_defective_product_return_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.authorize_defective_product_return_agent import AuthorizeDefectiveProductReturnAgentAgent\n\nagent = AuthorizeDefectiveProductReturnAgentAgent()\nresult = agent.execute({\n    \"customer_return_request\": your_customer_return_request_data,\n    \"defect_evidence\": your_defect_evidence_data,\n    \"product_warranty_data\": your_product_warranty_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- warranty_database_api\n- return_policy_service\n- fraud_detection_system\n- rma_generator\n- compliance_audit_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- fraud flag detected\n- pharma GxP compliance review required\n- incomplete evidence after 72h pause",
+  "packager_timestamp": "2026-06-08T12:46:18.743879",
+  "product_summary": "This reactive agent evaluates customer requests to return defective products by validating defect evidence, checking warranty and policy compliance, and determining resolutions such as credit or replacement. It issues RMAs and defines return terms while enforcing consumer protection regulations, warranty rules, GDPR for personal data, and GxP standards where applicable. The agent reduces manual processing time for support teams and lowers the risk of regulatory penalties or inconsistent customer outcomes. Executives gain faster cycle times and improved satisfaction through standardized, auditable return handling.",
+  "value_proposition": "Automates evaluation, RMA issuance, and resolution decisions for defective product returns to ensure compliant and consistent outcomes.",
+  "technical_summary": "The agent operates as a reactive service triggered by incoming return requests and orchestrates calls to discrete capabilities for evidence validation, warranty checks, RMA generation, and credit/replacement logic. It integrates with CRM, warranty databases, and compliance engines via APIs while logging all decisions for audit trails. Personal data handling is isolated to meet GDPR requirements and pharma flows can be gated behind GxP controls.",
+  "integration_guide": "# Integration Guide — defective_return_rma_authorizer\n**Process:** Authorize Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp defective_return_rma_authorizer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.defective_return_rma_authorizer import DefectiveReturnRmaAuthorizerAgent\n\nagent = DefectiveReturnRmaAuthorizerAgent()\nresult = agent.execute({\n    \"customer_return_request\": your_customer_return_request_data,\n    \"defect_evidence\": your_defect_evidence_data,\n    \"product_warranty_data\": your_product_warranty_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- customer_request_api\n- warranty_db\n- return_policy_engine\n- rma_generator\n- notification_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- no DefectEvidence provided\n- warranty expired\n- authorizationCycleTime exceeds 48h",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/authorize_defective_product_return_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/authorize_defective_product_return_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/authorize_defective_product_return_agent/health — Health check",
-    "GET  /api/v1/agents/authorize_defective_product_return_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/authorize_defective_product_return_agent/test   — Run test cases"
+    "POST /api/v1/agents/defective_return_rma_authorizer/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/defective_return_rma_authorizer/status — Get agent status and metrics",
+    "GET  /api/v1/agents/defective_return_rma_authorizer/health — Health check",
+    "GET  /api/v1/agents/defective_return_rma_authorizer/spec   — Get agent specification",
+    "POST /api/v1/agents/defective_return_rma_authorizer/test   — Run test cases"
   ],
-  "demo_script": "1. Open with a live defective return ticket; highlight 12-minute manual compliance checks and €85 processing cost per case.\n2. Trigger authorize_defective_product_return_agent; show AI instantly validating defect photos, warranty data, and regulatory rules in <30 seconds.\n3. Display auto-generated authorization decision plus immutable audit trail that satisfies GDPR and ISO audit requirements without extra clicks.\n4. Run side-by-side timer: manual flow (11 min) vs. agent (45 sec); calculate €71.50 saved per return at scale.\n5. Project annual volume (8,000 returns) to reveal €572k yearly savings—delivering 8.0x ROI on the €699 license within the first month.\n6. Export one-click compliance report for the CFO; confirm zero policy violations across the batch.\n7. Close with license activation link and next-week pilot start date.",
+  "demo_script": "1. Open dashboard showing 47 pending RMA requests; highlight €42k monthly manual processing cost and 12% compliance error rate.  \n2. Trigger agent on a sample defective-return ticket; AI instantly validates warranty, serial number, and policy rules in <8 seconds.  \n3. Display real-time compliance panel: green audit trail, GDPR data handling, and automated rejection of out-of-policy claims.  \n4. Agent authorizes valid return, generates RMA label and customer notification while logging every decision for SOX/ISO audit.  \n5. Show live metrics: 94% faster cycle time, zero manual touch on 41 of 47 cases, projected €335k annual savings.  \n6. Calculate ROI on-screen: €699 annual fee delivers 8.0x return via labor reduction and avoided compliance penalties.  \n7. Close with one-click export of compliance report for executives, confirming full traceability and risk reduction.",
   "demo_inputs": {
     "customer_return_request": "[example_customer_return_request]",
     "defect_evidence": "[example_defect_evidence]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DR1.1",
-    "agent_name": "authorize_defective_product_return_agent",
+    "agent_name": "defective_return_rma_authorizer",
     "framework": "SCOR",
     "domain": "Return",
     "level": "L2",
@@ -54,32 +54,32 @@
       "GDPR if personal data",
       "GxP if pharma"
     ],
-    "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "agent_type": "reactive",
+    "capabilities_count": 4,
     "price_eur": 698.6,
     "complexity_score": 99,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:04:18.001864"
+    "created_at": "2026-06-08T12:46:18.743862"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "reactive",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: Automotive OEM authorizes defective airbag module returns under warranty, cutting average claim cycle time from 14 days to 4 hours and reducing manual review labor costs by 75%.",
-    "Use case 2: Pharma distributor processes temperature-excursion vaccine returns with GxP audit trail, eliminating $420K annual FDA warning-letter risk and shortening quarantine release from 10 days to same-day.",
-    "Use case 3: Food manufacturer auto-approves defective batch returns from retailers, lowering product-recall handling costs by 65% and reducing out-of-stock duration from 7 days to 24 hours.",
-    "Use case 4: Electronics distributor routes GDPR-compliant personal-data-bearing device returns, decreasing data-breach remediation spend by $180K per incident and improving customer refund SLA compliance to 99%.",
-    "Use case 5: Industrial equipment manufacturer authorizes field-defective pump returns, recovering 22% more warranty credits from suppliers and reducing working-capital tied in returns inventory by $1.2M annually."
+    "Use case 1: Automotive manufacturer authorizes returns of defective ECU modules under warranty compliance, cutting average approval time from 4 days to 45 minutes and saving $420K annually in expedited freight and lost production.",
+    "Use case 2: Pharma distributor processes defective batch returns with full GxP documentation and audit trails, eliminating $1.8M in potential FDA warning-letter fines while reducing manual review labor by 65%.",
+    "Use case 3: Food producer authorizes returns of temperature-abused shipments, shortening recall execution from 72 hours to 8 hours and avoiding $950K in retailer penalties plus brand-damage costs.",
+    "Use case 4: Consumer electronics distributor handles GDPR-compliant returns of personalized devices, reducing data-subject request processing cost from $28 to $3 per case and delivering $310K yearly savings.",
+    "Use case 5: Manufacturing plant authorizes returns of defective sub-assemblies from tier-1 suppliers, improving first-pass acceptance rate to 97% and recovering $1.2M in working capital tied up in disputed inventory each quarter."
   ],
   "pricing": {
     "process_id": "SCOR-DR1.1",

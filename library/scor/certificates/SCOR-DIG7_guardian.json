@@ -1,11 +1,11 @@
 {
   "process_id": "SCOR-DIG7",
-  "guardian_timestamp": "2026-06-08T01:18:20.234231",
+  "guardian_timestamp": "2026-06-08T14:52:16.060954",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-DIG7-20260608",
     "process_id": "SCOR-DIG7",
-    "agent_name": "blockchain_traceability_manager",
-    "issued_at": "2026-06-08T01:18:20.234186",
+    "agent_name": "blockchain_traceability_orchestrator",
+    "issued_at": "2026-06-08T14:52:16.060894",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
@@ -91,7 +91,7 @@
       "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
       "Overall score 84% meets threshold — approved with GDPR remediation plan required"
     ],
-    "audited_at": "2026-06-08T09:30:30.712523",
+    "audited_at": "2026-06-08T17:21:11.797519",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

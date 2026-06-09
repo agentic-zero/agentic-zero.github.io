@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_155230_477562",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.3"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T15:52:30.477575",
+  "status": "completed",
+  "started_at": "2026-06-08T17:58:30.799208",
+  "completed_at": "2026-06-08T18:01:33.496679",
+  "error": null,
+  "result": {
+    "agent_name": "mto_resource_reservation_agent",
+    "price_eur": 623.75,
+    "ready_for_guardian": true
+  }
+}

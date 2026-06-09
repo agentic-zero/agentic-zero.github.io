@@ -1,14 +1,14 @@
 # SOP — Select Carriers and Rate Shipments (MTO)
 **Process ID:** SCOR-D2.7
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of selecting carriers and rating MTO shipments based on service requirements, cost optimization and carrier performance
 
 ## Triggers
-- routing_plan received from SCOR-D2.6
-- MTO order confirmation with shipment details
+- new RoutingPlan received from SCOR-D2.6
+- updated CarrierPerformanceData available
 
 ## Inputs Required
 - routing plans
@@ -18,9 +18,8 @@ Process of selecting carriers and rating MTO shipments based on service requirem
 - budget constraints
 
 ## Process Steps
-1. IF carrier_cost <= budget_constraint AND carrier_score >= 0.85 THEN select_carrier
-2. IF multiple_carriers_match THEN choose_lowest_cost_carrier
-3. IF carrier_compliance_flag == false THEN reject_carrier
+1. IF carrier_performance_score >= 0.85 AND freight_cost_per_unit <= budget_constraint THEN create CarrierSelection
+2. IF multiple carriers meet criteria THEN rank by carrier_selection_accuracy KPI and select top 2
 
 ## Expected Outputs
 - carrier selections
@@ -29,18 +28,17 @@ Process of selecting carriers and rating MTO shipments based on service requirem
 - freight cost records
 
 ## Business Rules
-- carrier_selection must verify trade_compliance before rating
-- freight_cost_record must include GDPR_shipment_data consent flag
-- rate_accuracy must be validated against carrier_rate_card within 2% tolerance
+- carrier_selection must satisfy carrier_compliance_requirements before RatedShipment creation
+- rate_accuracy must be validated against carrier_rate_cards within 2% tolerance
+- GDPR_shipment_data must be anonymized in all FreightCostRecord outputs
 
 ## Exception Handling
-- no_carrier_meets_requirements: escalate to manual review and log exception in carrier_performance_scorecard
-- rate_card_expired: trigger refresh from carrier and pause shipment rating
+- IF no carrier meets budget_constraint THEN flag for manual review and log exception in CarrierPerformanceScorecard
+- IF customs_broker_regulations violated THEN halt process and trigger SCOR-E6 compliance check
 
 ## Success Criteria
-- carrier_selection_accuracy >= 0.95
-- freight_cost_per_unit within 5% of target
-- all rated_shipments have valid compliance_flags
+- CarrierSelection created for 100% of shipments with carrier_selection_accuracy >= 0.9
+- FreightCostRecord generated with rate_accuracy >= 0.95
 
 ## Compliance Requirements
 - carrier compliance requirements

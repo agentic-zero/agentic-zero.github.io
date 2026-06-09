@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO31000-P2",
+  "name": "Risk Assessment Process",
+  "framework": "ISO 31000:2018",
+  "domain": "ISO 31000",
+  "clause": "Risk Assessment",
+  "level": "L1",
+  "description": "Systematic risk assessment process including risk identification, risk analysis and risk evaluation to support informed decision-making across all organizational domains",
+  "inputs": ["risk sources", "event data", "consequence data", "likelihood data", "controls inventory"],
+  "outputs": ["risk register", "risk heat map", "risk evaluation results", "treatment priorities", "risk reports"],
+  "kpis": ["risk identification rate", "assessment accuracy", "treatment prioritization effectiveness", "register update frequency"],
+  "related_processes": ["ISO31000-P1", "ISO31000-P3", "SCOR-E9", "EUAIA-ART9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 31000:2018", "risk assessment methodology", "enterprise risk"],
+  "automation_potential": 0.70,
+  "source": "ISO 31000:2018 Standard",
+  "confidence": 0.95
+}

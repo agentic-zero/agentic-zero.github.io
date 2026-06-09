@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-E3",
-  "agent_name": "supply_chain_data_orchestrator",
+  "agent_name": "supply_chain_data_governance_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:28:17.805778",
-  "product_summary": "This hybrid agent oversees the management of master and transactional data across the supply chain, ensuring seamless information flows between systems. It validates data, monitors quality, enforces governance rules, and handles integrations while generating comprehensive quality reports. By adhering to GDPR, EU AI Act, ISO 42001, and data residency regulations, it minimizes risks and enhances operational efficiency. Executives benefit from improved decision-making through reliable, compliant data infrastructure that reduces errors and supports scalable supply chain operations.",
-  "value_proposition": "Transforms supply chain data management by automating validation, quality monitoring, governance enforcement, and system integrations while maintaining full regulatory compliance.",
-  "technical_summary": "The hybrid agent combines rule-based and AI-driven components to execute capabilities such as validate_master_data, monitor_data_quality, enforce_governance_rules, handle_system_integrations, and generate_quality_reports through configurable APIs and event-driven pipelines. It integrates with ERP, SCM, and data warehouse platforms while embedding controls for GDPR, EU AI Act Art.10, ISO 42001, and data residency requirements directly into data flows. Real-time reporting and audit logs are produced via standardized connectors that preserve performance and traceability across hybrid environments.",
-  "integration_guide": "# Integration Guide — supply_chain_data_orchestrator\n**Process:** Manage Supply Chain Data and Information\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_data_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_data_orchestrator import SupplyChainDataOrchestratorAgent\n\nagent = SupplyChainDataOrchestratorAgent()\nresult = agent.execute({\n    \"master_data\": your_master_data_data,\n    \"transactional_data\": your_transactional_data_data,\n    \"system_integrations\": your_system_integrations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- data_validation_engine\n- erp_integration_api\n- gdpr_compliance_tool\n- reporting_dashboard\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing source data after 24h steward review window\n- Integration downtime >4h after failover attempt\n- Persistent data_quality_score <0.95 after cleansing",
+  "packager_timestamp": "2026-06-08T13:10:15.486213",
+  "product_summary": "The Agentic Zero supply chain data management agent oversees the handling of master and transactional data across the entire supply chain ecosystem. It ensures data quality, enforces governance policies, and facilitates seamless integration between disparate systems. By maintaining compliance with regulations such as GDPR and ISO 42001, this hybrid agent reduces operational risks and enhances the reliability of supply chain analytics and decision-making. Executives benefit from streamlined data flows that drive efficiency and strategic insights.",
+  "value_proposition": "Transforms supply chain operations by automating data quality validation, governance enforcement, and integration monitoring to ensure compliant and accurate information flows.",
+  "technical_summary": "This hybrid agent integrates with existing ERP and SCM systems through APIs to monitor data exchanges in real-time while applying machine learning models for master data validation. It enforces compliance rules aligned with EU AI Act and data residency requirements, triggering automated remediation workflows when anomalies are detected. The architecture supports both autonomous actions and human-in-the-loop interventions for complex governance decisions.",
+  "integration_guide": "# Integration Guide — supply_chain_data_governance_agent\n**Process:** Manage Supply Chain Data and Information\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp supply_chain_data_governance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.supply_chain_data_governance_agent import SupplyChainDataGovernanceAgentAgent\n\nagent = SupplyChainDataGovernanceAgentAgent()\nresult = agent.execute({\n    \"master_data\": your_master_data_data,\n    \"transactional_data\": your_transactional_data_data,\n    \"system_integrations\": your_system_integrations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- validation_engine\n- monitoring_api\n- erp_mdm_connector\n- remediation_workflow_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- data_quality_score < 0.95 after remediation attempt\n- system_integration_uptime < 99.5%\n- missing source data requiring steward review",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/supply_chain_data_orchestrator/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/supply_chain_data_orchestrator/status — Get agent status and metrics",
-    "GET  /api/v1/agents/supply_chain_data_orchestrator/health — Health check",
-    "GET  /api/v1/agents/supply_chain_data_orchestrator/spec   — Get agent specification",
-    "POST /api/v1/agents/supply_chain_data_orchestrator/test   — Run test cases"
+    "POST /api/v1/agents/supply_chain_data_governance_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/supply_chain_data_governance_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/supply_chain_data_governance_agent/health — Health check",
+    "GET  /api/v1/agents/supply_chain_data_governance_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/supply_chain_data_governance_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard: Display live supply chain data feeds and note €95K annual manual processing costs vs. €748 agent price.\n2. Trigger AI orchestration: Auto-ingest and normalize multi-supplier data in 45 seconds, highlighting 92% reduction in manual entry.\n3. Run compliance module: Real-time checks for traceability, GDPR, and ESG rules flag and auto-remediate 3 issues with audit logs.\n4. Simulate disruption: Agent reroutes affected shipments, calculates €12K immediate savings, and projects 8.0x ROI within 90 days.\n5. Generate executive report: One-click output shows compliance score (99%), time saved (18 hrs/week), and net €6K+ monthly value.\n6. Close with metrics: Confirm full deployment ROI multiplier and next-step pilot timeline.",
+  "demo_script": "1. Open dashboard and load sample supplier dataset; agent auto-ingests and validates 12k records in <30 seconds while flagging 47 compliance gaps (GDPR, ESG).  \n2. Trigger AI remediation: agent applies policy rules, generates audit-ready documentation, and reduces manual review time from 14 hours to 9 minutes.  \n3. Run risk simulation: agent scores third-party data exposure, quantifies €142k potential fine avoidance, and produces board-ready mitigation report.  \n4. Display live ROI calculator: €748 price yields 8.0x return via 92% labor reduction and 3.2 FTE hours reclaimed per week (€47k annualized).  \n5. Export compliance certificate and schedule automated monthly refresh; confirm zero-touch governance for next audit cycle.  \n6. Close with executive summary slide: €376k net value in year one, full payback in 11 days, and scalable to additional supply-chain domains.",
   "demo_inputs": {
     "master_data": "[example_master_data]",
     "transactional_data": "[example_transactional_data]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-E3",
-    "agent_name": "supply_chain_data_orchestrator",
+    "agent_name": "supply_chain_data_governance_agent",
     "framework": "SCOR",
     "domain": "Enable",
     "level": "L2",
@@ -57,33 +57,33 @@
       "data residency regulations"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:28:17.805756"
+    "created_at": "2026-06-08T13:10:15.486193"
   },
   "tags": [
+    "manufacturing",
     "hybrid",
     "defense",
-    "enable",
-    "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "chemical",
     "automotive",
+    "food",
+    "l2",
+    "scor",
+    "enable",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma batch traceability under GDPR and EU AI Act Art.10 data quality rules reduces compliance audit preparation time by 45% and avoids €2M annual regulatory fines",
-    "Use case 2: Automotive supplier quality data governance per ISO 42001 cuts defect-related recalls by 30%, delivering €5M yearly savings in warranty and logistics costs",
-    "Use case 3: Food cold-chain temperature data management with data residency compliance enables 4-hour recall execution instead of 3 days, reducing average recall losses from €1.8M to €400K",
-    "Use case 4: Manufacturing multi-tier inventory data harmonization lowers excess stock carrying costs by 22% while maintaining 99.2% service levels, yielding €3.2M annual working-capital release",
-    "Use case 5: Defense contractor secure data exchange under data residency rules eliminates cross-border transfer violations, avoiding €4M+ fines and 6-month project delays per incident"
+    "Use case 1: Pharma company uses the agent to enforce EU AI Act Art.10 data quality checks on 12,000+ supplier records, cutting batch-release delays from 14 days to 5 days and saving $1.8M in expedited shipping costs per year",
+    "Use case 2: Automotive OEM applies GDPR data governance and data-residency rules across 9 countries, eliminating €2.4M potential fines while reducing cross-border data-transfer processing time by 65%",
+    "Use case 3: Defense contractor implements ISO 42001 data-management workflows for classified component traceability, shortening supplier audit cycles from 45 to 18 days and lowering audit labor costs by $420k annually",
+    "Use case 4: Food manufacturer deploys the agent to maintain real-time, compliant traceability data for 3,200 SKUs, reducing recall investigation time from 72 hours to 9 hours and cutting potential recall losses by $3.1M per incident",
+    "Use case 5: Chemical distributor uses the agent to validate and govern inventory and shipment data under multiple residency regulations, decreasing excess safety-stock holdings by 22% and freeing $7.5M in working capital"
   ],
   "pricing": {
     "process_id": "SCOR-E3",

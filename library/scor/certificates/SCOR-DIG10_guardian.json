@@ -1,11 +1,11 @@
 {
   "process_id": "SCOR-DIG10",
-  "guardian_timestamp": "2026-06-08T01:21:20.187443",
+  "guardian_timestamp": "2026-06-08T14:56:16.073725",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-DIG10-20260608",
     "process_id": "SCOR-DIG10",
     "agent_name": "agentic_compliance_audit_manager",
-    "issued_at": "2026-06-08T01:21:20.187398",
+    "issued_at": "2026-06-08T14:56:16.073679",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "conditional",
@@ -86,7 +86,7 @@
       "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
       "ISO/IEC 42001 at 70% — monitor evolution"
     ],
-    "audited_at": "2026-06-08T09:30:30.876583",
+    "audited_at": "2026-06-08T17:21:11.941770",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

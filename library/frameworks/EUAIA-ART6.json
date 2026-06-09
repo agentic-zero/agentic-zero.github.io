@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART6",
+  "name": "High-Risk AI System Classification",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "6",
+  "level": "L1",
+  "description": "Classification rules for high-risk AI systems including Annex I (safety components) and Annex III (high-risk use cases) covering supply chain, employment, critical infrastructure and other regulated domains",
+  "inputs": ["AI system description", "use case definition", "sector classification", "intended purpose", "Annex III criteria"],
+  "outputs": ["risk classification decision", "high-risk determination", "compliance pathway", "documentation requirements"],
+  "kpis": ["classification accuracy", "review cycle time", "appeals rate"],
+  "related_processes": ["EUAIA-ART9", "EUAIA-ART13", "ISO42001-6", "SCOR-DIG3"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["EU AI Act Art.6", "Annex I safety components", "Annex III high-risk use cases"],
+  "automation_potential": 0.60,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

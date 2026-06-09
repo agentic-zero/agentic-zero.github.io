@@ -1,6 +1,7 @@
-1. Open demo with executive pain points: manual ETO staging delays and compliance risk; state €748 price and 8.0x ROI target (€5,984 net value).
-2. Load sample multi-config ETO order; trigger eto_stage_product_agent to auto-generate staged product structure in <30 seconds.
-3. Display AI-driven stage sequencing, cost roll-ups, and exception flagging while highlighting automated compliance rule checks (ISO, safety, export).
-4. Export compliance-ready audit package with digital sign-off trail; confirm zero manual rework required.
-5. Run ROI calculator live: input hours saved, show 8.0x multiplier and payback in first month.
-6. Summarize risk reduction and scalability; invite pilot discussion.
+1. Open eto_product_staging_agent dashboard and load a sample ETO order; highlight manual baseline time (avg. 4.2 hrs) vs. AI target (<12 min).  
+2. Trigger AI staging; demonstrate automated data extraction, BOM validation, and routing in one pass while flagging regulatory gaps.  
+3. Review real-time compliance panel: show automatic checks against ISO/EN standards with audit trail export for executive sign-off.  
+4. Display ROI dashboard: input €748 license cost; auto-calculate 8.0x multiplier via 28 hrs/month saved at €95/hr loaded cost.  
+5. Run side-by-side comparison: manual vs. agent output on same order, quantifying 94 % reduction in rework and zero compliance deviations.  
+6. Export staged product package and compliance certificate; confirm one-click handoff to ERP with full traceability.  
+7. Summarize: €748 investment yields €5,984 monthly value; request pilot approval for next ETO cycle.

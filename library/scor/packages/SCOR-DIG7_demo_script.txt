@@ -1,13 +1,6 @@
-1. Open with executive pain point: "Manual traceability costs €250K/year in audits and delays—our AI agent automates blockchain logging for full compliance at €748, delivering 8.0x ROI via 40% faster recalls."
-
-2. Launch agent dashboard: Show one-click onboarding to existing ERP, auto-generating immutable blockchain records for a sample batch with real-time GPS and certificate uploads.
-
-3. Run live traceability query: Trace a product from supplier to shelf in <10 seconds, highlighting tamper-proof audit trails that satisfy EU regulations without manual intervention.
-
-4. Trigger automated compliance report: Generate a regulator-ready PDF with risk flags flagged by AI, cutting audit prep from 3 days to 15 minutes and proving zero non-compliance incidents.
-
-5. Display ROI simulator: Input current spend metrics to reveal €2M+ annual savings (8.0x multiplier) from reduced waste, avoided fines, and accelerated market access.
-
-6. Simulate edge-case resolution: AI detects a supply-chain anomaly, auto-notifies stakeholders via blockchain, and logs resolution—demonstrating proactive risk mitigation executives can trust.
-
-7. Close with next-step CTA: "Pilot starts tomorrow; first 8.0x ROI visible in 30 days—approve deployment now."
+1. Open with compliance pain: "Manual traceability costs €50k+/year in audits and delays—our AI agent automates end-to-end blockchain logging for instant regulatory proof."
+2. Trigger live scenario: Input a supply-chain batch; agent auto-creates immutable blockchain record with AI-verified timestamps and certificates.
+3. Show real-time dashboard: Display tamper-proof audit trail, auto-generated compliance reports (GDPR, ESG), and instant verification links for partners.
+4. Quantify risk reduction: Highlight 90% faster audit prep and zero manual errors, directly cutting non-compliance fines.
+5. Run ROI calculator: Input €748 price; agent projects 8.0x return via €6k+ annual savings in labor, delays, and penalties within 90 days.
+6. Close with pilot offer: "Deploy in one workflow this week—see first traceable batch and compliance report live before committing."

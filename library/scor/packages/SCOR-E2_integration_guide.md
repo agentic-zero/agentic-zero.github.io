@@ -34,13 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- erp_mes_connector
-- apics_benchmark_api
-- planning_module_interface
-- audit_log_system
+- erp_mes_api
+- apics_benchmark_db
+- kpi_calculator
+- compliance_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing OperationalData after validation
-- ImprovementPlan completion <0.85 after 30 days
-- Compliance violation or schema drift detected
+- reporting cycle time >24 hours to SCOR-E1
+- missing compliance metadata on PerformanceReport

@@ -1,0 +1,6 @@
+1. Open ptp_hybrid_orchestrator dashboard and launch a €45k purchase request; AI auto-classifies, routes for approval, and embeds real-time policy checks (3-way match, sanctions, budget).
+2. Execute end-to-end flow: requisition → PO → goods receipt → invoice; show 94% straight-through processing with zero manual touchpoints and full immutable audit trail.
+3. Trigger a compliance exception (duplicate invoice); demonstrate AI blocking, flagging, and generating regulator-ready report in <30 seconds.
+4. Display live ROI dashboard: 11.2 hours saved per cycle × €92 blended cost = €1,030 per transaction; at 6 transactions/month the €748 agent pays for itself in week one.
+5. Scale simulation: run 48 parallel POs; reveal 8.0x multiplier (€5,984 net value created) and 100% compliance score versus prior 73%.
+6. Export one-click board pack with savings, risk reduction, and payback metrics; close with 10-minute Q&A.

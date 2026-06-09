@@ -1,4 +1,4 @@
-# Integration Guide — produce_and_test_agent
+# Integration Guide — mto_produce_test_agent
 **Process:** Produce and Test (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp produce_and_test_agent.py ./agents/
+cp mto_produce_test_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.produce_and_test_agent import ProduceAndTestAgentAgent
+from agents.mto_produce_test_agent import MtoProduceTestAgentAgent
 
-agent = ProduceAndTestAgentAgent()
+agent = MtoProduceTestAgentAgent()
 result = agent.execute({
     "work_orders": your_work_orders_data,
     "production_routings": your_production_routings_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_workorder_api
+- ERP_work_order_api
 - MES_routing_execution
-- QMS_quality_plan
 - test_equipment_interface
-- compliance_logger
+- quality_record_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- equipment failure or missing quality plan
-- test pass rate < 95% after root-cause attempt
-- non-conforming result requiring deviation record
+- first_pass_yield < 0.95 or test_pass_rate < 1.0 requiring root cause or rework
+- missing calibration or compliance record blocks execution
+- customer spec change or equipment downtime

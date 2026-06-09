@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- business_rule_repository
-- compliance_database
-- external_operator_api
-- decision_audit_logger
+- ERP_system_access
+- compliance_monitoring_API
+- logging_service
+- override_signal_handler
 
 ## Escalation
 The agent automatically escalates to human when:
-- agent_output.risk_score > RiskThreshold.value
-- regulatory_requirement.compliance_flag == false
-- human_override_signal.received == true
+- agent_output.risk_score > risk_threshold.value
+- conflicting regulatory_requirements and business_rules
+- missing agent_output fields
+- human_override_signal received

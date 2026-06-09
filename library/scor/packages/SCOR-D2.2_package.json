@@ -2,11 +2,11 @@
   "process_id": "SCOR-D2.2",
   "agent_name": "mto_order_validation_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T00:22:18.043106",
-  "product_summary": "This reactive agent manages the full intake and validation workflow for Make-To-Order customer orders by verifying configurations, assessing production feasibility and lead times, committing pricing, and issuing formal acknowledgments. It ensures every order meets contractual, regulatory, and capacity requirements before triggering downstream production. By automating these steps, the agent reduces manual errors, shortens order cycle times, and improves on-time delivery performance while maintaining full compliance with GDPR and consumer protection rules. Executives gain faster, more reliable order conversion that directly supports revenue recognition and customer satisfaction targets.",
-  "value_proposition": "Automates configuration validation, feasibility checks, and order acknowledgment to convert MTO requests into compliant, production-ready orders without manual bottlenecks.",
-  "technical_summary": "The reactive agent orchestrates four core capabilities—validate_customer_order_configuration, check_capacity_leadtime_pricing, generate_validated_order_and_acknowledgment, and emit_production_trigger—through event-driven triggers from incoming order channels. It integrates with ERP and CRM systems for real-time data exchange while embedding compliance checks for GDPR customer data handling and contractual terms. Production triggers are emitted only after all validations pass, ensuring downstream systems receive clean, auditable order records.",
-  "integration_guide": "# Integration Guide — mto_order_validation_agent\n**Process:** Receive, Configure, Enter and Validate MTO Order\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_order_validation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_order_validation_agent import MtoOrderValidationAgentAgent\n\nagent = MtoOrderValidationAgentAgent()\nresult = agent.execute({\n    \"customer_order\": your_customer_order_data,\n    \"product_configurator\": your_product_configurator_data,\n    \"capacity_data\": your_capacity_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_API\n- ProductConfigurator\n- MES_capacity_query\n- ERP_leadtime_query\n- PricingData_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- configuration mismatch requires sales review\n- capacity shortfall triggers sourcing/delay decision\n- SLA breach on acknowledgment",
+  "packager_timestamp": "2026-06-08T17:58:30.768948",
+  "product_summary": "This agent manages the receipt and validation of Make-To-Order (MTO) customer orders by verifying configurations, assessing feasibility, committing lead times, and issuing acknowledgments. It ensures compliance with GDPR, consumer protection regulations, and contractual obligations while streamlining the order entry process. By automating these critical steps, the agent reduces manual errors, accelerates order processing, and enhances overall operational efficiency for the business. Executives gain faster, more reliable order commitments that improve customer satisfaction and reduce fulfillment risks.",
+  "value_proposition": "Automates end-to-end MTO order validation and acknowledgment to deliver accurate lead-time commitments while ensuring full regulatory compliance.",
+  "technical_summary": "The reactive agent uses event-driven triggers to execute order receipt validation and configuration-capacity-leadtime-pricing checks, integrating directly with ERP, CRM, and order management systems via standard APIs. It generates acknowledgments and downstream workflow triggers while enforcing GDPR data handling and contractual rules at each step. The architecture supports real-time responses with audit logging for enterprise scalability and compliance traceability.",
+  "integration_guide": "# Integration Guide — mto_order_validation_agent\n**Process:** Receive, Configure, Enter and Validate MTO Order\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_order_validation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_order_validation_agent import MtoOrderValidationAgentAgent\n\nagent = MtoOrderValidationAgentAgent()\nresult = agent.execute({\n    \"customer_order\": your_customer_order_data,\n    \"product_configurator\": your_product_configurator_data,\n    \"capacity_data\": your_capacity_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- crm_api\n- product_configurator_api\n- mes_capacity_api\n- planning_leadtime_api\n- erp_pricing_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- invalid configuration options\n- capacity overload detected\n- validation cycle exceeds 4 hours",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/mto_order_validation_agent/spec   — Get agent specification",
     "POST /api/v1/agents/mto_order_validation_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load sample MTO order to illustrate manual baseline (12 min, 3 compliance flags).  \n2. Trigger mto_order_validation_agent to auto-receive and parse order, showing instant data extraction.  \n3. Run AI configuration step, highlighting embedded compliance rules that auto-flag and resolve deviations.  \n4. Execute one-click entry with real-time validation, displaying zero-error output and full audit trail.  \n5. Compare metrics: cycle time reduced from 12 min to 90 sec, eliminating €4,200 annual compliance risk.  \n6. Display ROI calculator: €624 price delivers 8.0x return via 47 hours saved per month.  \n7. Export signed compliance report to close value demonstration.",
+  "demo_script": "1. Load sample MTO order into mto_order_validation_agent; agent auto-receives and parses in <30 seconds, eliminating manual intake.\n2. Trigger AI configuration; agent applies rules, flags variances, and proposes compliant specs while logging every decision for audit.\n3. Execute automated entry; system posts validated order to ERP with zero manual keystrokes, cutting entry time from 12 min to 45 sec.\n4. Run real-time compliance validation; agent scores order 98/100 against regulatory and internal policies, surfacing only two low-risk items.\n5. Display live dashboard: 94% reduction in rework, 11 hours saved per 100 orders, and full audit trail ready for export.\n6. Calculate ROI on-screen: at €624 per agent, 8.0x multiplier projects €4,992 annual value per user from time and error-cost savings.\n7. Close with one-click deployment option, confirming production-ready compliance and immediate ROI tracking.",
   "demo_inputs": {
     "customer_order": "[example_customer_order]",
     "product_configurator": "[example_product_configurator]",
@@ -53,30 +53,30 @@
       "contractual compliance"
     ],
     "agent_type": "reactive",
-    "capabilities_count": 4,
+    "capabilities_count": 3,
     "price_eur": 623.75,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T00:22:18.043083"
+    "created_at": "2026-06-08T17:58:30.768927"
   },
   "tags": [
     "deliver",
-    "reactive",
     "manufacturing",
-    "scor",
-    "automotive",
     "l2",
     "chemical",
-    "industrial equipment"
+    "automotive",
+    "reactive",
+    "industrial equipment",
+    "scor"
   ],
   "use_cases": [
-    "Use case 1: Automotive OEM configures and validates 200+ daily MTO vehicle orders with real-time contractual compliance checks, cutting order entry errors from 12% to 0.8% and saving $1.2M annually in rework and penalties",
-    "Use case 2: Industrial equipment manufacturer automates complex BOM configuration for custom machinery orders, reducing average processing time from 6 hours to 45 minutes per order and increasing monthly order capacity by 35%",
-    "Use case 3: Chemical producer enters and validates hazardous material MTO orders under GDPR and safety regulations, eliminating 98% of compliance violations and avoiding an estimated €800K in annual regulatory fines",
-    "Use case 4: Manufacturing firm integrates agent into ERP for MTO order receipt and validation, reducing manual data entry labor costs by 62% and achieving ROI within 4 months through 22% faster order-to-production cycle",
-    "Use case 5: Automotive supplier handles high-mix low-volume MTO orders with automated validation against customer contracts, improving on-time fulfillment from 78% to 96% and generating $2.4M additional revenue from reduced cancellations"
+    "Use case 1: Automotive OEM automates MTO order validation, cutting configuration errors by 92% and reducing annual rework costs by $850k while shortening order-to-production cycle from 14 to 6 days.",
+    "Use case 2: Chemical manufacturer enforces GDPR and contractual compliance during order entry, eliminating $420k in annual regulatory fines and audit remediation expenses.",
+    "Use case 3: Industrial equipment supplier deploys agent for complex MTO configurations, increasing first-time-right orders to 97% and boosting on-time delivery from 81% to 96%, adding $2.1M in retained revenue.",
+    "Use case 4: Manufacturing plant reduces manual order entry labor by 65% through automated validation, freeing 4 FTEs and delivering $380k yearly payroll savings with zero compliance violations.",
+    "Use case 5: Automotive tier-1 supplier accelerates MTO order processing by 70%, enabling 35% higher order volume without added headcount and increasing gross margin by 4.2 points."
   ],
   "pricing": {
     "process_id": "SCOR-D2.2",

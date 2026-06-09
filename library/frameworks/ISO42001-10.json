@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-10",
+  "name": "AI Improvement — Nonconformity and Continual Improvement",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "10",
+  "level": "L1",
+  "description": "Management of AI-specific nonconformities including model failures, bias incidents, safety events and continual improvement of the AI management system",
+  "inputs": ["AI nonconformance reports", "bias incidents", "safety events", "audit findings", "performance gaps"],
+  "outputs": ["AI corrective actions", "model retraining triggers", "AIMS improvements", "lessons learned", "updated AI controls"],
+  "kpis": ["AI corrective action cycle time", "model incident recurrence rate", "AIMS improvement rate"],
+  "related_processes": ["ISO42001-9", "ISO42001-8", "SCOR-DIG3", "SCOR-E9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 10", "EU AI Act post-market monitoring", "NIST AI RMF continual improvement"],
+  "automation_potential": 0.70,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

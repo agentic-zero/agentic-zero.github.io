@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_134927_679334",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.12"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T13:49:27.679351",
+  "status": "completed",
+  "started_at": "2026-06-08T16:06:34.467629",
+  "completed_at": "2026-06-08T16:09:35.705990",
+  "error": null,
+  "result": {
+    "agent_name": "mto_shipment_dispatch_agent",
+    "price_eur": 573.85,
+    "ready_for_guardian": true
+  }
+}

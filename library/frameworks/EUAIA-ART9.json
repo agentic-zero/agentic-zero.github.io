@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART9",
+  "name": "Risk Management System for High-Risk AI",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "9",
+  "level": "L1",
+  "description": "Mandatory risk management system for high-risk AI systems including risk identification, estimation, evaluation, mitigation and residual risk assessment throughout the AI lifecycle",
+  "inputs": ["AI system design", "intended use", "foreseeable misuse", "risk assessment data", "mitigation measures"],
+  "outputs": ["risk management plan", "risk assessment report", "residual risk acceptance", "mitigation controls", "risk monitoring plan"],
+  "kpis": ["risk identification completeness", "mitigation effectiveness", "residual risk level", "review frequency"],
+  "related_processes": ["EUAIA-ART10", "EUAIA-ART14", "ISO42001-6", "SCOR-E9"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.9 mandatory", "ISO 31000 risk management", "NIST AI RMF", "sector-specific risk standards"],
+  "automation_potential": 0.65,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

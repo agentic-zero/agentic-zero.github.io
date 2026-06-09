@@ -1,0 +1,7 @@
+1. Open with a live non-conformance alert from the ERP; highlight €92k annual hidden cost of manual CAPA handling.  
+2. Trigger capa_lifecycle_orchestrator; show AI auto-creating a fully populated CAPA record in <30 seconds with regulatory mapping.  
+3. Run one-click root-cause analysis; display AI-generated 5-Why fishbone and risk score that satisfies ISO 13485 & FDA 21 CFR 820.  
+4. Execute automated workflow: assign owners, set due dates, and route e-signature approvals while maintaining immutable audit trail.  
+5. Generate real-time compliance dashboard and export-ready audit pack; note 100% traceability versus 3-day manual effort.  
+6. Display ROI calculator: €5,984 annual savings per user at 8.0x multiplier, payback in 11 days on €748 license.  
+7. Close with executive summary: “Zero missed CAPAs, full regulatory readiness, 8x return—ready for pilot this quarter.”

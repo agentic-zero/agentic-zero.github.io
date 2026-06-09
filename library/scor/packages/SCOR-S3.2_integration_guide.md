@@ -1,4 +1,4 @@
-# Integration Guide — eto_receiving_inspection_agent
+# Integration Guide — eto_receiving_automation_agent
 **Process:** Receive Engineer-to-Order Product
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_receiving_inspection_agent.py ./agents/
+cp eto_receiving_automation_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_receiving_inspection_agent import EtoReceivingInspectionAgentAgent
+from agents.eto_receiving_automation_agent import EtoReceivingAutomationAgentAgent
 
-agent = EtoReceivingInspectionAgentAgent()
+agent = EtoReceivingAutomationAgentAgent()
 result = agent.execute({
     "eto_delivery": your_eto_delivery_data,
     "engineering_drawings": your_engineering_drawings_data,
@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- document_parser
-- certificate_verifier_api
-- inventory_management_system
-- project_bom_updater
-- export_control_checker
+- ASN_notification_listener
+- certificate_verification_api
+- erp_inventory_system
+- non_conformance_workflow_api
+- kpi_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- missing certificates after 4 hours
-- documentation mismatch or export control violation
-- first-pass inspection failure requiring rework/rejection
+- Missing certificates: notify engineering within 4 hours and hold in quarantine
+- Inspection failure: create NCR and escalate to SCOR-S3.3
+- KPI threshold breach or compliance flag

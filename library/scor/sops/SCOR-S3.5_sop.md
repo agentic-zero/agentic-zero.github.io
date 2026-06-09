@@ -1,14 +1,14 @@
 # SOP — Authorize Supplier Payment (ETO)
 **Process ID:** SCOR-S3.5
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of authorizing milestone-based or delivery-based payments for ETO suppliers upon verified receipt and engineering acceptance of custom components
 
 ## Triggers
-- new SupplierInvoice received with linked milestone_id
-- EngineeringAcceptanceReport status changed to verified
+- new SupplierInvoice received with matching milestone_id
+- EngineeringAcceptanceReport status changed to accepted
 
 ## Inputs Required
 - milestone completions
@@ -18,8 +18,8 @@ Process of authorizing milestone-based or delivery-based payments for ETO suppli
 - project financial data
 
 ## Process Steps
-1. IF milestone_completed == true AND engineering_accepted == true AND invoice_matches_terms == true THEN create MilestonePaymentAuthorization
-2. IF compliance_flags contain government_contracting_regulations THEN require additional_approval == true
+1. IF milestone_completion.verified == true AND engineering_acceptance.status == 'accepted' AND invoice.amount <= contract.terms.max_milestone THEN create MilestonePaymentAuthorization
+2. IF contract.compliance_flags contains 'export_control' THEN require additional_approval == true before authorization
 
 ## Expected Outputs
 - milestone payment authorizations
@@ -28,20 +28,21 @@ Process of authorizing milestone-based or delivery-based payments for ETO suppli
 - supplier financial records
 
 ## Business Rules
-- authorization_amount must equal contract_payment_term.amount for the milestone
-- payment_cycle_time must be <= KPI threshold
-- all inputs must have matching project_id and supplier_id
-- GDPR_financial_data and export_control_financial must be masked before storage
+- payment only after verified receipt and engineering acceptance
+- authorization amount must exactly match contract_payment_term.milestone_value
+- cycle_time must be logged for KPI calculation
+- all financial data must satisfy GDPR and government contracting regulations
 
 ## Exception Handling
-- missing EngineeringAcceptanceReport: reject and notify engineering team
-- invoice_amount mismatch > 2%: route to exception queue for manual review
-- contract compliance rate < 95%: block authorization and escalate to procurement
+- missing engineering acceptance: hold authorization and notify engineering team
+- invoice amount mismatch > 2%: reject and return to supplier with discrepancy report
+- contract compliance failure: escalate to compliance officer and block payment
 
 ## Success Criteria
-- MilestonePaymentAuthorization created with status=approved
-- PaymentConfirmation timestamp recorded within payment_cycle_time KPI
-- ProjectCostUpdate and SupplierFinancialRecord updated with zero errors
+- MilestonePaymentAuthorization created with status 'authorized'
+- payment_cycle_time < target_threshold
+- contract_compliance_rate == 1.0
+- PaymentConfirmation sent to supplier
 
 ## Compliance Requirements
 - government contracting regulations

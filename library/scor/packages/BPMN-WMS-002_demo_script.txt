@@ -1,0 +1,7 @@
+1. Open dashboard: Display current manual outbound bottlenecks (delays, errors, compliance gaps) and state baseline costs (€X per order).
+2. Trigger agent: Launch warehouse_outbound_orchestrator on a live batch; show AI auto-generating compliant pick lists, carrier selection, and shipping docs in <30 seconds.
+3. Run optimization: Execute AI-driven wave planning and real-time rerouting; highlight 40% faster fulfillment and zero regulatory violations via built-in checks.
+4. Compliance audit: Pull instant audit trail and export report proving adherence to shipping, safety, and data-privacy rules—ready for executive or regulatory review.
+5. Reveal metrics: Show post-run dashboard with time/cost savings; calculate live ROI (€699 price yields 8.0x return via €5,592+ annual value per site).
+6. Scale scenario: Simulate multi-site rollout and project enterprise-wide impact (error reduction, labor savings, risk mitigation).
+7. Close: Summarize 8.0x ROI and compliance assurance; offer 14-day pilot.

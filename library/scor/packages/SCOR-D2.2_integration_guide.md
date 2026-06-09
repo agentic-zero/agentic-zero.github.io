@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- CRM_API
-- ProductConfigurator
-- MES_capacity_query
-- ERP_leadtime_query
-- PricingData_service
+- crm_api
+- product_configurator_api
+- mes_capacity_api
+- planning_leadtime_api
+- erp_pricing_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- configuration mismatch requires sales review
-- capacity shortfall triggers sourcing/delay decision
-- SLA breach on acknowledgment
+- invalid configuration options
+- capacity overload detected
+- validation cycle exceeds 4 hours

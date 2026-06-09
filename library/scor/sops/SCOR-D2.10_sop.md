@@ -1,14 +1,14 @@
 # SOP — Pack Product (MTO)
 **Process ID:** SCOR-D2.10
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of packing MTO products for shipment including final packaging, customer-specific labeling, packing list generation and seal/close
 
 ## Triggers
-- SCOR-D2.9 completion event with picked products ready
-- availability of PackingSpecification and ShipmentDocumentation
+- SCOR-D2.9 completion event with picked products payload
+- availability of packing specifications and labels in staging queue
 
 ## Inputs Required
 - picked products
@@ -18,9 +18,9 @@ Process of packing MTO products for shipment including final packaging, customer
 - shipment documentation
 
 ## Process Steps
-1. IF product contains dangerous goods THEN apply dangerous goods packaging rules and add ComplianceFlag
-2. IF customer packaging standards exist THEN enforce them before sealing
-3. IF GxP flag is true THEN require pharma-compliant labeling and audit trail
+1. IF product contains hazardous material THEN apply dangerous goods packaging and add compliance label
+2. IF customer packaging standard exists THEN override default packing spec
+3. IF quantity mismatch between picked items and order THEN halt and trigger inventory reconciliation
 
 ## Expected Outputs
 - packed shipments
@@ -29,20 +29,20 @@ Process of packing MTO products for shipment including final packaging, customer
 - sealed packages
 
 ## Business Rules
-- packing_accuracy >= 99.5%
-- label_compliance_rate == 100%
-- all SealedPackage must include ShipmentLabel and PackingList
-- GDPR shipment data must be encrypted and logged
+- packing_accuracy must be >= 99.5% verified by barcode scan
+- label_compliance_rate must satisfy GDPR and customer standards before sealing
+- all sealed packages must include packing list and shipment label
+- GxP pharma products require dual verification signature
 
 ## Exception Handling
-- Missing picked products: halt process and trigger SCOR-D2.9 retry
-- Non-compliant label: regenerate Label and re-apply before sealing
-- Damage detected during packing: quarantine product and log damage_rate incident
+- damaged picked item: quarantine item, log damage_rate, request replacement from SCOR-D2.9
+- missing label data: auto-generate from shipment documentation or escalate to order management
+- cycle_time exceeds threshold: flag for process review and notify supervisor
 
 ## Success Criteria
-- All outputs (PackedShipment, PackingList, ShipmentLabel, SealedPackage) generated
-- KPIs meet thresholds: packing_accuracy >= 99.5, label_compliance_rate == 100, damage_rate == 0
-- Process completes within packing_cycle_time SLA
+- all outputs (PackedShipment, PackingList, ShipmentLabel, SealedPackage) created with matching IDs
+- KPIs within thresholds: packing_accuracy >= 99.5, label_compliance_rate = 100, damage_rate <= 0.1, cycle_time <= SLA
+- no open exceptions logged
 
 ## Compliance Requirements
 - dangerous goods packaging

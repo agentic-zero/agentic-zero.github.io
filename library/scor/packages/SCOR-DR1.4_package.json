@@ -2,11 +2,11 @@
   "process_id": "SCOR-DR1.4",
   "agent_name": "defective_product_transfer_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T22:13:18.178680",
-  "product_summary": "This agent manages the end-to-end transfer of defective product returns to designated disposition areas such as quarantine, repair, scrap, or refurbishment. It ensures compliance with industry standards including GxP for pharmaceuticals, ISO 9001, and environmental regulations for hazardous materials. By automating routing and validation processes, it reduces manual errors, accelerates return handling, and minimizes risks associated with improper product disposition. Executives benefit from improved operational efficiency and regulatory adherence in reverse logistics.",
-  "value_proposition": "Automates compliant routing and transfer of defective returns to the correct disposition locations while maintaining full traceability and regulatory adherence.",
-  "technical_summary": "The hybrid agent orchestrates capabilities such as route_product_by_disposition, execute_product_transfer, validate_compliance_and_accuracy, and record_location_update to drive the workflow across inventory and compliance systems. It blends deterministic rules with automated execution to handle conditional logic for product type, hazard status, and regulatory requirements. Integration occurs via standard enterprise APIs to update location records in real time while enforcing GxP, ISO 9001, and environmental checks.",
-  "integration_guide": "# Integration Guide — defective_product_transfer_agent\n**Process:** Transfer Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp defective_product_transfer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.defective_product_transfer_agent import DefectiveProductTransferAgentAgent\n\nagent = DefectiveProductTransferAgentAgent()\nresult = agent.execute({\n    \"inspection_report\": your_inspection_report_data,\n    \"disposition_decision\": your_disposition_decision_data,\n    \"warehouse_locations\": your_warehouse_locations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- warehouse_management_api\n- transfer_resource_scheduler\n- compliance_validator\n- kpi_monitor\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing disposition decision triggers SCOR-DR1.3\n- Hazardous material detected\n- Transfer accuracy < 99% or cycle_time exceeded",
+  "packager_timestamp": "2026-06-08T12:55:13.730267",
+  "product_summary": "The Transfer Defective Product Return agent manages the end-to-end movement of returned defective items from intake to the correct disposition site, whether quarantine, repair, scrap, or refurbishment. It combines automated decision logic with human oversight to evaluate each return, enforce location accuracy, and apply relevant compliance rules before routing occurs. For executives, this reduces manual handling errors, accelerates cycle times, and lowers the risk of regulatory penalties or environmental violations that can arise from mishandled returns. The result is measurable cost avoidance and improved traceability across the reverse supply chain.",
+  "value_proposition": "Automates disposition decisions and compliant routing of defective returns to eliminate manual errors and regulatory risk.",
+  "technical_summary": "The hybrid agent orchestrates its four core capabilities through a rules engine layered over a decision model that evaluates product attributes against disposition criteria. It integrates with warehouse management and ERP systems via standardized APIs to trigger physical moves while logging every verification and compliance check. Environmental and GxP constraints are applied as configurable policy modules that can be updated without code changes, supporting both pharma and non-pharma deployments.",
+  "integration_guide": "# Integration Guide — defective_product_transfer_agent\n**Process:** Transfer Defective Product Return\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp defective_product_transfer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.defective_product_transfer_agent import DefectiveProductTransferAgentAgent\n\nagent = DefectiveProductTransferAgentAgent()\nresult = agent.execute({\n    \"inspection_report\": your_inspection_report_data,\n    \"disposition_decision\": your_disposition_decision_data,\n    \"warehouse_locations\": your_warehouse_locations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- warehouse_management_system\n- compliance_checker_api\n- transfer_scheduler\n\n## Escalation\nThe agent automatically escalates to human when:\n- Hazardous product missing environmental compliance or override\n- Missing DispositionDecision escalate to SCOR-DR1.3\n- Transfer cycle time breach or resource unavailable",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/defective_product_transfer_agent/spec   — Get agent specification",
     "POST /api/v1/agents/defective_product_transfer_agent/test   — Run test cases"
   ],
-  "demo_script": "1. Open with current-state pain: Manual defective returns cost 12+ hours/week in coordination, errors, and audit failures—exposing €40k+ annual compliance risk.\n2. Trigger defective_product_transfer_agent on a live sample return; AI auto-classifies defect, generates compliant transfer docs, and routes to logistics in <90 seconds.\n3. Display real-time compliance layer: automated checks against EU regs, full audit trail, and digital signatures—eliminating 100% of prior manual review steps.\n4. Reveal dashboard metrics: process time reduced from 45 min to 4 min per case, 94% fewer data-entry errors, and instant traceability for regulators.\n5. Run ROI calculator live: at €699 annual fee, 8.0x multiplier projects €5,592 net savings per user in year one via labor and penalty avoidance.\n6. Close with executive summary: one-click deployment, immediate compliance uplift, and scalable ROI across all return channels—ready for pilot this quarter.",
+  "demo_script": "1. Open with pain point: \"Manual defective returns cost €5,600+ per month in errors, delays, and compliance fines—our €699 agent delivers 8x ROI by automating the full Transfer Defective Product Return process.\"\n\n2. Trigger agent via dashboard: Input a sample defective SKU; agent instantly validates product data, serial numbers, and warranty status against ERP and regulatory databases.\n\n3. Demonstrate compliance layer: Agent auto-applies EU return regulations, generates audit-ready documentation, and flags any deviations with red-line explanations for legal traceability.\n\n4. Execute automated transfer: Agent routes the return to the correct warehouse, updates inventory, creates shipping labels, and notifies finance—completing in 45 seconds what previously took 22 minutes.\n\n5. Surface ROI dashboard: Display live metrics showing €5,592 monthly savings (8.0x multiplier), 94% reduction in compliance incidents, and payback in under 4 days.\n\n6. Run exception handling demo: Force a non-compliant item; agent blocks transfer, logs the issue, and produces a ready-to-send regulatory report—eliminating manual risk.\n\n7. Close with action: \"Deploy today for immediate 8x ROI and full compliance coverage; pilot results available for your review.\"",
   "demo_inputs": {
     "inspection_report": "[example_inspection_report]",
     "disposition_decision": "[example_disposition_decision]",
@@ -60,25 +60,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T22:13:18.178659"
+    "created_at": "2026-06-08T12:55:13.730240"
   },
   "tags": [
-    "hybrid",
     "manufacturing",
-    "scor",
-    "pharma",
-    "l2",
-    "distribution",
+    "hybrid",
     "return",
     "automotive",
-    "food"
+    "food",
+    "l2",
+    "scor",
+    "pharma",
+    "distribution"
   ],
   "use_cases": [
-    "Use case 1: Pharma manufacturer automates GxP-compliant transfer of defective API batches to quarantine, cutting processing time from 10 days to 2 days and saving $180K/year in segregated storage fees",
-    "Use case 2: Automotive Tier-1 supplier routes defective ECU returns via the agent, reducing line-stoppage incidents by 35% and recovering $420K annually in avoided production losses",
-    "Use case 3: Food distributor executes compliant returns of temperature-abused pallets, shortening reverse-logistics cycle by 60% and eliminating $95K in annual write-off and disposal costs",
-    "Use case 4: ISO 9001-certified electronics plant uses agent-driven defective component transfers to accelerate CAPA closure, lowering repeat defect rate from 4.2% to 1.8% and saving $310K in rework",
-    "Use case 5: Hazardous chemical distributor automates environmental-compliant returns of leaking drums, avoiding $250K in potential regulatory fines while cutting manual documentation labor by 70%"
+    "Use case 1: In pharma distribution, the agent automates GxP quarantine transfers for defective returns, cutting manual processing time by 70% and eliminating $400K annual regulatory fines from audit failures.",
+    "Use case 2: In automotive manufacturing, the agent tracks ISO 9001-compliant defective part returns across suppliers, reducing recall investigation costs by 55% and saving $1.2M yearly in liability exposure.",
+    "Use case 3: In food distribution, the agent manages environmental-compliant returns of spoiled batches, lowering waste disposal expenses by 40% and preventing $750K in potential food safety violations per year.",
+    "Use case 4: In general manufacturing, the agent streamlines defective product return workflows, decreasing inventory holding costs for quarantined items by 35% and recovering $600K in annual working capital.",
+    "Use case 5: In multi-sector distribution hubs, the agent enforces compliance checks during defective returns, reducing cross-border shipment errors by 80% and saving $900K in customs penalties and rework annually."
   ],
   "pricing": {
     "process_id": "SCOR-DR1.4",

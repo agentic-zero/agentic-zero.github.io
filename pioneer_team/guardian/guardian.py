@@ -36,22 +36,25 @@ logger.add(
     rotation="1 day",
     retention="30 days",
     level="INFO",
-    format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+    format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
 )
+
 
 # ── MODELS ────────────────────────────────────────────────────────────────────
 class EUAIActClassification(BaseModel):
-    risk_level: str               # unacceptable / high / limited / minimal
+    risk_level: str  # unacceptable / high / limited / minimal
     risk_rationale: str
     prohibited: bool
-    requirements: list[str]       # What must be done for this risk level
-    article_references: list[str] # Relevant EU AI Act articles
+    requirements: list[str]  # What must be done for this risk level
+    article_references: list[str]  # Relevant EU AI Act articles
+
 
 class ISO42001Check(BaseModel):
     compliant: bool
-    score: float                  # 0.0 - 1.0
+    score: float  # 0.0 - 1.0
     gaps: list[str]
     recommendations: list[str]
+
 
 class NISTAIRMFCheck(BaseModel):
     govern_score: float
@@ -61,6 +64,7 @@ class NISTAIRMFCheck(BaseModel):
     overall_score: float
     gaps: list[str]
 
+
 class GDPRCheck(BaseModel):
     personal_data_involved: bool
     lawful_basis_defined: bool
@@ -68,25 +72,27 @@ class GDPRCheck(BaseModel):
     transparency_adequate: bool
     issues: list[str]
 
+
 class ComplianceCertificate(BaseModel):
     certificate_id: str
     process_id: str
     agent_name: str
     issued_at: str
-    issued_by: str                # "Guardian Agent — Agentic Zero"
-    valid_until: str              # 12 months from issue
-    overall_status: str           # certified / conditional / rejected
-    overall_score: float          # 0.0 - 1.0
+    issued_by: str  # "Guardian Agent — Agentic Zero"
+    valid_until: str  # 12 months from issue
+    overall_status: str  # certified / conditional / rejected
+    overall_score: float  # 0.0 - 1.0
     eu_ai_act: EUAIActClassification
     iso_42001: ISO42001Check
     nist_ai_rmf: NISTAIRMFCheck
     gdpr: GDPRCheck
     quality_score: float
     quality_issues: list[str]
-    conditions: list[str]         # Conditions if conditional approval
+    conditions: list[str]  # Conditions if conditional approval
     rejection_reasons: list[str]  # Reasons if rejected
     human_review_required: bool
     notes: str
+
 
 class GuardianResult(BaseModel):
     process_id: str
@@ -97,15 +103,16 @@ class GuardianResult(BaseModel):
     requires_human_sign_off: bool
     remediation_plan: list[str]
 
+
 # ── GUARDIAN CONFIGURATION ────────────────────────────────────────────────────
 GUARDIAN_CONFIG = {
     "model": os.getenv("GROQ_MODEL", "groq/llama-3.3-70b-versatile"),
     "max_tokens": 4000,
     "temperature": 0.1,
-    "rate_limit_rpm": 1,
+    "rate_limit_rpm": 30,
     "rate_limit_rpd": 1400,
     "issuer": "Guardian Agent — Agentic Zero Pioneer Team",
-    "certificate_validity_months": 12
+    "certificate_validity_months": 12,
 }
 
 # ── EU AI ACT KNOWLEDGE BASE ──────────────────────────────────────────────────
@@ -119,7 +126,7 @@ EU_AI_ACT_HIGH_RISK_SECTORS = [
     "justice",
     "biometric",
     "medical device",
-    "safety component"
+    "safety component",
 ]
 
 EU_AI_ACT_HIGH_RISK_SUPPLY_CHAIN = [
@@ -127,7 +134,7 @@ EU_AI_ACT_HIGH_RISK_SUPPLY_CHAIN = [
     "creditworthiness assessment",
     "risk assessment",
     "recruitment",
-    "performance evaluation"
+    "performance evaluation",
 ]
 
 EU_AI_ACT_HIGH_RISK_REQUIREMENTS = [
@@ -139,18 +146,18 @@ EU_AI_ACT_HIGH_RISK_REQUIREMENTS = [
     "Human oversight measures (Art. 14)",
     "Accuracy, robustness, cybersecurity (Art. 15)",
     "Conformity assessment (Art. 43)",
-    "Registration in EU database (Art. 51)"
+    "Registration in EU database (Art. 51)",
 ]
 
 EU_AI_ACT_LIMITED_RISK_REQUIREMENTS = [
     "Transparency obligations (Art. 52)",
     "Inform users they are interacting with AI",
-    "Deep fake labeling if applicable"
+    "Deep fake labeling if applicable",
 ]
 
 EU_AI_ACT_MINIMAL_RISK_REQUIREMENTS = [
     "Voluntary codes of conduct recommended",
-    "No mandatory requirements"
+    "No mandatory requirements",
 ]
 
 # ── ISO 42001 CHECKLIST ───────────────────────────────────────────────────────
@@ -161,7 +168,7 @@ ISO_42001_REQUIREMENTS = {
     "7_support": "Resources, competence, awareness",
     "8_operation": "Operational planning and control",
     "9_performance": "Performance evaluation and monitoring",
-    "10_improvement": "Continual improvement process"
+    "10_improvement": "Continual improvement process",
 }
 
 # ── NIST AI RMF FUNCTIONS ─────────────────────────────────────────────────────
@@ -169,29 +176,30 @@ NIST_GOVERN_CHECKS = [
     "Policies for responsible AI defined",
     "Roles and responsibilities assigned",
     "Risk tolerance established",
-    "Accountability mechanisms in place"
+    "Accountability mechanisms in place",
 ]
 
 NIST_MAP_CHECKS = [
     "AI system context documented",
     "Stakeholders identified",
     "Risks categorized",
-    "Impact assessment completed"
+    "Impact assessment completed",
 ]
 
 NIST_MEASURE_CHECKS = [
     "Performance metrics defined",
     "Bias testing planned",
     "Monitoring mechanisms specified",
-    "Incident response defined"
+    "Incident response defined",
 ]
 
 NIST_MANAGE_CHECKS = [
     "Risk response strategies defined",
     "Human oversight specified",
     "Escalation procedures documented",
-    "Remediation process defined"
+    "Remediation process defined",
 ]
+
 
 # ── RATE LIMITER ──────────────────────────────────────────────────────────────
 class RateLimiter:
@@ -209,7 +217,9 @@ class RateLimiter:
             time.sleep(wait_time)
         self.last_call = time.time()
 
+
 rate_limiter = RateLimiter(rpm=GUARDIAN_CONFIG["rate_limit_rpm"])
+
 
 # ── LLM CALLER ────────────────────────────────────────────────────────────────
 def call_llm(prompt: str, expect_json: bool = True) -> str:
@@ -220,7 +230,9 @@ def call_llm(prompt: str, expect_json: bool = True) -> str:
             messages=[{"role": "user", "content": prompt}],
             max_tokens=GUARDIAN_CONFIG["max_tokens"],
             temperature=GUARDIAN_CONFIG["temperature"],
-            api_key=os.getenv("GROQ_API_KEY")
+            api_key=os.getenv("XAI_API_KEY")
+            if os.getenv("GROQ_MODEL", "").startswith("xai/")
+            else os.getenv("GROQ_API_KEY"),
         )
         content = response.choices[0].message.content.strip()
         if expect_json and content.startswith("```"):
@@ -230,6 +242,7 @@ def call_llm(prompt: str, expect_json: bool = True) -> str:
     except Exception as e:
         logger.error(f"LLM call failed: {e}")
         raise
+
 
 # ── LOCAL COMPLIANCE CHECKS (no LLM needed) ───────────────────────────────────
 def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification:
@@ -241,7 +254,12 @@ def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification
     all_text = f"{compliance_flags} {sector_text} {name_text} {description_text}"
 
     # Check for prohibited use cases
-    prohibited_keywords = ["social scoring", "mass surveillance", "subliminal manipulation", "exploit vulnerabilities"]
+    prohibited_keywords = [
+        "social scoring",
+        "mass surveillance",
+        "subliminal manipulation",
+        "exploit vulnerabilities",
+    ]
     is_prohibited = any(kw in all_text for kw in prohibited_keywords)
 
     if is_prohibited:
@@ -250,12 +268,23 @@ def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification
             risk_rationale="Process appears to involve prohibited AI use case",
             prohibited=True,
             requirements=["PROHIBITED — Cannot be deployed under EU AI Act"],
-            article_references=["Article 5 — Prohibited AI practices"]
+            article_references=["Article 5 — Prohibited AI practices"],
         )
 
     # Check for high-risk indicators
-    high_risk_keywords = ["pharma", "medical", "defense", "safety", "critical", "risk assessment",
-                         "worker", "recruitment", "credit", "law enforcement", "biometric"]
+    high_risk_keywords = [
+        "pharma",
+        "medical",
+        "defense",
+        "safety",
+        "critical",
+        "risk assessment",
+        "worker",
+        "recruitment",
+        "credit",
+        "law enforcement",
+        "biometric",
+    ]
     is_high_risk = any(kw in all_text for kw in high_risk_keywords)
 
     if is_high_risk:
@@ -264,12 +293,26 @@ def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification
             risk_rationale=f"Process operates in regulated/safety-critical domain",
             prohibited=False,
             requirements=EU_AI_ACT_HIGH_RISK_REQUIREMENTS,
-            article_references=["Annex III — High-risk AI systems", "Article 9", "Article 10",
-                               "Article 11", "Article 12", "Article 13", "Article 14", "Article 15"]
+            article_references=[
+                "Annex III — High-risk AI systems",
+                "Article 9",
+                "Article 10",
+                "Article 11",
+                "Article 12",
+                "Article 13",
+                "Article 14",
+                "Article 15",
+            ],
         )
 
     # Check for limited risk
-    limited_risk_keywords = ["customer", "chatbot", "recommendation", "generation", "synthesis"]
+    limited_risk_keywords = [
+        "customer",
+        "chatbot",
+        "recommendation",
+        "generation",
+        "synthesis",
+    ]
     is_limited_risk = any(kw in all_text for kw in limited_risk_keywords)
 
     if is_limited_risk:
@@ -278,7 +321,7 @@ def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification
             risk_rationale="Process involves AI interaction with users",
             prohibited=False,
             requirements=EU_AI_ACT_LIMITED_RISK_REQUIREMENTS,
-            article_references=["Article 52 — Transparency obligations"]
+            article_references=["Article 52 — Transparency obligations"],
         )
 
     # Default: minimal risk
@@ -287,10 +330,13 @@ def check_eu_ai_act_local(process: dict, package: dict) -> EUAIActClassification
         risk_rationale="Standard supply chain process with no identified high-risk characteristics",
         prohibited=False,
         requirements=EU_AI_ACT_MINIMAL_RISK_REQUIREMENTS,
-        article_references=["Recital 47 — Minimal risk AI systems"]
+        article_references=["Recital 47 — Minimal risk AI systems"],
     )
 
-def check_nist_local(process: dict, builder_result: dict, package: dict) -> NISTAIRMFCheck:
+
+def check_nist_local(
+    process: dict, builder_result: dict, package: dict
+) -> NISTAIRMFCheck:
     """NIST AI RMF check — local scoring"""
     agent_spec = builder_result.get("agent_spec", {})
 
@@ -340,20 +386,34 @@ def check_nist_local(process: dict, builder_result: dict, package: dict) -> NIST
         measure_score=min(measure_score, 1.0),
         manage_score=min(manage_score, 1.0),
         overall_score=min(overall, 1.0),
-        gaps=gaps
+        gaps=gaps,
     )
+
 
 def check_gdpr_local(process: dict) -> GDPRCheck:
     """GDPR AI check — local rule-based"""
-    all_text = " ".join([
-        process.get("name", ""),
-        process.get("description", ""),
-        " ".join(process.get("inputs", [])),
-        " ".join(process.get("outputs", []))
-    ]).lower()
+    all_text = " ".join(
+        [
+            process.get("name", ""),
+            process.get("description", ""),
+            " ".join(process.get("inputs", [])),
+            " ".join(process.get("outputs", [])),
+        ]
+    ).lower()
 
-    personal_data_keywords = ["customer", "employee", "worker", "personal", "individual",
-                              "supplier contact", "user", "patient", "name", "email", "id"]
+    personal_data_keywords = [
+        "customer",
+        "employee",
+        "worker",
+        "personal",
+        "individual",
+        "supplier contact",
+        "user",
+        "patient",
+        "name",
+        "email",
+        "id",
+    ]
     personal_data = any(kw in all_text for kw in personal_data_keywords)
 
     issues = []
@@ -367,10 +427,13 @@ def check_gdpr_local(process: dict) -> GDPRCheck:
         lawful_basis_defined=not personal_data,
         data_minimization=True,
         transparency_adequate=True,
-        issues=issues
+        issues=issues,
     )
 
-def check_quality_local(process: dict, builder_result: dict, package: dict) -> tuple[float, list]:
+
+def check_quality_local(
+    process: dict, builder_result: dict, package: dict
+) -> tuple[float, list]:
     """Quality score — local check"""
     issues = []
     score = 1.0
@@ -388,7 +451,9 @@ def check_quality_local(process: dict, builder_result: dict, package: dict) -> t
 
     # Check builder result completeness
     if not builder_result.get("ontology", {}).get("decision_points"):
-        issues.append("No decision points in ontology — agent may not handle edge cases")
+        issues.append(
+            "No decision points in ontology — agent may not handle edge cases"
+        )
         score -= 0.1
     if not builder_result.get("test_cases"):
         issues.append("No test cases generated — deployment risk")
@@ -407,6 +472,7 @@ def check_quality_local(process: dict, builder_result: dict, package: dict) -> t
 
     return max(score, 0.0), issues
 
+
 # ── COMPLIANCE CERTIFICATE GENERATOR ─────────────────────────────────────────
 def generate_certificate(
     process: dict,
@@ -417,7 +483,7 @@ def generate_certificate(
     nist: NISTAIRMFCheck,
     gdpr: GDPRCheck,
     quality_score: float,
-    quality_issues: list
+    quality_issues: list,
 ) -> ComplianceCertificate:
     """Generate compliance certificate"""
     process_id = process.get("process_id", "UNKNOWN")
@@ -452,14 +518,15 @@ def generate_certificate(
 
     # Overall score
     overall_score = (
-        quality_score * 0.3 +
-        iso_42001.score * 0.2 +
-        nist.overall_score * 0.3 +
-        (0.8 if not gdpr.issues else 0.5) * 0.2
+        quality_score * 0.3
+        + iso_42001.score * 0.2
+        + nist.overall_score * 0.3
+        + (0.8 if not gdpr.issues else 0.5) * 0.2
     )
 
     # Certificate validity
     from datetime import timedelta
+
     valid_until = (datetime.now() + timedelta(days=365)).strftime("%Y-%m-%d")
 
     # Certificate ID
@@ -483,32 +550,58 @@ def generate_certificate(
         conditions=conditions,
         rejection_reasons=rejection_reasons,
         human_review_required=human_review_required,
-        notes=f"Guardian review completed. Risk level: {eu_ai_act.risk_level}. Quality: {round(quality_score*100)}%"
+        notes=f"Guardian review completed. Risk level: {eu_ai_act.risk_level}. Quality: {round(quality_score * 100)}%",
     )
+
 
 # ── ISO 42001 CHECK (LLM-assisted) ────────────────────────────────────────────
 def check_iso_42001(process: dict, builder_result: dict) -> ISO42001Check:
-    """ISO/IEC 42001 check — LLM assisted for depth"""
+    """ISO/IEC 42001 check — LLM assisted for depth. v1.2 — includes compliance code."""
     try:
-        prompt = f"""You are an ISO/IEC 42001 auditor reviewing an AI agent.
+        agent_code = builder_result.get("agent_code", "")
+        compliance_section = ""
+        if "_compliance_checks" in agent_code:
+            start = agent_code.find("def _compliance_checks")
+            end = agent_code.find("\n    def ", start + 1)
+            compliance_section = agent_code[start : end if end != -1 else start + 3000][
+                :2000
+            ]
 
-AGENT PROCESS: {process.get('name')}
-AGENT TYPE: {builder_result.get('agent_spec', {}).get('agent_type', 'reactive')}
-CAPABILITIES: {builder_result.get('agent_spec', {}).get('capabilities', [])}
-ESCALATION RULES: {builder_result.get('agent_spec', {}).get('escalation_rules', [])}
-COMPLIANCE FLAGS: {process.get('compliance_flags', [])}
-
-Evaluate against ISO/IEC 42001 AI Management Systems standard.
-Return ONLY a JSON object:
-{{
-  "compliant": true/false,
-  "score": 0.0-1.0,
-  "gaps": ["gap1", "gap2"],
-  "recommendations": ["rec1", "rec2"]
-}}
-
-Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant with minor gaps, 
-0.5-0.7 partial compliance, <0.5 significant gaps"""
+        lines = [
+            "You are an ISO/IEC 42001 auditor reviewing an AI agent.",
+            "",
+            f"AGENT PROCESS: {process.get('name')}",
+            f"PROCESS ID: {process.get('process_id')}",
+            f"DOMAIN: {process.get('domain', '')}",
+            f"AGENT TYPE: {builder_result.get('agent_spec', {}).get('agent_type', 'reactive')}",
+            f"CAPABILITIES: {builder_result.get('agent_spec', {}).get('capabilities', [])}",
+            f"ESCALATION RULES: {builder_result.get('agent_spec', {}).get('escalation_rules', [])}",
+            f"COMPLIANCE FLAGS: {process.get('compliance_flags', [])}",
+            f"MONITORING METRICS: {builder_result.get('agent_spec', {}).get('monitoring_metrics', [])}",
+            "",
+            "IMPLEMENTED COMPLIANCE LOGIC:",
+            compliance_section if compliance_section else "Not available",
+            "",
+            "Evaluate against ISO/IEC 42001 clauses 4-10:",
+            "- Clause 4: Context — AI risks identified for this process",
+            "- Clause 5: Leadership — accountability and oversight defined",
+            "- Clause 6: Planning — risk assessment with likelihood/impact scoring",
+            "- Clause 7: Support — monitoring metrics and competence present",
+            "- Clause 8: Operation — compliance checks as executable logic",
+            "- Clause 9: Performance — KPIs and monitoring defined",
+            "- Clause 10: Improvement — escalation and remediation documented",
+            "",
+            "SCORING RULE: If compliance logic shows executable code with loops,",
+            "conditionals, and likelihood*impact scoring -> score >= 0.75.",
+            "Pure static string appends without conditionals -> score <= 0.45.",
+            "",
+            'Return ONLY valid JSON: {"compliant": true/false, "score": 0.0-1.0,',
+            '"gaps": ["gap1"], "recommendations": ["rec1"]}',
+            "",
+            "Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant minor gaps,",
+            "0.5-0.7 partial compliance, <0.5 significant gaps",
+        ]
+        prompt = "\n".join(lines)
 
         response = call_llm(prompt, expect_json=True)
         data = json.loads(response)
@@ -516,7 +609,7 @@ Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant with minor gaps,
             compliant=data.get("compliant", False),
             score=data.get("score", 0.6),
             gaps=data.get("gaps", []),
-            recommendations=data.get("recommendations", [])
+            recommendations=data.get("recommendations", []),
         )
     except Exception as e:
         logger.warning(f"ISO 42001 LLM check failed, using default: {e}")
@@ -524,8 +617,11 @@ Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant with minor gaps,
             compliant=True,
             score=0.7,
             gaps=["Full ISO 42001 assessment requires manual review"],
-            recommendations=["Complete formal ISO 42001 gap analysis before production deployment"]
+            recommendations=[
+                "Complete formal ISO 42001 gap analysis before production deployment"
+            ],
         )
+
 
 # ── LIBRARY LOADER / WRITER ───────────────────────────────────────────────────
 def load_package(process_id: str) -> Optional[dict]:
@@ -538,6 +634,7 @@ def load_package(process_id: str) -> Optional[dict]:
     logger.error(f"Package not found for: {process_id}")
     return None
 
+
 def load_builder_result(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
     for folder in ["scor", "iso", "bpmn", "sector_specific"]:
@@ -547,6 +644,7 @@ def load_builder_result(process_id: str) -> Optional[dict]:
                 return json.load(f)
     return None
 
+
 def load_process(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
     for folder in ["scor", "iso", "bpmn", "sector_specific"]:
@@ -555,6 +653,7 @@ def load_process(process_id: str) -> Optional[dict]:
             with open(proc_file, "r", encoding="utf-8") as f:
                 return json.load(f)
     return None
+
 
 def save_guardian_result(result: GuardianResult, process: dict):
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
@@ -593,16 +692,16 @@ Overall Score:   {round(cert.overall_score * 100)}%
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       {cert.eu_ai_act.risk_level.upper()} RISK
-ISO/IEC 42001:   {'COMPLIANT' if cert.iso_42001.compliant else 'GAPS FOUND'} ({round(cert.iso_42001.score*100)}%)
-NIST AI RMF:     {round(cert.nist_ai_rmf.overall_score*100)}% overall
-GDPR AI:         {'ISSUES FOUND' if cert.gdpr.issues else 'CLEAR'}
-Quality:         {round(cert.quality_score*100)}%
+ISO/IEC 42001:   {"COMPLIANT" if cert.iso_42001.compliant else "GAPS FOUND"} ({round(cert.iso_42001.score * 100)}%)
+NIST AI RMF:     {round(cert.nist_ai_rmf.overall_score * 100)}% overall
+GDPR AI:         {"ISSUES FOUND" if cert.gdpr.issues else "CLEAR"}
+Quality:         {round(cert.quality_score * 100)}%
 
-{'CONDITIONS' if cert.conditions else ''}
-{'─'*20 if cert.conditions else ''}
-{chr(10).join([f'• {c}' for c in cert.conditions]) if cert.conditions else ''}
+{"CONDITIONS" if cert.conditions else ""}
+{"─" * 20 if cert.conditions else ""}
+{chr(10).join([f"• {c}" for c in cert.conditions]) if cert.conditions else ""}
 
-{'HUMAN REVIEW REQUIRED' if cert.human_review_required else 'No human review required'}
+{"HUMAN REVIEW REQUIRED" if cert.human_review_required else "No human review required"}
 
 {cert.notes}
 """
@@ -614,6 +713,7 @@ Quality:         {round(cert.quality_score*100)}%
     logger.info(f"Guardian result saved: {result_file}")
     logger.info(f"Certificate saved: {cert_file}")
     return result_file
+
 
 # ── MAIN GUARDIAN FUNCTION ────────────────────────────────────────────────────
 def certify_agent(process_id: str) -> Optional[GuardianResult]:
@@ -650,11 +750,32 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
 
         if eu_ai_act.prohibited:
             logger.error(f"Process {process_id} is PROHIBITED under EU AI Act")
-            cert = generate_certificate(process, package, builder_result, eu_ai_act,
-                ISO42001Check(compliant=False, score=0.0, gaps=["Prohibited"], recommendations=[]),
-                NISTAIRMFCheck(govern_score=0, map_score=0, measure_score=0, manage_score=0, overall_score=0, gaps=[]),
-                GDPRCheck(personal_data_involved=False, lawful_basis_defined=False, data_minimization=False, transparency_adequate=False, issues=[]),
-                0.0, ["PROHIBITED USE CASE"])
+            cert = generate_certificate(
+                process,
+                package,
+                builder_result,
+                eu_ai_act,
+                ISO42001Check(
+                    compliant=False, score=0.0, gaps=["Prohibited"], recommendations=[]
+                ),
+                NISTAIRMFCheck(
+                    govern_score=0,
+                    map_score=0,
+                    measure_score=0,
+                    manage_score=0,
+                    overall_score=0,
+                    gaps=[],
+                ),
+                GDPRCheck(
+                    personal_data_involved=False,
+                    lawful_basis_defined=False,
+                    data_minimization=False,
+                    transparency_adequate=False,
+                    issues=[],
+                ),
+                0.0,
+                ["PROHIBITED USE CASE"],
+            )
             result = GuardianResult(
                 process_id=process_id,
                 guardian_timestamp=datetime.now().isoformat(),
@@ -662,7 +783,7 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
                 approved_for_library=False,
                 approved_for_delivery=False,
                 requires_human_sign_off=True,
-                remediation_plan=["Review EU AI Act Article 5 compliance requirements"]
+                remediation_plan=["Review EU AI Act Article 5 compliance requirements"],
             )
             save_guardian_result(result, process)
             return result
@@ -670,12 +791,12 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
         # STEP 2 — ISO/IEC 42001 (LLM)
         logger.info("Step 2/5: ISO/IEC 42001 check...")
         iso_42001 = check_iso_42001(process, builder_result)
-        logger.success(f"ISO 42001: {round(iso_42001.score*100)}%")
+        logger.success(f"ISO 42001: {round(iso_42001.score * 100)}%")
 
         # STEP 3 — NIST AI RMF (local)
         logger.info("Step 3/5: NIST AI RMF check...")
         nist = check_nist_local(process, builder_result, package)
-        logger.success(f"NIST AI RMF: {round(nist.overall_score*100)}%")
+        logger.success(f"NIST AI RMF: {round(nist.overall_score * 100)}%")
 
         # STEP 4 — GDPR (local)
         logger.info("Step 4/5: GDPR AI check...")
@@ -684,14 +805,22 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
 
         # STEP 5 — Quality (local)
         logger.info("Step 5/5: Quality check...")
-        quality_score, quality_issues = check_quality_local(process, builder_result, package)
-        logger.success(f"Quality: {round(quality_score*100)}%")
+        quality_score, quality_issues = check_quality_local(
+            process, builder_result, package
+        )
+        logger.success(f"Quality: {round(quality_score * 100)}%")
 
         # Generate certificate
         cert = generate_certificate(
-            process, package, builder_result,
-            eu_ai_act, iso_42001, nist, gdpr,
-            quality_score, quality_issues
+            process,
+            package,
+            builder_result,
+            eu_ai_act,
+            iso_42001,
+            nist,
+            gdpr,
+            quality_score,
+            quality_issues,
         )
 
         # Determine approvals
@@ -717,7 +846,7 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
             approved_for_library=approved_library,
             approved_for_delivery=approved_delivery,
             requires_human_sign_off=needs_human,
-            remediation_plan=remediation
+            remediation_plan=remediation,
         )
 
         save_guardian_result(result, process)
@@ -725,7 +854,7 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
         logger.success(
             f"Guardian complete: {process_id} | "
             f"Status: {cert.overall_status.upper()} | "
-            f"Score: {round(cert.overall_score*100)}% | "
+            f"Score: {round(cert.overall_score * 100)}% | "
             f"Library: {approved_library} | "
             f"Delivery: {approved_delivery}"
         )
@@ -735,6 +864,7 @@ def certify_agent(process_id: str) -> Optional[GuardianResult]:
     except Exception as e:
         logger.error(f"Guardian failed for {process_id}: {e}")
         return None
+
 
 # ── CLI INTERFACE ─────────────────────────────────────────────────────────────
 def run_guardian(process_ids: list):
@@ -753,10 +883,10 @@ def run_guardian(process_ids: list):
             cert = result.certificate
             print(f"\n✅ {pid}")
             print(f"   Status:     {cert.overall_status.upper()}")
-            print(f"   Score:      {round(cert.overall_score*100)}%")
+            print(f"   Score:      {round(cert.overall_score * 100)}%")
             print(f"   EU AI Act:  {cert.eu_ai_act.risk_level.upper()} RISK")
-            print(f"   ISO 42001:  {round(cert.iso_42001.score*100)}%")
-            print(f"   NIST RMF:   {round(cert.nist_ai_rmf.overall_score*100)}%")
+            print(f"   ISO 42001:  {round(cert.iso_42001.score * 100)}%")
+            print(f"   NIST RMF:   {round(cert.nist_ai_rmf.overall_score * 100)}%")
             print(f"   Library:    {'✅' if result.approved_for_library else '❌'}")
             print(f"   Delivery:   {'✅' if result.approved_for_delivery else '❌'}")
             if result.requires_human_sign_off:
@@ -764,7 +894,7 @@ def run_guardian(process_ids: list):
         else:
             print(f"\n❌ {pid} → Certification failed")
 
-    print(f"\n{'='*40}")
+    print(f"\n{'=' * 40}")
     print(f"Guardian complete: {len(results)}/{len(process_ids)} certified")
     certified = [r for r in results if r.certificate.overall_status == "certified"]
     conditional = [r for r in results if r.certificate.overall_status == "conditional"]
@@ -773,6 +903,7 @@ def run_guardian(process_ids: list):
     print(f"  Conditional: {len(conditional)}")
     print(f"  Rejected:    {len(rejected)}")
     return results
+
 
 if __name__ == "__main__":
     import sys

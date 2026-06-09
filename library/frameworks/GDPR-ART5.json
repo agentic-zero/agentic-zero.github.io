@@ -1,0 +1,18 @@
+{
+  "process_id": "GDPR-ART5",
+  "name": "GDPR Data Processing Principles",
+  "framework": "GDPR (EU) 2016/679",
+  "domain": "GDPR",
+  "article": "5 + 6 + 9",
+  "level": "L1",
+  "description": "Core GDPR data processing principles including lawfulness, fairness, transparency, purpose limitation, data minimization, accuracy, storage limitation, integrity, confidentiality and accountability, plus lawful basis and special category data requirements",
+  "inputs": ["personal data inventory", "processing purposes", "lawful basis assessment", "data subject categories", "retention schedules"],
+  "outputs": ["lawful basis documentation", "privacy notices", "data minimization controls", "retention policies", "accountability evidence"],
+  "kpis": ["lawful basis coverage", "privacy notice completeness", "data minimization compliance", "retention compliance rate"],
+  "related_processes": ["GDPR-ART13", "GDPR-ART30", "SCOR-E8", "ISO42001-7"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["GDPR Art.5 principles", "GDPR Art.6 lawful basis", "GDPR Art.9 special categories"],
+  "automation_potential": 0.60,
+  "source": "GDPR (EU) 2016/679",
+  "confidence": 0.97
+}

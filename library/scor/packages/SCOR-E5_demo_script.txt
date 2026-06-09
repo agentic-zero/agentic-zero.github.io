@@ -1,6 +1,6 @@
-1. Open dashboard and load sample supply chain dataset; highlight €748 price point and projected 8.0x ROI via automated asset tracking.
-2. Trigger AI optimization for inventory reallocation across three sites, showing real-time compliance rule checks against regulatory standards.
-3. Review auto-generated audit trail and risk-flagged assets; executive notes 40% reduction in manual review time.
-4. Run scenario simulating supply disruption; AI proposes compliant rerouting with quantified cost avoidance.
-5. Display ROI dashboard: €5,984 net value delivered in one cycle, confirming 8.0x multiplier on subscription.
-6. Export compliance report and savings summary for board distribution; close with next-step deployment timeline.
+1. Open dashboard and load sample supply chain dataset; highlight €748 annual license versus projected 8.0x ROI (€5,984 net value) via automated asset tracking.  
+2. Trigger AI optimization for inventory reallocation across three sites, showing real-time risk scoring and 40% faster decision cycle.  
+3. Run built-in compliance audit against EU and ISO standards; auto-generate audit-ready report with zero manual input.  
+4. Simulate disruption event; demonstrate AI rerouting assets while enforcing compliance constraints and logging every action.  
+5. Display live ROI dashboard comparing manual versus AI process (time saved, error reduction, audit cost avoidance).  
+6. Export one-click executive summary and schedule integration review, confirming 8.0x multiplier within first quarter.

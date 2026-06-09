@@ -4,7 +4,7 @@ Process: SCOR-S2.2
 Name: mto_product_receiving_agent
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-07T19:27:13.958702
+Generated: 2026-06-08T11:53:08.514998
 Compliance: GxP receiving if pharma, ISO 9001 incoming inspection, GDPR if personal data in records
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,10 @@ class MtoProductReceivingAgentAgent:
     Process of receiving, inspecting and verifying MTO materials against purchase orders and quality specifications before releasing to production
     
     Capabilities:
-    #   - process_goods_receipt
-    #   - execute_quality_inspection
-    #   - generate_discrepancy_alerts
-    #   - trigger_inventory_update
-    #   - handle_partial_or_damaged_deliveries
+    #   - event-driven receiving and inspection
+    #   - dock capacity monitoring and queuing
+    #   - discrepancy detection and alerting
+    #   - inventory and goods receipt updates
     
     Compliance: GxP receiving if pharma, ISO 9001 incoming inspection, GDPR if personal data in records
     """
@@ -140,46 +139,55 @@ class MtoProductReceivingAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF received quantity matches PurchaseOrder AND passes InspectionCriteria THEN create GoodsReceiptConfirmation ELSE create DiscrepancyAlert
-        # - IF ReceivingDock capacity exceeded THEN queue delivery and log delay
-        # - IF quality rejection rate > threshold THEN quarantine batch and notify supplier
+        # - IF received quantity matches PurchaseOrder AND passes InspectionCriteria THEN create GoodsReceipt ELSE create DiscrepancyAlert
+        # - IF dock capacity available THEN schedule inspection ELSE queue delivery
         
         Business rules:
-        # - GoodsReceiptConfirmation must be created within 4 hours of physical arrival
-        # - QualityInspectionReport must reference ISO 9001 criteria and GxP rules if pharma sector
-        # - All data fields in DiscrepancyAlert must be logged with timestamp and user_id for GDPR compliance
-        # - InventoryUpdate must be atomic and rollback on failure
+        # - All inputs must reference valid PurchaseOrder before inspection starts
+        # - QualityInspectionReport must be generated within inspection cycle time KPI
+        # - GDPR compliance required if personal data present in records
         """
         outputs = {}
         
-outputs = {
+# Extract and validate inputs with edge case handling for missing keys
+        po = inputs.get('purchase orders') or {}
+        sched = inputs.get('delivery schedule') or {}
+        specs = inputs.get('quality specifications') or {}
+        dock_cap = inputs.get('receiving dock capacity') or 0
+        criteria = inputs.get('inspection criteria') or {}
+
+        received_qty = sched.get('received_quantity', 0)
+        po_qty = po.get('quantity', 0)
+        passes_inspect = specs.get('passes', False) and criteria.get('met', False)
+        has_personal = any(k in str(po) + str(sched) for k in ['name', 'address', 'id'])
+
+        outputs = {
             'goods receipt confirmation': None,
             'quality inspection report': None,
             'inventory update': None,
             'discrepancy alerts': []
         }
-        # Edge case: missing or invalid inputs default to safe empty structures
-        po = inputs.get('purchase orders') or {}
-        qs = inputs.get('quality specifications') or {}
-        rc = inputs.get('receiving dock capacity') or 0
-        ic = inputs.get('inspection criteria') or {}
-        received_qty = po.get('quantity', 0)
-        # Dock capacity check per decision point
-        if rc <= 0:
-            outputs['discrepancy alerts'].append({'type': 'dock_overload', 'timestamp': 'now', 'user_id': 'system'})
-        # Core quantity + inspection decision
-        passes_inspection = bool(ic.get('passes', False))
-        if received_qty == po.get('quantity', 0) and passes_inspection:
-            outputs['goods receipt confirmation'] = {'status': 'confirmed', 'po_ref': po.get('id'), 'timestamp': 'now'}
-            outputs['inventory update'] = {'action': 'increment', 'qty': received_qty, 'atomic': True}
+
+        # GDPR compliance check per rules
+        if has_personal:
+            outputs['discrepancy alerts'].append('GDPR review required')
+
+        # Dock capacity decision point
+        if dock_cap <= 0:
+            outputs['discrepancy alerts'].append('Delivery queued: no dock capacity')
+            return outputs
+
+        # Quantity and inspection decision point
+        if received_qty == po_qty and passes_inspect:
+            outputs['goods receipt confirmation'] = {'status': 'confirmed', 'quantity': received_qty}
+            outputs['quality inspection report'] = {'result': 'pass', 'cycle_time_ok': True}
+            outputs['inventory update'] = {'action': 'increment', 'qty': received_qty}
         else:
-            outputs['discrepancy alerts'].append({'type': 'qty_or_quality_fail', 'timestamp': 'now', 'user_id': 'system'})
-        # Quality report with sector rule
-        sector = 'pharma' if 'gxp' in str(qs).lower() else 'general'
-        outputs['quality inspection report'] = {'standard': 'ISO 9001', 'sector': sector, 'criteria_ref': ic}
-        # GDPR logging already embedded in alert dicts; rollback stub for atomicity
-        if outputs['inventory update'] and not outputs['inventory_update'].get('atomic'):
-            outputs['inventory update'] = None
+            outputs['discrepancy alerts'].append('Quantity or inspection mismatch')
+
+        # Ensure all required outputs are present
+        if not outputs['discrepancy alerts']:
+            outputs['discrepancy alerts'] = None
         return outputs
         
         return outputs
@@ -189,9 +197,9 @@ outputs = {
         Built-in compliance validation
         
         Checks:
-        # - GxP rules for pharma batches
-        # - ISO 9001 inspection criteria reference
-        # - GDPR timestamp/user logging on all alerts
+        # - GxP receiving validation for pharma
+        # - ISO 9001 incoming inspection audit trail
+        # - GDPR personal_data scan on all records
         """
         checks_passed = []
         checks_failed = []
@@ -215,7 +223,7 @@ outputs = {
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['rejection_rate exceeds threshold requiring supplier notification', 'dock capacity overload triggering reschedule', 'missing compliance docs causing process hold']
+        escalation_rules = ['quantity/spec mismatch after 1 hour', 'missing inspection_criteria or blocked receipt', 'dock capacity overflow requiring SCOR-S2.1 reroute']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -229,7 +237,7 @@ outputs = {
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['receiving_accuracy', 'inspection_cycle_time', 'on_time_receiving_rate']
+            "monitoring": ['receiving_accuracy', 'inspection_cycle_time', 'quality_rejection_rate', 'dock_utilization']
         }
 
 

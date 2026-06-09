@@ -1,14 +1,13 @@
 # SOP — Receive Engineer-to-Order Product
 **Process ID:** SCOR-S3.2
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of receiving custom-engineered components and materials with full engineering documentation, test reports and compliance certificates for ETO production
 
 ## Triggers
-- Physical arrival of ETO_Delivery at receiving dock
-- Electronic notification of ETO_Delivery with attached documents
+- Physical arrival of ETO_Delivery at receiving dock with ASN notification
 
 ## Inputs Required
 - ETO delivery
@@ -18,8 +17,8 @@ Process of receiving custom-engineered components and materials with full engine
 - receiving inspection plan
 
 ## Process Steps
-1. IF all certificates present and valid THEN proceed to inspection ELSE quarantine and request missing documents
-2. IF first-pass inspection passes THEN generate Engineering_Acceptance_Report ELSE trigger rework or rejection workflow
+1. IF all inputs present and certificates valid THEN execute receiving inspection
+2. IF first-pass inspection passes THEN generate Engineering_Acceptance_Report ELSE trigger rejection workflow
 
 ## Expected Outputs
 - received ETO components
@@ -28,18 +27,17 @@ Process of receiving custom-engineered components and materials with full engine
 - project BOM update
 
 ## Business Rules
-- All ETO_Delivery items require matching engineering drawings, test reports and certificates before acceptance
-- Receiving cycle time must be logged with timestamp at each step for KPI calculation
-- Export control compliance flag must be checked for defense and aerospace sector_applicability
+- rule1: All ETO_Delivery must include engineering drawings, test reports and certificates before inspection starts
+- rule2: Receiving cycle time must be logged for ETO_Receiving_Accuracy_KPI calculation
+- rule3: Compliance flags (AS9100, export control) must be checked prior to acceptance
 
 ## Exception Handling
-- Missing certificates: hold item in quarantine and notify engineering within 4 hours
-- Documentation mismatch: reject delivery and create exception report linked to supplier
+- Missing certificates: hold material in quarantine and notify engineering within 4 hours
+- Failed inspection: create non-conformance report and route to SCOR-S3.3 for disposition
 
 ## Success Criteria
-- ETO receiving accuracy equals 100 percent
-- engineering documentation completeness equals 100 percent
-- first-pass acceptance rate meets or exceeds target KPI
+- Engineering_Acceptance_Report generated with first-pass acceptance = true
+- Inventory_Update and Project_BOM_Update completed within receiving cycle time SLA
 
 ## Compliance Requirements
 - defense acquisition standards

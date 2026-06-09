@@ -1,0 +1,18 @@
+{
+  "process_id": "EUAIA-ART11",
+  "name": "Technical Documentation Requirements",
+  "framework": "EU AI Act 2024",
+  "domain": "EU AI Act",
+  "article": "11",
+  "level": "L1",
+  "description": "Mandatory technical documentation for high-risk AI systems covering system description, design specifications, training methodology, performance metrics and conformity assessment evidence",
+  "inputs": ["AI system design", "training documentation", "test results", "risk assessment", "conformity evidence"],
+  "outputs": ["technical file", "system card", "conformity declaration", "Annex IV documentation"],
+  "kpis": ["documentation completeness score", "update frequency", "conformity assessment pass rate"],
+  "related_processes": ["EUAIA-ART9", "EUAIA-ART12", "EUAIA-ART16", "ISO42001-7"],
+  "sector_applicability": ["pharma", "defense", "manufacturing", "chemical", "food", "automotive"],
+  "compliance_flags": ["EU AI Act Art.11 mandatory", "Annex IV documentation", "CE marking requirements"],
+  "automation_potential": 0.60,
+  "source": "EU AI Act 2024 — Regulation (EU) 2024/1689",
+  "confidence": 0.97
+}

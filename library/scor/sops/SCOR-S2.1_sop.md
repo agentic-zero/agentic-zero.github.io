@@ -1,14 +1,14 @@
 # SOP — Schedule Product Deliveries (MTO)
 **Process ID:** SCOR-S2.1
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of scheduling inbound material deliveries aligned to make-to-order production schedules, coordinating supplier delivery windows with production start dates
 
 ## Triggers
-- New or updated ProductionOrder received from planning system
-- Change in SupplierCapacity or TransportationSchedule detected
+- New or changed ProductionOrder published from planning system
+- Daily batch update of supplier_lead_times or capacities
 
 ## Inputs Required
 - production orders
@@ -18,9 +18,9 @@ Process of scheduling inbound material deliveries aligned to make-to-order produ
 - transportation schedules
 
 ## Process Steps
-1. IF supplier capacity < material requirement THEN generate ExpediteAlert
-2. IF production start date - supplier lead time < current date THEN trigger expedite
-3. IF transportation schedule conflicts with production window THEN adjust DeliverySchedule or alert
+1. IF supplier_lead_time + transport_days > production_start_date THEN create ExpediteAlert and notify sourcing
+2. IF supplier_capacity < material_requirement_qty THEN flag alternative_supplier and log exception
+3. IF transportation_schedule.conflict == true THEN recalculate delivery_window with 1-day buffer
 
 ## Expected Outputs
 - delivery schedules
@@ -29,20 +29,21 @@ Process of scheduling inbound material deliveries aligned to make-to-order produ
 - schedule compliance reports
 
 ## Business Rules
-- DeliverySchedule must align supplier delivery window to production start date within 24 hours tolerance
-- SupplierDeliveryConfirmation required before 48 hours of scheduled delivery
-- Lead time variance must not exceed +/- 10% without ExpediteAlert
+- DeliverySchedule.delivery_date must be <= ProductionOrder.start_date - 1 day
+- All SupplierConfirmation must be received >= 48 hours before scheduled delivery
+- Schedule must enforce contractual lead times from Supplier master data
+- Apply GxP validation steps if sector == pharma
 
 ## Exception Handling
-- Supplier capacity shortfall: auto-create ExpediteAlert and notify procurement
-- Transportation delay > 4 hours: recalculate DeliverySchedule and update confirmations
-- Missing production order data: hold process and flag for planner review
+- SupplierCapacity shortfall: auto-create SCOR-S1.1 alternative sourcing request and pause schedule
+- GDPR personal data flag: mask supplier contact fields before storing ScheduleComplianceReport
+- Transportation delay > 24h: regenerate DeliverySchedule and increment expedite_rate KPI
 
 ## Success Criteria
-- Schedule adherence rate >= 95%
-- Supplier on-time delivery >= 98%
-- Expedite rate <= 5%
-- Lead time variance <= 10%
+- schedule_adherence_rate >= 0.98
+- supplier_on_time_delivery == 1.0 for all confirmed deliveries
+- expedite_rate <= 0.05
+- all outputs generated with zero missing SupplierConfirmation
 
 ## Compliance Requirements
 - GxP if pharma

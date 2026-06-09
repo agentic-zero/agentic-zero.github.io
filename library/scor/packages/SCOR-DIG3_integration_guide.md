@@ -1,4 +1,4 @@
-# Integration Guide — lifecycle_governance_agent
+# Integration Guide — lifecycle_compliance_orchestrator
 **Process:** Manage AI Agent Lifecycle
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp lifecycle_governance_agent.py ./agents/
+cp lifecycle_compliance_orchestrator.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.lifecycle_governance_agent import LifecycleGovernanceAgentAgent
+from agents.lifecycle_compliance_orchestrator import LifecycleComplianceOrchestratorAgent
 
-agent = LifecycleGovernanceAgentAgent()
+agent = LifecycleComplianceOrchestratorAgent()
 result = agent.execute({
     "process_definitions": your_process_definitions_data,
     "training_data": your_training_data_data,
@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- deployment_registry
-- compliance_engine
-- monitoring_system
-- runtime_logger
+- performance_monitoring_api
+- compliance_check_engine
+- deployment_package_handler
+- audit_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- retraining_loop_exceeds_3_in_30_days
-- certification_fails_EU_AI_Act_documentation
-- GDPR_explainability_missing_in_audit
+- compliance_score < 1.0
+- accuracy below benchmark after retraining
+- uptime < 99%
+- pharma or defense sector exceptions detected

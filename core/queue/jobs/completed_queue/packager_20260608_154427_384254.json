@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_154427_384254",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M3.5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T15:44:27.384272",
+  "status": "completed",
+  "started_at": "2026-06-08T17:52:30.844421",
+  "completed_at": "2026-06-08T17:55:31.213974",
+  "error": null,
+  "result": {
+    "agent_name": "eto_product_staging_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

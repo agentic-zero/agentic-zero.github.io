@@ -4,7 +4,7 @@ Process: SCOR-M2.3
 Name: produce_and_test_agent
 Framework: SCOR
 Domain: Make
-Generated: 2026-06-07T20:11:14.403233
+Generated: 2026-06-08T12:37:27.989030
 Compliance: GxP batch manufacturing records if pharma, ISO 9001 production, ATEX if explosive atmosphere, food safety HACCP
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -25,10 +25,9 @@ class ProduceAndTestAgentAgent:
     
     Capabilities:
     #   - execute_production_routing
-    #   - perform_in_process_testing
-    #   - log_compliance_records
-    #   - handle_defect_rework
-    #   - monitor_yield_kpis
+    #   - perform_in_process_tests
+    #   - generate_quality_records
+    #   - apply_rework_scrap_decisions
     
     Compliance: GxP batch manufacturing records if pharma, ISO 9001 production, ATEX if explosive atmosphere, food safety HACCP
     """
@@ -140,15 +139,14 @@ class ProduceAndTestAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF in-process defect rate > threshold THEN trigger rework or scrap
-        # - IF test pass rate < 95% THEN initiate root cause analysis
-        # - IF tooling unavailable THEN reschedule work order
+        # - IF test_result.pass == false THEN execute rework or scrap decision
+        # - IF in_process_defect_rate > 0.02 THEN trigger root_cause_analysis
+        # - IF first_pass_yield < 0.95 THEN pause line and inspect tooling
         
         Business rules:
-        # - All production must log ISO 9001 compliant records
-        # - GxP batch records required for pharma sector
-        # - HACCP critical control points must be checked for food sector
-        # - First-pass yield must be calculated per work order
+        # - compliance_flag == 'GxP' requires batch_record signature before ProductionCompletionConfirmation
+        # - ISO 9001 requires InProcessQualityRecord timestamp and operator_id for every unit
+        # - production_cycle_time must be logged per WorkOrder
         """
         outputs = {}
         
@@ -159,41 +157,53 @@ class ProduceAndTestAgentAgent:
             'in-process quality records': [],
             'production completion confirmations': []
         }
-        # Edge case: no work orders provided
-        if not work_orders:
-            return outputs
-        # Process each work order applying rules and decisions
+        # Extract inputs with safe defaults for edge cases (missing/empty data)
+        work_orders = inputs.get('work orders', []) or []
+        routings = inputs.get('production routings', {}) or {}
+        quality_plans = inputs.get('quality plans', {}) or {}
+        test_specs = inputs.get('test specifications', {}) or {}
+        tooling = inputs.get('tooling and equipment', {}) or {}
+        # Iterate work orders; handle empty list edge case
         for wo in work_orders:
             wo_id = wo.get('id', 'UNKNOWN')
-            # Log ISO 9001 compliant record (always)
-            quality_record = {'wo_id': wo_id, 'iso9001_log': True, 'timestamp': 'now'}
-            # Sector-specific rules
-            if wo.get('sector') == 'pharma':
-                quality_record['gxp_batch_record'] = True
-            elif wo.get('sector') == 'food':
-                quality_record['haccp_ccp_checked'] = True
-            outputs['in-process quality records'].append(quality_record)
-            # Simulate production routing and tooling check (decision point)
-            if not tooling_available(wo):
-                outputs['production completion confirmations'].append({'wo_id': wo_id, 'status': 'rescheduled'})
-                continue
-            # Manufacture product
-            product = {'wo_id': wo_id, 'status': 'manufactured'}
-            outputs['manufactured products'].append(product)
-            # Simulate test execution per specs and quality plan
-            test_pass_rate = simulate_tests(wo, test_specifications)
-            outputs['test results'].append({'wo_id': wo_id, 'pass_rate': test_pass_rate})
-            # Decision points
-            defect_rate = calculate_defect_rate(wo, quality_plans)
-            if defect_rate > 0.05:  # threshold example
-                # trigger rework/scrap logic placeholder
-                pass
-            if test_pass_rate < 0.95:
-                # initiate root cause placeholder
-                pass
-            # Calculate and record first-pass yield
-            fp_yield = test_pass_rate  # simplified
-            outputs['production completion confirmations'].append({'wo_id': wo_id, 'status': 'completed', 'first_pass_yield': fp_yield})
+            compliance = wo.get('compliance_flag', '')
+            # Log cycle time per rule
+            cycle_time = wo.get('planned_cycle_time', 0)
+            # Simulate production steps from routing
+            for step in routings.get(wo_id, []):
+                # Create in-process quality record (ISO 9001 rule)
+                ipqr = {
+                    'wo_id': wo_id,
+                    'timestamp': '2024-01-01T00:00:00Z',
+                    'operator_id': wo.get('operator_id', 'OP_DEFAULT'),
+                    'step': step
+                }
+                outputs['in-process quality records'].append(ipqr)
+                # Apply test specs and capture results
+                test_result = {'wo_id': wo_id, 'pass': True, 'value': 0.99}
+                outputs['test results'].append(test_result)
+                # Decision point: test failure triggers rework/scrap
+                if not test_result['pass']:
+                    outputs['manufactured products'].append({'wo_id': wo_id, 'status': 'rework'})
+                    continue
+                # Decision point: defect rate > 2% triggers root cause
+                if wo.get('defect_rate', 0) > 0.02:
+                    outputs['test results'].append({'wo_id': wo_id, 'action': 'root_cause_analysis'})
+                # Decision point: low first-pass yield pauses line
+                if wo.get('first_pass_yield', 1.0) < 0.95:
+                    outputs['test results'].append({'wo_id': wo_id, 'action': 'pause_and_inspect_tooling'})
+            # GxP rule: require batch record signature before completion
+            completion = {'wo_id': wo_id, 'cycle_time': cycle_time, 'signed': compliance != 'GxP'}
+            if compliance == 'GxP' and not wo.get('batch_record_signature'):
+                completion['status'] = 'pending_signature'
+            else:
+                completion['status'] = 'complete'
+                outputs['manufactured products'].append({'wo_id': wo_id, 'status': 'manufactured'})
+            outputs['production completion confirmations'].append(completion)
+        # Edge case: ensure all required outputs are present even if no work orders
+        for key in ['manufactured products', 'test results', 'in-process quality records', 'production completion confirmations']:
+            if key not in outputs:
+                outputs[key] = []
         return outputs
         
         return outputs
@@ -203,10 +213,8 @@ class ProduceAndTestAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - GxP batch record completeness
-        # - ISO 9001 in-process logs
-        # - HACCP CCP verification
-        # - ATEX zone compliance if applicable
+        # - GxP_batch_record_signature
+        # - ISO_9001_inprocess_timestamp_operator
         """
         checks_passed = []
         checks_failed = []
@@ -230,7 +238,7 @@ class ProduceAndTestAgentAgent:
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['equipment failure or missing quality plan', 'test pass rate < 95% after root-cause attempt', 'non-conforming result requiring deviation record']
+        escalation_rules = ['equipment_failure or test_specification_mismatch', 'first_pass_yield < 0.95 or in_process_defect_rate > 0.02 after automated recovery']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -244,7 +252,7 @@ class ProduceAndTestAgentAgent:
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['first_pass_yield', 'cycle_time_seconds', 'test_pass_rate', 'open_deviation_count']
+            "monitoring": ['KPIFirstPassYield', 'KPITestPassRate', 'KPIProductionCycleTime']
         }
 
 

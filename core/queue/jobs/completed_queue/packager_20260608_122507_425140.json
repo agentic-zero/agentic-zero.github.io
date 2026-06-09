@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_122507_425140",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S3.5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T12:25:07.425157",
+  "status": "completed",
+  "started_at": "2026-06-08T14:57:38.948206",
+  "completed_at": "2026-06-08T15:00:37.191965",
+  "error": null,
+  "result": {
+    "agent_name": "milestone_payment_authorizer",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

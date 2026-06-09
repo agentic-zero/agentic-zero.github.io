@@ -1,4 +1,4 @@
-# Integration Guide — api_integration_layer_manager
+# Integration Guide — api_integration_orchestrator
 **Process:** Manage API and Integration Layer
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp api_integration_layer_manager.py ./agents/
+cp api_integration_orchestrator.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.api_integration_layer_manager import ApiIntegrationLayerManagerAgent
+from agents.api_integration_orchestrator import ApiIntegrationOrchestratorAgent
 
-agent = ApiIntegrationLayerManagerAgent()
+agent = ApiIntegrationOrchestratorAgent()
 result = agent.execute({
     "system_interfaces": your_system_interfaces_data,
     "api_specifications": your_api_specifications_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- api_gateway_api
-- identity_provider
-- time_series_db
-- error_log_aggregator
-- sap_edi_connector
+- APIGateway
+- APIPerformanceMetric
+- ErrorLog
+- AuthenticationCredential
+- IntegrationFlow
 
 ## Escalation
 The agent automatically escalates to human when:
-- credential refresh fails -> notify admin and fallback to read-only
-- data mapping fails on EU AI Act system -> quarantine and require manual approval
-- uptime < 99.9% or error rate > 0.5% persists after retry
+- Authentication failure after 3 exponential backoff retries
+- Data mapping mismatch requiring manual review before retry

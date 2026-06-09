@@ -1,0 +1,18 @@
+{
+  "process_id": "ISO42001-5",
+  "name": "AI Leadership — Policy and Governance",
+  "framework": "ISO 42001:2023",
+  "domain": "ISO 42001",
+  "clause": "5",
+  "level": "L1",
+  "description": "Leadership commitment to responsible AI, AI policy establishment, organizational roles for AI governance including AI ethics board, AI risk owner and AI system owners",
+  "inputs": ["AI strategy", "AI risk appetite", "regulatory requirements", "ethical principles", "organizational structure"],
+  "outputs": ["AI policy", "AI governance framework", "AI ethics principles", "role assignments", "AI accountability matrix"],
+  "kpis": ["AI policy communication rate", "governance meeting frequency", "AI accountability coverage"],
+  "related_processes": ["ISO42001-4", "ISO42001-6", "SCOR-E1", "SCOR-DIG10"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["ISO 42001:2023 Clause 5", "EU AI Act Art.4 AI literacy", "corporate AI governance"],
+  "automation_potential": 0.30,
+  "source": "ISO 42001:2023 Standard",
+  "confidence": 0.96
+}

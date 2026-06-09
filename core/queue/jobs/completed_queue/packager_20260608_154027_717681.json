@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260608_154027_717681",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-M3.4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T15:40:27.717699",
+  "status": "completed",
+  "started_at": "2026-06-08T17:49:31.179153",
+  "completed_at": "2026-06-08T17:52:30.833150",
+  "error": null,
+  "result": {
+    "agent_name": "eto_packaging_compliance_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

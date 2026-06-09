@@ -1,7 +1,6 @@
-1. Open dashboard showing manual AI agent lifecycle costs (€120K/yr) and compliance gaps (3 audit findings).
-2. Deploy lifecycle_governance_agent; auto-onboard two agents with built-in policy checks in <60 seconds.
-3. Trigger live compliance scan: agent flags and remediates a GDPR violation automatically, logging full audit trail.
-4. Simulate agent decommissioning: process completes with zero manual steps, cutting prior 4-hour task to 2 minutes.
-5. Display ROI dashboard: €748 price yields 8.0x return via 92% effort reduction and zero compliance penalties.
-6. Export one-click executive report for board review, confirming sustained 8x multiplier over 12 months.
-7. Close with implementation timeline: live in 5 days, first measurable ROI within 30 days.
+1. Open dashboard: Display manual AI agent lifecycle costs (€45K annual overhead) vs. automated baseline.
+2. Onboard sample agent: Trigger lifecycle_compliance_orchestrator to auto-provision, classify risk, and enforce policy in <60 seconds.
+3. Run compliance scan: Execute real-time audit across 12 controls, auto-remediate 3 violations, and generate board-ready report.
+4. Simulate scale event: Add 50 agents; show orchestrator maintaining 100% compliance while cutting review time by 85%.
+5. Surface ROI calculator: Input €748 price; live model projects €5,984 net value (8.0x multiplier) from risk reduction and labor savings.
+6. Export executive summary: One-click PDF with compliance score, ROI proof, and recommended rollout timeline.

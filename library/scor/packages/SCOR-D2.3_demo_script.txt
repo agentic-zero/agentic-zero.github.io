@@ -1,7 +1,6 @@
-1. Open with executive pain: "Manual MTO reservations cost 12+ hours/week and risk compliance gaps—let's see AI fix both in under 90 seconds."
-2. Trigger agent via dashboard: Input live order; mto_resource_reservation_agent auto-matches resources, checks capacity, and flags regulatory constraints.
-3. Display instant output: Confirmed reservation + delivery date with full audit trail, policy citations, and exception alerts for zero manual rework.
-4. Quantify time/ROI: "This single run saves 2.4 hours; at scale that's €5k annual labor recovery—8.0x multiplier on the €624 price in first month."
-5. Prove compliance value: Walk through immutable logs, automated rule checks, and one-click export ready for audits—eliminating 100% of prior violation exposure.
-6. Side-by-side benchmark: Show legacy spreadsheet vs. agent result to highlight speed, accuracy, and risk reduction for the room.
-7. Close: "Ready to pilot? €624 unlocks €5k+ yearly ROI plus board-level compliance assurance—next step is a 2-week sandbox."
+1. Open with the MTO challenge: manual resource checks cause 3–5 day delays and 12% compliance failures; state that the €624 agent delivers 8.0x ROI by automating the full Reserve Resources and Determine Delivery Date process.  
+2. Enter a live MTO order (SKU, qty, customer date) and run the agent; it instantly queries ERP, capacity, and supplier APIs.  
+3. Display the auto-generated plan: reserved resources, feasible delivery date, and real-time compliance flags (regulatory, safety stock, audit trail).  
+4. Compare before/after: 4 hours of manual work reduced to 45 seconds, zero missed compliance items, and a locked delivery date that cuts expediting costs by €1,200 per order.  
+5. Project annual ROI: at 40 orders/month the agent returns €4,992 in recovered margin and labor—8.0x the €624 price—within the first month.  
+6. Close with one-click audit report export and offer to pilot on their next three MTO orders.

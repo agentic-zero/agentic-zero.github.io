@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.3",
-  "guardian_timestamp": "2026-06-08T01:43:20.186843",
+  "guardian_timestamp": "2026-06-08T18:51:37.493027",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.3-20260608",
     "process_id": "SCOR-D2.3",
     "agent_name": "mto_resource_reservation_agent",
-    "issued_at": "2026-06-08T01:43:20.186797",
+    "issued_at": "2026-06-08T18:51:37.492983",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.84,
+    "overall_score": 0.82,
     "eu_ai_act": {
       "risk_level": "limited",
       "risk_rationale": "Process involves AI interaction with users",
@@ -24,13 +24,19 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.62,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No explicit AI risk assessment or impact analysis process defined",
+        "Insufficient transparency and explainability mechanisms for delivery date calculations",
+        "Missing continual improvement and performance monitoring framework beyond escalation triggers",
+        "Limited documentation of AI system objectives, scope, and accountability structures"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement formal AI risk management and impact assessment aligned with ISO 42001 Clause 6",
+        "Add decision logging and explainability features for resource allocation outputs",
+        "Establish metrics and audit trails for ongoing AI performance and compliance monitoring",
+        "Define roles, responsibilities, and human oversight integration within the AI management system"
       ]
     },
     "nist_ai_rmf": {
@@ -63,7 +69,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review",
+    "ISO 42001: No explicit AI risk assessment or impact analysis process defined",
     "GDPR: Personal data detected: define lawful basis for processing"
   ]
 }

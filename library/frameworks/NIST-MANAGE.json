@@ -1,0 +1,18 @@
+{
+  "process_id": "NIST-MANAGE",
+  "name": "MANAGE — AI Risk Treatment and Response",
+  "framework": "NIST AI RMF 1.0",
+  "domain": "NIST AI RMF",
+  "function": "MANAGE",
+  "level": "L1",
+  "description": "Managing AI risks through treatment plans, prioritization, response activities and recovery from AI incidents including residual risk monitoring and continuous improvement",
+  "inputs": ["risk assessments", "treatment options", "resource constraints", "incident data", "residual risk levels"],
+  "outputs": ["risk treatment plans", "incident response records", "residual risk reports", "improvement actions", "recovery plans"],
+  "kpis": ["risk treatment coverage", "incident response time", "residual risk reduction", "recovery effectiveness"],
+  "related_processes": ["NIST-MEASURE", "NIST-GOVERN", "ISO42001-10", "EUAIA-ART72", "SCOR-E9"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["NIST AI RMF 1.0 MANAGE", "EU AI Act incident management", "ISO 42001 improvement"],
+  "automation_potential": 0.70,
+  "source": "NIST AI RMF 1.0 — NIST AI 100-1",
+  "confidence": 0.96
+}

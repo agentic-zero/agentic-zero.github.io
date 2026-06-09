@@ -1,0 +1,18 @@
+{
+  "process_id": "NIST-GOVERN",
+  "name": "GOVERN — AI Risk Culture and Accountability",
+  "framework": "NIST AI RMF 1.0",
+  "domain": "NIST AI RMF",
+  "function": "GOVERN",
+  "level": "L1",
+  "description": "Establishing organizational practices for AI risk management including policies, processes, accountability structures and culture that enable trustworthy AI development and deployment",
+  "inputs": ["organizational AI strategy", "risk appetite", "stakeholder requirements", "regulatory context", "ethical principles"],
+  "outputs": ["AI risk governance framework", "accountability structures", "AI policies", "roles and responsibilities", "AI culture indicators"],
+  "kpis": ["governance maturity score", "accountability coverage", "policy adherence rate", "culture assessment score"],
+  "related_processes": ["NIST-MAP", "ISO42001-5", "EUAIA-ART9", "SCOR-E1"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["NIST AI RMF 1.0 GOVERN", "ISO 42001 alignment", "EU AI Act governance"],
+  "automation_potential": 0.35,
+  "source": "NIST AI RMF 1.0 — NIST AI 100-1",
+  "confidence": 0.96
+}

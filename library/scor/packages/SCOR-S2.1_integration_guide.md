@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_production_order_API
-- supplier_portal_capacity_API
-- MES_production_start_API
-- logistics_transport_schedule_API
+- ERP_production_orders_API
+- TMS_transportation_API
+- Supplier_master_data_API
+- MRP_material_requirements
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing production_order data flagged for planner
-- Lead time variance >10% or ExpediteAlert volume exceeds threshold
-- Transportation delay >4h after automated reschedule attempt
+- Missing SupplierConfirmation 48h prior
+- lead_time_variance > 2 days
+- data_quality alert on absent inputs

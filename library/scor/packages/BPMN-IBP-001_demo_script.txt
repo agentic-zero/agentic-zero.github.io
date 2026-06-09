@@ -1,0 +1,6 @@
+1. Open with the €748 investment and 8x ROI target, stating the agent automates end-to-end IBP while embedding compliance controls.  
+2. Ingest live sales, inventory, and regulatory data; trigger AI plan generation in under 60 seconds.  
+3. Run built-in compliance engine to auto-validate the plan against SOX, GDPR, and internal policies, producing an audit trail.  
+4. Display optimized IBP output with quantified savings (€X) and revenue uplift that deliver the 8x multiplier within one quarter.  
+5. Execute a live disruption scenario; show real-time replanning that preserves compliance without manual rework.  
+6. Summarize time-to-value metrics and risk reduction on a single executive dashboard, then close with procurement next steps.

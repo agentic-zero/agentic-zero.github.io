@@ -1,0 +1,6 @@
+1. Open with 60-second overview: Introduce inbound_warehouse_automation_agent automating receiving, QC, and put-away while enforcing compliance rules; state €699 price and 8.0x ROI target.  
+2. Run live inbound shipment: AI scans/validates 50 SKUs in <90 seconds, auto-flags restricted items and logs chain-of-custody.  
+3. Display real-time compliance dashboard: Show automated audit trail, regulatory checks, and zero-deviation report generated for the session.  
+4. Reveal efficiency metrics: Compare manual vs. agent time (12 min → 1.5 min per pallet) and error reduction (from 4% to <0.2%).  
+5. Present ROI model: Input current inbound volume; instantly calculate €5,592 net annual value (8.0x multiplier) with payback in <6 weeks.  
+6. Close with next-step offer: 14-day pilot at no extra cost, including compliance certification package.

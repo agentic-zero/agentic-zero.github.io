@@ -4,7 +4,7 @@ Process: SCOR-D2.4
 Name: mto_order_consolidation_agent
 Framework: SCOR
 Domain: Deliver
-Generated: 2026-06-07T20:51:14.088585
+Generated: 2026-06-08T13:17:29.859062
 Compliance: GDPR customer data, customs consolidation regulations, dangerous goods if applicable
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,10 @@ class MtoOrderConsolidationAgentAgent:
     Process of consolidating multiple MTO orders for the same customer or delivery destination to optimize shipping costs and delivery efficiency
     
     Capabilities:
-    #   - order_matching
-    #   - consolidation_planning
-    #   - cost_savings_calculation
-    #   - gdpr_data_masking
+    #   - order_aggregation
+    #   - logistics_optimization
     #   - compliance_validation
+    #   - shipment_planning
     
     Compliance: GDPR customer data, customs consolidation regulations, dangerous goods if applicable
     """
@@ -140,63 +139,70 @@ class MtoOrderConsolidationAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF orders share customer_id OR delivery_destination AND delivery_window_overlap >= 24h THEN consolidate
-        # - IF projected_cost_savings >= cost_threshold THEN approve consolidation ELSE keep separate
+        # - IF multiple MTOOrders share same Customer AND DeliveryDestination AND compatible DeliverySchedule THEN create ConsolidatedShipmentPlan
+        # - IF LogisticsOption.cost < sum(individual shipping costs) THEN select LogisticsOption for consolidation
         
         Business rules:
-        # - Only consolidate orders with status='confirmed'
-        # - Apply GDPR masking to all customer data in ConsolidatedShipmentPlan
-        # - Dangerous goods flag requires separate shipment unless hazmat certification present
+        # - Only consolidate MTOOrders with status=confirmed
+        # - ConsolidatedShipmentPlan must respect all original customer shipping preferences
+        # - Apply dangerous goods segregation rules before consolidation
         """
         outputs = {}
         
-confirmed_orders = inputs.get('confirmed orders', [])
-        delivery_schedules = inputs.get('delivery schedules', {})
-        customer_prefs = inputs.get('customer shipping preferences', {})
-        logistics = inputs.get('logistics options', {})
-        cost_params = inputs.get('cost parameters', {})
-        cost_threshold = cost_params.get('threshold', 50.0)
-        hazmat_cert = cost_params.get('hazmat_certification', False)
-        valid_orders = [o for o in confirmed_orders if o.get('status') == 'confirmed']
-        consolidated = []
-        separate = []
-        notifications = []
-        total_savings = 0.0
-        if not valid_orders:
-            outputs = {'consolidated shipment plans': [], 'optimized delivery schedules': {}, 'customer notifications': [], 'shipping cost savings': 0.0}
+outputs = {
+            'consolidated shipment plans': [],
+            'optimized delivery schedules': [],
+            'customer notifications': [],
+            'shipping cost savings': 0.0
+        }
+        orders = inputs.get('confirmed orders', [])
+        schedules = inputs.get('delivery schedules', {})
+        prefs = inputs.get('customer shipping preferences', {})
+        logistics = inputs.get('logistics options', [])
+        costs = inputs.get('cost parameters', {})
+        if not orders:
             return outputs
+        # Group by customer + destination; check schedule compatibility and status
         groups = {}
-        for order in valid_orders:
-            key = None
-            dest = order.get('delivery_destination')
-            cid = order.get('customer_id')
-            if cid:
-                key = ('cid', cid)
-            elif dest:
-                key = ('dest', dest)
-            if key:
-                groups.setdefault(key, []).append(order)
-        for gkey, glist in groups.items():
-            overlap = 24
-            if len(glist) > 1 and overlap >= 24:
-                has_dg = any(o.get('dangerous_goods', False) for o in glist)
-                if has_dg and not hazmat_cert:
-                    separate.extend(glist)
-                    continue
-                projected = len(glist) * 25.0
-                if projected >= cost_threshold:
-                    plan = {'group_key': gkey, 'orders': [o['id'] for o in glist]}
-                    # GDPR masking
-                    plan['masked_customer'] = '***' + str(gkey[1])[-4:] if gkey else 'masked'
-                    consolidated.append(plan)
-                    total_savings += projected
-                    notifications.append({'type': 'consolidated', 'orders': [o['id'] for o in glist]})
-                else:
-                    separate.extend(glist)
-            else:
-                separate.extend(glist)
-        opt_schedules = {o['id']: delivery_schedules.get(o['id'], 'default') for o in valid_orders}
-        outputs = {'consolidated shipment plans': consolidated, 'optimized delivery schedules': opt_schedules, 'customer notifications': notifications, 'shipping cost savings': total_savings}
+        for order in orders:
+            if order.get('status') != 'confirmed':
+                continue
+            key = (order.get('customer'), order.get('destination'))
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(order)
+        savings = 0.0
+        for key, group in groups.items():
+            if len(group) < 2:
+                continue
+            cust, dest = key
+            # Dangerous goods segregation check
+            dg_classes = set(o.get('dg_class') for o in group if o.get('dg_class'))
+            if len(dg_classes) > 1:
+                continue
+            # Verify compatible schedules and respect preferences
+            common_sched = schedules.get((cust, dest))
+            if not common_sched or not prefs.get(cust, {}).get('allowed', True):
+                continue
+            # Evaluate logistics cost vs individual sum
+            ind_cost = sum(costs.get(o.get('id'), 0) for o in group)
+            best_log = None
+            for log in logistics:
+                if log.get('cost', float('inf')) < ind_cost:
+                    best_log = log
+                    break
+            if best_log:
+                plan = {
+                    'id': f"CS-{cust}-{dest}",
+                    'orders': [o.get('id') for o in group],
+                    'logistics': best_log.get('id'),
+                    'schedule': common_sched
+                }
+                outputs['consolidated shipment plans'].append(plan)
+                outputs['optimized delivery schedules'].append(common_sched)
+                outputs['customer notifications'].append(f"Consolidated shipment {plan['id']} for {cust}")
+                savings += (ind_cost - best_log.get('cost', 0))
+        outputs['shipping cost savings'] = savings
         return outputs
         
         return outputs
@@ -206,9 +212,9 @@ confirmed_orders = inputs.get('confirmed orders', [])
         Built-in compliance validation
         
         Checks:
-        # - gdpr_masking_applied
-        # - dangerous_goods_separation
-        # - customs_regulations_compliance
+        # - GDPR customer data validation
+        # - dangerous_goods_segregation
+        # - customs_consolidation_regulations
         """
         checks_passed = []
         checks_failed = []
@@ -232,7 +238,7 @@ confirmed_orders = inputs.get('confirmed orders', [])
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['customs consolidation regulations violated', 'dangerous goods without hazmat certification', 'mismatched delivery windows >48h']
+        escalation_rules = ['Conflicting delivery windows', 'GDPR-restricted customer data', 'Regulatory block on dangerous goods']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -246,7 +252,7 @@ confirmed_orders = inputs.get('confirmed orders', [])
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['consolidation_rate', 'shipping_cost_reduction', 'notification_latency']
+            "monitoring": ['consolidation_rate', 'shipping_cost_reduction', 'notification_sla_compliance']
         }
 
 

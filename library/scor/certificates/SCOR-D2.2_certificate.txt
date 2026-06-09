@@ -9,12 +9,12 @@ Valid Until:     2027-06-08
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CERTIFIED
-Overall Score:   84%
+Overall Score:   81%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       LIMITED RISK
-ISO/IEC 42001:   COMPLIANT (70%)
+ISO/IEC 42001:   GAPS FOUND (55%)
 NIST AI RMF:     100% overall
 GDPR AI:         ISSUES FOUND
 Quality:         100%

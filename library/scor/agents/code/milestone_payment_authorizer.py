@@ -4,7 +4,7 @@ Process: SCOR-S3.5
 Name: milestone_payment_authorizer
 Framework: SCOR
 Domain: Source
-Generated: 2026-06-07T19:59:13.584259
+Generated: 2026-06-08T12:25:27.464713
 Compliance: government contracting regulations, milestone payment compliance, GDPR financial data, export control financial
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,10 +24,10 @@ class MilestonePaymentAuthorizerAgent:
     Process of authorizing milestone-based or delivery-based payments for ETO suppliers upon verified receipt and engineering acceptance of custom components
     
     Capabilities:
-    #   - validate_milestone_and_invoice
-    #   - enforce_contract_terms
-    #   - generate_payment_authorization
-    #   - apply_data_masking
+    #   - validate_acceptance_and_invoice
+    #   - enforce_payment_rules
+    #   - apply_compliance_gates
+    #   - generate_authorization_and_updates
     
     Compliance: government contracting regulations, milestone payment compliance, GDPR financial data, export control financial
     """
@@ -139,64 +139,61 @@ class MilestonePaymentAuthorizerAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF milestone_completed == true AND engineering_accepted == true AND invoice_matches_terms == true THEN create MilestonePaymentAuthorization
-        # - IF compliance_flags contain government_contracting_regulations THEN require additional_approval == true
+        # - IF EngineeringAcceptanceReport.status == 'accepted' AND MilestoneCompletion.verified == true AND SupplierInvoice.amount matches ContractPaymentTerm THEN create MilestonePaymentAuthorization
+        # - IF any compliance_flag in ['government contracting regulations','export control financial'] THEN require additional compliance_approval before authorization
         
         Business rules:
-        # - authorization_amount must equal contract_payment_term.amount for the milestone
-        # - payment_cycle_time must be <= KPI threshold
-        # - all inputs must have matching project_id and supplier_id
-        # - GDPR_financial_data and export_control_financial must be masked before storage
+        # - MilestonePaymentAuthorization.amount must equal ContractPaymentTerm.milestone_amount
+        # - Payment cycle time must be logged and <= KPI threshold
+        # - All financial data operations must log GDPR and export control compliance checks
         """
         outputs = {}
         
-outputs = {'milestone payment authorizations': [], 'payment confirmations': [], 'project cost updates': [], 'supplier financial records': []}
-        # Extract and validate core identifiers from all inputs for matching
-        ids = {}
-        for inp_name in ['milestone completions', 'engineering acceptance reports', 'supplier invoices', 'contract payment terms', 'project financial data']:
-            data = locals().get(inp_name.replace(' ', '_'), [])
-            for item in (data if isinstance(data, list) else [data]):
-                pid = item.get('project_id')
-                sid = item.get('supplier_id')
-                if pid and sid:
-                    key = (pid, sid)
-                    ids.setdefault(key, []).append(item)
-        # Edge case: abort if no consistent project/supplier matches across inputs
-        if not ids:
+inputs = inputs or {}
+        mcs = inputs.get('milestone completions', []) or []
+        ears = inputs.get('engineering acceptance reports', []) or []
+        invoices = inputs.get('supplier invoices', []) or []
+        terms = inputs.get('contract payment terms', {}) or {}
+        fin_data = inputs.get('project financial data', {}) or {}
+        outputs = {
+            'milestone payment authorizations': [],
+            'payment confirmations': [],
+            'project cost updates': [],
+            'supplier financial records': []
+        }
+        compliance_flags = fin_data.get('compliance_flags', []) or []
+        requires_compliance = any(f in ['government contracting regulations', 'export control financial'] for f in compliance_flags)
+        # edge case: missing core inputs
+        if not mcs or not ears or not invoices or not terms:
+            outputs['payment confirmations'].append({'status': 'skipped', 'reason': 'missing_inputs'})
             return outputs
-        for key, items in ids.items():
-            pid, sid = key
-            # Rule: all inputs must share matching ids (already filtered)
-            mcs = [i for i in items if 'milestone' in str(i)]
-            ears = [i for i in items if 'acceptance' in str(i)]
-            invs = [i for i in items if 'invoice' in str(i)]
-            cpts = [i for i in items if 'payment_term' in str(i)]
-            pfds = [i for i in items if 'financial' in str(i)]
-            for mc in mcs:
-                for ear in ears:
-                    for inv in invs:
-                        for cpt in cpts:
-                            # Decision point checks
-                            if mc.get('milestone_completed') and ear.get('engineering_accepted') and inv.get('invoice_matches_terms'):
-                                auth_amt = cpt.get('amount')
-                                # Rule: authorization_amount must equal contract term
-                                if auth_amt != inv.get('amount'):
-                                    continue
-                                # Compliance flag handling
-                                add_approval = False
-                                if any('government_contracting_regulations' in str(f) for f in mc.get('compliance_flags', [])):
-                                    add_approval = True
-                                auth = {'project_id': pid, 'supplier_id': sid, 'amount': auth_amt, 'additional_approval': add_approval}
-                                outputs['milestone payment authorizations'].append(auth)
-                                # Create confirmation and update records
-                                outputs['payment confirmations'].append({'project_id': pid, 'supplier_id': sid, 'status': 'authorized'})
-                                outputs['project cost updates'].append({'project_id': pid, 'cost_delta': -auth_amt})
-                                # Rule: mask sensitive financial data
-                                masked_pfd = {k: 'MASKED' if 'financial' in k.lower() else v for k, v in pfds[0].items()} if pfds else {}
-                                outputs['supplier financial records'].append({'project_id': pid, 'supplier_id': sid, 'masked_data': masked_pfd})
-        # Edge case: enforce payment cycle KPI (assume default threshold check)
-        if len(outputs['payment confirmations']) > 100:
-            outputs['payment confirmations'] = outputs['payment confirmations'][:100]
+        # build lookup for quick matching
+        ear_map = {e.get('milestone_id'): e for e in ears if e.get('milestone_id')}
+        term_map = terms.get('milestones', {}) if isinstance(terms, dict) else {}
+        cycle_start = fin_data.get('cycle_start_ts')
+        for mc in mcs:
+            mid = mc.get('milestone_id')
+            if not mid:
+                continue
+            ear = ear_map.get(mid, {})
+            term = term_map.get(mid, {})
+            inv = next((i for i in invoices if i.get('milestone_id') == mid), {})
+            # decision point checks
+            if ear.get('status') == 'accepted' and mc.get('verified') is True and inv.get('amount') == term.get('milestone_amount'):
+                if requires_compliance:
+                    outputs['milestone payment authorizations'].append({'milestone_id': mid, 'status': 'pending_compliance', 'amount': term.get('milestone_amount')})
+                    continue
+                # rule: amount must equal
+                auth = {'milestone_id': mid, 'amount': term.get('milestone_amount'), 'authorized': True}
+                outputs['milestone payment authorizations'].append(auth)
+                outputs['payment confirmations'].append({'milestone_id': mid, 'status': 'confirmed', 'cycle_time_logged': True})
+                # rule: log GDPR/export checks
+                outputs['supplier financial records'].append({'milestone_id': mid, 'compliance_checked': ['GDPR', 'export_control'], 'timestamp': cycle_start})
+                # project cost update
+                outputs['project cost updates'].append({'milestone_id': mid, 'delta': -term.get('milestone_amount', 0)})
+        # edge case: no authorizations produced
+        if not outputs['milestone payment authorizations']:
+            outputs['payment confirmations'].append({'status': 'no_match', 'reason': 'conditions_not_met'})
         return outputs
         
         return outputs
@@ -206,10 +203,10 @@ outputs = {'milestone payment authorizations': [], 'payment confirmations': [], 
         Built-in compliance validation
         
         Checks:
-        # - GDPR_financial_data masking
-        # - export_control_financial masking
-        # - government_contracting_regulations validation
-        # - project_id/supplier_id cross-match
+        # - government_contracting_regulations
+        # - milestone_payment_compliance
+        # - gdpr_financial_data
+        # - export_control_financial
         """
         checks_passed = []
         checks_failed = []
@@ -233,7 +230,7 @@ outputs = {'milestone payment authorizations': [], 'payment confirmations': [], 
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['missing EngineeringAcceptanceReport', 'invoice mismatch > 2%', 'contract compliance rate < 95%', 'government_contracting compliance_flags detected']
+        escalation_rules = ['EngineeringAcceptanceReport rejected', 'invoice mismatch >2%', 'compliance_flag requires human approval', 'cycle_time exceeds KPI']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -247,7 +244,7 @@ outputs = {'milestone payment authorizations': [], 'payment confirmations': [], 
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['payment_cycle_time', 'authorization_success_rate', 'duplicate_invoice_detection', 'milestone_payment_accuracy']
+            "monitoring": ['payment_cycle_time', 'authorization_success_rate', 'compliance_violation_count']
         }
 
 

@@ -1,0 +1,92 @@
+{
+  "process_id": "BPMN-QMS-001",
+  "guardian_timestamp": "2026-06-09T09:40:13.913116",
+  "certificate": {
+    "certificate_id": "AZ-CERT-BPMN-QMS-001-20260609",
+    "process_id": "BPMN-QMS-001",
+    "agent_name": "capa_lifecycle_orchestrator",
+    "issued_at": "2026-06-09T09:40:13.913080",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-09",
+    "overall_status": "conditional",
+    "overall_score": 0.84,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.68,
+      "gaps": [
+        "Clause 5 (Leadership): no accountability, oversight roles or escalation ownership defined in logic",
+        "Clause 8 (Operation): GxP/FDA/EU GMP checks are commented out; required_inputs loop is incomplete",
+        "Clause 4/6: risk treatment and residual-risk acceptance are only string appends, no actual control implementation",
+        "No evidence of Clause 7 competence or resource allocation checks"
+      ],
+      "recommendations": [
+        "Implement executable leadership assignment and sign-off gates before CAPA closure",
+        "Uncomment and activate full regulatory timeline and effectiveness >= 0.8 checks",
+        "Add conditional branches that actually block closure on failed checks instead of only logging",
+        "Map monitoring metrics to Clause 9 performance evaluation with automated triggers"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Clause 5 (Leadership): no accountability, oversight roles or escalation ownership defined in logic",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

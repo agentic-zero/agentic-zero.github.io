@@ -1,4 +1,4 @@
-# Integration Guide — material_verification_agent
+# Integration Guide — verify_product_mto_agent
 **Process:** Verify Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp material_verification_agent.py ./agents/
+cp verify_product_mto_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.material_verification_agent import MaterialVerificationAgentAgent
+from agents.verify_product_mto_agent import VerifyProductMtoAgentAgent
 
-agent = MaterialVerificationAgentAgent()
+agent = VerifyProductMtoAgentAgent()
 result = agent.execute({
     "received_materials": your_received_materials_data,
     "specifications": your_specifications_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_goods_receipt_listener
-- test_equipment_api
+- material_database_api
 - certificate_validator
 - compliance_engine
+- test_equipment_interface
+- supplier_notification_service
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing certificates after 24h
-- Traceability <100% on AS9100 lots
-- Expired test equipment calibration
+- Missing MaterialCertificate triggers quarantine and supplier notification
+- First-pass failure logs KPI deviation and routes to SCOR-S2.4

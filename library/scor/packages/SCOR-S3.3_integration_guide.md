@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_integration
-- PLM_drawing_access
-- CMM_data_interface
-- lab_system_API
+- CMM_data_reader
+- material_cert_validator
+- test_procedure_executor
+- GDPR_redaction_tool
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing engineering drawings: request from engineering within 4 hours
-- NADCAP test failure: escalate to quality manager and pause lot
-- NCR rate exceeds 5 percent
+- missing material_cert
+- non_conformance_rate exceeds threshold
+- personal_data handling required

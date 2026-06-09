@@ -3,7 +3,7 @@ AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
 Certificate ID:  AZ-CERT-SCOR-DR2.1-20260608
 Process ID:      SCOR-DR2.1
-Agent:           authorize_mro_product_return_agent
+Agent:           mro_return_authorization_agent
 Issued:          2026-06-08
 Valid Until:     2027-06-08
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team

@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.7",
-  "guardian_timestamp": "2026-06-08T01:47:20.298569",
+  "guardian_timestamp": "2026-06-08T18:55:36.725589",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.7-20260608",
     "process_id": "SCOR-D2.7",
-    "agent_name": "carrier_selection_and_shipment_rating_agent",
-    "issued_at": "2026-06-08T01:47:20.298516",
+    "agent_name": "carrier_selector_and_shipment_rater",
+    "issued_at": "2026-06-08T18:55:36.725547",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.9,
+    "overall_score": 0.88,
     "eu_ai_act": {
       "risk_level": "minimal",
       "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
@@ -23,13 +23,19 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.58,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No evidence of formal AI risk assessment or impact analysis process",
+        "Missing transparency/explainability requirements for automated carrier decisions",
+        "Insufficient accountability and human oversight mechanisms beyond basic escalation",
+        "Lack of documented continual improvement, internal audit, or management review processes"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Implement structured AI risk management framework per ISO 42001 Clause 6",
+        "Add decision logging and explainability features for rated shipments",
+        "Define clear roles, responsibilities, and escalation to human oversight",
+        "Establish monitoring, measurement, and management review cycles"
       ]
     },
     "nist_ai_rmf": {
@@ -58,6 +64,6 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review"
+    "ISO 42001: No evidence of formal AI risk assessment or impact analysis process"
   ]
 }

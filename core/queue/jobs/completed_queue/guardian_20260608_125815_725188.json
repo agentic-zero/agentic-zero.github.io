@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260608_125815_725188",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "SCOR-DR2.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T12:58:15.725203",
+  "status": "completed",
+  "started_at": "2026-06-08T14:33:16.195396",
+  "completed_at": "2026-06-08T14:34:16.101675",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-SCOR-DR2.1-20260608",
+    "status": "conditional",
+    "process_id": "SCOR-DR2.1"
+  }
+}

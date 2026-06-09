@@ -34,15 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- compliance_db
-- SCOR_metrics_store
-- executive_planning_system
-- audit_log
-- rule_update_api
+- regulatory_api
+- performance_data_warehouse
+- stakeholder_approval_system
+- compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- policy_exception_rate > 0.05
-- unresolved exception after 14 days
-- rule_compliance_rate < 0.90
-- rule_update_cycle_time > 120 days
+- policy_exception_rate > 0.05 to governance_board
+- rule_update_cycle_time > 30 days
+- rule_compliance_rate < 0.95

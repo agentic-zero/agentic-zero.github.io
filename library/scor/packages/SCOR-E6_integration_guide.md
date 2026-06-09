@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ContractRepository API
-- SupplierPerformanceData feed
-- LegalRequirement database
-- NegotiationParameter engine
+- ContractRepository
+- SupplierPerformanceDataAPI
+- ComplianceChecker
+- NotificationService
+- LegalRequirementValidator
 
 ## Escalation
 The agent automatically escalates to human when:
-- contract_compliance_rate < 0.95 notify legal team
-- cycle_time > 30 days escalate to contract manager
-- non-compliant renewal auto-reject and route to legal review
+- LegalRequirement conflicts with BusinessTerm
+- supplier performance data older than 180 days
+- contract executed without required compliance_flags

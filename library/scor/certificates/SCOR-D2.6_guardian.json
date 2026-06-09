@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.6",
-  "guardian_timestamp": "2026-06-08T01:46:20.203887",
+  "guardian_timestamp": "2026-06-08T18:54:37.074677",
   "certificate": {
     "certificate_id": "AZ-CERT-SCOR-D2.6-20260608",
     "process_id": "SCOR-D2.6",
-    "agent_name": "mto_shipment_routing_agent",
-    "issued_at": "2026-06-08T01:46:20.203824",
+    "agent_name": "mto_shipment_router",
+    "issued_at": "2026-06-08T18:54:37.074643",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-08",
     "overall_status": "certified",
-    "overall_score": 0.9,
+    "overall_score": 0.88,
     "eu_ai_act": {
       "risk_level": "minimal",
       "risk_rationale": "Standard supply chain process with no identified high-risk characteristics",
@@ -23,13 +23,19 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.7,
+      "compliant": false,
+      "score": 0.58,
       "gaps": [
-        "Full ISO 42001 assessment requires manual review"
+        "No documented AI policy, objectives or leadership accountability framework",
+        "Missing AI-specific risk assessment, impact assessment and bias evaluation processes",
+        "Insufficient transparency, explainability and human oversight mechanisms beyond basic escalation rules",
+        "No evidence of continual improvement, internal audit or performance evaluation processes"
       ],
       "recommendations": [
-        "Complete formal ISO 42001 gap analysis before production deployment"
+        "Establish formal AI management system policies and objectives per ISO/IEC 42001 Clause 5-6",
+        "Implement systematic AI risk and impact assessments covering all compliance flags",
+        "Add decision explainability and enhanced human-in-the-loop controls for high-risk routing decisions",
+        "Define measurable KPIs, monitoring procedures and management review cycles aligned with the standard"
       ]
     },
     "nist_ai_rmf": {
@@ -58,6 +64,6 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: Full ISO 42001 assessment requires manual review"
+    "ISO 42001: No documented AI policy, objectives or leadership accountability framework"
   ]
 }

@@ -1,4 +1,4 @@
-# Integration Guide — cybersecurity_digital_risk_manager
+# Integration Guide — cyber_risk_orchestrator
 **Process:** Manage Cybersecurity and Digital Risk
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp cybersecurity_digital_risk_manager.py ./agents/
+cp cyber_risk_orchestrator.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.cybersecurity_digital_risk_manager import CybersecurityDigitalRiskManagerAgent
+from agents.cyber_risk_orchestrator import CyberRiskOrchestratorAgent
 
-agent = CybersecurityDigitalRiskManagerAgent()
+agent = CyberRiskOrchestratorAgent()
 result = agent.execute({
     "threat_intelligence": your_threat_intelligence_data,
     "vulnerability_assessments": your_vulnerability_assessments_data,
@@ -37,11 +37,11 @@ print(result['outputs'])
 - threat_intel_feed_api
 - vulnerability_scanner
 - siem_log_ingestor
-- compliance_checker
-- incident_workflow_orchestrator
+- incident_workflow_engine
+- report_generator
 
 ## Escalation
 The agent automatically escalates to human when:
-- critical incident detected
-- defense sector clearance failure
-- VulnerabilityRemediationTime exceeds SLA
+- CRITICAL incident_severity triggers compliance team notification
+- defense sector inputs missing security_clearance route to SCOR-E9
+- NIS2 non-compliance or remediation KPI breach escalate to human oversight

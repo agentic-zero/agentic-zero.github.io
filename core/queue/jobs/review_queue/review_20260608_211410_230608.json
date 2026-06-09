@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260608_211410_230608",
+  "job_type": "review",
+  "payload": {
+    "process_id": "BPMN-OTC-001",
+    "certificate_id": "AZ-CERT-BPMN-OTC-001-20260608"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T21:14:10.230624",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

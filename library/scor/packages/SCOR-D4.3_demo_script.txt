@@ -1,0 +1,6 @@
+1. Open with pain points: "Manual in-store picking costs €50K+/year per site in labor/errors plus compliance fines—our AI agent automates it end-to-end."
+2. Trigger live order: Launch in_store_picking_agent on a sample retail order, showing instant AI task decomposition and store-map routing.
+3. Execute autonomous pick: Agent navigates shelves, selects item via computer vision, and verifies quantity/expiry while logging every action for audit trails.
+4. Surface compliance layer: Display real-time checks against labor regs, product handling rules, and data-privacy standards, with immutable logs exportable for regulators.
+5. Reveal ROI dashboard: Metrics show 85% time reduction and €4,800 monthly savings per site—delivering 8.0x return on the €599 price within 30 days.
+6. Handle exception & close: Agent flags a low-stock issue, proposes substitute, then summarize: "Zero manual touch, full compliance, 8x ROI—ready for pilot?"

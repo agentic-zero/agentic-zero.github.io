@@ -1,13 +1,7 @@
-1. Open with ROI framing: "This €748 agent delivers 8x ROI by automating supply chain HR—cutting manual effort 65% while enforcing labor-law compliance across 12 jurisdictions."
-
-2. Trigger AI workforce optimization: Load live demand data; agent auto-generates compliant shift schedules for 240 workers in 18 seconds, flagging overtime and certification gaps.
-
-3. Run real-time compliance audit: Agent scans schedules against EU/ local regulations, auto-corrects violations, and produces an audit-ready PDF—reducing compliance risk exposure by 92%.
-
-4. Quantify cost savings: Dashboard shows €47k annual labor-cost reduction from optimized rostering plus €19k saved in avoided penalties, yielding payback in 11 days and 8.0x multiplier within 12 months.
-
-5. Demonstrate exception handling: Simulate a sudden warehouse surge; agent reassigns certified staff, notifies unions per rules, and logs everything for traceability.
-
-6. Export executive summary: One-click report details ROI metrics, compliance score (99.4%), and risk heat map for board review.
-
-7. Close with next-step CTA: "Pilot starts tomorrow; full deployment in two weeks—projected first-year net benefit €5.2M."
+1. Open with ROI framing: "This €748 agent delivers 8x return by automating supply chain HR workflows—cutting manual effort 70% while enforcing labor compliance across 12 jurisdictions."
+2. Load sample supply-chain scenario: import 45 contractor profiles, certifications, and shift schedules; instantly flag 8 non-compliant records (expired visas, missing safety training).
+3. Trigger AI automation: one-click run assigns compliant workers to open shifts, generates contracts, and schedules onboarding—completing in 40 seconds what previously took 11 hours.
+4. Display live compliance dashboard: show real-time audit trail, automated policy checks, and risk score drop from 34% to 2%, satisfying upcoming regulatory audit requirements.
+5. Reveal ROI calculator: input current €96k annual labor overhead; output projected €768k savings (8x multiplier) within 12 months via reduced overtime, fines, and admin time.
+6. Run exception handling demo: agent escalates one edge-case dispute to human review with full context and recommended resolution, preserving oversight while logging everything for compliance.
+7. Close with next-step value: "Pilot starts tomorrow; first-month ROI visible in week one—ready to approve?"

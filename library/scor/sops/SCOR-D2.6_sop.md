@@ -1,13 +1,14 @@
 # SOP — Route Shipments (MTO)
 **Process ID:** SCOR-D2.6
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of selecting optimal routing for MTO shipments including mode selection, carrier booking, route optimization and customs clearance planning
 
 ## Triggers
-- LoadPlan status = ready AND DeliveryRequirement received
+- New LoadPlan received from SCOR-D2.5
+- DeliveryRequirement updated with new destination or deadline
 
 ## Inputs Required
 - load plans
@@ -17,9 +18,9 @@ Process of selecting optimal routing for MTO shipments including mode selection,
 - cost constraints
 
 ## Process Steps
-1. IF multiple carrier options exist THEN select lowest cost with on-time KPI >= 95%
-2. IF customs requirements flagged THEN generate CustomsDocumentation before booking
-3. IF dangerous goods in LoadPlan THEN apply restricted routing mode
+1. IF total_cost > CostConstraint.max THEN select alternative CarrierOption with lower cost
+2. IF customs_clearance_rate < 0.95 THEN escalate to manual review before booking
+3. IF dangerous_goods flag = true THEN apply restricted routing mode and add compliance check
 
 ## Expected Outputs
 - shipment routes
@@ -28,18 +29,19 @@ Process of selecting optimal routing for MTO shipments including mode selection,
 - routing cost analysis
 
 ## Business Rules
-- CarrierBooking must achieve booking accuracy >= 98%
-- ShipmentRoute must satisfy all CostConstraint limits before finalization
-- CustomsDocumentation must be validated against export control compliance
+- All CarrierBookings must include valid customs documentation before shipment departure
+- RouteOptimization must minimize cost while satisfying on-time departure KPI >= 0.98
+- GDPR shipment data must be anonymized in RoutingCostAnalysis output
 
 ## Exception Handling
-- IF carrier booking fails THEN fallback to secondary carrier from options list and log accuracy drop
-- IF customs clearance rate < 90% THEN escalate to SCOR-E7 and delay departure
+- Export control restriction detected: halt CarrierBooking and route to compliance officer for approval
+- No valid CarrierOption within cost constraints: trigger fallback to SCOR-D2.7 process
 
 ## Success Criteria
-- on-time shipment departure >= 95%
-- routing optimization savings > 0
-- customs clearance rate = 100%
+- routing_optimization_savings >= target_threshold
+- carrier_booking_accuracy == 1.0
+- customs_clearance_rate >= 0.98
+- on_time_shipment_departure == true
 
 ## Compliance Requirements
 - customs compliance

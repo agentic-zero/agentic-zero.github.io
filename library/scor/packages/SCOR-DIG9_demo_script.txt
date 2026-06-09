@@ -1,6 +1,6 @@
-1. Open with executive pain: "Manual API management costs €50k+/yr in errors, delays, and compliance gaps—let's fix it in minutes."
-2. Activate api_integration_layer_manager; auto-scan existing APIs and flag 3 compliance violations (GDPR, OAuth) in <60 seconds.
-3. Trigger AI auto-remediation: one-click secure integration rebuild with built-in audit logging and policy enforcement.
-4. Display live dashboard: real-time monitoring, zero-touch scaling, and automated compliance reports ready for audit.
-5. Run ROI calculator: €748 price yields 8.0x multiplier via 42 hrs/week saved + €38k annual risk reduction.
-6. Close with metrics recap and next-step pilot offer.
+1. Open with executive pain: "Manual API management costs €150K+/year in errors, delays, and audit failures—here's how the orchestrator eliminates 80% of that."
+2. Trigger live integration: Launch the agent to auto-map and deploy a new API endpoint with built-in security rules in under 60 seconds.
+3. Surface compliance value: Display real-time policy enforcement, automated GDPR/SOC2 logging, and instant audit-ready reports generated without manual input.
+4. Quantify efficiency gains: Show dashboard metrics—integration time cut from 12 hours to 15 minutes, zero compliance violations in the run.
+5. Calculate ROI on screen: Input €748 price against tracked savings and risk reduction, confirming 8.0x multiplier within first quarter.
+6. Close with action: "One agent deployment delivers €6K+ net value—ready for pilot approval today?"

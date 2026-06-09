@@ -1,6 +1,11 @@
-1. Open with a live MTO order in the ERP; state baseline manual receipt takes 22 min, €48 labor, plus 12% compliance error risk.  
-2. Trigger finished_goods_receipt_agent; show one-click AI extraction of ASN, COA, and serials with 99.4% accuracy.  
-3. Run built-in compliance engine: display automated checks against ISO/REACH rules and instant flagged exceptions.  
-4. Execute goods receipt posting; highlight 3-min end-to-end cycle and full immutable audit trail generated.  
-5. Display ROI dashboard: €384 saved per receipt (labor + error avoidance) yields 8.0x multiplier on €699 license within first month.  
-6. Close with exportable compliance report and one-sentence offer: “€699 buys €5,592 verified annual value.”
+1. Open with a 60-second scenario: "Manual MTO receiving costs 22 minutes per shipment and risks 12% compliance gaps—today the agent cuts both to near zero."
+
+2. Trigger live receipt: Paste ASN and shipping docs; agent auto-matches PO, inspects tolerances, and flags deviations in <45 seconds.
+
+3. Surface compliance layer: Show immutable audit trail, auto-generated CoC, and real-time regulatory checks (REACH, ISO) logged to ERP.
+
+4. Quantify time savings: Display dashboard—22 min → 3 min per receipt, 480 receipts/year = 152 hours recovered (€7,600 at €50/hr).
+
+5. Calculate ROI on screen: €699 price × 8.0x = €5,592 net annual value; break-even in 11 days.
+
+6. Close with one-click deployment note and next-step offer for pilot in their MTO flow.

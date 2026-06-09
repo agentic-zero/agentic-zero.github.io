@@ -1,0 +1,17 @@
+{
+  "process_id": "GXP-GDP",
+  "name": "Good Distribution Practice (GDP)",
+  "framework": "EU GDP Guidelines 2013/C 343/01",
+  "domain": "GxP",
+  "level": "L1",
+  "description": "Good Distribution Practice requirements for pharmaceutical distribution including quality system, personnel, premises, documentation, operations, complaints and returns management",
+  "inputs": ["product specifications", "storage requirements", "distribution routes", "customer qualifications", "temperature monitoring data"],
+  "outputs": ["GDP-compliant distribution", "qualification records", "temperature records", "complaint records", "return records"],
+  "kpis": ["GDP audit compliance rate", "temperature excursion rate", "delivery quality rate", "complaint rate"],
+  "related_processes": ["GXP-GMP", "BPMN-WMS-002", "SCOR-D2.12", "BPMN-TRP-001"],
+  "sector_applicability": ["pharma", "biotech", "medical devices"],
+  "compliance_flags": ["EU GDP Guidelines 2013", "WHO GDP", "GDPR serialization data", "temperature chain compliance"],
+  "automation_potential": 0.70,
+  "source": "EU GDP Guidelines 2013/C 343/01",
+  "confidence": 0.95
+}

@@ -1,13 +1,13 @@
 # SOP — Verify Engineer-to-Order Product
 **Process ID:** SCOR-S3.3
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-07
+**Generated:** 2026-06-08
 
 ## Purpose
 Process of verifying custom-engineered parts against engineering drawings, specifications and contractual requirements including dimensional inspection, material testing and functional validation
 
 ## Triggers
-- Receipt of ETO_Component lot with complete engineering package in ERP
+- Receipt of ETO_Component with attached Engineering_Drawing and Contractual_Requirement
 
 ## Inputs Required
 - ETO components
@@ -17,9 +17,7 @@ Process of verifying custom-engineered parts against engineering drawings, speci
 - contractual requirements
 
 ## Process Steps
-1. IF all dimensional measurements within tolerance THEN proceed to material testing ELSE create Non_Conformance_Report
-2. IF material test results match Specification THEN proceed to functional validation ELSE create Non_Conformance_Report
-3. IF functional validation passes contractual requirements THEN set Acceptance_Decision=accepted ELSE set Acceptance_Decision=rejected
+1. IF dimensional_tolerance_check == pass AND material_test == pass AND functional_validation == pass THEN Acceptance_Decision = accept ELSE Non_Conformance_Report
 
 ## Expected Outputs
 - verification report
@@ -28,18 +26,15 @@ Process of verifying custom-engineered parts against engineering drawings, speci
 - non-conformance reports
 
 ## Business Rules
-- All ETO_Components must complete dimensional inspection before material testing
-- First_Article_Inspection_Result must be generated for every new ETO part per AS9100
-- Non_Conformance_Report must include root cause and disposition within 24 hours of detection
+- compliance_rate >= 0.98 for AS9100 first article
+- inspection_cycle_time <= 48 hours
+- NADCAP certification required if sector == aerospace
 
 ## Exception Handling
-- Missing engineering drawings: halt process and request from engineering within 4 hours
-- NADCAP-required test fails: escalate to quality manager and pause lot acceptance
+- IF personal_data_detected THEN apply GDPR redaction before storing Verification_Report
 
 ## Success Criteria
-- Acceptance_Decision=accepted
-- engineering_specification_compliance_rate >= 98 percent
-- inspection_cycle_time <= target_hours
+- Acceptance_Decision == accept AND first_article_acceptance_rate >= 0.95 AND non_conformance_rate <= 0.02
 
 ## Compliance Requirements
 - AS9100 first article inspection

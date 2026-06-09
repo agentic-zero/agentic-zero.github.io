@@ -1,0 +1,18 @@
+{
+  "process_id": "NIST-MAP",
+  "name": "MAP — AI Risk Context and Categorization",
+  "framework": "NIST AI RMF 1.0",
+  "domain": "NIST AI RMF",
+  "function": "MAP",
+  "level": "L1",
+  "description": "Contextualizing AI risks by categorizing AI systems, identifying stakeholders and their needs, mapping AI system impacts and establishing risk tolerances for different use cases",
+  "inputs": ["AI use case descriptions", "stakeholder map", "impact categories", "risk tolerance definitions", "deployment context"],
+  "outputs": ["AI risk categories", "impact assessments", "stakeholder impact map", "risk tolerance thresholds", "AI system inventory"],
+  "kpis": ["risk categorization coverage", "stakeholder mapping completeness", "impact assessment accuracy"],
+  "related_processes": ["NIST-GOVERN", "NIST-MEASURE", "ISO42001-6", "EUAIA-ART6"],
+  "sector_applicability": ["manufacturing", "pharma", "defense", "chemical", "food", "automotive", "distribution"],
+  "compliance_flags": ["NIST AI RMF 1.0 MAP", "ISO 42001 risk assessment", "EU AI Act risk classification"],
+  "automation_potential": 0.55,
+  "source": "NIST AI RMF 1.0 — NIST AI 100-1",
+  "confidence": 0.96
+}

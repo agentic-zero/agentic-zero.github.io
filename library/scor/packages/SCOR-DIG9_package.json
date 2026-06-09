@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DIG9",
-  "agent_name": "api_integration_layer_manager",
+  "agent_name": "api_integration_orchestrator",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:16:18.676580",
-  "product_summary": "The Agentic Zero API and Integration Layer Manager is a hybrid agent that oversees the API gateway and integration architecture connecting ERP systems, AI agents, IoT platforms, supplier portals, and customer systems. It enables seamless autonomous operations without requiring system migration, ensuring continuous data flow and process automation across the enterprise ecosystem. By monitoring performance, managing integration flows, and maintaining compliance with standards like GDPR and OAuth2, it delivers significant business value through reduced operational friction, enhanced security, and accelerated digital transformation initiatives.",
-  "value_proposition": "Transforms complex multi-system integrations into autonomous, compliant operations that eliminate the need for costly system migrations.",
-  "technical_summary": "This hybrid agent leverages capabilities such as API performance monitoring, integration flow management, authentication refresh handling, data mapping validation, and health report generation to maintain robust connections across ERP, IoT, and other platforms. It adheres to compliance requirements including GDPR for data flows, EU AI Act for system integration, OAuth2 security standards, EDI compliance, and SAP RFC/BAPI standards, ensuring secure and efficient architecture without disrupting existing infrastructures.",
-  "integration_guide": "# Integration Guide — api_integration_layer_manager\n**Process:** Manage API and Integration Layer\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp api_integration_layer_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.api_integration_layer_manager import ApiIntegrationLayerManagerAgent\n\nagent = ApiIntegrationLayerManagerAgent()\nresult = agent.execute({\n    \"system_interfaces\": your_system_interfaces_data,\n    \"api_specifications\": your_api_specifications_data,\n    \"integration_requirements\": your_integration_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- api_gateway_api\n- identity_provider\n- time_series_db\n- error_log_aggregator\n- sap_edi_connector\n\n## Escalation\nThe agent automatically escalates to human when:\n- credential refresh fails -> notify admin and fallback to read-only\n- data mapping fails on EU AI Act system -> quarantine and require manual approval\n- uptime < 99.9% or error rate > 0.5% persists after retry",
+  "packager_timestamp": "2026-06-08T13:58:17.017008",
+  "product_summary": "This hybrid agent oversees the API gateway and integration architecture that links ERP systems, AI agents, IoT platforms, supplier portals, and customer systems to support seamless autonomous operations. It handles authentication, data mapping validation, health monitoring, and error logging while maintaining compliance with GDPR, EU AI Act, OAuth2 security, EDI, and SAP standards. By eliminating the need for system migration, the agent reduces integration complexity and accelerates digital transformation initiatives. Executives gain reliable, real-time visibility into cross-platform data flows that drive operational efficiency and risk reduction.",
+  "value_proposition": "Transforms disconnected enterprise systems into a unified, compliant integration layer that enables autonomous operations without costly migrations.",
+  "technical_summary": "The agent manages the central API gateway through capabilities such as OAuth2 authentication, data mapping validation, and real-time health monitoring while logging errors against defined compliance rules. It connects ERP instances via SAP RFC/BAPI, supplier portals through EDI, and external IoT or AI platforms using standardized secure endpoints. Architecture supports hybrid deployment with built-in GDPR data flow controls and EU AI Act traceability for all integration touchpoints.",
+  "integration_guide": "# Integration Guide — api_integration_orchestrator\n**Process:** Manage API and Integration Layer\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp api_integration_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.api_integration_orchestrator import ApiIntegrationOrchestratorAgent\n\nagent = ApiIntegrationOrchestratorAgent()\nresult = agent.execute({\n    \"system_interfaces\": your_system_interfaces_data,\n    \"api_specifications\": your_api_specifications_data,\n    \"integration_requirements\": your_integration_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- APIGateway\n- APIPerformanceMetric\n- ErrorLog\n- AuthenticationCredential\n- IntegrationFlow\n\n## Escalation\nThe agent automatically escalates to human when:\n- Authentication failure after 3 exponential backoff retries\n- Data mapping mismatch requiring manual review before retry",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/api_integration_layer_manager/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/api_integration_layer_manager/status — Get agent status and metrics",
-    "GET  /api/v1/agents/api_integration_layer_manager/health — Health check",
-    "GET  /api/v1/agents/api_integration_layer_manager/spec   — Get agent specification",
-    "POST /api/v1/agents/api_integration_layer_manager/test   — Run test cases"
+    "POST /api/v1/agents/api_integration_orchestrator/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/api_integration_orchestrator/status — Get agent status and metrics",
+    "GET  /api/v1/agents/api_integration_orchestrator/health — Health check",
+    "GET  /api/v1/agents/api_integration_orchestrator/spec   — Get agent specification",
+    "POST /api/v1/agents/api_integration_orchestrator/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive pain: \"Manual API management costs €50k+/yr in errors, delays, and compliance gaps—let's fix it in minutes.\"\n2. Activate api_integration_layer_manager; auto-scan existing APIs and flag 3 compliance violations (GDPR, OAuth) in <60 seconds.\n3. Trigger AI auto-remediation: one-click secure integration rebuild with built-in audit logging and policy enforcement.\n4. Display live dashboard: real-time monitoring, zero-touch scaling, and automated compliance reports ready for audit.\n5. Run ROI calculator: €748 price yields 8.0x multiplier via 42 hrs/week saved + €38k annual risk reduction.\n6. Close with metrics recap and next-step pilot offer.",
+  "demo_script": "1. Open with executive pain: \"Manual API management costs €150K+/year in errors, delays, and audit failures—here's how the orchestrator eliminates 80% of that.\"\n2. Trigger live integration: Launch the agent to auto-map and deploy a new API endpoint with built-in security rules in under 60 seconds.\n3. Surface compliance value: Display real-time policy enforcement, automated GDPR/SOC2 logging, and instant audit-ready reports generated without manual input.\n4. Quantify efficiency gains: Show dashboard metrics—integration time cut from 12 hours to 15 minutes, zero compliance violations in the run.\n5. Calculate ROI on screen: Input €748 price against tracked savings and risk reduction, confirming 8.0x multiplier within first quarter.\n6. Close with action: \"One agent deployment delivers €6K+ net value—ready for pilot approval today?\"",
   "demo_inputs": {
     "system_interfaces": "[example_system_interfaces]",
     "api_specifications": "[example_api_specifications]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DIG9",
-    "agent_name": "api_integration_layer_manager",
+    "agent_name": "api_integration_orchestrator",
     "framework": "SCOR-Digital",
     "domain": "Digital Enable",
     "level": "L2",
@@ -64,27 +64,27 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:16:18.676558"
+    "created_at": "2026-06-08T13:58:17.016991"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
     "distribution",
-    "food"
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: In pharma, the agent standardizes OAuth2-secured API flows for clinical trial data exchange under GDPR, cutting integration setup time by 45% and eliminating €2M annual non-compliance penalty risk.",
-    "Use case 2: In automotive, the agent enforces SAP BAPI standards across ERP-API integrations for just-in-time parts ordering, reducing order errors by 32% and delivering $1.2M yearly savings in expedited freight.",
-    "Use case 3: In manufacturing, the agent implements EDI-compliant API orchestration for supplier portals, shortening order-to-delivery cycle by 28% and increasing on-time fulfillment from 78% to 96%.",
-    "Use case 4: In defense, the agent ensures EU AI Act and OAuth2-compliant system integrations for logistics AI models, shortening certification timeline by 4 months and avoiding $3M project delay costs.",
-    "Use case 5: In food distribution, the agent manages GDPR and EDI API flows between warehouse and retailer systems, reducing stockout incidents by 41% and generating $850K additional annual revenue through improved availability."
+    "Use case 1: Pharma firm uses agent to design GDPR-compliant API flows for clinical data exchange with CROs, cutting integration project timeline from 9 to 5 months and avoiding €400K in potential fines",
+    "Use case 2: Automotive supplier deploys OAuth2-secured EDI APIs managed by agent, reducing order error rate from 8% to 1.5% and saving $1.2M annually in expedited freight and penalties",
+    "Use case 3: Defense contractor implements SAP RFC/BAPI standards via agent-led integration layer, shortening ERP-to-shop-floor data latency by 70% and increasing on-time delivery from 82% to 96%",
+    "Use case 4: Chemical manufacturer applies EU AI Act-compliant API architecture for predictive quality systems, lowering batch rejection rate by 22% and generating $850K yearly savings in raw material waste",
+    "Use case 5: Food distributor uses agent to build compliant API integrations across 12 legacy WMS platforms, enabling real-time traceability and winning €2.3M in new retail contracts within 6 months"
   ],
   "pricing": {
     "process_id": "SCOR-DIG9",

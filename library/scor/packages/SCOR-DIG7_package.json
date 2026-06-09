@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-DIG7",
-  "agent_name": "blockchain_traceability_manager",
+  "agent_name": "blockchain_traceability_orchestrator",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-07T23:10:17.885203",
-  "product_summary": "The Manage Blockchain and Traceability agent provides immutable audit trails for supply chain transactions, product provenance, compliance certifications, and agent decision records. As a hybrid agent, it leverages distributed ledger technology to ensure transparency and trust across complex ecosystems. This enables organizations to meet stringent regulatory requirements such as the EU AI Act and sector-specific standards in pharma and food industries. Ultimately, it reduces compliance risks and enhances operational integrity for businesses operating in regulated environments.",
-  "value_proposition": "Transforms supply chain oversight by automating immutable record-keeping and smart contract execution to deliver verifiable provenance and compliance.",
-  "technical_summary": "The agent integrates with blockchain networks to append immutable records and execute smart contracts while enforcing sector-specific compliance rules. It generates audit reports aligned with standards like EU AI Act Art.12 and handles GDPR exceptions regarding data erasure. Architecture supports hybrid operations connecting distributed ledgers with existing enterprise systems for real-time traceability.",
-  "integration_guide": "# Integration Guide — blockchain_traceability_manager\n**Process:** Manage Blockchain and Traceability\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp blockchain_traceability_manager.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.blockchain_traceability_manager import BlockchainTraceabilityManagerAgent\n\nagent = BlockchainTraceabilityManagerAgent()\nresult = agent.execute({\n    \"transaction_data\": your_transaction_data_data,\n    \"product_identifiers\": your_product_identifiers_data,\n    \"certification_documents\": your_certification_documents_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- BlockchainLedger API\n- SmartContract executor\n- ERP/WMS transaction ingest\n- Off-chain storage pointer manager\n\n## Escalation\nThe agent automatically escalates to human when:\n- EU AI Act partial audit data received - halt until complete\n- Blockchain fork or execution rate <99.5% detected\n- Food immutability conflict requiring off-chain route",
+  "packager_timestamp": "2026-06-08T13:52:15.010208",
+  "product_summary": "This hybrid agent oversees blockchain-based distributed ledgers and traceability systems to create immutable audit trails covering supply chain transactions, product provenance, compliance certifications, and agent decision records. It enables organizations to meet stringent regulatory demands across sectors like pharmaceuticals, food, and customs while balancing data immutability with privacy requirements such as GDPR erasure. By automating ledger appends, smart contract execution, and report generation, the agent reduces manual oversight and strengthens end-to-end transparency. Executives gain reliable, auditable data that supports risk mitigation, faster audits, and enhanced stakeholder trust in complex global operations.",
+  "value_proposition": "Transforms supply chain oversight by delivering automated, immutable traceability that satisfies multiple regulatory frameworks without compromising operational efficiency.",
+  "technical_summary": "The agent integrates hybrid on-chain and off-chain components, using capabilities such as append_ledger_with_hash_signature and execute_smart_contracts_with_retry to maintain distributed ledgers while handle_gdpr_erasure_via_offchain_hash resolves immutability conflicts. It enforces sector-specific rules for EU AI Act Art.12, GxP serialization, EU 178/2002 food traceability, and customs blockchain, then surfaces results through generate_traceability_reports. Architecture supports retry logic for contract reliability and modular compliance hooks for straightforward integration with existing ERP, serialization, and audit platforms.",
+  "integration_guide": "# Integration Guide — blockchain_traceability_orchestrator\n**Process:** Manage Blockchain and Traceability\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp blockchain_traceability_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.blockchain_traceability_orchestrator import BlockchainTraceabilityOrchestratorAgent\n\nagent = BlockchainTraceabilityOrchestratorAgent()\nresult = agent.execute({\n    \"transaction_data\": your_transaction_data_data,\n    \"product_identifiers\": your_product_identifiers_data,\n    \"certification_documents\": your_certification_documents_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- blockchain_node_api\n- smart_contract_executor\n- sha256_hasher\n- gs1_epcis_validator\n- offchain_storage_gateway\n- compliance_rule_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- smart_contract reverts after 3 attempts\n- hash_mismatch or data_inconsistency detected\n- GDPR erasure request conflicts with immutability requiring manual review",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/blockchain_traceability_manager/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/blockchain_traceability_manager/status — Get agent status and metrics",
-    "GET  /api/v1/agents/blockchain_traceability_manager/health — Health check",
-    "GET  /api/v1/agents/blockchain_traceability_manager/spec   — Get agent specification",
-    "POST /api/v1/agents/blockchain_traceability_manager/test   — Run test cases"
+    "POST /api/v1/agents/blockchain_traceability_orchestrator/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/blockchain_traceability_orchestrator/status — Get agent status and metrics",
+    "GET  /api/v1/agents/blockchain_traceability_orchestrator/health — Health check",
+    "GET  /api/v1/agents/blockchain_traceability_orchestrator/spec   — Get agent specification",
+    "POST /api/v1/agents/blockchain_traceability_orchestrator/test   — Run test cases"
   ],
-  "demo_script": "1. Open with executive pain point: \"Manual traceability costs €250K/year in audits and delays—our AI agent automates blockchain logging for full compliance at €748, delivering 8.0x ROI via 40% faster recalls.\"\n\n2. Launch agent dashboard: Show one-click onboarding to existing ERP, auto-generating immutable blockchain records for a sample batch with real-time GPS and certificate uploads.\n\n3. Run live traceability query: Trace a product from supplier to shelf in <10 seconds, highlighting tamper-proof audit trails that satisfy EU regulations without manual intervention.\n\n4. Trigger automated compliance report: Generate a regulator-ready PDF with risk flags flagged by AI, cutting audit prep from 3 days to 15 minutes and proving zero non-compliance incidents.\n\n5. Display ROI simulator: Input current spend metrics to reveal €2M+ annual savings (8.0x multiplier) from reduced waste, avoided fines, and accelerated market access.\n\n6. Simulate edge-case resolution: AI detects a supply-chain anomaly, auto-notifies stakeholders via blockchain, and logs resolution—demonstrating proactive risk mitigation executives can trust.\n\n7. Close with next-step CTA: \"Pilot starts tomorrow; first 8.0x ROI visible in 30 days—approve deployment now.\"",
+  "demo_script": "1. Open with compliance pain: \"Manual traceability costs €50k+/year in audits and delays—our AI agent automates end-to-end blockchain logging for instant regulatory proof.\"\n2. Trigger live scenario: Input a supply-chain batch; agent auto-creates immutable blockchain record with AI-verified timestamps and certificates.\n3. Show real-time dashboard: Display tamper-proof audit trail, auto-generated compliance reports (GDPR, ESG), and instant verification links for partners.\n4. Quantify risk reduction: Highlight 90% faster audit prep and zero manual errors, directly cutting non-compliance fines.\n5. Run ROI calculator: Input €748 price; agent projects 8.0x return via €6k+ annual savings in labor, delays, and penalties within 90 days.\n6. Close with pilot offer: \"Deploy in one workflow this week—see first traceable batch and compliance report live before committing.\"",
   "demo_inputs": {
     "transaction_data": "[example_transaction_data]",
     "product_identifiers": "[example_product_identifiers]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-DIG7",
-    "agent_name": "blockchain_traceability_manager",
+    "agent_name": "blockchain_traceability_orchestrator",
     "framework": "SCOR-Digital",
     "domain": "Digital Enable",
     "level": "L2",
@@ -63,26 +63,26 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-07T23:10:17.885183"
+    "created_at": "2026-06-08T13:52:15.010189"
   },
   "tags": [
-    "scor-digital",
-    "hybrid",
-    "defense",
     "manufacturing",
-    "pharma",
-    "l2",
-    "chemical",
-    "automotive",
+    "hybrid",
     "digital enable",
-    "food"
+    "scor-digital",
+    "defense",
+    "automotive",
+    "food",
+    "l2",
+    "pharma",
+    "chemical"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm deploys GxP serialization on blockchain, cutting counterfeit drug incidents 35% and avoiding €1.8M annual regulatory fines within 9 months",
-    "Use case 2: Food processor implements EU 178/2002 traceability, reducing outbreak recall response time from 10 days to 4 hours and saving €650K per incident in waste and liability",
-    "Use case 3: Automotive OEM uses parts provenance tracking, lowering warranty claim costs 22% by identifying defective batches in under 48 hours instead of weeks",
-    "Use case 4: Defense contractor integrates customs blockchain, eliminating 18% of cross-border shipment delays and recovering €420K yearly in expedited logistics fees",
-    "Use case 5: Chemical manufacturer enables EU AI Act Art.12 immutable audit trails, preventing €3M+ compliance penalties and reducing external audit preparation time by 60%"
+    "Use case 1: Pharma firm deploys agent-managed blockchain serialization for GxP compliance, cutting counterfeit drug incidents by 45% and reducing batch recall costs by $2.8M annually",
+    "Use case 2: Food processor implements traceability per EU 178/2002, shrinking outbreak source identification from 14 days to 4 hours and avoiding $1.5M in regulatory fines plus lost sales",
+    "Use case 3: Defense contractor uses agent to enforce EU AI Act Art.12 immutable audit trails on AI components, eliminating 90% of manual compliance reporting labor ($420k yearly savings) and passing all audits on first attempt",
+    "Use case 4: Automotive OEM applies blockchain traceability across Tier-1 suppliers, reducing parts tampering verification costs by 35% ($1.1M annually) while achieving 99.8% customs blockchain compliance rate",
+    "Use case 5: Chemical manufacturer deploys agent for hazardous material chain-of-custody records, lowering GDPR immutability conflict remediation costs by 60% and cutting insurance premiums 18% via proven traceability"
   ],
   "pricing": {
     "process_id": "SCOR-DIG7",

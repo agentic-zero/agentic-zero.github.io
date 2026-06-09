@@ -1,4 +1,4 @@
-# Integration Guide — mto_product_receiving_agent
+# Integration Guide — mto_receiving_agent
 **Process:** Receive Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_product_receiving_agent.py ./agents/
+cp mto_receiving_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_product_receiving_agent import MtoProductReceivingAgentAgent
+from agents.mto_receiving_agent import MtoReceivingAgentAgent
 
-agent = MtoProductReceivingAgentAgent()
+agent = MtoReceivingAgentAgent()
 result = agent.execute({
     "delivery_schedule": your_delivery_schedule_data,
     "purchase_orders": your_purchase_orders_data,
@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ERP_system
-- WMS
-- Quality_management_system
-- RFID_dock_scanner
-- ASN_interface
+- erp_api
+- qms_api
+- wms_api
+- aps_api
 
 ## Escalation
 The agent automatically escalates to human when:
-- rejection_rate exceeds threshold requiring supplier notification
-- dock capacity overload triggering reschedule
-- missing compliance docs causing process hold
+- unresolved quantity/spec mismatch
+- dock capacity breach requiring manual reschedule
+- failed inspection needing procurement disposition

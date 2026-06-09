@@ -1,0 +1,93 @@
+{
+  "process_id": "SCOR-D3.3",
+  "agent_name": "eto_resource_reservation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-08T20:50:49.688674",
+  "product_summary": "This hybrid agent manages the end-to-end reservation of engineering, production, and logistics resources for Engineer-to-Order projects while defining binding contractual delivery milestones. It assesses real-time availability, applies risk-buffered scheduling, and enforces compliance with government contracting, export control, and GDPR requirements to prevent bottlenecks and regulatory violations. By automating these steps, the agent shortens planning cycles, reduces costly overruns, and improves on-time delivery performance for complex, custom projects. Executives gain predictable project timelines and lower operational risk without manual coordination across multiple teams and systems.",
+  "value_proposition": "Automates resource availability assessment, risk-buffered scheduling, and compliance-validated reservations to lock in contractual delivery dates for ETO projects.",
+  "technical_summary": "The hybrid agent combines automated planning models with human-in-the-loop approval gates, exposing capabilities through standardized APIs for resource management, ERP, and compliance databases. It integrates risk-buffered scheduling engines with external data sources for government contracting rules, export classifications, and GDPR data-handling constraints, then outputs reservation records and milestone contracts in machine-readable formats. Audit logs and validation checkpoints are maintained throughout to support traceability and regulatory reporting.",
+  "integration_guide": "# Integration Guide — eto_resource_reservation_agent\n**Process:** Reserve Resources and Determine Delivery Date (ETO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_resource_reservation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_resource_reservation_agent import EtoResourceReservationAgentAgent\n\nagent = EtoResourceReservationAgentAgent()\nresult = agent.execute({\n    \"project_proposal\": your_project_proposal_data,\n    \"resource_availability\": your_resource_availability_data,\n    \"engineering_capacity\": your_engineering_capacity_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_resource_api\n- planning_system\n- subcontractor_db\n\n## Escalation\nThe agent automatically escalates to human when:\n- ResourceAvailability remains insufficient after buffer increase\n- GDPR flag active without anonymization possible\n- Utilization KPI projected below 0.7",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eto_resource_reservation_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_resource_reservation_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/eto_resource_reservation_agent/health — Health check",
+    "GET  /api/v1/agents/eto_resource_reservation_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/eto_resource_reservation_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with the manual ETO bottleneck: show a live spreadsheet of 12 overlapping projects, highlighting €42k in last-quarter penalties from resource conflicts and missed compliance deadlines.  \n2. Trigger eto_resource_reservation_agent via one-click in the CRM; narrate that the €748 agent now owns the entire Reserve Resources and Determine Delivery Date (ETO) workflow.  \n3. Display real-time AI allocation: agent reserves engineering slots across three sites while enforcing ISO 9001 and customer contract constraints, cutting manual coordination from 47 minutes to 19 seconds.  \n4. Reveal the compliance dashboard: auto-generated audit trail, risk flags, and digital sign-off that satisfy both internal policy and external auditors—no extra tooling required.  \n5. Run the ROI calculator live: input current annual volume, apply the 8.0x multiplier, and show €5,984 net annual value per deployment plus 11 hours/week freed for billable work.  \n6. Close with one-slide summary: €748 investment, 8.0x return, zero compliance incidents in the pilot—ask for pilot approval on two additional ETO lines.",
+  "demo_inputs": {
+    "project_proposal": "[example_project_proposal]",
+    "resource_availability": "[example_resource_availability]",
+    "engineering_capacity": "[example_engineering_capacity]"
+  },
+  "expected_demo_outputs": {
+    "resource_reservations": "[generated_resource_reservations]",
+    "project_milestones": "[generated_project_milestones]"
+  },
+  "catalog_entry": {
+    "process_id": "SCOR-D3.3",
+    "agent_name": "eto_resource_reservation_agent",
+    "framework": "SCOR",
+    "domain": "Deliver",
+    "level": "L2",
+    "sector_applicability": [
+      "defense",
+      "energy",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "government contracting schedule compliance",
+      "export control project planning",
+      "GDPR project data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-08T20:50:49.688655"
+  },
+  "tags": [
+    "aerospace",
+    "defense",
+    "l2",
+    "industrial equipment",
+    "energy",
+    "deliver",
+    "scor",
+    "hybrid"
+  ],
+  "use_cases": [
+    "Use case 1: Defense contractor uses automated resource reservation for ETO missile guidance systems to lock engineering and testing capacity 12 weeks earlier, achieving 98% on-time delivery against government schedules and avoiding $1.2M in liquidated damages per contract.",
+    "Use case 2: Aerospace OEM applies delivery date optimization for custom landing gear ETO projects, reducing average lead time from 26 to 19 weeks while maintaining ITAR/export control compliance, generating $3.4M additional annual revenue from accelerated customer orders.",
+    "Use case 3: Energy equipment supplier integrates export control checks into resource reservation for nuclear turbine ETO builds, cutting compliance review cycles from 14 days to 3 days and eliminating $850K in potential regulatory penalties across 4 international projects per year.",
+    "Use case 4: Industrial equipment manufacturer optimizes resource allocation for custom conveyor ETO systems under GDPR data handling rules, improving capacity utilization by 28% and reducing overtime costs by $620K annually while passing all project data audits without findings.",
+    "Use case 5: Defense subcontractor determines precise delivery dates for ETO radar arrays by modeling constrained resources against FAR schedule requirements, shortening bid-to-award cycle by 11 days and winning 3 additional contracts worth $7.5M in the fiscal year."
+  ],
+  "pricing": {
+    "process_id": "SCOR-D3.3",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/SCOR-D3.3_package.json"
+}

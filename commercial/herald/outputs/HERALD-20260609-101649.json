@@ -1,0 +1,61 @@
+{
+  "request_id": "HERALD-20260609-101649",
+  "generated_at": "2026-06-09T10:17:27.554333",
+  "communication_type": "sequence",
+  "contact_name": "Inmaculada",
+  "process_id": "BPMN-OTC-001",
+  "primary_message": "Hola Inmaculada,\n\nEn empresas de transporte y distribución, las transiciones a SAP suelen dejar el O2C atascado en conciliaciones manuales entre pedidos, albaranes variables por ruta y facturación, sobre todo cuando los flujos legacy no se desmontan del todo.\n\n¿Cómo están gestionando ahora las entregas parciales o con incidencias que obligan a ajustes manuales antes del cierre de factura? \n\nAlberto Muñoz Waissen | Agentic Zero",
+  "subject_line": "3-touch sequence for Inmaculada @ empresa-transporte",
+  "email_body": null,
+  "key_arguments": [
+    "196% ROI in 12 months (distribution · conservative estimate)",
+    "Payback in 4.6 months",
+    "$98,000 estimated annual saving · 3 processes · 3 FTE basis",
+    "Exact ROI calculated on your data during the free AUDIT",
+    "EU AI Act compliant by design — mandatory August 2026",
+    "Powered by Dis-Solutions · 25 years · $420M value demonstrated"
+  ],
+  "roi_hook": "€34.000 / 370% (4,7%) / 490€/mes / 3.1 meses - Con BPMN-OTC-001 en distribución, base 3 procesos al 50% con 3 FTE, usando costos de personal del sector y un costo de agente de solo $12K/año (licencia + soporte).\n- Esta tasa de automatización es deliberadamente prudente (frente al 70-80% del mercado), por lo que los números son defendibles incluso en auditoría.\n- Benchmarks reales de agentes autónomos muestran retornos similares o superiores. ¿agendamos 15 minutos para calcular el impacto preciso en empresa-transporte?",
+  "eu_ai_act_angle": "EU AI Act enforcement begins August 2026. High-risk AI in distribution supply chains requires conformity assessment. Agentic Zero agents arrive pre-certified — Guardian-verified compliance from day 1.",
+  "call_to_action": "Free AUDIT — you see the numbers before deciding anything",
+  "sequence": [
+    {
+      "touch": "1",
+      "channel": "linkedin",
+      "timing": "Day 1",
+      "goal": "Recognize the problem — no pitch",
+      "subject": "LinkedIn message",
+      "message": "Hola Inmaculada,\n\nEn empresas de transporte y distribución, las transiciones a SAP suelen dejar el O2C atascado en conciliaciones manuales entre pedidos, albaranes variables por ruta y facturación, sobre todo cuando los flujos legacy no se desmontan del todo.\n\n¿Cómo están gestionando ahora las entregas parciales o con incidencias que obligan a ajustes manuales antes del cierre de factura? \n\nAlberto Muñoz Waissen | Agentic Zero"
+    },
+    {
+      "touch": "2",
+      "channel": "email",
+      "timing": "Day 4 — if no response",
+      "goal": "Offer expert perspective",
+      "subject": "Transición SAP y O2C: impactos no medidos en transporte",
+      "message": "Estimada Inmaculada,\n\nEn 25 años optimizando O2C en más de 400 plantas de 30 países, he visto que las transiciones a SAP en empresas de transporte suelen mantener procesos manuales en pedidos y facturación, creando fricciones que el sistema no detecta.\n\nEstas fricciones generan, sin medirse, entre un 6-12 % de facturación perdida por errores recurrentes, demoras de 10-18 días en el cobro y sobrecostes operativos que superan el 15 % del área, tal como ocurrió en un proyecto de distribución donde se estabilizó el flujo en 90 días.\n\n¿Dispone de 15 minutos para compartir el enfoque aplicado, sin compromiso alguno?\n\nAlberto Muñoz Waissen | Agentic Zero | Powered by Dis-Solutions"
+    },
+    {
+      "touch": "3",
+      "channel": "linkedin",
+      "timing": "Day 9 — if no response",
+      "goal": "Present the solution",
+      "subject": "LinkedIn follow-up",
+      "message": "Hola Inmaculada,\n\nRespecto a sus retos en O2C, transición SAP y procesos manuales, hemos desarrollado BPMN-OTC-001: agente IA certificado que se despliega en su stack actual, sin migración ERP y con compliance certificado.\n\n¿Agenda una auditoría gratuita para verlo con sus datos reales?\n\nHerald (por Alberto Muñoz Waissen - Agentic Zero)"
+    },
+    {
+      "touch": "4",
+      "channel": "email",
+      "timing": "Day 14 — final touch",
+      "goal": "ROI estimate + price",
+      "subject": "ROI estimado 196% 4.7x €34.000 ahorro año 1 payback 3.1 meses / Precio desde $490/mes setup 490€",
+      "message": "Estimada Inmaculada,\n\nBasado en 3 procesos de O2C y transición SAP con 3 FTE, estimamos un ROI del 196% en 12 meses, payback de 4.6 meses y $98,000 de ahorro anual (50% automatización). Estas cifras son conservadoras y se confirmarán con sus datos reales.\n\nLa auditoría gratuita procesa sus datos actuales para entregar los números exactos sin costo ni compromiso. Elimina todo riesgo antes de cualquier decisión.\n\nA partir de $600/mes (plan Standard) tras confirmar el ROI. Reserve su auditoría en agentic-zero.com\n\nAlberto Muñoz Waissen | Agentic Zero | Powered by Dis-Solutions"
+    }
+  ],
+  "linkedin_post": null,
+  "linkedin_hashtags": null,
+  "word_count": 65,
+  "estimated_read_time_seconds": 195,
+  "confidence_score": 0.88,
+  "notes": "Generated for Inmaculada at empresa-transporte"
+}

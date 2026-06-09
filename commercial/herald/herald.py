@@ -63,7 +63,9 @@ class ContactProfile(BaseModel):
 class HeraldRequest(BaseModel):
     contact: ContactProfile
     process_id: str
-    communication_type: str  # first_contact / follow_up / sequence / audit_proposal / post / email
+    communication_type: (
+        str  # first_contact / follow_up / sequence / audit_proposal / post / email
+    )
     language: str = "en"
     tone: str = "professional"
     notes: str = ""
@@ -102,10 +104,10 @@ class HeraldOutput(BaseModel):
 
 # ── HERALD CONFIGURATION ──────────────────────────────────────────────────────
 HERALD_CONFIG = {
-    "model": os.getenv("GROQ_MODEL", "groq/llama-3.3-70b-versatile"),
+    "model": os.getenv("XAI_MODEL", "xai/grok-3-mini"),
     "max_tokens": 4000,
     "temperature": 0.7,
-    "rate_limit_rpm": 1,
+    "rate_limit_rpm": 30,
 }
 
 # ── FOUNDER PROFILE ───────────────────────────────────────────────────────────
@@ -132,13 +134,48 @@ Any company, any industry, any size.
 
 # ── ROI BENCHMARKS (updated · defendible · 3 processes · 3 FTE basis) ────────
 ROI_BENCHMARKS = {
-    "pharma":         {"roi12": 322, "payback": 2.8, "annual_saving": 156000, "automation_pct": 65},
-    "defense":        {"roi12": 349, "payback": 2.7, "annual_saving": 166000, "automation_pct": 65},
-    "chemical":       {"roi12": 285, "payback": 3.2, "annual_saving": 137000, "automation_pct": 60},
-    "food":           {"roi12": 242, "payback": 3.7, "annual_saving": 117000, "automation_pct": 55},
-    "automotive":     {"roi12": 264, "payback": 3.4, "annual_saving": 127000, "automation_pct": 58},
-    "manufacturing":  {"roi12": 218, "payback": 4.1, "annual_saving": 107000, "automation_pct": 52},
-    "distribution":   {"roi12": 196, "payback": 4.6, "annual_saving":  98000, "automation_pct": 50},
+    "pharma": {
+        "roi12": 322,
+        "payback": 2.8,
+        "annual_saving": 156000,
+        "automation_pct": 65,
+    },
+    "defense": {
+        "roi12": 349,
+        "payback": 2.7,
+        "annual_saving": 166000,
+        "automation_pct": 65,
+    },
+    "chemical": {
+        "roi12": 285,
+        "payback": 3.2,
+        "annual_saving": 137000,
+        "automation_pct": 60,
+    },
+    "food": {
+        "roi12": 242,
+        "payback": 3.7,
+        "annual_saving": 117000,
+        "automation_pct": 55,
+    },
+    "automotive": {
+        "roi12": 264,
+        "payback": 3.4,
+        "annual_saving": 127000,
+        "automation_pct": 58,
+    },
+    "manufacturing": {
+        "roi12": 218,
+        "payback": 4.1,
+        "annual_saving": 107000,
+        "automation_pct": 52,
+    },
+    "distribution": {
+        "roi12": 196,
+        "payback": 4.6,
+        "annual_saving": 98000,
+        "automation_pct": 50,
+    },
 }
 
 # Reference benchmarks from published sources
@@ -220,7 +257,7 @@ def call_llm(prompt: str) -> str:
             messages=[{"role": "user", "content": prompt}],
             max_tokens=HERALD_CONFIG["max_tokens"],
             temperature=HERALD_CONFIG["temperature"],
-            api_key=os.getenv("GROQ_API_KEY"),
+            api_key=os.getenv("XAI_API_KEY"),
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -239,9 +276,16 @@ def load_process(process_id: str) -> Optional[dict]:
 
 # ── PROMPT BUILDERS ───────────────────────────────────────────────────────────
 
-def build_linkedin_outreach_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
+
+def build_linkedin_outreach_prompt(
+    request: HeraldRequest, process: dict, roi: dict
+) -> str:
     lang = "English" if request.language == "en" else "Spanish"
-    pain = "\n".join(f"- {p}" for p in request.contact.pain_points) if request.contact.pain_points else "Not specified"
+    pain = (
+        "\n".join(f"- {p}" for p in request.contact.pain_points)
+        if request.contact.pain_points
+        else "Not specified"
+    )
     history = request.contact.history or "No prior contact"
 
     return f"""You are Herald, the marketing agent for Agentic Zero.
@@ -264,14 +308,14 @@ History: {history}
 Known pain points: {pain}
 
 PROCESS/AGENT:
-{process.get('name', process_id_to_name(request.process_id))}
-{process.get('description', PROCESS_DESCRIPTIONS.get(request.process_id, ''))}
+{process.get("name", process_id_to_name(request.process_id))}
+{process.get("description", PROCESS_DESCRIPTIONS.get(request.process_id, ""))}
 
 ROI DATA (defendible · 3 processes · 3 FTE basis):
-- {roi['roi12']}% ROI in 12 months
-- Payback in {roi['payback']} months
-- ${roi['annual_saving']:,} annual saving estimated
-- {roi['automation_pct']}% automation rate (conservative)
+- {roi["roi12"]}% ROI in 12 months
+- Payback in {roi["payback"]} months
+- ${roi["annual_saving"]:,} annual saving estimated
+- {roi["automation_pct"]}% automation rate (conservative)
 
 MARKET BENCHMARKS:
 {MARKET_BENCHMARKS}
@@ -281,7 +325,7 @@ EU AI ACT:
 
 COMMUNICATION TYPE: {request.communication_type}
 TONE: {request.tone}
-NOTES: {request.notes or 'None'}
+NOTES: {request.notes or "None"}
 
 RULES:
 - Write in {lang}
@@ -297,9 +341,15 @@ RULES:
 Write ONLY the message. No preamble, no explanation."""
 
 
-def build_email_outreach_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
+def build_email_outreach_prompt(
+    request: HeraldRequest, process: dict, roi: dict
+) -> str:
     lang = "English" if request.language == "en" else "Spanish"
-    pain = "\n".join(f"- {p}" for p in request.contact.pain_points) if request.contact.pain_points else "Not specified"
+    pain = (
+        "\n".join(f"- {p}" for p in request.contact.pain_points)
+        if request.contact.pain_points
+        else "Not specified"
+    )
 
     return f"""You are Herald, the marketing agent for Agentic Zero.
 Write a personalized cold email for Alberto Muñoz Waissen to send.
@@ -315,12 +365,12 @@ Sector: {request.contact.sector}
 Known pain points: {pain}
 
 PROCESS/AGENT:
-{process.get('name', process_id_to_name(request.process_id))}
+{process.get("name", process_id_to_name(request.process_id))}
 
 ROI DATA:
-- {roi['roi12']}% ROI in 12 months
-- Payback in {roi['payback']} months
-- ${roi['annual_saving']:,} annual saving estimated
+- {roi["roi12"]}% ROI in 12 months
+- Payback in {roi["payback"]} months
+- ${roi["annual_saving"]:,} annual saving estimated
 
 MARKET BENCHMARKS:
 {MARKET_BENCHMARKS}
@@ -328,7 +378,7 @@ MARKET BENCHMARKS:
 EU AI ACT:
 {EU_AI_ACT_CONTEXT}
 
-NOTES: {request.notes or 'None'}
+NOTES: {request.notes or "None"}
 
 OUTPUT FORMAT (return exactly this):
 SUBJECT: [subject line here]
@@ -352,7 +402,11 @@ Write ONLY subject + body."""
 def build_touch1_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
     """Touch 1 — LinkedIn — Recognize the problem. No pitch."""
     lang = "English" if request.language == "en" else "Spanish"
-    pain = ", ".join(request.contact.pain_points) if request.contact.pain_points else "operational inefficiencies"
+    pain = (
+        ", ".join(request.contact.pain_points)
+        if request.contact.pain_points
+        else "operational inefficiencies"
+    )
 
     return f"""You are Herald, writing on behalf of Alberto Muñoz Waissen (Agentic Zero · Dis-Solutions).
 Write a LinkedIn message. Alberto has 25 years experience, 400+ industrial plants, 30 countries.
@@ -374,7 +428,11 @@ Return ONLY the message text."""
 def build_touch2_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
     """Touch 2 — Email — Expert perspective. No product pitch yet."""
     lang = "English" if request.language == "en" else "Spanish"
-    pain = ", ".join(request.contact.pain_points) if request.contact.pain_points else "operational inefficiencies"
+    pain = (
+        ", ".join(request.contact.pain_points)
+        if request.contact.pain_points
+        else "operational inefficiencies"
+    )
 
     return f"""You are Herald, writing on behalf of Alberto Muñoz Waissen (Agentic Zero · Dis-Solutions).
 Write a cold email. Alberto has 25 years experience, 400+ industrial plants, 30 countries.
@@ -403,8 +461,12 @@ Return ONLY subject + body."""
 def build_touch3_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
     """Touch 3 — LinkedIn — Present the solution briefly."""
     lang = "English" if request.language == "en" else "Spanish"
-    pain = ", ".join(request.contact.pain_points) if request.contact.pain_points else "operational inefficiencies"
-    proc_name = process.get('name', process_id_to_name(request.process_id))
+    pain = (
+        ", ".join(request.contact.pain_points)
+        if request.contact.pain_points
+        else "operational inefficiencies"
+    )
+    proc_name = process.get("name", process_id_to_name(request.process_id))
 
     return f"""You are Herald, writing on behalf of Alberto Muñoz Waissen (Agentic Zero · Dis-Solutions).
 Write a LinkedIn follow-up message.
@@ -425,7 +487,11 @@ Return ONLY the message text."""
 def build_touch4_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
     """Touch 4 — Email — ROI + price. Make the decision easy."""
     lang = "English" if request.language == "en" else "Spanish"
-    pain = ", ".join(request.contact.pain_points) if request.contact.pain_points else "operational inefficiencies"
+    pain = (
+        ", ".join(request.contact.pain_points)
+        if request.contact.pain_points
+        else "operational inefficiencies"
+    )
 
     return f"""You are Herald, writing on behalf of Alberto Muñoz Waissen (Agentic Zero · Dis-Solutions).
 Write a final follow-up email with ROI estimate and pricing.
@@ -434,10 +500,10 @@ CONTACT: {request.contact.name} · {request.contact.role} · {request.contact.co
 THEIR PAIN: {pain}
 
 ROI DATA (conservative · defendible):
-- {roi['roi12']}% ROI in 12 months
-- Payback in {roi['payback']} months
-- ${roi['annual_saving']:,} estimated annual saving
-- Based on: 3 processes · 3 FTE · {roi['automation_pct']}% automation rate
+- {roi["roi12"]}% ROI in 12 months
+- Payback in {roi["payback"]} months
+- ${roi["annual_saving"]:,} estimated annual saving
+- Based on: 3 processes · 3 FTE · {roi["automation_pct"]}% automation rate
 - Exact figures calculated during free AUDIT on their real data
 
 PRICING: From $600/month (Standard plan) after AUDIT confirms ROI
@@ -461,7 +527,11 @@ Return ONLY subject + body."""
 
 def build_sequence_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
     lang = "English" if request.language == "en" else "Spanish"
-    pain = ", ".join(request.contact.pain_points) if request.contact.pain_points else "operational inefficiencies"
+    pain = (
+        ", ".join(request.contact.pain_points)
+        if request.contact.pain_points
+        else "operational inefficiencies"
+    )
     history = request.contact.history or "No prior contact"
 
     return f"""You are Herald, the marketing agent for Agentic Zero.
@@ -484,14 +554,14 @@ SPECIFIC PAIN POINTS (use these — do not ignore them):
 {pain}
 
 PROCESS/SOLUTION:
-{process.get('name', process_id_to_name(request.process_id))}
-{process.get('description', PROCESS_DESCRIPTIONS.get(request.process_id, ''))}
+{process.get("name", process_id_to_name(request.process_id))}
+{process.get("description", PROCESS_DESCRIPTIONS.get(request.process_id, ""))}
 
 ROI DATA (conservative · defendible):
-- {roi['roi12']}% ROI in 12 months
-- Payback in {roi['payback']} months
-- ${roi['annual_saving']:,} estimated annual saving
-- Based on: 3 processes · 3 FTE · {roi['automation_pct']}% automation rate
+- {roi["roi12"]}% ROI in 12 months
+- Payback in {roi["payback"]} months
+- ${roi["annual_saving"]:,} estimated annual saving
+- Based on: 3 processes · 3 FTE · {roi["automation_pct"]}% automation rate
 
 MARKET BENCHMARKS:
 {MARKET_BENCHMARKS}
@@ -585,17 +655,17 @@ Write a LinkedIn authority post for Alberto Muñoz Waissen.
 SENDER PROFILE:
 {ALBERTO_PROFILE}
 
-TOPIC: {process.get('name', process_id_to_name(request.process_id))} in {request.contact.sector}
+TOPIC: {process.get("name", process_id_to_name(request.process_id))} in {request.contact.sector}
 
 ROI DATA:
-- {roi['roi12']}% ROI · Payback {roi['payback']} months · ${roi['annual_saving']:,} saving/year
+- {roi["roi12"]}% ROI · Payback {roi["payback"]} months · ${roi["annual_saving"]:,} saving/year
 
 MARKET BENCHMARKS:
 {MARKET_BENCHMARKS}
 
 EU AI ACT: Mandatory August 2026
 
-NOTES: {request.notes or 'None'}
+NOTES: {request.notes or "None"}
 
 RULES:
 - Write in {lang}
@@ -611,25 +681,27 @@ RULES:
 Write ONLY the post content + hashtags."""
 
 
-def build_roi_argumentario_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
+def build_roi_argumentario_prompt(
+    request: HeraldRequest, process: dict, roi: dict
+) -> str:
     lang = "English" if request.language == "en" else "Spanish"
 
     return f"""You are Herald, the marketing agent for Agentic Zero.
 Write a ROI argumentario for a sales conversation about:
 
-Process: {process.get('name', process_id_to_name(request.process_id))}
+Process: {process.get("name", process_id_to_name(request.process_id))}
 Sector: {request.contact.sector}
 Company: {request.contact.company}
 
 ROI DATA (conservative · defendible):
-- {roi['roi12']}% ROI in 12 months
-- Payback in {roi['payback']} months
-- ${roi['annual_saving']:,} estimated annual saving
-- Based on: 3 processes · 3 FTE · {roi['automation_pct']}% automation rate
+- {roi["roi12"]}% ROI in 12 months
+- Payback in {roi["payback"]} months
+- ${roi["annual_saving"]:,} estimated annual saving
+- Based on: 3 processes · 3 FTE · {roi["automation_pct"]}% automation rate
 
 METHODOLOGY (if challenged):
 - FTE cost reference: published sector salary benchmarks
-- Automation rate: conservative estimate ({roi['automation_pct']}% vs industry avg 70-80%)
+- Automation rate: conservative estimate ({roi["automation_pct"]}% vs industry avg 70-80%)
 - Agent cost: $12K/year (license + Standard support)
 - Exact figures calculated during the free AUDIT on client's real data
 
@@ -641,7 +713,9 @@ Format: 5 bullet points max, ready to use in a conversation.
 Write ONLY the argumentario."""
 
 
-def build_audit_proposal_prompt(request: HeraldRequest, process: dict, roi: dict) -> str:
+def build_audit_proposal_prompt(
+    request: HeraldRequest, process: dict, roi: dict
+) -> str:
     lang = "English" if request.language == "en" else "Spanish"
 
     return f"""You are Herald, the marketing agent for Agentic Zero.
@@ -665,7 +739,7 @@ Company: {request.contact.company}
 Role: {request.contact.role}
 Sector: {request.contact.sector}
 
-NOTES: {request.notes or 'None'}
+NOTES: {request.notes or "None"}
 
 RULES:
 - Write in {lang}
@@ -698,8 +772,9 @@ def load_venture_opportunity(opp_id: str) -> Optional[dict]:
     return None
 
 
-def herald_from_venture(opp_id: str, comm_type: str = "first_contact",
-                        language: str = "en") -> Optional["HeraldOutput"]:
+def herald_from_venture(
+    opp_id: str, comm_type: str = "first_contact", language: str = "en"
+) -> Optional["HeraldOutput"]:
     """Generate Herald output directly from a Venture opportunity."""
     opp = load_venture_opportunity(opp_id)
     if not opp:
@@ -730,7 +805,9 @@ def herald_from_venture(opp_id: str, comm_type: str = "first_contact",
 
 # ── HERALD MAIN FUNCTION ──────────────────────────────────────────────────────
 def run_herald(request: HeraldRequest) -> HeraldOutput:
-    logger.info(f"Herald starting: {request.communication_type} for {request.contact.name} ({request.contact.company})")
+    logger.info(
+        f"Herald starting: {request.communication_type} for {request.contact.name} ({request.contact.company})"
+    )
 
     process = load_process(request.process_id)
     if not process:
@@ -789,18 +866,38 @@ def run_herald(request: HeraldRequest) -> HeraldOutput:
             t4_body = parts[1].strip()
 
         sequence = [
-            {"touch": "1", "channel": "linkedin", "timing": "Day 1",
-             "goal": "Recognize the problem — no pitch",
-             "subject": "LinkedIn message", "message": t1_msg},
-            {"touch": "2", "channel": "email", "timing": "Day 4 — if no response",
-             "goal": "Offer expert perspective",
-             "subject": t2_subject, "message": t2_body},
-            {"touch": "3", "channel": "linkedin", "timing": "Day 9 — if no response",
-             "goal": "Present the solution",
-             "subject": "LinkedIn follow-up", "message": t3_msg},
-            {"touch": "4", "channel": "email", "timing": "Day 14 — final touch",
-             "goal": "ROI estimate + price",
-             "subject": t4_subject, "message": t4_body},
+            {
+                "touch": "1",
+                "channel": "linkedin",
+                "timing": "Day 1",
+                "goal": "Recognize the problem — no pitch",
+                "subject": "LinkedIn message",
+                "message": t1_msg,
+            },
+            {
+                "touch": "2",
+                "channel": "email",
+                "timing": "Day 4 — if no response",
+                "goal": "Offer expert perspective",
+                "subject": t2_subject,
+                "message": t2_body,
+            },
+            {
+                "touch": "3",
+                "channel": "linkedin",
+                "timing": "Day 9 — if no response",
+                "goal": "Present the solution",
+                "subject": "LinkedIn follow-up",
+                "message": t3_msg,
+            },
+            {
+                "touch": "4",
+                "channel": "email",
+                "timing": "Day 14 — final touch",
+                "goal": "ROI estimate + price",
+                "subject": t4_subject,
+                "message": t4_body,
+            },
         ]
         primary_message = t1_msg
 
@@ -808,7 +905,9 @@ def run_herald(request: HeraldRequest) -> HeraldOutput:
         primary_message = call_llm(build_audit_proposal_prompt(request, process, roi))
 
     else:  # first_contact, follow_up — LinkedIn default
-        primary_message = call_llm(build_linkedin_outreach_prompt(request, process, roi))
+        primary_message = call_llm(
+            build_linkedin_outreach_prompt(request, process, roi)
+        )
 
     # Always generate ROI argumentario
     logger.info("Generating ROI argumentario...")
@@ -844,22 +943,24 @@ def run_herald(request: HeraldRequest) -> HeraldOutput:
     )
 
     cta_map = {
-        "first_contact":   "15-minute call to show you the ROI numbers for your specific operation",
-        "follow_up":       "Quick call to walk you through what we built for a similar operation",
-        "email":           "Book a free AUDIT at agentic-zero.com — ROI calculated before any commitment",
-        "sequence":        "Free AUDIT — you see the numbers before deciding anything",
-        "audit_proposal":  "Free AUDIT — ROI calculated on your data, no commitment required",
-        "post":            "Share your experience with AI in operations in the comments",
+        "first_contact": "15-minute call to show you the ROI numbers for your specific operation",
+        "follow_up": "Quick call to walk you through what we built for a similar operation",
+        "email": "Book a free AUDIT at agentic-zero.com — ROI calculated before any commitment",
+        "sequence": "Free AUDIT — you see the numbers before deciding anything",
+        "audit_proposal": "Free AUDIT — ROI calculated on your data, no commitment required",
+        "post": "Share your experience with AI in operations in the comments",
     }
     cta = cta_map.get(request.communication_type, cta_map["first_contact"])
 
     subject_map = {
-        "first_contact":   f"{roi['roi12']}% ROI · {process_id_to_name(request.process_id)[:40]}",
-        "follow_up":       f"Following up — autonomous operations for {request.contact.company}",
-        "email":           primary_message if request.communication_type == "email" else f"Agentic Zero · {request.contact.company}",
-        "sequence":        f"3-touch sequence for {request.contact.name} @ {request.contact.company}",
-        "audit_proposal":  f"Free AUDIT proposal — {request.contact.company}",
-        "post":            f"LinkedIn post — {process_id_to_name(request.process_id)[:50]}",
+        "first_contact": f"{roi['roi12']}% ROI · {process_id_to_name(request.process_id)[:40]}",
+        "follow_up": f"Following up — autonomous operations for {request.contact.company}",
+        "email": primary_message
+        if request.communication_type == "email"
+        else f"Agentic Zero · {request.contact.company}",
+        "sequence": f"3-touch sequence for {request.contact.name} @ {request.contact.company}",
+        "audit_proposal": f"Free AUDIT proposal — {request.contact.company}",
+        "post": f"LinkedIn post — {process_id_to_name(request.process_id)[:50]}",
     }
     subject = subject_map.get(request.communication_type, "Agentic Zero")
 
@@ -901,80 +1002,107 @@ def run_herald(request: HeraldRequest) -> HeraldOutput:
 
 # ── CLI INTERFACE ─────────────────────────────────────────────────────────────
 def print_output(output: HeraldOutput):
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"HERALD OUTPUT — {output.request_id}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"\n📧 SUBJECT / CONTEXT: {output.subject_line}")
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"PRIMARY MESSAGE ({output.communication_type.upper()}):")
-    print(f"{'─'*60}")
+    print(f"{'─' * 60}")
     print(output.primary_message)
 
     if output.email_body and output.communication_type == "email":
-        print(f"\n{'─'*60}")
+        print(f"\n{'─' * 60}")
         print(f"EMAIL BODY:")
-        print(f"{'─'*60}")
+        print(f"{'─' * 60}")
         print(output.email_body)
 
     if output.sequence:
-        print(f"\n{'─'*60}")
+        print(f"\n{'─' * 60}")
         print(f"3-TOUCH SEQUENCE:")
-        print(f"{'─'*60}")
+        print(f"{'─' * 60}")
         for touch in output.sequence:
-            print(f"\n  TOUCH {touch.get('touch')} — {touch.get('timing','')}")
-            print(f"  Channel: {touch.get('channel','')}")
-            if touch.get('subject'):
-                print(f"  Subject: {touch.get('subject','')}")
-            print(f"  Goal:    {touch.get('goal','')}")
-        print(f"  Message:\n{touch.get('message','')}")
+            print(f"\n  TOUCH {touch.get('touch')} — {touch.get('timing', '')}")
+            print(f"  Channel: {touch.get('channel', '')}")
+            if touch.get("subject"):
+                print(f"  Subject: {touch.get('subject', '')}")
+            print(f"  Goal:    {touch.get('goal', '')}")
+        print(f"  Message:\n{touch.get('message', '')}")
 
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"ROI ARGUMENTARIO:")
-    print(f"{'─'*60}")
+    print(f"{'─' * 60}")
     print(output.roi_hook)
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"EU AI ACT ANGLE:")
-    print(f"{'─'*60}")
+    print(f"{'─' * 60}")
     print(output.eu_ai_act_angle)
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"CTA: {output.call_to_action}")
 
     if output.linkedin_post:
-        print(f"\n{'─'*60}")
+        print(f"\n{'─' * 60}")
         print(f"LINKEDIN POST:")
-        print(f"{'─'*60}")
+        print(f"{'─' * 60}")
         print(output.linkedin_post)
         if output.linkedin_hashtags:
             print("\n" + " ".join(output.linkedin_hashtags))
 
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"KEY ARGUMENTS:")
     for arg in output.key_arguments:
         print(f"  • {arg}")
     print(f"\n📁 Saved: commercial/herald/outputs/{output.request_id}.json")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
 
 def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Agentic Zero — Herald Agent v2.0")
-    parser.add_argument("--name",    required=False, default="", help="Contact name")
+    parser.add_argument("--name", required=False, default="", help="Contact name")
     parser.add_argument("--company", required=False, default="", help="Contact company")
-    parser.add_argument("--role",    default="Operations Director")
-    parser.add_argument("--sector",  default="manufacturing",
-                        choices=["pharma","defense","chemical","food","automotive","manufacturing","distribution"])
+    parser.add_argument("--role", default="Operations Director")
+    parser.add_argument(
+        "--sector",
+        default="manufacturing",
+        choices=[
+            "pharma",
+            "defense",
+            "chemical",
+            "food",
+            "automotive",
+            "manufacturing",
+            "distribution",
+        ],
+    )
     parser.add_argument("--process", default="SCOR-P1.1")
-    parser.add_argument("--type",    default="first_contact",
-                        choices=["first_contact","follow_up","email","sequence","audit_proposal","post"],
-                        dest="comm_type")
-    parser.add_argument("--language", default="en", choices=["es","en"])
-    parser.add_argument("--tone",    default="professional", choices=["professional","warm","direct"])
+    parser.add_argument(
+        "--type",
+        default="first_contact",
+        choices=[
+            "first_contact",
+            "follow_up",
+            "email",
+            "sequence",
+            "audit_proposal",
+            "post",
+        ],
+        dest="comm_type",
+    )
+    parser.add_argument("--language", default="en", choices=["es", "en"])
+    parser.add_argument(
+        "--tone", default="professional", choices=["professional", "warm", "direct"]
+    )
     parser.add_argument("--history", default="")
-    parser.add_argument("--pain",    default="", help="Known pain points (comma-separated)")
-    parser.add_argument("--email",   default="", help="Contact email address")
-    parser.add_argument("--notes",   default="")
-    parser.add_argument("--venture", default="", help="Import from Venture opportunity ID")
+    parser.add_argument(
+        "--pain", default="", help="Known pain points (comma-separated)"
+    )
+    parser.add_argument("--email", default="", help="Contact email address")
+    parser.add_argument("--notes", default="")
+    parser.add_argument(
+        "--venture", default="", help="Import from Venture opportunity ID"
+    )
     args = parser.parse_args()
 
     # Venture integration

@@ -351,6 +351,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
       <div class="btn-group">
         <button class="btn-secondary" onclick="goStep(3)">← Back</button>
+        <div id="al-indicator" style="background:var(--bg2);border:1px solid var(--brd);border-radius:6px;padding:16px 20px;margin-bottom:16px;display:none;">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:6px;">AUTONOMY LEVEL DETECTED</div>
+          <div id="al-label" style="font-family:var(--syne);font-size:15px;font-weight:600;color:var(--w1);margin-bottom:4px;"></div>
+          <div id="al-desc" style="font-family:var(--mono);font-size:11px;color:var(--w3);"></div>
+        </div>
         <button class="btn-primary" onclick="submitForm()">Book Free AUDIT →</button>
       </div>
     </div>
@@ -359,16 +364,28 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="success-screen" id="success">
       <div class="success-icon">✅</div>
       <div class="success-title">Your AUDIT is booked.</div>
-      <div class="success-desc">Alberto will review your information and reach out within 24 hours to confirm the exact slot and share preparation materials.</div>
-      <div class="success-next">
+      <div class="success-desc" id="success-al-msg">Our team will review your information and reach out within 24 hours to confirm the exact slot and scope.</div>
+
+      <div class="success-next" style="margin-bottom:16px;">
         <div class="success-next-title">What happens next</div>
         <ul>
-          <li>You'll receive a confirmation email at the address you provided</li>
-          <li>Alberto prepares a tailored AUDIT brief based on your inputs</li>
-          <li style="color:var(--grn)">📎 Please reply to our confirmation email attaching your process map (BPMN, PDF or image) — this helps us calculate your ROI with maximum precision</li>
-          <li>30-45 minute call — your real data, your exact ROI</li>
-          <li>Full ROI calculation before any commitment or cost</li>
+          <li>Our team reviews your operation details — within 24 hours</li>
+          <li>You receive a confirmation with the AUDIT scope and start date</li>
+          <li style="color:var(--grn)">📎 To accelerate your ROI calculation — reply with your process map (BPMN, PDF, screenshot or flowchart). Not required, but it helps.</li>
+          <li>AUDIT delivered in 2 days — Autonomy Map · exact ROI · compliance report · agent demo</li>
+          <li>Executive session — you see the numbers before any decision</li>
         </ul>
+      </div>
+
+      <div style="background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:6px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:8px;">YOUR AUTONOMY LEVEL</div>
+        <div id="success-al-level" style="font-family:var(--syne);font-size:15px;font-weight:600;color:var(--acc);margin-bottom:4px;">—</div>
+        <div id="success-al-detail" style="font-family:var(--mono);font-size:11px;color:var(--w3);">—</div>
+      </div>
+
+      <div style="background:rgba(0,230,118,0.04);border:1px solid rgba(0,230,118,0.15);border-radius:6px;padding:16px 20px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--grn);margin-bottom:8px;">ZERO COMMITMENT REMINDER</div>
+        <div style="font-family:var(--syne);font-size:13px;color:var(--w2);">No contract, no payment, no obligation until you see your exact ROI and decide to proceed. The AUDIT is completely free.</div>
       </div>
     </div>
 
@@ -376,7 +393,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <div class="footer">
     <a href="https://agentic-zero.com">← Back to agentic-zero.com</a>
-    &nbsp;·&nbsp; alberto@agentic-zero.com
+    &nbsp;·&nbsp; audit@agentic-zero.com
     &nbsp;·&nbsp; Powered by Dis-Solutions
   </div>
 
@@ -439,6 +456,41 @@ if (zone) {
 }
 
 // Step navigation
+function updateALIndicator() {
+  const volume = parseInt(state.volume) || 0;
+  const erp = (state.erp || '').toLowerCase();
+  const complexErps = ['tailored', 'none', 'other'];
+  const isComplexErp = complexErps.some(e => erp.includes(e));
+  let al = 'AL1';
+  if (isComplexErp) al = 'AL3';
+  else if (volume > 500) al = 'AL2';
+
+  const labels = {
+    AL1: 'AL1 — Standard Process · Deploy in 24 hours',
+    AL2: 'AL2 — High Volume Process · Deploy in 48 hours',
+    AL3: 'AL3 — Complex Integration · AUDIT 2 days + Deploy 24h',
+    AL4: 'AL4 — Multi-Agent Process · Extended AUDIT + Swarm Design'
+  };
+  const descs = {
+    AL1: 'Your process is in our certified library. Once confirmed, your agent will be operational within 24 hours.',
+    AL2: 'High-volume process with standard ERP. Requires additional tuning — operational within 48 hours.',
+    AL3: 'Custom ERP or multi-system integration detected. Our team will define the exact AUDIT scope.',
+    AL4: 'Complex multi-agent process. Requires extended AUDIT and Swarm architecture design.'
+  };
+  const colors = { AL1: 'var(--grn)', AL2: 'var(--acc)', AL3: '#f5a623', AL4: '#ff6b6b' };
+
+  const ind = document.getElementById('al-indicator');
+  const lbl = document.getElementById('al-label');
+  const dsc = document.getElementById('al-desc');
+  if (ind && lbl && dsc) {
+    ind.style.display = 'block';
+    ind.style.borderColor = colors[al];
+    lbl.textContent = labels[al];
+    lbl.style.color = colors[al];
+    dsc.textContent = descs[al];
+  }
+}
+
 function goStep(n) {
   // Validate step 1
   if(n===2) {
@@ -522,33 +574,72 @@ async function submitForm() {
     ? `${uploadedFile.name} (${(uploadedFile.size/1024).toFixed(0)}KB) — client will send by email reply`
     : 'Not uploaded — request from client by email';
 
-  const templateParams = {
-    name:             state.name,
-    company:          state.company,
-    email:            state.email,
-    role:             state.role || 'Not specified',
-    sector:           state.sector,
-    erp:              state.erp || 'Not specified',
-    volume:           state.volume,
-    team:             state.fte || 'Not specified',
-    timing:           state.timing,
-    pain_points:      state.pains.join(', ') || 'Not specified',
-    pain_description: state.pain_desc || 'Not provided',
-    notes:            state.notes || 'None',
-    process_map_info: fileInfo,
-    title:            `${state.company} (${state.sector})`,
-  };
+  // Autonomy Level classification
+  const volume = parseInt(state.volume) || 0;
+  const erp = (state.erp || '').toLowerCase();
+  const complexErps = ['tailored', 'none', 'other'];
+  const isComplexErp = complexErps.some(e => erp.includes(e));
+  let autonomyLevel = 'AL1';
+  if (isComplexErp) autonomyLevel = 'AL3';
+  else if (volume > 500) autonomyLevel = 'AL2';
+  if (state.pains.includes('multi-agent') || state.pains.includes('complex')) autonomyLevel = 'AL4';
+
+  const formData = new FormData();
+  formData.append('name',             state.name);
+  formData.append('company',          state.company);
+  formData.append('email',            state.email);
+  formData.append('role',             state.role || 'Not specified');
+  formData.append('sector',           state.sector);
+  formData.append('erp',              state.erp || 'Not specified');
+  formData.append('volume',           state.volume);
+  formData.append('team_size',        state.fte || 'Not specified');
+  formData.append('timing',           state.timing);
+  formData.append('pain_points',      state.pains.join(', ') || 'Not specified');
+  formData.append('pain_description', state.pain_desc || 'Not provided');
+  formData.append('notes',            state.notes || 'None');
+  formData.append('process_map',      fileInfo);
+  formData.append('autonomy_level',   autonomyLevel);
+  formData.append('_subject',         `[AUDIT ${autonomyLevel}] ${state.company} · ${state.sector} · ${state.erp || 'No ERP'}`);
+  formData.append('_replyto',         state.email);
 
   try {
-    await emailjs.send('service_eq9ckdb', 'template_5br90kf', templateParams);
-    document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-    document.getElementById('success').style.display='block';
-    document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
+    const res = await fetch('https://formspree.io/f/xlgkgapl', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+      document.getElementById('success').style.display='block';
+      document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
+      // Update success message with autonomy level
+      const alMsg = {
+        AL1: 'Standard process detected — expect confirmation within 24 hours.',
+        AL2: 'High-volume process detected — expect confirmation within 24 hours.',
+        AL3: 'Complex integration detected — our team will confirm scope within 24 hours.',
+        AL4: 'Advanced multi-agent process detected — our team will contact you to define the AUDIT scope.'
+      };
+      const descEl = document.getElementById('success-al-msg');
+      const lvlEl = document.getElementById('success-al-level');
+      const detEl = document.getElementById('success-al-detail');
+      const alLabels = {
+        AL1: 'AL1 — Standard Process · Deploy in 24 hours',
+        AL2: 'AL2 — High Volume · Deploy in 48 hours',
+        AL3: 'AL3 — Complex Integration · AUDIT 2 days + Deploy 24h',
+        AL4: 'AL4 — Multi-Agent Process · Extended AUDIT'
+      };
+      const alColors = { AL1: 'var(--grn)', AL2: 'var(--acc)', AL3: '#f5a623', AL4: '#ff6b6b' };
+      if (lvlEl) { lvlEl.textContent = alLabels[autonomyLevel]; lvlEl.style.color = alColors[autonomyLevel]; }
+      if (detEl) detEl.textContent = alMsg[autonomyLevel];
+    } else {
+      throw new Error('Formspree error: ' + res.status);
+    }
   } catch(err) {
     btn.textContent = 'Book Free AUDIT →';
     btn.disabled = false;
-    alert('Something went wrong. Please try again or email alberto@agentic-zero.com directly.');
-    console.error('EmailJS error:', err);
+    alert('Something went wrong. Please try again or contact us at audit@agentic-zero.com');
+    console.error('Submit error:', err);
   }
 }
 </script>

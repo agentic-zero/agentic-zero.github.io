@@ -582,6 +582,7 @@ const FRAMEWORK_MAP = {
         <label>Daily transaction volume (orders / documents / events)</label>
         <div class="volume-display" id="vol-display">~50 / day</div>
         <input type="range" class="slider" id="vol-slider" min="0" max="100" value="30" oninput="updateVolume(this.value)">
+<input type="hidden" id="f-volume" value="50">
         <div class="slider-labels"><span>&lt;10</span><span>50</span><span>200</span><span>500</span><span>1,000+</span></div>
       </div>
 
@@ -798,6 +799,19 @@ const FRAMEWORK_MAP = {
 </div><!-- /wrapper -->
 
 <script>
+
+// ── VOLUME SLIDER ──────────────────────────────────────────
+const VOL_STEPS = [5, 10, 25, 50, 100, 200, 350, 500, 750, 1000];
+function updateVolume(val) {
+  const idx = Math.round((val / 100) * (VOL_STEPS.length - 1));
+  const v = VOL_STEPS[idx];
+  const display = v >= 1000 ? '1,000+' : '~' + v;
+  const el = document.getElementById('vol-display');
+  if (el) el.textContent = display + ' / day';
+  const hidden = document.getElementById('f-volume');
+  if (hidden) hidden.value = v;
+  state.volume = v + ' orders/day';
+}
 
 // ── CORE STATE ─────────────────────────────────────────────
 const state = {

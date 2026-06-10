@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260609_172544_359495",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-FIN-004"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:25:44.359520",
+  "status": "completed",
+  "started_at": "2026-06-09T17:27:46.623147",
+  "completed_at": "2026-06-09T17:27:51.683561",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-FIN-004-20260609",
+    "status": "conditional",
+    "process_id": "BPMN-FIN-004"
+  }
+}

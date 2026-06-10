@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_101303_926906",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART13"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:13:03.926920",
+  "status": "completed",
+  "started_at": "2026-06-10T11:11:58.527425",
+  "completed_at": "2026-06-10T11:12:22.041896",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_art13_transparency_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

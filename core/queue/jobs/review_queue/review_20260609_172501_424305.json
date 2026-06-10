@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260609_172501_424305",
+  "job_type": "review",
+  "payload": {
+    "process_id": "BPMN-DIG-001",
+    "certificate_id": "AZ-CERT-BPMN-DIG-001-20260609"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:25:01.424323",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_110625_120171",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-GXP-005"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T11:06:25.120186",
+  "status": "completed",
+  "started_at": "2026-06-09T16:59:50.888349",
+  "completed_at": "2026-06-09T17:00:04.868434",
+  "error": null,
+  "result": {
+    "agent_name": "regulatory_submission_automation_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

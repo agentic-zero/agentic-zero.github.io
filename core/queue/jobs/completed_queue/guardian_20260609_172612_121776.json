@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260609_172612_121776",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-CRM-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:26:12.121794",
+  "status": "completed",
+  "started_at": "2026-06-10T10:06:14.039571",
+  "completed_at": "2026-06-10T10:06:20.966557",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-CRM-001-20260610",
+    "status": "conditional",
+    "process_id": "BPMN-CRM-001"
+  }
+}

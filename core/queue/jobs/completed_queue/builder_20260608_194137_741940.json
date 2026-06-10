@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_194137_741940",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "SCOR-D2.9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T19:41:37.741959",
+  "status": "completed",
+  "started_at": "2026-06-10T11:16:53.299503",
+  "completed_at": "2026-06-10T11:17:36.297137",
+  "error": null,
+  "result": {
+    "agent_name": "mto_product_picking_agent",
+    "ready_for_packager": true
+  }
+}

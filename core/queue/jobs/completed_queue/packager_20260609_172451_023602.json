@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_172451_023602",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-ESG-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:24:51.023626",
+  "status": "completed",
+  "started_at": "2026-06-10T10:06:00.421647",
+  "completed_at": "2026-06-10T10:06:24.009743",
+  "error": null,
+  "result": {
+    "agent_name": "carbon_scope3_tracking_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

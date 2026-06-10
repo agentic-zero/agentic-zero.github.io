@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_160902_484320",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-DIG-003"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T16:09:02.484338",
+  "status": "completed",
+  "started_at": "2026-06-09T17:24:24.257219",
+  "completed_at": "2026-06-09T17:24:37.251886",
+  "error": null,
+  "result": {
+    "agent_name": "digital_twin_synchronizer",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

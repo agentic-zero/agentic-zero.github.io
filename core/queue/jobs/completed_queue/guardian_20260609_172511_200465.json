@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260609_172511_200465",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "BPMN-DIG-005"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:25:11.200492",
+  "status": "completed",
+  "started_at": "2026-06-09T17:27:24.462625",
+  "completed_at": "2026-06-09T17:27:27.916694",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-BPMN-DIG-005-20260609",
+    "status": "conditional",
+    "process_id": "BPMN-DIG-005"
+  }
+}

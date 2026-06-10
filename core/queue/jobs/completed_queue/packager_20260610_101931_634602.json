@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_101931_634602",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "IATF16949-PPAP"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:19:31.634617",
+  "status": "completed",
+  "started_at": "2026-06-10T11:19:06.603595",
+  "completed_at": "2026-06-10T11:19:36.927910",
+  "error": null,
+  "result": {
+    "agent_name": "ppap_automation_agent",
+    "price_eur": 171.35,
+    "ready_for_guardian": true
+  }
+}

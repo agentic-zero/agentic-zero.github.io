@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260609_172751_691458",
+  "job_type": "review",
+  "payload": {
+    "process_id": "BPMN-FIN-004",
+    "certificate_id": "AZ-CERT-BPMN-FIN-004-20260609"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:27:51.691476",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

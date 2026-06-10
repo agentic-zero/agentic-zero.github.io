@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260610_111355_096212",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "NIST-GOVERN"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:13:55.096230",
+  "status": "completed",
+  "started_at": "2026-06-10T11:22:07.326215",
+  "completed_at": "2026-06-10T11:22:17.845057",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-NIST-GOVERN-20260610",
+    "status": "conditional",
+    "process_id": "NIST-GOVERN"
+  }
+}

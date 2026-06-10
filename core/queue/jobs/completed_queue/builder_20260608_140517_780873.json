@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_140517_780873",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO42001-4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:05:17.780887",
+  "status": "completed",
+  "started_at": "2026-06-10T10:04:01.510811",
+  "completed_at": "2026-06-10T10:04:58.263036",
+  "error": null,
+  "result": {
+    "agent_name": "ai_context_process_agent",
+    "ready_for_packager": true
+  }
+}

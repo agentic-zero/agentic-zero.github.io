@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_140517_787512",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "EUAIA-ART6"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:05:17.787529",
+  "status": "completed",
+  "started_at": "2026-06-10T10:09:10.544754",
+  "completed_at": "2026-06-10T10:09:53.139405",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_high_risk_classifier",
+    "ready_for_packager": true
+  }
+}

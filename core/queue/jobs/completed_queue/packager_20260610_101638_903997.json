@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_101638_903997",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "NIST-MANAGE"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:16:38.904011",
+  "status": "completed",
+  "started_at": "2026-06-10T11:14:58.944391",
+  "completed_at": "2026-06-10T11:15:21.613790",
+  "error": null,
+  "result": {
+    "agent_name": "risk_treatment_response_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

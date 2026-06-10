@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_140517_799696",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "IATF16949-PPAP"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:05:17.799714",
+  "status": "completed",
+  "started_at": "2026-06-10T10:18:58.251635",
+  "completed_at": "2026-06-10T10:19:31.633685",
+  "error": null,
+  "result": {
+    "agent_name": "ppap_automation_agent",
+    "ready_for_packager": true
+  }
+}

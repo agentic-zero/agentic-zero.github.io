@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_140517_791191",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "EUAIA-ART13"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:05:17.791204",
+  "status": "completed",
+  "started_at": "2026-06-10T10:12:23.682189",
+  "completed_at": "2026-06-10T10:13:03.925957",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_art13_transparency_agent",
+    "ready_for_packager": true
+  }
+}

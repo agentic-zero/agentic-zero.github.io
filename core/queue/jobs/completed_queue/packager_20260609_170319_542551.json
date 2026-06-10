@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260609_170319_542551",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-CRM-003"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T17:03:19.542576",
+  "status": "completed",
+  "started_at": "2026-06-09T17:26:24.431857",
+  "completed_at": "2026-06-09T17:26:35.037014",
+  "error": null,
+  "result": {
+    "agent_name": "contract_renewal_retention_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260608_140517_802882",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "GDPR-ART5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-08T14:05:17.802895",
+  "status": "completed",
+  "started_at": "2026-06-10T10:21:07.551935",
+  "completed_at": "2026-06-10T10:21:37.425843",
+  "error": null,
+  "result": {
+    "agent_name": "gdpr_article5_compliance_agent",
+    "ready_for_packager": true
+  }
+}

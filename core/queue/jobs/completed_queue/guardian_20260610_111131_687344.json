@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260610_111131_687344",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "EUAIA-ART11"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:11:31.687376",
+  "status": "completed",
+  "started_at": "2026-06-10T11:21:20.529238",
+  "completed_at": "2026-06-10T11:21:28.298501",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-EUAIA-ART11-20260610",
+    "status": "conditional",
+    "process_id": "EUAIA-ART11"
+  }
+}

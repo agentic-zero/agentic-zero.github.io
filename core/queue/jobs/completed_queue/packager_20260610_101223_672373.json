@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_101223_672373",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART12"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:12:23.672393",
+  "status": "completed",
+  "started_at": "2026-06-10T11:11:31.697711",
+  "completed_at": "2026-06-10T11:11:58.517231",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act12_logging_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

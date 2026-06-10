@@ -111,17 +111,26 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pain-tag{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono)}
 .pain-tag:hover{border-color:var(--acc);color:var(--w1)}
 .pain-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn)}
-.pain-cat-header{width:100%;font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid rgba(0,212,255,0.15)}
-.subcat-panel{width:100%;margin:4px 0 12px;background:rgba(0,212,255,0.03);border:1px solid rgba(0,212,255,0.12);border-radius:6px;padding:12px 16px;display:none;}
-.subcat-panel.visible{display:block;}
-.subcat-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.subcat-label::before{content:"↳";color:var(--acc);}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:8px;}
+.cat-card{background:var(--bg2);border:1px solid var(--brd);border-radius:6px;padding:10px 12px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.cat-card:hover{border-color:var(--acc);}
+.cat-card.selected{border-color:var(--grn);background:rgba(0,230,118,0.07);}
+.cat-icon{font-size:16px;flex-shrink:0;}
+.cat-name{font-family:var(--mono);font-size:10px;color:var(--w2);line-height:1.3;}
+.cat-card.selected .cat-name{color:var(--grn);}
+.subcat-panel{background:rgba(0,212,255,0.03);border:1px solid rgba(0,212,255,0.15);border-radius:6px;padding:12px 14px;margin:6px 0;}
+.subcat-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:8px;}
 .subcat-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.subcat-tag{font-size:11px;padding:5px 10px;border-radius:16px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono);display:flex;align-items:center;gap:6px;}
-.subcat-tag::before{content:"□";font-size:12px;color:var(--w3);}
+.subcat-tag{font-size:11px;padding:4px 10px;border-radius:14px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono);}
 .subcat-tag:hover{border-color:var(--acc);color:var(--w2);}
 .subcat-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn);}
-.subcat-tag.selected::before{content:"✓";color:var(--grn);}
+.link-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(0,230,118,0.2);border-radius:6px;margin-bottom:6px;cursor:pointer;transition:all 0.2s;}
+.link-item:hover{border-color:var(--grn);background:rgba(0,230,118,0.04);}
+.link-item.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);}
+.link-check{width:16px;height:16px;border:1px solid var(--brd);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.link-item.selected .link-check{border-color:var(--grn);color:var(--grn);}
+.link-label{font-family:var(--syne);font-size:12px;color:var(--w2);}
+.link-procs{font-family:var(--mono);font-size:10px;color:var(--w3);}
 
 /* BUTTONS */
 .btn-group{display:flex;gap:12px;margin-top:28px}
@@ -297,8 +306,6 @@ const SUBCATEGORIES = {
     "Acceptance testing & certification",
   ],
 };
-
-const selectedSubcats = {};
 
 function togglePain(el) {
   el.classList.toggle('selected');
@@ -602,362 +609,105 @@ const FRAMEWORK_MAP = {
     <div class="step" id="step-3">
       <div class="step-label">Step 3 of 4</div>
       <div class="step-title">Where can we improve</div>
-      <div class="step-desc">Select the pain points that apply to your operation. The more specific, the better the AUDIT.</div>
+      <div class="step-desc">Select the areas that apply. For each area, choose the specific processes.</div>
 
-      <div class="field">
-        <label>Select all areas that apply to your operation</label>
-        <div class="pain-tags" id="pain-tags">
-          <div class="pain-cat-header">Order & Delivery</div>
-          <div class="pain-tag" onclick="togglePain(this)">Manual order validation</div>
-          <div class="pain-tag" onclick="togglePain(this)">Slow order confirmation</div>
-          <div class="pain-tag" onclick="togglePain(this)">Partial delivery management</div>
-          <div class="pain-tag" onclick="togglePain(this)">Invoice errors and rework</div>
-          <div class="pain-tag" onclick="togglePain(this)">Credit limit checks manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Delayed shipments</div>
-          <div class="pain-tag" onclick="togglePain(this)">Customer returns uncontrolled</div>
-          <div class="pain-tag" onclick="togglePain(this)">Last-mile visibility limited</div>
-
-          
-          <div class="subcat-panel" id="subcat-Order___Delivery">
-            <div class="subcat-label">Specify the areas within Order & Delivery</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Order entry & validation" onclick="toggleSubcat(this,'Order & Delivery')">Order entry & validation</div>
-              <div class="subcat-tag" data-sub="Credit check & approval workflow" onclick="toggleSubcat(this,'Order & Delivery')">Credit check & approval workflow</div>
-              <div class="subcat-tag" data-sub="Order promising & ATP" onclick="toggleSubcat(this,'Order & Delivery')">Order promising & ATP</div>
-              <div class="subcat-tag" data-sub="Pick, pack & dispatch" onclick="toggleSubcat(this,'Order & Delivery')">Pick, pack & dispatch</div>
-              <div class="subcat-tag" data-sub="Shipping & carrier management" onclick="toggleSubcat(this,'Order & Delivery')">Shipping & carrier management</div>
-              <div class="subcat-tag" data-sub="Invoice generation & sending" onclick="toggleSubcat(this,'Order & Delivery')">Invoice generation & sending</div>
-              <div class="subcat-tag" data-sub="Cash collection & reconciliation" onclick="toggleSubcat(this,'Order & Delivery')">Cash collection & reconciliation</div>
-              <div class="subcat-tag" data-sub="Customer returns & credit notes" onclick="toggleSubcat(this,'Order & Delivery')">Customer returns & credit notes</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Planning & Forecasting</div>
-          <div class="pain-tag" onclick="togglePain(this)">Forecast inaccuracy</div>
-          <div class="pain-tag" onclick="togglePain(this)">Demand planning done in Excel</div>
-          <div class="pain-tag" onclick="togglePain(this)">S&OP meetings ineffective</div>
-          <div class="pain-tag" onclick="togglePain(this)">Production plan changes too frequent</div>
-          <div class="pain-tag" onclick="togglePain(this)">Replenishment not automated</div>
-          <div class="pain-tag" onclick="togglePain(this)">Seasonal peaks not anticipated</div>
-          <div class="pain-tag" onclick="togglePain(this)">Inventory targets not met</div>
-
-          
-          <div class="subcat-panel" id="subcat-Planning___Forecasting">
-            <div class="subcat-label">Specify the areas within Planning & Forecasting</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Statistical demand forecasting" onclick="toggleSubcat(this,'Planning & Forecasting')">Statistical demand forecasting</div>
-              <div class="subcat-tag" data-sub="Collaborative forecasting (S&OP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Collaborative forecasting (S&OP)</div>
-              <div class="subcat-tag" data-sub="Supply planning & constraints" onclick="toggleSubcat(this,'Planning & Forecasting')">Supply planning & constraints</div>
-              <div class="subcat-tag" data-sub="Production planning (MPS/MRP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Production planning (MPS/MRP)</div>
-              <div class="subcat-tag" data-sub="Inventory target setting" onclick="toggleSubcat(this,'Planning & Forecasting')">Inventory target setting</div>
-              <div class="subcat-tag" data-sub="Capacity planning" onclick="toggleSubcat(this,'Planning & Forecasting')">Capacity planning</div>
-              <div class="subcat-tag" data-sub="Long-range planning (IBP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Long-range planning (IBP)</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Procurement & Sourcing</div>
-          <div class="pain-tag" onclick="togglePain(this)">Manual purchase order creation</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier lead times unreliable</div>
-          <div class="pain-tag" onclick="togglePain(this)">3-way match done manually</div>
-          <div class="pain-tag" onclick="togglePain(this)">Maverick buying</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier performance not tracked</div>
-          <div class="pain-tag" onclick="togglePain(this)">Contract compliance gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Tail spend uncontrolled</div>
-
-          
-          <div class="subcat-panel" id="subcat-Procurement___Sourcing">
-            <div class="subcat-label">Specify the areas within Procurement & Sourcing</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Purchase requisition & approval" onclick="toggleSubcat(this,'Procurement & Sourcing')">Purchase requisition & approval</div>
-              <div class="subcat-tag" data-sub="Supplier selection & onboarding" onclick="toggleSubcat(this,'Procurement & Sourcing')">Supplier selection & onboarding</div>
-              <div class="subcat-tag" data-sub="Purchase order management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Purchase order management</div>
-              <div class="subcat-tag" data-sub="Goods receipt & inspection" onclick="toggleSubcat(this,'Procurement & Sourcing')">Goods receipt & inspection</div>
-              <div class="subcat-tag" data-sub="Invoice matching (3-way)" onclick="toggleSubcat(this,'Procurement & Sourcing')">Invoice matching (3-way)</div>
-              <div class="subcat-tag" data-sub="Supplier performance management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Supplier performance management</div>
-              <div class="subcat-tag" data-sub="Contract management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Contract management</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Manufacturing & Production</div>
-          <div class="pain-tag" onclick="togglePain(this)">Work order management slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Production scheduling manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Machine downtime not anticipated</div>
-          <div class="pain-tag" onclick="togglePain(this)">Quality at production level gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Material issuance errors</div>
-          <div class="pain-tag" onclick="togglePain(this)">OEE not monitored</div>
-          <div class="pain-tag" onclick="togglePain(this)">Rework and scrap high</div>
-
-          
-          <div class="subcat-panel" id="subcat-Manufacturing___Production">
-            <div class="subcat-label">Specify the areas within Manufacturing & Production</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Production scheduling" onclick="toggleSubcat(this,'Manufacturing & Production')">Production scheduling</div>
-              <div class="subcat-tag" data-sub="Work order management" onclick="toggleSubcat(this,'Manufacturing & Production')">Work order management</div>
-              <div class="subcat-tag" data-sub="Material issuance & BOM control" onclick="toggleSubcat(this,'Manufacturing & Production')">Material issuance & BOM control</div>
-              <div class="subcat-tag" data-sub="In-process quality control" onclick="toggleSubcat(this,'Manufacturing & Production')">In-process quality control</div>
-              <div class="subcat-tag" data-sub="Machine & equipment management" onclick="toggleSubcat(this,'Manufacturing & Production')">Machine & equipment management</div>
-              <div class="subcat-tag" data-sub="Production reporting & OEE" onclick="toggleSubcat(this,'Manufacturing & Production')">Production reporting & OEE</div>
-              <div class="subcat-tag" data-sub="Finished goods transfer" onclick="toggleSubcat(this,'Manufacturing & Production')">Finished goods transfer</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Warehouse & Inventory</div>
-          <div class="pain-tag" onclick="togglePain(this)">Inventory excess or shortage</div>
-          <div class="pain-tag" onclick="togglePain(this)">Picking errors</div>
-          <div class="pain-tag" onclick="togglePain(this)">Slow inbound receiving</div>
-          <div class="pain-tag" onclick="togglePain(this)">Warehouse space poorly utilized</div>
-          <div class="pain-tag" onclick="togglePain(this)">Stock counts inaccurate</div>
-          <div class="pain-tag" onclick="togglePain(this)">FIFO/FEFO not enforced</div>
-          <div class="pain-tag" onclick="togglePain(this)">Outbound dispatch delays</div>
-
-          
-          <div class="subcat-panel" id="subcat-Warehouse___Inventory">
-            <div class="subcat-label">Specify the areas within Warehouse & Inventory</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Inbound receiving & putaway" onclick="toggleSubcat(this,'Warehouse & Inventory')">Inbound receiving & putaway</div>
-              <div class="subcat-tag" data-sub="Inventory counting & reconciliation" onclick="toggleSubcat(this,'Warehouse & Inventory')">Inventory counting & reconciliation</div>
-              <div class="subcat-tag" data-sub="Pick & pack operations" onclick="toggleSubcat(this,'Warehouse & Inventory')">Pick & pack operations</div>
-              <div class="subcat-tag" data-sub="Outbound dispatch" onclick="toggleSubcat(this,'Warehouse & Inventory')">Outbound dispatch</div>
-              <div class="subcat-tag" data-sub="Warehouse space management" onclick="toggleSubcat(this,'Warehouse & Inventory')">Warehouse space management</div>
-              <div class="subcat-tag" data-sub="Batch & serial number tracking" onclick="toggleSubcat(this,'Warehouse & Inventory')">Batch & serial number tracking</div>
-              <div class="subcat-tag" data-sub="Cold chain / special handling" onclick="toggleSubcat(this,'Warehouse & Inventory')">Cold chain / special handling</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Returns & Reverse Logistics</div>
-          <div class="pain-tag" onclick="togglePain(this)">Returns processing slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">RMA management manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Reverse logistics costs high</div>
-          <div class="pain-tag" onclick="togglePain(this)">Credit notes delayed</div>
-          <div class="pain-tag" onclick="togglePain(this)">Returned goods not inspected systematically</div>
-
-          
-          <div class="subcat-panel" id="subcat-Returns___Reverse_Logistics">
-            <div class="subcat-label">Specify the areas within Returns & Reverse Logistics</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Customer return authorization (RMA)" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Customer return authorization (RMA)</div>
-              <div class="subcat-tag" data-sub="Returned goods inspection" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Returned goods inspection</div>
-              <div class="subcat-tag" data-sub="Disposition & restock decision" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Disposition & restock decision</div>
-              <div class="subcat-tag" data-sub="Supplier return management" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Supplier return management</div>
-              <div class="subcat-tag" data-sub="Reverse logistics execution" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Reverse logistics execution</div>
-              <div class="subcat-tag" data-sub="Credit note & financial settlement" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Credit note & financial settlement</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Quality Management</div>
-          <div class="pain-tag" onclick="togglePain(this)">Quality control manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Non-conformance tracking slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">CAPA process not structured</div>
-          <div class="pain-tag" onclick="togglePain(this)">Audit preparation time-consuming</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier quality not monitored</div>
-          <div class="pain-tag" onclick="togglePain(this)">Batch traceability gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Customer complaints recurring</div>
-
-          
-          <div class="subcat-panel" id="subcat-Quality_Management">
-            <div class="subcat-label">Specify the areas within Quality Management</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Incoming quality inspection" onclick="toggleSubcat(this,'Quality Management')">Incoming quality inspection</div>
-              <div class="subcat-tag" data-sub="In-process quality control" onclick="toggleSubcat(this,'Quality Management')">In-process quality control</div>
-              <div class="subcat-tag" data-sub="Non-conformance management" onclick="toggleSubcat(this,'Quality Management')">Non-conformance management</div>
-              <div class="subcat-tag" data-sub="CAPA (Corrective & Preventive Action)" onclick="toggleSubcat(this,'Quality Management')">CAPA (Corrective & Preventive Action)</div>
-              <div class="subcat-tag" data-sub="Supplier quality audits" onclick="toggleSubcat(this,'Quality Management')">Supplier quality audits</div>
-              <div class="subcat-tag" data-sub="Customer complaint handling" onclick="toggleSubcat(this,'Quality Management')">Customer complaint handling</div>
-              <div class="subcat-tag" data-sub="Quality documentation & records" onclick="toggleSubcat(this,'Quality Management')">Quality documentation & records</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Finance & Controls</div>
-          <div class="pain-tag" onclick="togglePain(this)">Month-end close takes too long</div>
-          <div class="pain-tag" onclick="togglePain(this)">Manual reconciliation</div>
-          <div class="pain-tag" onclick="togglePain(this)">Cash flow visibility limited</div>
-          <div class="pain-tag" onclick="togglePain(this)">Revenue leakage undetected</div>
-          <div class="pain-tag" onclick="togglePain(this)">Cost allocation inaccurate</div>
-          <div class="pain-tag" onclick="togglePain(this)">Payment approval slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Financial reporting delayed</div>
-
-          
-          <div class="subcat-panel" id="subcat-Finance___Controls">
-            <div class="subcat-label">Specify the areas within Finance & Controls</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Order-to-cash financial closing" onclick="toggleSubcat(this,'Finance & Controls')">Order-to-cash financial closing</div>
-              <div class="subcat-tag" data-sub="Procure-to-pay financial closing" onclick="toggleSubcat(this,'Finance & Controls')">Procure-to-pay financial closing</div>
-              <div class="subcat-tag" data-sub="Month-end & period close" onclick="toggleSubcat(this,'Finance & Controls')">Month-end & period close</div>
-              <div class="subcat-tag" data-sub="Cost allocation & analysis" onclick="toggleSubcat(this,'Finance & Controls')">Cost allocation & analysis</div>
-              <div class="subcat-tag" data-sub="Cash flow forecasting" onclick="toggleSubcat(this,'Finance & Controls')">Cash flow forecasting</div>
-              <div class="subcat-tag" data-sub="Payment approval & execution" onclick="toggleSubcat(this,'Finance & Controls')">Payment approval & execution</div>
-              <div class="subcat-tag" data-sub="Financial reporting & consolidation" onclick="toggleSubcat(this,'Finance & Controls')">Financial reporting & consolidation</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Regulatory & Compliance</div>
-          <div class="pain-tag" onclick="togglePain(this)">EU AI Act readiness</div>
-          <div class="pain-tag" onclick="togglePain(this)">GDPR compliance gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Sector-specific regulation not automated</div>
-          <div class="pain-tag" onclick="togglePain(this)">Documentation for audits manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Regulatory reporting slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">GxP documentation gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Export control compliance manual</div>
-
-          
-          <div class="subcat-panel" id="subcat-Regulatory___Compliance">
-            <div class="subcat-label">Specify the areas within Regulatory & Compliance</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="EU AI Act classification & documentation" onclick="toggleSubcat(this,'Regulatory & Compliance')">EU AI Act classification & documentation</div>
-              <div class="subcat-tag" data-sub="GDPR data processing compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">GDPR data processing compliance</div>
-              <div class="subcat-tag" data-sub="GxP / GDP / GMP compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">GxP / GDP / GMP compliance</div>
-              <div class="subcat-tag" data-sub="IATF 16949 automotive compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">IATF 16949 automotive compliance</div>
-              <div class="subcat-tag" data-sub="Export control (ITAR/EAR)" onclick="toggleSubcat(this,'Regulatory & Compliance')">Export control (ITAR/EAR)</div>
-              <div class="subcat-tag" data-sub="Regulatory reporting & submissions" onclick="toggleSubcat(this,'Regulatory & Compliance')">Regulatory reporting & submissions</div>
-              <div class="subcat-tag" data-sub="Internal compliance audits" onclick="toggleSubcat(this,'Regulatory & Compliance')">Internal compliance audits</div>
-            </div>
-          </div>
-<div class="pain-cat-header">AI & Data Governance</div>
-          <div class="pain-tag" onclick="togglePain(this)">AI tools used without governance</div>
-          <div class="pain-tag" onclick="togglePain(this)">Data quality poor</div>
-          <div class="pain-tag" onclick="togglePain(this)">No audit trail for AI decisions</div>
-          <div class="pain-tag" onclick="togglePain(this)">Multiple models giving different answers</div>
-          <div class="pain-tag" onclick="togglePain(this)">AI risk not assessed</div>
-          <div class="pain-tag" onclick="togglePain(this)">No AI policy in place</div>
-          <div class="pain-tag" onclick="togglePain(this)">Model performance not monitored</div>
-
-          
-          <div class="subcat-panel" id="subcat-AI___Data_Governance">
-            <div class="subcat-label">Specify the areas within AI & Data Governance</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="AI system inventory & classification" onclick="toggleSubcat(this,'AI & Data Governance')">AI system inventory & classification</div>
-              <div class="subcat-tag" data-sub="AI risk assessment" onclick="toggleSubcat(this,'AI & Data Governance')">AI risk assessment</div>
-              <div class="subcat-tag" data-sub="AI model performance monitoring" onclick="toggleSubcat(this,'AI & Data Governance')">AI model performance monitoring</div>
-              <div class="subcat-tag" data-sub="Data quality management" onclick="toggleSubcat(this,'AI & Data Governance')">Data quality management</div>
-              <div class="subcat-tag" data-sub="Audit trail & explainability" onclick="toggleSubcat(this,'AI & Data Governance')">Audit trail & explainability</div>
-              <div class="subcat-tag" data-sub="AI policy & governance framework" onclick="toggleSubcat(this,'AI & Data Governance')">AI policy & governance framework</div>
-              <div class="subcat-tag" data-sub="Incident & anomaly management" onclick="toggleSubcat(this,'AI & Data Governance')">Incident & anomaly management</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Risk Management</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier risk not monitored</div>
-          <div class="pain-tag" onclick="togglePain(this)">Operational risk reactive</div>
-          <div class="pain-tag" onclick="togglePain(this)">No early warning system</div>
-          <div class="pain-tag" onclick="togglePain(this)">Business continuity plan missing</div>
-          <div class="pain-tag" onclick="togglePain(this)">Single source of supply risk</div>
-          <div class="pain-tag" onclick="togglePain(this)">Geopolitical exposure not assessed</div>
-
-          
-          <div class="subcat-panel" id="subcat-Risk_Management">
-            <div class="subcat-label">Specify the areas within Risk Management</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Supplier risk assessment" onclick="toggleSubcat(this,'Risk Management')">Supplier risk assessment</div>
-              <div class="subcat-tag" data-sub="Operational risk identification" onclick="toggleSubcat(this,'Risk Management')">Operational risk identification</div>
-              <div class="subcat-tag" data-sub="Business continuity planning" onclick="toggleSubcat(this,'Risk Management')">Business continuity planning</div>
-              <div class="subcat-tag" data-sub="Early warning & monitoring" onclick="toggleSubcat(this,'Risk Management')">Early warning & monitoring</div>
-              <div class="subcat-tag" data-sub="Risk mitigation & controls" onclick="toggleSubcat(this,'Risk Management')">Risk mitigation & controls</div>
-              <div class="subcat-tag" data-sub="Geopolitical & market risk" onclick="toggleSubcat(this,'Risk Management')">Geopolitical & market risk</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Digital & ERP Integration</div>
-          <div class="pain-tag" onclick="togglePain(this)">ERP transition pain</div>
-          <div class="pain-tag" onclick="togglePain(this)">Systems not integrated</div>
-          <div class="pain-tag" onclick="togglePain(this)">Excel dependency</div>
-          <div class="pain-tag" onclick="togglePain(this)">Manual data extraction from ERP</div>
-          <div class="pain-tag" onclick="togglePain(this)">No real-time visibility</div>
-          <div class="pain-tag" onclick="togglePain(this)">Duplicate data entry across systems</div>
-          <div class="pain-tag" onclick="togglePain(this)">Legacy system constraints</div>
-
-          
-          <div class="subcat-panel" id="subcat-Digital___ERP_Integration">
-            <div class="subcat-label">Specify the areas within Digital & ERP Integration</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="ERP data migration & transition" onclick="toggleSubcat(this,'Digital & ERP Integration')">ERP data migration & transition</div>
-              <div class="subcat-tag" data-sub="System integration & APIs" onclick="toggleSubcat(this,'Digital & ERP Integration')">System integration & APIs</div>
-              <div class="subcat-tag" data-sub="Master data management" onclick="toggleSubcat(this,'Digital & ERP Integration')">Master data management</div>
-              <div class="subcat-tag" data-sub="Reporting & analytics automation" onclick="toggleSubcat(this,'Digital & ERP Integration')">Reporting & analytics automation</div>
-              <div class="subcat-tag" data-sub="Process automation (RPA/agents)" onclick="toggleSubcat(this,'Digital & ERP Integration')">Process automation (RPA/agents)</div>
-              <div class="subcat-tag" data-sub="Real-time visibility & dashboards" onclick="toggleSubcat(this,'Digital & ERP Integration')">Real-time visibility & dashboards</div>
-              <div class="subcat-tag" data-sub="Legacy system modernization" onclick="toggleSubcat(this,'Digital & ERP Integration')">Legacy system modernization</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Sustainability & ESG</div>
-          <div class="pain-tag" onclick="togglePain(this)">Carbon footprint not tracked</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier ESG not assessed</div>
-          <div class="pain-tag" onclick="togglePain(this)">Sustainability reporting manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Circular economy gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Energy consumption not optimized</div>
-
-          
-          <div class="subcat-panel" id="subcat-Sustainability___ESG">
-            <div class="subcat-label">Specify the areas within Sustainability & ESG</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Carbon footprint measurement" onclick="toggleSubcat(this,'Sustainability & ESG')">Carbon footprint measurement</div>
-              <div class="subcat-tag" data-sub="Supplier ESG assessment" onclick="toggleSubcat(this,'Sustainability & ESG')">Supplier ESG assessment</div>
-              <div class="subcat-tag" data-sub="Sustainability reporting" onclick="toggleSubcat(this,'Sustainability & ESG')">Sustainability reporting</div>
-              <div class="subcat-tag" data-sub="Circular economy & waste reduction" onclick="toggleSubcat(this,'Sustainability & ESG')">Circular economy & waste reduction</div>
-              <div class="subcat-tag" data-sub="Energy & resource optimization" onclick="toggleSubcat(this,'Sustainability & ESG')">Energy & resource optimization</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Customer & Service</div>
-          <div class="pain-tag" onclick="togglePain(this)">Customer onboarding slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Service level agreements not monitored</div>
-          <div class="pain-tag" onclick="togglePain(this)">Customer complaints not tracked</div>
-          <div class="pain-tag" onclick="togglePain(this)">After-sales process manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Customer satisfaction data not used</div>
-
-          
-          <div class="subcat-panel" id="subcat-Customer___Service">
-            <div class="subcat-label">Specify the areas within Customer & Service</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Customer onboarding" onclick="toggleSubcat(this,'Customer & Service')">Customer onboarding</div>
-              <div class="subcat-tag" data-sub="Service level management (SLA)" onclick="toggleSubcat(this,'Customer & Service')">Service level management (SLA)</div>
-              <div class="subcat-tag" data-sub="Customer complaint management" onclick="toggleSubcat(this,'Customer & Service')">Customer complaint management</div>
-              <div class="subcat-tag" data-sub="After-sales & warranty" onclick="toggleSubcat(this,'Customer & Service')">After-sales & warranty</div>
-              <div class="subcat-tag" data-sub="Customer satisfaction measurement" onclick="toggleSubcat(this,'Customer & Service')">Customer satisfaction measurement</div>
-            </div>
-          </div>
-<div class="pain-cat-header">HR & Operations</div>
-          <div class="pain-tag" onclick="togglePain(this)">Team doing low-value work</div>
-          <div class="pain-tag" onclick="togglePain(this)">Key person dependency</div>
-          <div class="pain-tag" onclick="togglePain(this)">Onboarding process slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Skills gaps not identified</div>
-          <div class="pain-tag" onclick="togglePain(this)">Cross-department coordination slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Process documentation missing</div>
-
-          
-          <div class="subcat-panel" id="subcat-HR___Operations">
-            <div class="subcat-label">Specify the areas within HR & Operations</div>
-            <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Workforce planning" onclick="toggleSubcat(this,'HR & Operations')">Workforce planning</div>
-              <div class="subcat-tag" data-sub="Onboarding & training" onclick="toggleSubcat(this,'HR & Operations')">Onboarding & training</div>
-              <div class="subcat-tag" data-sub="Performance management" onclick="toggleSubcat(this,'HR & Operations')">Performance management</div>
-              <div class="subcat-tag" data-sub="Process documentation & SOPs" onclick="toggleSubcat(this,'HR & Operations')">Process documentation & SOPs</div>
-              <div class="subcat-tag" data-sub="Cross-functional coordination" onclick="toggleSubcat(this,'HR & Operations')">Cross-functional coordination</div>
-              <div class="subcat-tag" data-sub="Escalation & exception management" onclick="toggleSubcat(this,'HR & Operations')">Escalation & exception management</div>
-            </div>
-          </div>
-<div class="pain-cat-header">Defense & Regulated Industries</div>
-          <div class="pain-tag" onclick="togglePain(this)">Export license management manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">ITAR/EAR compliance gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Configuration management manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Milestone tracking slow</div>
-          <div class="pain-tag" onclick="togglePain(this)">Classified data handling gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">Subcontractor compliance not monitored</div>
-
+      <!-- L1: Category grid -->
+      <div class="cat-grid" id="cat-grid">
+        <div class="cat-card" id="card_Order_Delivery" onclick="selectCat(this,'Order & Delivery')">
+          <span class="cat-icon">📦</span>
+          <span class="cat-name">Order & Delivery</span>
+        </div>
+        <div class="cat-card" id="card_Planning_Forecasting" onclick="selectCat(this,'Planning & Forecasting')">
+          <span class="cat-icon">📊</span>
+          <span class="cat-name">Planning & Forecasting</span>
+        </div>
+        <div class="cat-card" id="card_Procurement_Sourcing" onclick="selectCat(this,'Procurement & Sourcing')">
+          <span class="cat-icon">🛒</span>
+          <span class="cat-name">Procurement & Sourcing</span>
+        </div>
+        <div class="cat-card" id="card_Manufacturing_Production" onclick="selectCat(this,'Manufacturing & Production')">
+          <span class="cat-icon">🏭</span>
+          <span class="cat-name">Manufacturing & Production</span>
+        </div>
+        <div class="cat-card" id="card_Warehouse_Inventory" onclick="selectCat(this,'Warehouse & Inventory')">
+          <span class="cat-icon">🏪</span>
+          <span class="cat-name">Warehouse & Inventory</span>
+        </div>
+        <div class="cat-card" id="card_Returns_Reverse_Logistics" onclick="selectCat(this,'Returns & Reverse Logistics')">
+          <span class="cat-icon">↩️</span>
+          <span class="cat-name">Returns & Reverse Logistics</span>
+        </div>
+        <div class="cat-card" id="card_Quality_Management" onclick="selectCat(this,'Quality Management')">
+          <span class="cat-icon">✅</span>
+          <span class="cat-name">Quality Management</span>
+        </div>
+        <div class="cat-card" id="card_Finance_Controls" onclick="selectCat(this,'Finance & Controls')">
+          <span class="cat-icon">💰</span>
+          <span class="cat-name">Finance & Controls</span>
+        </div>
+        <div class="cat-card" id="card_Regulatory_Compliance" onclick="selectCat(this,'Regulatory & Compliance')">
+          <span class="cat-icon">⚖️</span>
+          <span class="cat-name">Regulatory & Compliance</span>
+        </div>
+        <div class="cat-card" id="card_AI_Data_Governance" onclick="selectCat(this,'AI & Data Governance')">
+          <span class="cat-icon">🤖</span>
+          <span class="cat-name">AI & Data Governance</span>
+        </div>
+        <div class="cat-card" id="card_Risk_Management" onclick="selectCat(this,'Risk Management')">
+          <span class="cat-icon">🛡️</span>
+          <span class="cat-name">Risk Management</span>
+        </div>
+        <div class="cat-card" id="card_Digital_ERP_Integration" onclick="selectCat(this,'Digital & ERP Integration')">
+          <span class="cat-icon">💻</span>
+          <span class="cat-name">Digital & ERP Integration</span>
+        </div>
+        <div class="cat-card" id="card_Sustainability_ESG" onclick="selectCat(this,'Sustainability & ESG')">
+          <span class="cat-icon">🌱</span>
+          <span class="cat-name">Sustainability & ESG</span>
+        </div>
+        <div class="cat-card" id="card_Customer_Service" onclick="selectCat(this,'Customer & Service')">
+          <span class="cat-icon">🤝</span>
+          <span class="cat-name">Customer & Service</span>
+        </div>
+        <div class="cat-card" id="card_HR_Operations" onclick="selectCat(this,'HR & Operations')">
+          <span class="cat-icon">👥</span>
+          <span class="cat-name">HR & Operations</span>
+        </div>
+        <div class="cat-card" id="card_Defense_Regulated_Industries" onclick="selectCat(this,'Defense & Regulated Industries')">
+          <span class="cat-icon">🎯</span>
+          <span class="cat-name">Defense & Regulated Industries</span>
         </div>
       </div>
 
-      <div class="field">
-        <label>Upload your process map <span style="color:var(--grn);font-size:10px">recommended</span></label>
+      <!-- L2: Subcategory panels -->
+      <div id="subcat-panels"></div>
+
+      <!-- L3: Cross-process links -->
+      <div id="process-links" style="display:none;margin-top:16px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--grn);margin-bottom:10px;">CONNECTED PROCESSES DETECTED</div>
+        <div id="links-list"></div>
+      </div>
+
+      <div class="field" style="margin-top:20px;">
+        <label>Upload your process map <span style="color:var(--grn);font-size:10px;letter-spacing:1px;">RECOMMENDED</span></label>
         <div class="upload-zone" id="upload-zone">
-          <input type="file" id="f-file" accept=".bpmn,.xml,.png,.jpg,.jpeg,.pdf,.vsdx,.drawio,.svg" onchange="handleFile(this)">
+          <input type="file" accept=".bpmn,.xml,.png,.jpg,.jpeg,.pdf,.vsdx,.drawio,.svg" onchange="handleFile(this.files[0])">
           <div class="upload-icon">📎</div>
           <div class="upload-title">Drop your process map here or click to browse</div>
           <div class="upload-subtitle">BPMN, diagram, flowchart, screenshot or PDF</div>
           <div class="upload-accepted">Accepted: .bpmn · .xml · .png · .jpg · .pdf · .vsdx · .drawio · .svg · max 10MB</div>
         </div>
         <div class="upload-preview" id="upload-preview">
-          <span style="font-size:18px">📄</span>
+          <span>📎</span>
           <span class="upload-preview-name" id="upload-name">—</span>
           <span class="upload-preview-size" id="upload-size">—</span>
           <button class="upload-remove" onclick="removeFile()" title="Remove">✕</button>
-        </div>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px">
-          The more detail you share, the more precise your ROI calculation will be.
         </div>
       </div>
 
       <div class="field">
         <label>Describe your main challenge in 2-3 sentences</label>
-        <textarea id="f-pain" placeholder="Tell us what keeps you up at night operationally. The more specific, the more precise our ROI calculation."></textarea>
+        <textarea id="f-pain" placeholder="The more specific, the more precise our ROI calculation." style="min-height:80px;"></textarea>
       </div>
 
       <div class="btn-group">
@@ -965,9 +715,7 @@ const FRAMEWORK_MAP = {
         <button class="btn-primary" onclick="goStep(4)">Continue →</button>
       </div>
     </div>
-
-    <!-- STEP 4 — Confirm -->
-    <div class="step" id="step-4">
+<div class="step" id="step-4">
       <div class="step-label">Step 4 of 4</div>
       <div class="step-title">Confirm your AUDIT</div>
       <div class="step-desc">Review your information and choose a slot for your free AUDIT call.</div>
@@ -1054,257 +802,83 @@ const FRAMEWORK_MAP = {
 </div><!-- /wrapper -->
 
 <script>
-// Cursor
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-4+'px';cur.style.top=my-4+'px';});
-setInterval(()=>{rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';},16);
 
-// State
-const state = {name:'',company:'',email:'',role:'',sector:'',erp:'',volume:'~50 / day',fte:'',pains:[],pain_desc:'',timing:'',notes:''};
+var selectedCats = [];
+var selectedSubcats = {};
+var selectedLinks = [];
 
-// File upload
-let uploadedFile = null;
-
-function handleFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 10 * 1024 * 1024) {
-    alert('File too large. Maximum 10MB.');
-    input.value = '';
-    return;
-  }
-  uploadedFile = file;
-  document.getElementById('upload-name').textContent = file.name;
-  const kb = file.size < 1024*1024 ? Math.round(file.size/1024)+'KB' : (file.size/1024/1024).toFixed(1)+'MB';
-  document.getElementById('upload-size').textContent = kb;
-  document.getElementById('upload-preview').classList.add('visible');
-  document.getElementById('upload-zone').style.borderColor = 'var(--grn)';
-}
-
-function removeFile() {
-  uploadedFile = null;
-  document.getElementById('f-file').value = '';
-  document.getElementById('upload-preview').classList.remove('visible');
-  document.getElementById('upload-zone').style.borderColor = '';
-}
-
-// Drag and drop
-const zone = document.getElementById('upload-zone');
-if (zone) {
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      const input = document.getElementById('f-file');
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      input.files = dt.files;
-      handleFile(input);
-    }
-  });
-}
-
-// Step navigation
-function updateALIndicator() {
-  const volume = parseInt(state.volume) || 0;
-  const erp = (state.erp || '').toLowerCase();
-  const complexErps = ['tailored', 'none', 'other'];
-  const isComplexErp = complexErps.some(e => erp.includes(e));
-  let al = 'AL1';
-  if (isComplexErp) al = 'AL3';
-  else if (volume > 500) al = 'AL2';
-
-  const labels = {
-    AL1: 'AL1 — Standard Process · Deploy in 24 hours',
-    AL2: 'AL2 — High Volume Process · Deploy in 48 hours',
-    AL3: 'AL3 — Complex Integration · AUDIT 2 days + Deploy 24h',
-    AL4: 'AL4 — Multi-Agent Process · Extended AUDIT + Swarm Design'
-  };
-  const descs = {
-    AL1: 'Your process is in our certified library. Once confirmed, your agent will be operational within 24 hours.',
-    AL2: 'High-volume process with standard ERP. Requires additional tuning — operational within 48 hours.',
-    AL3: 'Custom ERP or multi-system integration detected. Our team will define the exact AUDIT scope.',
-    AL4: 'Complex multi-agent process. Requires extended AUDIT and Swarm architecture design.'
-  };
-  const colors = { AL1: 'var(--grn)', AL2: 'var(--acc)', AL3: '#f5a623', AL4: '#ff6b6b' };
-
-  const ind = document.getElementById('al-indicator');
-  const lbl = document.getElementById('al-label');
-  const dsc = document.getElementById('al-desc');
-  if (ind && lbl && dsc) {
-    ind.style.display = 'block';
-    ind.style.borderColor = colors[al];
-    lbl.textContent = labels[al];
-    lbl.style.color = colors[al];
-    dsc.textContent = descs[al];
-  }
-}
-
-function goStep(n) {
-  // Validate step 1
-  if(n===2) {
-    if(!document.getElementById('f-name').value.trim()){alert('Please enter your name.');return;}
-    if(!document.getElementById('f-company').value.trim()){alert('Please enter your company.');return;}
-    if(!document.getElementById('f-email').value.trim()){alert('Please enter your email.');return;}
-    if(!state.sector){alert('Please select your sector.');return;}
-    state.name = document.getElementById('f-name').value.trim();
-    state.company = document.getElementById('f-company').value.trim();
-    state.email = document.getElementById('f-email').value.trim();
-    state.role = document.getElementById('f-role').value.trim();
-  }
-  if(n===4) {
-    state.pain_desc = document.getElementById('f-pain').value.trim();
-    buildSummary();
-  }
-  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-  document.getElementById('step-'+n).classList.add('active');
-  document.querySelectorAll('.step-dot').forEach((d,i)=>{
-    d.classList.remove('active','done');
-    if(i+1<n) d.classList.add('done');
-    if(i+1===n) d.classList.add('active');
-  });
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// Select options
-function selectOption(el, group) {
-  document.querySelectorAll('#'+group+'-grid .select-option, #'+group+'-grid .select-option').forEach(o=>o.classList.remove('selected'));
-  // find all in same group
-  el.closest('.select-grid').querySelectorAll('.select-option').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  state[group] = el.dataset.val;
-}
-
-// Pain tags
-function togglePain(el) {
+function selectCat(el, cat) {
   el.classList.toggle('selected');
-  const val = el.textContent.trim();
-  if(el.classList.contains('selected')) {
-    if(!state.pains.includes(val)) state.pains.push(val);
+  if (el.classList.contains('selected')) {
+    if (!selectedCats.includes(cat)) selectedCats.push(cat);
+    renderSubcatPanel(cat);
   } else {
-    state.pains = state.pains.filter(p=>p!==val);
+    selectedCats = selectedCats.filter(c => c !== cat);
+    delete selectedSubcats[cat];
+    const panel = document.getElementById('panel_' + cat.replace(/[^a-zA-Z0-9]/g,'_'));
+    if (panel) panel.remove();
+  }
+  state.pains = selectedCats;
+  state.subcats = selectedSubcats;
+  updateLinks();
+}
+
+function renderSubcatPanel(cat) {
+  const subs = SUBCATEGORIES[cat] || [];
+  const id = 'panel_' + cat.replace(/[^a-zA-Z0-9]/g,'_');
+  if (document.getElementById(id)) return;
+  const panel = document.createElement('div');
+  panel.className = 'subcat-panel';
+  panel.id = id;
+  panel.innerHTML = '<div class="subcat-title">↳ ' + cat + ' — specify areas</div><div class="subcat-tags">' +
+    subs.map(s => '<div class="subcat-tag" onclick="toggleSub(this,'' + cat.replace(/'/g,"\'") + '','' + s.replace(/'/g,"\'") + '')">' + s + '</div>').join('') +
+    '</div>';
+  document.getElementById('subcat-panels').appendChild(panel);
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+}
+
+function toggleSub(el, cat, sub) {
+  el.classList.toggle('selected');
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+  if (el.classList.contains('selected')) {
+    if (!selectedSubcats[cat].includes(sub)) selectedSubcats[cat].push(sub);
+  } else {
+    selectedSubcats[cat] = selectedSubcats[cat].filter(s => s !== sub);
+  }
+  state.subcats = selectedSubcats;
+}
+
+function updateLinks() {
+  const linksDiv = document.getElementById('process-links');
+  const linksList = document.getElementById('links-list');
+  const matches = PROCESS_LINKS.filter(l => l.cats.every(c => selectedCats.includes(c)));
+  if (matches.length > 0 && selectedCats.length >= 2) {
+    linksDiv.style.display = 'block';
+    linksList.innerHTML = matches.map((l,i) =>
+      '<div class="link-item" id="link_'+i+'" onclick="toggleLink(this,'+i+')">' +
+      '<div class="link-check" id="lcheck_'+i+'"></div>' +
+      '<div><div class="link-label">' + l.label + '</div>' +
+      '<div class="link-procs">' + l.processes.join(' · ') + '</div></div>' +
+      '</div>'
+    ).join('');
+  } else {
+    linksDiv.style.display = 'none';
   }
 }
 
-// Volume slider
-const volMap = {0:'<10 / day',10:'~10 / day',20:'~25 / day',30:'~50 / day',40:'~100 / day',50:'~200 / day',60:'~350 / day',70:'~500 / day',80:'~750 / day',90:'~1,000 / day',100:'1,000+ / day'};
-function updateVolume(v) {
-  const nearest = Math.round(v/10)*10;
-  const label = volMap[nearest] || '~50 / day';
-  document.getElementById('vol-display').textContent = label;
-  state.volume = label;
-}
-
-// Build summary
-function buildSummary() {
-  const html = `
-    <div class="confirm-row"><span class="confirm-label">Name</span><span class="confirm-value">${state.name}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Company</span><span class="confirm-value">${state.company}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Email</span><span class="confirm-value">${state.email}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Sector</span><span class="confirm-value">${state.sector}</span></div>
-    <div class="confirm-row"><span class="confirm-label">ERP</span><span class="confirm-value">${state.erp || 'Not specified'}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Volume</span><span class="confirm-value">${state.volume}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Team size</span><span class="confirm-value">${state.fte || 'Not specified'}</span></div>
-    <div class="confirm-row"><span class="confirm-label">Pain points</span><span class="confirm-value">${state.pains.slice(0,3).join(', ') || 'Not specified'}</span></div>
-  `;
-  document.getElementById('confirm-summary').innerHTML = html;
-}
-
-// Submit via EmailJS
-async function submitForm() {
-  state.notes = document.getElementById('f-notes').value.trim();
-  if(!state.timing){alert('Please select a preferred timing.');return;}
-
-  const btn = document.querySelector('#step-4 .btn-primary');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  const fileInfo = uploadedFile
-    ? `${uploadedFile.name} (${(uploadedFile.size/1024).toFixed(0)}KB) — client will send by email reply`
-    : 'Not uploaded — request from client by email';
-
-  // Autonomy Level classification
-  const volume = parseInt(state.volume) || 0;
-  const erp = (state.erp || '').toLowerCase();
-  const complexErps = ['tailored', 'none', 'other'];
-  const isComplexErp = complexErps.some(e => erp.includes(e));
-  let autonomyLevel = 'AL1';
-  if (isComplexErp) autonomyLevel = 'AL3';
-  else if (volume > 500) autonomyLevel = 'AL2';
-  if (state.pains.includes('multi-agent') || state.pains.includes('complex')) autonomyLevel = 'AL4';
-
-  const formData = new FormData();
-  formData.append('name',             state.name);
-  formData.append('company',          state.company);
-  formData.append('email',            state.email);
-  formData.append('role',             state.role || 'Not specified');
-  formData.append('sector',           state.sector);
-  formData.append('erp',              state.erp || 'Not specified');
-  formData.append('volume',           state.volume);
-  formData.append('team_size',        state.fte || 'Not specified');
-  formData.append('timing',           state.timing);
-  formData.append('pain_points',      state.pains.join(', ') || 'Not specified');
-  formData.append('pain_description', state.pain_desc || 'Not provided');
-  formData.append('notes',            state.notes || 'None');
-  formData.append('process_map',      fileInfo);
-  formData.append('autonomy_level',   autonomyLevel);
-  // Include L2 subcategory selections with framework mapping
-  const subcatSummary = Object.entries(selectedSubcats || {}).map(([cat, subs]) => {
-    const mapped = subs.map(s => {
-      const refs = (FRAMEWORK_MAP[cat] || {})[s] || [];
-      return `${s} [${refs.join(',')}]`;
-    });
-    return `${cat}: ${mapped.join(' | ')}`;
-  }).join(' || ');
-  formData.append('process_mapping', subcatSummary);
-  formData.append('_subject',         `[AUDIT ${autonomyLevel}] ${state.company} · ${state.sector} · ${state.erp || 'No ERP'}`);
-  formData.append('_replyto',         state.email);
-
-  try {
-    const res = await fetch('https://formspree.io/f/xlgkgapl', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-      document.getElementById('success').style.display='block';
-      document.querySelectorAll('.step-dot').forEach(d=>d.classList.add('done'));
-      // Update success message with autonomy level
-      const alMsg = {
-        AL1: 'Standard process detected — expect confirmation within 24 hours.',
-        AL2: 'High-volume process detected — expect confirmation within 24 hours.',
-        AL3: 'Complex integration detected — our team will confirm scope within 24 hours.',
-        AL4: 'Advanced multi-agent process detected — our team will contact you to define the AUDIT scope.'
-      };
-      const descEl = document.getElementById('success-al-msg');
-      const lvlEl = document.getElementById('success-al-level');
-      const detEl = document.getElementById('success-al-detail');
-      const alLabels = {
-        AL1: 'AL1 — Standard Process · Deploy in 24 hours',
-        AL2: 'AL2 — High Volume · Deploy in 48 hours',
-        AL3: 'AL3 — Complex Integration · AUDIT 2 days + Deploy 24h',
-        AL4: 'AL4 — Multi-Agent Process · Extended AUDIT'
-      };
-      const alColors = { AL1: 'var(--grn)', AL2: 'var(--acc)', AL3: '#f5a623', AL4: '#ff6b6b' };
-      if (lvlEl) { lvlEl.textContent = alLabels[autonomyLevel]; lvlEl.style.color = alColors[autonomyLevel]; }
-      if (detEl) detEl.textContent = alMsg[autonomyLevel];
-    } else {
-      throw new Error('Formspree error: ' + res.status);
-    }
-  } catch(err) {
-    btn.textContent = 'Book Free AUDIT →';
-    btn.disabled = false;
-    alert('Something went wrong. Please try again or contact us at audit@agentic-zero.com');
-    console.error('Submit error:', err);
+function toggleLink(el, idx) {
+  el.classList.toggle('selected');
+  const check = document.getElementById('lcheck_' + idx);
+  check.textContent = el.classList.contains('selected') ? '✓' : '';
+  const link = PROCESS_LINKS[idx];
+  if (el.classList.contains('selected')) {
+    if (!selectedLinks.includes(link.label)) selectedLinks.push(link.label);
+  } else {
+    selectedLinks = selectedLinks.filter(l => l !== link.label);
   }
+  state.links = selectedLinks;
 }
-</script>
-</body>
-</html>
+
+const SUBCATEGORIES = {"Order & Delivery": ["Order entry & validation", "Credit check & approval workflow", "Order promising & ATP", "Pick, pack & dispatch", "Shipping & carrier management", "Invoice generation & sending", "Cash collection & reconciliation", "Customer returns & credit notes"], "Planning & Forecasting": ["Statistical demand forecasting", "Collaborative forecasting (S&OP)", "Supply planning & constraints", "Production planning (MPS/MRP)", "Inventory target setting", "Capacity planning", "Long-range planning (IBP)"], "Procurement & Sourcing": ["Purchase requisition & approval", "Supplier selection & onboarding", "Purchase order management", "Goods receipt & inspection", "Invoice matching (3-way)", "Supplier performance management", "Contract management"], "Manufacturing & Production": ["Production scheduling", "Work order management", "Material issuance & BOM control", "In-process quality control", "Machine & equipment management", "Production reporting & OEE", "Finished goods transfer"], "Warehouse & Inventory": ["Inbound receiving & putaway", "Inventory counting & reconciliation", "Pick & pack operations", "Outbound dispatch", "Warehouse space management", "Batch & serial number tracking", "Cold chain / special handling"], "Returns & Reverse Logistics": ["Customer return authorization (RMA)", "Returned goods inspection", "Disposition & restock decision", "Supplier return management", "Reverse logistics execution", "Credit note & financial settlement"], "Quality Management": ["Incoming quality inspection", "In-process quality control", "Non-conformance management", "CAPA (Corrective & Preventive Action)", "Supplier quality audits", "Customer complaint handling", "Quality documentation & records"], "Finance & Controls": ["Order-to-cash financial closing", "Procure-to-pay financial closing", "Month-end & period close", "Cost allocation & analysis", "Cash flow forecasting", "Payment approval & execution", "Financial reporting & consolidation"], "Regulatory & Compliance": ["EU AI Act classification & documentation", "GDPR data processing compliance", "GxP / GDP / GMP compliance", "IATF 16949 automotive compliance", "Export control (ITAR/EAR)", "Regulatory reporting & submissions", "Internal compliance audits"], "AI & Data Governance": ["AI system inventory & classification", "AI risk assessment", "AI model performance monitoring", "Data quality management", "Audit trail & explainability", "AI policy & governance framework", "Incident & anomaly management"], "Risk Management": ["Supplier risk assessment", "Operational risk identification", "Business continuity planning", "Early warning & monitoring", "Risk mitigation & controls", "Geopolitical & market risk"], "Digital & ERP Integration": ["ERP data migration & transition", "System integration & APIs", "Master data management", "Reporting & analytics automation", "Process automation (RPA/agents)", "Real-time visibility & dashboards", "Legacy system modernization"], "Sustainability & ESG": ["Carbon footprint measurement", "Supplier ESG assessment", "Sustainability reporting", "Circular economy & waste reduction", "Energy & resource optimization"], "Customer & Service": ["Customer onboarding", "Service level management (SLA)", "Customer complaint management", "After-sales & warranty", "Customer satisfaction measurement"], "HR & Operations": ["Workforce planning", "Onboarding & training", "Performance management", "Process documentation & SOPs", "Cross-functional coordination", "Escalation & exception management"], "Defense & Regulated Industries": ["Export license management", "Configuration & change management", "Milestone & deliverable tracking", "Classified data handling", "Subcontractor compliance", "Acceptance testing & certification"]};
+const PROCESS_LINKS = [{"label": "Order-to-Cash end-to-end", "cats": ["Order & Delivery", "Finance & Controls"], "processes": ["BPMN-OTC-001", "BPMN-FIN-001"]}, {"label": "Procure-to-Pay end-to-end", "cats": ["Procurement & Sourcing", "Finance & Controls"], "processes": ["BPMN-PTP-001", "BPMN-FIN-001"]}, {"label": "Plan-to-Produce", "cats": ["Planning & Forecasting", "Manufacturing & Production"], "processes": ["BPMN-MRP-001", "BPMN-IBP-001"]}, {"label": "Quality & Compliance integrated", "cats": ["Quality Management", "Regulatory & Compliance"], "processes": ["BPMN-QMS-001", "ISO9001-8"]}, {"label": "Warehouse & Transport integrated", "cats": ["Warehouse & Inventory", "Order & Delivery"], "processes": ["BPMN-WMS-001", "BPMN-TRP-001"]}, {"label": "AI Governance & Regulatory", "cats": ["AI & Data Governance", "Regulatory & Compliance"], "processes": ["ISO42001-6", "EUAIA-ART9", "NIST-GOVERN"]}, {"label": "Supplier Quality & Returns", "cats": ["Procurement & Sourcing", "Returns & Reverse Logistics"], "processes": ["SCOR-SR2.3", "BPMN-RMA-001"]}, {"label": "Finance & Risk integrated", "cats": ["Finance & Controls", "Risk Management"], "processes": ["BPMN-FIN-003", "SCOR-E6"]}, {"label": "Manufacturing & Quality integrated", "cats": ["Manufacturing & Production", "Quality Management"], "processes": ["SCOR-M2.4", "BPMN-QMS-001", "ISO9001-8"]}, {"label": "Digital & Planning integrated", "cats": ["Digital & ERP Integration", "Planning & Forecasting"], "processes": ["SCOR-DIG4", "BPMN-IBP-001"]}];
+

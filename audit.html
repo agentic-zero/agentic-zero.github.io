@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Free AUDIT — Agentic Zero</title>
@@ -534,16 +536,16 @@ const FRAMEWORK_MAP = {
       <div class="field">
         <label>Sector *</label>
         <div class="select-grid" id="sector-grid">
-          <div class="select-option" data-val="pharma" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">💊</span> Pharma</div>
-          <div class="select-option" data-val="defense" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🛡️</span> Defense</div>
-          <div class="select-option" data-val="chemical" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">⚗️</span> Chemical</div>
-          <div class="select-option" data-val="food" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🌾</span> Food &amp; Agri</div>
-          <div class="select-option" data-val="automotive" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🚗</span> Automotive</div>
-          <div class="select-option" data-val="manufacturing" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🏭</span> Manufacturing</div>
-          <div class="select-option" data-val="distribution" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">📦</span> Distribution</div>
-          <div class="select-option" data-val="transport" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🚛</span> Transport</div>
-          <div class="select-option" data-val="energy" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">⚡</span> Energy</div>
-          <div class="select-option" data-val="other" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🔧</span> Other</div>
+          <div class="select-option" data-val="pharma" onclick="selectOption(this,'sector')"><span class="opt-icon">💊</span> Pharma</div>
+          <div class="select-option" data-val="defense" onclick="selectOption(this,'sector')"><span class="opt-icon">🛡️</span> Defense</div>
+          <div class="select-option" data-val="chemical" onclick="selectOption(this,'sector')"><span class="opt-icon">⚗️</span> Chemical</div>
+          <div class="select-option" data-val="food" onclick="selectOption(this,'sector')"><span class="opt-icon">🌾</span> Food &amp; Agri</div>
+          <div class="select-option" data-val="automotive" onclick="selectOption(this,'sector')"><span class="opt-icon">🚗</span> Automotive</div>
+          <div class="select-option" data-val="manufacturing" onclick="selectOption(this,'sector')"><span class="opt-icon">🏭</span> Manufacturing</div>
+          <div class="select-option" data-val="distribution" onclick="selectOption(this,'sector')"><span class="opt-icon">📦</span> Distribution</div>
+          <div class="select-option" data-val="transport" onclick="selectOption(this,'sector')"><span class="opt-icon">🚛</span> Transport</div>
+          <div class="select-option" data-val="energy" onclick="selectOption(this,'sector')"><span class="opt-icon">⚡</span> Energy</div>
+          <div class="select-option" data-val="other" onclick="selectOption(this,'sector')"><span class="opt-icon">🔧</span> Other</div>
         </div>
       </div>
 
@@ -561,18 +563,18 @@ const FRAMEWORK_MAP = {
       <div class="field">
         <label>Current ERP / Systems</label>
         <div class="select-grid" id="erp-grid">
-          <div class="select-option" data-val="sap_ecc" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> SAP ECC</div>
-          <div class="select-option" data-val="sap_hana" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> SAP HANA / S4</div>
-          <div class="select-option" data-val="oracle" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔴</span> Oracle</div>
-          <div class="select-option" data-val="dynamics" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔵</span> MS Dynamics</div>
-          <div class="select-option" data-val="ms_bc" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔵</span> Microsoft BC</div>
-          <div class="select-option" data-val="infor" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> Infor</div>
-          <div class="select-option" data-val="epicor" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> Epicor</div>
-          <div class="select-option" data-val="netsuite" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">☁️</span> NetSuite</div>
-          <div class="select-option" data-val="odoo" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🟣</span> Odoo</div>
-          <div class="select-option" data-val="tailored" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🛠️</span> Tailored ERPs/Systems</div>
-          <div class="select-option" data-val="custom" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔧</span> Custom / Legacy</div>
-          <div class="select-option" data-val="none" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">📋</span> No ERP yet</div>
+          <div class="select-option" data-val="sap_ecc" onclick="selectOption(this,'erp')"><span class="opt-icon">⚙️</span> SAP ECC</div>
+          <div class="select-option" data-val="sap_hana" onclick="selectOption(this,'erp')"><span class="opt-icon">⚙️</span> SAP HANA / S4</div>
+          <div class="select-option" data-val="oracle" onclick="selectOption(this,'erp')"><span class="opt-icon">🔴</span> Oracle</div>
+          <div class="select-option" data-val="dynamics" onclick="selectOption(this,'erp')"><span class="opt-icon">🔵</span> MS Dynamics</div>
+          <div class="select-option" data-val="ms_bc" onclick="selectOption(this,'erp')"><span class="opt-icon">🔵</span> Microsoft BC</div>
+          <div class="select-option" data-val="infor" onclick="selectOption(this,'erp')"><span class="opt-icon">⚙️</span> Infor</div>
+          <div class="select-option" data-val="epicor" onclick="selectOption(this,'erp')"><span class="opt-icon">⚙️</span> Epicor</div>
+          <div class="select-option" data-val="netsuite" onclick="selectOption(this,'erp')"><span class="opt-icon">☁️</span> NetSuite</div>
+          <div class="select-option" data-val="odoo" onclick="selectOption(this,'erp')"><span class="opt-icon">🟣</span> Odoo</div>
+          <div class="select-option" data-val="tailored" onclick="selectOption(this,'erp')"><span class="opt-icon">🛠️</span> Tailored ERPs/Systems</div>
+          <div class="select-option" data-val="custom" onclick="selectOption(this,'erp')"><span class="opt-icon">🔧</span> Custom / Legacy</div>
+          <div class="select-option" data-val="none" onclick="selectOption(this,'erp')"><span class="opt-icon">📋</span> No ERP yet</div>
         </div>
       </div>
 
@@ -586,10 +588,10 @@ const FRAMEWORK_MAP = {
       <div class="field">
         <label>How many people handle this process today?</label>
         <div class="select-grid" id="fte-grid">
-          <div class="select-option" data-val="1-2" onclick="selectOption(this,&#39;fte&#39;)">1–2 people</div>
-          <div class="select-option" data-val="3-5" onclick="selectOption(this,&#39;fte&#39;)">3–5 people</div>
-          <div class="select-option" data-val="6-10" onclick="selectOption(this,&#39;fte&#39;)">6–10 people</div>
-          <div class="select-option" data-val="10+" onclick="selectOption(this,&#39;fte&#39;)">10+ people</div>
+          <div class="select-option" data-val="1-2" onclick="selectOption(this,'fte')">1–2 people</div>
+          <div class="select-option" data-val="3-5" onclick="selectOption(this,'fte')">3–5 people</div>
+          <div class="select-option" data-val="6-10" onclick="selectOption(this,'fte')">6–10 people</div>
+          <div class="select-option" data-val="10+" onclick="selectOption(this,'fte')">10+ people</div>
         </div>
       </div>
 
@@ -607,67 +609,67 @@ const FRAMEWORK_MAP = {
 
       <!-- L1: Category grid -->
       <div class="cat-grid" id="cat-grid">
-        <div class="cat-card" id="card_Order_Delivery" onclick="selectCat(this,&#39;Order &amp; Delivery&#39;)">
+        <div class="cat-card" id="card_Order_Delivery" onclick="selectCat(this,'Order &amp; Delivery')">
           <span class="cat-icon">📦</span>
           <span class="cat-name">Order &amp; Delivery</span>
         </div>
-        <div class="cat-card" id="card_Planning_Forecasting" onclick="selectCat(this,&#39;Planning &amp; Forecasting&#39;)">
+        <div class="cat-card" id="card_Planning_Forecasting" onclick="selectCat(this,'Planning &amp; Forecasting')">
           <span class="cat-icon">📊</span>
           <span class="cat-name">Planning &amp; Forecasting</span>
         </div>
-        <div class="cat-card" id="card_Procurement_Sourcing" onclick="selectCat(this,&#39;Procurement &amp; Sourcing&#39;)">
+        <div class="cat-card" id="card_Procurement_Sourcing" onclick="selectCat(this,'Procurement &amp; Sourcing')">
           <span class="cat-icon">🛒</span>
           <span class="cat-name">Procurement &amp; Sourcing</span>
         </div>
-        <div class="cat-card" id="card_Manufacturing_Production" onclick="selectCat(this,&#39;Manufacturing &amp; Production&#39;)">
+        <div class="cat-card" id="card_Manufacturing_Production" onclick="selectCat(this,'Manufacturing &amp; Production')">
           <span class="cat-icon">🏭</span>
           <span class="cat-name">Manufacturing &amp; Production</span>
         </div>
-        <div class="cat-card" id="card_Warehouse_Inventory" onclick="selectCat(this,&#39;Warehouse &amp; Inventory&#39;)">
+        <div class="cat-card" id="card_Warehouse_Inventory" onclick="selectCat(this,'Warehouse &amp; Inventory')">
           <span class="cat-icon">🏪</span>
           <span class="cat-name">Warehouse &amp; Inventory</span>
         </div>
-        <div class="cat-card" id="card_Returns_Reverse_Logistics" onclick="selectCat(this,&#39;Returns &amp; Reverse Logistics&#39;)">
+        <div class="cat-card" id="card_Returns_Reverse_Logistics" onclick="selectCat(this,'Returns &amp; Reverse Logistics')">
           <span class="cat-icon">↩️</span>
           <span class="cat-name">Returns &amp; Reverse Logistics</span>
         </div>
-        <div class="cat-card" id="card_Quality_Management" onclick="selectCat(this,&#39;Quality Management&#39;)">
+        <div class="cat-card" id="card_Quality_Management" onclick="selectCat(this,'Quality Management')">
           <span class="cat-icon">✅</span>
           <span class="cat-name">Quality Management</span>
         </div>
-        <div class="cat-card" id="card_Finance_Controls" onclick="selectCat(this,&#39;Finance &amp; Controls&#39;)">
+        <div class="cat-card" id="card_Finance_Controls" onclick="selectCat(this,'Finance &amp; Controls')">
           <span class="cat-icon">💰</span>
           <span class="cat-name">Finance &amp; Controls</span>
         </div>
-        <div class="cat-card" id="card_Regulatory_Compliance" onclick="selectCat(this,&#39;Regulatory &amp; Compliance&#39;)">
+        <div class="cat-card" id="card_Regulatory_Compliance" onclick="selectCat(this,'Regulatory &amp; Compliance')">
           <span class="cat-icon">⚖️</span>
           <span class="cat-name">Regulatory &amp; Compliance</span>
         </div>
-        <div class="cat-card" id="card_AI_Data_Governance" onclick="selectCat(this,&#39;AI &amp; Data Governance&#39;)">
+        <div class="cat-card" id="card_AI_Data_Governance" onclick="selectCat(this,'AI &amp; Data Governance')">
           <span class="cat-icon">🤖</span>
           <span class="cat-name">AI &amp; Data Governance</span>
         </div>
-        <div class="cat-card" id="card_Risk_Management" onclick="selectCat(this,&#39;Risk Management&#39;)">
+        <div class="cat-card" id="card_Risk_Management" onclick="selectCat(this,'Risk Management')">
           <span class="cat-icon">🛡️</span>
           <span class="cat-name">Risk Management</span>
         </div>
-        <div class="cat-card" id="card_Digital_ERP_Integration" onclick="selectCat(this,&#39;Digital &amp; ERP Integration&#39;)">
+        <div class="cat-card" id="card_Digital_ERP_Integration" onclick="selectCat(this,'Digital &amp; ERP Integration')">
           <span class="cat-icon">💻</span>
           <span class="cat-name">Digital &amp; ERP Integration</span>
         </div>
-        <div class="cat-card" id="card_Sustainability_ESG" onclick="selectCat(this,&#39;Sustainability &amp; ESG&#39;)">
+        <div class="cat-card" id="card_Sustainability_ESG" onclick="selectCat(this,'Sustainability &amp; ESG')">
           <span class="cat-icon">🌱</span>
           <span class="cat-name">Sustainability &amp; ESG</span>
         </div>
-        <div class="cat-card" id="card_Customer_Service" onclick="selectCat(this,&#39;Customer &amp; Service&#39;)">
+        <div class="cat-card" id="card_Customer_Service" onclick="selectCat(this,'Customer &amp; Service')">
           <span class="cat-icon">🤝</span>
           <span class="cat-name">Customer &amp; Service</span>
         </div>
-        <div class="cat-card" id="card_HR_Operations" onclick="selectCat(this,&#39;HR &amp; Operations&#39;)">
+        <div class="cat-card" id="card_HR_Operations" onclick="selectCat(this,'HR &amp; Operations')">
           <span class="cat-icon">👥</span>
           <span class="cat-name">HR &amp; Operations</span>
         </div>
-        <div class="cat-card" id="card_Defense_Regulated_Industries" onclick="selectCat(this,&#39;Defense &amp; Regulated Industries&#39;)">
+        <div class="cat-card" id="card_Defense_Regulated_Industries" onclick="selectCat(this,'Defense &amp; Regulated Industries')">
           <span class="cat-icon">🎯</span>
           <span class="cat-name">Defense &amp; Regulated Industries</span>
         </div>
@@ -721,10 +723,10 @@ const FRAMEWORK_MAP = {
       <div class="field">
         <label>Preferred timing</label>
         <div class="select-grid" id="timing-grid">
-          <div class="select-option" data-val="this_week" onclick="selectOption(this,&#39;timing&#39;)">📅 This week</div>
-          <div class="select-option" data-val="next_week" onclick="selectOption(this,&#39;timing&#39;)">📅 Next week</div>
-          <div class="select-option" data-val="asap" onclick="selectOption(this,&#39;timing&#39;)">⚡ As soon as possible</div>
-          <div class="select-option" data-val="flexible" onclick="selectOption(this,&#39;timing&#39;)">🕐 I'm flexible</div>
+          <div class="select-option" data-val="this_week" onclick="selectOption(this,'timing')">📅 This week</div>
+          <div class="select-option" data-val="next_week" onclick="selectOption(this,'timing')">📅 Next week</div>
+          <div class="select-option" data-val="asap" onclick="selectOption(this,'timing')">⚡ As soon as possible</div>
+          <div class="select-option" data-val="flexible" onclick="selectOption(this,'timing')">🕐 I'm flexible</div>
         </div>
       </div>
 
@@ -742,12 +744,12 @@ const FRAMEWORK_MAP = {
           <div class="subcat-panel" id="subcat-Defense___Regulated_Industries">
             <div class="subcat-label">Specify the areas within Defense &amp; Regulated Industries</div>
             <div class="subcat-tags">
-              <div class="subcat-tag" data-sub="Export license management" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Export license management</div>
-              <div class="subcat-tag" data-sub="Configuration &amp; change management" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Configuration &amp; change management</div>
-              <div class="subcat-tag" data-sub="Milestone &amp; deliverable tracking" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Milestone &amp; deliverable tracking</div>
-              <div class="subcat-tag" data-sub="Classified data handling" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Classified data handling</div>
-              <div class="subcat-tag" data-sub="Subcontractor compliance" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Subcontractor compliance</div>
-              <div class="subcat-tag" data-sub="Acceptance testing &amp; certification" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Acceptance testing &amp; certification</div>
+              <div class="subcat-tag" data-sub="Export license management" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Export license management</div>
+              <div class="subcat-tag" data-sub="Configuration &amp; change management" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Configuration &amp; change management</div>
+              <div class="subcat-tag" data-sub="Milestone &amp; deliverable tracking" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Milestone &amp; deliverable tracking</div>
+              <div class="subcat-tag" data-sub="Classified data handling" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Classified data handling</div>
+              <div class="subcat-tag" data-sub="Subcontractor compliance" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Subcontractor compliance</div>
+              <div class="subcat-tag" data-sub="Acceptance testing &amp; certification" onclick="toggleSubcat(this,'Defense &amp; Regulated Industries')">Acceptance testing &amp; certification</div>
             </div>
           </div>
 
@@ -1074,8 +1076,5 @@ function toggleLink(el, idx) {
   }
   state.links = selectedLinks;
 }
-
-const SUBCATEGORIES = {"Order & Delivery": ["Order entry & validation", "Credit check & approval workflow", "Order promising & ATP", "Pick, pack & dispatch", "Shipping & carrier management", "Invoice generation & sending", "Cash collection & reconciliation", "Customer returns & credit notes"], "Planning & Forecasting": ["Statistical demand forecasting", "Collaborative forecasting (S&OP)", "Supply planning & constraints", "Production planning (MPS/MRP)", "Inventory target setting", "Capacity planning", "Long-range planning (IBP)"], "Procurement & Sourcing": ["Purchase requisition & approval", "Supplier selection & onboarding", "Purchase order management", "Goods receipt & inspection", "Invoice matching (3-way)", "Supplier performance management", "Contract management"], "Manufacturing & Production": ["Production scheduling", "Work order management", "Material issuance & BOM control", "In-process quality control", "Machine & equipment management", "Production reporting & OEE", "Finished goods transfer"], "Warehouse & Inventory": ["Inbound receiving & putaway", "Inventory counting & reconciliation", "Pick & pack operations", "Outbound dispatch", "Warehouse space management", "Batch & serial number tracking", "Cold chain / special handling"], "Returns & Reverse Logistics": ["Customer return authorization (RMA)", "Returned goods inspection", "Disposition & restock decision", "Supplier return management", "Reverse logistics execution", "Credit note & financial settlement"], "Quality Management": ["Incoming quality inspection", "In-process quality control", "Non-conformance management", "CAPA (Corrective & Preventive Action)", "Supplier quality audits", "Customer complaint handling", "Quality documentation & records"], "Finance & Controls": ["Order-to-cash financial closing", "Procure-to-pay financial closing", "Month-end & period close", "Cost allocation & analysis", "Cash flow forecasting", "Payment approval & execution", "Financial reporting & consolidation"], "Regulatory & Compliance": ["EU AI Act classification & documentation", "GDPR data processing compliance", "GxP / GDP / GMP compliance", "IATF 16949 automotive compliance", "Export control (ITAR/EAR)", "Regulatory reporting & submissions", "Internal compliance audits"], "AI & Data Governance": ["AI system inventory & classification", "AI risk assessment", "AI model performance monitoring", "Data quality management", "Audit trail & explainability", "AI policy & governance framework", "Incident & anomaly management"], "Risk Management": ["Supplier risk assessment", "Operational risk identification", "Business continuity planning", "Early warning & monitoring", "Risk mitigation & controls", "Geopolitical & market risk"], "Digital & ERP Integration": ["ERP data migration & transition", "System integration & APIs", "Master data management", "Reporting & analytics automation", "Process automation (RPA/agents)", "Real-time visibility & dashboards", "Legacy system modernization"], "Sustainability & ESG": ["Carbon footprint measurement", "Supplier ESG assessment", "Sustainability reporting", "Circular economy & waste reduction", "Energy & resource optimization"], "Customer & Service": ["Customer onboarding", "Service level management (SLA)", "Customer complaint management", "After-sales & warranty", "Customer satisfaction measurement"], "HR & Operations": ["Workforce planning", "Onboarding & training", "Performance management", "Process documentation & SOPs", "Cross-functional coordination", "Escalation & exception management"], "Defense & Regulated Industries": ["Export license management", "Configuration & change management", "Milestone & deliverable tracking", "Classified data handling", "Subcontractor compliance", "Acceptance testing & certification"]};
-const PROCESS_LINKS = [{"label": "Order-to-Cash end-to-end", "cats": ["Order & Delivery", "Finance & Controls"], "processes": ["BPMN-OTC-001", "BPMN-FIN-001"]}, {"label": "Procure-to-Pay end-to-end", "cats": ["Procurement & Sourcing", "Finance & Controls"], "processes": ["BPMN-PTP-001", "BPMN-FIN-001"]}, {"label": "Plan-to-Produce", "cats": ["Planning & Forecasting", "Manufacturing & Production"], "processes": ["BPMN-MRP-001", "BPMN-IBP-001"]}, {"label": "Quality & Compliance integrated", "cats": ["Quality Management", "Regulatory & Compliance"], "processes": ["BPMN-QMS-001", "ISO9001-8"]}, {"label": "Warehouse & Transport integrated", "cats": ["Warehouse & Inventory", "Order & Delivery"], "processes": ["BPMN-WMS-001", "BPMN-TRP-001"]}, {"label": "AI Governance & Regulatory", "cats": ["AI & Data Governance", "Regulatory & Compliance"], "processes": ["ISO42001-6", "EUAIA-ART9", "NIST-GOVERN"]}, {"label": "Supplier Quality & Returns", "cats": ["Procurement & Sourcing", "Returns & Reverse Logistics"], "processes": ["SCOR-SR2.3", "BPMN-RMA-001"]}, {"label": "Finance & Risk integrated", "cats": ["Finance & Controls", "Risk Management"], "processes": ["BPMN-FIN-003", "SCOR-E6"]}, {"label": "Manufacturing & Quality integrated", "cats": ["Manufacturing & Production", "Quality Management"], "processes": ["SCOR-M2.4", "BPMN-QMS-001", "ISO9001-8"]}, {"label": "Digital & Planning integrated", "cats": ["Digital & ERP Integration", "Planning & Forecasting"], "processes": ["SCOR-DIG4", "BPMN-IBP-001"]}];
 
 </script></body></html>

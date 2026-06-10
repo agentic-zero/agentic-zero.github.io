@@ -111,6 +111,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pain-tag{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono)}
 .pain-tag:hover{border-color:var(--acc);color:var(--w1)}
 .pain-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn)}
+.pain-cat-header{width:100%;font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid rgba(0,212,255,0.15)}
+.subcat-panel{width:100%;margin:4px 0 12px;background:rgba(0,212,255,0.03);border:1px solid rgba(0,212,255,0.12);border-radius:6px;padding:12px 16px;display:none;}
+.subcat-panel.visible{display:block;}
+.subcat-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.subcat-label::before{content:"↳";color:var(--acc);}
+.subcat-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.subcat-tag{font-size:11px;padding:5px 10px;border-radius:16px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono);display:flex;align-items:center;gap:6px;}
+.subcat-tag::before{content:"□";font-size:12px;color:var(--w3);}
+.subcat-tag:hover{border-color:var(--acc);color:var(--w2);}
+.subcat-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn);}
+.subcat-tag.selected::before{content:"✓";color:var(--grn);}
 
 /* BUTTONS */
 .btn-group{display:flex;gap:12px;margin-top:28px}
@@ -146,7 +157,325 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .form-card{padding:24px}
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+const SUBCATEGORIES = {
+  "Order & Delivery": [
+    "Order entry & validation",
+    "Credit check & approval workflow",
+    "Order promising & ATP",
+    "Pick, pack & dispatch",
+    "Shipping & carrier management",
+    "Invoice generation & sending",
+    "Cash collection & reconciliation",
+    "Customer returns & credit notes",
+  ],
+  "Planning & Forecasting": [
+    "Statistical demand forecasting",
+    "Collaborative forecasting (S&OP)",
+    "Supply planning & constraints",
+    "Production planning (MPS/MRP)",
+    "Inventory target setting",
+    "Capacity planning",
+    "Long-range planning (IBP)",
+  ],
+  "Procurement & Sourcing": [
+    "Purchase requisition & approval",
+    "Supplier selection & onboarding",
+    "Purchase order management",
+    "Goods receipt & inspection",
+    "Invoice matching (3-way)",
+    "Supplier performance management",
+    "Contract management",
+  ],
+  "Manufacturing & Production": [
+    "Production scheduling",
+    "Work order management",
+    "Material issuance & BOM control",
+    "In-process quality control",
+    "Machine & equipment management",
+    "Production reporting & OEE",
+    "Finished goods transfer",
+  ],
+  "Warehouse & Inventory": [
+    "Inbound receiving & putaway",
+    "Inventory counting & reconciliation",
+    "Pick & pack operations",
+    "Outbound dispatch",
+    "Warehouse space management",
+    "Batch & serial number tracking",
+    "Cold chain / special handling",
+  ],
+  "Returns & Reverse Logistics": [
+    "Customer return authorization (RMA)",
+    "Returned goods inspection",
+    "Disposition & restock decision",
+    "Supplier return management",
+    "Reverse logistics execution",
+    "Credit note & financial settlement",
+  ],
+  "Quality Management": [
+    "Incoming quality inspection",
+    "In-process quality control",
+    "Non-conformance management",
+    "CAPA (Corrective & Preventive Action)",
+    "Supplier quality audits",
+    "Customer complaint handling",
+    "Quality documentation & records",
+  ],
+  "Finance & Controls": [
+    "Order-to-cash financial closing",
+    "Procure-to-pay financial closing",
+    "Month-end & period close",
+    "Cost allocation & analysis",
+    "Cash flow forecasting",
+    "Payment approval & execution",
+    "Financial reporting & consolidation",
+  ],
+  "Regulatory & Compliance": [
+    "EU AI Act classification & documentation",
+    "GDPR data processing compliance",
+    "GxP / GDP / GMP compliance",
+    "IATF 16949 automotive compliance",
+    "Export control (ITAR/EAR)",
+    "Regulatory reporting & submissions",
+    "Internal compliance audits",
+  ],
+  "AI & Data Governance": [
+    "AI system inventory & classification",
+    "AI risk assessment",
+    "AI model performance monitoring",
+    "Data quality management",
+    "Audit trail & explainability",
+    "AI policy & governance framework",
+    "Incident & anomaly management",
+  ],
+  "Risk Management": [
+    "Supplier risk assessment",
+    "Operational risk identification",
+    "Business continuity planning",
+    "Early warning & monitoring",
+    "Risk mitigation & controls",
+    "Geopolitical & market risk",
+  ],
+  "Digital & ERP Integration": [
+    "ERP data migration & transition",
+    "System integration & APIs",
+    "Master data management",
+    "Reporting & analytics automation",
+    "Process automation (RPA/agents)",
+    "Real-time visibility & dashboards",
+    "Legacy system modernization",
+  ],
+  "Sustainability & ESG": [
+    "Carbon footprint measurement",
+    "Supplier ESG assessment",
+    "Sustainability reporting",
+    "Circular economy & waste reduction",
+    "Energy & resource optimization",
+  ],
+  "Customer & Service": [
+    "Customer onboarding",
+    "Service level management (SLA)",
+    "Customer complaint management",
+    "After-sales & warranty",
+    "Customer satisfaction measurement",
+  ],
+  "HR & Operations": [
+    "Workforce planning",
+    "Onboarding & training",
+    "Performance management",
+    "Process documentation & SOPs",
+    "Cross-functional coordination",
+    "Escalation & exception management",
+  ],
+  "Defense & Regulated Industries": [
+    "Export license management",
+    "Configuration & change management",
+    "Milestone & deliverable tracking",
+    "Classified data handling",
+    "Subcontractor compliance",
+    "Acceptance testing & certification",
+  ],
+};
+
+const selectedSubcats = {};
+
+function togglePain(el) {
+  el.classList.toggle('selected');
+  const cat = el.textContent.trim();
+  const panelId = 'subcat-' + cat.replace(/[^a-zA-Z0-9]/g, '_');
+  const panel = document.getElementById(panelId);
+  if (panel) {
+    if (el.classList.contains('selected')) {
+      panel.classList.add('visible');
+      if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+    } else {
+      panel.classList.remove('visible');
+      delete selectedSubcats[cat];
+    }
+  }
+  state.pains = Array.from(document.querySelectorAll('.pain-tag.selected')).map(e => e.textContent.trim());
+}
+
+function toggleSubcat(el, cat) {
+  el.classList.toggle('selected');
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+  const sub = el.dataset.sub;
+  if (el.classList.contains('selected')) {
+    if (!selectedSubcats[cat].includes(sub)) selectedSubcats[cat].push(sub);
+  } else {
+    selectedSubcats[cat] = selectedSubcats[cat].filter(s => s !== sub);
+  }
+  state.subcats = selectedSubcats;
+}
+
+
+// ============================================================
+// INTERNAL FRAMEWORK MAPPING — Scout Comercial use only
+// L1 Category → L2 Subcategory → Library Process IDs
+// DO NOT expose to client
+// ============================================================
+const FRAMEWORK_MAP = {
+  "Order & Delivery": {
+    "Order entry & validation":           ["SCOR-D1.2","BPMN-OTC-001"],
+    "Credit check & approval workflow":   ["SCOR-D1.2","BPMN-OTC-001"],
+    "Order promising & ATP":               ["SCOR-D1.3","SCOR-P3.1"],
+    "Pick, pack & dispatch":              ["SCOR-D1.4","SCOR-D1.5"],
+    "Shipping & carrier management":      ["SCOR-D1.5","BPMN-TRP-001"],
+    "Invoice generation & sending":       ["SCOR-D1.5","BPMN-OTC-001"],
+    "Cash collection & reconciliation":   ["BPMN-OTC-001","BPMN-FIN-001"],
+    "Customer returns & credit notes":    ["SCOR-DR1.1","SCOR-DR1.2","BPMN-RMA-001"]
+  },
+  "Planning & Forecasting": {
+    "Statistical demand forecasting":     ["SCOR-P1.2","BPMN-IBP-001"],
+    "Collaborative forecasting (S&OP)":   ["SCOR-P1.1","SCOR-P1.3","BPMN-IBP-001"],
+    "Supply planning & constraints":      ["SCOR-P2.1","SCOR-P2.2"],
+    "Production planning (MPS/MRP)":      ["SCOR-P3.1","SCOR-P3.2","BPMN-MRP-001"],
+    "Inventory target setting":           ["SCOR-P1.4","SCOR-P4.1"],
+    "Capacity planning":                  ["SCOR-P3.3","SCOR-P3.4"],
+    "Long-range planning (IBP)":          ["SCOR-P1.1","SCOR-P1.5","BPMN-IBP-001"]
+  },
+  "Procurement & Sourcing": {
+    "Purchase requisition & approval":    ["SCOR-S1.1","BPMN-PTP-001"],
+    "Supplier selection & onboarding":    ["SCOR-S2.1","SCOR-S3.1"],
+    "Purchase order management":          ["SCOR-S1.2","SCOR-S2.2"],
+    "Goods receipt & inspection":         ["SCOR-S1.3","SCOR-S2.3"],
+    "Invoice matching (3-way)":           ["SCOR-S1.4","BPMN-PTP-001"],
+    "Supplier performance management":    ["SCOR-SR2.3","SCOR-SR3.1"],
+    "Contract management":                ["SCOR-E5","BPMN-SPM-001"]
+  },
+  "Manufacturing & Production": {
+    "Production scheduling":              ["SCOR-M2.1","SCOR-M3.1"],
+    "Work order management":              ["SCOR-M2.2","SCOR-M3.2"],
+    "Material issuance & BOM control":    ["SCOR-M2.3","SCOR-M3.3"],
+    "In-process quality control":         ["SCOR-M2.4","BPMN-QMS-001"],
+    "Machine & equipment management":     ["SCOR-M2.5","SCOR-M3.5"],
+    "Production reporting & OEE":         ["SCOR-E7","SCOR-DIG3"],
+    "Finished goods transfer":            ["SCOR-M2.5","SCOR-M3.4"]
+  },
+  "Warehouse & Inventory": {
+    "Inbound receiving & putaway":        ["BPMN-WMS-001","SCOR-S1.3"],
+    "Inventory counting & reconciliation":["BPMN-WMS-002","SCOR-P4.1"],
+    "Pick & pack operations":             ["BPMN-WMS-001","SCOR-D1.4"],
+    "Outbound dispatch":                  ["BPMN-WMS-001","SCOR-D1.5"],
+    "Warehouse space management":         ["SCOR-E3","BPMN-WMS-002"],
+    "Batch & serial number tracking":     ["SCOR-DIG2","BPMN-QMS-001"],
+    "Cold chain / special handling":      ["BPMN-WMS-001","BPMN-GXP-001"]
+  },
+  "Returns & Reverse Logistics": {
+    "Customer return authorization (RMA)":["SCOR-DR1.1","BPMN-RMA-001"],
+    "Returned goods inspection":          ["SCOR-DR1.2","SCOR-SR2.4"],
+    "Disposition & restock decision":     ["SCOR-DR1.3","SCOR-SR2.5"],
+    "Supplier return management":         ["SCOR-SR2.3","SCOR-SR3.2"],
+    "Reverse logistics execution":        ["SCOR-DR2.1","SCOR-DR3.1"],
+    "Credit note & financial settlement": ["SCOR-DR1.4","BPMN-FIN-001"]
+  },
+  "Quality Management": {
+    "Incoming quality inspection":        ["ISO9001-8","SCOR-S1.3"],
+    "In-process quality control":         ["ISO9001-8","SCOR-M2.4"],
+    "Non-conformance management":         ["ISO9001-8","ISO9001-10"],
+    "CAPA (Corrective & Preventive Action)":["ISO9001-10","BPMN-QMS-001"],
+    "Supplier quality audits":            ["ISO9001-8","SCOR-SR2.3"],
+    "Customer complaint handling":        ["BPMN-CRM-001","ISO9001-9"],
+    "Quality documentation & records":    ["ISO9001-7","ISO9001-9"]
+  },
+  "Finance & Controls": {
+    "Order-to-cash financial closing":    ["BPMN-FIN-001","BPMN-OTC-001"],
+    "Procure-to-pay financial closing":   ["BPMN-PTP-001","BPMN-FIN-001"],
+    "Month-end & period close":           ["BPMN-FIN-002","SCOR-E9"],
+    "Cost allocation & analysis":         ["BPMN-FIN-003","SCOR-E9"],
+    "Cash flow forecasting":              ["BPMN-FIN-004","SCOR-P1.2"],
+    "Payment approval & execution":       ["BPMN-PTP-001","BPMN-FIN-001"],
+    "Financial reporting & consolidation":["BPMN-FIN-003","SCOR-E8"]
+  },
+  "Regulatory & Compliance": {
+    "EU AI Act classification & documentation":["EUAIA-ART6","EUAIA-ART9","EUAIA-ART10","EUAIA-ART11"],
+    "GDPR data processing compliance":    ["GDPR-ART5","GDPR-ART13","GDPR-ART30"],
+    "GxP / GDP / GMP compliance":         ["GXP-GDP","GXP-GMP"],
+    "IATF 16949 automotive compliance":   ["IATF16949-8D","IATF16949-APQP","IATF16949-PPAP"],
+    "Export control (ITAR/EAR)":          ["BPMN-DEF-001","BPMN-DEF-002"],
+    "Regulatory reporting & submissions": ["EUAIA-ART72","GDPR-ART30"],
+    "Internal compliance audits":         ["ISO9001-9","ISO42001-9"]
+  },
+  "AI & Data Governance": {
+    "AI system inventory & classification":["ISO42001-4","EUAIA-ART6"],
+    "AI risk assessment":                  ["ISO42001-6","EUAIA-ART9","NIST-GOVERN"],
+    "AI model performance monitoring":     ["ISO42001-9","NIST-MEASURE"],
+    "Data quality management":             ["ISO42001-7","GDPR-ART5"],
+    "Audit trail & explainability":        ["EUAIA-ART12","EUAIA-ART13","NIST-MANAGE"],
+    "AI policy & governance framework":    ["ISO42001-5","NIST-GOVERN"],
+    "Incident & anomaly management":       ["ISO42001-10","EUAIA-ART72","NIST-MANAGE"]
+  },
+  "Risk Management": {
+    "Supplier risk assessment":            ["SCOR-SR3.1","SCOR-E6","ISO31000-P1"],
+    "Operational risk identification":     ["SCOR-E6","ISO31000-P2"],
+    "Business continuity planning":        ["SCOR-E4","ISO31000-P3"],
+    "Early warning & monitoring":          ["SCOR-DIG4","SCOR-E6"],
+    "Risk mitigation & controls":          ["SCOR-E6","ISO31000-P2"],
+    "Geopolitical & market risk":          ["SCOR-E6","ISO31000-P3"]
+  },
+  "Digital & ERP Integration": {
+    "ERP data migration & transition":     ["SCOR-DIG1","BPMN-DIG-001"],
+    "System integration & APIs":           ["SCOR-DIG2","BPMN-DIG-002"],
+    "Master data management":              ["SCOR-E3","SCOR-DIG3"],
+    "Reporting & analytics automation":    ["SCOR-DIG5","BPMN-DIG-003"],
+    "Process automation (RPA/agents)":     ["SCOR-DIG4","BPMN-DIG-004"],
+    "Real-time visibility & dashboards":   ["SCOR-DIG3","SCOR-DIG10"],
+    "Legacy system modernization":         ["SCOR-DIG1","BPMN-DIG-005"]
+  },
+  "Sustainability & ESG": {
+    "Carbon footprint measurement":        ["BPMN-ESG-001"],
+    "Supplier ESG assessment":             ["BPMN-ESG-001","SCOR-SR3.1"],
+    "Sustainability reporting":            ["BPMN-ESG-002"],
+    "Circular economy & waste reduction":  ["BPMN-ESG-001"],
+    "Energy & resource optimization":      ["BPMN-ESG-002"]
+  },
+  "Customer & Service": {
+    "Customer onboarding":                 ["BPMN-CRM-001","SCOR-D4.2"],
+    "Service level management (SLA)":      ["SCOR-E2","BPMN-CRM-002"],
+    "Customer complaint management":       ["BPMN-CRM-001","SCOR-DR1.1"],
+    "After-sales & warranty":              ["SCOR-DR1.2","BPMN-CRM-003"],
+    "Customer satisfaction measurement":   ["ISO9001-9","SCOR-E8"]
+  },
+  "HR & Operations": {
+    "Workforce planning":                  ["BPMN-HRM-001"],
+    "Onboarding & training":               ["BPMN-HRM-001","ISO9001-7"],
+    "Performance management":              ["BPMN-HRM-001","ISO9001-9"],
+    "Process documentation & SOPs":        ["BPMN-SOP-001","ISO9001-7"],
+    "Cross-functional coordination":       ["BPMN-SOP-001","SCOR-E1"],
+    "Escalation & exception management":   ["BPMN-SOP-001","SCOR-E2"]
+  },
+  "Defense & Regulated Industries": {
+    "Export license management":           ["BPMN-DEF-001"],
+    "Configuration & change management":   ["BPMN-DEF-002","IATF16949-8D"],
+    "Milestone & deliverable tracking":    ["BPMN-DEF-003"],
+    "Classified data handling":            ["BPMN-DEF-001","GDPR-ART5"],
+    "Subcontractor compliance":            ["BPMN-DEF-002","IATF16949-APQP"],
+    "Acceptance testing & certification":  ["BPMN-DEF-003","IATF16949-PPAP"]
+  }
+};
+
+</script>
 <script>emailjs.init('_55-V5xnvLJVEGafR');</script>
 </head>
 <body>
@@ -272,24 +601,337 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <!-- STEP 3 — The pain -->
     <div class="step" id="step-3">
       <div class="step-label">Step 3 of 4</div>
-      <div class="step-title">What's not working</div>
+      <div class="step-title">Where can we improve</div>
       <div class="step-desc">Select the pain points that apply to your operation. The more specific, the better the AUDIT.</div>
 
       <div class="field">
-        <label>Main pain points (select all that apply)</label>
+        <label>Select all areas that apply to your operation</label>
         <div class="pain-tags" id="pain-tags">
-          <div class="pain-tag" onclick="togglePain(this)">Manual data entry</div>
-          <div class="pain-tag" onclick="togglePain(this)">Slow order processing</div>
+          <div class="pain-cat-header">Order & Delivery</div>
+          <div class="pain-tag" onclick="togglePain(this)">Manual order validation</div>
+          <div class="pain-tag" onclick="togglePain(this)">Slow order confirmation</div>
+          <div class="pain-tag" onclick="togglePain(this)">Partial delivery management</div>
+          <div class="pain-tag" onclick="togglePain(this)">Invoice errors and rework</div>
+          <div class="pain-tag" onclick="togglePain(this)">Credit limit checks manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Delayed shipments</div>
+          <div class="pain-tag" onclick="togglePain(this)">Customer returns uncontrolled</div>
+          <div class="pain-tag" onclick="togglePain(this)">Last-mile visibility limited</div>
+
+          
+          <div class="subcat-panel" id="subcat-Order___Delivery">
+            <div class="subcat-label">Specify the areas within Order & Delivery</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Order entry & validation" onclick="toggleSubcat(this,'Order & Delivery')">Order entry & validation</div>
+              <div class="subcat-tag" data-sub="Credit check & approval workflow" onclick="toggleSubcat(this,'Order & Delivery')">Credit check & approval workflow</div>
+              <div class="subcat-tag" data-sub="Order promising & ATP" onclick="toggleSubcat(this,'Order & Delivery')">Order promising & ATP</div>
+              <div class="subcat-tag" data-sub="Pick, pack & dispatch" onclick="toggleSubcat(this,'Order & Delivery')">Pick, pack & dispatch</div>
+              <div class="subcat-tag" data-sub="Shipping & carrier management" onclick="toggleSubcat(this,'Order & Delivery')">Shipping & carrier management</div>
+              <div class="subcat-tag" data-sub="Invoice generation & sending" onclick="toggleSubcat(this,'Order & Delivery')">Invoice generation & sending</div>
+              <div class="subcat-tag" data-sub="Cash collection & reconciliation" onclick="toggleSubcat(this,'Order & Delivery')">Cash collection & reconciliation</div>
+              <div class="subcat-tag" data-sub="Customer returns & credit notes" onclick="toggleSubcat(this,'Order & Delivery')">Customer returns & credit notes</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Planning & Forecasting</div>
           <div class="pain-tag" onclick="togglePain(this)">Forecast inaccuracy</div>
-          <div class="pain-tag" onclick="togglePain(this)">Compliance gaps</div>
-          <div class="pain-tag" onclick="togglePain(this)">S&OP / IBP disconnected</div>
-          <div class="pain-tag" onclick="togglePain(this)">Supplier visibility</div>
+          <div class="pain-tag" onclick="togglePain(this)">Demand planning done in Excel</div>
+          <div class="pain-tag" onclick="togglePain(this)">S&OP meetings ineffective</div>
+          <div class="pain-tag" onclick="togglePain(this)">Production plan changes too frequent</div>
+          <div class="pain-tag" onclick="togglePain(this)">Replenishment not automated</div>
+          <div class="pain-tag" onclick="togglePain(this)">Seasonal peaks not anticipated</div>
+          <div class="pain-tag" onclick="togglePain(this)">Inventory targets not met</div>
+
+          
+          <div class="subcat-panel" id="subcat-Planning___Forecasting">
+            <div class="subcat-label">Specify the areas within Planning & Forecasting</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Statistical demand forecasting" onclick="toggleSubcat(this,'Planning & Forecasting')">Statistical demand forecasting</div>
+              <div class="subcat-tag" data-sub="Collaborative forecasting (S&OP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Collaborative forecasting (S&OP)</div>
+              <div class="subcat-tag" data-sub="Supply planning & constraints" onclick="toggleSubcat(this,'Planning & Forecasting')">Supply planning & constraints</div>
+              <div class="subcat-tag" data-sub="Production planning (MPS/MRP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Production planning (MPS/MRP)</div>
+              <div class="subcat-tag" data-sub="Inventory target setting" onclick="toggleSubcat(this,'Planning & Forecasting')">Inventory target setting</div>
+              <div class="subcat-tag" data-sub="Capacity planning" onclick="toggleSubcat(this,'Planning & Forecasting')">Capacity planning</div>
+              <div class="subcat-tag" data-sub="Long-range planning (IBP)" onclick="toggleSubcat(this,'Planning & Forecasting')">Long-range planning (IBP)</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Procurement & Sourcing</div>
+          <div class="pain-tag" onclick="togglePain(this)">Manual purchase order creation</div>
+          <div class="pain-tag" onclick="togglePain(this)">Supplier lead times unreliable</div>
+          <div class="pain-tag" onclick="togglePain(this)">3-way match done manually</div>
+          <div class="pain-tag" onclick="togglePain(this)">Maverick buying</div>
+          <div class="pain-tag" onclick="togglePain(this)">Supplier performance not tracked</div>
+          <div class="pain-tag" onclick="togglePain(this)">Contract compliance gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Tail spend uncontrolled</div>
+
+          
+          <div class="subcat-panel" id="subcat-Procurement___Sourcing">
+            <div class="subcat-label">Specify the areas within Procurement & Sourcing</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Purchase requisition & approval" onclick="toggleSubcat(this,'Procurement & Sourcing')">Purchase requisition & approval</div>
+              <div class="subcat-tag" data-sub="Supplier selection & onboarding" onclick="toggleSubcat(this,'Procurement & Sourcing')">Supplier selection & onboarding</div>
+              <div class="subcat-tag" data-sub="Purchase order management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Purchase order management</div>
+              <div class="subcat-tag" data-sub="Goods receipt & inspection" onclick="toggleSubcat(this,'Procurement & Sourcing')">Goods receipt & inspection</div>
+              <div class="subcat-tag" data-sub="Invoice matching (3-way)" onclick="toggleSubcat(this,'Procurement & Sourcing')">Invoice matching (3-way)</div>
+              <div class="subcat-tag" data-sub="Supplier performance management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Supplier performance management</div>
+              <div class="subcat-tag" data-sub="Contract management" onclick="toggleSubcat(this,'Procurement & Sourcing')">Contract management</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Manufacturing & Production</div>
+          <div class="pain-tag" onclick="togglePain(this)">Work order management slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Production scheduling manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Machine downtime not anticipated</div>
+          <div class="pain-tag" onclick="togglePain(this)">Quality at production level gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Material issuance errors</div>
+          <div class="pain-tag" onclick="togglePain(this)">OEE not monitored</div>
+          <div class="pain-tag" onclick="togglePain(this)">Rework and scrap high</div>
+
+          
+          <div class="subcat-panel" id="subcat-Manufacturing___Production">
+            <div class="subcat-label">Specify the areas within Manufacturing & Production</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Production scheduling" onclick="toggleSubcat(this,'Manufacturing & Production')">Production scheduling</div>
+              <div class="subcat-tag" data-sub="Work order management" onclick="toggleSubcat(this,'Manufacturing & Production')">Work order management</div>
+              <div class="subcat-tag" data-sub="Material issuance & BOM control" onclick="toggleSubcat(this,'Manufacturing & Production')">Material issuance & BOM control</div>
+              <div class="subcat-tag" data-sub="In-process quality control" onclick="toggleSubcat(this,'Manufacturing & Production')">In-process quality control</div>
+              <div class="subcat-tag" data-sub="Machine & equipment management" onclick="toggleSubcat(this,'Manufacturing & Production')">Machine & equipment management</div>
+              <div class="subcat-tag" data-sub="Production reporting & OEE" onclick="toggleSubcat(this,'Manufacturing & Production')">Production reporting & OEE</div>
+              <div class="subcat-tag" data-sub="Finished goods transfer" onclick="toggleSubcat(this,'Manufacturing & Production')">Finished goods transfer</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Warehouse & Inventory</div>
           <div class="pain-tag" onclick="togglePain(this)">Inventory excess or shortage</div>
+          <div class="pain-tag" onclick="togglePain(this)">Picking errors</div>
+          <div class="pain-tag" onclick="togglePain(this)">Slow inbound receiving</div>
+          <div class="pain-tag" onclick="togglePain(this)">Warehouse space poorly utilized</div>
+          <div class="pain-tag" onclick="togglePain(this)">Stock counts inaccurate</div>
+          <div class="pain-tag" onclick="togglePain(this)">FIFO/FEFO not enforced</div>
+          <div class="pain-tag" onclick="togglePain(this)">Outbound dispatch delays</div>
+
+          
+          <div class="subcat-panel" id="subcat-Warehouse___Inventory">
+            <div class="subcat-label">Specify the areas within Warehouse & Inventory</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Inbound receiving & putaway" onclick="toggleSubcat(this,'Warehouse & Inventory')">Inbound receiving & putaway</div>
+              <div class="subcat-tag" data-sub="Inventory counting & reconciliation" onclick="toggleSubcat(this,'Warehouse & Inventory')">Inventory counting & reconciliation</div>
+              <div class="subcat-tag" data-sub="Pick & pack operations" onclick="toggleSubcat(this,'Warehouse & Inventory')">Pick & pack operations</div>
+              <div class="subcat-tag" data-sub="Outbound dispatch" onclick="toggleSubcat(this,'Warehouse & Inventory')">Outbound dispatch</div>
+              <div class="subcat-tag" data-sub="Warehouse space management" onclick="toggleSubcat(this,'Warehouse & Inventory')">Warehouse space management</div>
+              <div class="subcat-tag" data-sub="Batch & serial number tracking" onclick="toggleSubcat(this,'Warehouse & Inventory')">Batch & serial number tracking</div>
+              <div class="subcat-tag" data-sub="Cold chain / special handling" onclick="toggleSubcat(this,'Warehouse & Inventory')">Cold chain / special handling</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Returns & Reverse Logistics</div>
+          <div class="pain-tag" onclick="togglePain(this)">Returns processing slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">RMA management manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Reverse logistics costs high</div>
+          <div class="pain-tag" onclick="togglePain(this)">Credit notes delayed</div>
+          <div class="pain-tag" onclick="togglePain(this)">Returned goods not inspected systematically</div>
+
+          
+          <div class="subcat-panel" id="subcat-Returns___Reverse_Logistics">
+            <div class="subcat-label">Specify the areas within Returns & Reverse Logistics</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Customer return authorization (RMA)" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Customer return authorization (RMA)</div>
+              <div class="subcat-tag" data-sub="Returned goods inspection" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Returned goods inspection</div>
+              <div class="subcat-tag" data-sub="Disposition & restock decision" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Disposition & restock decision</div>
+              <div class="subcat-tag" data-sub="Supplier return management" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Supplier return management</div>
+              <div class="subcat-tag" data-sub="Reverse logistics execution" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Reverse logistics execution</div>
+              <div class="subcat-tag" data-sub="Credit note & financial settlement" onclick="toggleSubcat(this,'Returns & Reverse Logistics')">Credit note & financial settlement</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Quality Management</div>
           <div class="pain-tag" onclick="togglePain(this)">Quality control manual</div>
-          <div class="pain-tag" onclick="togglePain(this)">Reporting takes too long</div>
+          <div class="pain-tag" onclick="togglePain(this)">Non-conformance tracking slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">CAPA process not structured</div>
+          <div class="pain-tag" onclick="togglePain(this)">Audit preparation time-consuming</div>
+          <div class="pain-tag" onclick="togglePain(this)">Supplier quality not monitored</div>
+          <div class="pain-tag" onclick="togglePain(this)">Batch traceability gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Customer complaints recurring</div>
+
+          
+          <div class="subcat-panel" id="subcat-Quality_Management">
+            <div class="subcat-label">Specify the areas within Quality Management</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Incoming quality inspection" onclick="toggleSubcat(this,'Quality Management')">Incoming quality inspection</div>
+              <div class="subcat-tag" data-sub="In-process quality control" onclick="toggleSubcat(this,'Quality Management')">In-process quality control</div>
+              <div class="subcat-tag" data-sub="Non-conformance management" onclick="toggleSubcat(this,'Quality Management')">Non-conformance management</div>
+              <div class="subcat-tag" data-sub="CAPA (Corrective & Preventive Action)" onclick="toggleSubcat(this,'Quality Management')">CAPA (Corrective & Preventive Action)</div>
+              <div class="subcat-tag" data-sub="Supplier quality audits" onclick="toggleSubcat(this,'Quality Management')">Supplier quality audits</div>
+              <div class="subcat-tag" data-sub="Customer complaint handling" onclick="toggleSubcat(this,'Quality Management')">Customer complaint handling</div>
+              <div class="subcat-tag" data-sub="Quality documentation & records" onclick="toggleSubcat(this,'Quality Management')">Quality documentation & records</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Finance & Controls</div>
+          <div class="pain-tag" onclick="togglePain(this)">Month-end close takes too long</div>
+          <div class="pain-tag" onclick="togglePain(this)">Manual reconciliation</div>
+          <div class="pain-tag" onclick="togglePain(this)">Cash flow visibility limited</div>
+          <div class="pain-tag" onclick="togglePain(this)">Revenue leakage undetected</div>
+          <div class="pain-tag" onclick="togglePain(this)">Cost allocation inaccurate</div>
+          <div class="pain-tag" onclick="togglePain(this)">Payment approval slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Financial reporting delayed</div>
+
+          
+          <div class="subcat-panel" id="subcat-Finance___Controls">
+            <div class="subcat-label">Specify the areas within Finance & Controls</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Order-to-cash financial closing" onclick="toggleSubcat(this,'Finance & Controls')">Order-to-cash financial closing</div>
+              <div class="subcat-tag" data-sub="Procure-to-pay financial closing" onclick="toggleSubcat(this,'Finance & Controls')">Procure-to-pay financial closing</div>
+              <div class="subcat-tag" data-sub="Month-end & period close" onclick="toggleSubcat(this,'Finance & Controls')">Month-end & period close</div>
+              <div class="subcat-tag" data-sub="Cost allocation & analysis" onclick="toggleSubcat(this,'Finance & Controls')">Cost allocation & analysis</div>
+              <div class="subcat-tag" data-sub="Cash flow forecasting" onclick="toggleSubcat(this,'Finance & Controls')">Cash flow forecasting</div>
+              <div class="subcat-tag" data-sub="Payment approval & execution" onclick="toggleSubcat(this,'Finance & Controls')">Payment approval & execution</div>
+              <div class="subcat-tag" data-sub="Financial reporting & consolidation" onclick="toggleSubcat(this,'Finance & Controls')">Financial reporting & consolidation</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Regulatory & Compliance</div>
           <div class="pain-tag" onclick="togglePain(this)">EU AI Act readiness</div>
-          <div class="pain-tag" onclick="togglePain(this)">Team doing low-value work</div>
+          <div class="pain-tag" onclick="togglePain(this)">GDPR compliance gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Sector-specific regulation not automated</div>
+          <div class="pain-tag" onclick="togglePain(this)">Documentation for audits manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Regulatory reporting slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">GxP documentation gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Export control compliance manual</div>
+
+          
+          <div class="subcat-panel" id="subcat-Regulatory___Compliance">
+            <div class="subcat-label">Specify the areas within Regulatory & Compliance</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="EU AI Act classification & documentation" onclick="toggleSubcat(this,'Regulatory & Compliance')">EU AI Act classification & documentation</div>
+              <div class="subcat-tag" data-sub="GDPR data processing compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">GDPR data processing compliance</div>
+              <div class="subcat-tag" data-sub="GxP / GDP / GMP compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">GxP / GDP / GMP compliance</div>
+              <div class="subcat-tag" data-sub="IATF 16949 automotive compliance" onclick="toggleSubcat(this,'Regulatory & Compliance')">IATF 16949 automotive compliance</div>
+              <div class="subcat-tag" data-sub="Export control (ITAR/EAR)" onclick="toggleSubcat(this,'Regulatory & Compliance')">Export control (ITAR/EAR)</div>
+              <div class="subcat-tag" data-sub="Regulatory reporting & submissions" onclick="toggleSubcat(this,'Regulatory & Compliance')">Regulatory reporting & submissions</div>
+              <div class="subcat-tag" data-sub="Internal compliance audits" onclick="toggleSubcat(this,'Regulatory & Compliance')">Internal compliance audits</div>
+            </div>
+          </div>
+<div class="pain-cat-header">AI & Data Governance</div>
+          <div class="pain-tag" onclick="togglePain(this)">AI tools used without governance</div>
+          <div class="pain-tag" onclick="togglePain(this)">Data quality poor</div>
+          <div class="pain-tag" onclick="togglePain(this)">No audit trail for AI decisions</div>
+          <div class="pain-tag" onclick="togglePain(this)">Multiple models giving different answers</div>
+          <div class="pain-tag" onclick="togglePain(this)">AI risk not assessed</div>
+          <div class="pain-tag" onclick="togglePain(this)">No AI policy in place</div>
+          <div class="pain-tag" onclick="togglePain(this)">Model performance not monitored</div>
+
+          
+          <div class="subcat-panel" id="subcat-AI___Data_Governance">
+            <div class="subcat-label">Specify the areas within AI & Data Governance</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="AI system inventory & classification" onclick="toggleSubcat(this,'AI & Data Governance')">AI system inventory & classification</div>
+              <div class="subcat-tag" data-sub="AI risk assessment" onclick="toggleSubcat(this,'AI & Data Governance')">AI risk assessment</div>
+              <div class="subcat-tag" data-sub="AI model performance monitoring" onclick="toggleSubcat(this,'AI & Data Governance')">AI model performance monitoring</div>
+              <div class="subcat-tag" data-sub="Data quality management" onclick="toggleSubcat(this,'AI & Data Governance')">Data quality management</div>
+              <div class="subcat-tag" data-sub="Audit trail & explainability" onclick="toggleSubcat(this,'AI & Data Governance')">Audit trail & explainability</div>
+              <div class="subcat-tag" data-sub="AI policy & governance framework" onclick="toggleSubcat(this,'AI & Data Governance')">AI policy & governance framework</div>
+              <div class="subcat-tag" data-sub="Incident & anomaly management" onclick="toggleSubcat(this,'AI & Data Governance')">Incident & anomaly management</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Risk Management</div>
+          <div class="pain-tag" onclick="togglePain(this)">Supplier risk not monitored</div>
+          <div class="pain-tag" onclick="togglePain(this)">Operational risk reactive</div>
+          <div class="pain-tag" onclick="togglePain(this)">No early warning system</div>
+          <div class="pain-tag" onclick="togglePain(this)">Business continuity plan missing</div>
+          <div class="pain-tag" onclick="togglePain(this)">Single source of supply risk</div>
+          <div class="pain-tag" onclick="togglePain(this)">Geopolitical exposure not assessed</div>
+
+          
+          <div class="subcat-panel" id="subcat-Risk_Management">
+            <div class="subcat-label">Specify the areas within Risk Management</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Supplier risk assessment" onclick="toggleSubcat(this,'Risk Management')">Supplier risk assessment</div>
+              <div class="subcat-tag" data-sub="Operational risk identification" onclick="toggleSubcat(this,'Risk Management')">Operational risk identification</div>
+              <div class="subcat-tag" data-sub="Business continuity planning" onclick="toggleSubcat(this,'Risk Management')">Business continuity planning</div>
+              <div class="subcat-tag" data-sub="Early warning & monitoring" onclick="toggleSubcat(this,'Risk Management')">Early warning & monitoring</div>
+              <div class="subcat-tag" data-sub="Risk mitigation & controls" onclick="toggleSubcat(this,'Risk Management')">Risk mitigation & controls</div>
+              <div class="subcat-tag" data-sub="Geopolitical & market risk" onclick="toggleSubcat(this,'Risk Management')">Geopolitical & market risk</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Digital & ERP Integration</div>
           <div class="pain-tag" onclick="togglePain(this)">ERP transition pain</div>
+          <div class="pain-tag" onclick="togglePain(this)">Systems not integrated</div>
+          <div class="pain-tag" onclick="togglePain(this)">Excel dependency</div>
+          <div class="pain-tag" onclick="togglePain(this)">Manual data extraction from ERP</div>
+          <div class="pain-tag" onclick="togglePain(this)">No real-time visibility</div>
+          <div class="pain-tag" onclick="togglePain(this)">Duplicate data entry across systems</div>
+          <div class="pain-tag" onclick="togglePain(this)">Legacy system constraints</div>
+
+          
+          <div class="subcat-panel" id="subcat-Digital___ERP_Integration">
+            <div class="subcat-label">Specify the areas within Digital & ERP Integration</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="ERP data migration & transition" onclick="toggleSubcat(this,'Digital & ERP Integration')">ERP data migration & transition</div>
+              <div class="subcat-tag" data-sub="System integration & APIs" onclick="toggleSubcat(this,'Digital & ERP Integration')">System integration & APIs</div>
+              <div class="subcat-tag" data-sub="Master data management" onclick="toggleSubcat(this,'Digital & ERP Integration')">Master data management</div>
+              <div class="subcat-tag" data-sub="Reporting & analytics automation" onclick="toggleSubcat(this,'Digital & ERP Integration')">Reporting & analytics automation</div>
+              <div class="subcat-tag" data-sub="Process automation (RPA/agents)" onclick="toggleSubcat(this,'Digital & ERP Integration')">Process automation (RPA/agents)</div>
+              <div class="subcat-tag" data-sub="Real-time visibility & dashboards" onclick="toggleSubcat(this,'Digital & ERP Integration')">Real-time visibility & dashboards</div>
+              <div class="subcat-tag" data-sub="Legacy system modernization" onclick="toggleSubcat(this,'Digital & ERP Integration')">Legacy system modernization</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Sustainability & ESG</div>
+          <div class="pain-tag" onclick="togglePain(this)">Carbon footprint not tracked</div>
+          <div class="pain-tag" onclick="togglePain(this)">Supplier ESG not assessed</div>
+          <div class="pain-tag" onclick="togglePain(this)">Sustainability reporting manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Circular economy gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Energy consumption not optimized</div>
+
+          
+          <div class="subcat-panel" id="subcat-Sustainability___ESG">
+            <div class="subcat-label">Specify the areas within Sustainability & ESG</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Carbon footprint measurement" onclick="toggleSubcat(this,'Sustainability & ESG')">Carbon footprint measurement</div>
+              <div class="subcat-tag" data-sub="Supplier ESG assessment" onclick="toggleSubcat(this,'Sustainability & ESG')">Supplier ESG assessment</div>
+              <div class="subcat-tag" data-sub="Sustainability reporting" onclick="toggleSubcat(this,'Sustainability & ESG')">Sustainability reporting</div>
+              <div class="subcat-tag" data-sub="Circular economy & waste reduction" onclick="toggleSubcat(this,'Sustainability & ESG')">Circular economy & waste reduction</div>
+              <div class="subcat-tag" data-sub="Energy & resource optimization" onclick="toggleSubcat(this,'Sustainability & ESG')">Energy & resource optimization</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Customer & Service</div>
+          <div class="pain-tag" onclick="togglePain(this)">Customer onboarding slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Service level agreements not monitored</div>
+          <div class="pain-tag" onclick="togglePain(this)">Customer complaints not tracked</div>
+          <div class="pain-tag" onclick="togglePain(this)">After-sales process manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Customer satisfaction data not used</div>
+
+          
+          <div class="subcat-panel" id="subcat-Customer___Service">
+            <div class="subcat-label">Specify the areas within Customer & Service</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Customer onboarding" onclick="toggleSubcat(this,'Customer & Service')">Customer onboarding</div>
+              <div class="subcat-tag" data-sub="Service level management (SLA)" onclick="toggleSubcat(this,'Customer & Service')">Service level management (SLA)</div>
+              <div class="subcat-tag" data-sub="Customer complaint management" onclick="toggleSubcat(this,'Customer & Service')">Customer complaint management</div>
+              <div class="subcat-tag" data-sub="After-sales & warranty" onclick="toggleSubcat(this,'Customer & Service')">After-sales & warranty</div>
+              <div class="subcat-tag" data-sub="Customer satisfaction measurement" onclick="toggleSubcat(this,'Customer & Service')">Customer satisfaction measurement</div>
+            </div>
+          </div>
+<div class="pain-cat-header">HR & Operations</div>
+          <div class="pain-tag" onclick="togglePain(this)">Team doing low-value work</div>
+          <div class="pain-tag" onclick="togglePain(this)">Key person dependency</div>
+          <div class="pain-tag" onclick="togglePain(this)">Onboarding process slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Skills gaps not identified</div>
+          <div class="pain-tag" onclick="togglePain(this)">Cross-department coordination slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Process documentation missing</div>
+
+          
+          <div class="subcat-panel" id="subcat-HR___Operations">
+            <div class="subcat-label">Specify the areas within HR & Operations</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Workforce planning" onclick="toggleSubcat(this,'HR & Operations')">Workforce planning</div>
+              <div class="subcat-tag" data-sub="Onboarding & training" onclick="toggleSubcat(this,'HR & Operations')">Onboarding & training</div>
+              <div class="subcat-tag" data-sub="Performance management" onclick="toggleSubcat(this,'HR & Operations')">Performance management</div>
+              <div class="subcat-tag" data-sub="Process documentation & SOPs" onclick="toggleSubcat(this,'HR & Operations')">Process documentation & SOPs</div>
+              <div class="subcat-tag" data-sub="Cross-functional coordination" onclick="toggleSubcat(this,'HR & Operations')">Cross-functional coordination</div>
+              <div class="subcat-tag" data-sub="Escalation & exception management" onclick="toggleSubcat(this,'HR & Operations')">Escalation & exception management</div>
+            </div>
+          </div>
+<div class="pain-cat-header">Defense & Regulated Industries</div>
+          <div class="pain-tag" onclick="togglePain(this)">Export license management manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">ITAR/EAR compliance gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Configuration management manual</div>
+          <div class="pain-tag" onclick="togglePain(this)">Milestone tracking slow</div>
+          <div class="pain-tag" onclick="togglePain(this)">Classified data handling gaps</div>
+          <div class="pain-tag" onclick="togglePain(this)">Subcontractor compliance not monitored</div>
+
         </div>
       </div>
 
@@ -355,6 +997,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:6px;">AUTONOMY LEVEL DETECTED</div>
           <div id="al-label" style="font-family:var(--syne);font-size:15px;font-weight:600;color:var(--w1);margin-bottom:4px;"></div>
           <div id="al-desc" style="font-family:var(--mono);font-size:11px;color:var(--w3);"></div>
+          <div class="subcat-panel" id="subcat-Defense___Regulated_Industries">
+            <div class="subcat-label">Specify the areas within Defense & Regulated Industries</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Export license management" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Export license management</div>
+              <div class="subcat-tag" data-sub="Configuration & change management" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Configuration & change management</div>
+              <div class="subcat-tag" data-sub="Milestone & deliverable tracking" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Milestone & deliverable tracking</div>
+              <div class="subcat-tag" data-sub="Classified data handling" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Classified data handling</div>
+              <div class="subcat-tag" data-sub="Subcontractor compliance" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Subcontractor compliance</div>
+              <div class="subcat-tag" data-sub="Acceptance testing & certification" onclick="toggleSubcat(this,'Defense & Regulated Industries')">Acceptance testing & certification</div>
+            </div>
+          </div>
+
         </div>
         <button class="btn-primary" onclick="submitForm()">Book Free AUDIT →</button>
       </div>
@@ -599,6 +1253,15 @@ async function submitForm() {
   formData.append('notes',            state.notes || 'None');
   formData.append('process_map',      fileInfo);
   formData.append('autonomy_level',   autonomyLevel);
+  // Include L2 subcategory selections with framework mapping
+  const subcatSummary = Object.entries(selectedSubcats || {}).map(([cat, subs]) => {
+    const mapped = subs.map(s => {
+      const refs = (FRAMEWORK_MAP[cat] || {})[s] || [];
+      return `${s} [${refs.join(',')}]`;
+    });
+    return `${cat}: ${mapped.join(' | ')}`;
+  }).join(' || ');
+  formData.append('process_mapping', subcatSummary);
   formData.append('_subject',         `[AUDIT ${autonomyLevel}] ${state.company} · ${state.sector} · ${state.erp || 'No ERP'}`);
   formData.append('_replyto',         state.email);
 

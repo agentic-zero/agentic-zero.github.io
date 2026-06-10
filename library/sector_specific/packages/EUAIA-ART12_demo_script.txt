@@ -1,0 +1,11 @@
+1. Open with the compliance gap: "Under EU AI Act Article 12, high-risk systems require immutable, auditable logs—manual processes cost teams 12+ hours/week and risk €7.5M+ fines."
+
+2. Trigger live logging: Run a sample high-risk decision through the agent; it auto-captures inputs, model version, confidence scores, and human overrides in a tamper-proof ledger within seconds.
+
+3. Generate compliance artifact: One-click export of an Article 12-ready report (timestamped, signed, queryable) that passes a mock regulatory audit in under 60 seconds.
+
+4. Quantify time savings: Dashboard shows 10 hours/week reclaimed per compliance officer; at €80/hour loaded cost, that's €41,600 annual savings per team.
+
+5. Calculate ROI on screen: €224 annual fee × 10.0x multiplier = €2,240 net value in year one from time savings and avoided fines—payback in 11 days.
+
+6. Close with risk reduction: "Zero manual log gaps, full audit trail, and board-ready metrics—deploy in one click with SOC2 and ISO alignment already built in."

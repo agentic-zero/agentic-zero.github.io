@@ -1,0 +1,7 @@
+1. Load sample automotive project specs and regulatory inputs into apqp_compliance_orchestrator.  
+2. Trigger AI orchestration of all five APQP phases, auto-generating control plans and FMEAs in <90 seconds.  
+3. Run live compliance audit against IATF 16949/APQP checklists, surfacing zero critical gaps.  
+4. Display AI-flagged risks with mitigation actions and updated DFMEA/PFMEA linkages.  
+5. Compare manual baseline (120 hours, €12k internal cost) vs. agent output (12 hours, €1.2k).  
+6. Calculate instant ROI: €171 fee delivers €1,710+ net savings (10x multiplier) plus faster PPAP approval.  
+7. Export audit-ready package and dashboard for executive sign-off.

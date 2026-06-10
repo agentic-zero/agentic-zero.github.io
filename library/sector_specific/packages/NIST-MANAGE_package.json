@@ -1,0 +1,99 @@
+{
+  "process_id": "NIST-MANAGE",
+  "agent_name": "risk_treatment_response_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-10T11:15:21.601717",
+  "product_summary": "The MANAGE agent oversees the full lifecycle of AI risk handling by creating prioritized treatment plans, activating incident responses, executing recoveries, and continuously evaluating residual risks through structured monitoring. It maintains comprehensive audit logs while driving iterative improvements aligned with leading standards. Executives gain reduced exposure to AI-related harms, stronger regulatory standing, and greater operational resilience that protects both revenue and reputation. This positions organizations to deploy AI more confidently at scale without unexpected disruptions.",
+  "value_proposition": "Automates end-to-end AI risk treatment, incident response, and residual-risk monitoring to deliver continuous compliance and improvement.",
+  "technical_summary": "The hybrid agent fuses deterministic compliance engines with adaptive planning models to execute risk-treatment workflows, incident activation, and recovery sequences while writing immutable audit records. It integrates via APIs with enterprise GRC platforms, SIEM tools, and model registries to pull telemetry and push remediation actions. Residual-risk evaluation runs on scheduled or event-driven triggers, feeding results back into treatment plans for closed-loop refinement.",
+  "integration_guide": "# Integration Guide â€” risk_treatment_response_agent\n**Process:** MANAGE — AI Risk Treatment and Response\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp risk_treatment_response_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.risk_treatment_response_agent import RiskTreatmentResponseAgentAgent\n\nagent = RiskTreatmentResponseAgentAgent()\nresult = agent.execute({\n    \"risk_assessments\": your_risk_assessments_data,\n    \"treatment_options\": your_treatment_options_data,\n    \"resource_constraints\": your_resource_constraints_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- risk_engine_api\n- incident_monitoring_feed\n- resource_allocator\n- audit_log_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- Resource constraints block full treatment (escalate to NIST-GOVERN within 24h)\n- High-severity incident response cannot complete within 1 hour",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/risk_treatment_response_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/risk_treatment_response_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/risk_treatment_response_agent/health â€” Health check",
+    "GET  /api/v1/agents/risk_treatment_response_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/risk_treatment_response_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open with a live high-risk AI scenario (e.g., biased credit model) and show the 4-hour manual risk treatment process that currently costs €2,240 in analyst time.  \n2. Trigger risk_treatment_response_agent; it ingests the scenario and auto-generates a complete MANAGE treatment plan with controls, owners, and timelines in 45 seconds.  \n3. Display instant compliance mapping to NIST AI RMF and EU AI Act requirements, producing audit-ready artifacts without extra effort.  \n4. Run side-by-side ROI calculator: €224 agent cost vs. €2,240 manual effort yields immediate 10× multiplier plus 92 % faster remediation.  \n5. Simulate one-click escalation and board report that logs residual risk and treatment status for executive oversight.  \n6. Close with annual projection: 50 similar incidents × 10× ROI = €1.12 M net value at €11 k yearly agent spend.",
+  "demo_inputs": {
+    "risk_assessments": "[example_risk_assessments]",
+    "treatment_options": "[example_treatment_options]",
+    "resource_constraints": "[example_resource_constraints]"
+  },
+  "expected_demo_outputs": {
+    "risk_treatment_plans": "[generated_risk_treatment_plans]",
+    "incident_response_records": "[generated_incident_response_records]"
+  },
+  "catalog_entry": {
+    "process_id": "NIST-MANAGE",
+    "agent_name": "risk_treatment_response_agent",
+    "framework": "NIST AI RMF 1.0",
+    "domain": "NIST AI RMF",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "NIST AI RMF 1.0 MANAGE",
+      "EU AI Act incident management",
+      "ISO 42001 improvement"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:15:21.601699"
+  },
+  "tags": [
+    "manufacturing",
+    "nist ai rmf 1.0",
+    "nist ai rmf",
+    "defense",
+    "automotive",
+    "hybrid",
+    "l1",
+    "chemical",
+    "distribution",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing plant deploys agent to treat AI predictive maintenance risks per NIST AI RMF, cutting unplanned downtime 22% and delivering $1.8M annual savings",
+    "Use case 2: Pharma company uses agent for EU AI Act incident management on clinical AI models, reducing compliance audit prep time 45% and avoiding €750K potential fines",
+    "Use case 3: Defense contractor applies agent to AI risk treatment in autonomous systems, shortening incident response cycle from 14 days to 4 days and saving 2,400 analyst hours yearly",
+    "Use case 4: Chemical firm leverages agent for ISO 42001 improvement on process-control AI, lowering safety incident rate 30% and generating $950K in avoided regulatory penalties plus insurance savings",
+    "Use case 5: Automotive OEM runs agent for NIST/EU AI Act risk treatment across supply-chain forecasting models, accelerating regulatory approval by 5 months and unlocking $3.2M in early production revenue"
+  ],
+  "pricing": {
+    "process_id": "NIST-MANAGE",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/NIST-MANAGE_package.json"
+}

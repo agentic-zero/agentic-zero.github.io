@@ -1,0 +1,13 @@
+1. Open with the compliance pain point: "Manual EU AI Act Art 11 documentation costs teams 18-25 hours per high-risk system. At €120/hr fully loaded, that's €2,880 per cycle—before audit risk."
+
+2. Launch the agent live: "Watch eu_ai_act_art11_documentation_agent ingest model cards, risk assessments, and test logs in one click."
+
+3. Run automated generation: "In 90 seconds it produces a complete, audit-ready technical documentation package mapped to every Art 11 requirement."
+
+4. Display compliance output: "Review the structured, version-controlled document with traceability links, bias metrics, and human oversight logs—ready for submission."
+
+5. Quantify ROI on screen: "This €224 agent replaces €2,240 of manual effort per use, delivering the stated 10x multiplier and payback on first deployment."
+
+6. Show scaling impact: "For 12 systems per year the annual saving exceeds €24k while eliminating non-compliance exposure."
+
+7. Close with next step: "Approve pilot on one high-risk system this week; full rollout decision in 14 days."

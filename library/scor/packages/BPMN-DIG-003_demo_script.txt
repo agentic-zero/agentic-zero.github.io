@@ -1,0 +1,7 @@
+1. Open with executive pain: "Manual digital twin updates cost teams 40+ hours/month and risk compliance gaps—today we'll show how AI automation fixes this at €699 with 8x ROI."
+2. Trigger live sync: Launch digital_twin_synchronizer on a sample factory asset; display before/after twin states in under 60 seconds.
+3. Show AI automation: Highlight zero-code rule engine detecting and resolving 12 discrepancies automatically while logging every change.
+4. Demonstrate compliance value: Run instant audit report proving GDPR/ISO alignment via immutable sync history and policy checks.
+5. Quantify time savings: Reveal dashboard metrics—35 hours saved per cycle—equating to €5,600 monthly operational reduction.
+6. Calculate ROI: At €699 price, project 8.0x multiplier via 6-month payback and €48k annual net value for a mid-size deployment.
+7. Close with next step: "Ready for pilot? One-click deployment starts tomorrow."

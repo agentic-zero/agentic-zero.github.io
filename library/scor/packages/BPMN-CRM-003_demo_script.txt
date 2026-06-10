@@ -1,0 +1,7 @@
+1. Open dashboard and filter 50 expiring contracts, highlighting €420k at-risk revenue flagged by the agent in under 30 seconds.  
+2. Trigger AI risk-scoring on one contract; display churn probability, suggested offer, and built-in compliance checks against GDPR and renewal clauses.  
+3. Auto-generate and send personalized renewal proposal with e-signature and audit log; confirm one-click approval path.  
+4. Simulate customer reply; show agent handling objection, applying retention discount within policy limits, and closing renewal.  
+5. Reveal post-renewal dashboard: €52k revenue retained from this single contract and cumulative €5.6M across portfolio.  
+6. Open compliance module to display immutable audit trail, consent records, and regulatory export ready for legal review.  
+7. Summarize ROI: €699 annual cost delivers 8.0x return via retained revenue and 14 hours/week saved, equating to €5.59M net value.

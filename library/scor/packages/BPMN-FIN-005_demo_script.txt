@@ -1,0 +1,7 @@
+1. Open trade_finance_lc_orchestrator with a €2.4M import LC request; display manual baseline (14 days, 47 compliance checks, €9,200 internal cost).  
+2. Upload shipping docs and invoice; run AI extraction and auto-populate LC fields in 90 seconds.  
+3. Trigger real-time compliance engine: flag two sanctions hits and one Incoterm mismatch, then auto-remediate with audit trail.  
+4. Generate optimized LC draft, route for digital sign-off, and simulate bank submission—complete in under 4 minutes.  
+5. Display live ROI dashboard: 11.5 hours saved per transaction × 8.0x multiplier = €5,984 net value vs €748 price.  
+6. Export full regulatory report (AML, KYC, UCP 600) for executive and auditor review.  
+7. Close with one-click deployment summary showing payback in 11 transactions.

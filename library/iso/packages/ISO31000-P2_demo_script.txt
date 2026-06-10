@@ -1,0 +1,6 @@
+1. Open demo dashboard and confirm ISO 31000 alignment: display real-time mapping of all assessment steps to the standard’s principles, framework, and process clauses.  
+2. Ingest sample enterprise risk data (CSV upload, 30 seconds); agent auto-classifies risks, identifies controls, and scores likelihood/impact per ISO 31000 criteria.  
+3. Trigger AI assessment; show live generation of risk register, heat map, and treatment plan—complete in <90 seconds versus 4–6 hours manual effort.  
+4. Run one-click compliance audit: produce gap report and audit-ready evidence pack, highlighting traceability to ISO 31000 requirements.  
+5. Display ROI panel: €224 price yields 10.0x multiplier via 12 hours saved per assessment (€2,240 internal cost avoidance), validated on-screen with live calculator.  
+6. Export signed PDF report and schedule automated quarterly re-assessment; close with executive summary slide reiterating 10.0x ROI and full ISO 31000 compliance.

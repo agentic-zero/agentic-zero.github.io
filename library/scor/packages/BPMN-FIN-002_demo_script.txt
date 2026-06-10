@@ -1,0 +1,7 @@
+1. Open live dashboard showing 247 pending invoices and €1.2M monthly AP volume; highlight manual bottlenecks and 14-day average cycle time.  
+2. Trigger agent on a sample invoice batch: demonstrate AI extraction, 3-way matching, and policy checks in under 45 seconds per document.  
+3. Route one invoice through automated approval workflow, surfacing real-time compliance flags (VAT, duplicate detection, segregation of duties).  
+4. Display post-processing metrics: cycle time reduced to 2 days, 94% straight-through processing, and €47k monthly error avoidance.  
+5. Pull ROI panel: calculate 8.0x multiplier on €699 price, projecting €5,592 net value in first month and payback in <4 days.  
+6. Export compliance audit trail for the batch, confirming full traceability and regulatory alignment for executive sign-off.  
+7. Close with one-click scaling toggle to full AP volume and summary of projected annual savings.

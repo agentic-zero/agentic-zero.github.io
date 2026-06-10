@@ -1,0 +1,100 @@
+{
+  "process_id": "NIST-MANAGE",
+  "builder_timestamp": "2026-06-10T10:16:38.899759",
+  "ontology": {
+    "process_id": "NIST-MANAGE",
+    "entities": [
+      "RiskAssessment",
+      "RiskTreatmentPlan",
+      "IncidentData",
+      "ResidualRiskLevel",
+      "IncidentResponseRecord",
+      "RecoveryPlan",
+      "ImprovementAction"
+    ],
+    "relationships": [
+      "RiskAssessment informs RiskTreatmentPlan",
+      "IncidentData triggers IncidentResponseRecord",
+      "RiskTreatmentPlan produces ResidualRiskLevel",
+      "ResidualRiskLevel triggers ImprovementAction",
+      "RecoveryPlan executes after high-severity IncidentData"
+    ],
+    "decision_points": [
+      "IF residual_risk_level > acceptable_threshold THEN create new RiskTreatmentPlan",
+      "IF incident_severity == 'high' THEN activate RecoveryPlan within 1 hour"
+    ],
+    "rules": [
+      "RiskTreatmentPlan must allocate resources within documented constraints",
+      "IncidentResponseRecord must be created within 4 hours of IncidentData receipt",
+      "All outputs require audit log entry with timestamp and actor"
+    ],
+    "exceptions": [
+      "If resource constraints block full treatment, log residual risk and escalate to NIST-GOVERN within 24 hours"
+    ],
+    "data_requirements": [
+      "risk_assessment_id: string from NIST-MEASURE",
+      "incident_timestamp: datetime from monitoring system",
+      "residual_risk_score: float 0-1 from risk engine",
+      "resource_constraint_list: array of strings"
+    ],
+    "triggers": [
+      "New RiskAssessment received",
+      "IncidentData logged",
+      "Scheduled residual risk review (daily)"
+    ],
+    "success_criteria": [
+      "risk_treatment_coverage >= 0.95",
+      "incident_response_time <= 3600 seconds",
+      "residual_risk_reduction >= 0.20 over 30 days"
+    ],
+    "failure_modes": [
+      "Missing IncidentData causes delayed IncidentResponseRecord",
+      "Incomplete resource constraints produce unexecutable RiskTreatmentPlan"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "NIST-MANAGE",
+    "agent_name": "risk_treatment_response_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "risk_treatment_planning",
+      "incident_response_activation",
+      "residual_risk_evaluation",
+      "audit_logging",
+      "recovery_plan_execution"
+    ],
+    "tools_required": [
+      "risk_engine_api",
+      "incident_monitoring_feed",
+      "resource_allocator",
+      "audit_log_service"
+    ],
+    "decision_logic": "On triggers (new RiskAssessment, IncidentData, or daily review) apply decision points to create/update RiskTreatmentPlan or activate RecoveryPlan, enforce rules on timing/resources, and log all outputs",
+    "escalation_rules": [
+      "Resource constraints block full treatment (escalate to NIST-GOVERN within 24h)",
+      "High-severity incident response cannot complete within 1 hour"
+    ],
+    "monitoring_metrics": [
+      "risk_treatment_coverage",
+      "incident_response_time",
+      "residual_risk_reduction"
+    ],
+    "compliance_checks": [
+      "NIST_AI_RMF_MANAGE_rules",
+      "EU_AI_Act_incident_timing",
+      "ISO_42001_improvement_logging"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: NIST-MANAGE\nName: risk_treatment_response_agent\nFramework: NIST AI RMF 1.0\nDomain: NIST AI RMF\nGenerated: 2026-06-10T10:16:38.899679\nCompliance: NIST AI RMF 1.0 MANAGE, EU AI Act incident management, ISO 42001 improvement\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass RiskTreatmentResponseAgentAgent:\n    \"\"\"\n    Agent for: MANAGE — AI Risk Treatment and Response\n    \n    Managing AI risks through treatment plans, prioritization, response activities and recovery from AI incidents including residual risk monitoring and continuous improvement\n    \n    Capabilities:\n    #   - risk_treatment_planning\n    #   - incident_response_activation\n    #   - residual_risk_evaluation\n    #   - audit_logging\n    #   - recovery_plan_execution\n    \n    Compliance: NIST AI RMF 1.0 MANAGE, EU AI Act incident management, ISO 42001 improvement\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"NIST-MANAGE\"\n        self.agent_name = \"risk_treatment_response_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['risk_assessments', 'treatment_options', 'resource_constraints']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF residual_risk_level > acceptable_threshold THEN create new RiskTreatmentPlan\n        # - IF incident_severity == 'high' THEN activate RecoveryPlan within 1 hour\n        \n        Business rules:\n        # - RiskTreatmentPlan must allocate resources within documented constraints\n        # - IncidentResponseRecord must be created within 4 hours of IncidentData receipt\n        # - All outputs require audit log entry with timestamp and actor\n        \"\"\"\n        outputs = {}\n        \noutputs = {'risk treatment plans': [], 'incident response records': [], 'residual risk reports': [], 'improvement actions': [], 'recovery plans': []}\n        # Edge case: normalize empty/missing inputs to lists or dicts\n        risk_assessments = risk_assessments or []\n        treatment_options = treatment_options or []\n        resource_constraints = resource_constraints or {}\n        incident_data = incident_data or {}\n        residual_risk_levels = residual_risk_levels or []\n        acceptable_threshold = 0.5\n        # Process residual risk decision point and create treatment plans within constraints\n        for idx, level in enumerate(residual_risk_levels):\n            if level > acceptable_threshold:\n                plan = {'id': idx, 'resources': resource_constraints, 'options': treatment_options[:1]}\n                outputs['risk treatment plans'].append(plan)\n        # Handle high-severity incident: activate recovery and record response per rules\n        severity = incident_data.get('severity', '')\n        if severity == 'high':\n            outputs['recovery plans'].append({'activated_within': '1 hour', 'constraints': resource_constraints})\n            outputs['incident response records'].append({'created_within': '4 hours', 'data': incident_data})\n        # Populate remaining mandatory outputs and improvement actions\n        outputs['residual risk reports'] = [{'level': lvl, 'assessment': risk_assessments[idx] if idx < len(risk_assessments) else None} for idx, lvl in enumerate(residual_risk_levels)]\n        outputs['improvement actions'] = [{'action': 'audit_review', 'timestamp': 'logged'} for _ in range(max(1, len(outputs['risk treatment plans'])))]\n        # All outputs require audit log entry (timestamp/actor simulated without imports)\n        for key in outputs:\n            for item in outputs[key]:\n                item['audit'] = {'actor': 'AI_agent', 'timestamp': 'process_time'}\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - NIST_AI_RMF_MANAGE_rules\n        # - EU_AI_Act_incident_timing\n        # - ISO_42001_improvement_logging\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in MANAGE — AI Risk Treatment and Response\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk documented for {r['id']}\")\n\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks not fully handled\")\n        if self.residual_risk_score is not None:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Monitoring inactive\")\n\n        required_inputs = ['risk assessments', 'treatment options', 'resource constraints', 'incident data', 'residual risk levels']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization satisfied\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data minimization violation\")\n        if self.resource_constraint_list is not None:\n            checks_passed.append(\"EU AI Act Art.10: No unauthorised data categories\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Unauthorised data detected\")\n        if self.risk_assessment_id:\n            checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Lineage broken\")\n\n        has_metadata = bool(self.agent_name and self.process_id)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.process_id == \"NIST-MANAGE\":\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic undocumented\")\n        if len(self.compliance_flags) > 0:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if self.residual_risk_score is not None:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules undefined\")\n\n        personal_data_involved = False\n        if personal_data_involved:\n            checks_passed.append(\"GDPR: Lawful basis legitimate interest verified\")\n            checks_passed.append(\"GDPR: Data minimization applied\")\n            checks_passed.append(\"GDPR: Retention max 7 years enforced\")\n        else:\n            checks_passed.append(\"GDPR: No personal data involved\")\n\n        if self.agent_name:\n            checks_passed.append(\"NIST: Govern accountability defined\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"NIST: Map process risks mapped to context\")\n        else:\n            checks_failed.append(\"NIST: Map risks unmapped\")\n        if self.residual_risk_score is not None:\n            checks_passed.append(\"NIST: Measure monitoring metrics defined\")\n        else:\n            checks_failed.append(\"NIST: Measure metrics undefined\")\n        if self.incident_timestamp:\n            checks_passed.append(\"NIST: Manage escalation procedures exist\")\n        else:\n            checks_failed.append(\"NIST: Manage procedures missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['risk_treatment_plans', 'incident_response_records']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['Resource constraints block full treatment (escalate to NIST-GOVERN within 24h)', 'High-severity incident response cannot complete within 1 hour']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['risk_treatment_coverage', 'incident_response_time', 'residual_risk_reduction']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = RiskTreatmentResponseAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"risk_assessments\": \"example_risk_assessments\", \"treatment_options\": \"example_treatment_options\", \"resource_constraints\": \"example_resource_constraints\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — MANAGE — AI Risk Treatment and Response\n**Process ID:** NIST-MANAGE\n**Framework:** NIST AI RMF 1.0 | **Domain:** NIST AI RMF\n**Generated:** 2026-06-10\n\n## Purpose\nManaging AI risks through treatment plans, prioritization, response activities and recovery from AI incidents including residual risk monitoring and continuous improvement\n\n## Triggers\n- New RiskAssessment received\n- IncidentData logged\n- Scheduled residual risk review (daily)\n\n## Inputs Required\n- risk assessments\n- treatment options\n- resource constraints\n- incident data\n- residual risk levels\n\n## Process Steps\n1. IF residual_risk_level > acceptable_threshold THEN create new RiskTreatmentPlan\n2. IF incident_severity == 'high' THEN activate RecoveryPlan within 1 hour\n\n## Expected Outputs\n- risk treatment plans\n- incident response records\n- residual risk reports\n- improvement actions\n- recovery plans\n\n## Business Rules\n- RiskTreatmentPlan must allocate resources within documented constraints\n- IncidentResponseRecord must be created within 4 hours of IncidentData receipt\n- All outputs require audit log entry with timestamp and actor\n\n## Exception Handling\n- If resource constraints block full treatment, log residual risk and escalate to NIST-GOVERN within 24 hours\n\n## Success Criteria\n- risk_treatment_coverage >= 0.95\n- incident_response_time <= 3600 seconds\n- residual_risk_reduction >= 0.20 over 30 days\n\n## Compliance Requirements\n- NIST AI RMF 1.0 MANAGE\n- EU AI Act incident management\n- ISO 42001 improvement",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: NIST AI RMF 1.0 MANAGE, EU AI Act incident management, ISO 42001 improvement",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

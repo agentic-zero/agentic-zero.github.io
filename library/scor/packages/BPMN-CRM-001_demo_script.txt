@@ -1,0 +1,6 @@
+1. Load sample complaint into complaint_lifecycle_orchestrator; AI auto-classifies severity, extracts entities, and flags regulatory triggers in <30 seconds.  
+2. Run automated compliance scan: system validates GDPR/CCPA data handling, generates immutable audit log, and confirms SLA alignment.  
+3. Trigger AI-orchestrated workflow: assigns tasks, drafts response templates, and routes to agents while enforcing policy guardrails.  
+4. Execute resolution and closure: capture outcome, update records, and produce exportable compliance report for auditors.  
+5. Open ROI dashboard: display live metrics—time saved per complaint, reduced manual effort, and projected annual savings at 8.0x multiplier on €699 license.  
+6. Summarize: highlight €5,592+ net annual value, zero compliance incidents, and one-click scaling for executive review.

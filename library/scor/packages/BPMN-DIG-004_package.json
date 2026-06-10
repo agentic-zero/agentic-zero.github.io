@@ -1,0 +1,95 @@
+{
+  "process_id": "BPMN-DIG-004",
+  "agent_name": "iot_event_management_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T17:24:48.330280",
+  "product_summary": "The IoT Event Management & Response agent provides real-time detection and handling of sensor-triggered events in industrial and connected environments. It classifies events, matches them against predefined rules, and executes responses that range from fully autonomous actions to human-assisted interventions while maintaining full compliance logging. This hybrid approach reduces incident response times, minimizes operational disruptions, and ensures adherence to strict regulatory frameworks such as the EU AI Act and IEC 62443. Executives gain a scalable system that lowers risk exposure and operational costs across IoT deployments.",
+  "value_proposition": "Automates end-to-end IoT event classification and rule-based response to deliver compliant, verifiable outcomes with minimal manual oversight.",
+  "technical_summary": "The hybrid agent architecture ingests real-time sensor streams for immediate event classification, applies rule-based logic to trigger autonomous or assisted actions, and closes the loop with resolution verification plus compliance logging. It integrates via standard IoT protocols and data pipelines while embedding controls for GDPR data handling, IEC 62443 cybersecurity, and safety standards. Deployment supports both edge and cloud execution with audit-ready outputs for regulated environments.",
+  "integration_guide": "# Integration Guide — iot_event_management_agent\n**Process:** IoT Event Management & Response\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iot_event_management_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iot_event_management_agent import IotEventManagementAgentAgent\n\nagent = IotEventManagementAgentAgent()\nresult = agent.execute({\n    \"iot_sensor_events\": your_iot_sensor_events_data,\n    \"business_rules\": your_business_rules_data,\n    \"threshold_definitions\": your_threshold_definitions_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- IoTPlatform_MQTT_OPCUA\n- AIEngine\n- BusinessRuleStore\n- ActionExecutor\n- NotificationService\n\n## Escalation\nThe agent automatically escalates to human when:\n- CriticalEvent == true\n- AutoResponseAvailable == false or ActionSuccessful == false after retry\n- Sensor timeout > 30s\n- HumanRequired == true or compliance violation detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/iot_event_management_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/iot_event_management_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/iot_event_management_agent/health — Health check",
+    "GET  /api/v1/agents/iot_event_management_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/iot_event_management_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a live dashboard showing 47 unresolved IoT events; highlight manual handling costs (€42k/month) and compliance gaps (GDPR/SOC2 audit flags).  \n2. Trigger the agent on a critical temperature anomaly; demonstrate instant classification, risk scoring, and automated containment actions in <8 seconds.  \n3. Show one-click compliance logging: immutable audit trail, automated regulatory report generation, and evidence package ready for export.  \n4. Run ROI calculator live: input current incident volume; display €5,592 monthly savings (8.0x multiplier) versus €699 subscription, with payback in 4 days.  \n5. Simulate a second multi-device event; agent auto-orchestrates cross-system response and updates compliance status in real time.  \n6. Close with side-by-side metrics: 94% reduction in mean response time, zero compliance violations, and projected annual value of €67k.",
+  "demo_inputs": {
+    "iot_sensor_events": "[example_iot_sensor_events]",
+    "business_rules": "[example_business_rules]",
+    "threshold_definitions": "[example_threshold_definitions]"
+  },
+  "expected_demo_outputs": {
+    "automated_response_actions": "[generated_automated_response_actions]",
+    "alerts": "[generated_alerts]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-DIG-004",
+    "agent_name": "iot_event_management_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "food",
+      "energy"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act autonomous systems",
+      "GDPR IoT data",
+      "cybersecurity IEC 62443",
+      "safety standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:24:48.330263"
+  },
+  "tags": [
+    "",
+    "manufacturing",
+    "chemical",
+    "bpmn",
+    "hybrid",
+    "pharma",
+    "energy",
+    "food"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing CNC vibration anomaly triggers agent-driven safe shutdown and work-order creation, cutting unplanned downtime 40% and saving $500K/year while meeting IEC 62443.",
+    "Use case 2: Pharma cleanroom particle breach auto-adjusts HVAC and creates GDPR-compliant audit log, preventing $2M batch recall and EU AI Act regulatory fines.",
+    "Use case 3: Chemical reactor pressure spike initiates agent-executed emergency venting and safety-team alert, reducing incident response time 70% and avoiding $1.5M safety violation costs.",
+    "Use case 4: Food cold-chain temperature excursion reroutes shipments and notifies authorities, lowering spoilage 25% and eliminating $800K annual compliance penalties.",
+    "Use case 5: Energy turbine fault event triggers agent load-balancing and predictive maintenance ticket, boosting uptime 15% and delivering $3M annual avoided-outage revenue."
+  ],
+  "pricing": {
+    "process_id": "BPMN-DIG-004",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-DIG-004_package.json"
+}

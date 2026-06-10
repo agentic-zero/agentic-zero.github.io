@@ -1,0 +1,6 @@
+1. Open dashboard: "This €748 agent automates the full month-end close; watch it deliver an 8x ROI by cutting 40+ manual hours to under 2."
+2. Trigger orchestration: Launch Month-End Financial Close; AI pulls trial balances and flags exceptions in real time.
+3. Show automated reconciliations: "All 200+ accounts reconciled with audit trails—zero manual journals, full SOX traceability."
+4. Run compliance scan: Built-in policy engine validates IFRS/GAAP rules and produces signed control evidence in one click.
+5. Generate CFO report: Export board-ready package with variance analysis and exception log—ready for sign-off in minutes.
+6. Display ROI panel: "At 8.0x multiplier, payback occurs in 11 days; annual savings exceed €48k per entity."

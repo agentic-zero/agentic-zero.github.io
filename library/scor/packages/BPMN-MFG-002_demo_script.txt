@@ -1,0 +1,6 @@
+1. Open with a live pain-point: Load a sample overdue work order and show 45 minutes of manual data entry, risk of missed safety checks, and €2,400 in potential compliance fines.  
+2. Trigger the agent: Speak or paste a technician note; demonstrate instant AI-generated work order with auto-filled parts, labor, and regulatory references.  
+3. Run compliance engine: Show real-time validation against EASA/OSHA rules, automatic permit-to-work attachment, and immutable audit trail created in <10 seconds.  
+4. Execute automated workflow: One-click assignment to certified technician, dynamic scheduling that respects shift rules and reduces downtime by 35 %.  
+5. Display live ROI dashboard: Pull actual metrics—labor hours saved, avoided fines, and asset uptime gain—projecting €5,592 annual return per €699 license (8.0x multiplier).  
+6. Close with export: Generate board-ready PDF report containing cost breakdown, compliance certificate, and next-quarter savings forecast for immediate executive review.

@@ -1,0 +1,7 @@
+1. Open with executive problem: "Manual demand forecasting costs €250K+ annually in errors and delays—our agent automates it end-to-end for €699."
+2. Ingest live POS, market, and weather signals while displaying real-time GDPR/CCPA compliance checks and immutable audit logs.
+3. Run AI demand-sensing model; show 40% reduction in forecast error versus legacy process within 60 seconds.
+4. Generate 12-week rolling forecast with confidence bands and auto-flagged risk scenarios for finance review.
+5. Display ROI dashboard: €5.6M projected annual savings (8.0x multiplier) from lower inventory, fewer stock-outs, and reduced planner hours.
+6. Export signed compliance report and one-click integration to ERP, confirming regulatory readiness for board audit.
+7. Close: "Ready to pilot this week—€699 investment, first positive ROI visible in 30 days."

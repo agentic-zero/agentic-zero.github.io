@@ -1,0 +1,6 @@
+1. Open with pain point: Display a sample manual submission folder (200+ pages, 3 compliance gaps flagged) and note 45 hours of prep time plus €12k audit risk exposure.  
+2. Launch regulatory_submission_automation_agent: Input the same dossier; agent auto-classifies documents, extracts data, and generates a submission package in <4 minutes.  
+3. Run real-time compliance scan: Agent highlights and auto-remediates 3 gaps with regulatory citations, producing a signed audit trail for immediate review.  
+4. Simulate submission and tracking: One-click filing to mock EMA/FDA portal; live dashboard shows status, deadlines, and version control.  
+5. Quantify ROI on screen: Time saved (41 hrs @ €150/hr internal rate) + avoided penalties = €8,150 net benefit per submission; multiply by volume to show 8.0x return on €699 price.  
+6. Close with executive summary: “€699 buys 8x ROI and zero compliance surprises—ready for pilot in 48 hours.”

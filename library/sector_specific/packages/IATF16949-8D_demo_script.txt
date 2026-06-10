@@ -1,0 +1,7 @@
+1. Open with a live IATF nonconformance ticket; state the €171 license cost and project 10x ROI via 20+ hours saved per 8D cycle.
+2. Paste the defect description into iatf_8d_autonomous_solver; trigger autonomous generation of D1–D3 (team, problem definition, containment).
+3. Display AI-proposed D4–D5 outputs: Ishikawa diagram, verified root cause, and corrective actions mapped to IATF clauses 10.2 & 8.7.
+4. Run one-click compliance audit; highlight auto-generated evidence pack with timestamps, approvals, and audit-trail export ready for IATF certification.
+5. Simulate D6–D8 closure; quantify ROI dashboard showing €1,710+ value created per incident through reduced scrap and faster customer response.
+6. Export the full 8D report and schedule; confirm zero manual rework and immediate upload to customer portal.
+7. Close with 60-second recap: €171 investment, 10x multiplier proven, full IATF traceability delivered in under 8 minutes.

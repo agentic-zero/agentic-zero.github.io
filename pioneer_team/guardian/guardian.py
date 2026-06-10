@@ -556,52 +556,27 @@ def generate_certificate(
 
 # ── ISO 42001 CHECK (LLM-assisted) ────────────────────────────────────────────
 def check_iso_42001(process: dict, builder_result: dict) -> ISO42001Check:
-    """ISO/IEC 42001 check — LLM assisted for depth. v1.2 — includes compliance code."""
+    """ISO/IEC 42001 check — LLM assisted for depth"""
     try:
-        agent_code = builder_result.get("agent_code", "")
-        compliance_section = ""
-        if "_compliance_checks" in agent_code:
-            start = agent_code.find("def _compliance_checks")
-            end = agent_code.find("\n    def ", start + 1)
-            compliance_section = agent_code[start : end if end != -1 else start + 3000][
-                :2000
-            ]
+        prompt = f"""You are an ISO/IEC 42001 auditor reviewing an AI agent.
 
-        lines = [
-            "You are an ISO/IEC 42001 auditor reviewing an AI agent.",
-            "",
-            f"AGENT PROCESS: {process.get('name')}",
-            f"PROCESS ID: {process.get('process_id')}",
-            f"DOMAIN: {process.get('domain', '')}",
-            f"AGENT TYPE: {builder_result.get('agent_spec', {}).get('agent_type', 'reactive')}",
-            f"CAPABILITIES: {builder_result.get('agent_spec', {}).get('capabilities', [])}",
-            f"ESCALATION RULES: {builder_result.get('agent_spec', {}).get('escalation_rules', [])}",
-            f"COMPLIANCE FLAGS: {process.get('compliance_flags', [])}",
-            f"MONITORING METRICS: {builder_result.get('agent_spec', {}).get('monitoring_metrics', [])}",
-            "",
-            "IMPLEMENTED COMPLIANCE LOGIC:",
-            compliance_section if compliance_section else "Not available",
-            "",
-            "Evaluate against ISO/IEC 42001 clauses 4-10:",
-            "- Clause 4: Context — AI risks identified for this process",
-            "- Clause 5: Leadership — accountability and oversight defined",
-            "- Clause 6: Planning — risk assessment with likelihood/impact scoring",
-            "- Clause 7: Support — monitoring metrics and competence present",
-            "- Clause 8: Operation — compliance checks as executable logic",
-            "- Clause 9: Performance — KPIs and monitoring defined",
-            "- Clause 10: Improvement — escalation and remediation documented",
-            "",
-            "SCORING RULE: If compliance logic shows executable code with loops,",
-            "conditionals, and likelihood*impact scoring -> score >= 0.75.",
-            "Pure static string appends without conditionals -> score <= 0.45.",
-            "",
-            'Return ONLY valid JSON: {"compliant": true/false, "score": 0.0-1.0,',
-            '"gaps": ["gap1"], "recommendations": ["rec1"]}',
-            "",
-            "Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant minor gaps,",
-            "0.5-0.7 partial compliance, <0.5 significant gaps",
-        ]
-        prompt = "\n".join(lines)
+AGENT PROCESS: {process.get("name")}
+AGENT TYPE: {builder_result.get("agent_spec", {}).get("agent_type", "reactive")}
+CAPABILITIES: {builder_result.get("agent_spec", {}).get("capabilities", [])}
+ESCALATION RULES: {builder_result.get("agent_spec", {}).get("escalation_rules", [])}
+COMPLIANCE FLAGS: {process.get("compliance_flags", [])}
+
+Evaluate against ISO/IEC 42001 AI Management Systems standard.
+Return ONLY a JSON object:
+{{
+  "compliant": true/false,
+  "score": 0.0-1.0,
+  "gaps": ["gap1", "gap2"],
+  "recommendations": ["rec1", "rec2"]
+}}
+
+Score guide: 0.9+ fully compliant, 0.7-0.9 mostly compliant with minor gaps, 
+0.5-0.7 partial compliance, <0.5 significant gaps"""
 
         response = call_llm(prompt, expect_json=True)
         data = json.loads(response)
@@ -626,7 +601,7 @@ def check_iso_42001(process: dict, builder_result: dict) -> ISO42001Check:
 # ── LIBRARY LOADER / WRITER ───────────────────────────────────────────────────
 def load_package(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         pkg_file = library_path / folder / "packages" / f"{process_id}_package.json"
         if pkg_file.exists():
             with open(pkg_file, "r", encoding="utf-8") as f:
@@ -637,7 +612,7 @@ def load_package(process_id: str) -> Optional[dict]:
 
 def load_builder_result(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         result_file = library_path / folder / "agents" / f"{process_id}_builder.json"
         if result_file.exists():
             with open(result_file, "r", encoding="utf-8") as f:
@@ -647,8 +622,12 @@ def load_builder_result(process_id: str) -> Optional[dict]:
 
 def load_process(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         proc_file = library_path / folder / "processes" / f"{process_id}.json"
+        if proc_file.exists():
+            with open(proc_file, encoding="utf-8") as f:
+                return json.load(f)
+        proc_file = library_path / folder / f"{process_id}.json"
         if proc_file.exists():
             with open(proc_file, "r", encoding="utf-8") as f:
                 return json.load(f)

@@ -1,0 +1,7 @@
+1. Open NPI dashboard and load a sample product brief; highlight €748 price vs. projected 8.0x ROI from reduced cycle time and avoided compliance penalties.  
+2. Trigger stage-gate orchestration; AI auto-advances from Concept to Feasibility, surfacing only compliant tasks.  
+3. Run automated compliance scan across regulatory checklists; show real-time flagging and audit-trail generation.  
+4. Simulate cross-functional handoff; AI assigns owners, deadlines, and risk scores, cutting manual coordination by 70 %.  
+5. Display live ROI dashboard: time saved, cost avoided, and compliance score improvement mapped to 8.0x multiplier.  
+6. Export signed stage-gate report with full traceability; confirm one-click readiness for executive review.  
+7. Close with summary: €748 investment delivers 8.0x return via faster, audit-ready NPI launches.

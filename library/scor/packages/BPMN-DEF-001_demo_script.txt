@@ -1,0 +1,6 @@
+1. Open dashboard showing €42k annual compliance risk from manual serialization errors and audit gaps.  
+2. Paste sample batch of 1,200 controlled items; trigger agent to auto-assign GS1-compliant serials and validate against regulatory rules in <30 seconds.  
+3. Display real-time audit trail and exception flagging, proving zero-deviation traceability for inspectors.  
+4. Run ROI calculator live: €748 price vs. 47 hours/month saved + avoided fines = 8.0x multiplier within 6 weeks.  
+5. Export signed compliance report and serialized manifest for immediate ERP integration.  
+6. Summarize risk reduction and invite pilot on their next production run.

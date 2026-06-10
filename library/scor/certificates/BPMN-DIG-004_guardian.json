@@ -1,0 +1,87 @@
+{
+  "process_id": "BPMN-DIG-004",
+  "guardian_timestamp": "2026-06-09T17:27:20.355471",
+  "certificate": {
+    "certificate_id": "AZ-CERT-BPMN-DIG-004-20260609",
+    "process_id": "BPMN-DIG-004",
+    "agent_name": "iot_event_management_agent",
+    "issued_at": "2026-06-09T17:27:20.355437",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-09",
+    "overall_status": "conditional",
+    "overall_score": 0.9,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.68,
+      "gaps": [
+        "Clause 5 (Leadership): no accountability, oversight roles or human responsibility definitions present",
+        "Compliance logic incomplete (for-loop over required_inputs is truncated)",
+        "Commented-out checks for IEC 62443, GDPR consent and EU AI Act high-risk audit",
+        "No explicit mapping of monitoring metrics to Clause 9 performance evaluation"
+      ],
+      "recommendations": [
+        "Add explicit leadership and human oversight declarations in the compliance function",
+        "Complete and activate all commented compliance checks",
+        "Link MONITORING METRICS to Clause 9 continual performance evaluation",
+        "Document residual-risk acceptance sign-off by accountable role"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": false,
+      "lawful_basis_defined": true,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": []
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Clause 5 (Leadership): no accountability, oversight roles or human responsibility definitions present"
+  ]
+}

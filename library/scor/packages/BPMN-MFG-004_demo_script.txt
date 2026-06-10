@@ -1,0 +1,6 @@
+1. Open with executive pain: "Manual capacity planning costs your team 40+ hours/month and risks €50k+ in compliance fines—our rough_cut_capacity_agent automates it end-to-end."
+2. Load live scenario: Import last quarter's demand data and constraints; agent instantly flags bottlenecks and generates optimized rough-cut plan in <60 seconds.
+3. Run AI optimization: Execute the agent live—show automated what-if scenarios balancing capacity, cost, and regulatory rules (GDPR, ISO audit trails enabled by default).
+4. Display compliance dashboard: Highlight auto-generated audit logs, risk scores, and sign-off workflows that reduce audit prep from days to minutes.
+5. Quantify ROI on screen: Input €699 price; agent calculates 8.0x multiplier via time saved (€5,592 net value) plus avoided fines, with exportable board-ready report.
+6. Close with next step: "One-click deploy to your ERP—pilot live in 48 hours, full ROI realized in first month."

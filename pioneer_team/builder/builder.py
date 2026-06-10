@@ -655,8 +655,13 @@ def build_sop(process: dict, ontology: dict) -> str:
 def load_process(process_id: str) -> Optional[dict]:
     """Load a specific process from library"""
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         proc_file = library_path / folder / "processes" / f"{process_id}.json"
+        if proc_file.exists():
+            with open(proc_file, encoding="utf-8") as f:
+                return json.load(f)
+        # Also check directly in folder (e.g. frameworks/)
+        proc_file = library_path / folder / f"{process_id}.json"
         if proc_file.exists():
             with open(proc_file, "r", encoding="utf-8") as f:
                 return json.load(f)

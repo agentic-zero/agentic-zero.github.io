@@ -1,0 +1,7 @@
+1. Open dashboard and load last quarter's manual monitoring log (15s): highlight 40+ hours spent on adverse event scanning and regulatory checks.
+2. Trigger post_market_monitoring_agent live scan across EUDAMED, social, and literature feeds (30s): show AI auto-tagging 127 signals with risk scores in under 2 minutes.
+3. Drill into one flagged case (60s): demonstrate instant root-cause summary, CAPA draft, and audit-ready traceability log that satisfies ISO 13485/MDR requirements.
+4. Generate compliance report (45s): export one-click PDF with full chain-of-evidence, timestamps, and sign-off fields—ready for notified-body review.
+5. Display ROI panel (60s): input €224 license fee; auto-calculate 10.0x multiplier from 38 hours saved + €18k avoided recall exposure, equaling €2,240 net value per month.
+6. Run side-by-side manual vs. agent comparison (90s): prove 94% faster detection and zero missed signals, confirming both cost and compliance gains.
+7. Close with one-sentence summary: “€224 buys 10x ROI while locking in audit-ready compliance every day.”

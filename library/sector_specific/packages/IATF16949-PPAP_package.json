@@ -1,0 +1,90 @@
+{
+  "process_id": "IATF16949-PPAP",
+  "agent_name": "ppap_automation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-10T11:19:36.914590",
+  "product_summary": "The PPAP Agent at Agentic Zero automates the full production part approval workflow to confirm that supplier processes can reliably deliver parts meeting customer specifications at required volumes. It leverages hybrid capabilities in document validation, capability analysis, package assembly, compliance checks, and exception handling to enforce standards such as IATF 16949:2016, AIAG PPAP, VDA 2, and customer-specific requirements. By replacing manual coordination with intelligent automation, the agent shortens approval lead times, lowers defect and audit risk, and strengthens supply-chain predictability for automotive manufacturers and their suppliers. Executives gain faster production ramp-up and measurable reductions in quality-related costs.",
+  "value_proposition": "Automates end-to-end PPAP submission, validation, and compliance verification to eliminate manual bottlenecks while ensuring consistent adherence to automotive quality standards.",
+  "technical_summary": "The hybrid agent architecture fuses deterministic rule engines for standards compliance with machine-learning models that perform document validation, process-capability analysis, and exception triage. It exposes standardized APIs for integration with PLM, ERP, and quality-management platforms, ingesting customer-specific requirements and outputting fully assembled PPAP packages with complete audit trails. Built-in support for IATF 16949:2016 and VDA 2 ensures traceability and interoperability across OEM and tier-supplier ecosystems.",
+  "integration_guide": "# Integration Guide â€” ppap_automation_agent\n**Process:** Production Part Approval Process (PPAP)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp ppap_automation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.ppap_automation_agent import PpapAutomationAgentAgent\n\nagent = PpapAutomationAgentAgent()\nresult = agent.execute({\n    \"engineering_drawings\": your_engineering_drawings_data,\n    \"material_certifications\": your_material_certifications_data,\n    \"dimensional_results\": your_dimensional_results_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- pdf_step_parser\n- cpk_ppk_calculator\n- pdm_connector\n- digital_signature_service\n- customer_portal_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- first-time approval failure with missing MaterialCertification or Cpk<1.33\n- approval_cycle_time>30 days\n- customer-specific vs AIAG requirement conflict",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/ppap_automation_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/ppap_automation_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/ppap_automation_agent/health â€” Health check",
+    "GET  /api/v1/agents/ppap_automation_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/ppap_automation_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open the demo dashboard and introduce ppap_automation_agent as the AI agent that fully automates PPAP document generation and submission.\n2. Load a sample new-part request; show the agent auto-populating PSW, FMEA, Control Plan, and MSA in under 60 seconds while flagging missing compliance data.\n3. Run the built-in compliance engine to display real-time IATF 16949 and customer-specific requirement checks with zero manual rework.\n4. Compare before-and-after metrics: traditional PPAP cycle of 14 days and €1,710 internal cost versus 1 day and €171 using the agent.\n5. Present the ROI dashboard confirming a 10.0x multiplier—€1,710 savings per PPAP × 10 annual submissions = €17,100 net value.\n6. Trigger one-click submission to the customer portal and archive the complete audit trail for regulatory traceability.\n7. Close with the €171 price point and immediate activation option, inviting questions on scaling across additional programs.",
+  "demo_inputs": {
+    "engineering_drawings": "[example_engineering_drawings]",
+    "material_certifications": "[example_material_certifications]",
+    "dimensional_results": "[example_dimensional_results]"
+  },
+  "expected_demo_outputs": {
+    "ppap_submission_package": "[generated_ppap_submission_package]",
+    "customer_approval": "[generated_customer_approval]"
+  },
+  "catalog_entry": {
+    "process_id": "IATF16949-PPAP",
+    "agent_name": "ppap_automation_agent",
+    "framework": "IATF 16949:2016",
+    "domain": "IATF 16949",
+    "level": "L1",
+    "sector_applicability": [
+      "automotive",
+      "automotive suppliers Tier 1/2/3"
+    ],
+    "compliance_frameworks": [
+      "IATF 16949:2016",
+      "AIAG PPAP manual",
+      "customer-specific requirements",
+      "VDA 2"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 171.35,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:19:36.914542"
+  },
+  "tags": [
+    "automotive suppliers Tier 1/2/3",
+    "iatf 16949:2016",
+    "hybrid",
+    "iatf 16949",
+    "automotive",
+    "l1"
+  ],
+  "use_cases": [
+    "Use case 1: Automating full PPAP package assembly and element validation against AIAG 4th edition + IATF 16949 for a Tier 2 supplier, cutting submission prep time from 18 days to 5 days and avoiding $420K annual OEM line-stop penalties.",
+    "Use case 2: Real-time cross-check of customer-specific requirements (CSR) matrices during PSW and dimensional results review, reducing first-submission rejection rate from 28% to 4% and saving 35 engineering hours per PPAP cycle.",
+    "Use case 3: Generating and maintaining synchronized DFMEA/PFMEA/control plan linkages for VDA 2-compliant submissions, shortening European OEM approval lead time from 42 days to 14 days and enabling $1.2M earlier production revenue.",
+    "Use case 4: Bulk validation of 200+ part numbers for a Tier 1 program launch, eliminating 92% of manual data-entry errors in capability studies and measurement system analysis, avoiding $180K in post-launch containment actions.",
+    "Use case 5: Automated evidence traceability mapping for annual PPAP re-qualification audits, reducing audit preparation effort by 75% and cutting non-conformance findings from 11 to 1, preserving preferred-supplier status and $650K annual volume."
+  ],
+  "pricing": {
+    "process_id": "IATF16949-PPAP",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 22.349999999999998,
+    "total_price_eur": 171.35,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 15% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/IATF16949-PPAP_package.json"
+}

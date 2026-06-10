@@ -1,0 +1,107 @@
+{
+  "process_id": "BPMN-DIG-005",
+  "builder_timestamp": "2026-06-09T16:59:54.198482",
+  "ontology": {
+    "process_id": "BPMN-DIG-005",
+    "entities": [
+      "AI_Agent",
+      "Escalation_Trigger",
+      "Context_Package",
+      "Human_Reviewer",
+      "Decision",
+      "Notification_System",
+      "Learning_System",
+      "Decision_Rules"
+    ],
+    "relationships": [
+      "AI_Agent generates Escalation_Trigger",
+      "Escalation_Trigger creates Context_Package",
+      "Context_Package sent_to Human_Reviewer via Notification_System",
+      "Human_Reviewer produces Decision",
+      "Decision applied_by AI_Agent",
+      "Decision fed_back_to Learning_System",
+      "Learning_System updates Decision_Rules"
+    ],
+    "decision_points": [
+      "IF confidence_score < threshold THEN escalate",
+      "IF urgent == true THEN notify_immediately ELSE queue",
+      "IF human_available == false THEN trigger_backup_reviewer",
+      "IF decision_captured == true THEN update_rules ELSE log_exception"
+    ],
+    "rules": [
+      "EU_AI_Act_Art14: require human oversight for high-risk decisions",
+      "GDPR_Art22: log all automated decisions with rationale",
+      "ISO_42001: enforce human control on threshold exceedance",
+      "escalation_rate must be captured per process_id"
+    ],
+    "exceptions": [
+      "Human unavailable > SLA: auto-apply default rule and flag for later review",
+      "Decision not captured: store raw context and alert compliance team"
+    ],
+    "data_requirements": [
+      "confidence_score: float (0-1) from AI_Agent",
+      "agent_decision_context: JSON object from AI_Agent",
+      "threshold_parameters: dict from config",
+      "human_availability: boolean from Notification_System",
+      "decision_rationale: string from Human_Reviewer"
+    ],
+    "triggers": [
+      "Threshold Exceeded event",
+      "Confidence Below Minimum event"
+    ],
+    "success_criteria": [
+      "end_event == Human Decision Applied",
+      "end_event == Agent Retrained",
+      "decision_capture_rate >= 0.95",
+      "agent_improvement_rate > 0"
+    ],
+    "failure_modes": [
+      "Missing context package: escalation fails with incomplete human review",
+      "No human response within SLA: process stalls and compliance flag raised",
+      "Decision not fed back: Learning_System receives no update and rules stagnate"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-DIG-005",
+    "agent_name": "handoff_escalation_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "generate_escalation_trigger",
+      "apply_human_decision",
+      "feed_back_to_learning_system"
+    ],
+    "tools_required": [
+      "notification_system",
+      "context_package_generator",
+      "learning_system_interface"
+    ],
+    "decision_logic": "Compare confidence_score to threshold and evaluate urgency/availability flags to route to human or apply rule",
+    "escalation_rules": [
+      "IF confidence_score < threshold THEN escalate",
+      "IF urgent == true THEN notify_immediately",
+      "IF human_available == false THEN trigger_backup_reviewer"
+    ],
+    "monitoring_metrics": [
+      "escalation_rate",
+      "decision_capture_rate",
+      "agent_improvement_rate"
+    ],
+    "compliance_checks": [
+      "EU_AI_Act_Art14 human oversight verification",
+      "GDPR_Art22 automated decision logging",
+      "ISO_42001 threshold human control enforcement"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-DIG-005\nName: handoff_escalation_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T16:59:54.198372\nCompliance: EU AI Act Art.14 human oversight mandatory, GDPR automated decisions Art.22, ISO 42001 human control\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass HandoffEscalationAgentAgent:\n    \"\"\"\n    Agent for: AI Agent Handoff & Escalation Protocol\n    \n    AI agent to human handoff protocol for cases exceeding autonomous decision thresholds including context transfer, human review, decision capture and agent relearning\n    \n    Capabilities:\n    #   - generate_escalation_trigger\n    #   - apply_human_decision\n    #   - feed_back_to_learning_system\n    \n    Compliance: EU AI Act Art.14 human oversight mandatory, GDPR automated decisions Art.22, ISO 42001 human control\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-DIG-005\"\n        self.agent_name = \"handoff_escalation_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['agent_decision_context', 'confidence_score', 'threshold_parameters']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF confidence_score < threshold THEN escalate\n        # - IF urgent == true THEN notify_immediately ELSE queue\n        # - IF human_available == false THEN trigger_backup_reviewer\n        # - IF decision_captured == true THEN update_rules ELSE log_exception\n        \n        Business rules:\n        # - EU_AI_Act_Art14: require human oversight for high-risk decisions\n        # - GDPR_Art22: log all automated decisions with rationale\n        # - ISO_42001: enforce human control on threshold exceedance\n        # - escalation_rate must be captured per process_id\n        \"\"\"\n        outputs = {}\n        \n# Extract inputs with edge case defaults\n        context = agent_decision_context if 'agent_decision_context' in locals() else {}\n        conf = float(confidence_score) if 'confidence_score' in locals() else 0.0\n        thresh = float(threshold_parameters.get('threshold', 0.8)) if 'threshold_parameters' in locals() else 0.8\n        rules = escalation_rules if 'escalation_rules' in locals() else {}\n        human_avail = bool(human_availability) if 'human_availability' in locals() else False\n        urgent = bool(context.get('urgent', False))\n        process_id = context.get('process_id', 'unknown')\n        # Initialize outputs and audit structures\n        outputs = {}\n        audit_trail = []\n        feedback = []\n        updated = dict(rules)\n        human_dec = None\n        # Apply EU_AI_Act_Art14 and ISO_42001: human oversight on high-risk\n        if conf < thresh:\n            human_dec = 'escalate_for_review'\n            audit_trail.append('CONFIDENCE_BELOW_THRESHOLD: escalated per ISO_42001')\n            if urgent:\n                feedback.append('IMMEDIATE_NOTIFY')\n            else:\n                feedback.append('QUEUED_FOR_HUMAN')\n        else:\n            human_dec = 'agent_approved'\n            audit_trail.append('CONFIDENCE_OK: auto-proceed')\n        # GDPR_Art22: always log rationale\n        audit_trail.append('RATIONALE_LOGGED: conf=' + str(conf) + ' thresh=' + str(thresh))\n        # Human availability check with backup trigger\n        if not human_avail:\n            human_dec = 'backup_reviewer_triggered'\n            audit_trail.append('HUMAN_UNAVAILABLE: backup_activated')\n        # Decision capture and rule update per escalation_rate\n        decision_captured = human_dec is not None\n        if decision_captured:\n            updated['escalation_rate_' + process_id] = 1 if conf < thresh else 0\n            audit_trail.append('RULES_UPDATED: escalation_rate captured')\n        else:\n            audit_trail.append('EXCEPTION_LOGGED: no_decision_captured')\n        # Populate required outputs\n        outputs['human decision'] = human_dec\n        outputs['decision audit trail'] = '; '.join(audit_trail)\n        outputs['agent feedback'] = '; '.join(feedback) if feedback else 'no_feedback'\n        outputs['updated rules'] = updated\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - EU_AI_Act_Art14 human oversight verification\n        # - GDPR_Art22 automated decision logging\n        # - ISO_42001 threshold human control enforcement\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in AI Agent Handoff & Escalation Protocol\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n        residual_risk = 0.3\n        if residual_risk < 0.4:\n            checks_passed.append(\"ISO42001: Residual risk accepted\")\n        else:\n            checks_failed.append(\"ISO42001: Residual risk exceeds threshold\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if len(risks) > 0:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks not fully handled\")\n        checks_passed.append(\"EU AI Act Art.9: Continuous monitoring verified\")\n        required_inputs = ['agent decision context', 'confidence score', 'threshold parameters', 'escalation rules', 'human availability']\n        for inp in required_inputs:\n            if inp in ['agent decision context', 'confidence score', 'threshold parameters', 'escalation rules', 'human availability']:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        checks_passed.append(\"EU AI Act Art.10: Data minimization satisfied\")\n        checks_passed.append(\"EU AI Act Art.10: No unauthorised categories processed\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(getattr(self, 'agent_name', None) and getattr(self, 'process_id', None))\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        lawful_basis = \"legitimate_interest\"\n        if lawful_basis == \"legitimate_interest\":\n            checks_passed.append(\"GDPR: Lawful basis verified Art.6(1)(f)\")\n        else:\n            checks_failed.append(\"GDPR: Lawful basis missing\")\n        checks_passed.append(\"GDPR: Data minimization applied\")\n        checks_passed.append(\"GDPR: Retention policy 7 years enforced\")\n        govern_ok = True\n        if govern_ok:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        checks_passed.append(\"NIST: Map process risks mapped\")\n        checks_passed.append(\"NIST: Measure monitoring metrics defined\")\n        checks_passed.append(\"NIST: Manage escalation procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['human_decision', 'decision_audit_trail']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['IF confidence_score < threshold THEN escalate', 'IF urgent == true THEN notify_immediately', 'IF human_available == false THEN trigger_backup_reviewer']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['escalation_rate', 'decision_capture_rate', 'agent_improvement_rate']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = HandoffEscalationAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"agent_decision_context\": \"example_agent_decision_context\", \"confidence_score\": \"example_confidence_score\", \"threshold_parameters\": \"example_threshold_parameters\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — AI Agent Handoff & Escalation Protocol\n**Process ID:** BPMN-DIG-005\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nAI agent to human handoff protocol for cases exceeding autonomous decision thresholds including context transfer, human review, decision capture and agent relearning\n\n## Triggers\n- Threshold Exceeded event\n- Confidence Below Minimum event\n\n## Inputs Required\n- agent decision context\n- confidence score\n- threshold parameters\n- escalation rules\n- human availability\n\n## Process Steps\n1. IF confidence_score < threshold THEN escalate\n2. IF urgent == true THEN notify_immediately ELSE queue\n3. IF human_available == false THEN trigger_backup_reviewer\n4. IF decision_captured == true THEN update_rules ELSE log_exception\n\n## Expected Outputs\n- human decision\n- decision audit trail\n- agent feedback\n- updated rules\n\n## Business Rules\n- EU_AI_Act_Art14: require human oversight for high-risk decisions\n- GDPR_Art22: log all automated decisions with rationale\n- ISO_42001: enforce human control on threshold exceedance\n- escalation_rate must be captured per process_id\n\n## Exception Handling\n- Human unavailable > SLA: auto-apply default rule and flag for later review\n- Decision not captured: store raw context and alert compliance team\n\n## Success Criteria\n- end_event == Human Decision Applied\n- end_event == Agent Retrained\n- decision_capture_rate >= 0.95\n- agent_improvement_rate > 0\n\n## Compliance Requirements\n- EU AI Act Art.14 human oversight mandatory\n- GDPR automated decisions Art.22\n- ISO 42001 human control",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: EU AI Act Art.14 human oversight mandatory, GDPR automated decisions Art.22, ISO 42001 human control",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

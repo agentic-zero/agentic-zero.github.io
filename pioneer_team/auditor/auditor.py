@@ -28,6 +28,23 @@ CERTS = LIBRARY / "certificates"
 AGENTS = LIBRARY / "agents"
 PACKAGES = LIBRARY / "packages"
 SOPS = LIBRARY / "sops"
+
+# Multi-library search folders
+LIBRARY_FOLDERS = ["scor", "iso", "bpmn", "sector_specific", "frameworks"]
+
+
+def find_in_library(filename: str, subfolder: str) -> "Path | None":
+    """Search for a file across all library folders."""
+    from pathlib import Path
+
+    base = ROOT / "library"
+    for folder in LIBRARY_FOLDERS:
+        path = base / folder / subfolder / filename
+        if path.exists():
+            return path
+    return None
+
+
 REVIEW_Q = ROOT / "core" / "queue" / "jobs" / "review_queue"
 COMPLETED_Q = ROOT / "core" / "queue" / "jobs" / "completed_queue"
 AUDITOR_LOG = ROOT / "core" / "auditor" / "audit_log.json"
@@ -48,7 +65,9 @@ EU_AI_REQUIRED_ARTICLES = ["art_9", "art_10", "art_11"]
 
 
 def load_guardian_json(process_id: str) -> dict:
-    path = CERTS / f"{process_id}_guardian.json"
+    path = find_in_library(f"{process_id}_guardian.json", "certificates") or (
+        CERTS / f"{process_id}_guardian.json"
+    )
     if not path.exists():
         raise FileNotFoundError(f"Guardian JSON not found: {path}")
     with open(path, encoding="utf-8") as f:
@@ -126,10 +145,8 @@ def check_iso_42001(guardian: dict) -> dict:
 
     return {
         "score": round(score),
-        "status": "PASS" if score >= 40 else "FAIL",
-        "note": "Acceptable for library"
-        if score >= 40
-        else "Below minimum threshold — ISO/IEC 42001 not yet mature for complex industrial processes. NIST AI RMF 100% covers the gap.",
+        "status": "PASS" if score >= 60 else "FAIL",
+        "note": "Acceptable for library" if score >= 60 else "Below minimum threshold",
     }
 
 
@@ -184,7 +201,10 @@ def check_artifacts(process_id: str) -> dict:
         "sop": (SOPS / f"{process_id}_sop.md").exists(),
         "builder_json": (AGENTS / f"{process_id}_builder.json").exists(),
         "package_json": (PACKAGES / f"{process_id}_package.json").exists(),
-        "certificate": (CERTS / f"{process_id}_certificate.txt").exists(),
+        "certificate": bool(
+            find_in_library(f"{process_id}_certificate.txt", "certificates")
+        )
+        or (CERTS / f"{process_id}_certificate.txt").exists(),
     }
     # Código del agente — buscar en agents/code/
     code_dir = AGENTS / "code"
@@ -293,7 +313,7 @@ def make_decision(process_id: str, guardian: dict) -> dict:
         decision = "HOLD"
         escalate = True
         conditions.append(
-            f"ISO/IEC 42001 score {iso_check['score']}% below 40% minimum — standard not yet mature for complex industrial operational processes"
+            f"ISO/IEC 42001 score {iso_check['score']}% below 60% minimum"
         )
 
     else:
@@ -421,7 +441,9 @@ def save_audit_result(result: dict):
 
 def update_guardian_json(process_id: str, result: dict):
     """Actualiza guardian.json con la decisión del Auditor."""
-    path = CERTS / f"{process_id}_guardian.json"
+    path = find_in_library(f"{process_id}_guardian.json", "certificates") or (
+        CERTS / f"{process_id}_guardian.json"
+    )
     if not path.exists():
         return
     with open(path, encoding="utf-8") as f:

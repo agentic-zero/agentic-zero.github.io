@@ -1,0 +1,6 @@
+1. Open with the compliance gap: "Manual config management costs 40+ hours/month and risks audit failures—let's see how our AI agent closes this in minutes."
+2. Trigger baseline_controller to auto-generate and enforce a compliant configuration baseline across environments, highlighting zero-drift policy application.
+3. Simulate a change request; show the agent detecting drift in real time, proposing AI-validated fixes, and logging every action for full traceability.
+4. Run an instant compliance audit report: display pass/fail metrics, regulatory mapping (e.g., ISO/SOC2), and one-click evidence export.
+5. Reveal ROI dashboard: input current manual effort (€6k/month), apply the €748 price point, and calculate 8.0x multiplier via 32 hours saved and risk reduction.
+6. Close with executive summary: "€748 investment yields €6k+ monthly value plus audit-ready compliance—ready for pilot approval?"

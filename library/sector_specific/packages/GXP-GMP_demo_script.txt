@@ -1,0 +1,7 @@
+1. Open the Agentic Zero dashboard and launch the gmp_annex11_compliance_agent (€209 license).  
+2. Upload a 12-page batch record; agent auto-maps every section to the 15 Annex 11 clauses in <45 seconds.  
+3. Display real-time gap heat-map with risk scores and one-click remediation templates.  
+4. Generate a signed, audit-ready compliance report (PDF + XML) that satisfies inspector requirements.  
+5. Run ROI simulator: show 18 hours of manual work reduced to 12 minutes, equating to €2,090 annual saving per user (10.0x multiplier).  
+6. Export the validated report to the QMS and schedule recurring scans for continuous compliance.  
+7. Close with summary slide: €209 investment delivers €2,090+ yearly return plus zero Annex 11 audit findings.

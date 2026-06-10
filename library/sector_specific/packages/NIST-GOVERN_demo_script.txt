@@ -1,0 +1,11 @@
+1. Open with executive pain: "Manual GOVERN compliance costs €50k+ annually in audits and risk reviews—let's see how ai_governance_accountability_agent automates it in minutes."
+
+2. Launch agent: Input company AI inventory; it instantly maps risks to NIST/ISO controls and flags accountability gaps with confidence scores.
+
+3. Run automated culture scan: Agent surveys key stakeholders via AI, produces a real-time risk-culture dashboard, and generates board-ready remediation plans.
+
+4. Demonstrate compliance output: Export audit-ready reports with full traceability—reducing external audit prep from weeks to hours and cutting findings by 70%.
+
+5. Show ROI live: At €224 per run, the agent delivers a documented 10x multiplier (€2,240+ value) via time savings, avoided fines, and faster go-to-market for AI products.
+
+6. Close with action: "One deployment pays for a year—ready to pilot on your highest-risk model this week?"

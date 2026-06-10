@@ -1,0 +1,89 @@
+[
+  {
+    "process_id": "ISO31000-P1",
+    "agent_name": "iso31000_risk_framework_agent",
+    "framework": "ISO 31000:2018",
+    "domain": "ISO 31000",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 31000:2018",
+      "enterprise risk management",
+      "corporate governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:15:41.140656"
+  },
+  {
+    "process_id": "ISO31000-P2",
+    "agent_name": "iso31000_risk_assessment_agent",
+    "framework": "ISO 31000:2018",
+    "domain": "ISO 31000",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 31000:2018",
+      "risk assessment methodology",
+      "enterprise risk"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:18:04.569345"
+  },
+  {
+    "process_id": "ISO31000-P3",
+    "agent_name": "risk_treatment_monitoring_agent",
+    "framework": "ISO 31000:2018",
+    "domain": "ISO 31000",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 31000:2018",
+      "risk treatment documentation",
+      "continuous monitoring"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:18:31.312348"
+  }
+]

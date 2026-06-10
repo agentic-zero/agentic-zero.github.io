@@ -1,0 +1,417 @@
+[
+  {
+    "process_id": "EUAIA-ART11",
+    "agent_name": "eu_ai_act_art11_documentation_agent",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.11 mandatory",
+      "Annex IV documentation",
+      "CE marking requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:11:31.682618"
+  },
+  {
+    "process_id": "EUAIA-ART12",
+    "agent_name": "eu_ai_act12_logging_agent",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.12 mandatory",
+      "GDPR audit logs",
+      "data retention requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:11:58.505557"
+  },
+  {
+    "process_id": "EUAIA-ART13",
+    "agent_name": "eu_ai_act_art13_transparency_agent",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.13 mandatory",
+      "explainability requirements",
+      "user rights"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:12:22.029764"
+  },
+  {
+    "process_id": "EUAIA-ART14",
+    "agent_name": "human_oversight_coordinator",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.14 mandatory",
+      "human-in-the-loop requirements",
+      "GDPR automated decision Art.22"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:12:55.495191"
+  },
+  {
+    "process_id": "EUAIA-ART72",
+    "agent_name": "post_market_monitoring_agent",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.72 mandatory",
+      "serious incident reporting",
+      "national authority notification"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:13:26.444275"
+  },
+  {
+    "process_id": "NIST-GOVERN",
+    "agent_name": "ai_governance_accountability_agent",
+    "framework": "NIST AI RMF 1.0",
+    "domain": "NIST AI RMF",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "NIST AI RMF 1.0 GOVERN",
+      "ISO 42001 alignment",
+      "EU AI Act governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:13:55.083371"
+  },
+  {
+    "process_id": "NIST-MAP",
+    "agent_name": "nist_map_risk_context_mapper",
+    "framework": "NIST AI RMF 1.0",
+    "domain": "NIST AI RMF",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "NIST AI RMF 1.0 MAP",
+      "ISO 42001 risk assessment",
+      "EU AI Act risk classification"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:14:28.874058"
+  },
+  {
+    "process_id": "NIST-MEASURE",
+    "agent_name": "nist_measure_risk_analyzer",
+    "framework": "NIST AI RMF 1.0",
+    "domain": "NIST AI RMF",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "NIST AI RMF 1.0 MEASURE",
+      "EU AI Act performance metrics",
+      "ISO 42001 evaluation"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:14:58.920268"
+  },
+  {
+    "process_id": "NIST-MANAGE",
+    "agent_name": "risk_treatment_response_agent",
+    "framework": "NIST AI RMF 1.0",
+    "domain": "NIST AI RMF",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "NIST AI RMF 1.0 MANAGE",
+      "EU AI Act incident management",
+      "ISO 42001 improvement"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:15:21.601699"
+  },
+  {
+    "process_id": "IATF16949-APQP",
+    "agent_name": "apqp_compliance_orchestrator",
+    "framework": "IATF 16949:2016",
+    "domain": "IATF 16949",
+    "level": "L1",
+    "sector_applicability": [
+      "automotive",
+      "automotive suppliers Tier 1/2/3"
+    ],
+    "compliance_frameworks": [
+      "IATF 16949:2016",
+      "VDA 6.3",
+      "customer-specific requirements",
+      "AIAG APQP manual"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 171.35,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:19:06.576317"
+  },
+  {
+    "process_id": "IATF16949-PPAP",
+    "agent_name": "ppap_automation_agent",
+    "framework": "IATF 16949:2016",
+    "domain": "IATF 16949",
+    "level": "L1",
+    "sector_applicability": [
+      "automotive",
+      "automotive suppliers Tier 1/2/3"
+    ],
+    "compliance_frameworks": [
+      "IATF 16949:2016",
+      "AIAG PPAP manual",
+      "customer-specific requirements",
+      "VDA 2"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 171.35,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:19:36.914542"
+  },
+  {
+    "process_id": "IATF16949-8D",
+    "agent_name": "iatf_8d_autonomous_solver",
+    "framework": "IATF 16949:2016",
+    "domain": "IATF 16949",
+    "level": "L1",
+    "sector_applicability": [
+      "automotive",
+      "automotive suppliers",
+      "manufacturing"
+    ],
+    "compliance_frameworks": [
+      "IATF 16949:2016",
+      "customer 8D requirements",
+      "VDA problem solving",
+      "AIAG CQI standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 171.35,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:20:04.085677"
+  },
+  {
+    "process_id": "GXP-GDP",
+    "agent_name": "gdp_distribution_compliance_agent",
+    "framework": "EU GDP Guidelines 2013/C 343/01",
+    "domain": "GxP",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "EU GDP Guidelines 2013",
+      "WHO GDP",
+      "GDPR serialization data",
+      "temperature chain compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 208.6,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:20:28.106423"
+  },
+  {
+    "process_id": "GXP-GMP",
+    "agent_name": "gmp_annex11_compliance_agent",
+    "framework": "EU GMP + Annex 11",
+    "domain": "GxP",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices",
+      "API manufacturers"
+    ],
+    "compliance_frameworks": [
+      "EU GMP Part I & II",
+      "EU Annex 11",
+      "21 CFR Part 211",
+      "ICH Q10",
+      "ALCOA+ data integrity"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 208.6,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:20:59.248335"
+  },
+  {
+    "process_id": "GDPR-ART5",
+    "agent_name": "gdpr_article5_compliance_agent",
+    "framework": "GDPR (EU) 2016/679",
+    "domain": "GDPR",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR Art.5 principles",
+      "GDPR Art.6 lawful basis",
+      "GDPR Art.9 special categories"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:21:20.506883"
+  }
+]

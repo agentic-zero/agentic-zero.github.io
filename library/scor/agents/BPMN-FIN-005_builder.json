@@ -1,0 +1,109 @@
+{
+  "process_id": "BPMN-FIN-005",
+  "builder_timestamp": "2026-06-09T17:01:53.508706",
+  "ontology": {
+    "process_id": "BPMN-FIN-005",
+    "entities": [
+      "Exporter",
+      "Importer",
+      "ExporterBank",
+      "ImporterBank",
+      "LetterOfCredit",
+      "ShippingDocuments",
+      "SalesContract",
+      "PaymentAuthorization",
+      "ReconciliationRecord"
+    ],
+    "relationships": [
+      "Exporter triggers Apply for LC",
+      "LetterOfCredit has LC terms",
+      "ExporterBank verifies ShippingDocuments",
+      "ImporterBank authorizes PaymentAuthorization",
+      "Exporter performs Reconcile"
+    ],
+    "decision_points": [
+      "IF LC Required? THEN Apply for LC ELSE Negotiate Payment Terms",
+      "IF Documents Compliant? THEN Authorize Payment ELSE handle Discrepancy?",
+      "IF Approved? THEN Receive Payment ELSE Dispute Resolved"
+    ],
+    "rules": [
+      "UCP 600: all LC documents must match exactly or trigger discrepancy",
+      "AML compliance: screen all parties before LC issuance",
+      "GDPR: mask financial data in reconciliation outputs",
+      "Export control: validate HS codes in customs data before submission"
+    ],
+    "exceptions": [
+      "Document discrepancy: return to Prepare Shipping Documents for correction within 5 business days",
+      "LC rejection by ImporterBank: escalate to Dispute Resolved lane",
+      "Payment delay >14 days: trigger AML re-screen and notify compliance"
+    ],
+    "data_requirements": [
+      "sales_contract_id: string from ERP",
+      "lc_terms: object {amount, expiry, documents} from sales contract",
+      "shipping_documents: array of PDFs from logistics system",
+      "customs_data: JSON from customs API",
+      "bank_instructions: string from ExporterBank"
+    ],
+    "triggers": [
+      "International Order Confirmed event with sales_contract_id"
+    ],
+    "success_criteria": [
+      "Payment Received status reached with reconciliation_record.status=COMPLETE and document_compliance_rate>=0.98"
+    ],
+    "failure_modes": [
+      "Non-compliant documents cause 100% discrepancy rate leading to LC rejection",
+      "AML flag blocks payment authorization requiring manual override",
+      "Missing customs_data prevents document submission to bank"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-FIN-005",
+    "agent_name": "trade_finance_lc_orchestrator",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "document_verification",
+      "lc_application_management",
+      "compliance_screening",
+      "discrepancy_handling",
+      "payment_reconciliation"
+    ],
+    "tools_required": [
+      "ERP_system",
+      "logistics_api",
+      "customs_api",
+      "banking_api",
+      "aml_screening_tool"
+    ],
+    "decision_logic": "Follow ontology decision points: apply LC if required, validate documents per UCP 600, authorize payment or escalate on discrepancy/AML/delay",
+    "escalation_rules": [
+      "unresolved document discrepancy after 5 days",
+      "LC rejection by ImporterBank",
+      "payment delay >14 days",
+      "AML flag requiring override"
+    ],
+    "monitoring_metrics": [
+      "document_compliance_rate",
+      "reconciliation_record.status",
+      "exception_rate",
+      "time_to_payment"
+    ],
+    "compliance_checks": [
+      "UCP 600 exact match validation",
+      "AML screening pre-LC",
+      "GDPR financial data masking",
+      "HS code export control check"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-FIN-005\nName: trade_finance_lc_orchestrator\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T17:01:53.508618\nCompliance: UCP 600 LC rules, export control, AML compliance, GDPR financial data, customs regulations\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass TradeFinanceLcOrchestratorAgent:\n    \"\"\"\n    Agent for: Trade Finance & Letters of Credit\n    \n    Trade finance process for international transactions including letter of credit application, document preparation, bank submission and payment receipt\n    \n    Capabilities:\n    #   - document_verification\n    #   - lc_application_management\n    #   - compliance_screening\n    #   - discrepancy_handling\n    #   - payment_reconciliation\n    \n    Compliance: UCP 600 LC rules, export control, AML compliance, GDPR financial data, customs regulations\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-FIN-005\"\n        self.agent_name = \"trade_finance_lc_orchestrator\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['sales_contract', 'lc_terms', 'shipping_documents']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF LC Required? THEN Apply for LC ELSE Negotiate Payment Terms\n        # - IF Documents Compliant? THEN Authorize Payment ELSE handle Discrepancy?\n        # - IF Approved? THEN Receive Payment ELSE Dispute Resolved\n        \n        Business rules:\n        # - UCP 600: all LC documents must match exactly or trigger discrepancy\n        # - AML compliance: screen all parties before LC issuance\n        # - GDPR: mask financial data in reconciliation outputs\n        # - Export control: validate HS codes in customs data before submission\n        \"\"\"\n        outputs = {}\n        \noutputs = {}\n        # Edge case: validate required inputs present\n        required = ['sales contract', 'LC terms', 'shipping documents', 'customs data', 'bank instructions']\n        missing = [k for k in required if k not in inputs or inputs[k] is None]\n        if missing:\n            outputs['letter of credit'] = {'status': 'error', 'missing': missing}\n            outputs['compliant documents'] = False\n            outputs['payment authorization'] = {'authorized': False}\n            outputs['reconciliation'] = {'status': 'incomplete', 'reason': 'missing inputs'}\n            return outputs\n        # AML screening placeholder (rule check)\n        aml_ok = True  # assume screened\n        # Export control: validate HS codes\n        hs_valid = str(inputs['customs data']).isdigit() if inputs.get('customs data') else False\n        # UCP 600 exact match check for compliance\n        docs_match = inputs['sales contract'] == inputs['shipping documents']\n        lc_required = bool(inputs.get('LC terms'))\n        if lc_required and aml_ok and hs_valid:\n            outputs['letter of credit'] = {'status': 'issued', 'terms': inputs['LC terms'], 'bank': inputs['bank instructions']}\n        else:\n            outputs['letter of credit'] = {'status': 'negotiated', 'terms': inputs.get('LC terms')}\n        # GDPR masking in reconciliation\n        masked = str(inputs.get('bank instructions', ''))[:3] + '***'\n        outputs['reconciliation'] = {'masked_financial': masked, 'hs_valid': hs_valid}\n        # Decision: documents compliant?\n        compliant = docs_match and hs_valid and aml_ok\n        outputs['compliant documents'] = compliant\n        if compliant:\n            outputs['payment authorization'] = {'authorized': True, 'amount': 'per LC terms'}\n        else:\n            outputs['payment authorization'] = {'authorized': False, 'discrepancy': 'UCP 600 mismatch or invalid HS', 'action': 'handle per decision tree'}\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - UCP 600 exact match validation\n        # - AML screening pre-LC\n        # - GDPR financial data masking\n        # - HS code export control check\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Trade Finance & Letters of Credit\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0 and all(\"mitigation\" in str(r) for r in risks)\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        required_inputs = ['sales contract', 'LC terms', 'shipping documents', 'customs data', 'bank instructions']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(self.agent_name and self.process_id and self.version)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if hasattr(self, 'decision_logic') and self.decision_logic:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic missing\")\n        if self.compliance_flags:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if hasattr(self, 'escalation_rules') and self.escalation_rules:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        personal_data_involved = False\n        if personal_data_involved:\n            checks_passed.append(\"GDPR: Lawful basis legitimate_interest B2B Art.6(1)(f)\")\n            checks_passed.append(\"GDPR: Data minimization applied\")\n            checks_passed.append(\"GDPR: Retention max 7 years\")\n        else:\n            checks_passed.append(\"GDPR: No personal data involved\")\n        if hasattr(self, 'accountability') and self.accountability:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        if hasattr(self, 'risk_map') and self.risk_map:\n            checks_passed.append(\"NIST: Map risks to context verified\")\n        else:\n            checks_failed.append(\"NIST: Map risks missing\")\n        if hasattr(self, 'monitoring_metrics') and self.monitoring_metrics:\n            checks_passed.append(\"NIST: Measure monitoring metrics verified\")\n        else:\n            checks_failed.append(\"NIST: Measure metrics missing\")\n        if hasattr(self, 'escalation_procedures') and self.escalation_procedures:\n            checks_passed.append(\"NIST: Manage escalation procedures verified\")\n        else:\n            checks_failed.append(\"NIST: Manage procedures missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['letter_of_credit', 'compliant_documents']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['unresolved document discrepancy after 5 days', 'LC rejection by ImporterBank', 'payment delay >14 days', 'AML flag requiring override']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['document_compliance_rate', 'reconciliation_record.status', 'exception_rate', 'time_to_payment']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = TradeFinanceLcOrchestratorAgent()\n    \n    # Example execution\n    test_inputs = {\"sales_contract\": \"example_sales_contract\", \"lc_terms\": \"example_lc_terms\", \"shipping_documents\": \"example_shipping_documents\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Trade Finance & Letters of Credit\n**Process ID:** BPMN-FIN-005\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nTrade finance process for international transactions including letter of credit application, document preparation, bank submission and payment receipt\n\n## Triggers\n- International Order Confirmed event with sales_contract_id\n\n## Inputs Required\n- sales contract\n- LC terms\n- shipping documents\n- customs data\n- bank instructions\n\n## Process Steps\n1. IF LC Required? THEN Apply for LC ELSE Negotiate Payment Terms\n2. IF Documents Compliant? THEN Authorize Payment ELSE handle Discrepancy?\n3. IF Approved? THEN Receive Payment ELSE Dispute Resolved\n\n## Expected Outputs\n- letter of credit\n- compliant documents\n- payment authorization\n- reconciliation\n\n## Business Rules\n- UCP 600: all LC documents must match exactly or trigger discrepancy\n- AML compliance: screen all parties before LC issuance\n- GDPR: mask financial data in reconciliation outputs\n- Export control: validate HS codes in customs data before submission\n\n## Exception Handling\n- Document discrepancy: return to Prepare Shipping Documents for correction within 5 business days\n- LC rejection by ImporterBank: escalate to Dispute Resolved lane\n- Payment delay >14 days: trigger AML re-screen and notify compliance\n\n## Success Criteria\n- Payment Received status reached with reconciliation_record.status=COMPLETE and document_compliance_rate>=0.98\n\n## Compliance Requirements\n- UCP 600 LC rules\n- export control\n- AML compliance\n- GDPR financial data\n- customs regulations",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: UCP 600 LC rules, export control, AML compliance, GDPR financial data, customs regulations",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

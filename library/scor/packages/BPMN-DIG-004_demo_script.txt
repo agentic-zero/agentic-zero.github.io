@@ -1,0 +1,6 @@
+1. Open with a live dashboard showing 47 unresolved IoT events; highlight manual handling costs (€42k/month) and compliance gaps (GDPR/SOC2 audit flags).  
+2. Trigger the agent on a critical temperature anomaly; demonstrate instant classification, risk scoring, and automated containment actions in <8 seconds.  
+3. Show one-click compliance logging: immutable audit trail, automated regulatory report generation, and evidence package ready for export.  
+4. Run ROI calculator live: input current incident volume; display €5,592 monthly savings (8.0x multiplier) versus €699 subscription, with payback in 4 days.  
+5. Simulate a second multi-device event; agent auto-orchestrates cross-system response and updates compliance status in real time.  
+6. Close with side-by-side metrics: 94% reduction in mean response time, zero compliance violations, and projected annual value of €67k.

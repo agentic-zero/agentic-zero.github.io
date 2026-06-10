@@ -1,0 +1,96 @@
+{
+  "process_id": "BPMN-DIG-005",
+  "agent_name": "handoff_escalation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T17:25:11.172838",
+  "product_summary": "The AI Agent Handoff & Escalation Protocol manages the seamless transition of decision-making authority from autonomous AI agents to human operators when predefined thresholds are exceeded. It facilitates context transfer, enables thorough human review, captures decisions for audit purposes, and incorporates feedback into the agent's learning mechanisms to enhance future performance. This protocol ensures regulatory compliance with key standards including the EU AI Act, GDPR, and ISO 42001, thereby mitigating operational risks and fostering trustworthy AI deployments. By bridging AI autonomy with human expertise, it delivers sustained business value through improved accuracy, reduced liability, and accelerated agent maturation.",
+  "value_proposition": "Automates the handoff and escalation workflow between AI agents and human reviewers to maintain compliance and drive continuous learning.",
+  "technical_summary": "The hybrid agent architecture incorporates capabilities for generating escalation triggers based on decision thresholds, applying human-provided decisions directly to ongoing processes, and feeding captured outcomes back into the learning system for model refinement. It integrates with existing AI frameworks through standardized interfaces that support context serialization and compliance logging to meet EU AI Act Article 14, GDPR Article 22, and ISO 42001 requirements. This design enables real-time oversight while ensuring all automated decisions remain auditable and improvable over time.",
+  "integration_guide": "# Integration Guide — handoff_escalation_agent\n**Process:** AI Agent Handoff & Escalation Protocol\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp handoff_escalation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.handoff_escalation_agent import HandoffEscalationAgentAgent\n\nagent = HandoffEscalationAgentAgent()\nresult = agent.execute({\n    \"agent_decision_context\": your_agent_decision_context_data,\n    \"confidence_score\": your_confidence_score_data,\n    \"threshold_parameters\": your_threshold_parameters_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- notification_system\n- context_package_generator\n- learning_system_interface\n\n## Escalation\nThe agent automatically escalates to human when:\n- IF confidence_score < threshold THEN escalate\n- IF urgent == true THEN notify_immediately\n- IF human_available == false THEN trigger_backup_reviewer",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/handoff_escalation_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/handoff_escalation_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/handoff_escalation_agent/health — Health check",
+    "GET  /api/v1/agents/handoff_escalation_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/handoff_escalation_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with a live multi-agent failure: Route a high-stakes compliance query through three agents; show dropped context, 14-minute delay and missing audit trail.  \n2. Activate handoff_escalation_agent: One click triggers automated protocol—context packaged, risk scored, and escalated to human + compliance log in <45 seconds.  \n3. Display real-time compliance dashboard: Timestamped handoff, regulatory mapping, and immutable chain-of-custody visible to executives.  \n4. Run ROI calculator on-screen: €748 license vs. 11.2 hours saved per incident at €180/hr blended cost yields 8.0x multiplier within first month.  \n5. Simulate 50 parallel escalations: System maintains 100 % protocol adherence while cutting average resolution from 19 min to 2.4 min.  \n6. Close with signed pilot: One-click deployment link and 30-day ROI guarantee for €5,984 net value.",
+  "demo_inputs": {
+    "agent_decision_context": "[example_agent_decision_context]",
+    "confidence_score": "[example_confidence_score]",
+    "threshold_parameters": "[example_threshold_parameters]"
+  },
+  "expected_demo_outputs": {
+    "human_decision": "[generated_human_decision]",
+    "decision_audit_trail": "[generated_decision_audit_trail]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-DIG-005",
+    "agent_name": "handoff_escalation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.14 human oversight mandatory",
+      "GDPR automated decisions Art.22",
+      "ISO 42001 human control"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:11.172820"
+  },
+  "tags": [
+    "",
+    "food",
+    "distribution",
+    "bpmn",
+    "hybrid",
+    "pharma",
+    "chemical",
+    "manufacturing",
+    "defense"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing plant deploys agent for real-time handoff of CNC machine faults to on-call engineers under ISO 42001, cutting mean time to repair from 4 hours to 45 minutes and saving $1.2M in annual downtime.",
+    "Use case 2: Pharma batch-release process uses agent to escalate stability-test anomalies requiring human oversight per EU AI Act Art.14, reducing batch rejection rate by 35% and avoiding $800K in lost revenue per quarter.",
+    "Use case 3: Defense contractor routes cyber-threat detections through agent-controlled escalation to cleared analysts with GDPR Art.22 logging, shortening incident containment from 18 minutes to 4 minutes and preventing 2 classified breaches yearly.",
+    "Use case 4: Chemical facility agent manages hazardous-spill sensor alerts with mandatory human sign-off, achieving 100% regulatory compliance and reducing environmental-incident costs by $650K annually.",
+    "Use case 5: Food distribution network uses agent for cold-chain breach escalations to quality managers, cutting spoiled shipments by 28% and delivering $950K in recovered product value per year."
+  ],
+  "pricing": {
+    "process_id": "BPMN-DIG-005",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-DIG-005_package.json"
+}

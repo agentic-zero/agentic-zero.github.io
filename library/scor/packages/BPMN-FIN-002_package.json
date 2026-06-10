@@ -1,0 +1,97 @@
+{
+  "process_id": "BPMN-FIN-002",
+  "agent_name": "accounts_payable_automation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T17:25:25.476155",
+  "product_summary": "The Accounts Payable Automation agent streamlines the full AP workflow from invoice receipt to payment execution by combining AI-powered capture with automated three-way matching and exception handling. It enforces compliance with tax regulations, GDPR requirements, e-invoicing mandates, and anti-fraud controls while scheduling and executing payments. Finance teams gain faster cycle times, lower manual effort, and reduced risk of errors or penalties. Executives see improved cash-flow visibility and measurable cost savings across the payables function.",
+  "value_proposition": "Automates the end-to-end accounts payable process with AI-driven capture, matching, and compliance validation to accelerate payments while eliminating manual errors and regulatory risk.",
+  "technical_summary": "The hybrid agent orchestrates AI modules for invoice OCR capture and three-way matching alongside deterministic logic for exception handling, payment scheduling, and compliance validation. It integrates with ERP and accounting systems, payment gateways, and e-invoicing networks through standard APIs while maintaining GDPR data controls and VAT/GST tax rules. Anti-fraud checks are embedded at each stage to ensure secure, auditable transaction flows.",
+  "integration_guide": "# Integration Guide — accounts_payable_automation_agent\n**Process:** Accounts Payable Automation\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp accounts_payable_automation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.accounts_payable_automation_agent import AccountsPayableAutomationAgentAgent\n\nagent = AccountsPayableAutomationAgentAgent()\nresult = agent.execute({\n    \"supplier_invoices\": your_supplier_invoices_data,\n    \"purchase_orders\": your_purchase_orders_data,\n    \"goods_receipts\": your_goods_receipts_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- OCR_engine\n- ERP_API\n- BankSystem_API\n- Approval_workflow_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- Duplicate detected\n- 3-way match failure unresolved >24h\n- Tolerance breach requiring approver\n- Payment blocked by compliance flag",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/accounts_payable_automation_agent/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/accounts_payable_automation_agent/status — Get agent status and metrics",
+    "GET  /api/v1/agents/accounts_payable_automation_agent/health — Health check",
+    "GET  /api/v1/agents/accounts_payable_automation_agent/spec   — Get agent specification",
+    "POST /api/v1/agents/accounts_payable_automation_agent/test   — Run test cases"
+  ],
+  "demo_script": "1. Open live dashboard showing 247 pending invoices and €1.2M monthly AP volume; highlight manual bottlenecks and 14-day average cycle time.  \n2. Trigger agent on a sample invoice batch: demonstrate AI extraction, 3-way matching, and policy checks in under 45 seconds per document.  \n3. Route one invoice through automated approval workflow, surfacing real-time compliance flags (VAT, duplicate detection, segregation of duties).  \n4. Display post-processing metrics: cycle time reduced to 2 days, 94% straight-through processing, and €47k monthly error avoidance.  \n5. Pull ROI panel: calculate 8.0x multiplier on €699 price, projecting €5,592 net value in first month and payback in <4 days.  \n6. Export compliance audit trail for the batch, confirming full traceability and regulatory alignment for executive sign-off.  \n7. Close with one-click scaling toggle to full AP volume and summary of projected annual savings.",
+  "demo_inputs": {
+    "supplier_invoices": "[example_supplier_invoices]",
+    "purchase_orders": "[example_purchase_orders]",
+    "goods_receipts": "[example_goods_receipts]"
+  },
+  "expected_demo_outputs": {
+    "posted_invoices": "[generated_posted_invoices]",
+    "payment_files": "[generated_payment_files]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-FIN-002",
+    "agent_name": "accounts_payable_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "distribution",
+      "food",
+      "services",
+      "transport"
+    ],
+    "compliance_frameworks": [
+      "tax compliance VAT/GST",
+      "GDPR financial data",
+      "e-invoicing mandate",
+      "anti-fraud controls"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:25.476136"
+  },
+  "tags": [
+    "",
+    "food",
+    "distribution",
+    "bpmn",
+    "transport",
+    "hybrid",
+    "pharma",
+    "manufacturing",
+    "services"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing firm processes 12,000 supplier invoices monthly via automated 3-way matching, cutting AP cycle time from 14 days to 4 days and reducing manual labor costs by $180K annually while enforcing VAT/GST tax compliance.",
+    "Use case 2: Pharma distributor auto-validates e-invoices under EU mandates for 8,000 monthly transactions, eliminating 95% of compliance audit findings and avoiding €250K in potential fines through built-in GDPR financial data controls.",
+    "Use case 3: Food & beverage wholesaler deploys anti-fraud duplicate detection on high-volume invoices, preventing $420K in duplicate payments per year and achieving 100% e-invoicing mandate adherence across 3 countries.",
+    "Use case 4: Transport logistics company automates invoice approval workflows for 15,000 fuel and maintenance invoices, reducing late-payment penalties by 85% ($95K annual savings) with real-time VAT/GST validation and fraud scoring.",
+    "Use case 5: Multi-sector services provider uses the agent to reconcile 20,000 invoices quarterly, cutting exception handling time by 65% and delivering full GDPR audit trails that reduce external compliance review costs by $120K yearly."
+  ],
+  "pricing": {
+    "process_id": "BPMN-FIN-002",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-FIN-002_package.json"
+}

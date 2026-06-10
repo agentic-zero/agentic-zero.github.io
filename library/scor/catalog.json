@@ -2973,5 +2973,624 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-09T16:11:01.950420"
+  },
+  {
+    "process_id": "BPMN-GXP-005",
+    "agent_name": "regulatory_submission_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "biotech",
+      "medical devices"
+    ],
+    "compliance_frameworks": [
+      "ICH CTD format",
+      "FDA 21 CFR",
+      "EMA regulations",
+      "GDPR clinical data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:00:04.851547"
+  },
+  {
+    "process_id": "BPMN-MFG-001",
+    "agent_name": "eco_lifecycle_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "automotive",
+      "defense",
+      "aerospace",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "AS9100 if aerospace",
+      "IATF 16949 automotive",
+      "GDPR if personal data",
+      "export control"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:00:36.963172"
+  },
+  {
+    "process_id": "BPMN-MFG-002",
+    "agent_name": "mro_work_order_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "food",
+      "energy",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "GxP equipment qualification if pharma",
+      "safety regulations",
+      "GDPR if personal data",
+      "ATEX if applicable"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:01:05.375922"
+  },
+  {
+    "process_id": "BPMN-MFG-003",
+    "agent_name": "npi_stage_gate_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "manufacturing",
+      "food",
+      "automotive",
+      "defense",
+      "consumer goods"
+    ],
+    "compliance_frameworks": [
+      "regulatory approval if pharma/food",
+      "export control",
+      "GDPR product data",
+      "IP protection"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:01:19.213005"
+  },
+  {
+    "process_id": "BPMN-MFG-004",
+    "agent_name": "rough_cut_capacity_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "chemical",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "labor regulations",
+      "GDPR if personal data",
+      "financial reporting"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:01:32.543387"
+  },
+  {
+    "process_id": "BPMN-MFG-005",
+    "agent_name": "shop_floor_execution_controller",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "chemical"
+    ],
+    "compliance_frameworks": [
+      "GxP electronic batch records if pharma",
+      "HACCP if food",
+      "ISO 9001",
+      "safety regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:01:46.564226"
+  },
+  {
+    "process_id": "BPMN-DIG-001",
+    "agent_name": "demand_sensing_forecast_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "food",
+      "pharma",
+      "retail",
+      "consumer goods",
+      "manufacturing",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR AI automated decisions Art.22",
+      "EU AI Act transparency",
+      "data privacy"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:02:05.087314"
+  },
+  {
+    "process_id": "BPMN-DIG-002",
+    "agent_name": "autonomous_replenishment_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "distribution",
+      "manufacturing",
+      "retail",
+      "pharma",
+      "food"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.14 human oversight",
+      "GDPR automated decisions",
+      "financial controls",
+      "audit trail requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:24:24.229899"
+  },
+  {
+    "process_id": "BPMN-DIG-003",
+    "agent_name": "digital_twin_synchronizer",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "energy",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act data quality",
+      "GDPR IoT data",
+      "cybersecurity standards",
+      "digital safety"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 8,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:24:37.231782"
+  },
+  {
+    "process_id": "BPMN-DIG-004",
+    "agent_name": "iot_event_management_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "chemical",
+      "food",
+      "energy"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act autonomous systems",
+      "GDPR IoT data",
+      "cybersecurity IEC 62443",
+      "safety standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:24:48.330263"
+  },
+  {
+    "process_id": "BPMN-DIG-005",
+    "agent_name": "handoff_escalation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.14 human oversight mandatory",
+      "GDPR automated decisions Art.22",
+      "ISO 42001 human control"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 3,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:11.172820"
+  },
+  {
+    "process_id": "BPMN-FIN-002",
+    "agent_name": "accounts_payable_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "distribution",
+      "food",
+      "services",
+      "transport"
+    ],
+    "compliance_frameworks": [
+      "tax compliance VAT/GST",
+      "GDPR financial data",
+      "e-invoicing mandate",
+      "anti-fraud controls"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:25.476136"
+  },
+  {
+    "process_id": "BPMN-FIN-003",
+    "agent_name": "month_end_financial_close_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "distribution",
+      "food",
+      "defense",
+      "services"
+    ],
+    "compliance_frameworks": [
+      "IFRS/GAAP compliance",
+      "SOX controls",
+      "GDPR financial data",
+      "audit requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:37.539798"
+  },
+  {
+    "process_id": "BPMN-FIN-004",
+    "agent_name": "credit_risk_management_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "services"
+    ],
+    "compliance_frameworks": [
+      "GDPR financial data",
+      "consumer credit regulations",
+      "AML compliance",
+      "data retention"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:49.098464"
+  },
+  {
+    "process_id": "BPMN-FIN-005",
+    "agent_name": "trade_finance_lc_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "defense",
+      "chemical",
+      "food",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "UCP 600 LC rules",
+      "export control",
+      "AML compliance",
+      "GDPR financial data",
+      "customs regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:59.326460"
+  },
+  {
+    "process_id": "BPMN-CRM-001",
+    "agent_name": "complaint_lifecycle_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "pharma",
+      "food",
+      "manufacturing",
+      "distribution",
+      "automotive",
+      "consumer goods"
+    ],
+    "compliance_frameworks": [
+      "GxP if pharma",
+      "GDPR customer data",
+      "consumer protection",
+      "product liability"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:26:12.098851"
+  },
+  {
+    "process_id": "BPMN-CRM-002",
+    "agent_name": "field_service_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "industrial equipment",
+      "defense",
+      "manufacturing systems",
+      "energy",
+      "healthcare"
+    ],
+    "compliance_frameworks": [
+      "safety regulations",
+      "warranty compliance",
+      "GDPR customer data",
+      "export control if defense"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:26:24.398236"
+  },
+  {
+    "process_id": "BPMN-CRM-003",
+    "agent_name": "contract_renewal_retention_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "software",
+      "services",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GDPR customer data",
+      "contractual compliance",
+      "financial reporting",
+      "competition law"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:26:35.013472"
+  },
+  {
+    "process_id": "BPMN-DEF-001",
+    "agent_name": "controlled_item_serialization_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "defense",
+      "aerospace",
+      "nuclear",
+      "government"
+    ],
+    "compliance_frameworks": [
+      "ITAR/EAR export control",
+      "defense acquisition regulations",
+      "government property regulations",
+      "security clearance requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:26:48.675568"
+  },
+  {
+    "process_id": "BPMN-DEF-002",
+    "agent_name": "export_control_clearance_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "defense",
+      "aerospace",
+      "technology",
+      "chemical",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "ITAR 22 CFR 120-130",
+      "EAR 15 CFR 730-774",
+      "OFAC sanctions",
+      "EU dual-use regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:27:01.753465"
+  },
+  {
+    "process_id": "BPMN-DEF-003",
+    "agent_name": "configuration_baseline_controller",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "defense",
+      "aerospace",
+      "nuclear",
+      "industrial equipment"
+    ],
+    "compliance_frameworks": [
+      "MIL-HDBK-61B",
+      "AS9100 configuration management",
+      "CMII standards",
+      "export control"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T10:06:00.391095"
+  },
+  {
+    "process_id": "BPMN-ESG-001",
+    "agent_name": "carbon_scope3_tracking_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "chemical",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "GHG Protocol",
+      "CSRD EU reporting",
+      "TCFD",
+      "SEC climate disclosure",
+      "GDPR supplier data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T10:06:23.992418"
   }
 ]

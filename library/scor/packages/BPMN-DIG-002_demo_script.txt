@@ -1,0 +1,6 @@
+1. Open with baseline metrics: Display current manual replenishment costs (€280K annual), 12% stockout rate, and compliance gaps (missing audit logs for 3 regulations).  
+2. Activate agent: One-click launch of autonomous_replenishment_agent; AI ingests live inventory, demand signals, and supplier data in <30 seconds.  
+3. Run live replenishment: Agent auto-generates optimized orders, cuts projected stockouts to 2%, and flags only compliant suppliers—show side-by-side before/after order list.  
+4. Surface compliance layer: Real-time audit trail, automated regulatory checks, and exportable reports that satisfy GDPR and industry standards without extra manual effort.  
+5. Calculate ROI on screen: Input €699 price and current spend; instant model shows 8.0x multiplier via €5.6M annual savings from reduced waste, labor, and penalties.  
+6. Close with pilot path: 30-day deployment plan, integration checklist, and executive dashboard for ongoing ROI tracking.

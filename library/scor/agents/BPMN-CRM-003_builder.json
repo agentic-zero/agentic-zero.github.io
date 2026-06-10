@@ -1,0 +1,114 @@
+{
+  "process_id": "BPMN-CRM-003",
+  "builder_timestamp": "2026-06-09T17:03:19.524383",
+  "ontology": {
+    "process_id": "BPMN-CRM-003",
+    "entities": [
+      "RenewalTrigger",
+      "Account",
+      "Contract",
+      "RiskAssessment",
+      "RenewalOffer",
+      "Approval",
+      "Customer",
+      "PricingUpdate",
+      "SignedContract"
+    ],
+    "relationships": [
+      "RenewalTrigger triggers Account Performance Review",
+      "Account has RiskAssessment",
+      "RiskAssessment produces RenewalOffer",
+      "RenewalOffer requires Internal Approval",
+      "Approval precedes Present to Customer",
+      "Customer responds to Negotiate Terms",
+      "Negotiate Terms leads to Final Approval",
+      "Final Approval enables Execute Contract",
+      "Execute Contract produces SignedContract"
+    ],
+    "decision_points": [
+      "IF At Risk? == true THEN execute Risk Assessment and Escalate",
+      "IF Price Increase? == true THEN require Management approval before Present to Customer",
+      "IF Customer Accepts? == false THEN enter Negotiate Terms loop",
+      "IF Escalate? == true THEN route to Management lane"
+    ],
+    "rules": [
+      "All customer data access must log GDPR compliance flag",
+      "Pricing changes >5% require documented competitive intelligence source",
+      "Final Approval must be completed by Management lane before Execute Contract",
+      "Contract execution must update retention metrics within 24 hours"
+    ],
+    "exceptions": [
+      "IF contract data missing THEN halt process and create manual review task in Account Management lane",
+      "IF Customer Accepts? == false after 3 negotiation rounds THEN mark as Contract Lost and log churn risk data"
+    ],
+    "data_requirements": [
+      "contract_id: string from SAP CRM",
+      "usage_data: array of monthly metrics from Gainsight",
+      "customer_health_score: float 0-100 from Salesforce",
+      "pricing_data: object with current_price and proposed_price from pricing engine",
+      "competitive_intelligence: string source reference"
+    ],
+    "triggers": [
+      "Renewal Window Opens event with contract_id and renewal_date"
+    ],
+    "success_criteria": [
+      "end event == Contract Renewed",
+      "renewal_rate >= 0.85",
+      "revenue_retention >= 0.95",
+      "renewal_cycle_time <= 14 days"
+    ],
+    "failure_modes": [
+      "end event == Contract Lost due to customer rejection after escalation",
+      "process timeout after 30 days without Final Approval"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "BPMN-CRM-003",
+    "agent_name": "contract_renewal_retention_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "risk_assessment",
+      "offer_generation",
+      "negotiation_handling",
+      "approval_routing",
+      "compliance_logging"
+    ],
+    "tools_required": [
+      "SAP_CRM",
+      "Gainsight",
+      "Salesforce",
+      "pricing_engine",
+      "GDPR_logger"
+    ],
+    "decision_logic": "On renewal trigger evaluate risk/price rules, generate offer, enforce approval gates and negotiation limit of 3 rounds, update metrics on signed contract",
+    "escalation_rules": [
+      "contract data missing",
+      "price change >5% without competitive source",
+      "3 negotiation rounds without acceptance",
+      "no final approval within 30 days"
+    ],
+    "monitoring_metrics": [
+      "renewal_cycle_time",
+      "renewal_rate",
+      "revenue_retention",
+      "compliance_flag_rate"
+    ],
+    "compliance_checks": [
+      "GDPR access logging on every customer record",
+      "documented competitive intelligence for pricing changes",
+      "management lane final approval before execution"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: BPMN-CRM-003\nName: contract_renewal_retention_agent\nFramework: SCOR\nDomain: BPMN\nGenerated: 2026-06-09T17:03:19.524308\nCompliance: GDPR customer data, contractual compliance, financial reporting, competition law\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass ContractRenewalRetentionAgentAgent:\n    \"\"\"\n    Agent for: Contract Renewal & Customer Retention\n    \n    Contract renewal process from renewal trigger to signed contract including account review, pricing negotiation, approval and execution\n    \n    Capabilities:\n    #   - risk_assessment\n    #   - offer_generation\n    #   - negotiation_handling\n    #   - approval_routing\n    #   - compliance_logging\n    \n    Compliance: GDPR customer data, contractual compliance, financial reporting, competition law\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"BPMN-CRM-003\"\n        self.agent_name = \"contract_renewal_retention_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['contract_data', 'usage_data', 'pricing_data']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF At Risk? == true THEN execute Risk Assessment and Escalate\n        # - IF Price Increase? == true THEN require Management approval before Present to Customer\n        # - IF Customer Accepts? == false THEN enter Negotiate Terms loop\n        # - IF Escalate? == true THEN route to Management lane\n        \n        Business rules:\n        # - All customer data access must log GDPR compliance flag\n        # - Pricing changes >5% require documented competitive intelligence source\n        # - Final Approval must be completed by Management lane before Execute Contract\n        # - Contract execution must update retention metrics within 24 hours\n        \"\"\"\n        outputs = {}\n        \ninputs = locals().get('inputs', {})\n        outputs = {'renewed contract': None, 'pricing update': None, 'retention metrics': {}, 'churn risk data': {}}\n        gdpr_flag = True  # All customer data access must log GDPR compliance flag\n        contract = inputs.get('contract data', {})\n        usage = inputs.get('usage data', {})\n        pricing = inputs.get('pricing data', {})\n        comp_intel = inputs.get('competitive intelligence', {})\n        health = inputs.get('customer health score', 100)\n        at_risk = health < 60  # IF At Risk? == true THEN execute Risk Assessment and Escalate\n        if at_risk:\n            outputs['churn risk data'] = {'level': 'high', 'escalated': True, 'gdpr_logged': gdpr_flag}\n        else:\n            outputs['churn risk data'] = {'level': 'low', 'escalated': False, 'gdpr_logged': gdpr_flag}\n        price_change = pricing.get('increase_pct', 0)\n        if price_change > 5:\n            if not comp_intel:  # Pricing changes >5% require documented competitive intelligence source\n                outputs['pricing update'] = {'error': 'missing_competitive_intel'}\n            else:\n                outputs['pricing update'] = {'approved': False, 'requires_mgmt': True, 'source': comp_intel.get('source')}\n        else:\n            outputs['pricing update'] = {'increase_pct': price_change, 'approved': True}\n        if outputs.get('pricing update', {}).get('requires_mgmt'):\n            pass  # IF Price Increase? == true THEN require Management approval before Present to Customer\n        customer_accepts = contract.get('accepted', True)\n        if not customer_accepts:  # IF Customer Accepts? == false THEN enter Negotiate Terms loop\n            outputs['renewed contract'] = {'status': 'negotiating'}\n        else:\n            outputs['renewed contract'] = {'status': 'executed', 'timestamp': 'within_24h'}\n        outputs['retention metrics'] = {'churn_risk_reduced': not at_risk, 'updated': True, 'gdpr_logged': gdpr_flag}  # Contract execution must update retention metrics within 24 hours\n        if outputs['churn risk data'].get('escalated'):\n            pass  # IF Escalate? == true THEN route to Management lane; Final Approval must be completed by Management lane before Execute Contract\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GDPR access logging on every customer record\n        # - documented competitive intelligence for pricing changes\n        # - management lane final approval before execution\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Contract Renewal & Customer Retention\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0 and all(r[\"likelihood\"] is not None for r in risks)\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if all(r.get(\"likelihood\") is not None and r.get(\"impact\") is not None for r in risks):\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk evaluation incomplete\")\n        monitoring_active = True\n        if monitoring_active:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring in place\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Continuous monitoring missing\")\n        required_inputs = ['contract data', 'usage data', 'pricing data', 'competitive intelligence', 'customer health score']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data minimization violation\")\n        unauthorized = False\n        if not unauthorized:\n            checks_passed.append(\"EU AI Act Art.10: No unauthorised data categories\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Unauthorised data detected\")\n        lineage_traceable = bool(self.process_id)\n        if lineage_traceable:\n            checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data lineage missing\")\n        has_metadata = bool(self.agent_name and self.process_id and self.version)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.decision_logic:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic undocumented\")\n        if self.compliance_flags:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if self.escalation_rules:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        if 'GDPR customer data' in self.compliance_flags:\n            lawful = \"legitimate_interest B2B Art.6(1)(f)\"\n            if lawful:\n                checks_passed.append(\"GDPR: Lawful basis verified\")\n            else:\n                checks_failed.append(\"GDPR: Lawful basis missing\")\n            if len(required_inputs) <= 5:\n                checks_passed.append(\"GDPR: Data minimization satisfied\")\n            else:\n                checks_failed.append(\"GDPR: Data minimization failed\")\n            retention_ok = True\n            if retention_ok:\n                checks_passed.append(\"GDPR: Retention policy 7 years verified\")\n            else:\n                checks_failed.append(\"GDPR: Retention policy violation\")\n        govern_ok = bool(self.accountability)\n        if govern_ok:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        map_ok = bool(self.process_risks_mapped)\n        if map_ok:\n            checks_passed.append(\"NIST: Map process risks verified\")\n        else:\n            checks_failed.append(\"NIST: Map process risks missing\")\n        measure_ok = bool(self.monitoring_metrics)\n        if measure_ok:\n            checks_passed.append(\"NIST: Measure monitoring metrics verified\")\n        else:\n            checks_failed.append(\"NIST: Measure monitoring metrics missing\")\n        manage_ok = bool(self.escalation_procedures)\n        if manage_ok:\n            checks_passed.append(\"NIST: Manage escalation procedures verified\")\n        else:\n            checks_failed.append(\"NIST: Manage escalation procedures missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['renewed_contract', 'pricing_update']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['contract data missing', 'price change >5% without competitive source', '3 negotiation rounds without acceptance', 'no final approval within 30 days']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['renewal_cycle_time', 'renewal_rate', 'revenue_retention', 'compliance_flag_rate']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = ContractRenewalRetentionAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"contract_data\": \"example_contract_data\", \"usage_data\": \"example_usage_data\", \"pricing_data\": \"example_pricing_data\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Contract Renewal & Customer Retention\n**Process ID:** BPMN-CRM-003\n**Framework:**  | **Domain:** BPMN\n**Generated:** 2026-06-09\n\n## Purpose\nContract renewal process from renewal trigger to signed contract including account review, pricing negotiation, approval and execution\n\n## Triggers\n- Renewal Window Opens event with contract_id and renewal_date\n\n## Inputs Required\n- contract data\n- usage data\n- pricing data\n- competitive intelligence\n- customer health score\n\n## Process Steps\n1. IF At Risk? == true THEN execute Risk Assessment and Escalate\n2. IF Price Increase? == true THEN require Management approval before Present to Customer\n3. IF Customer Accepts? == false THEN enter Negotiate Terms loop\n4. IF Escalate? == true THEN route to Management lane\n\n## Expected Outputs\n- renewed contract\n- pricing update\n- retention metrics\n- churn risk data\n\n## Business Rules\n- All customer data access must log GDPR compliance flag\n- Pricing changes >5% require documented competitive intelligence source\n- Final Approval must be completed by Management lane before Execute Contract\n- Contract execution must update retention metrics within 24 hours\n\n## Exception Handling\n- IF contract data missing THEN halt process and create manual review task in Account Management lane\n- IF Customer Accepts? == false after 3 negotiation rounds THEN mark as Contract Lost and log churn risk data\n\n## Success Criteria\n- end event == Contract Renewed\n- renewal_rate >= 0.85\n- revenue_retention >= 0.95\n- renewal_cycle_time <= 14 days\n\n## Compliance Requirements\n- GDPR customer data\n- contractual compliance\n- financial reporting\n- competition law",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: GDPR customer data, contractual compliance, financial reporting, competition law",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

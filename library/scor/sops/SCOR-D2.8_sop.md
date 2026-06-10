@@ -1,13 +1,14 @@
 # SOP — Receive Product from Source or Make (MTO)
 **Process ID:** SCOR-D2.8
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-08
+**Generated:** 2026-06-10
 
 ## Purpose
 Process of receiving MTO finished goods from manufacturing or source operations into the deliver staging area with quality verification and inventory update
 
 ## Triggers
-- ProductionCompletionNotice received AND FinishedGoods physically arrive at deliver staging area
+- ProductionCompletionNotice received
+- QualityRelease issued
 
 ## Inputs Required
 - production completion notice
@@ -17,8 +18,7 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - delivery documentation
 
 ## Process Steps
-1. IF QualityRelease.status == 'approved' AND PackagingVerification.result == 'pass' THEN proceed to QualityAcceptance ELSE hold for exception handling
-2. IF DeliveryDocumentation.complete == true THEN update DeliverInventory ELSE request missing docs
+1. IF QualityRelease.status == 'approved' AND PackagingVerification.passed == true THEN create QualityAcceptance ELSE route to quality hold
 
 ## Expected Outputs
 - received finished goods
@@ -27,19 +27,19 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - staging confirmation
 
 ## Business Rules
-- QualityRelease must be present before QualityAcceptance is issued
-- DeliverInventory.accuracy must be verified within receive_cycle_time SLA
-- All FinishedGoods must have packaging_verification before staging_confirmation
+- inventory_accuracy must be >= 99.5%
+- receive_cycle_time must be <= 4 hours
+- quality_acceptance_rate must be >= 98%
+- apply GxP audit trail if sector == 'pharma'
 
 ## Exception Handling
-- PackagingVerification fails: reject FinishedGoods, log defect, notify source process SCOR-M2.5
-- Missing QualityRelease: place goods in quality_hold status and trigger compliance alert
+- IF FinishedGoods.quantity != expected_quantity THEN create discrepancy record and hold staging
+- IF GDPR applies and personal_data present THEN anonymize before DeliverInventoryUpdate
 
 ## Success Criteria
+- DeliverInventoryUpdate committed with inventory_accuracy >= 99.5%
+- StagingConfirmation timestamp recorded within receive_cycle_time SLA
 - QualityAcceptance issued
-- DeliverInventory updated with 100% accuracy
-- StagingConfirmation timestamp recorded
-- All KPIs (receive_accuracy, quality_acceptance_rate) exceed threshold
 
 ## Compliance Requirements
 - GxP if pharma

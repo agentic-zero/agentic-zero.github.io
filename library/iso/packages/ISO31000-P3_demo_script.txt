@@ -1,0 +1,6 @@
+1. Open with a live risk register import, highlighting 40+ hours/month of manual compliance tracking for a €50k annual exposure.  
+2. Trigger the AI agent to auto-generate prioritized treatment plans with control mappings to ISO 27001 and GDPR articles.  
+3. Run real-time monitoring on a simulated control failure; show instant alert, evidence capture, and updated risk score.  
+4. Auto-produce an audit-ready compliance report in under 60 seconds, eliminating external consultant fees.  
+5. Display ROI dashboard: €224 monthly cost vs. €2,240 quantified monthly savings (10x multiplier) from reduced hours and avoided fines.  
+6. Close with one-click export to existing GRC platform and a 30-day pilot offer.

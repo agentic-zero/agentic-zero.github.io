@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/alberto/Downloads/audit_4.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Free AUDIT — Agentic Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./audit_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg:    #04080f;
+  --bg2:   #070d18;
+  --sur:   #0d1828;
+  --brd:   #1a2e4a;
+  --brd2:  #142338;
+  --acc:   #00d4ff;
+  --grn:   #00e676;
+  --amb:   #ffab40;
+  --w1:    #f0f4f8;
+  --w2:    #8fa3c0;
+  --w3:    #4a6080;
+  --syne:  'Syne', sans-serif;
+  --mono:  'DM Mono', monospace;
+  --serif: 'Instrument Serif', serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w1);font-family:var(--syne);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
+
+/* CURSOR */
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+
+/* WRAPPER */
+.wrapper{max-width:640px;width:100%;position:relative;z-index:1}
+
+/* HEADER */
+.header{margin-bottom:48px;text-align:center}
+.logo{font-family:var(--mono);font-size:12px;letter-spacing:4px;color:var(--acc);margin-bottom:24px;display:block}
+.title{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:400;font-style:italic;color:var(--w1);line-height:1.1;margin-bottom:12px}
+.subtitle{font-size:14px;color:var(--w2);line-height:1.6;max-width:480px;margin:0 auto 20px}
+.promise{font-family:var(--mono);font-size:11px;color:var(--grn);letter-spacing:1px}
+
+/* PROGRESS */
+.progress{display:flex;gap:8px;justify-content:center;margin-bottom:40px}
+.step-dot{width:32px;height:3px;border-radius:2px;background:var(--brd);transition:background 0.3s}
+.step-dot.active{background:var(--acc)}
+.step-dot.done{background:var(--grn)}
+
+/* FORM */
+.form-card{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:40px;position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent)}
+
+/* STEPS */
+.step{display:none}
+.step.active{display:block}
+
+.step-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--acc);text-transform:uppercase;margin-bottom:8px}
+.step-title{font-family:var(--syne);font-size:20px;font-weight:700;margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--w2);margin-bottom:28px;line-height:1.6}
+
+/* FIELDS */
+.field{margin-bottom:20px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--w3);text-transform:uppercase;margin-bottom:8px}
+.field input,
+.field select,
+.field textarea{width:100%;background:var(--sur);border:1px solid var(--brd);border-radius:4px;padding:12px 16px;color:var(--w1);font-family:var(--syne);font-size:14px;outline:none;transition:border-color 0.2s}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{border-color:var(--acc)}
+.field select{appearance:none;cursor:pointer}
+.field textarea{resize:vertical;min-height:80px;line-height:1.6}
+.field input::placeholder,
+.field textarea::placeholder{color:var(--w3)}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* SELECT GROUPS */
+.select-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.select-option{background:var(--sur);border:1px solid var(--brd);border-radius:4px;padding:12px 14px;cursor:pointer;transition:all 0.2s;font-size:13px;color:var(--w2);display:flex;align-items:center;gap:8px}
+.select-option:hover{border-color:var(--acc);color:var(--w1)}
+.select-option.selected{border-color:var(--acc);background:rgba(0,212,255,0.06);color:var(--w1)}
+.select-option .opt-icon{font-size:16px;flex-shrink:0}
+
+/* VOLUME SLIDER */
+.volume-display{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--grn);margin-bottom:12px;text-align:center}
+.slider{width:100%;height:4px;background:var(--brd);border-radius:2px;outline:none;appearance:none;cursor:pointer}
+.slider::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:var(--acc);border-radius:50%;cursor:pointer}
+.slider-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px}
+
+/* FILE UPLOAD */
+.upload-zone{border:2px dashed var(--brd);border-radius:6px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--acc);background:rgba(0,212,255,0.04)}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:28px;margin-bottom:8px}
+.upload-title{font-family:var(--syne);font-size:14px;font-weight:600;color:var(--w2);margin-bottom:4px}
+.upload-subtitle{font-family:var(--mono);font-size:11px;color:var(--w3)}
+.upload-accepted{font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:6px}
+.upload-preview{display:none;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.2);border-radius:4px;padding:10px 14px;margin-top:10px;display:none;align-items:center;gap:10px}
+.upload-preview.visible{display:flex}
+.upload-preview-name{font-family:var(--mono);font-size:12px;color:var(--grn);flex:1}
+.upload-preview-size{font-family:var(--mono);font-size:11px;color:var(--w3)}
+.upload-remove{background:none;border:none;color:var(--w3);cursor:pointer;font-size:16px;padding:0;line-height:1}
+.upload-remove:hover{color:var(--red,#ff3d3d)}
+
+/* PAIN TAGS */
+.pain-tags{display:flex;flex-wrap:wrap;gap:8px}
+.pain-tag{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono)}
+.pain-tag:hover{border-color:var(--acc);color:var(--w1)}
+.pain-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn)}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:8px;}
+.cat-card{background:var(--bg2);border:1px solid var(--brd);border-radius:6px;padding:10px 12px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.cat-card:hover{border-color:var(--acc);}
+.cat-card.selected{border-color:var(--grn);background:rgba(0,230,118,0.07);}
+.cat-icon{font-size:16px;flex-shrink:0;}
+.cat-name{font-family:var(--mono);font-size:10px;color:var(--w2);line-height:1.3;}
+.cat-card.selected .cat-name{color:var(--grn);}
+.subcat-panel{background:rgba(0,212,255,0.03);border:1px solid rgba(0,212,255,0.15);border-radius:6px;padding:12px 14px;margin:6px 0;}
+.subcat-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:8px;}
+.subcat-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.subcat-tag{font-size:11px;padding:4px 10px;border-radius:14px;border:1px solid var(--brd);color:var(--w3);cursor:pointer;transition:all 0.2s;font-family:var(--mono);}
+.subcat-tag:hover{border-color:var(--acc);color:var(--w2);}
+.subcat-tag.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);color:var(--grn);}
+.link-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(0,230,118,0.2);border-radius:6px;margin-bottom:6px;cursor:pointer;transition:all 0.2s;}
+.link-item:hover{border-color:var(--grn);background:rgba(0,230,118,0.04);}
+.link-item.selected{border-color:var(--grn);background:rgba(0,230,118,0.08);}
+.link-check{width:16px;height:16px;border:1px solid var(--brd);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.link-item.selected .link-check{border-color:var(--grn);color:var(--grn);}
+.link-label{font-family:var(--syne);font-size:12px;color:var(--w2);}
+.link-procs{font-family:var(--mono);font-size:10px;color:var(--w3);}
+
+/* BUTTONS */
+.btn-group{display:flex;gap:12px;margin-top:28px}
+.btn-primary{font-family:var(--syne);font-size:13px;font-weight:700;letter-spacing:1px;color:var(--bg);background:var(--acc);padding:13px 28px;border:none;border-radius:3px;cursor:pointer;transition:background 0.2s;text-transform:uppercase;flex:1}
+.btn-primary:hover{background:var(--grn)}
+.btn-secondary{font-family:var(--syne);font-size:13px;color:var(--w3);background:transparent;border:1px solid var(--brd);padding:13px 20px;border-radius:3px;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+.btn-secondary:hover{border-color:var(--w3);color:var(--w2)}
+
+/* CONFIRMATION */
+.confirm-block{background:rgba(0,230,118,0.04);border:1px solid rgba(0,230,118,0.2);border-radius:6px;padding:20px;margin-bottom:20px}
+.confirm-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--brd2);font-size:13px}
+.confirm-row:last-child{border-bottom:none}
+.confirm-label{color:var(--w3);font-family:var(--mono);font-size:11px;text-transform:uppercase}
+.confirm-value{color:var(--w1);font-weight:600;text-align:right;max-width:60%}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:20px 0}
+.success-icon{font-size:48px;margin-bottom:20px}
+.success-title{font-family:var(--serif);font-size:32px;font-style:italic;margin-bottom:12px;color:var(--grn)}
+.success-desc{font-size:14px;color:var(--w2);line-height:1.7;margin-bottom:24px}
+.success-next{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:20px;text-align:left}
+.success-next-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:12px}
+.success-next li{font-size:13px;color:var(--w2);line-height:1.8;list-style:none;display:flex;gap:8px}
+.success-next li::before{content:'→';color:var(--grn);flex-shrink:0}
+
+/* FOOTER */
+.footer{margin-top:28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--w3)}
+.footer a{color:var(--acc);text-decoration:none}
+
+@media(max-width:600px){
+  .field-row{grid-template-columns:1fr}
+  .select-grid{grid-template-columns:1fr}
+  .form-card{padding:24px}
+}
+</style>
+<script src="./audit_files/email.min.js.descarga">
+const SUBCATEGORIES = {
+  "Order & Delivery": [
+    "Order entry & validation",
+    "Credit check & approval workflow",
+    "Order promising & ATP",
+    "Pick, pack & dispatch",
+    "Shipping & carrier management",
+    "Invoice generation & sending",
+    "Cash collection & reconciliation",
+    "Customer returns & credit notes",
+  ],
+  "Planning & Forecasting": [
+    "Statistical demand forecasting",
+    "Collaborative forecasting (S&OP)",
+    "Supply planning & constraints",
+    "Production planning (MPS/MRP)",
+    "Inventory target setting",
+    "Capacity planning",
+    "Long-range planning (IBP)",
+  ],
+  "Procurement & Sourcing": [
+    "Purchase requisition & approval",
+    "Supplier selection & onboarding",
+    "Purchase order management",
+    "Goods receipt & inspection",
+    "Invoice matching (3-way)",
+    "Supplier performance management",
+    "Contract management",
+  ],
+  "Manufacturing & Production": [
+    "Production scheduling",
+    "Work order management",
+    "Material issuance & BOM control",
+    "In-process quality control",
+    "Machine & equipment management",
+    "Production reporting & OEE",
+    "Finished goods transfer",
+  ],
+  "Warehouse & Inventory": [
+    "Inbound receiving & putaway",
+    "Inventory counting & reconciliation",
+    "Pick & pack operations",
+    "Outbound dispatch",
+    "Warehouse space management",
+    "Batch & serial number tracking",
+    "Cold chain / special handling",
+  ],
+  "Returns & Reverse Logistics": [
+    "Customer return authorization (RMA)",
+    "Returned goods inspection",
+    "Disposition & restock decision",
+    "Supplier return management",
+    "Reverse logistics execution",
+    "Credit note & financial settlement",
+  ],
+  "Quality Management": [
+    "Incoming quality inspection",
+    "In-process quality control",
+    "Non-conformance management",
+    "CAPA (Corrective & Preventive Action)",
+    "Supplier quality audits",
+    "Customer complaint handling",
+    "Quality documentation & records",
+  ],
+  "Finance & Controls": [
+    "Order-to-cash financial closing",
+    "Procure-to-pay financial closing",
+    "Month-end & period close",
+    "Cost allocation & analysis",
+    "Cash flow forecasting",
+    "Payment approval & execution",
+    "Financial reporting & consolidation",
+  ],
+  "Regulatory & Compliance": [
+    "EU AI Act classification & documentation",
+    "GDPR data processing compliance",
+    "GxP / GDP / GMP compliance",
+    "IATF 16949 automotive compliance",
+    "Export control (ITAR/EAR)",
+    "Regulatory reporting & submissions",
+    "Internal compliance audits",
+  ],
+  "AI & Data Governance": [
+    "AI system inventory & classification",
+    "AI risk assessment",
+    "AI model performance monitoring",
+    "Data quality management",
+    "Audit trail & explainability",
+    "AI policy & governance framework",
+    "Incident & anomaly management",
+  ],
+  "Risk Management": [
+    "Supplier risk assessment",
+    "Operational risk identification",
+    "Business continuity planning",
+    "Early warning & monitoring",
+    "Risk mitigation & controls",
+    "Geopolitical & market risk",
+  ],
+  "Digital & ERP Integration": [
+    "ERP data migration & transition",
+    "System integration & APIs",
+    "Master data management",
+    "Reporting & analytics automation",
+    "Process automation (RPA/agents)",
+    "Real-time visibility & dashboards",
+    "Legacy system modernization",
+  ],
+  "Sustainability & ESG": [
+    "Carbon footprint measurement",
+    "Supplier ESG assessment",
+    "Sustainability reporting",
+    "Circular economy & waste reduction",
+    "Energy & resource optimization",
+  ],
+  "Customer & Service": [
+    "Customer onboarding",
+    "Service level management (SLA)",
+    "Customer complaint management",
+    "After-sales & warranty",
+    "Customer satisfaction measurement",
+  ],
+  "HR & Operations": [
+    "Workforce planning",
+    "Onboarding & training",
+    "Performance management",
+    "Process documentation & SOPs",
+    "Cross-functional coordination",
+    "Escalation & exception management",
+  ],
+  "Defense & Regulated Industries": [
+    "Export license management",
+    "Configuration & change management",
+    "Milestone & deliverable tracking",
+    "Classified data handling",
+    "Subcontractor compliance",
+    "Acceptance testing & certification",
+  ],
+};
+
+function togglePain(el) {
+  el.classList.toggle('selected');
+  const cat = el.textContent.trim();
+  const panelId = 'subcat-' + cat.replace(/[^a-zA-Z0-9]/g, '_');
+  const panel = document.getElementById(panelId);
+  if (panel) {
+    if (el.classList.contains('selected')) {
+      panel.classList.add('visible');
+      if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+    } else {
+      panel.classList.remove('visible');
+      delete selectedSubcats[cat];
+    }
+  }
+  state.pains = Array.from(document.querySelectorAll('.pain-tag.selected')).map(e => e.textContent.trim());
+}
+
+function toggleSubcat(el, cat) {
+  el.classList.toggle('selected');
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+  const sub = el.dataset.sub;
+  if (el.classList.contains('selected')) {
+    if (!selectedSubcats[cat].includes(sub)) selectedSubcats[cat].push(sub);
+  } else {
+    selectedSubcats[cat] = selectedSubcats[cat].filter(s => s !== sub);
+  }
+  state.subcats = selectedSubcats;
+}
+
+
+// ============================================================
+// INTERNAL FRAMEWORK MAPPING — Scout Comercial use only
+// L1 Category → L2 Subcategory → Library Process IDs
+// DO NOT expose to client
+// ============================================================
+const FRAMEWORK_MAP = {
+  "Order & Delivery": {
+    "Order entry & validation":           ["SCOR-D1.2","BPMN-OTC-001"],
+    "Credit check & approval workflow":   ["SCOR-D1.2","BPMN-OTC-001"],
+    "Order promising & ATP":               ["SCOR-D1.3","SCOR-P3.1"],
+    "Pick, pack & dispatch":              ["SCOR-D1.4","SCOR-D1.5"],
+    "Shipping & carrier management":      ["SCOR-D1.5","BPMN-TRP-001"],
+    "Invoice generation & sending":       ["SCOR-D1.5","BPMN-OTC-001"],
+    "Cash collection & reconciliation":   ["BPMN-OTC-001","BPMN-FIN-001"],
+    "Customer returns & credit notes":    ["SCOR-DR1.1","SCOR-DR1.2","BPMN-RMA-001"]
+  },
+  "Planning & Forecasting": {
+    "Statistical demand forecasting":     ["SCOR-P1.2","BPMN-IBP-001"],
+    "Collaborative forecasting (S&OP)":   ["SCOR-P1.1","SCOR-P1.3","BPMN-IBP-001"],
+    "Supply planning & constraints":      ["SCOR-P2.1","SCOR-P2.2"],
+    "Production planning (MPS/MRP)":      ["SCOR-P3.1","SCOR-P3.2","BPMN-MRP-001"],
+    "Inventory target setting":           ["SCOR-P1.4","SCOR-P4.1"],
+    "Capacity planning":                  ["SCOR-P3.3","SCOR-P3.4"],
+    "Long-range planning (IBP)":          ["SCOR-P1.1","SCOR-P1.5","BPMN-IBP-001"]
+  },
+  "Procurement & Sourcing": {
+    "Purchase requisition & approval":    ["SCOR-S1.1","BPMN-PTP-001"],
+    "Supplier selection & onboarding":    ["SCOR-S2.1","SCOR-S3.1"],
+    "Purchase order management":          ["SCOR-S1.2","SCOR-S2.2"],
+    "Goods receipt & inspection":         ["SCOR-S1.3","SCOR-S2.3"],
+    "Invoice matching (3-way)":           ["SCOR-S1.4","BPMN-PTP-001"],
+    "Supplier performance management":    ["SCOR-SR2.3","SCOR-SR3.1"],
+    "Contract management":                ["SCOR-E5","BPMN-SPM-001"]
+  },
+  "Manufacturing & Production": {
+    "Production scheduling":              ["SCOR-M2.1","SCOR-M3.1"],
+    "Work order management":              ["SCOR-M2.2","SCOR-M3.2"],
+    "Material issuance & BOM control":    ["SCOR-M2.3","SCOR-M3.3"],
+    "In-process quality control":         ["SCOR-M2.4","BPMN-QMS-001"],
+    "Machine & equipment management":     ["SCOR-M2.5","SCOR-M3.5"],
+    "Production reporting & OEE":         ["SCOR-E7","SCOR-DIG3"],
+    "Finished goods transfer":            ["SCOR-M2.5","SCOR-M3.4"]
+  },
+  "Warehouse & Inventory": {
+    "Inbound receiving & putaway":        ["BPMN-WMS-001","SCOR-S1.3"],
+    "Inventory counting & reconciliation":["BPMN-WMS-002","SCOR-P4.1"],
+    "Pick & pack operations":             ["BPMN-WMS-001","SCOR-D1.4"],
+    "Outbound dispatch":                  ["BPMN-WMS-001","SCOR-D1.5"],
+    "Warehouse space management":         ["SCOR-E3","BPMN-WMS-002"],
+    "Batch & serial number tracking":     ["SCOR-DIG2","BPMN-QMS-001"],
+    "Cold chain / special handling":      ["BPMN-WMS-001","BPMN-GXP-001"]
+  },
+  "Returns & Reverse Logistics": {
+    "Customer return authorization (RMA)":["SCOR-DR1.1","BPMN-RMA-001"],
+    "Returned goods inspection":          ["SCOR-DR1.2","SCOR-SR2.4"],
+    "Disposition & restock decision":     ["SCOR-DR1.3","SCOR-SR2.5"],
+    "Supplier return management":         ["SCOR-SR2.3","SCOR-SR3.2"],
+    "Reverse logistics execution":        ["SCOR-DR2.1","SCOR-DR3.1"],
+    "Credit note & financial settlement": ["SCOR-DR1.4","BPMN-FIN-001"]
+  },
+  "Quality Management": {
+    "Incoming quality inspection":        ["ISO9001-8","SCOR-S1.3"],
+    "In-process quality control":         ["ISO9001-8","SCOR-M2.4"],
+    "Non-conformance management":         ["ISO9001-8","ISO9001-10"],
+    "CAPA (Corrective & Preventive Action)":["ISO9001-10","BPMN-QMS-001"],
+    "Supplier quality audits":            ["ISO9001-8","SCOR-SR2.3"],
+    "Customer complaint handling":        ["BPMN-CRM-001","ISO9001-9"],
+    "Quality documentation & records":    ["ISO9001-7","ISO9001-9"]
+  },
+  "Finance & Controls": {
+    "Order-to-cash financial closing":    ["BPMN-FIN-001","BPMN-OTC-001"],
+    "Procure-to-pay financial closing":   ["BPMN-PTP-001","BPMN-FIN-001"],
+    "Month-end & period close":           ["BPMN-FIN-002","SCOR-E9"],
+    "Cost allocation & analysis":         ["BPMN-FIN-003","SCOR-E9"],
+    "Cash flow forecasting":              ["BPMN-FIN-004","SCOR-P1.2"],
+    "Payment approval & execution":       ["BPMN-PTP-001","BPMN-FIN-001"],
+    "Financial reporting & consolidation":["BPMN-FIN-003","SCOR-E8"]
+  },
+  "Regulatory & Compliance": {
+    "EU AI Act classification & documentation":["EUAIA-ART6","EUAIA-ART9","EUAIA-ART10","EUAIA-ART11"],
+    "GDPR data processing compliance":    ["GDPR-ART5","GDPR-ART13","GDPR-ART30"],
+    "GxP / GDP / GMP compliance":         ["GXP-GDP","GXP-GMP"],
+    "IATF 16949 automotive compliance":   ["IATF16949-8D","IATF16949-APQP","IATF16949-PPAP"],
+    "Export control (ITAR/EAR)":          ["BPMN-DEF-001","BPMN-DEF-002"],
+    "Regulatory reporting & submissions": ["EUAIA-ART72","GDPR-ART30"],
+    "Internal compliance audits":         ["ISO9001-9","ISO42001-9"]
+  },
+  "AI & Data Governance": {
+    "AI system inventory & classification":["ISO42001-4","EUAIA-ART6"],
+    "AI risk assessment":                  ["ISO42001-6","EUAIA-ART9","NIST-GOVERN"],
+    "AI model performance monitoring":     ["ISO42001-9","NIST-MEASURE"],
+    "Data quality management":             ["ISO42001-7","GDPR-ART5"],
+    "Audit trail & explainability":        ["EUAIA-ART12","EUAIA-ART13","NIST-MANAGE"],
+    "AI policy & governance framework":    ["ISO42001-5","NIST-GOVERN"],
+    "Incident & anomaly management":       ["ISO42001-10","EUAIA-ART72","NIST-MANAGE"]
+  },
+  "Risk Management": {
+    "Supplier risk assessment":            ["SCOR-SR3.1","SCOR-E6","ISO31000-P1"],
+    "Operational risk identification":     ["SCOR-E6","ISO31000-P2"],
+    "Business continuity planning":        ["SCOR-E4","ISO31000-P3"],
+    "Early warning & monitoring":          ["SCOR-DIG4","SCOR-E6"],
+    "Risk mitigation & controls":          ["SCOR-E6","ISO31000-P2"],
+    "Geopolitical & market risk":          ["SCOR-E6","ISO31000-P3"]
+  },
+  "Digital & ERP Integration": {
+    "ERP data migration & transition":     ["SCOR-DIG1","BPMN-DIG-001"],
+    "System integration & APIs":           ["SCOR-DIG2","BPMN-DIG-002"],
+    "Master data management":              ["SCOR-E3","SCOR-DIG3"],
+    "Reporting & analytics automation":    ["SCOR-DIG5","BPMN-DIG-003"],
+    "Process automation (RPA/agents)":     ["SCOR-DIG4","BPMN-DIG-004"],
+    "Real-time visibility & dashboards":   ["SCOR-DIG3","SCOR-DIG10"],
+    "Legacy system modernization":         ["SCOR-DIG1","BPMN-DIG-005"]
+  },
+  "Sustainability & ESG": {
+    "Carbon footprint measurement":        ["BPMN-ESG-001"],
+    "Supplier ESG assessment":             ["BPMN-ESG-001","SCOR-SR3.1"],
+    "Sustainability reporting":            ["BPMN-ESG-002"],
+    "Circular economy & waste reduction":  ["BPMN-ESG-001"],
+    "Energy & resource optimization":      ["BPMN-ESG-002"]
+  },
+  "Customer & Service": {
+    "Customer onboarding":                 ["BPMN-CRM-001","SCOR-D4.2"],
+    "Service level management (SLA)":      ["SCOR-E2","BPMN-CRM-002"],
+    "Customer complaint management":       ["BPMN-CRM-001","SCOR-DR1.1"],
+    "After-sales & warranty":              ["SCOR-DR1.2","BPMN-CRM-003"],
+    "Customer satisfaction measurement":   ["ISO9001-9","SCOR-E8"]
+  },
+  "HR & Operations": {
+    "Workforce planning":                  ["BPMN-HRM-001"],
+    "Onboarding & training":               ["BPMN-HRM-001","ISO9001-7"],
+    "Performance management":              ["BPMN-HRM-001","ISO9001-9"],
+    "Process documentation & SOPs":        ["BPMN-SOP-001","ISO9001-7"],
+    "Cross-functional coordination":       ["BPMN-SOP-001","SCOR-E1"],
+    "Escalation & exception management":   ["BPMN-SOP-001","SCOR-E2"]
+  },
+  "Defense & Regulated Industries": {
+    "Export license management":           ["BPMN-DEF-001"],
+    "Configuration & change management":   ["BPMN-DEF-002","IATF16949-8D"],
+    "Milestone & deliverable tracking":    ["BPMN-DEF-003"],
+    "Classified data handling":            ["BPMN-DEF-001","GDPR-ART5"],
+    "Subcontractor compliance":            ["BPMN-DEF-002","IATF16949-APQP"],
+    "Acceptance testing & certification":  ["BPMN-DEF-003","IATF16949-PPAP"]
+  }
+};
+
+</script>
+<script>emailjs.init('_55-V5xnvLJVEGafR');</script>
+</head>
+<body>
+
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="logo">AGENTIC ZERO</span>
+    <h1 class="title">Book your free AUDIT</h1>
+    <p class="subtitle">We calculate the exact ROI for your operation using your real data — before any commitment.</p>
+    <div class="promise">✓ Free &nbsp;·&nbsp; No commitment &nbsp;·&nbsp; ROI calculated on your data</div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress">
+    <div class="step-dot active" id="dot-1"></div>
+    <div class="step-dot" id="dot-2"></div>
+    <div class="step-dot" id="dot-3"></div>
+    <div class="step-dot" id="dot-4"></div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+
+    <!-- STEP 1 — Who are you -->
+    <div class="step active" id="step-1">
+      <div class="step-label">Step 1 of 4</div>
+      <div class="step-title">Tell us about you</div>
+      <div class="step-desc">Basic contact info so we can prepare your AUDIT properly.</div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Full name *</label>
+          <input type="text" id="f-name" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label>Company *</label>
+          <input type="text" id="f-company" placeholder="Company name">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Email *</label>
+          <input type="email" id="f-email" placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label>Role</label>
+          <input type="text" id="f-role" placeholder="Operations Director">
+        </div>
+      </div>
+      <div class="field">
+        <label>Sector *</label>
+        <div class="select-grid" id="sector-grid">
+          <div class="select-option" data-val="pharma" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">💊</span> Pharma</div>
+          <div class="select-option" data-val="defense" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🛡️</span> Defense</div>
+          <div class="select-option" data-val="chemical" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">⚗️</span> Chemical</div>
+          <div class="select-option" data-val="food" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🌾</span> Food &amp; Agri</div>
+          <div class="select-option" data-val="automotive" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🚗</span> Automotive</div>
+          <div class="select-option" data-val="manufacturing" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🏭</span> Manufacturing</div>
+          <div class="select-option" data-val="distribution" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">📦</span> Distribution</div>
+          <div class="select-option" data-val="transport" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🚛</span> Transport</div>
+          <div class="select-option" data-val="energy" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">⚡</span> Energy</div>
+          <div class="select-option" data-val="other" onclick="selectOption(this,&#39;sector&#39;)"><span class="opt-icon">🔧</span> Other</div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-primary" onclick="goStep(2)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 — Your operation -->
+    <div class="step" id="step-2">
+      <div class="step-label">Step 2 of 4</div>
+      <div class="step-title">Your operation</div>
+      <div class="step-desc">Help us understand the scale and current state of your processes.</div>
+
+      <div class="field">
+        <label>Current ERP / Systems</label>
+        <div class="select-grid" id="erp-grid">
+          <div class="select-option" data-val="sap_ecc" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> SAP ECC</div>
+          <div class="select-option" data-val="sap_hana" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> SAP HANA / S4</div>
+          <div class="select-option" data-val="oracle" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔴</span> Oracle</div>
+          <div class="select-option" data-val="dynamics" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔵</span> MS Dynamics</div>
+          <div class="select-option" data-val="ms_bc" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔵</span> Microsoft BC</div>
+          <div class="select-option" data-val="infor" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> Infor</div>
+          <div class="select-option" data-val="epicor" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">⚙️</span> Epicor</div>
+          <div class="select-option" data-val="netsuite" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">☁️</span> NetSuite</div>
+          <div class="select-option" data-val="odoo" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🟣</span> Odoo</div>
+          <div class="select-option" data-val="tailored" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🛠️</span> Tailored ERPs/Systems</div>
+          <div class="select-option" data-val="custom" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">🔧</span> Custom / Legacy</div>
+          <div class="select-option" data-val="none" onclick="selectOption(this,&#39;erp&#39;)"><span class="opt-icon">📋</span> No ERP yet</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Daily transaction volume (orders / documents / events)</label>
+        <div class="volume-display" id="vol-display">~50 / day</div>
+        <input type="range" class="slider" id="vol-slider" min="0" max="100" value="30" oninput="updateVolume(this.value)">
+        <div class="slider-labels"><span>&lt;10</span><span>50</span><span>200</span><span>500</span><span>1,000+</span></div>
+      </div>
+
+      <div class="field">
+        <label>How many people handle this process today?</label>
+        <div class="select-grid" id="fte-grid">
+          <div class="select-option" data-val="1-2" onclick="selectOption(this,&#39;fte&#39;)">1–2 people</div>
+          <div class="select-option" data-val="3-5" onclick="selectOption(this,&#39;fte&#39;)">3–5 people</div>
+          <div class="select-option" data-val="6-10" onclick="selectOption(this,&#39;fte&#39;)">6–10 people</div>
+          <div class="select-option" data-val="10+" onclick="selectOption(this,&#39;fte&#39;)">10+ people</div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="goStep(1)">← Back</button>
+        <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 — The pain -->
+    <div class="step" id="step-3">
+      <div class="step-label">Step 3 of 4</div>
+      <div class="step-title">Where can we improve</div>
+      <div class="step-desc">Select the areas that apply. For each area, choose the specific processes.</div>
+
+      <!-- L1: Category grid -->
+      <div class="cat-grid" id="cat-grid">
+        <div class="cat-card" id="card_Order_Delivery" onclick="selectCat(this,&#39;Order &amp; Delivery&#39;)">
+          <span class="cat-icon">📦</span>
+          <span class="cat-name">Order &amp; Delivery</span>
+        </div>
+        <div class="cat-card" id="card_Planning_Forecasting" onclick="selectCat(this,&#39;Planning &amp; Forecasting&#39;)">
+          <span class="cat-icon">📊</span>
+          <span class="cat-name">Planning &amp; Forecasting</span>
+        </div>
+        <div class="cat-card" id="card_Procurement_Sourcing" onclick="selectCat(this,&#39;Procurement &amp; Sourcing&#39;)">
+          <span class="cat-icon">🛒</span>
+          <span class="cat-name">Procurement &amp; Sourcing</span>
+        </div>
+        <div class="cat-card" id="card_Manufacturing_Production" onclick="selectCat(this,&#39;Manufacturing &amp; Production&#39;)">
+          <span class="cat-icon">🏭</span>
+          <span class="cat-name">Manufacturing &amp; Production</span>
+        </div>
+        <div class="cat-card" id="card_Warehouse_Inventory" onclick="selectCat(this,&#39;Warehouse &amp; Inventory&#39;)">
+          <span class="cat-icon">🏪</span>
+          <span class="cat-name">Warehouse &amp; Inventory</span>
+        </div>
+        <div class="cat-card" id="card_Returns_Reverse_Logistics" onclick="selectCat(this,&#39;Returns &amp; Reverse Logistics&#39;)">
+          <span class="cat-icon">↩️</span>
+          <span class="cat-name">Returns &amp; Reverse Logistics</span>
+        </div>
+        <div class="cat-card" id="card_Quality_Management" onclick="selectCat(this,&#39;Quality Management&#39;)">
+          <span class="cat-icon">✅</span>
+          <span class="cat-name">Quality Management</span>
+        </div>
+        <div class="cat-card" id="card_Finance_Controls" onclick="selectCat(this,&#39;Finance &amp; Controls&#39;)">
+          <span class="cat-icon">💰</span>
+          <span class="cat-name">Finance &amp; Controls</span>
+        </div>
+        <div class="cat-card" id="card_Regulatory_Compliance" onclick="selectCat(this,&#39;Regulatory &amp; Compliance&#39;)">
+          <span class="cat-icon">⚖️</span>
+          <span class="cat-name">Regulatory &amp; Compliance</span>
+        </div>
+        <div class="cat-card" id="card_AI_Data_Governance" onclick="selectCat(this,&#39;AI &amp; Data Governance&#39;)">
+          <span class="cat-icon">🤖</span>
+          <span class="cat-name">AI &amp; Data Governance</span>
+        </div>
+        <div class="cat-card" id="card_Risk_Management" onclick="selectCat(this,&#39;Risk Management&#39;)">
+          <span class="cat-icon">🛡️</span>
+          <span class="cat-name">Risk Management</span>
+        </div>
+        <div class="cat-card" id="card_Digital_ERP_Integration" onclick="selectCat(this,&#39;Digital &amp; ERP Integration&#39;)">
+          <span class="cat-icon">💻</span>
+          <span class="cat-name">Digital &amp; ERP Integration</span>
+        </div>
+        <div class="cat-card" id="card_Sustainability_ESG" onclick="selectCat(this,&#39;Sustainability &amp; ESG&#39;)">
+          <span class="cat-icon">🌱</span>
+          <span class="cat-name">Sustainability &amp; ESG</span>
+        </div>
+        <div class="cat-card" id="card_Customer_Service" onclick="selectCat(this,&#39;Customer &amp; Service&#39;)">
+          <span class="cat-icon">🤝</span>
+          <span class="cat-name">Customer &amp; Service</span>
+        </div>
+        <div class="cat-card" id="card_HR_Operations" onclick="selectCat(this,&#39;HR &amp; Operations&#39;)">
+          <span class="cat-icon">👥</span>
+          <span class="cat-name">HR &amp; Operations</span>
+        </div>
+        <div class="cat-card" id="card_Defense_Regulated_Industries" onclick="selectCat(this,&#39;Defense &amp; Regulated Industries&#39;)">
+          <span class="cat-icon">🎯</span>
+          <span class="cat-name">Defense &amp; Regulated Industries</span>
+        </div>
+      </div>
+
+      <!-- L2: Subcategory panels -->
+      <div id="subcat-panels"></div>
+
+      <!-- L3: Cross-process links -->
+      <div id="process-links" style="display:none;margin-top:16px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--grn);margin-bottom:10px;">CONNECTED PROCESSES DETECTED</div>
+        <div id="links-list"></div>
+      </div>
+
+      <div class="field" style="margin-top:20px;">
+        <label>Upload your process map <span style="color:var(--grn);font-size:10px;letter-spacing:1px;">RECOMMENDED</span></label>
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" accept=".bpmn,.xml,.png,.jpg,.jpeg,.pdf,.vsdx,.drawio,.svg" onchange="handleFile(this.files[0])">
+          <div class="upload-icon">📎</div>
+          <div class="upload-title">Drop your process map here or click to browse</div>
+          <div class="upload-subtitle">BPMN, diagram, flowchart, screenshot or PDF</div>
+          <div class="upload-accepted">Accepted: .bpmn · .xml · .png · .jpg · .pdf · .vsdx · .drawio · .svg · max 10MB</div>
+        </div>
+        <div class="upload-preview" id="upload-preview">
+          <span>📎</span>
+          <span class="upload-preview-name" id="upload-name">—</span>
+          <span class="upload-preview-size" id="upload-size">—</span>
+          <button class="upload-remove" onclick="removeFile()" title="Remove">✕</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Describe your main challenge in 2-3 sentences</label>
+        <textarea id="f-pain" placeholder="The more specific, the more precise our ROI calculation." style="min-height:80px;"></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="goStep(2)">← Back</button>
+        <button class="btn-primary" onclick="goStep(4)">Continue →</button>
+      </div>
+    </div>
+<div class="step" id="step-4">
+      <div class="step-label">Step 4 of 4</div>
+      <div class="step-title">Confirm your AUDIT</div>
+      <div class="step-desc">Review your information and choose a slot for your free AUDIT call.</div>
+
+      <div class="confirm-block" id="confirm-summary">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="field">
+        <label>Preferred timing</label>
+        <div class="select-grid" id="timing-grid">
+          <div class="select-option" data-val="this_week" onclick="selectOption(this,&#39;timing&#39;)">📅 This week</div>
+          <div class="select-option" data-val="next_week" onclick="selectOption(this,&#39;timing&#39;)">📅 Next week</div>
+          <div class="select-option" data-val="asap" onclick="selectOption(this,&#39;timing&#39;)">⚡ As soon as possible</div>
+          <div class="select-option" data-val="flexible" onclick="selectOption(this,&#39;timing&#39;)">🕐 I'm flexible</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Anything else we should know?</label>
+        <textarea id="f-notes" placeholder="Additional context, specific constraints, or questions for Alberto..." style="min-height:60px"></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-secondary" onclick="goStep(3)">← Back</button>
+        <div id="al-indicator" style="background:var(--bg2);border:1px solid var(--brd);border-radius:6px;padding:16px 20px;margin-bottom:16px;display:none;">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:6px;">AUTONOMY LEVEL DETECTED</div>
+          <div id="al-label" style="font-family:var(--syne);font-size:15px;font-weight:600;color:var(--w1);margin-bottom:4px;"></div>
+          <div id="al-desc" style="font-family:var(--mono);font-size:11px;color:var(--w3);"></div>
+          <div class="subcat-panel" id="subcat-Defense___Regulated_Industries">
+            <div class="subcat-label">Specify the areas within Defense &amp; Regulated Industries</div>
+            <div class="subcat-tags">
+              <div class="subcat-tag" data-sub="Export license management" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Export license management</div>
+              <div class="subcat-tag" data-sub="Configuration &amp; change management" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Configuration &amp; change management</div>
+              <div class="subcat-tag" data-sub="Milestone &amp; deliverable tracking" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Milestone &amp; deliverable tracking</div>
+              <div class="subcat-tag" data-sub="Classified data handling" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Classified data handling</div>
+              <div class="subcat-tag" data-sub="Subcontractor compliance" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Subcontractor compliance</div>
+              <div class="subcat-tag" data-sub="Acceptance testing &amp; certification" onclick="toggleSubcat(this,&#39;Defense &amp; Regulated Industries&#39;)">Acceptance testing &amp; certification</div>
+            </div>
+          </div>
+
+        </div>
+        <button class="btn-primary" onclick="submitForm()">Book Free AUDIT →</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="success">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Your AUDIT is booked.</div>
+      <div class="success-desc" id="success-al-msg">Our team will review your information and reach out within 24 hours to confirm the exact slot and scope.</div>
+
+      <div class="success-next" style="margin-bottom:16px;">
+        <div class="success-next-title">What happens next</div>
+        <ul>
+          <li>Our team reviews your operation details — within 24 hours</li>
+          <li>You receive a confirmation with the AUDIT scope and start date</li>
+          <li style="color:var(--grn)">📎 To accelerate your ROI calculation — reply with your process map (BPMN, PDF, screenshot or flowchart). Not required, but it helps.</li>
+          <li>AUDIT delivered in 2 days — Autonomy Map · exact ROI · compliance report · agent demo</li>
+          <li>Executive session — you see the numbers before any decision</li>
+        </ul>
+      </div>
+
+      <div style="background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:6px;padding:16px 20px;margin-bottom:16px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:8px;">YOUR AUTONOMY LEVEL</div>
+        <div id="success-al-level" style="font-family:var(--syne);font-size:15px;font-weight:600;color:var(--acc);margin-bottom:4px;">—</div>
+        <div id="success-al-detail" style="font-family:var(--mono);font-size:11px;color:var(--w3);">—</div>
+      </div>
+
+      <div style="background:rgba(0,230,118,0.04);border:1px solid rgba(0,230,118,0.15);border-radius:6px;padding:16px 20px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--grn);margin-bottom:8px;">ZERO COMMITMENT REMINDER</div>
+        <div style="font-family:var(--syne);font-size:13px;color:var(--w2);">No contract, no payment, no obligation until you see your exact ROI and decide to proceed. The AUDIT is completely free.</div>
+      </div>
+    </div>
+
+  </div><!-- /form-card -->
+
+  <div class="footer">
+    <a href="https://agentic-zero.com/">← Back to agentic-zero.com</a>
+    &nbsp;·&nbsp; audit@agentic-zero.com
+    &nbsp;·&nbsp; Powered by Dis-Solutions
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+
+// ── CORE STATE ─────────────────────────────────────────────
+const state = {
+  name:'', company:'', email:'', role:'', sector:'',
+  erp:'', volume:'', fte:'', pains:[], subcats:{}, links:[], timing:'', notes:'',
+  pain_desc:''
+};
+
+// ── STEP NAVIGATION ────────────────────────────────────────
+function goStep(n) {
+  if (n > 1 && !validateStep(n-1)) return;
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-'+n).classList.add('active');
+  document.querySelectorAll('.step-dot').forEach((d,i) => {
+    d.classList.toggle('active', i < n);
+    d.classList.toggle('done', i < n-1);
+  });
+  if (n === 4) { buildConfirm(); updateALIndicator(); }
+  window.scrollTo(0, 0);
+}
+
+// ── VALIDATION ─────────────────────────────────────────────
+function validateStep(n) {
+  state.name    = (document.getElementById('f-name')||{}).value||'';
+  state.company = (document.getElementById('f-company')||{}).value||'';
+  state.email   = (document.getElementById('f-email')||{}).value||'';
+  state.role    = (document.getElementById('f-role')||{}).value||'';
+  state.pain_desc = (document.getElementById('f-pain')||{}).value||'';
+
+  if (n === 1) {
+    if (!state.name.trim())    { alert('Please enter your name.'); return false; }
+    if (!state.company.trim()) { alert('Please enter your company.'); return false; }
+    if (!state.email.trim() || !state.email.includes('@')) { alert('Please enter a valid email.'); return false; }
+    if (!state.sector)         { alert('Please select your sector.'); return false; }
+  }
+  if (n === 2) {
+    const vol = document.getElementById('f-volume');
+    state.volume = vol ? Math.max(0, parseInt(vol.value)||0) + ' orders/day' : '';
+  }
+  return true;
+}
+
+// ── SELECT OPTION (sector, erp, fte, timing) ───────────────
+function selectOption(el, field) {
+  const grid = el.parentElement;
+  grid.querySelectorAll('.select-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state[field] = el.dataset.val;
+}
+
+function selectTiming(el) {
+  document.querySelectorAll('.timing-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.timing = el.dataset.val;
+}
+
+// ── CONFIRM SUMMARY ────────────────────────────────────────
+function buildConfirm() {
+  const pains = selectedCats.length ? selectedCats.join(', ') : (state.pains||[]).join(', ') || 'Not specified';
+  const html = \`
+    <div class="confirm-row"><span class="confirm-label">Name</span><span class="confirm-value">\${state.name}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Company</span><span class="confirm-value">\${state.company}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Email</span><span class="confirm-value">\${state.email}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Sector</span><span class="confirm-value">\${state.sector||'Not specified'}</span></div>
+    <div class="confirm-row"><span class="confirm-label">ERP</span><span class="confirm-value">\${state.erp||'Not specified'}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Volume</span><span class="confirm-value">\${state.volume||'Not specified'}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Team size</span><span class="confirm-value">\${state.fte||'Not specified'}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Areas</span><span class="confirm-value">\${pains}</span></div>
+  \`;
+  const el = document.getElementById('confirm-summary');
+  if (el) el.innerHTML = html;
+}
+
+// ── AL INDICATOR ───────────────────────────────────────────
+function updateALIndicator() {
+  const volume = parseInt(state.volume)||0;
+  const erp = (state.erp||'').toLowerCase();
+  const complexErps = ['tailored','custom','none'];
+  let al = 'AL1';
+  if (complexErps.some(e => erp.includes(e))) al = 'AL3';
+  else if (volume > 500) al = 'AL2';
+
+  const labels = {
+    AL1:'AL1 — Standard Process · Deploy in 24 hours',
+    AL2:'AL2 — High Volume · Deploy in 48 hours',
+    AL3:'AL3 — Complex Integration · AUDIT 2 days + Deploy 24h',
+    AL4:'AL4 — Multi-Agent Process · Extended AUDIT'
+  };
+  const colors = {AL1:'var(--grn)',AL2:'var(--acc)',AL3:'#f5a623',AL4:'#ff6b6b'};
+  const descs = {
+    AL1:'Your process is in our certified library. Once confirmed, your agent will be operational within 24 hours.',
+    AL2:'High-volume process with standard ERP. Requires additional tuning — operational within 48 hours.',
+    AL3:'Custom ERP or multi-system integration detected. Our team will define the exact AUDIT scope.',
+    AL4:'Complex multi-agent process. Requires extended AUDIT and Swarm architecture design.'
+  };
+  const ind = document.getElementById('al-indicator');
+  const lbl = document.getElementById('al-label');
+  const dsc = document.getElementById('al-desc');
+  if (ind) { ind.style.display='block'; ind.style.borderColor=colors[al]; }
+  if (lbl) { lbl.textContent=labels[al]; lbl.style.color=colors[al]; }
+  if (dsc) { dsc.textContent=descs[al]; }
+  state._al = al;
+}
+
+// ── FILE UPLOAD ────────────────────────────────────────────
+let uploadedFile = null;
+function handleFile(file) {
+  if (!file) return;
+  if (file.size > 10*1024*1024) { alert('File too large. Max 10MB.'); return; }
+  uploadedFile = file;
+  document.getElementById('upload-name').textContent = file.name;
+  const kb = (file.size/1024).toFixed(0);
+  document.getElementById('upload-size').textContent = kb + ' KB';
+  const prev = document.getElementById('upload-preview');
+  if (prev) prev.classList.add('visible');
+  const zone = document.getElementById('upload-zone');
+  if (zone) zone.style.borderColor = 'var(--grn)';
+}
+function removeFile() {
+  uploadedFile = null;
+  const prev = document.getElementById('upload-preview');
+  if (prev) prev.classList.remove('visible');
+  const zone = document.getElementById('upload-zone');
+  if (zone) zone.style.borderColor = '';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────
+async function submitForm() {
+  state.notes = (document.getElementById('f-notes')||{}).value||'';
+  if (!state.timing) { alert('Please select a preferred timing.'); return; }
+
+  const btn = document.querySelector('#step-4 .btn-primary');
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  const fileInfo = uploadedFile
+    ? uploadedFile.name + ' (' + (uploadedFile.size/1024).toFixed(0) + 'KB)'
+    : 'Not uploaded';
+
+  const volume = parseInt(state.volume)||0;
+  const erp = (state.erp||'').toLowerCase();
+  const complexErps = ['tailored','custom','none'];
+  let al = 'AL1';
+  if (complexErps.some(e => erp.includes(e))) al = 'AL3';
+  else if (volume > 500) al = 'AL2';
+
+  // Build process mapping from FRAMEWORK_MAP
+  const subcatSummary = Object.entries(selectedSubcats||{}).map(([cat, subs]) => {
+    const mapped = subs.map(s => {
+      const refs = (FRAMEWORK_MAP[cat]||{})[s]||[];
+      return s + (refs.length ? ' ['+refs.join(',')+']' : '');
+    });
+    return cat + ': ' + mapped.join(' | ');
+  }).join(' || ');
+
+  const formData = new FormData();
+  formData.append('name',            state.name);
+  formData.append('company',         state.company);
+  formData.append('email',           state.email);
+  formData.append('role',            state.role||'Not specified');
+  formData.append('sector',          state.sector||'Not specified');
+  formData.append('erp',             state.erp||'Not specified');
+  formData.append('volume',          state.volume||'Not specified');
+  formData.append('team_size',       state.fte||'Not specified');
+  formData.append('timing',          state.timing);
+  formData.append('areas',           selectedCats.join(', ')||'Not specified');
+  formData.append('process_mapping', subcatSummary||'Not specified');
+  formData.append('process_map_file',fileInfo);
+  formData.append('notes',           state.notes||'None');
+  formData.append('autonomy_level',  al);
+  formData.append('_subject',        '[AUDIT '+al+'] '+state.company+' · '+state.sector+' · '+(state.erp||'No ERP'));
+  formData.append('_replyto',        state.email);
+
+  try {
+    const res = await fetch('https://formspree.io/f/xlgkgapl', {
+      method:'POST', body:formData, headers:{'Accept':'application/json'}
+    });
+    if (res.ok) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      const success = document.getElementById('success');
+      if (success) success.style.display = 'block';
+      document.querySelectorAll('.step-dot').forEach(d => d.classList.add('done'));
+      const lvlEl = document.getElementById('success-al-level');
+      const detEl = document.getElementById('success-al-detail');
+      const alLabels = {AL1:'AL1 — Standard · Deploy 24h',AL2:'AL2 — High Volume · Deploy 48h',AL3:'AL3 — Complex Integration',AL4:'AL4 — Multi-Agent'};
+      const alColors = {AL1:'var(--grn)',AL2:'var(--acc)',AL3:'#f5a623',AL4:'#ff6b6b'};
+      const alMsg = {
+        AL1:'Standard process detected — expect confirmation within 24 hours.',
+        AL2:'High-volume process detected — expect confirmation within 24 hours.',
+        AL3:'Complex integration detected — our team will confirm scope within 24 hours.',
+        AL4:'Advanced multi-agent process — our team will contact you to define the AUDIT scope.'
+      };
+      if (lvlEl) { lvlEl.textContent=alLabels[al]; lvlEl.style.color=alColors[al]; }
+      if (detEl) detEl.textContent = alMsg[al];
+    } else {
+      throw new Error('Formspree error: '+res.status);
+    }
+  } catch(err) {
+    if (btn) { btn.textContent='Book Free AUDIT →'; btn.disabled=false; }
+    alert('Something went wrong. Please try again or contact audit@agentic-zero.com');
+    console.error('Submit error:', err);
+  }
+}
+
+var selectedCats = [];
+var selectedSubcats = {};
+var selectedLinks = [];
+
+function selectCat(el, cat) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) {
+    if (!selectedCats.includes(cat)) selectedCats.push(cat);
+    renderSubcatPanel(cat);
+  } else {
+    selectedCats = selectedCats.filter(c => c !== cat);
+    delete selectedSubcats[cat];
+    const panel = document.getElementById('panel_' + cat.replace(/[^a-zA-Z0-9]/g,'_'));
+    if (panel) panel.remove();
+  }
+  state.pains = selectedCats;
+  state.subcats = selectedSubcats;
+  updateLinks();
+}
+
+function renderSubcatPanel(cat) {
+  const subs = SUBCATEGORIES[cat] || [];
+  const id = 'panel_' + cat.replace(/[^a-zA-Z0-9]/g,'_');
+  if (document.getElementById(id)) return;
+  const panel = document.createElement('div');
+  panel.className = 'subcat-panel';
+  panel.id = id;
+  panel.innerHTML = '<div class="subcat-title">↳ ' + cat + ' — specify areas</div><div class="subcat-tags">' +
+    subs.map(s => '<div class="subcat-tag" onclick="toggleSub(this,'' + cat.replace(/'/g,"\'") + '','' + s.replace(/'/g,"\'") + '')">' + s + '</div>').join('') +
+    '</div>';
+  document.getElementById('subcat-panels').appendChild(panel);
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+}
+
+function toggleSub(el, cat, sub) {
+  el.classList.toggle('selected');
+  if (!selectedSubcats[cat]) selectedSubcats[cat] = [];
+  if (el.classList.contains('selected')) {
+    if (!selectedSubcats[cat].includes(sub)) selectedSubcats[cat].push(sub);
+  } else {
+    selectedSubcats[cat] = selectedSubcats[cat].filter(s => s !== sub);
+  }
+  state.subcats = selectedSubcats;
+}
+
+function updateLinks() {
+  const linksDiv = document.getElementById('process-links');
+  const linksList = document.getElementById('links-list');
+  const matches = PROCESS_LINKS.filter(l => l.cats.every(c => selectedCats.includes(c)));
+  if (matches.length > 0 && selectedCats.length >= 2) {
+    linksDiv.style.display = 'block';
+    linksList.innerHTML = matches.map((l,i) =>
+      '<div class="link-item" id="link_'+i+'" onclick="toggleLink(this,'+i+')">' +
+      '<div class="link-check" id="lcheck_'+i+'"></div>' +
+      '<div><div class="link-label">' + l.label + '</div>' +
+      '<div class="link-procs">' + l.processes.join(' · ') + '</div></div>' +
+      '</div>'
+    ).join('');
+  } else {
+    linksDiv.style.display = 'none';
+  }
+}
+
+function toggleLink(el, idx) {
+  el.classList.toggle('selected');
+  const check = document.getElementById('lcheck_' + idx);
+  check.textContent = el.classList.contains('selected') ? '✓' : '';
+  const link = PROCESS_LINKS[idx];
+  if (el.classList.contains('selected')) {
+    if (!selectedLinks.includes(link.label)) selectedLinks.push(link.label);
+  } else {
+    selectedLinks = selectedLinks.filter(l => l !== link.label);
+  }
+  state.links = selectedLinks;
+}
+
+const SUBCATEGORIES = {"Order & Delivery": ["Order entry & validation", "Credit check & approval workflow", "Order promising & ATP", "Pick, pack & dispatch", "Shipping & carrier management", "Invoice generation & sending", "Cash collection & reconciliation", "Customer returns & credit notes"], "Planning & Forecasting": ["Statistical demand forecasting", "Collaborative forecasting (S&OP)", "Supply planning & constraints", "Production planning (MPS/MRP)", "Inventory target setting", "Capacity planning", "Long-range planning (IBP)"], "Procurement & Sourcing": ["Purchase requisition & approval", "Supplier selection & onboarding", "Purchase order management", "Goods receipt & inspection", "Invoice matching (3-way)", "Supplier performance management", "Contract management"], "Manufacturing & Production": ["Production scheduling", "Work order management", "Material issuance & BOM control", "In-process quality control", "Machine & equipment management", "Production reporting & OEE", "Finished goods transfer"], "Warehouse & Inventory": ["Inbound receiving & putaway", "Inventory counting & reconciliation", "Pick & pack operations", "Outbound dispatch", "Warehouse space management", "Batch & serial number tracking", "Cold chain / special handling"], "Returns & Reverse Logistics": ["Customer return authorization (RMA)", "Returned goods inspection", "Disposition & restock decision", "Supplier return management", "Reverse logistics execution", "Credit note & financial settlement"], "Quality Management": ["Incoming quality inspection", "In-process quality control", "Non-conformance management", "CAPA (Corrective & Preventive Action)", "Supplier quality audits", "Customer complaint handling", "Quality documentation & records"], "Finance & Controls": ["Order-to-cash financial closing", "Procure-to-pay financial closing", "Month-end & period close", "Cost allocation & analysis", "Cash flow forecasting", "Payment approval & execution", "Financial reporting & consolidation"], "Regulatory & Compliance": ["EU AI Act classification & documentation", "GDPR data processing compliance", "GxP / GDP / GMP compliance", "IATF 16949 automotive compliance", "Export control (ITAR/EAR)", "Regulatory reporting & submissions", "Internal compliance audits"], "AI & Data Governance": ["AI system inventory & classification", "AI risk assessment", "AI model performance monitoring", "Data quality management", "Audit trail & explainability", "AI policy & governance framework", "Incident & anomaly management"], "Risk Management": ["Supplier risk assessment", "Operational risk identification", "Business continuity planning", "Early warning & monitoring", "Risk mitigation & controls", "Geopolitical & market risk"], "Digital & ERP Integration": ["ERP data migration & transition", "System integration & APIs", "Master data management", "Reporting & analytics automation", "Process automation (RPA/agents)", "Real-time visibility & dashboards", "Legacy system modernization"], "Sustainability & ESG": ["Carbon footprint measurement", "Supplier ESG assessment", "Sustainability reporting", "Circular economy & waste reduction", "Energy & resource optimization"], "Customer & Service": ["Customer onboarding", "Service level management (SLA)", "Customer complaint management", "After-sales & warranty", "Customer satisfaction measurement"], "HR & Operations": ["Workforce planning", "Onboarding & training", "Performance management", "Process documentation & SOPs", "Cross-functional coordination", "Escalation & exception management"], "Defense & Regulated Industries": ["Export license management", "Configuration & change management", "Milestone & deliverable tracking", "Classified data handling", "Subcontractor compliance", "Acceptance testing & certification"]};
+const PROCESS_LINKS = [{"label": "Order-to-Cash end-to-end", "cats": ["Order & Delivery", "Finance & Controls"], "processes": ["BPMN-OTC-001", "BPMN-FIN-001"]}, {"label": "Procure-to-Pay end-to-end", "cats": ["Procurement & Sourcing", "Finance & Controls"], "processes": ["BPMN-PTP-001", "BPMN-FIN-001"]}, {"label": "Plan-to-Produce", "cats": ["Planning & Forecasting", "Manufacturing & Production"], "processes": ["BPMN-MRP-001", "BPMN-IBP-001"]}, {"label": "Quality & Compliance integrated", "cats": ["Quality Management", "Regulatory & Compliance"], "processes": ["BPMN-QMS-001", "ISO9001-8"]}, {"label": "Warehouse & Transport integrated", "cats": ["Warehouse & Inventory", "Order & Delivery"], "processes": ["BPMN-WMS-001", "BPMN-TRP-001"]}, {"label": "AI Governance & Regulatory", "cats": ["AI & Data Governance", "Regulatory & Compliance"], "processes": ["ISO42001-6", "EUAIA-ART9", "NIST-GOVERN"]}, {"label": "Supplier Quality & Returns", "cats": ["Procurement & Sourcing", "Returns & Reverse Logistics"], "processes": ["SCOR-SR2.3", "BPMN-RMA-001"]}, {"label": "Finance & Risk integrated", "cats": ["Finance & Controls", "Risk Management"], "processes": ["BPMN-FIN-003", "SCOR-E6"]}, {"label": "Manufacturing & Quality integrated", "cats": ["Manufacturing & Production", "Quality Management"], "processes": ["SCOR-M2.4", "BPMN-QMS-001", "ISO9001-8"]}, {"label": "Digital & Planning integrated", "cats": ["Digital & ERP Integration", "Planning & Forecasting"], "processes": ["SCOR-DIG4", "BPMN-IBP-001"]}];
+
+</script></body></html>

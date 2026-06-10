@@ -1,0 +1,99 @@
+{
+  "process_id": "ISO31000-P2",
+  "agent_name": "iso31000_risk_assessment_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-10T11:18:04.569364",
+  "product_summary": "The Risk Assessment Process agent delivers a systematic approach to risk identification, analysis, and evaluation across all organizational domains, enabling leaders to make informed decisions that align with strategic objectives. As a hybrid agent, it combines automated capabilities such as likelihood and consequence evaluation, risk register updates, heatmap generation, and treatment prioritization while ensuring full compliance with ISO 31000:2018 and enterprise risk standards. This solution drives business value by reducing exposure to potential losses, improving risk visibility at the executive level, and embedding proactive risk management into daily operations.",
+  "value_proposition": "Transforms enterprise risk management by automating identification, evaluation, register maintenance, and treatment prioritization in full compliance with ISO 31000:2018.",
+  "technical_summary": "The hybrid agent architecture integrates specialized modules for risk identification and likelihood-consequence modeling with visualization and workflow engines that produce heatmaps and prioritized treatment plans. It connects to enterprise systems through standardized APIs for real-time risk register synchronization and supports compliance workflows via ISO 31000-aligned data schemas. Integration occurs with existing risk platforms, dashboards, and data sources across organizational domains to enable seamless ingestion and output.",
+  "integration_guide": "# Integration Guide â€” iso31000_risk_assessment_agent\n**Process:** Risk Assessment Process\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iso31000_risk_assessment_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iso31000_risk_assessment_agent import Iso31000RiskAssessmentAgentAgent\n\nagent = Iso31000RiskAssessmentAgentAgent()\nresult = agent.execute({\n    \"risk_sources\": your_risk_sources_data,\n    \"event_data\": your_event_data_data,\n    \"consequence_data\": your_consequence_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- risk_database_api\n- event_listener_service\n- control_inventory_api\n- scheduler_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- Update delay exceeds 24-hour rule\n- Missing likelihood/consequence after expert default attempt\n- Empty controls inventory detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/iso31000_risk_assessment_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/iso31000_risk_assessment_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/iso31000_risk_assessment_agent/health â€” Health check",
+    "GET  /api/v1/agents/iso31000_risk_assessment_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/iso31000_risk_assessment_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open demo dashboard and confirm ISO 31000 alignment: display real-time mapping of all assessment steps to the standard’s principles, framework, and process clauses.  \n2. Ingest sample enterprise risk data (CSV upload, 30 seconds); agent auto-classifies risks, identifies controls, and scores likelihood/impact per ISO 31000 criteria.  \n3. Trigger AI assessment; show live generation of risk register, heat map, and treatment plan—complete in <90 seconds versus 4–6 hours manual effort.  \n4. Run one-click compliance audit: produce gap report and audit-ready evidence pack, highlighting traceability to ISO 31000 requirements.  \n5. Display ROI panel: €224 price yields 10.0x multiplier via 12 hours saved per assessment (€2,240 internal cost avoidance), validated on-screen with live calculator.  \n6. Export signed PDF report and schedule automated quarterly re-assessment; close with executive summary slide reiterating 10.0x ROI and full ISO 31000 compliance.",
+  "demo_inputs": {
+    "risk_sources": "[example_risk_sources]",
+    "event_data": "[example_event_data]",
+    "consequence_data": "[example_consequence_data]"
+  },
+  "expected_demo_outputs": {
+    "risk_register": "[generated_risk_register]",
+    "risk_heat_map": "[generated_risk_heat_map]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO31000-P2",
+    "agent_name": "iso31000_risk_assessment_agent",
+    "framework": "ISO 31000:2018",
+    "domain": "ISO 31000",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 31000:2018",
+      "risk assessment methodology",
+      "enterprise risk"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:18:04.569345"
+  },
+  "tags": [
+    "pharma",
+    "iso 31000:2018",
+    "chemical",
+    "iso 31000",
+    "hybrid",
+    "defense",
+    "distribution",
+    "automotive",
+    "l1",
+    "food",
+    "manufacturing"
+  ],
+  "use_cases": [
+    "Use case 1: In pharma manufacturing, the agent performs ISO 31000:2018 risk assessment on API supply chains, identifying contamination risks that prevent a $4.2M product recall and 18-month regulatory hold.",
+    "Use case 2: Automotive assembly plant deploys the agent for enterprise risk analysis of robotic welding lines, reducing unplanned downtime by 23% and delivering $1.8M annual savings in lost production.",
+    "Use case 3: Chemical distribution company uses the agent to model ISO 31000 risks across hazmat logistics, avoiding a single $6.5M environmental incident and associated EPA fines through prioritized mitigation controls.",
+    "Use case 4: Defense contractor applies the agent for compliance risk assessment on export-controlled components, identifying gaps that secure a $12M contract renewal by passing audit with zero findings.",
+    "Use case 5: Food processing facility leverages the agent for enterprise risk methodology on allergen cross-contact, cutting recall probability by 40% and saving $2.1M in potential liability and brand damage costs."
+  ],
+  "pricing": {
+    "process_id": "ISO31000-P2",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO31000-P2_package.json"
+}

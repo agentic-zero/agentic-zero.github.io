@@ -1,13 +1,13 @@
 # SOP — Pick Product (MTO)
 **Process ID:** SCOR-D2.9
 **Framework:** SCOR | **Domain:** Deliver
-**Generated:** 2026-06-08
+**Generated:** 2026-06-10
 
 ## Purpose
 Process of picking MTO finished goods from staging or warehouse locations for outbound shipment preparation
 
 ## Triggers
-- PickList received from order fulfillment system (SCOR-D2.8)
+- PickList received from order management system (SCOR-D2.8)
 
 ## Inputs Required
 - pick lists
@@ -17,7 +17,8 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - scan systems
 
 ## Process Steps
-1. IF scan_result == 'match' THEN decrement InventoryRecord and generate PickConfirmation ELSE flag exception and hold item
+1. IF scan mismatch THEN flag exception and hold product
+2. IF quantity < PickList.quantity THEN trigger partial pick and notify WMS
 
 ## Expected Outputs
 - picked products
@@ -26,18 +27,18 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - staging for pack
 
 ## Business Rules
-- ScanSystem must confirm every item before PickConfirmation is issued
-- Only MTO finished goods from designated StagingLocation may be picked
-- PickList must be fully completed before staging for pack
+- Every item must be scanned before leaving StagingLocation
+- Pick accuracy must be logged per PickList line
+- Comply with health and safety picking protocol before equipment use
 
 ## Exception Handling
-- Item not found at StagingLocation: trigger supervisor alert and create replenishment request
-- Scan mismatch: quarantine item and log discrepancy for inventory audit
+- Product missing from StagingLocation: create exception ticket and request replenishment
+- Equipment failure: switch to backup device and log downtime
 
 ## Success Criteria
-- PickConfirmation generated for 100% of PickList items
-- InventoryRecord updated with depletion
-- PickedProduct staged at PackStagingLocation
+- 100% of PickList lines confirmed via scan
+- InventoryRecord decremented correctly
+- PickConfirmation sent within SLA cycle time
 
 ## Compliance Requirements
 - GxP if pharma

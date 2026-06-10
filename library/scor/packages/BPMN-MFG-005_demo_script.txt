@@ -1,0 +1,6 @@
+1. Open with pain: Display live dashboard of manual shop floor delays, error rates (12%), and compliance gaps; state €699 investment unlocks 8.0x ROI via AI automation.  
+2. Trigger AI execution: Activate shop_floor_execution_controller to auto-assign tasks, reroute resources, and optimize sequence in real time, cutting cycle time 35%.  
+3. Run compliance layer: Show automated audit trail, rule checks, and deviation alerts that satisfy ISO/ regulatory requirements without manual logs.  
+4. Quantify live ROI: Project €5,592+ annual savings from reduced waste, overtime, and audit prep; confirm 8.0x multiplier within first quarter.  
+5. Simulate exception handling: AI resolves a quality hold in <90 seconds while maintaining full traceability for executives.  
+6. Close with metrics: Summarize before/after KPIs (productivity +42%, compliance score 99%) and offer immediate pilot activation.

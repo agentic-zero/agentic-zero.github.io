@@ -1,0 +1,6 @@
+1. Open with ROI framing: "This €748 agent delivers 8x returns by automating 80% of after-sales tickets—let's simulate a €45k annual service operation."
+2. Trigger live ticket: Customer reports HVAC fault; agent auto-ingests, validates warranty, and flags safety compliance rules in <30 seconds.
+3. Show AI dispatch: Agent matches certified technician using real-time skills, location, and regulatory credentials, cutting scheduling time by 70%.
+4. Run on-site automation: Field tech receives AR-guided steps with built-in compliance checklists; agent logs every action for audit trails.
+5. Demonstrate close-out & ROI: Ticket resolves with auto-generated report; dashboard displays €6k monthly savings and zero compliance violations.
+6. End with metrics: "At 8x multiplier, payback occurs in under 3 weeks—full audit export ready for your CFO."

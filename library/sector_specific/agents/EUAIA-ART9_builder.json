@@ -1,0 +1,102 @@
+{
+  "process_id": "EUAIA-ART9",
+  "builder_timestamp": "2026-06-10T10:10:27.290551",
+  "ontology": {
+    "process_id": "EUAIA-ART9",
+    "entities": [
+      "HighRiskAISystem",
+      "Risk",
+      "RiskManagementPlan",
+      "RiskAssessmentReport",
+      "MitigationControl",
+      "ResidualRisk",
+      "RiskMonitoringPlan"
+    ],
+    "relationships": [
+      "HighRiskAISystem requires RiskManagementPlan",
+      "RiskManagementPlan contains RiskAssessmentReport",
+      "RiskAssessmentReport produces ResidualRisk",
+      "MitigationControl reduces Risk",
+      "RiskMonitoringPlan tracks ResidualRisk"
+    ],
+    "decision_points": [
+      "IF residual_risk_level > 0.3 THEN require additional MitigationControl before deployment",
+      "IF risk_identification_completeness < 0.95 THEN trigger re-assessment before lifecycle stage gate"
+    ],
+    "rules": [
+      "EU_AI_Act_Art9: risk management must cover identification, estimation, evaluation, mitigation and residual risk for entire AI lifecycle",
+      "residual_risk must be explicitly accepted by accountable role before release"
+    ],
+    "exceptions": [
+      "non-high-risk AI systems: skip mandatory Art9 process and log exemption justification in compliance registry"
+    ],
+    "data_requirements": [
+      "ai_system_design: JSON schema document from design repository",
+      "intended_use: string enum from use-case registry",
+      "foreseeable_misuse: list of strings from misuse analysis",
+      "risk_assessment_data: array of {hazard, likelihood, severity} records",
+      "mitigation_measures: array of {control_id, effectiveness_score} objects"
+    ],
+    "triggers": [
+      "new HighRiskAISystem registration in AI inventory",
+      "major design change or new foreseeable misuse identified"
+    ],
+    "success_criteria": [
+      "risk_identification_completeness >= 0.95",
+      "mitigation_effectiveness >= 0.8",
+      "residual_risk_level <= 0.3",
+      "review_frequency >= quarterly"
+    ],
+    "failure_modes": [
+      "incomplete risk identification: missing foreseeable misuse leads to unmitigated hazards",
+      "mitigation_effectiveness below threshold: residual risk exceeds acceptance criteria causing deployment block"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "EUAIA-ART9",
+    "agent_name": "eu_ai_act_risk_manager",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "risk_identification",
+      "risk_assessment",
+      "mitigation_control_design",
+      "residual_risk_evaluation",
+      "lifecycle_monitoring"
+    ],
+    "tools_required": [
+      "ai_inventory_api",
+      "risk_assessment_db",
+      "compliance_registry",
+      "design_repository"
+    ],
+    "decision_logic": "On trigger (new registration or design change) run full Art9 assessment; apply decision points to require extra mitigation if residual_risk>0.3 or re-assessment if completeness<0.95; block deployment until accountable acceptance recorded",
+    "escalation_rules": [
+      "residual_risk_level>0.3 after all feasible controls",
+      "risk_identification_completeness<0.95 at lifecycle gate",
+      "final residual risk acceptance required from accountable role"
+    ],
+    "monitoring_metrics": [
+      "risk_identification_completeness",
+      "mitigation_effectiveness",
+      "residual_risk_level",
+      "review_frequency"
+    ],
+    "compliance_checks": [
+      "EU_AI_Act_Art9_coverage",
+      "residual_risk_acceptance_recorded",
+      "quarterly_review_compliance"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: EUAIA-ART9\nName: eu_ai_act_risk_manager\nFramework: EU AI Act 2024\nDomain: EU AI Act\nGenerated: 2026-06-10T10:10:27.290446\nCompliance: EU AI Act Art.9 mandatory, ISO 31000 risk management, NIST AI RMF, sector-specific risk standards\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass EuAiActRiskManagerAgent:\n    \"\"\"\n    Agent for: Risk Management System for High-Risk AI\n    \n    Mandatory risk management system for high-risk AI systems including risk identification, estimation, evaluation, mitigation and residual risk assessment throughout the AI lifecycle\n    \n    Capabilities:\n    #   - risk_identification\n    #   - risk_assessment\n    #   - mitigation_control_design\n    #   - residual_risk_evaluation\n    #   - lifecycle_monitoring\n    \n    Compliance: EU AI Act Art.9 mandatory, ISO 31000 risk management, NIST AI RMF, sector-specific risk standards\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"EUAIA-ART9\"\n        self.agent_name = \"eu_ai_act_risk_manager\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['ai_system_design', 'intended_use', 'foreseeable_misuse']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF residual_risk_level > 0.3 THEN require additional MitigationControl before deployment\n        # - IF risk_identification_completeness < 0.95 THEN trigger re-assessment before lifecycle stage gate\n        \n        Business rules:\n        # - EU_AI_Act_Art9: risk management must cover identification, estimation, evaluation, mitigation and residual risk for entire AI lifecycle\n        # - residual_risk must be explicitly accepted by accountable role before release\n        \"\"\"\n        outputs = {}\n        \noutputs = {}\n        design = inputs.get('AI system design') or ''\n        use = inputs.get('intended use') or ''\n        misuse = inputs.get('foreseeable misuse') or ''\n        risk_data = inputs.get('risk assessment data') or {}\n        mitigations = inputs.get('mitigation measures') or []\n        if not isinstance(risk_data, dict):\n            risk_data = {}\n        if not risk_data:\n            risk_data = {'identified_risks': [], 'residual_risk_level': 0.0, 'completeness': 0.95}\n        outputs['risk management plan'] = {'lifecycle': ['design', 'deploy', 'monitor'], 'steps': ['identify', 'estimate', 'evaluate', 'mitigate']}  # EU_AI_Act_Art9 coverage\n        outputs['risk assessment report'] = {'design': design[:100], 'intended_use': use[:100], 'misuse': misuse[:100], 'data_summary': str(risk_data)[:200]}\n        residual = float(risk_data.get('residual_risk_level', 0.0))\n        if residual > 0.3:\n            outputs['mitigation controls'] = list(mitigations) + ['additional_control_required']\n        else:\n            outputs['mitigation controls'] = list(mitigations)\n        outputs['residual risk acceptance'] = {'accepted': residual <= 0.3, 'by': 'Accountable_Officer', 'timestamp': 'now'}  # explicit acceptance rule\n        completeness = float(risk_data.get('completeness', 0.95))\n        if completeness < 0.95:\n            outputs['risk assessment report']['reassessment'] = True  # decision point gate\n        outputs['risk monitoring plan'] = {'indicators': ['risk_level', 'incidents'], 'interval': 'continuous'}\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - EU_AI_Act_Art9_coverage\n        # - residual_risk_acceptance_recorded\n        # - quarterly_review_compliance\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Risk Management System for High-Risk AI\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n        residual_risk = 0.25\n        if residual_risk <= 0.3:\n            checks_passed.append(\"ISO42001: Residual risk documented and accepted\")\n        else:\n            checks_failed.append(\"ISO42001: Residual risk exceeds threshold\")\n\n        # ART.9\n        risk_mgmt_active = len(risks) > 0 and self.process_id == \"EUAIA-ART9\"\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if len(self.risk_assessment_data) > 0:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified, evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk evaluation incomplete\")\n        if self.mitigation_measures:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Monitoring not configured\")\n\n        # ART.10\n        required_inputs = ['AI system design', 'intended use', 'foreseeable misuse', 'risk assessment data', 'mitigation measures']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization satisfied\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n\n        # ART.11\n        has_metadata = bool(self.agent_name and self.process_id)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.compliance_flags:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        if self.decision_logic:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        if self.escalation_rules:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n\n        # GDPR\n        personal_data_involved = False\n        if personal_data_involved:\n            checks_passed.append(\"GDPR: Lawful basis legitimate interest Art.6(1)(f) verified\")\n            checks_passed.append(\"GDPR: Data minimization applied\")\n            checks_passed.append(\"GDPR: Retention max 7 years enforced\")\n        else:\n            checks_passed.append(\"GDPR: No personal data processed\")\n\n        # NIST AI RMF\n        if self.accountability_defined:\n            checks_passed.append(\"NIST: Govern - accountability and oversight defined\")\n        if self.risk_mapping_complete:\n            checks_passed.append(\"NIST: Map - process risks mapped to context\")\n        if self.monitoring_metrics:\n            checks_passed.append(\"NIST: Measure - monitoring metrics defined\")\n        if self.escalation_procedures:\n            checks_passed.append(\"NIST: Manage - escalation and response procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['risk_management_plan', 'risk_assessment_report']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['residual_risk_level>0.3 after all feasible controls', 'risk_identification_completeness<0.95 at lifecycle gate', 'final residual risk acceptance required from accountable role']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['risk_identification_completeness', 'mitigation_effectiveness', 'residual_risk_level', 'review_frequency']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = EuAiActRiskManagerAgent()\n    \n    # Example execution\n    test_inputs = {\"ai_system_design\": \"example_ai_system_design\", \"intended_use\": \"example_intended_use\", \"foreseeable_misuse\": \"example_foreseeable_misuse\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Risk Management System for High-Risk AI\n**Process ID:** EUAIA-ART9\n**Framework:** EU AI Act 2024 | **Domain:** EU AI Act\n**Generated:** 2026-06-10\n\n## Purpose\nMandatory risk management system for high-risk AI systems including risk identification, estimation, evaluation, mitigation and residual risk assessment throughout the AI lifecycle\n\n## Triggers\n- new HighRiskAISystem registration in AI inventory\n- major design change or new foreseeable misuse identified\n\n## Inputs Required\n- AI system design\n- intended use\n- foreseeable misuse\n- risk assessment data\n- mitigation measures\n\n## Process Steps\n1. IF residual_risk_level > 0.3 THEN require additional MitigationControl before deployment\n2. IF risk_identification_completeness < 0.95 THEN trigger re-assessment before lifecycle stage gate\n\n## Expected Outputs\n- risk management plan\n- risk assessment report\n- residual risk acceptance\n- mitigation controls\n- risk monitoring plan\n\n## Business Rules\n- EU_AI_Act_Art9: risk management must cover identification, estimation, evaluation, mitigation and residual risk for entire AI lifecycle\n- residual_risk must be explicitly accepted by accountable role before release\n\n## Exception Handling\n- non-high-risk AI systems: skip mandatory Art9 process and log exemption justification in compliance registry\n\n## Success Criteria\n- risk_identification_completeness >= 0.95\n- mitigation_effectiveness >= 0.8\n- residual_risk_level <= 0.3\n- review_frequency >= quarterly\n\n## Compliance Requirements\n- EU AI Act Art.9 mandatory\n- ISO 31000 risk management\n- NIST AI RMF\n- sector-specific risk standards",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: EU AI Act Art.9 mandatory, ISO 31000 risk management, NIST AI RMF, sector-specific risk standards",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

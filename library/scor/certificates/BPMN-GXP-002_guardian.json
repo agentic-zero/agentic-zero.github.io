@@ -1,11 +1,11 @@
 {
   "process_id": "BPMN-GXP-002",
-  "guardian_timestamp": "2026-06-09T16:10:37.737562",
+  "guardian_timestamp": "2026-06-09T17:00:07.969063",
   "certificate": {
     "certificate_id": "AZ-CERT-BPMN-GXP-002-20260609",
     "process_id": "BPMN-GXP-002",
     "agent_name": "gxp_change_control_agent",
-    "issued_at": "2026-06-09T16:10:37.737528",
+    "issued_at": "2026-06-09T17:00:07.968973",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
     "valid_until": "2027-06-09",
     "overall_status": "conditional",
@@ -38,14 +38,14 @@
     },
     "iso_42001": {
       "compliant": true,
-      "score": 0.78,
+      "score": 0.82,
       "gaps": [
-        "Clause 5: Leadership accountability and oversight not explicitly defined",
-        "Clause 7: Competence requirements and resource allocation not addressed"
+        "Clause 5 (Leadership): No explicit accountability/oversight assignment or human-in-the-loop approval mapping in the compliance logic",
+        "Clause 8/9: Monitoring block is truncated (incomplete conditional for monitoring_active)"
       ],
       "recommendations": [
-        "Add explicit leadership roles, approval authorities, and oversight mechanisms",
-        "Incorporate competence evaluation and training requirements into support processes"
+        "Add explicit leadership role mapping and override authority checks inside _compliance_checks",
+        "Complete the monitoring_active conditional and link it to the defined KPIs (change_success_rate, audit_trail_completeness)"
       ]
     },
     "nist_ai_rmf": {
@@ -82,18 +82,7 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Clause 5: Leadership accountability and oversight not explicitly defined",
+    "ISO 42001: Clause 5 (Leadership): No explicit accountability/oversight assignment or human-in-the-loop approval mapping in the compliance logic",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ],
-  "auditor_review": {
-    "decision": "APPROVE_WITH_CONDITIONS",
-    "delivery": true,
-    "restricted": true,
-    "conditions": [
-      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
-      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
-    ],
-    "audited_at": "2026-06-09T16:18:56.521533",
-    "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  }
+  ]
 }

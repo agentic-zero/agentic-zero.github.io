@@ -1,5 +1,5 @@
 """
-AGENTIC ZERO — PIONEER TEAM
+AGENTIC ZERO â€” PIONEER TEAM
 Agent 4: PACKAGER
 Role: Package Builder output into deliverable product
 Input: BuilderResult (agent code + ontology + SOP + tests)
@@ -250,7 +250,7 @@ def build_demo_script_prompt(
 AGENT: {agent_spec.get("agent_name")}
 PROCESS: {process.get("name")}
 VALUE PROPOSITION: Automates {process.get("name")} with AI
-PRICE: €{pricing.total_price_eur:.0f}
+PRICE: â‚¬{pricing.total_price_eur:.0f}
 ROI MULTIPLIER: {pricing.roi_multiplier}x
 
 Write a concise demo script (5-7 steps) for a 10-minute executive demo.
@@ -274,7 +274,7 @@ Return ONLY a JSON array of strings:
 
 # -- LOCAL PACKAGER (no LLM needed for most tasks) -----------------------------
 def build_catalog_entry(process: dict, agent_spec: dict, pricing: PricingScore) -> dict:
-    """Build library catalog entry — no LLM needed"""
+    """Build library catalog entry â€” no LLM needed"""
     return {
         "process_id": process.get("process_id"),
         "agent_name": agent_spec.get("agent_name"),
@@ -295,9 +295,9 @@ def build_catalog_entry(process: dict, agent_spec: dict, pricing: PricingScore) 
 
 
 def build_integration_guide(process: dict, agent_spec: dict) -> str:
-    """Build integration guide — no LLM needed"""
+    """Build integration guide â€” no LLM needed"""
     lines = [
-        f"# Integration Guide — {agent_spec.get('agent_name')}",
+        f"# Integration Guide â€” {agent_spec.get('agent_name')}",
         f"**Process:** {process.get('name')}",
         f"**Version:** {PACKAGER_CONFIG['package_version']}",
         "",
@@ -352,11 +352,11 @@ def build_api_endpoints(process: dict, agent_spec: dict) -> list[str]:
     agent_name = agent_spec.get("agent_name", "agent")
     base = f"/api/v1/agents/{agent_name}"
     return [
-        f"POST {base}/execute — Execute the agent with inputs",
-        f"GET  {base}/status — Get agent status and metrics",
-        f"GET  {base}/health — Health check",
-        f"GET  {base}/spec   — Get agent specification",
-        f"POST {base}/test   — Run test cases",
+        f"POST {base}/execute â€” Execute the agent with inputs",
+        f"GET  {base}/status â€” Get agent status and metrics",
+        f"GET  {base}/health â€” Health check",
+        f"GET  {base}/spec   â€” Get agent specification",
+        f"POST {base}/test   â€” Run test cases",
     ]
 
 
@@ -364,7 +364,7 @@ def build_api_endpoints(process: dict, agent_spec: dict) -> list[str]:
 def load_builder_result(process_id: str) -> Optional[dict]:
     """Load Builder result from library"""
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         result_file = library_path / folder / "agents" / f"{process_id}_builder.json"
         if result_file.exists():
             with open(result_file, "r", encoding="utf-8") as f:
@@ -375,8 +375,13 @@ def load_builder_result(process_id: str) -> Optional[dict]:
 
 def load_process(process_id: str) -> Optional[dict]:
     library_path = Path(os.getenv("LIBRARY_PATH", "library"))
-    for folder in ["scor", "iso", "bpmn", "sector_specific"]:
+    for folder in ["scor", "iso", "bpmn", "sector_specific", "frameworks"]:
         proc_file = library_path / folder / "processes" / f"{process_id}.json"
+        if proc_file.exists():
+            with open(proc_file, encoding="utf-8") as f:
+                return json.load(f)
+        # Also check directly in folder (e.g. frameworks/)
+        proc_file = library_path / folder / f"{process_id}.json"
         if proc_file.exists():
             with open(proc_file, "r", encoding="utf-8") as f:
                 return json.load(f)
@@ -463,14 +468,14 @@ def package_agent(process_id: str) -> Optional[ProductPackage]:
     agent_name = agent_spec.get("agent_name", f"agent_{process_id.lower()}")
 
     try:
-        # STEP 1 — Calculate pricing (local, no tokens)
+        # STEP 1 â€” Calculate pricing (local, no tokens)
         logger.info("Step 1/5: Calculating pricing score...")
         pricing = calculate_pricing(process, builder_result)
         logger.success(
-            f"Pricing: €{pricing.total_price_eur:.0f} (complexity: {pricing.complexity_score}/100)"
+            f"Pricing: â‚¬{pricing.total_price_eur:.0f} (complexity: {pricing.complexity_score}/100)"
         )
 
-        # STEP 2 — Generate summaries (LLM)
+        # STEP 2 â€” Generate summaries (LLM)
         logger.info("Step 2/5: Generating product summaries...")
         prompt = build_summary_prompt(process, agent_spec)
         response = call_llm(prompt, expect_json=False)
@@ -496,13 +501,13 @@ def package_agent(process_id: str) -> Optional[ProductPackage]:
 
         logger.success("Summaries generated")
 
-        # STEP 3 — Generate demo script (LLM)
+        # STEP 3 â€” Generate demo script (LLM)
         logger.info("Step 3/5: Generating demo script...")
         prompt = build_demo_script_prompt(process, agent_spec, pricing)
         demo_script = call_llm(prompt, expect_json=False)
         logger.success("Demo script generated")
 
-        # STEP 4 — Generate use cases (LLM)
+        # STEP 4 â€” Generate use cases (LLM)
         logger.info("Step 4/5: Generating use cases...")
         prompt = build_use_cases_prompt(process)
         response = call_llm(prompt, expect_json=True)
@@ -515,7 +520,7 @@ def package_agent(process_id: str) -> Optional[ProductPackage]:
             ]
         logger.success(f"{len(use_cases)} use cases generated")
 
-        # STEP 5 — Build package (local)
+        # STEP 5 â€” Build package (local)
         logger.info("Step 5/5: Building package...")
         integration_guide = build_integration_guide(process, agent_spec)
         api_endpoints = build_api_endpoints(process, agent_spec)
@@ -573,7 +578,7 @@ def package_agent(process_id: str) -> Optional[ProductPackage]:
         logger.success(
             f"Packager complete: {process_id} | "
             f"Agent: {agent_name} | "
-            f"Price: €{pricing.total_price_eur:.0f} | "
+            f"Price: â‚¬{pricing.total_price_eur:.0f} | "
             f"Ready for Guardian: {package.ready_for_guardian}"
         )
 
@@ -587,7 +592,7 @@ def package_agent(process_id: str) -> Optional[ProductPackage]:
 # -- CLI INTERFACE -------------------------------------------------------------
 def run_packager(process_ids: list):
     logger.info("=" * 60)
-    logger.info("AGENTIC ZERO — PACKAGER AGENT")
+    logger.info("AGENTIC ZERO â€” PACKAGER AGENT")
     logger.info(f"Processes to package: {process_ids}")
     logger.info(f"Model: {PACKAGER_CONFIG['model']}")
     logger.info("=" * 60)
@@ -599,7 +604,7 @@ def run_packager(process_ids: list):
         if package:
             results.append(package)
             print(f"\n? {pid} ? {package.agent_name}")
-            print(f"   Price: €{package.pricing.total_price_eur:.0f}")
+            print(f"   Price: â‚¬{package.pricing.total_price_eur:.0f}")
             print(f"   Complexity: {package.pricing.complexity_score}/100")
             print(f"   Use cases: {len(package.use_cases)}")
             print(f"   Ready for Guardian: {package.ready_for_guardian}")

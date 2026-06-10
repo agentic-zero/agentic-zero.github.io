@@ -1,0 +1,6 @@
+1. Open with pain: "Manual human oversight costs teams 20+ hours/week on reviews, risking compliance gaps—let's see AI automate it."
+2. Launch agent: Trigger human_oversight_coordinator on a sample workflow; AI flags issues, suggests actions, and logs decisions in real time.
+3. Show compliance layer: Display auto-generated audit trails, regulatory mapping, and one-click escalation that meets GDPR/SOX standards without extra staff.
+4. Quantify time savings: Reveal dashboard metrics—85% reduction in review time—equating to €2,240 monthly value at 10.0x ROI on the €224 price.
+5. Run ROI simulator: Input your team's headcount; instantly project €26,880 annual return via recovered hours and avoided fines.
+6. Close with deployment: One-click pilot setup; schedule 30-day ROI review to confirm compliance lift and multiplier.

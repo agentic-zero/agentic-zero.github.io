@@ -1,0 +1,7 @@
+1. Open eco_lifecycle_orchestrator dashboard and trigger a sample ECO for a critical component redesign, highlighting €748 one-time cost vs. 8.0x ROI target.  
+2. AI auto-ingests change request, performs impact analysis across BOM, suppliers, and regulatory docs in <60 seconds.  
+3. Run built-in compliance engine: system flags ISO/REACH gaps, auto-generates audit-ready documentation with full traceability.  
+4. Simulate multi-stakeholder approval workflow; AI pre-approves low-risk items, routing only exceptions to executives.  
+5. Execute controlled rollout, showing real-time status, version control, and zero-deviation enforcement.  
+6. Display ROI dashboard: quantify 6.2 hours saved per ECO, equating to €5,984 annual value at pilot volume—delivering 8.0x multiplier within first quarter.  
+7. Close with compliance certification export and one-click scaling recommendation for full deployment.

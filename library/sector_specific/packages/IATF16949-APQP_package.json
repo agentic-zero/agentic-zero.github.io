@@ -1,0 +1,90 @@
+{
+  "process_id": "IATF16949-APQP",
+  "agent_name": "apqp_compliance_orchestrator",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-10T11:19:06.576338",
+  "product_summary": "The APQP Agent is a hybrid AI solution that orchestrates the full Advanced Product Quality Planning process for automotive suppliers, guiding teams from concept through production launch with built-in design FMEA, process FMEA, control plans, and PPAP submissions. It continuously enforces phase-gate compliance while evaluating risks and generating required documentation to meet IATF 16949, VDA 6.3, and AIAG standards. This reduces manual coordination across suppliers and customers, lowers defect-related costs, and shortens development cycles. Executives gain predictable launch performance and stronger audit readiness without expanding quality headcount.",
+  "value_proposition": "Automates end-to-end APQP execution and compliance enforcement to eliminate manual FMEA reviews, control-plan creation, and PPAP delays.",
+  "technical_summary": "The hybrid agent combines deterministic workflow orchestration with probabilistic risk models to manage APQP phases, FMEA scoring, and document generation. It integrates via APIs with PLM, ERP, and QMS platforms to pull design data, push control plans, and validate submissions against customer portals. Real-time compliance engines reference IATF 16949 and AIAG rule sets to trigger gate reviews and flag deviations before they reach production.",
+  "integration_guide": "# Integration Guide â€” apqp_compliance_orchestrator\n**Process:** Advanced Product Quality Planning (APQP)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp apqp_compliance_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.apqp_compliance_orchestrator import ApqpComplianceOrchestratorAgent\n\nagent = ApqpComplianceOrchestratorAgent()\nresult = agent.execute({\n    \"customer_requirements\": your_customer_requirements_data,\n    \"design_specifications\": your_design_specifications_data,\n    \"process_capabilities\": your_process_capabilities_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- fmea_tool_api\n- spc_system\n- crm_integration\n- workflow_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- RPN > 100 without mitigation\n- PPAP rejected requiring corrective action\n- Missing required documentation for gate approval",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/apqp_compliance_orchestrator/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/apqp_compliance_orchestrator/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/apqp_compliance_orchestrator/health â€” Health check",
+    "GET  /api/v1/agents/apqp_compliance_orchestrator/spec   â€” Get agent specification",
+    "POST /api/v1/agents/apqp_compliance_orchestrator/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Load sample automotive project specs and regulatory inputs into apqp_compliance_orchestrator.  \n2. Trigger AI orchestration of all five APQP phases, auto-generating control plans and FMEAs in <90 seconds.  \n3. Run live compliance audit against IATF 16949/APQP checklists, surfacing zero critical gaps.  \n4. Display AI-flagged risks with mitigation actions and updated DFMEA/PFMEA linkages.  \n5. Compare manual baseline (120 hours, €12k internal cost) vs. agent output (12 hours, €1.2k).  \n6. Calculate instant ROI: €171 fee delivers €1,710+ net savings (10x multiplier) plus faster PPAP approval.  \n7. Export audit-ready package and dashboard for executive sign-off.",
+  "demo_inputs": {
+    "customer_requirements": "[example_customer_requirements]",
+    "design_specifications": "[example_design_specifications]",
+    "process_capabilities": "[example_process_capabilities]"
+  },
+  "expected_demo_outputs": {
+    "apqp_plan": "[generated_apqp_plan]",
+    "design_fmea": "[generated_design_fmea]"
+  },
+  "catalog_entry": {
+    "process_id": "IATF16949-APQP",
+    "agent_name": "apqp_compliance_orchestrator",
+    "framework": "IATF 16949:2016",
+    "domain": "IATF 16949",
+    "level": "L1",
+    "sector_applicability": [
+      "automotive",
+      "automotive suppliers Tier 1/2/3"
+    ],
+    "compliance_frameworks": [
+      "IATF 16949:2016",
+      "VDA 6.3",
+      "customer-specific requirements",
+      "AIAG APQP manual"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 171.35,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-10T11:19:06.576317"
+  },
+  "tags": [
+    "automotive suppliers Tier 1/2/3",
+    "iatf 16949:2016",
+    "hybrid",
+    "iatf 16949",
+    "automotive",
+    "l1"
+  ],
+  "use_cases": [
+    "Use case 1: AI agent auto-generates and updates APQP Phase 2-3 deliverables (DFMEA, DVP&R, process flow) from CAD and BOM inputs for a Tier-1 brake supplier, cutting documentation cycle time from 18 days to 7 days and saving €92k per program launch",
+    "Use case 2: Real-time IATF 16949 and VDA 6.3 compliance gap scanning during APQP reviews flags 23 missing customer-specific requirements before PPAP submission, eliminating a €180k potential line-stop penalty at a German OEM",
+    "Use case 3: Automated FMEA risk prioritization and control-plan linkage for a Tier-2 electronics supplier reduces high-RPN items by 41% in 3 weeks, lowering projected warranty claims by €1.2M over the product lifecycle",
+    "Use case 4: Agent consolidates multi-customer APQP status into a single dashboard and generates audit-ready evidence packs, shortening VDA 6.3 process audits from 5 days to 2 days and freeing 120 analyst hours per audit cycle",
+    "Use case 5: Predictive timing analysis of APQP milestones against AIAG timing charts flags a 6-week slippage risk 4 weeks early for a new platform program, enabling corrective actions that protect €4.7M in launch revenue"
+  ],
+  "pricing": {
+    "process_id": "IATF16949-APQP",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 22.349999999999998,
+    "total_price_eur": 171.35,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 15% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/IATF16949-APQP_package.json"
+}

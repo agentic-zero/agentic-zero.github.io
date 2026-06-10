@@ -1,0 +1,6 @@
+1. Open with a live multi-agent failure: Route a high-stakes compliance query through three agents; show dropped context, 14-minute delay and missing audit trail.  
+2. Activate handoff_escalation_agent: One click triggers automated protocol—context packaged, risk scored, and escalated to human + compliance log in <45 seconds.  
+3. Display real-time compliance dashboard: Timestamped handoff, regulatory mapping, and immutable chain-of-custody visible to executives.  
+4. Run ROI calculator on-screen: €748 license vs. 11.2 hours saved per incident at €180/hr blended cost yields 8.0x multiplier within first month.  
+5. Simulate 50 parallel escalations: System maintains 100 % protocol adherence while cutting average resolution from 19 min to 2.4 min.  
+6. Close with signed pilot: One-click deployment link and 30-day ROI guarantee for €5,984 net value.

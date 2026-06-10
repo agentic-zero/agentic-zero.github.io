@@ -1,0 +1,95 @@
+{
+  "process_id": "BPMN-MFG-005",
+  "agent_name": "shop_floor_execution_controller",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T17:01:46.564246",
+  "product_summary": "The Shop Floor Control & Execution agent manages the full production lifecycle on the shop floor, from work order dispatch through job sequencing, machine assignment, real-time monitoring, and exception handling until completion. It executes operations according to defined routings while enforcing quality gates, rework procedures, and accurate recording of time, quantity, and OEE data. The hybrid agent delivers strong business value by reducing unplanned downtime, ensuring regulatory compliance across GxP, HACCP, ISO 9001, and safety standards, and providing executives with reliable visibility into live operations. This results in higher throughput, lower scrap, and improved audit readiness without manual oversight.",
+  "value_proposition": "Transforms shop floor execution by automating work order dispatch, sequencing, monitoring, and exception resolution while embedding quality and compliance controls.",
+  "technical_summary": "The hybrid agent connects to MES, ERP, and equipment interfaces to run deterministic routing logic alongside adaptive decisioning for sequencing and exception handling. It logs structured data for OEE, batch records, and quality events while triggering rework or safety holds according to configured rules. Integration points support real-time feeds from machines and materials systems, with built-in audit trails that satisfy GxP, HACCP, ISO 9001, and safety requirements.",
+  "integration_guide": "# Integration Guide — shop_floor_execution_controller\n**Process:** Shop Floor Control & Execution\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp shop_floor_execution_controller.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.shop_floor_execution_controller import ShopFloorExecutionControllerAgent\n\nagent = ShopFloorExecutionControllerAgent()\nresult = agent.execute({\n    \"work_orders\": your_work_orders_data,\n    \"routings\": your_routings_data,\n    \"work_center_capacity\": your_work_center_capacity_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- MES_API\n- ERP_workorder_dispatch\n- Quality_Inspection_System\n- OEE_Calculator\n\n## Escalation\nThe agent automatically escalates to human when:\n- materials unavailable or machine fault\n- max rework attempts exceeded\n- schedule adherence projected below 70%",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/shop_floor_execution_controller/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/shop_floor_execution_controller/status — Get agent status and metrics",
+    "GET  /api/v1/agents/shop_floor_execution_controller/health — Health check",
+    "GET  /api/v1/agents/shop_floor_execution_controller/spec   — Get agent specification",
+    "POST /api/v1/agents/shop_floor_execution_controller/test   — Run test cases"
+  ],
+  "demo_script": "1. Open with pain: Display live dashboard of manual shop floor delays, error rates (12%), and compliance gaps; state €699 investment unlocks 8.0x ROI via AI automation.  \n2. Trigger AI execution: Activate shop_floor_execution_controller to auto-assign tasks, reroute resources, and optimize sequence in real time, cutting cycle time 35%.  \n3. Run compliance layer: Show automated audit trail, rule checks, and deviation alerts that satisfy ISO/ regulatory requirements without manual logs.  \n4. Quantify live ROI: Project €5,592+ annual savings from reduced waste, overtime, and audit prep; confirm 8.0x multiplier within first quarter.  \n5. Simulate exception handling: AI resolves a quality hold in <90 seconds while maintaining full traceability for executives.  \n6. Close with metrics: Summarize before/after KPIs (productivity +42%, compliance score 99%) and offer immediate pilot activation.",
+  "demo_inputs": {
+    "work_orders": "[example_work_orders]",
+    "routings": "[example_routings]",
+    "work_center_capacity": "[example_work_center_capacity]"
+  },
+  "expected_demo_outputs": {
+    "completed_operations": "[generated_completed_operations]",
+    "production_data": "[generated_production_data]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-MFG-005",
+    "agent_name": "shop_floor_execution_controller",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "chemical"
+    ],
+    "compliance_frameworks": [
+      "GxP electronic batch records if pharma",
+      "HACCP if food",
+      "ISO 9001",
+      "safety regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:01:46.564226"
+  },
+  "tags": [
+    "",
+    "pharma",
+    "manufacturing",
+    "food",
+    "hybrid",
+    "bpmn",
+    "chemical",
+    "automotive"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma manufacturer deploys agent for real-time GxP electronic batch record validation, cutting batch release cycle from 14 days to 4 days and reducing compliance audit prep costs by $180K annually",
+    "Use case 2: Food processor uses agent for automated HACCP deviation detection on packaging lines, preventing 3 potential recalls per year and saving $650K in direct recall and brand damage costs",
+    "Use case 3: Automotive Tier-1 supplier integrates agent into shop floor execution to auto-adjust work orders based on machine downtime, raising OEE from 72% to 84% and generating $420K additional annual revenue from existing capacity",
+    "Use case 4: Chemical plant applies agent for ISO 9001 and safety regulation compliance checks during batch execution, lowering recordable safety incidents by 35% and reducing insurance premiums by $95K per year",
+    "Use case 5: Discrete manufacturer uses agent for real-time material tracking and operator guidance under ISO 9001, reducing scrap rate from 1.8% to 0.6% and saving $240K in raw material and rework costs annually"
+  ],
+  "pricing": {
+    "process_id": "BPMN-MFG-005",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-MFG-005_package.json"
+}

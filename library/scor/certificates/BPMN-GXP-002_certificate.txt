@@ -14,7 +14,7 @@ Overall Score:   86%
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       HIGH RISK
-ISO/IEC 42001:   COMPLIANT (78%)
+ISO/IEC 42001:   COMPLIANT (82%)
 NIST AI RMF:     100% overall
 GDPR AI:         ISSUES FOUND
 Quality:         100%

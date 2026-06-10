@@ -1,0 +1,7 @@
+1. Open with executive pain point: "Manual credit reviews cost €250K/year in delays and errors—our AI agent automates 85% of assessments while enforcing Basel/GDPR compliance."
+2. Input sample corporate loan application via dashboard; agent instantly pulls real-time data and flags high-risk indicators in <30 seconds.
+3. Run AI risk scoring: display transparent model outputs, automated covenant checks, and regulatory audit trail generated on-the-fly.
+4. Trigger compliance module: show automatic KYC/AML screening, policy violation alerts, and one-click regulatory report export.
+5. Reveal ROI dashboard: quantify €2.1M annual savings (8.0x multiplier on €699 price) via reduced defaults, faster approvals, and 70% lower compliance audit costs.
+6. Simulate before/after: contrast 5-day manual process vs. 4-hour AI workflow with full traceability for executives and regulators.
+7. Close with deployment path: "Pilot live in 48 hours; full ROI realized within first quarter."

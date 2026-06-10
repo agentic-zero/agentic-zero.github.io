@@ -1,0 +1,6 @@
+1. Open with executive pain point: "Manual ISO 31000 compliance costs €50k+ annually in consultant hours and audit prep—let's automate it live."
+2. Input a sample enterprise scenario (supply-chain disruption) into iso31000_risk_framework_agent; it instantly generates risk identification, analysis, evaluation, and treatment plan aligned to ISO 31000 principles.
+3. Display one-click compliance mapping: agent tags every control to ISO 31000 clauses and produces audit-ready documentation, cutting prep time from 40 hours to <5 minutes.
+4. Run ROI calculator on-screen: show €22k annual savings from automation plus quantified risk reduction, delivering the stated 10.0x multiplier on the €224 price.
+5. Compare before/after: side-by-side view of manual spreadsheet process versus agent output, highlighting 95% faster cycle time and zero missed principles.
+6. Close with next-step offer: "Deploy in your environment this week; first-month results will validate the 10x ROI before full rollout."

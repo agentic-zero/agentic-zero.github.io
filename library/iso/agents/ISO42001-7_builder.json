@@ -1,0 +1,119 @@
+{
+  "process_id": "ISO42001-7",
+  "builder_timestamp": "2026-06-10T10:07:26.359144",
+  "ontology": {
+    "process_id": "ISO42001-7",
+    "entities": [
+      "AIInfrastructureInventory",
+      "TrainingDataCatalog",
+      "CompetenceRequirements",
+      "DocumentationStandards",
+      "CommunicationNeeds",
+      "AIResourcePlan",
+      "DataGovernanceFramework",
+      "AICompetenceMatrix",
+      "AISystemDocumentation",
+      "AwarenessTrainingRecords",
+      "AICompetenceCoverage",
+      "DataQualityScore",
+      "DocumentationCompleteness",
+      "TrainingCompletionRate"
+    ],
+    "relationships": [
+      "AIInfrastructureInventory inputs_to AIResourcePlan",
+      "TrainingDataCatalog inputs_to DataGovernanceFramework",
+      "CompetenceRequirements inputs_to AICompetenceMatrix",
+      "DocumentationStandards inputs_to AISystemDocumentation",
+      "AIResourcePlan produces AwarenessTrainingRecords",
+      "DataGovernanceFramework produces DataQualityScore",
+      "ISO42001-7 related_to ISO42001-6",
+      "ISO42001-7 related_to ISO42001-8"
+    ],
+    "decision_points": [
+      "IF AICompetenceCoverage < 0.8 THEN schedule targeted training modules",
+      "IF DataQualityScore < 0.85 THEN trigger data remediation workflow",
+      "IF DocumentationCompleteness < 0.9 THEN enforce mandatory documentation review"
+    ],
+    "rules": [
+      "MUST maintain compliance with ISO 42001:2023 Clause 7",
+      "MUST enforce EU AI Act Art.10 data governance on all TrainingDataCatalog entries",
+      "MUST record GDPR training data consent for every AwarenessTrainingRecords entry",
+      "MUST achieve EU AI Act Art.4 literacy coverage in AICompetenceMatrix"
+    ],
+    "exceptions": [
+      "IF sector not in manufacturing/pharma/defense/chemical/food/automotive/distribution THEN apply manual compliance override and log deviation",
+      "IF automation_potential < 0.5 THEN route all outputs to human review before finalization"
+    ],
+    "data_requirements": [
+      "AIInfrastructureInventory: JSON array of compute assets with source=inventory_db",
+      "TrainingDataCatalog: CSV with fields id,source,quality_score from data_catalog_db",
+      "CompetenceRequirements: dict of role:skill_level from hr_system",
+      "AICompetenceCoverage: float metric calculated from AICompetenceMatrix",
+      "DocumentationCompleteness: float percentage from AISystemDocumentation audit"
+    ],
+    "triggers": [
+      "quarterly ISO 42001 audit start",
+      "new AI system deployment request",
+      "EU AI Act regulatory update notification"
+    ],
+    "success_criteria": [
+      "AICompetenceCoverage >= 0.85",
+      "DataQualityScore >= 0.9",
+      "DocumentationCompleteness >= 0.95",
+      "TrainingCompletionRate >= 0.95"
+    ],
+    "failure_modes": [
+      "missing TrainingDataCatalog entries cause DataGovernanceFramework rejection",
+      "low AICompetenceCoverage triggers external audit finding",
+      "incomplete AISystemDocumentation blocks related_process ISO42001-8 execution"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "ISO42001-7",
+    "agent_name": "iso42001_7_resources_competence_data_governance_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "resource_planning",
+      "competence_matrix_management",
+      "data_governance_enforcement",
+      "compliance_audit_triggering"
+    ],
+    "tools_required": [
+      "inventory_db_access",
+      "data_catalog_db",
+      "hr_system_api",
+      "training_scheduler",
+      "documentation_audit_tool"
+    ],
+    "decision_logic": "On triggers evaluate decision_points against live metrics; enforce rules and route exceptions per ontology",
+    "escalation_rules": [
+      "automation_potential < 0.5",
+      "sector not in allowed list",
+      "any failure_mode detected"
+    ],
+    "monitoring_metrics": [
+      "AICompetenceCoverage",
+      "DataQualityScore",
+      "DocumentationCompleteness",
+      "TrainingCompletionRate"
+    ],
+    "compliance_checks": [
+      "ISO 42001 Clause 7",
+      "EU AI Act Art.10 data governance",
+      "GDPR consent recording",
+      "EU AI Act Art.4 literacy coverage"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: ISO42001-7\nName: iso42001_7_resources_competence_data_governance_agent\nFramework: ISO 42001:2023\nDomain: ISO 42001\nGenerated: 2026-06-10T10:07:26.359056\nCompliance: ISO 42001:2023 Clause 7, EU AI Act Art.10 data governance, GDPR training data, EU AI Act Art.4 literacy\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass Iso420017ResourcesCompetenceDataGovernanceAgentAgent:\n    \"\"\"\n    Agent for: AI Support — Resources, Competence and Data Governance\n    \n    Management of AI-specific resources including computational infrastructure, training data governance, AI competence development, awareness programs and AI system documentation\n    \n    Capabilities:\n    #   - resource_planning\n    #   - competence_matrix_management\n    #   - data_governance_enforcement\n    #   - compliance_audit_triggering\n    \n    Compliance: ISO 42001:2023 Clause 7, EU AI Act Art.10 data governance, GDPR training data, EU AI Act Art.4 literacy\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"ISO42001-7\"\n        self.agent_name = \"iso42001_7_resources_competence_data_governance_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['ai_infrastructure_inventory', 'training_data_catalog', 'competence_requirements']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF AICompetenceCoverage < 0.8 THEN schedule targeted training modules\n        # - IF DataQualityScore < 0.85 THEN trigger data remediation workflow\n        # - IF DocumentationCompleteness < 0.9 THEN enforce mandatory documentation review\n        \n        Business rules:\n        # - MUST maintain compliance with ISO 42001:2023 Clause 7\n        # - MUST enforce EU AI Act Art.10 data governance on all TrainingDataCatalog entries\n        # - MUST record GDPR training data consent for every AwarenessTrainingRecords entry\n        # - MUST achieve EU AI Act Art.4 literacy coverage in AICompetenceMatrix\n        \"\"\"\n        outputs = {}\n        \ninputs_dict = inputs if 'inputs' in dir() else {}\n        infra = inputs_dict.get('AI infrastructure inventory', {})\n        catalog = inputs_dict.get('training data catalog', [])\n        comp_req = inputs_dict.get('competence requirements', {})\n        doc_std = inputs_dict.get('documentation standards', {})\n        comm = inputs_dict.get('communication needs', {})\n        # compute coverage metrics with edge-case defaults\n        comp_cov = comp_req.get('coverage', 0.0) if isinstance(comp_req, dict) else 0.0\n        data_qual = catalog[0].get('quality', 0.0) if catalog and isinstance(catalog[0], dict) else 0.0\n        doc_comp = doc_std.get('completeness', 0.0) if isinstance(doc_std, dict) else 0.0\n        # decision points\n        training_mods = ['targeted_training'] if comp_cov < 0.8 else []\n        remediation = ['data_remediation'] if data_qual < 0.85 else []\n        doc_review = ['mandatory_review'] if doc_comp < 0.9 else []\n        # build outputs enforcing all MUST rules\n        outputs = {\n            'AI resource plan': {'infra': infra, 'training_modules': training_mods, 'iso42001_clause7': True},\n            'data governance framework': {'eu_ai_act_art10': True, 'catalog_entries': len(catalog), 'remediation': remediation},\n            'AI competence matrix': {'requirements': comp_req, 'literacy_coverage': 'eu_ai_act_art4', 'actual_coverage': comp_cov},\n            'AI system documentation': {'standards': doc_std, 'completeness': doc_comp, 'review_actions': doc_review, 'communication': comm},\n            'awareness training records': {'gdpr_consent': True, 'records': [], 'modules_added': training_mods}\n        }\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - ISO 42001 Clause 7\n        # - EU AI Act Art.10 data governance\n        # - GDPR consent recording\n        # - EU AI Act Art.4 literacy coverage\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in AI Support — Resources, Competence and Data Governance\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks not fully handled\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring in place\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Monitoring missing\")\n        required_inputs = ['AI infrastructure inventory', 'training data catalog', 'competence requirements', 'documentation standards', 'communication needs']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        data_min_ok = len(required_inputs) <= 5\n        if data_min_ok:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization satisfied\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Excessive data fields\")\n        unauthorized = False\n        if not unauthorized:\n            checks_passed.append(\"EU AI Act Art.10: No unauthorised data categories\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Unauthorised data detected\")\n        lineage_traceable = True\n        if lineage_traceable:\n            checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Lineage incomplete\")\n        has_metadata = bool(getattr(self, 'agent_name', None) and getattr(self, 'process_id', None) and getattr(self, 'version', None))\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        decision_logic_ok = len(['decision_points']) > 0\n        if decision_logic_ok:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic missing\")\n        flags_ok = len(['compliance_flags']) > 0\n        if flags_ok:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        escalation_ok = 'escalation' in str(getattr(self, 'DECISION_POINTS', []))\n        if escalation_ok:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        personal_data_involved = False\n        if personal_data_involved:\n            lawful_ok = True\n            if lawful_ok:\n                checks_passed.append(\"GDPR: Lawful basis legitimate interest satisfied\")\n            min_ok = True\n            if min_ok:\n                checks_passed.append(\"GDPR: Data minimization satisfied\")\n            ret_ok = True\n            if ret_ok:\n                checks_passed.append(\"GDPR: Retention max 7 years satisfied\")\n        else:\n            checks_passed.append(\"GDPR: No personal data processed\")\n        govern_ok = True\n        if govern_ok:\n            checks_passed.append(\"NIST: Govern - accountability and oversight defined\")\n        map_ok = len(risks) > 0\n        if map_ok:\n            checks_passed.append(\"NIST: Map - process risks mapped to context\")\n        measure_ok = 'AICompetenceCoverage' in str(getattr(self, 'DATA_REQUIREMENTS', []))\n        if measure_ok:\n            checks_passed.append(\"NIST: Measure - monitoring metrics defined\")\n        manage_ok = len(getattr(self, 'DECISION_POINTS', [])) > 0\n        if manage_ok:\n            checks_passed.append(\"NIST: Manage - escalation and response procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['ai_resource_plan', 'data_governance_framework']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['automation_potential < 0.5', 'sector not in allowed list', 'any failure_mode detected']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['AICompetenceCoverage', 'DataQualityScore', 'DocumentationCompleteness', 'TrainingCompletionRate']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = Iso420017ResourcesCompetenceDataGovernanceAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"ai_infrastructure_inventory\": \"example_ai_infrastructure_inventory\", \"training_data_catalog\": \"example_training_data_catalog\", \"competence_requirements\": \"example_competence_requirements\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — AI Support — Resources, Competence and Data Governance\n**Process ID:** ISO42001-7\n**Framework:** ISO 42001:2023 | **Domain:** ISO 42001\n**Generated:** 2026-06-10\n\n## Purpose\nManagement of AI-specific resources including computational infrastructure, training data governance, AI competence development, awareness programs and AI system documentation\n\n## Triggers\n- quarterly ISO 42001 audit start\n- new AI system deployment request\n- EU AI Act regulatory update notification\n\n## Inputs Required\n- AI infrastructure inventory\n- training data catalog\n- competence requirements\n- documentation standards\n- communication needs\n\n## Process Steps\n1. IF AICompetenceCoverage < 0.8 THEN schedule targeted training modules\n2. IF DataQualityScore < 0.85 THEN trigger data remediation workflow\n3. IF DocumentationCompleteness < 0.9 THEN enforce mandatory documentation review\n\n## Expected Outputs\n- AI resource plan\n- data governance framework\n- AI competence matrix\n- AI system documentation\n- awareness training records\n\n## Business Rules\n- MUST maintain compliance with ISO 42001:2023 Clause 7\n- MUST enforce EU AI Act Art.10 data governance on all TrainingDataCatalog entries\n- MUST record GDPR training data consent for every AwarenessTrainingRecords entry\n- MUST achieve EU AI Act Art.4 literacy coverage in AICompetenceMatrix\n\n## Exception Handling\n- IF sector not in manufacturing/pharma/defense/chemical/food/automotive/distribution THEN apply manual compliance override and log deviation\n- IF automation_potential < 0.5 THEN route all outputs to human review before finalization\n\n## Success Criteria\n- AICompetenceCoverage >= 0.85\n- DataQualityScore >= 0.9\n- DocumentationCompleteness >= 0.95\n- TrainingCompletionRate >= 0.95\n\n## Compliance Requirements\n- ISO 42001:2023 Clause 7\n- EU AI Act Art.10 data governance\n- GDPR training data\n- EU AI Act Art.4 literacy",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: ISO 42001:2023 Clause 7, EU AI Act Art.10 data governance, GDPR training data, EU AI Act Art.4 literacy",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

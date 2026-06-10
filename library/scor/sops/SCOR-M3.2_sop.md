@@ -1,14 +1,13 @@
 # SOP — Issue In-Process Product (ETO)
 **Process ID:** SCOR-M3.2
 **Framework:** SCOR | **Domain:** Make
-**Generated:** 2026-06-08
+**Generated:** 2026-06-10
 
 ## Purpose
 Process of issuing custom-engineered components and materials to ETO production operations maintaining configuration control and engineering traceability throughout
 
 ## Triggers
-- WorkPackage status changed to 'released' with linked ProductionRouting
-- New ETOComponent batch arrives from receiving with configuration_documents attached
+- WorkPackage status changed to 'released' with linked EngineeringBOM and ConfigurationDocument
 
 ## Inputs Required
 - engineering BOMs
@@ -18,8 +17,7 @@ Process of issuing custom-engineered components and materials to ETO production 
 - production routings
 
 ## Process Steps
-1. IF configuration_documents.version == engineering_BOMs.version AND all compliance_flags satisfied THEN issue ETOComponent
-2. IF traceability_completeness == true THEN close WorkPackage assignment
+1. IF configurationDocument.version == engineeringBOM.version AND complianceFlags.exportControl == false THEN issue ETOComponent ELSE route to compliance review
 
 ## Expected Outputs
 - issued ETO components
@@ -28,18 +26,19 @@ Process of issuing custom-engineered components and materials to ETO production 
 - traceability records
 
 ## Business Rules
-- Maintain configuration control: every ETOComponent must have linked ConfigurationRecord before issuance
-- Enforce engineering traceability: all inputs and outputs must log to TraceabilityRecord with timestamp and user_id
-- Sector compliance: defense and aerospace require AS9100 and export_control checks before output
+- traceabilityRecord must capture component serial, workPackage.id and timestamp
+- configurationAccuracy must equal 1.0 before issuance
+- issueCycleTime must be logged in seconds from workPackage receipt
 
 ## Exception Handling
-- If BOM_accuracy < 1.0: block issuance and route to engineering review queue
-- If export_control flag active: require dual authorization before generating IssuedETOComponent
+- IF BOM accuracy < 1.0 THEN block issuance and create exception record with mismatch details
+- IF sector is defense AND exportControl flag present THEN require dual authorization before component release
 
 ## Success Criteria
-- configuration_accuracy == 1.0
-- traceability_completeness == true
-- all IssuedETOComponent have non-null ConfigurationRecord and TraceabilityRecord
+- All outputs generated
+- traceabilityCompleteness == 1.0
+- configurationAccuracy == 1.0
+- issueCycleTime recorded
 
 ## Compliance Requirements
 - configuration management standards

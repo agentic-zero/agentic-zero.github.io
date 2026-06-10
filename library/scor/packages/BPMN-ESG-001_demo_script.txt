@@ -1,0 +1,6 @@
+1. Open dashboard and connect sample ERP/supplier feeds to auto-ingest Scope 3 activity data in <60 seconds.  
+2. Trigger AI classification: agent maps 12,000 line items to GHG Protocol categories and flags top 5 emission hotspots.  
+3. Run compliance engine: one-click export produces CSRD- and SEC-aligned report with audit trail and assurance-ready data.  
+4. Display ROI calculator: €699 annual fee vs. 340 hours saved on manual tracking equals 8.0x return in Year 1.  
+5. Simulate scale: extend model to full Tier-1 suppliers, showing marginal cost near zero and additional €48k projected savings.  
+6. Close with executive summary slide: compliance risk reduced to zero and verified 8x ROI within first quarter.

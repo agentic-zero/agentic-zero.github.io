@@ -1,15 +1,14 @@
 # SOP — Schedule Engineer-to-Order Product Deliveries
 **Process ID:** SCOR-S3.1
 **Framework:** SCOR | **Domain:** Source
-**Generated:** 2026-06-08
+**Generated:** 2026-06-10
 
 ## Purpose
 Process of scheduling deliveries for engineer-to-order materials and components aligned to project milestones, managing long-lead-time items and custom-engineered parts
 
 ## Triggers
-- New or updated ProcurementPlan received
-- EngineeringBOM revision released
-- ProjectMilestone date changed
+- New or updated ProjectSchedule received from project management system
+- EngineeringBOM revision released in PLM system
 
 ## Inputs Required
 - project schedules
@@ -19,8 +18,8 @@ Process of scheduling deliveries for engineer-to-order materials and components 
 - procurement plans
 
 ## Process Steps
-1. IF SupplierEngineeringLeadTime > ProjectMilestone.buffer THEN create LongLeadTimeAlert and escalate to procurement
-2. IF schedule_variance > 10% THEN trigger re-alignment of ETODeliverySchedule with ProjectSchedule
+1. IF SupplierEngineeringLeadTime > ProjectMilestone.buffer_days THEN create LongLeadTimeAlert and notify procurement
+2. IF schedule_variance > 10% THEN trigger rescheduling of ETODeliverySchedule
 
 ## Expected Outputs
 - ETO delivery schedules
@@ -29,18 +28,18 @@ Process of scheduling deliveries for engineer-to-order materials and components 
 - procurement status reports
 
 ## Business Rules
-- All ETO deliveries must reference current EngineeringBOM revision before scheduling
-- Long-lead-time items require dual approval from engineering and project management
-- Compliance with ITAR/EAR must be validated on every supplier milestone update for defense sector
+- All ETO delivery schedules must reference latest EngineeringBOM revision before release
+- Supplier engineering compliance must be validated against defense acquisition regulations before milestone approval
+- Long-lead-time items require dual-source validation if lead time exceeds 90 days
 
 ## Exception Handling
-- Supplier provides revised lead time after PO issuance: re-run scheduling and regenerate ETODeliverySchedule within 24 hours
-- Milestone date change from customer: propagate change to all dependent ProcurementPlans and issue updated alerts
+- Missing SupplierEngineeringLeadTime: default to 120-day estimate and flag for manual review within 48 hours
+- ITAR/EAR restricted item detected: route to compliance officer and halt schedule publication
 
 ## Success Criteria
-- milestone_adherence >= 95%
-- long_lead_time_management_rate >= 98%
-- schedule_variance <= 5%
+- Milestone adherence >= 95%
+- Schedule variance <= 5 days
+- Long-lead-time alerts generated for 100% of items exceeding threshold
 
 ## Compliance Requirements
 - defense acquisition regulations

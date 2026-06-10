@@ -1,0 +1,90 @@
+{
+  "process_id": "BPMN-GXP-004",
+  "guardian_timestamp": "2026-06-09T17:00:31.685161",
+  "certificate": {
+    "certificate_id": "AZ-CERT-BPMN-GXP-004-20260609",
+    "process_id": "BPMN-GXP-004",
+    "agent_name": "gxp_csv_validation_orchestrator",
+    "issued_at": "2026-06-09T17:00:31.685128",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-09",
+    "overall_status": "conditional",
+    "overall_score": 0.86,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": true,
+      "score": 0.78,
+      "gaps": [
+        "Clause 5 (Leadership): accountability/oversight not explicitly coded in compliance logic",
+        "Clause 7 (Support): competence and resource provisions absent from executable checks",
+        "Compliance logic is truncated (required_inputs loop incomplete) and mixes ISO 42001 with EU AI Act references"
+      ],
+      "recommendations": [
+        "Extend _compliance_checks to include explicit leadership approval gates and competence verification",
+        "Complete and isolate ISO 42001 clause checks from other regulations",
+        "Add automated remediation triggers linked to escalation rules for Clause 10"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Clause 5 (Leadership): accountability/oversight not explicitly coded in compliance logic",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

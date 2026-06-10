@@ -1,0 +1,96 @@
+{
+  "process_id": "BPMN-FIN-005",
+  "agent_name": "trade_finance_lc_orchestrator",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-09T17:25:59.326478",
+  "product_summary": "This hybrid agent streamlines the full trade finance workflow for international transactions by managing letter of credit applications, preparing and verifying required documents, submitting to banks, and reconciling incoming payments. It incorporates built-in capabilities for document verification, compliance screening, discrepancy handling, and payment reconciliation while adhering to UCP 600, export controls, AML, GDPR, and customs regulations. Executives gain faster transaction cycles, reduced operational risk, and lower costs from fewer rejected documents or delayed payments. The agent serves as a reliable digital assistant that scales trade operations without increasing headcount.",
+  "value_proposition": "Automates the end-to-end letter of credit process from application through payment receipt while embedding regulatory compliance checks at every step.",
+  "technical_summary": "The hybrid architecture combines rule-based engines for UCP 600 and compliance logic with machine learning models for document verification and discrepancy detection. It integrates via secure APIs with core banking platforms, trade portals, and external screening databases while maintaining encrypted data flows that satisfy GDPR and AML requirements. Audit logs and version-controlled workflows enable traceability across the full transaction lifecycle.",
+  "integration_guide": "# Integration Guide — trade_finance_lc_orchestrator\n**Process:** Trade Finance & Letters of Credit\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp trade_finance_lc_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.trade_finance_lc_orchestrator import TradeFinanceLcOrchestratorAgent\n\nagent = TradeFinanceLcOrchestratorAgent()\nresult = agent.execute({\n    \"sales_contract\": your_sales_contract_data,\n    \"lc_terms\": your_lc_terms_data,\n    \"shipping_documents\": your_shipping_documents_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_system\n- logistics_api\n- customs_api\n- banking_api\n- aml_screening_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- unresolved document discrepancy after 5 days\n- LC rejection by ImporterBank\n- payment delay >14 days\n- AML flag requiring override",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/trade_finance_lc_orchestrator/execute — Execute the agent with inputs",
+    "GET  /api/v1/agents/trade_finance_lc_orchestrator/status — Get agent status and metrics",
+    "GET  /api/v1/agents/trade_finance_lc_orchestrator/health — Health check",
+    "GET  /api/v1/agents/trade_finance_lc_orchestrator/spec   — Get agent specification",
+    "POST /api/v1/agents/trade_finance_lc_orchestrator/test   — Run test cases"
+  ],
+  "demo_script": "1. Open trade_finance_lc_orchestrator with a €2.4M import LC request; display manual baseline (14 days, 47 compliance checks, €9,200 internal cost).  \n2. Upload shipping docs and invoice; run AI extraction and auto-populate LC fields in 90 seconds.  \n3. Trigger real-time compliance engine: flag two sanctions hits and one Incoterm mismatch, then auto-remediate with audit trail.  \n4. Generate optimized LC draft, route for digital sign-off, and simulate bank submission—complete in under 4 minutes.  \n5. Display live ROI dashboard: 11.5 hours saved per transaction × 8.0x multiplier = €5,984 net value vs €748 price.  \n6. Export full regulatory report (AML, KYC, UCP 600) for executive and auditor review.  \n7. Close with one-click deployment summary showing payback in 11 transactions.",
+  "demo_inputs": {
+    "sales_contract": "[example_sales_contract]",
+    "lc_terms": "[example_lc_terms]",
+    "shipping_documents": "[example_shipping_documents]"
+  },
+  "expected_demo_outputs": {
+    "letter_of_credit": "[generated_letter_of_credit]",
+    "compliant_documents": "[generated_compliant_documents]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-FIN-005",
+    "agent_name": "trade_finance_lc_orchestrator",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "defense",
+      "chemical",
+      "food",
+      "pharma"
+    ],
+    "compliance_frameworks": [
+      "UCP 600 LC rules",
+      "export control",
+      "AML compliance",
+      "GDPR financial data",
+      "customs regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 748.5,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-09T17:25:59.326460"
+  },
+  "tags": [
+    "",
+    "food",
+    "bpmn",
+    "hybrid",
+    "pharma",
+    "chemical",
+    "manufacturing",
+    "defense"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing firm uses agent to pre-screen LC documents against UCP 600 rules, cutting discrepancy rejections from 22% to 6% and shortening average payment cycle by 12 days for $4.2M monthly volume.",
+    "Use case 2: Defense contractor deploys agent for automated export-control flagging in LC applications, eliminating two potential $1.8M violations per year while reducing manual compliance review time by 35 hours weekly.",
+    "Use case 3: Chemical exporter leverages agent to embed AML transaction monitoring into LC workflows, lowering false-positive alerts by 58% and avoiding an estimated $650K in annual regulatory remediation costs.",
+    "Use case 4: Pharma company applies agent for GDPR-compliant redaction and audit logging of LC financial data, preventing a projected €2.4M fine and reducing data-preparation effort from 18 to 4 hours per shipment.",
+    "Use case 5: Food importer uses agent to validate customs valuation and origin rules within LC terms, decreasing demurrage and storage fees by $310K annually through 9-day faster clearance on 40+ containers per month."
+  ],
+  "pricing": {
+    "process_id": "BPMN-FIN-005",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 249.5,
+    "total_price_eur": 748.5,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-FIN-005_package.json"
+}

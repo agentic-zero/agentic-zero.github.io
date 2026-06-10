@@ -8,8 +8,8 @@ Core GDPR data processing principles including lawfulness, fairness, transparenc
 
 ## Triggers
 - New processing activity registration
-- Periodic compliance audit
-- Data subject request or regulatory inquiry
+- Quarterly compliance audit
+- Data subject request for access or erasure
 
 ## Inputs Required
 - personal data inventory
@@ -20,8 +20,8 @@ Core GDPR data processing principles including lawfulness, fairness, transparenc
 
 ## Process Steps
 1. IF LawfulBasis is missing THEN block processing and require assessment
-2. IF SpecialCategoryData is true THEN enforce Art9 explicit basis or prohibition
-3. IF RetentionSchedule exceeds necessity THEN trigger minimization review
+2. IF SpecialCategoryData is true THEN require explicit Art9 exception or consent
+3. IF retention period exceeds schedule THEN trigger deletion workflow
 
 ## Expected Outputs
 - lawful basis documentation
@@ -31,18 +31,19 @@ Core GDPR data processing principles including lawfulness, fairness, transparenc
 - accountability evidence
 
 ## Business Rules
-- Every PersonalData processing must have documented Art6 lawful basis before execution
-- Purpose limitation: PersonalData must only be used for declared ProcessingPurpose
-- Storage limitation: PersonalData must be deleted or anonymized at RetentionSchedule end
-- Data minimization: only collect fields required for ProcessingPurpose
+- Every PersonalDataInventory entry must have documented LawfulBasis from Art6
+- ProcessingPurpose must be specific, explicit and legitimate before any processing
+- DataMinimizationControl must reduce collected fields to minimum necessary for purpose
+- RetentionPolicy must enforce storage limitation with automated expiry
+- AccountabilityEvidence must log all decisions for audit
 
 ## Exception Handling
-- Special category processing allowed without consent only for vital interests, legal claims or substantial public interest with documented DPIA
+- Vital interests or legal obligation may override consent requirement for SpecialCategoryData; log justification and notify DPO
 
 ## Success Criteria
 - lawful_basis_coverage == 100%
 - privacy_notice_completeness >= 95%
-- retention_compliance_rate == 100%
+- retention_compliance_rate >= 98%
 
 ## Compliance Requirements
 - GDPR Art.5 principles

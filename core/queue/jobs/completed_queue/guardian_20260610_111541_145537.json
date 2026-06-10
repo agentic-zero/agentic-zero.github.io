@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260610_111541_145537",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "ISO31000-P1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:15:41.145555",
+  "status": "completed",
+  "started_at": "2026-06-10T16:00:54.378021",
+  "completed_at": "2026-06-10T16:00:59.226241",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-ISO31000-P1-20260610",
+    "status": "conditional",
+    "process_id": "ISO31000-P1"
+  }
+}

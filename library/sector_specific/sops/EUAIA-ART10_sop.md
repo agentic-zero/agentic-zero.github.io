@@ -7,8 +7,8 @@
 Data governance requirements for training, validation and testing datasets including relevance, representativeness, freedom from errors and completeness requirements
 
 ## Triggers
-- High-risk AI system training initiation flagged by EUAIA-ART9
-- New dataset version uploaded to training pipeline
+- High-risk AI system registration under EU AI Act Art.10
+- New training/validation/test dataset ingestion event
 
 ## Inputs Required
 - training datasets
@@ -18,9 +18,9 @@ Data governance requirements for training, validation and testing datasets inclu
 - bias assessment
 
 ## Process Steps
-1. IF DataCompletenessRate < 0.95 THEN trigger additional data collection
-2. IF BiasMetric > 0.15 THEN require bias mitigation before model training
-3. IF RepresentativenessScore < 0.8 THEN expand dataset sampling strategy
+1. IF representativeness_score < 0.8 THEN trigger dataset augmentation or resampling
+2. IF bias_metric > 0.1 THEN execute bias mitigation and re-assessment
+3. IF data_completeness_rate < 0.95 THEN reject dataset and request additional data
 
 ## Expected Outputs
 - data governance documentation
@@ -29,18 +29,21 @@ Data governance requirements for training, validation and testing datasets inclu
 - data lineage records
 
 ## Business Rules
-- All training, validation and test datasets must include documented DataProvenance
-- DatasetQualityScore must be computed and recorded for every input dataset
-- DataLineageRecord must be generated for every output report
-- BiasAssessment must be performed on all datasets used in high-risk AI
+- TrainingDataset must satisfy relevance, representativeness, error-free and completeness criteria
+- All datasets must maintain documented data lineage
+- BiasAssessment must be executed before any model training step
+- DatasetQualityReport must include dataset_quality_score, bias_metric, data_completeness_rate and representativeness_score
 
 ## Exception Handling
-- If sector is defense and data is classified, DataProvenance may reference internal secure ledger instead of public metadata
-- If automation_potential < 0.5, manual review step is mandatory before signing DataGovernanceDocumentation
+- Defense sector datasets may skip public provenance disclosure if national security flag is set
+- Pharma sector datasets require additional GDPR anonymization verification before BiasAssessment
 
 ## Success Criteria
-- DatasetQualityScore >= 0.9 AND BiasMetric <= 0.1 AND DataCompletenessRate >= 0.95 AND RepresentativenessScore >= 0.85
-- DataGovernanceDocumentation signed and linked to DataLineageRecord
+- dataset_quality_score >= 0.85
+- bias_metric <= 0.05
+- data_completeness_rate >= 0.95
+- representativeness_score >= 0.8
+- DataGovernanceDocumentation and DataLineageRecords generated
 
 ## Compliance Requirements
 - EU AI Act Art.10 mandatory

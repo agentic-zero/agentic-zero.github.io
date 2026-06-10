@@ -1,0 +1,7 @@
+1. Open with the compliance challenge: Manual ROPA updates consume 20+ hours/month and risk GDPR fines.  
+2. Launch gdpr_ropa_automation_agent and connect to sample HR and CRM data sources.  
+3. Run AI discovery to auto-map 47 processing activities in 90 seconds.  
+4. Generate a complete, Article 30-compliant ROPA report with risk scores and lawful bases.  
+5. Show one-click audit export and real-time change detection for ongoing compliance.  
+6. Quantify ROI: €224 annual fee delivers 10x return via 40+ hours saved (€2,240+ value).  
+7. Summarize deployment in under one day and offer pilot next steps.

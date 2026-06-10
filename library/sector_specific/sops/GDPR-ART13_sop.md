@@ -7,8 +7,8 @@
 Transparency obligations and data subject rights management including right to access, rectification, erasure, restriction, portability and objection, including rights related to automated decision-making
 
 ## Triggers
-- DataSubjectRequest received via webform, email or API
-- Scheduled 30-day compliance check on open requests
+- receipt of DataSubjectRequest via web form, email or API
+- scheduled review of AutomatedDecisionSystem outputs
 
 ## Inputs Required
 - data subject requests
@@ -18,10 +18,9 @@ Transparency obligations and data subject rights management including right to a
 - retention data
 
 ## Process Steps
-1. IF request_type == 'access' THEN return PersonalDataInventory copy
-2. IF request_type == 'erasure' THEN verify legal_basis != 'legal_obligation' THEN create ErasureRecord
-3. IF automated_decision_affected == true THEN generate AutomatedDecisionExplanation before response
-4. IF response_time_days > 30 THEN escalate to DPO
+1. IF request_type == 'access' THEN return personal_data_inventory subset within 30 days
+2. IF request_type == 'erasure' AND legal_basis != 'legal_obligation' THEN create ErasureRecord and delete data
+3. IF automated_decision == true THEN generate and attach AutomatedDecisionExplanation
 
 ## Expected Outputs
 - privacy notices
@@ -31,22 +30,19 @@ Transparency obligations and data subject rights management including right to a
 - portability exports
 
 ## Business Rules
-- All responses must be provided within 30 calendar days of request receipt
-- PrivacyNotice must include controller identity, processing purposes, legal basis, retention periods and data subject rights
-- AutomatedDecisionExplanation must include logic, significance and envisaged consequences
-- PortabilityExport must be in machine-readable structured format
-- Fulfillment rate must be logged per request for KPI calculation
+- response_time <= 30 calendar days from receipt
+- rights_fulfillment_rate >= 95 percent
+- all PrivacyNotices must include Art.13-14 mandatory fields
+- automated_decision_explainability must include logic, significance and envisaged consequences
 
 ## Exception Handling
-- IF identity_verification fails THEN reject request with 403 and log reason
-- IF data volume exceeds 100MB THEN provide secure download link instead of attachment
-- IF conflicting legal obligation exists THEN partially refuse erasure and document Article 23 derogation
+- IF request is manifestly unfounded or excessive THEN apply reasonable fee or refuse with documented justification
+- IF national security or legal obligation overrides THEN log exemption under Art.23 and notify supervisory authority
 
 ## Success Criteria
 - request_response_time <= 30 days
-- rights_fulfillment_rate == 100%
-- automated_decision_explainability score >= 0.9
-- all outputs generated and stored with audit trail
+- rights_fulfillment_rate == 100 percent for completed requests
+- transparency_score >= 0.9 based on notice completeness checklist
 
 ## Compliance Requirements
 - GDPR Art.13-14 information

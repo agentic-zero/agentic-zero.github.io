@@ -1641,7 +1641,7 @@
   },
   {
     "process_id": "SCOR-S2.4",
-    "agent_name": "mto_transfer_orchestrator",
+    "agent_name": "mto_transfer_agent",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L2",
@@ -1658,13 +1658,13 @@
       "GDPR if personal data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:07:30.855455"
+    "created_at": "2026-06-10T16:01:09.800093"
   },
   {
     "process_id": "SCOR-S2.5",
@@ -1720,7 +1720,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:13:32.795362"
+    "created_at": "2026-06-10T16:01:27.183858"
   },
   {
     "process_id": "SCOR-S3.2",
@@ -1778,7 +1778,7 @@
   },
   {
     "process_id": "SCOR-S3.4",
-    "agent_name": "eto_component_transfer_agent",
+    "agent_name": "transfer_eto_product_agent",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L2",
@@ -1794,18 +1794,18 @@
       "export control",
       "GDPR if personal data"
     ],
-    "agent_type": "hybrid",
+    "agent_type": "reactive",
     "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:22:32.578727"
+    "created_at": "2026-06-10T16:01:59.826556"
   },
   {
     "process_id": "SCOR-S3.5",
-    "agent_name": "supplier_payment_authorization_agent",
+    "agent_name": "supplier_milestone_payment_authorizer",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L2",
@@ -1822,17 +1822,17 @@
       "export control financial"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:25:31.277835"
+    "created_at": "2026-06-10T16:02:36.244350"
   },
   {
     "process_id": "SCOR-M2.2",
-    "agent_name": "mto_material_issue_controller",
+    "agent_name": "mto_material_issue_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -1849,13 +1849,13 @@
       "GDPR if personal data in records"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 6,
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:31:33.904887"
+    "created_at": "2026-06-10T16:03:09.319022"
   },
   {
     "process_id": "SCOR-M2.3",

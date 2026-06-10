@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_111143_204614",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-S3.4"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:11:43.204632",
+  "status": "completed",
+  "started_at": "2026-06-10T16:01:27.218381",
+  "completed_at": "2026-06-10T16:01:44.205114",
+  "error": null,
+  "result": {
+    "agent_name": "transfer_eto_product_agent",
+    "price_eur": 748.5,
+    "ready_for_guardian": true
+  }
+}

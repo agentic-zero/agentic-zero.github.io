@@ -269,7 +269,7 @@ class QueueManager:
 
 
 # ── WORKERS ───────────────────────────────────────────────────────────────────
-def run_builder_worker(queue: QueueManager, max_jobs: int = 10):
+def run_builder_worker(queue: QueueManager, max_jobs: int = 9999):
     """Builder worker — processes builder_queue"""
     logger.info("Builder worker started")
     processed = 0
@@ -311,7 +311,7 @@ def run_builder_worker(queue: QueueManager, max_jobs: int = 10):
     return processed
 
 
-def run_packager_worker(queue: QueueManager, max_jobs: int = 10):
+def run_packager_worker(queue: QueueManager, max_jobs: int = 9999):
     """Packager worker — processes packager_queue"""
     logger.info("Packager worker started")
     processed = 0
@@ -354,7 +354,7 @@ def run_packager_worker(queue: QueueManager, max_jobs: int = 10):
     return processed
 
 
-def run_guardian_worker(queue: QueueManager, max_jobs: int = 10):
+def run_guardian_worker(queue: QueueManager, max_jobs: int = 9999):
     """Guardian worker — processes guardian_queue"""
     logger.info("Guardian worker started")
     processed = 0

@@ -7,8 +7,9 @@
 Good Distribution Practice requirements for pharmaceutical distribution including quality system, personnel, premises, documentation, operations, complaints and returns management
 
 ## Triggers
-- New distribution order received from qualified Customer
-- Product arrival at warehouse with storage requirements
+- New distribution order received with product specifications and storage requirements
+- Scheduled temperature data upload from vehicle IoT device
+- Customer complaint or return notification received
 
 ## Inputs Required
 - product specifications
@@ -18,8 +19,9 @@ Good Distribution Practice requirements for pharmaceutical distribution includin
 - temperature monitoring data
 
 ## Process Steps
-1. IF temperature > Storage_Requirement.max OR temperature < Storage_Requirement.min THEN create Temperature_Record with excursion_flag=true and trigger investigation
-2. IF Customer.qualification_status != 'approved' THEN block distribution and log exception
+1. IF temperature > validated_range THEN quarantine batch and log excursion
+2. IF customer_qualification_status == false THEN reject order
+3. IF complaint_severity == critical THEN initiate recall and notify authority within 24h
 
 ## Expected Outputs
 - GDP-compliant distribution
@@ -29,20 +31,19 @@ Good Distribution Practice requirements for pharmaceutical distribution includin
 - return records
 
 ## Business Rules
-- All distribution must maintain temperature within Storage_Requirement range for entire route
-- Customer must have valid Qualification_Record before any shipment
-- Temperature_Record must be stored for minimum 5 years per EU GDP Guidelines 2013
-- Complaint_Record must be created within 24 hours of receipt and linked to batch_id
+- All personnel must hold current GDP training certificate before performing operations
+- Temperature must be logged every 5 minutes during transit with 0.5C accuracy
+- Returns must be physically segregated within 4 hours of receipt
+- Documentation retention period minimum 5 years or 1 year after expiry whichever longer
 
 ## Exception Handling
-- Temperature excursion: log deviation, quarantine product, notify QA, decide on release/reject within 48 hours
-- Return: inspect product integrity, update Return_Record, destroy if compromised or restock only after re-qualification
+- Temperature excursion <30min and <2C deviation: auto-approve with CAPA record
+- Emergency delivery to unqualified customer: requires QP-signed deviation and post-delivery audit within 7 days
 
 ## Success Criteria
-- GDP audit compliance rate == 100%
-- temperature excursion rate < 0.5%
-- delivery quality rate >= 99.5%
-- all Temperature_Record and Qualification_Record created and immutable
+- GDP audit compliance rate >= 98%
+- temperature_excursion_rate == 0 for validated shipments
+- delivery_quality_rate >= 99.5% with zero critical complaints
 
 ## Compliance Requirements
 - EU GDP Guidelines 2013

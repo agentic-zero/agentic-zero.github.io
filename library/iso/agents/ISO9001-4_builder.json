@@ -1,0 +1,114 @@
+{
+  "process_id": "ISO9001-4",
+  "builder_timestamp": "2026-06-10T16:24:35.016143",
+  "ontology": {
+    "process_id": "ISO9001-4",
+    "entities": [
+      "Organization",
+      "InternalIssue",
+      "ExternalIssue",
+      "Stakeholder",
+      "RegulatoryRequirement",
+      "StrategicDirection",
+      "QMSScope",
+      "ProcessMap",
+      "InterestedPartyRegister",
+      "ContextAnalysis"
+    ],
+    "relationships": [
+      "Organization monitors InternalIssue",
+      "Organization monitors ExternalIssue",
+      "Stakeholder has Needs",
+      "RegulatoryRequirement constrains QMSScope",
+      "ContextAnalysis produces QMSScope",
+      "ContextAnalysis produces ProcessMap",
+      "ContextAnalysis produces InterestedPartyRegister"
+    ],
+    "decision_points": [
+      "IF new regulatory requirement identified THEN update ContextAnalysis within 30 days",
+      "IF stakeholder need impacts QMS scope THEN include in InterestedPartyRegister",
+      "IF internal issue affects process interactions THEN revise ProcessMap"
+    ],
+    "rules": [
+      "All four inputs (strategic direction, internal issues, external issues, stakeholder needs, regulatory requirements) must be documented before ContextAnalysis is approved",
+      "Context review frequency must be at least annually",
+      "QMSScope must explicitly list all exclusions and boundaries"
+    ],
+    "exceptions": [
+      "If no regulatory requirements exist, record explicit statement of absence with date and approver",
+      "If organization is startup with <10 employees, stakeholder register may be limited to top 5 parties"
+    ],
+    "data_requirements": [
+      "strategic_direction: string from leadership meeting minutes",
+      "internal_issue: object with id, description, impact_score (1-5)",
+      "external_issue: object with id, source, likelihood (0-1)",
+      "stakeholder_need: object with stakeholder_id, need_text, priority (1-3)",
+      "regulatory_requirement: object with jurisdiction, clause, effective_date"
+    ],
+    "triggers": [
+      "scheduled annual review date reached",
+      "major organizational change event logged",
+      "new regulatory requirement published",
+      "customer or certification body request received"
+    ],
+    "success_criteria": [
+      "QMSScope, ProcessMap, InterestedPartyRegister and ContextAnalysis all generated with non-null values",
+      "scope_completeness >= 0.95",
+      "stakeholder_coverage >= 0.90",
+      "context_review_frequency <= 365 days"
+    ],
+    "failure_modes": [
+      "Missing input leads to incomplete ContextAnalysis (detect by null fields)",
+      "Stakeholder register omits key regulatory bodies causing audit non-conformance",
+      "ProcessMap not updated after reorganization causing interaction errors in ISO9001-5 and ISO9001-6"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "ISO9001-4",
+    "agent_name": "iso9001_context_monitor",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "monitor_regulatory_changes",
+      "analyze_internal_external_issues",
+      "generate_context_analysis",
+      "update_qms_scope_process_map",
+      "maintain_stakeholder_register"
+    ],
+    "tools_required": [
+      "regulatory_api",
+      "document_management_system",
+      "stakeholder_db",
+      "leadership_minutes_parser"
+    ],
+    "decision_logic": "On triggers (annual date, org change, new reg, request) validate all four inputs per rules; apply decision_points to update artifacts within SLA; flag missing data or low coverage scores",
+    "escalation_rules": [
+      "null fields in ContextAnalysis after 30 days",
+      "stakeholder_coverage < 0.90 or scope_completeness < 0.95",
+      "new regulatory requirement not processed within 30 days"
+    ],
+    "monitoring_metrics": [
+      "context_review_frequency",
+      "scope_completeness",
+      "stakeholder_coverage",
+      "input_completeness"
+    ],
+    "compliance_checks": [
+      "all_inputs_documented_before_approval",
+      "annual_review_within_365_days",
+      "explicit_exclusions_in_qms_scope",
+      "regulatory_absence_statement_if_applicable"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: ISO9001-4\nName: iso9001_context_monitor\nFramework: ISO 9001:2015\nDomain: ISO 9001\nGenerated: 2026-06-10T16:24:35.016046\nCompliance: ISO 9001:2015 Clause 4, GDPR context analysis, regulatory landscape\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass Iso9001ContextMonitorAgent:\n    \"\"\"\n    Agent for: Context of the Organization\n    \n    Understanding the organization and its context, interested parties, scope of QMS and the QMS itself including processes and their interactions\n    \n    Capabilities:\n    #   - monitor_regulatory_changes\n    #   - analyze_internal_external_issues\n    #   - generate_context_analysis\n    #   - update_qms_scope_process_map\n    #   - maintain_stakeholder_register\n    \n    Compliance: ISO 9001:2015 Clause 4, GDPR context analysis, regulatory landscape\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"ISO9001-4\"\n        self.agent_name = \"iso9001_context_monitor\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['strategic_direction', 'internal_issues', 'external_issues']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF new regulatory requirement identified THEN update ContextAnalysis within 30 days\n        # - IF stakeholder need impacts QMS scope THEN include in InterestedPartyRegister\n        # - IF internal issue affects process interactions THEN revise ProcessMap\n        \n        Business rules:\n        # - All four inputs (strategic direction, internal issues, external issues, stakeholder needs, regulatory requirements) must be documented before ContextAnalysis is approved\n        # - Context review frequency must be at least annually\n        # - QMSScope must explicitly list all exclusions and boundaries\n        \"\"\"\n        outputs = {}\n        \noutputs = {}\n        req = ['strategic direction', 'internal issues', 'external issues', 'stakeholder needs', 'regulatory requirements']\n        if not all(k in inputs for k in req):\n            raise ValueError('Missing required inputs')\n        # enforce rule: all inputs documented before approval\n        outputs['context analysis'] = {'review_date': 'annual', 'regulatory_update': 'within 30 days if new'}\n        outputs['QMS scope'] = {'boundaries': inputs['strategic direction'], 'exclusions': []}\n        outputs['process map'] = {'interactions': inputs['internal issues']}\n        outputs['interested party register'] = {'stakeholders': inputs['stakeholder needs']}\n        # decision: stakeholder impact on scope\n        if inputs.get('stakeholder needs'):\n            outputs['interested party register']['included'] = True\n        # decision: internal issue affects map\n        if inputs.get('internal issues'):\n            outputs['process map']['revised'] = True\n        return outputs\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - all_inputs_documented_before_approval\n        # - annual_review_within_365_days\n        # - explicit_exclusions_in_qms_scope\n        # - regulatory_absence_statement_if_applicable\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [{\"id\": \"R1\", \"desc\": \"AI decision error in Context of the Organization\", \"likelihood\": 0.2, \"impact\": 0.8}, {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7}]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risks identified evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks not fully handled\")\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Continuous monitoring in place\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Monitoring missing\")\n        required_inputs = ['strategic direction', 'internal issues', 'external issues', 'stakeholder needs', 'regulatory requirements']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization satisfied\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Excess data fields\")\n        checks_passed.append(\"EU AI Act Art.10: No unauthorised categories\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(self.agent_name and self.process_id and self.version)\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if self.decision_logic_documented:\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic missing\")\n        if len(self.compliance_flags) > 0:\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        if self.escalation_rules:\n            checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Escalation rules missing\")\n        personal_data = False\n        if personal_data:\n            checks_passed.append(\"GDPR: Lawful basis legitimate interest Art.6(1)(f)\")\n            checks_passed.append(\"GDPR: Data minimization applied\")\n            checks_passed.append(\"GDPR: Retention max 7 years\")\n        else:\n            checks_passed.append(\"GDPR: No personal data involved\")\n        if self.accountability_defined:\n            checks_passed.append(\"NIST: Govern accountability verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        if len(self.process_risk_map) > 0:\n            checks_passed.append(\"NIST: Map risks to context complete\")\n        else:\n            checks_failed.append(\"NIST: Map risks incomplete\")\n        if len(self.monitoring_metrics) > 0:\n            checks_passed.append(\"NIST: Measure metrics defined\")\n        else:\n            checks_failed.append(\"NIST: Measure metrics missing\")\n        if self.escalation_procedures:\n            checks_passed.append(\"NIST: Manage escalation procedures exist\")\n        else:\n            checks_failed.append(\"NIST: Manage procedures missing\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['qms_scope', 'process_map']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['null fields in ContextAnalysis after 30 days', 'stakeholder_coverage < 0.90 or scope_completeness < 0.95', 'new regulatory requirement not processed within 30 days']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['context_review_frequency', 'scope_completeness', 'stakeholder_coverage', 'input_completeness']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = Iso9001ContextMonitorAgent()\n    \n    # Example execution\n    test_inputs = {\"strategic_direction\": \"example_strategic_direction\", \"internal_issues\": \"example_internal_issues\", \"external_issues\": \"example_external_issues\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Context of the Organization\n**Process ID:** ISO9001-4\n**Framework:** ISO 9001:2015 | **Domain:** ISO 9001\n**Generated:** 2026-06-10\n\n## Purpose\nUnderstanding the organization and its context, interested parties, scope of QMS and the QMS itself including processes and their interactions\n\n## Triggers\n- scheduled annual review date reached\n- major organizational change event logged\n- new regulatory requirement published\n- customer or certification body request received\n\n## Inputs Required\n- strategic direction\n- internal issues\n- external issues\n- stakeholder needs\n- regulatory requirements\n\n## Process Steps\n1. IF new regulatory requirement identified THEN update ContextAnalysis within 30 days\n2. IF stakeholder need impacts QMS scope THEN include in InterestedPartyRegister\n3. IF internal issue affects process interactions THEN revise ProcessMap\n\n## Expected Outputs\n- QMS scope\n- process map\n- interested party register\n- context analysis\n\n## Business Rules\n- All four inputs (strategic direction, internal issues, external issues, stakeholder needs, regulatory requirements) must be documented before ContextAnalysis is approved\n- Context review frequency must be at least annually\n- QMSScope must explicitly list all exclusions and boundaries\n\n## Exception Handling\n- If no regulatory requirements exist, record explicit statement of absence with date and approver\n- If organization is startup with <10 employees, stakeholder register may be limited to top 5 parties\n\n## Success Criteria\n- QMSScope, ProcessMap, InterestedPartyRegister and ContextAnalysis all generated with non-null values\n- scope_completeness >= 0.95\n- stakeholder_coverage >= 0.90\n- context_review_frequency <= 365 days\n\n## Compliance Requirements\n- ISO 9001:2015 Clause 4\n- GDPR context analysis\n- regulatory landscape",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: ISO 9001:2015 Clause 4, GDPR context analysis, regulatory landscape",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

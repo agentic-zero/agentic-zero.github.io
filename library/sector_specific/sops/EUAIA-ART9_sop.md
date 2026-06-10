@@ -7,8 +7,8 @@
 Mandatory risk management system for high-risk AI systems including risk identification, estimation, evaluation, mitigation and residual risk assessment throughout the AI lifecycle
 
 ## Triggers
-- new HighRiskAISystem registration in AI inventory
-- major design change or new foreseeable misuse identified
+- Classification of AI system as high-risk under EU AI Act Annex III
+- Start of design phase for high-risk AI system
 
 ## Inputs Required
 - AI system design
@@ -18,8 +18,8 @@ Mandatory risk management system for high-risk AI systems including risk identif
 - mitigation measures
 
 ## Process Steps
-1. IF residual_risk_level > 0.3 THEN require additional MitigationControl before deployment
-2. IF risk_identification_completeness < 0.95 THEN trigger re-assessment before lifecycle stage gate
+1. IF residual_risk_level > acceptance_threshold THEN require additional MitigationControl before deployment
+2. IF new foreseeable_misuse identified THEN trigger risk reassessment
 
 ## Expected Outputs
 - risk management plan
@@ -29,17 +29,17 @@ Mandatory risk management system for high-risk AI systems including risk identif
 - risk monitoring plan
 
 ## Business Rules
-- EU_AI_Act_Art9: risk management must cover identification, estimation, evaluation, mitigation and residual risk for entire AI lifecycle
-- residual_risk must be explicitly accepted by accountable role before release
+- Risk identification must cover intended_use and foreseeable_misuse for entire AI lifecycle
+- Residual risk must be explicitly accepted and documented before release
+- Review frequency must be at minimum quarterly or on material system change
 
 ## Exception Handling
-- non-high-risk AI systems: skip mandatory Art9 process and log exemption justification in compliance registry
+- Non-high-risk AI systems are exempt from Art9 process execution
 
 ## Success Criteria
 - risk_identification_completeness >= 0.95
-- mitigation_effectiveness >= 0.8
-- residual_risk_level <= 0.3
-- review_frequency >= quarterly
+- residual_risk_level <= acceptance_threshold
+- all mitigation_controls implemented and verified
 
 ## Compliance Requirements
 - EU AI Act Art.9 mandatory

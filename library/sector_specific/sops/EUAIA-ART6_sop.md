@@ -7,8 +7,7 @@
 Classification rules for high-risk AI systems including Annex I (safety components) and Annex III (high-risk use cases) covering supply chain, employment, critical infrastructure and other regulated domains
 
 ## Triggers
-- New AI system description submitted for classification
-- Update to use_case_definition or sector_classification received
+- New AI system description and use case submitted via EUAIA-ART6 endpoint
 
 ## Inputs Required
 - AI system description
@@ -18,9 +17,8 @@ Classification rules for high-risk AI systems including Annex I (safety componen
 - Annex III criteria
 
 ## Process Steps
-1. IF AI_System matches Annex_I safety component OR Annex_III use case THEN set High_Risk_Determination=true
-2. IF sector in ['pharma','defense','manufacturing','chemical','food','automotive','distribution'] AND intended_purpose matches regulated domain THEN trigger full Annex_III evaluation
-3. IF High_Risk_Determination=true THEN output Compliance_Pathway and Documentation_Requirements else output low-risk classification
+1. IF AI_System matches Annex_I safety component OR Annex_III criteria THEN SET high_risk=true
+2. IF sector in ['pharma','defense','automotive'] AND intended_purpose involves critical infrastructure THEN escalate to L2 review
 
 ## Expected Outputs
 - risk classification decision
@@ -29,19 +27,17 @@ Classification rules for high-risk AI systems including Annex I (safety componen
 - documentation requirements
 
 ## Business Rules
-- rule1: Every input AI_System must provide use_case_definition and intended_purpose before classification
-- rule2: Classification must evaluate all Annex_III criteria for high-risk use cases
-- rule3: Output must include risk_classification_decision and compliance_flags for EU AI Act Art.6
-- rule4: Review cycle time KPI must be logged for every classification
+- Must evaluate all Annex_III criteria before final classification
+- High-risk determination requires explicit documentation of Annex reference
+- Classification accuracy KPI must exceed 0.95 per review cycle
 
 ## Exception Handling
-- Exception: AI system explicitly excluded under EU AI Act Art.2(2) - bypass classification and return non-high-risk with legal reference
-- Exception: Incomplete Annex_III criteria provided - return 'insufficient data' and request missing fields before proceeding
+- If AI system is explicitly excluded under Art.6(3) then bypass high-risk label and log exclusion reason
 
 ## Success Criteria
-- High_Risk_Determination is boolean and risk_classification_decision is non-null
-- Compliance_Pathway and Documentation_Requirements are populated when high-risk=true
-- classification_accuracy KPI >= 0.95 on audit sample
+- Risk classification decision output with high_risk boolean and compliance_pathway string
+- Review cycle time under 4 hours
+- Appeals rate below 5%
 
 ## Compliance Requirements
 - EU AI Act Art.6

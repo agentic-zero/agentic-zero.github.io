@@ -7,8 +7,8 @@
 Process of issuing materials and WIP to MTO production operations including kitting, staging and releasing to production floor with full traceability
 
 ## Triggers
-- New or updated WorkOrder status = 'Released' received from planning system
-- ProductionSchedule update with start_date within next 24 hours
+- WorkOrder status changed to 'Released' in ERP
+- ProductionSchedule daily batch job at 06:00
 
 ## Inputs Required
 - production schedule
@@ -18,9 +18,9 @@ Process of issuing materials and WIP to MTO production operations including kitt
 - production routings
 
 ## Process Steps
-1. IF material availability check fails for any item in MaterialPickList THEN route to exception queue and notify planner
-2. IF kitting verification scan fails THEN block ProductionFloorRelease and require re-kitting
-3. IF WIP accuracy < 99.5% THEN pause process and trigger inventory reconciliation
+1. IF all pick list items available in WIPInventory THEN proceed to kitting ELSE hold and escalate shortage
+2. IF pharma sector THEN enforce GxP dispensing check ELSE skip
+3. IF kitting accuracy >= 99.5% THEN release to floor ELSE quarantine and rework
 
 ## Expected Outputs
 - issued materials kits
@@ -29,19 +29,19 @@ Process of issuing materials and WIP to MTO production operations including kitt
 - material consumption records
 
 ## Business Rules
-- Every MaterialConsumptionRecord must include timestamp, user_id, lot_number and location for full traceability
-- KittedMaterialSet must be 100% scanned and matched to MaterialPickList before ProductionFloorRelease
-- All outputs must update WIPInventory in real time within 30 seconds of issuance
+- Require full lot traceability on every IssuedMaterialsKit
+- Log timestamp and user ID on every MaterialConsumptionRecord for ISO 9001 audit
+- Apply GDPR masking if WorkOrder contains personal data fields
 
 ## Exception Handling
-- Discrepancy between physical kit and MaterialPickList: quarantine kit, log variance, require supervisor approval before release
-- Missing lot traceability data: block release and route to compliance team
+- Material shortage: auto-create SCOR-S2.4 replenishment request and pause WorkOrder
+- GxP deviation: route to quality hold and require QA sign-off before release
 
 ## Success Criteria
-- Kitting accuracy = 100% verified by scan
-- MaterialConsumptionRecord created for 100% of issued items
-- ProductionFloorRelease timestamp recorded and WIPInventory updated
-- Production floor wait time KPI <= target threshold
+- kitting_accuracy >= 99.5%
+- material_issue_cycle_time <= 4 hours
+- production_floor_wait_time == 0
+- WIPTransfer posted with zero variance
 
 ## Compliance Requirements
 - GxP dispensing if pharma

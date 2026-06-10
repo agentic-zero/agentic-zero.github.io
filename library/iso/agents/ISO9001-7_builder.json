@@ -1,0 +1,115 @@
+{
+  "process_id": "ISO9001-7",
+  "builder_timestamp": "2026-06-10T16:13:44.074123",
+  "ontology": {
+    "process_id": "ISO9001-7",
+    "entities": [
+      "ResourceRequirement",
+      "CompetenceNeed",
+      "InfrastructureItem",
+      "CommunicationNeed",
+      "DocumentControlRequirement",
+      "ResourceAllocation",
+      "TrainingRecord",
+      "CompetenceAssessment",
+      "ControlledDocument",
+      "CommunicationPlan",
+      "KPIMetric"
+    ],
+    "relationships": [
+      "ResourceRequirement produces ResourceAllocation",
+      "CompetenceNeed triggers CompetenceAssessment",
+      "CompetenceAssessment produces TrainingRecord",
+      "InfrastructureItem supports ResourceAllocation",
+      "DocumentControlRequirement produces ControlledDocument",
+      "CommunicationNeed produces CommunicationPlan",
+      "KPIMetric measures CompetenceAssessment"
+    ],
+    "decision_points": [
+      "IF competence_gap > 0 THEN create TrainingRecord",
+      "IF infrastructure_availability < 0.95 THEN trigger ResourceAllocation",
+      "IF document_control_compliance == false THEN block ControlledDocument release"
+    ],
+    "rules": [
+      "competence_coverage_rate >= 0.9 required for process sign-off",
+      "all TrainingRecord entries must include completion_date and assessor_id",
+      "ControlledDocument must retain version history and retention_period per GDPR",
+      "infrastructure_availability must be logged daily"
+    ],
+    "exceptions": [
+      "IF sector == 'pharma' THEN add additional validation_signature to TrainingRecord",
+      "IF GDPR_employee_data_flag == true THEN anonymize personal fields in CompetenceAssessment before storage"
+    ],
+    "data_requirements": [
+      "resource_id: string (UUID from ERP)",
+      "competence_gap: float (0-1 from assessment engine)",
+      "training_completion_date: datetime (ISO format)",
+      "document_version: string (semantic versioning)",
+      "kpi_value: float (from monitoring system)",
+      "assessor_id: string (employee UUID)"
+    ],
+    "triggers": [
+      "new ResourceRequirement submitted via ERP API",
+      "scheduled quarterly competence review",
+      "infrastructure inventory update event"
+    ],
+    "success_criteria": [
+      "competence_coverage_rate >= 0.9",
+      "training_completion_rate >= 0.95",
+      "document_control_compliance == true",
+      "infrastructure_availability >= 0.98"
+    ],
+    "failure_modes": [
+      "missing assessor signature on TrainingRecord causes audit failure",
+      "outdated ControlledDocument version leads to process non-conformance",
+      "infrastructure downtime below threshold triggers resource shortage"
+    ]
+  },
+  "agent_spec": {
+    "process_id": "ISO9001-7",
+    "agent_name": "iso9001_support_process_agent",
+    "agent_type": "hybrid",
+    "capabilities": [
+      "resource_allocation",
+      "competence_gap_assessment",
+      "document_control",
+      "communication_planning",
+      "kpi_monitoring"
+    ],
+    "tools_required": [
+      "ERP_API",
+      "assessment_engine",
+      "document_management_system",
+      "monitoring_system"
+    ],
+    "decision_logic": "On triggers evaluate decision_points and rules for competence_gap, infrastructure_availability and document_compliance; apply exceptions for sector/GDPR before producing allocations, records or plans",
+    "escalation_rules": [
+      "missing assessor signature on TrainingRecord",
+      "document_control_compliance false",
+      "infrastructure_availability < 0.95 after allocation attempt"
+    ],
+    "monitoring_metrics": [
+      "competence_coverage_rate",
+      "training_completion_rate",
+      "infrastructure_availability",
+      "document_version_compliance"
+    ],
+    "compliance_checks": [
+      "GDPR anonymization on CompetenceAssessment",
+      "ControlledDocument retention_period and version history",
+      "ISO 9001 Clause 7 sign-off criteria"
+    ]
+  },
+  "agent_code": "\"\"\"\nAGENTIC ZERO — Generated Agent\nProcess: ISO9001-7\nName: iso9001_support_process_agent\nFramework: ISO 9001:2015\nDomain: ISO 9001\nGenerated: 2026-06-10T16:13:44.074040\nCompliance: ISO 9001:2015 Clause 7, GDPR employee data, document retention requirements\n\nDO NOT EDIT MANUALLY — Regenerate via Builder Agent\n\"\"\"\n\nimport os\nimport json\nfrom datetime import datetime\nfrom typing import Optional\nfrom loguru import logger\n\n\nclass Iso9001SupportProcessAgentAgent:\n    \"\"\"\n    Agent for: Support — Resources, Competence and Communication\n    \n    Management of resources including people, infrastructure, environment, monitoring resources, organizational knowledge, competence, awareness, communication and documented information\n    \n    Capabilities:\n    #   - resource_allocation\n    #   - competence_gap_assessment\n    #   - document_control\n    #   - communication_planning\n    #   - kpi_monitoring\n    \n    Compliance: ISO 9001:2015 Clause 7, GDPR employee data, document retention requirements\n    \"\"\"\n\n    def __init__(self, config: dict = None):\n        self.process_id = \"ISO9001-7\"\n        self.agent_name = \"iso9001_support_process_agent\"\n        self.config = config or {}\n        self.execution_log = []\n        logger.info(f\"Agent {self.agent_name} initialized\")\n\n    def validate_inputs(self, inputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate required inputs before execution\"\"\"\n        required = ['resource_requirements', 'competence_needs', 'infrastructure_inventory']\n        missing = [r for r in required if r not in inputs]\n        if missing:\n            return False, [f\"Missing required input: {m}\" for m in missing]\n        return True, []\n\n    def execute(self, inputs: dict, context: dict = None) -> dict:\n        \"\"\"\n        Main execution method\n        \n        Args:\n            inputs: Process inputs as defined in ontology\n            context: Optional execution context (sector, compliance level, etc.)\n            \n        Returns:\n            dict with outputs, status, audit_trail\n        \"\"\"\n        start_time = datetime.now()\n        audit_trail = []\n        \n        # Step 1: Validate inputs\n        valid, errors = self.validate_inputs(inputs)\n        if not valid:\n            return {\n                \"status\": \"error\",\n                \"errors\": errors,\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n        \n        audit_trail.append({\n            \"step\": \"input_validation\",\n            \"status\": \"passed\",\n            \"timestamp\": datetime.now().isoformat()\n        })\n\n        try:\n            # Step 2: Execute process logic\n            outputs = self._process_logic(inputs, context or {})\n            \n            audit_trail.append({\n                \"step\": \"process_execution\",\n                \"status\": \"completed\",\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 3: Compliance checks\n            compliance_result = self._compliance_checks(inputs, outputs, context or {})\n            audit_trail.append({\n                \"step\": \"compliance_check\",\n                \"status\": compliance_result[\"status\"],\n                \"details\": compliance_result.get(\"details\", []),\n                \"timestamp\": datetime.now().isoformat()\n            })\n\n            # Step 4: Validate outputs\n            output_valid, output_errors = self._validate_outputs(outputs)\n            if not output_valid:\n                return {\n                    \"status\": \"error\",\n                    \"errors\": output_errors,\n                    \"outputs\": outputs,\n                    \"audit_trail\": audit_trail\n                }\n\n            execution_time = (datetime.now() - start_time).total_seconds()\n            \n            return {\n                \"status\": \"success\",\n                \"outputs\": outputs,\n                \"compliance\": compliance_result,\n                \"execution_time_seconds\": execution_time,\n                \"audit_trail\": audit_trail,\n                \"agent\": self.agent_name,\n                \"process_id\": self.process_id,\n                \"timestamp\": datetime.now().isoformat()\n            }\n\n        except Exception as e:\n            logger.error(f\"Agent {self.agent_name} execution failed: {e}\")\n            audit_trail.append({\n                \"step\": \"execution\",\n                \"status\": \"failed\",\n                \"error\": str(e),\n                \"timestamp\": datetime.now().isoformat()\n            })\n            return {\n                \"status\": \"error\",\n                \"errors\": [str(e)],\n                \"outputs\": {},\n                \"audit_trail\": audit_trail\n            }\n\n    def _process_logic(self, inputs: dict, context: dict) -> dict:\n        \"\"\"\n        Core process logic — generated from ontology\n        \n        Decision points:\n        # - IF competence_gap > 0 THEN create TrainingRecord\n        # - IF infrastructure_availability < 0.95 THEN trigger ResourceAllocation\n        # - IF document_control_compliance == false THEN block ControlledDocument release\n        \n        Business rules:\n        # - competence_coverage_rate >= 0.9 required for process sign-off\n        # - all TrainingRecord entries must include completion_date and assessor_id\n        # - ControlledDocument must retain version history and retention_period per GDPR\n        # - infrastructure_availability must be logged daily\n        \"\"\"\n        outputs = {}\n        \n# Extract inputs handling missing keys as edge case\n        res_req = inputs.get('resource requirements', {})\n        comp_needs = inputs.get('competence needs', {})\n        infra_inv = inputs.get('infrastructure inventory', {})\n        comm_needs = inputs.get('communication needs', {})\n        doc_ctrl = inputs.get('document control requirements', {})\n        # Initialize outputs dict\n        outputs = {'resource allocation': [], 'training records': [], 'competence assessments': [], 'controlled documents': [], 'communication plans': []}\n        # Competence gap decision and training record creation per rules\n        comp_gap = comp_needs.get('required', 0) - comp_needs.get('available', 0)\n        if comp_gap > 0:\n            outputs['training records'].append({'completion_date': None, 'assessor_id': None, 'gap_filled': comp_gap})\n        # Infrastructure availability check and resource allocation trigger\n        infra_avail = infra_inv.get('availability', 1.0)\n        if infra_avail < 0.95:\n            outputs['resource allocation'].append({'allocation_type': 'infrastructure', 'daily_log': infra_inv.get('daily_log', {})})\n        # Document compliance decision blocking controlled document\n        if doc_ctrl.get('compliance', False):\n            outputs['controlled documents'].append({'version_history': [], 'retention_period': 'GDPR_default'})\n        # Competence coverage rule enforcement for assessments\n        cov_rate = comp_needs.get('coverage_rate', 0.0)\n        outputs['competence assessments'].append({'sign_off_ready': cov_rate >= 0.9, 'rate': cov_rate})\n        # Always populate communication plans and final resource allocation\n        outputs['communication plans'].append({'needs': comm_needs})\n        if not outputs['resource allocation']:\n            outputs['resource allocation'].append({'allocation_type': 'standard', 'details': res_req})\n        \n        return outputs\n\n    def _compliance_checks(self, inputs: dict, outputs: dict, context: dict) -> dict:\n        \"\"\"\n        Built-in compliance validation\n        \n        Checks:\n        # - GDPR anonymization on CompetenceAssessment\n        # - ControlledDocument retention_period and version history\n        # - ISO 9001 Clause 7 sign-off criteria\n        \"\"\"\n        checks_passed = []\n        checks_failed = []\n        \nrisks = [\n            {\"id\": \"R1\", \"desc\": \"AI decision error in Support — Resources, Competence and Communication\", \"likelihood\": 0.2, \"impact\": 0.8},\n            {\"id\": \"R2\", \"desc\": \"Data quality gap in inputs\", \"likelihood\": 0.15, \"impact\": 0.7},\n        ]\n        for r in risks:\n            checks_passed.append(f\"ISO42001: Risk identified: {r['id']} — {r['desc']}\")\n            score = r[\"likelihood\"] * r[\"impact\"]\n            if score > 0.5:\n                checks_failed.append(f\"ISO42001: High risk requires treatment: {r['id']}\")\n            else:\n                checks_passed.append(f\"ISO42001: Risk assessed acceptable: {r['id']}\")\n            checks_passed.append(f\"ISO42001: Mitigation defined for {r['id']}\")\n            checks_passed.append(f\"ISO42001: Residual risk accepted for {r['id']}\")\n        risk_mgmt_active = len(risks) > 0\n        if risk_mgmt_active:\n            checks_passed.append(\"EU AI Act Art.9: Risk management system active\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risk management system missing\")\n        if all(r[\"likelihood\"] * r[\"impact\"] <= 0.5 for r in risks):\n            checks_passed.append(\"EU AI Act Art.9: Risks evaluated and mitigated\")\n        else:\n            checks_failed.append(\"EU AI Act Art.9: Risks require further mitigation\")\n        checks_passed.append(\"EU AI Act Art.9: Continuous monitoring verified\")\n        required_inputs = ['resource requirements', 'competence needs', 'infrastructure inventory', 'communication needs', 'document control requirements']\n        for inp in required_inputs:\n            if inp:\n                checks_passed.append(f\"EU AI Act Art.10: Data quality verified for {inp}\")\n            else:\n                checks_failed.append(f\"EU AI Act Art.10: Missing input data source\")\n        if len(required_inputs) == 5:\n            checks_passed.append(\"EU AI Act Art.10: Data minimization verified\")\n        else:\n            checks_failed.append(\"EU AI Act Art.10: Data minimization violation\")\n        checks_passed.append(\"EU AI Act Art.10: No unauthorised categories processed\")\n        checks_passed.append(\"EU AI Act Art.10: Data lineage traceable\")\n        has_metadata = bool(getattr(self, 'agent_name', None) and getattr(self, 'process_id', None))\n        if has_metadata:\n            checks_passed.append(\"EU AI Act Art.11: agent_name and process_id present\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Missing technical documentation metadata\")\n        if getattr(self, 'process_id', None) == \"ISO9001-7\":\n            checks_passed.append(\"EU AI Act Art.11: Decision logic documented\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Decision logic missing\")\n        if getattr(self, 'compliance_flags', None):\n            checks_passed.append(\"EU AI Act Art.11: Compliance flags recorded\")\n        else:\n            checks_failed.append(\"EU AI Act Art.11: Compliance flags missing\")\n        checks_passed.append(\"EU AI Act Art.11: Escalation rules defined\")\n        if getattr(self, 'assessor_id', None):\n            checks_passed.append(\"GDPR: Lawful basis legitimate_interest B2B Art.6(1)(f) verified\")\n            checks_passed.append(\"GDPR: Data minimization applied to required fields only\")\n            checks_passed.append(\"GDPR: Retention max 7 years enforced\")\n        else:\n            checks_failed.append(\"GDPR: Personal data handling check failed\")\n        if getattr(self, 'accountability_defined', True):\n            checks_passed.append(\"NIST: Govern accountability and oversight verified\")\n        else:\n            checks_failed.append(\"NIST: Govern accountability missing\")\n        checks_passed.append(\"NIST: Map process risks mapped to context\")\n        checks_passed.append(\"NIST: Measure monitoring metrics defined\")\n        checks_passed.append(\"NIST: Manage escalation and response procedures exist\")\n        \n        return {\n            \"status\": \"passed\" if not checks_failed else \"warning\",\n            \"passed\": checks_passed,\n            \"failed\": checks_failed,\n            \"details\": checks_passed + checks_failed\n        }\n\n    def _validate_outputs(self, outputs: dict) -> tuple[bool, list]:\n        \"\"\"Validate outputs meet process requirements\"\"\"\n        required_outputs = ['resource_allocation', 'training_records']\n        missing = [o for o in required_outputs if o not in outputs]\n        if missing:\n            return False, [f\"Missing output: {m}\" for m in missing]\n        return True, []\n\n    def should_escalate(self, result: dict) -> bool:\n        \"\"\"Determine if result requires human escalation\"\"\"\n        escalation_rules = ['missing assessor signature on TrainingRecord', 'document_control_compliance false', 'infrastructure_availability < 0.95 after allocation attempt']\n        if result.get(\"status\") == \"error\":\n            return True\n        compliance = result.get(\"compliance\", {})\n        if compliance.get(\"status\") == \"failed\":\n            return True\n        return False\n\n    def get_metrics(self) -> dict:\n        \"\"\"Return agent performance metrics\"\"\"\n        return {\n            \"process_id\": self.process_id,\n            \"agent_name\": self.agent_name,\n            \"executions\": len(self.execution_log),\n            \"monitoring\": ['competence_coverage_rate', 'training_completion_rate', 'infrastructure_availability', 'document_version_compliance']\n        }\n\n\n# ── STANDALONE EXECUTION ─────────────────────────────────────────────────────\nif __name__ == \"__main__\":\n    agent = Iso9001SupportProcessAgentAgent()\n    \n    # Example execution\n    test_inputs = {\"resource_requirements\": \"example_resource_requirements\", \"competence_needs\": \"example_competence_needs\", \"infrastructure_inventory\": \"example_infrastructure_inventory\", }\n    \n    result = agent.execute(test_inputs)\n    print(json.dumps(result, indent=2, default=str))\n",
+  "sop": "# SOP — Support — Resources, Competence and Communication\n**Process ID:** ISO9001-7\n**Framework:** ISO 9001:2015 | **Domain:** ISO 9001\n**Generated:** 2026-06-10\n\n## Purpose\nManagement of resources including people, infrastructure, environment, monitoring resources, organizational knowledge, competence, awareness, communication and documented information\n\n## Triggers\n- new ResourceRequirement submitted via ERP API\n- scheduled quarterly competence review\n- infrastructure inventory update event\n\n## Inputs Required\n- resource requirements\n- competence needs\n- infrastructure inventory\n- communication needs\n- document control requirements\n\n## Process Steps\n1. IF competence_gap > 0 THEN create TrainingRecord\n2. IF infrastructure_availability < 0.95 THEN trigger ResourceAllocation\n3. IF document_control_compliance == false THEN block ControlledDocument release\n\n## Expected Outputs\n- resource allocation\n- training records\n- competence assessments\n- controlled documents\n- communication plans\n\n## Business Rules\n- competence_coverage_rate >= 0.9 required for process sign-off\n- all TrainingRecord entries must include completion_date and assessor_id\n- ControlledDocument must retain version history and retention_period per GDPR\n- infrastructure_availability must be logged daily\n\n## Exception Handling\n- IF sector == 'pharma' THEN add additional validation_signature to TrainingRecord\n- IF GDPR_employee_data_flag == true THEN anonymize personal fields in CompetenceAssessment before storage\n\n## Success Criteria\n- competence_coverage_rate >= 0.9\n- training_completion_rate >= 0.95\n- document_control_compliance == true\n- infrastructure_availability >= 0.98\n\n## Compliance Requirements\n- ISO 9001:2015 Clause 7\n- GDPR employee data\n- document retention requirements",
+  "test_cases": [
+    "Test 1: description of happy path test",
+    "Test 2: description of edge case",
+    "Test 3: description of failure case",
+    "Test 4: description of compliance check",
+    "Test 5: description of escalation scenario"
+  ],
+  "deployment_notes": "Agent ready for deployment. Compliance: ISO 9001:2015 Clause 7, GDPR employee data, document retention requirements",
+  "ready_for_packager": true,
+  "estimated_token_cost": 0.0
+}

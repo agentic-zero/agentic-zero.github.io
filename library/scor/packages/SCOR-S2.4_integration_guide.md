@@ -1,4 +1,4 @@
-# Integration Guide — mto_transfer_orchestrator
+# Integration Guide â€” mto_transfer_agent
 **Process:** Transfer Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_transfer_orchestrator.py ./agents/
+cp mto_transfer_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_transfer_orchestrator import MtoTransferOrchestratorAgent
+from agents.mto_transfer_agent import MtoTransferAgentAgent
 
-agent = MtoTransferOrchestratorAgent()
+agent = MtoTransferAgentAgent()
 result = agent.execute({
     "verification_approval": your_verification_approval_data,
     "production_orders": your_production_orders_data,
@@ -34,15 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- inventory_management_api
-- production_order_system
-- staging_location_manager
-- transfer_equipment_interface
-- audit_logger
+- ERP_API
+- WMS_API
+- Verification_System
+- Transfer_Sensor_Stream
+- ChainOfCustody_Logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- Missing VerificationApproval
-- StagingLocation unavailable after reroute attempt
-- transfer accuracy < 99.5%
-- WIP update cycle time breach
+- transfer_accuracy < 99 percent
+- missing chain_of_custody in pharma/defense
+- WIP update exceeds 5 minutes
+- GxP signature absent when required

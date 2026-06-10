@@ -7,9 +7,8 @@
 Good Manufacturing Practice compliance for pharmaceutical manufacturing including computerized systems validation (Annex 11), data integrity (ALCOA+), batch record management and quality system requirements
 
 ## Triggers
-- New manufacturing batch initiated
-- Equipment qualification status change
-- Validation documentation upload
+- Receipt of manufacturing_procedures and batch_records for new production run
+- Start of equipment_qualification update
 
 ## Inputs Required
 - manufacturing procedures
@@ -19,9 +18,8 @@ Good Manufacturing Practice compliance for pharmaceutical manufacturing includin
 - data integrity controls
 
 ## Process Steps
-1. IF Annex11Validation.coverage == 100% AND dataIntegrity.score >= 0.95 THEN approve BatchReleaseDecision
-2. IF batchRightFirstTimeRate < 0.90 THEN trigger quality investigation
-3. IF AuditTrail.gaps > 0 THEN reject batch release
+1. IF Annex_11_validation_coverage == 1.0 AND data_integrity_compliance == true THEN approve BatchReleaseDecision
+2. IF batch_right_first_time_rate < 0.95 THEN trigger GMP audit review
 
 ## Expected Outputs
 - GMP-compliant products
@@ -31,20 +29,19 @@ Good Manufacturing Practice compliance for pharmaceutical manufacturing includin
 - audit trails
 
 ## Business Rules
-- All computerized systems must have Annex 11 validation documentation before use
-- BatchRecord must maintain ALCOA+ attributes for all entries
-- EquipmentQualification must be current before any manufacturing batch starts
-- ValidationReport must be approved before BatchReleaseDecision
+- All BatchRecord entries must satisfy ALCOA+ constraints: attributable, legible, contemporaneous, original, accurate
+- ValidationDocumentation must cover all computerized systems per EU Annex 11 before batch execution
+- AuditTrail must be immutable and retained for minimum 5 years per 21 CFR Part 211
 
 ## Exception Handling
-- IF validation documentation missing: quarantine batch and initiate retrospective validation within 30 days
-- IF data integrity breach detected: block BatchReleaseDecision and trigger regulatory notification
+- IF validation coverage < 1.0 THEN escalate to QA for risk assessment and potential batch quarantine
+- IF data integrity breach detected THEN reject batch and initiate CAPA workflow
 
 ## Success Criteria
 - batch_right_first_time_rate >= 0.95
 - data_integrity_compliance == true
-- annex11_validation_coverage == 1.0
-- audit_findings_count == 0
+- GMP_audit_findings == 0
+- Annex_11_validation_coverage == 1.0
 
 ## Compliance Requirements
 - EU GMP Part I & II

@@ -1,13 +1,13 @@
 # SOP — Returns Management (RMA)
 **Process ID:** BPMN-RMA-001
 **Framework:**  | **Domain:** BPMN
-**Generated:** 2026-06-09
+**Generated:** 2026-06-10
 
 ## Purpose
 End-to-end returns management from customer return request to disposition including authorization, receipt, inspection, disposition decision and credit/replacement
 
 ## Triggers
-- Return Request Received event from customer portal or email ingestion
+- Return Request Received event from customer portal or email
 
 ## Inputs Required
 - return request
@@ -17,10 +17,10 @@ End-to-end returns management from customer return request to disposition includ
 - credit terms
 
 ## Process Steps
-1. IF WithinPolicy == true THEN IssueRMA ELSE RejectAndNotify
-2. IF Defective == true THEN RouteToQuality ELSE RouteToRestock
-3. IF RestockPossible == true THEN Restock ELSE Scrap
-4. IF CreditOrReplace == 'credit' THEN IssueCredit ELSE CreateReplacement
+1. IF WithinPolicy == true THEN IssueRMA ELSE reject and NotifyCustomer
+2. IF Defective == true THEN route to Quality inspection ELSE skip to RestockPossible
+3. IF RestockPossible == true THEN RestockInventory ELSE ScrapItem
+4. IF CreditOrReplace == 'credit' THEN ProcessCredit ELSE CreateReplacementOrder
 
 ## Expected Outputs
 - RMA authorization
@@ -30,23 +30,23 @@ End-to-end returns management from customer return request to disposition includ
 - restocked inventory
 
 ## Business Rules
-- ReturnRequest must include order_id and match return_policy window
-- InspectionReport.condition must be one of ['new','used','defective','damaged']
-- CreditNote.amount must equal original_line_item_value minus restocking_fee
-- All customer PII must be GDPR-masked before storage
-- RMA.expiry_date must be set to now + 14 days
+- ValidateReturnRequest must check order_history and return_policy before issuing RMA
+- InspectionReport must record product_condition_criteria results
+- CreditNote issuance requires FinanceLane approval and credit_terms check
+- All customer data handling must comply with GDPR
+- RMA must be issued within consumer_protection_regulations timeframe
 
 ## Exception Handling
-- ReturnRequest outside policy: auto-reject and log reason in audit_trail
-- InspectionReport missing photos: hold in Quality queue and request resubmission
-- Credit issuance fails: escalate to Finance supervisor and pause RMA
-- Inventory update conflict: mark item Quarantine and trigger manual review
+- ReturnRequest outside policy: notify customer and end process without RMA
+- Inspection fails quality criteria: escalate to QualityLane for manual review
+- Restock not possible due to damage: force ScrapItem and log loss
+- ERP integration failure: queue for retry with MS Dynamics or SAP HANA
 
 ## Success Criteria
-- End event ReturnResolved reached with status='closed'
-- CustomerCredited event emitted with matching credit_note_id
-- RMA cycle time <= KPI threshold
-- No open exceptions on RMA record
+- End event ReturnResolved reached with status 'closed'
+- CustomerCredited event emitted with valid CreditNote
+- RMA cycle time KPI under target threshold
+- return_processing_accuracy == 100%
 
 ## Compliance Requirements
 - consumer protection regulations

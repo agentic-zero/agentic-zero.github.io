@@ -7,7 +7,7 @@
 Process of picking MTO finished goods from staging or warehouse locations for outbound shipment preparation
 
 ## Triggers
-- PickList received from order management system (SCOR-D2.8)
+- PickList received from order management system with status 'ready_to_pick'
 
 ## Inputs Required
 - pick lists
@@ -17,8 +17,7 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - scan systems
 
 ## Process Steps
-1. IF scan mismatch THEN flag exception and hold product
-2. IF quantity < PickList.quantity THEN trigger partial pick and notify WMS
+1. IF scanned_item_id equals PickList.item_id THEN decrement InventoryRecord.quantity ELSE flag discrepancy and halt pick
 
 ## Expected Outputs
 - picked products
@@ -27,18 +26,15 @@ Process of picking MTO finished goods from staging or warehouse locations for ou
 - staging for pack
 
 ## Business Rules
-- Every item must be scanned before leaving StagingLocation
-- Pick accuracy must be logged per PickList line
-- Comply with health and safety picking protocol before equipment use
+- rule1: All PickList items must be scanned before PickConfirmation is generated
+- rule2: InventoryRecord must be updated within 30 seconds of each scan
+- rule3: Pick accuracy must be validated against OrderDocumentation before staging for pack
 
 ## Exception Handling
-- Product missing from StagingLocation: create exception ticket and request replenishment
-- Equipment failure: switch to backup device and log downtime
+- Item not found at StagingLocation: notify supervisor, create exception ticket, and substitute from alternate location if available
 
 ## Success Criteria
-- 100% of PickList lines confirmed via scan
-- InventoryRecord decremented correctly
-- PickConfirmation sent within SLA cycle time
+- PickConfirmation generated with 100% item match and InventoryRecord updated with no discrepancies
 
 ## Compliance Requirements
 - GxP if pharma

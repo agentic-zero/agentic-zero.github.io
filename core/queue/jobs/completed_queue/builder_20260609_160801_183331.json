@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260609_160801_183331",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "BPMN-FIN-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-09T16:08:01.183354",
+  "status": "completed",
+  "started_at": "2026-06-10T16:10:50.702043",
+  "completed_at": "2026-06-10T16:11:22.603550",
+  "error": null,
+  "result": {
+    "agent_name": "invoice_to_cash_automation_agent",
+    "ready_for_packager": true
+  }
+}

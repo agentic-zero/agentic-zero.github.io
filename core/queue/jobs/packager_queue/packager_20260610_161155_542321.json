@@ -1,0 +1,16 @@
+{
+  "job_id": "packager_20260610_161155_542321",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-TRP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:11:55.542345",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

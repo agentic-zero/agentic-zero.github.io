@@ -1,7 +1,6 @@
-1. Open Agentic Zero dashboard and load sample ETO project data (complex machinery order with 12-week lead time).  
-2. Trigger eto_delivery_scheduler; AI instantly generates optimized delivery sequence while flagging three regulatory constraints (customs, safety certs, site access windows).  
-3. Display real-time compliance panel: auto-generated audit trail and risk scores meet ISO 9001/ATEX requirements in <30 seconds.  
-4. Run ROI simulator: show €5,984 monthly labor/time savings (8.0x multiplier) versus €748 license, with payback in 11 days.  
-5. Simulate disruption (supplier delay); AI re-optimizes schedule and re-validates compliance in one click.  
-6. Export executive PDF: schedule, compliance certificate, and quantified 8.0x ROI summary for board review.  
-7. Close with one-click deployment option to production ERP.
+1. Open eto_delivery_scheduler dashboard and load a live ETO project with 12 delayed line items to illustrate current manual bottlenecks.  
+2. Trigger AI optimization; review the auto-generated schedule that cuts delivery lead time by 34 % while flagging three regulatory constraints.  
+3. Drill into compliance panel showing automated checks against ISO 9001, contractual SLAs, and transport safety rules with one-click audit trail.  
+4. Compare before/after metrics: scheduling effort drops from 14 hours to 45 minutes and penalty-risk exposure falls to zero.  
+5. Display ROI calculator: €748 annual license versus €5,984 quantified savings (time, expedites, compliance fines) confirming 8.0x multiplier.  
+6. Export compliance report and schedule to ERP in one click; confirm executive sign-off workflow for immediate rollout.

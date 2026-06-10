@@ -1,0 +1,75 @@
+{
+  "process_id": "IATF16949-PPAP",
+  "guardian_timestamp": "2026-06-10T16:01:19.667058",
+  "certificate": {
+    "certificate_id": "AZ-CERT-IATF16949-PPAP-20260610",
+    "process_id": "IATF16949-PPAP",
+    "agent_name": "ppap_automation_agent",
+    "issued_at": "2026-06-10T16:01:19.667013",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-10",
+    "overall_status": "certified",
+    "overall_score": 0.82,
+    "eu_ai_act": {
+      "risk_level": "limited",
+      "risk_rationale": "Process involves AI interaction with users",
+      "prohibited": false,
+      "requirements": [
+        "Transparency obligations (Art. 52)",
+        "Inform users they are interacting with AI",
+        "Deep fake labeling if applicable"
+      ],
+      "article_references": [
+        "Article 52 — Transparency obligations"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.58,
+      "gaps": [
+        "No explicit AI risk assessment or impact assessment process defined",
+        "Missing transparency/explainability controls for AI-driven compliance_verification and capability_analysis",
+        "Insufficient accountability and audit mechanisms for hybrid decisions",
+        "No performance monitoring or continual improvement loop for the AI system itself"
+      ],
+      "recommendations": [
+        "Implement ISO 42001 Clause 6.1 AI risk assessment and treatment",
+        "Add decision logging and explainability outputs to all capabilities",
+        "Define AI-specific objectives, metrics, and internal audit program",
+        "Establish data governance controls for input documents and models"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": true,
+      "lawful_basis_defined": false,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": [
+        "Personal data detected: define lawful basis for processing",
+        "Data minimization: ensure only necessary data is processed",
+        "Retention policy: define how long data is retained"
+      ]
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [],
+    "rejection_reasons": [],
+    "human_review_required": false,
+    "notes": "Guardian review completed. Risk level: limited. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": true,
+  "requires_human_sign_off": false,
+  "remediation_plan": [
+    "ISO 42001: No explicit AI risk assessment or impact assessment process defined",
+    "GDPR: Personal data detected: define lawful basis for processing"
+  ]
+}

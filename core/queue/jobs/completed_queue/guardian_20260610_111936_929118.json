@@ -1,0 +1,21 @@
+{
+  "job_id": "guardian_20260610_111936_929118",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "IATF16949-PPAP"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:19:36.929136",
+  "status": "completed",
+  "started_at": "2026-06-10T16:01:13.831567",
+  "completed_at": "2026-06-10T16:01:19.669915",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-IATF16949-PPAP-20260610",
+    "status": "certified",
+    "approved_for_library": true,
+    "process_id": "IATF16949-PPAP"
+  }
+}

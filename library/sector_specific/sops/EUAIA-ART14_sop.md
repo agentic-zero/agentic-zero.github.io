@@ -7,9 +7,9 @@
 Human oversight measures for high-risk AI systems enabling human monitoring, understanding, override and intervention capabilities throughout the AI system operation
 
 ## Triggers
-- AI_System output received
-- High-risk AI system deployment event
-- Scheduled oversight audit timer
+- HighRiskAISystem deployment or restart
+- Receipt of new AI system output batch
+- Scheduled oversight protocol evaluation every 24 hours
 
 ## Inputs Required
 - AI system outputs
@@ -19,9 +19,9 @@ Human oversight measures for high-risk AI systems enabling human monitoring, und
 - escalation rules
 
 ## Process Steps
-1. IF AI_System output confidence < 0.85 OR risk_score > threshold THEN escalate to Human_Reviewer
-2. IF Human_Reviewer response_time > 300 seconds THEN auto-apply Override_Mechanism
-3. IF override utilized THEN log Override_Log and update oversight_effectiveness metric
+1. IF AI system output anomaly score > 0.7 THEN trigger HumanReviewer intervention
+2. IF intervention response time > 300 seconds THEN escalate via EscalationRule
+3. IF override utilization rate < 0.05 THEN adjust OversightProtocol
 
 ## Expected Outputs
 - human oversight records
@@ -30,20 +30,18 @@ Human oversight measures for high-risk AI systems enabling human monitoring, und
 - oversight effectiveness metrics
 
 ## Business Rules
-- Human_Reviewer must be assigned before AI_System enters production
-- All interventions require human confirmation within SLA of 5 minutes
-- Override utilization rate must be logged for every high-risk decision
-- GDPR Art.22 automated decision flag must be set when no human intervention occurs
+- Human oversight must remain active for 100% of HighRiskAISystem operation time
+- Every override action must be logged with reviewer_id, timestamp, and justification
+- OversightEffectivenessMetric must be computed daily using coverage, response_time, and intervention_success
 
 ## Exception Handling
-- IF sector is defense AND classified mode active THEN allow 30-minute delayed review with post-hoc audit
-- IF automation_potential > 0.8 AND KPI oversight_effectiveness > 0.95 THEN reduce human coverage to 60% with documented approval
+- IF system is in maintenance mode THEN human oversight coverage requirement is waived for that period with audit log entry
+- IF no HumanReviewer available within SLA THEN automated safe-state shutdown is permitted
 
 ## Success Criteria
-- human_oversight_coverage >= 0.95
-- intervention_response_time <= 300 seconds
-- override_utilization_rate logged for 100% of escalated cases
-- oversight_effectiveness metric >= 0.9
+- human oversight coverage >= 0.99
+- intervention response time <= 180 seconds (p95)
+- override logs complete with 100% required fields
 
 ## Compliance Requirements
 - EU AI Act Art.14 mandatory

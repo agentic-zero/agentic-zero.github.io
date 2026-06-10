@@ -1,6 +1,7 @@
-1. Open dashboard: Display live queue of 47 pending supplier payments (€2.3M total), highlighting manual bottlenecks and 12% compliance flags from last month.  
-2. Trigger AI agent: Paste one high-value invoice (€187k); agent auto-extracts data, runs ETO policy checks, and returns risk score in <8 seconds.  
-3. Show compliance layer: Walk through automated audit trail, segregation-of-duties validation, and instant ERP sync—zero manual overrides required.  
-4. Execute authorization: Agent approves clean payment and routes flagged items to controller with pre-filled justification; record time saved (14 min → 40 sec).  
-5. Reveal ROI metrics: Pull 30-day report showing €47k cash-flow acceleration and 19 hours reclaimed; calculate 8.0x multiplier on €748 license (annualized €374k net benefit).  
-6. Close with next-step offer: One-click pilot activation for full ETO scope, including custom policy upload and executive dashboard.
+1. Open dashboard and load sample ETO supplier contract; highlight €96k manual processing cost and 14-day cycle time vs. target 2-day SLA.  
+2. Trigger agent on milestone invoice; AI extracts terms, validates deliverables, and flags two compliance risks (late-delivery clause, missing audit trail).  
+3. Agent auto-generates approval package with digital evidence pack and routes to finance controller for one-click sign-off.  
+4. Display real-time audit log and immutable blockchain hash proving SOX/GDPR traceability—zero manual documentation.  
+5. Reveal post-run analytics: 11.2 hours saved per payment, 8.0x ROI (€5,984 annual value per supplier) against €748 license.  
+6. Run bulk simulation for 12 active milestones; show projected €71k yearly savings and 92% faster cycle time.  
+7. Export ROI report and compliance certificate for CFO review; close with next-step pilot scoping.

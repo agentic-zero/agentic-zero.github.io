@@ -7,8 +7,8 @@
 Process of packaging ETO products for delivery including export packaging, preservation treatment, technical documentation packaging and marking per contract requirements
 
 ## Triggers
-- Receipt of ETOFinishedProduct with linked ContractPackagingRequirement
-- Completion signal from SCOR-M3.3
+- Receipt of ETOFinishedProduct from SCOR-M3.3
+- Availability of ContractPackagingRequirement and DocumentationPackage
 
 ## Inputs Required
 - ETO finished products
@@ -18,10 +18,9 @@ Process of packaging ETO products for delivery including export packaging, prese
 - documentation packages
 
 ## Process Steps
-1. IF sector == defense THEN apply MIL-SPEC packaging
-2. IF export_controlled THEN add export_control marking
-3. IF dangerous_goods THEN apply special preservation and labeling
-4. IF contract_specific_packaging THEN override default specs
+1. IF sector == 'defense' THEN apply MIL-SPEC packaging and set ComplianceFlag='MIL-SPEC packaging if defense'
+2. IF ExportRequirement contains dangerous_goods THEN apply special handling and set ComplianceFlag='dangerous goods'
+3. IF contract_packaging_requirements exist THEN enforce contract-specific packaging and set ComplianceFlag='contract-specific packaging'
 
 ## Expected Outputs
 - packaged ETO products
@@ -30,21 +29,20 @@ Process of packaging ETO products for delivery including export packaging, prese
 - packaging records
 
 ## Business Rules
-- All packaging must comply with contract packaging requirements
-- Preservation treatment must meet preservation specifications
-- Technical documentation must be complete per documentation packages
-- Markings must satisfy export requirements
+- All PackagedETOProduct must include export control marking when ExportRequirement.export_control == true
+- DocumentationPackage must be complete before PackagingRecord is created
+- PreservationSpecification must be applied to ETOFinishedProduct prior to final packaging
+- Packaging cycle time must be logged in PackagingRecord
 
 ## Exception Handling
-- Dangerous goods: route to certified hazmat packaging handler before standard process
-- Missing contract requirements: halt and trigger procurement exception workflow
-- Failed preservation test: reprocess and log in PackagingRecord
+- IF preservation treatment fails effectiveness check THEN reapply treatment and increment packaging cycle time KPI
+- IF export marking non-compliant THEN hold shipment and trigger compliance review
 
 ## Success Criteria
-- packaging_specification_compliance == true
+- packaging_specification_compliance == 1.0
 - documentation_completeness == 1.0
-- PackagingRecord created with all outputs
-- ExportMarking verified
+- PackagingRecord created with all required fields
+- ExportMarking applied per ExportRequirement
 
 ## Compliance Requirements
 - MIL-SPEC packaging if defense

@@ -7,10 +7,10 @@
 Maintenance of records of processing activities including controller and processor obligations, mandatory ROPA content and management of processing records as accountability evidence
 
 ## Triggers
-- new_processing_activity_registered
-- annual_compliance_review
-- DPA_audit_notification
-- material_change_to_purposes_or_transfers
+- new processing activity registered in data inventory
+- annual compliance review date reached
+- DPA audit notification received
+- material change to processing purpose or transfer
 
 ## Inputs Required
 - processing activities
@@ -21,9 +21,8 @@ Maintenance of records of processing activities including controller and process
 - transfers
 
 ## Process Steps
-1. IF employee_count < 250 AND no_high_risk_processing THEN skip_detailed_ROPA
-2. IF cross_border_transfer THEN require_SCC_or_adequacy_documentation
-3. IF new_processing_activity THEN trigger_ROPA_update
+1. IF data is transferred to third country THEN require adequacy decision or SCC documentation
+2. IF organization has >250 employees OR processing is high-risk THEN mandatory full ROPA required
 
 ## Expected Outputs
 - ROPA document
@@ -32,20 +31,18 @@ Maintenance of records of processing activities including controller and process
 - security measure documentation
 
 ## Business Rules
-- ROPA must contain name_contact_controller, purposes, data_categories, recipients, transfers, retention, security_measures
-- ROPA must be updated within 30 days of any material change
-- ROPA must be available to supervisory authority on request
-- Controller responsible for accuracy and completeness of all recorded fields
+- ROPA must contain name/contact of controller, purposes, data categories, recipients, transfers, retention, security measures
+- ROPA must be kept in writing including electronic form
+- ROPA must be updated without undue delay when processing changes
+- ROPA must be made available to supervisory authority on request
 
 ## Exception Handling
-- Organizations <250 employees exempt from full ROPA unless processing is high-risk or involves special categories
-- Public authorities must maintain ROPA regardless of size
+- Organizations with <250 employees exempt from ROPA unless processing is likely to result in risk to rights and freedoms or involves special categories
 
 ## Success Criteria
-- ROPA_completeness == 100% for all active activities
-- last_updated <= 30 days from any change
-- all_transfers_have_documented_legal_basis
-- ROPA_exportable_in_machine_readable_format
+- ROPA completeness score >= 95% of mandatory fields populated
+- last_updated timestamp <= 90 days
+- all cross-border transfers have documented legal basis
 
 ## Compliance Requirements
 - GDPR Art.30 mandatory

@@ -7,9 +7,9 @@
 Mandatory technical documentation for high-risk AI systems covering system description, design specifications, training methodology, performance metrics and conformity assessment evidence
 
 ## Triggers
-- Initiation of high-risk AI system development
-- Pre-deployment conformity check
-- Regulatory audit request
+- high-risk AI system development start
+- AI system component change
+- regulatory audit request
 
 ## Inputs Required
 - AI system design
@@ -19,9 +19,8 @@ Mandatory technical documentation for high-risk AI systems covering system descr
 - conformity evidence
 
 ## Process Steps
-1. IF documentation completeness score < 0.95 THEN require additional inputs
-2. IF update frequency > 90 days THEN trigger documentation review
-3. IF conformity assessment pass rate < 1.0 THEN halt deployment
+1. IF AI system classification == high-risk THEN mandate Art.11 documentation
+2. IF documentation completeness score < 0.95 THEN block conformity assessment
 
 ## Expected Outputs
 - technical file
@@ -30,18 +29,17 @@ Mandatory technical documentation for high-risk AI systems covering system descr
 - Annex IV documentation
 
 ## Business Rules
-- Technical documentation must be mandatory for all high-risk AI systems per EU AI Act Art.11
-- Must include system description, design specs, training methodology, performance metrics and conformity evidence
-- Must produce Annex IV documentation for CE marking
+- TechnicalDocumentation must contain system description, design specs, training methodology, performance metrics and conformity evidence
+- TechnicalDocumentation must satisfy Annex IV structure for CE marking
+- update frequency must be logged and >= policy interval
 
 ## Exception Handling
-- Non-high-risk AI systems exempt from Art.11 requirements
-- If system is modified post-deployment, full re-documentation required
+- IF system risk level != high-risk THEN skip mandatory Art.11 documentation
 
 ## Success Criteria
 - documentation completeness score >= 0.95
 - conformity assessment pass rate == 1.0
-- update frequency <= 30 days
+- AnnexIVDocumentation present and valid
 
 ## Compliance Requirements
 - EU AI Act Art.11 mandatory

@@ -7,10 +7,9 @@
 Post-market monitoring system for high-risk AI including proactive data collection, performance analysis, incident reporting to national authorities and serious incident management
 
 ## Triggers
-- new deployment_performance_data arrival
-- user_feedback containing incident keyword
-- scheduled daily monitoring job
-- external market_surveillance_data update
+- New deployment_performance_data received post-deployment
+- User feedback volume exceeds threshold of 100 entries/day
+- Scheduled daily monitoring_metrics evaluation
 
 ## Inputs Required
 - deployment performance data
@@ -20,7 +19,7 @@ Post-market monitoring system for high-risk AI including proactive data collecti
 - market surveillance data
 
 ## Process Steps
-1. IF incident.severity == 'serious' THEN trigger notification within 24 hours to NationalAuthority
+1. IF incident.severity == 'serious' THEN notify NationalAuthority within 72 hours
 2. IF monitoring_coverage < 0.95 THEN expand data collection sources
 3. IF corrective_action_effectiveness < 0.8 THEN escalate to related_process EUAIA-ART9
 
@@ -32,18 +31,18 @@ Post-market monitoring system for high-risk AI including proactive data collecti
 - market surveillance data
 
 ## Business Rules
-- EU AI Act Art.72 mandatory: all high-risk AI must maintain post-market monitoring plan
-- serious incident reporting: notify national authority within regulatory deadline
-- report timeliness KPI must be logged with timestamp for every notification
+- All serious incidents must be logged with timestamp, severity, and root cause within 24 hours
+- Post-market monitoring plan must be updated quarterly using KPI thresholds
+- National authority notification is mandatory for any incident causing harm as defined in EU AI Act Art.72
 
 ## Exception Handling
-- non-high-risk AI systems: skip mandatory notification but retain internal incident log for 5 years
-- defense sector: route notifications through SCOR-DIG10 instead of direct national authority
+- If incident involves defense sector, route notification through SCOR-DIG10 instead of direct NationalAuthority submission
+- If data source is unavailable, substitute with ISO42001-10 fallback metrics and log deviation
 
 ## Success Criteria
 - incident_detection_rate >= 0.95
-- reporting_timeliness <= regulatory_deadline_hours
-- corrective_action_effectiveness >= 0.8 measured 30 days post-action
+- reporting_timeliness <= 72 hours for 100% of serious incidents
+- corrective_action_effectiveness >= 0.85 measured 30 days post-action
 
 ## Compliance Requirements
 - EU AI Act Art.72 mandatory

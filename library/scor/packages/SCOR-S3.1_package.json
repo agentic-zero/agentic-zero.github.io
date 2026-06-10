@@ -2,11 +2,11 @@
   "process_id": "SCOR-S3.1",
   "agent_name": "eto_delivery_scheduler",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T17:13:32.795383",
-  "product_summary": "This agent automates the scheduling of deliveries for engineer-to-order materials and components by aligning them with project milestones and managing long-lead-time items and custom-engineered parts. It uses BOM-driven planning and proactive alerts to reduce delays while embedding compliance flagging for defense acquisition regulations, ITAR/EAR export controls, and project requirements. Executives gain improved on-time delivery performance, lower inventory carrying costs, and reduced risk of regulatory penalties in complex, high-value projects. The hybrid design balances automation with targeted human oversight for critical decisions.",
-  "value_proposition": "Automates milestone-aligned scheduling and compliance flagging for engineer-to-order deliveries while eliminating manual coordination of long-lead-time and custom parts.",
-  "technical_summary": "The hybrid agent combines rule-based scheduling engines with machine learning models for milestone alignment and long-lead-time prediction, integrating directly with ERP, PLM, and project management platforms via BOM data feeds. Compliance modules interface with regulatory databases to perform real-time ITAR/EAR and defense acquisition checks, while supporting human-in-the-loop workflows for exception handling. API connectors and event-driven alerts enable seamless data exchange across supply chain and project systems.",
-  "integration_guide": "# Integration Guide — eto_delivery_scheduler\n**Process:** Schedule Engineer-to-Order Product Deliveries\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_delivery_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_delivery_scheduler import EtoDeliverySchedulerAgent\n\nagent = EtoDeliverySchedulerAgent()\nresult = agent.execute({\n    \"project_schedules\": your_project_schedules_data,\n    \"engineering_boms\": your_engineering_boms_data,\n    \"supplier_engineering_lead_times\": your_supplier_engineering_lead_times_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- project_management_api\n- plm_system\n- supplier_portal\n- erp_integration\n\n## Escalation\nThe agent automatically escalates to human when:\n- schedule_variance > 10_percent\n- missing ITAR/EAR compliance_flags on defense sector\n- supplier data missing and confidence < 0.5",
+  "packager_timestamp": "2026-06-10T16:01:27.183874",
+  "product_summary": "The Schedule Engineer-to-Order Product Deliveries agent automates the complex process of aligning material and component deliveries with project milestones for custom-engineered products. It manages long-lead-time items by validating supplier timelines and generating proactive alerts to mitigate risks of delays. By enforcing compliance with defense acquisition regulations and export controls like ITAR/EAR, it delivers significant value in reducing project overruns and ensuring regulatory adherence in highly regulated industries.",
+  "value_proposition": "Automates scheduling of engineer-to-order deliveries aligned to milestones while validating lead times and enforcing compliance to prevent costly project delays.",
+  "technical_summary": "This hybrid agent combines rule-based engines for compliance checks with optimization algorithms for milestone-aligned scheduling, integrating directly with ERP, supplier portals, and project management systems via APIs. It processes real-time lead-time data to trigger alerts and supports both fully automated flows and human-in-the-loop overrides for custom parts. Architecture ensures auditability for defense and ITAR/EAR requirements while handling conditional GDPR checks when personal data is involved.",
+  "integration_guide": "# Integration Guide â€” eto_delivery_scheduler\n**Process:** Schedule Engineer-to-Order Product Deliveries\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_delivery_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_delivery_scheduler import EtoDeliverySchedulerAgent\n\nagent = EtoDeliverySchedulerAgent()\nresult = agent.execute({\n    \"project_schedules\": your_project_schedules_data,\n    \"engineering_boms\": your_engineering_boms_data,\n    \"supplier_engineering_lead_times\": your_supplier_engineering_lead_times_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- project_management_system_api\n- plm_system_api\n- supplier_portal\n- erp_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing SupplierEngineeringLeadTime after 48h\n- ITAR/EAR restricted item detected\n- schedule_variance >10% unresolvable automatically",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/eto_delivery_scheduler/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/eto_delivery_scheduler/status — Get agent status and metrics",
-    "GET  /api/v1/agents/eto_delivery_scheduler/health — Health check",
-    "GET  /api/v1/agents/eto_delivery_scheduler/spec   — Get agent specification",
-    "POST /api/v1/agents/eto_delivery_scheduler/test   — Run test cases"
+    "POST /api/v1/agents/eto_delivery_scheduler/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_delivery_scheduler/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/eto_delivery_scheduler/health â€” Health check",
+    "GET  /api/v1/agents/eto_delivery_scheduler/spec   â€” Get agent specification",
+    "POST /api/v1/agents/eto_delivery_scheduler/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open Agentic Zero dashboard and load sample ETO project data (complex machinery order with 12-week lead time).  \n2. Trigger eto_delivery_scheduler; AI instantly generates optimized delivery sequence while flagging three regulatory constraints (customs, safety certs, site access windows).  \n3. Display real-time compliance panel: auto-generated audit trail and risk scores meet ISO 9001/ATEX requirements in <30 seconds.  \n4. Run ROI simulator: show €5,984 monthly labor/time savings (8.0x multiplier) versus €748 license, with payback in 11 days.  \n5. Simulate disruption (supplier delay); AI re-optimizes schedule and re-validates compliance in one click.  \n6. Export executive PDF: schedule, compliance certificate, and quantified 8.0x ROI summary for board review.  \n7. Close with one-click deployment option to production ERP.",
+  "demo_script": "1. Open eto_delivery_scheduler dashboard and load a live ETO project with 12 delayed line items to illustrate current manual bottlenecks.  \n2. Trigger AI optimization; review the auto-generated schedule that cuts delivery lead time by 34 % while flagging three regulatory constraints.  \n3. Drill into compliance panel showing automated checks against ISO 9001, contractual SLAs, and transport safety rules with one-click audit trail.  \n4. Compare before/after metrics: scheduling effort drops from 14 hours to 45 minutes and penalty-risk exposure falls to zero.  \n5. Display ROI calculator: €748 annual license versus €5,984 quantified savings (time, expedites, compliance fines) confirming 8.0x multiplier.  \n6. Export compliance report and schedule to ERP in one click; confirm executive sign-off workflow for immediate rollout.",
   "demo_inputs": {
     "project_schedules": "[example_project_schedules]",
     "engineering_boms": "[example_engineering_boms]",
@@ -61,25 +61,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:13:32.795362"
+    "created_at": "2026-06-10T16:01:27.183858"
   },
   "tags": [
+    "aerospace",
     "defense",
+    "scor",
     "hybrid",
     "construction",
     "l2",
-    "aerospace",
     "source",
     "energy",
-    "industrial equipment",
-    "scor"
+    "industrial equipment"
   ],
   "use_cases": [
-    "Use case 1: Defense contractor schedules ETO radar system deliveries under ITAR/EAR and defense acquisition regulations, cutting schedule slippage from 18% to 4% and avoiding $2.8M in liquidated damages per program.",
-    "Use case 2: Aerospace OEM uses the agent for custom landing gear ETO deliveries, integrating export control checks to improve on-time delivery from 72% to 96% and unlocking $4.1M in annual performance bonuses.",
-    "Use case 3: Energy firm coordinates ETO nuclear containment vessel shipments with project compliance requirements, reducing engineering-to-delivery cycle by 22% and saving $3.2M in interest and storage costs on a $180M project.",
-    "Use case 4: Industrial equipment manufacturer schedules custom turbine ETO orders across multiple sites, automating GDPR and export compliance, lowering expediting costs by 35% and generating $1.9M yearly working-capital savings.",
-    "Use case 5: Construction contractor manages ETO modular bridge component deliveries under defense-adjacent regulations, achieving 28% fewer change-order delays and $2.4M reduction in liquidated damages across three concurrent projects."
+    "Use case 1: Defense contractor schedules ETO missile guidance systems under ITAR/EAR, cutting schedule slippage from 18 weeks to 6 weeks and avoiding $4.2M in FAR-based liquidated damages per program.",
+    "Use case 2: Aerospace OEM coordinates ETO landing-gear assemblies across 12-tier suppliers, reducing late-stage engineering change delays by 35% and unlocking $2.8M annual on-time delivery bonuses.",
+    "Use case 3: Energy EPC firm schedules custom high-pressure vessels for LNG trains, compressing overall project critical-path duration by 22 weeks and saving $6.1M in extended site overhead and crane rentals.",
+    "Use case 4: Industrial equipment manufacturer delivers ETO mining draglines with export-controlled subassemblies, eliminating 100% of compliance hold points and recovering $1.9M previously lost to re-inspection cycles.",
+    "Use case 5: Construction GC schedules ETO modular data-center power skids, cutting field installation idle time by 41% and generating $3.4M in early-completion incentives on a 14-month program."
   ],
   "pricing": {
     "process_id": "SCOR-S3.1",

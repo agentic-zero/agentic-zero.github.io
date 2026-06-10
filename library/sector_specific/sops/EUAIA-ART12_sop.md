@@ -7,9 +7,9 @@
 Automatic logging requirements for high-risk AI systems to enable post-market monitoring, investigation of incidents and demonstration of compliance with requirements
 
 ## Triggers
-- AI system inference call
-- System event (error, timeout, drift detection)
-- Human oversight action submission
+- High-risk AI system activation
+- Post-market monitoring schedule
+- Incident report submission
 
 ## Inputs Required
 - AI system outputs
@@ -19,9 +19,8 @@ Automatic logging requirements for high-risk AI systems to enable post-market mo
 - human oversight actions
 
 ## Process Steps
-1. IF log_completeness_rate < 1.0 THEN trigger_alert_and_block_deployment
-2. IF retention_period_days < regulatory_minimum THEN extend_storage_and_notify
-3. IF incident_traceability_rate < 0.99 THEN initiate_manual_audit
+1. IF log_completeness_rate < 1.0 THEN trigger retention_check and alert
+2. IF incident_detected THEN create Incident_Record and link to Decision_Audit_Trail
 
 ## Expected Outputs
 - audit logs
@@ -31,19 +30,17 @@ Automatic logging requirements for high-risk AI systems to enable post-market mo
 - monitoring reports
 
 ## Business Rules
-- Every AI system output MUST create a LogRecord with timestamp, input_hash, output, and model_version
-- All LogRecords MUST be immutable and stored with cryptographic hash chain
-- HumanOversightAction MUST be logged within 100ms of occurrence
-- Logs MUST be retained for minimum 10 years or as per sector regulation
+- All inputs must be logged with immutable timestamp and hash before any output is produced
+- Audit_Log retention must satisfy GDPR and EU AI Act Art.12 minimum periods
+- Every Human_Oversight_Action must be recorded with actor_id and timestamp
 
 ## Exception Handling
-- IF system experiences total storage failure THEN switch to emergency_read_only_mode and alert regulator within 1 hour
-- IF data contains personal data under GDPR THEN apply anonymization before long-term retention
+- Non-high-risk systems bypass automatic logging but must still produce manual Compliance_Evidence on request
 
 ## Success Criteria
-- log_completeness_rate == 1.0 for all inference calls in 24h window
-- incident_traceability_rate >= 0.99 measured by successful root-cause queries
-- log_retention_compliance == true verified by automated retention audit
+- log_completeness_rate == 1.0
+- incident_traceability_rate >= 0.95
+- all Audit_Logs retained for required period with zero tampering
 
 ## Compliance Requirements
 - EU AI Act Art.12 mandatory

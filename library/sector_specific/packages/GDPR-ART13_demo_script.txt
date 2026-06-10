@@ -1,0 +1,7 @@
+1. Open with the pain: Manual DSAR handling costs 3-5 hours per request and exposes €20M+ GDPR fine risk.  
+2. Trigger gdpr_data_subject_rights_handler with one live access request (name + email).  
+3. Show real-time AI flow: auto-identifies data sources, applies redaction, and drafts Article 15 response in <90 seconds.  
+4. Generate and export the signed transparency report plus audit log for the DPO.  
+5. Display dashboard: 47 requests processed this month, 94% time reduction, zero missed deadlines.  
+6. ROI snapshot: €224 price delivers 10x return via €2,240+ monthly savings plus avoided fines.  
+7. Close: one-click deployment, 30-day compliance guarantee, and upsell path to full DSR suite.

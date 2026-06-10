@@ -7,7 +7,9 @@
 Production part approval process to demonstrate that supplier production processes can produce parts meeting customer requirements consistently at production rates
 
 ## Triggers
-- new_part_release OR engineering_change_level_update OR customer PPAP_request_date
+- engineering change notice received
+- new product launch initiated
+- supplier process change detected
 
 ## Inputs Required
 - engineering drawings
@@ -17,8 +19,9 @@ Production part approval process to demonstrate that supplier production process
 - control plans
 
 ## Process Steps
-1. IF all DimensionalResult within tolerance AND Cpk >= 1.33 THEN generate PartSubmissionWarrant
-2. IF submission completeness == 100% THEN submit PPAPSubmissionPackage
+1. IF Cpk >= 1.67 for all critical characteristics THEN include in PPAPSubmissionPackage
+2. IF dimensional_results conform to EngineeringDrawing tolerances THEN proceed to capability validation
+3. IF customer-specific requirements exist THEN override AIAG defaults
 
 ## Expected Outputs
 - PPAP submission package
@@ -27,18 +30,18 @@ Production part approval process to demonstrate that supplier production process
 - capability data
 
 ## Business Rules
-- PPAPSubmissionPackage must include all inputs listed in AIAG PPAP manual 4th Edition
-- CapabilityStudy must report Cpk and Ppk per customer-specific requirements
-- PartSubmissionWarrant must be signed by supplier quality representative before submission
+- PPAPSubmissionPackage must include all inputs: engineering drawings, material certifications, dimensional results, capability studies, control plans
+- PartSubmissionWarrant must be signed by customer for process completion
+- Capability data must demonstrate production at quoted rate
 
 ## Exception Handling
-- IF first-time approval fails THEN trigger resubmission with corrective action records within 10 business days
-- IF customer-specific requirements conflict with AIAG PPAP THEN apply stricter customer requirement
+- IF customer-specific requirements conflict with AIAG PPAP manual THEN apply customer-specific requirements and document deviation
+- IF first-time submission rejected THEN trigger resubmission with root cause analysis within 10 business days
 
 ## Success Criteria
-- customer_approval_status == APPROVED
-- psw_signed_date IS NOT NULL
-- PPAP first-time approval rate >= 0.9
+- CustomerApproval status == 'approved'
+- PartSubmissionWarrant signed and dated
+- PPAP first-time approval achieved
 
 ## Compliance Requirements
 - IATF 16949:2016

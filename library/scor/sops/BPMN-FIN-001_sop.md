@@ -1,7 +1,7 @@
 # SOP — Invoice-to-Cash (Accounts Receivable)
 **Process ID:** BPMN-FIN-001
 **Framework:**  | **Domain:** BPMN
-**Generated:** 2026-06-09
+**Generated:** 2026-06-10
 
 ## Purpose
 Invoice-to-Cash process from invoice generation to cash collection including invoice dispatch, dunning, dispute management and cash application
@@ -18,9 +18,9 @@ Invoice-to-Cash process from invoice generation to cash collection including inv
 
 ## Process Steps
 1. IF PaymentReceived? == true THEN ApplyCash ELSE MonitorPayment
-2. IF DisputeRaised? == true THEN ManageDispute ELSE ContinueDunning
+2. IF DisputeRaised? == true THEN ManageDispute ELSE SendReminder
 3. IF Overdue? == true AND Escalate? == true THEN EscalateDunning ELSE SendReminder
-4. IF PaymentPlan negotiated THEN NegotiatePaymentPlan ELSE WriteOff
+4. IF NegotiatePaymentPlan accepted THEN update PaymentTerms ELSE WriteOff
 
 ## Expected Outputs
 - cash receipts
@@ -30,19 +30,20 @@ Invoice-to-Cash process from invoice generation to cash collection including inv
 - DSO metrics
 
 ## Business Rules
-- Invoice must contain payment terms before SendInvoice
-- Dunning rules must be applied after 7/14/30 days overdue
-- CashApplication accuracy must exceed 99% before closing process
-- GDPR financial data must be masked for non-Finance lanes
+- dunning_rules must define reminder intervals and escalation thresholds
+- payment_terms must be attached to every Invoice before SendInvoice
+- cash_application_accuracy must exceed 99.5% for automated ApplyCash
+- GDPR financial data requires anonymization after 7 years
 
 ## Exception Handling
-- Dispute unresolved after 45 days triggers WriteOff
-- Partial payment received requires manual reconciliation before CashApplied
-- Customer bankruptcy forces immediate WriteOff and aging report update
+- DisputeRaised with amount > 5000 requires Management approval before resolution
+- PaymentReceived but unapplied after 3 days triggers manual Reconcile
+- Customer in lane triggers Sales notification on Escalated Dunning
 
 ## Success Criteria
-- CashApplied end event reached with collection_rate >= 95%
-- DSO metric updated and within target threshold
+- end_event == CashApplied
+- DSO <= target_DSO
+- collection_rate >= 0.95
 
 ## Compliance Requirements
 - tax compliance

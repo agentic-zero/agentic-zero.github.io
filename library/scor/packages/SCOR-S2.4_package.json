@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-S2.4",
-  "agent_name": "mto_transfer_orchestrator",
+  "agent_name": "mto_transfer_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T17:07:30.855474",
-  "product_summary": "The Transfer Product (MTO) agent manages the movement of verified make-to-order materials into production staging or work-in-progress inventory while maintaining complete traceability and automated system updates. As a hybrid agent, it combines rule-based automation with exception handling to support both standard flows and complex routing scenarios. This reduces manual errors, accelerates production readiness, and ensures regulatory compliance across industries such as pharmaceuticals. Executives gain real-time visibility into material status and audit-ready records without increasing operational overhead.",
-  "value_proposition": "Automates verified MTO material transfers with capacity-aware execution, full traceability, and compliance enforcement to eliminate delays and audit risks.",
-  "technical_summary": "The hybrid agent integrates with ERP, MES, and inventory systems through APIs to execute capabilities including approval verification, capacity-aware transfers, WIP updates, and routing exception handling. It enforces chain-of-custody logging and conditional compliance modules for GxP or GDPR requirements while maintaining stateful traceability across all handoffs. Deployment supports both fully automated runs and human-in-the-loop interventions for flagged exceptions.",
-  "integration_guide": "# Integration Guide — mto_transfer_orchestrator\n**Process:** Transfer Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_transfer_orchestrator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_transfer_orchestrator import MtoTransferOrchestratorAgent\n\nagent = MtoTransferOrchestratorAgent()\nresult = agent.execute({\n    \"verification_approval\": your_verification_approval_data,\n    \"production_orders\": your_production_orders_data,\n    \"staging_locations\": your_staging_locations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- inventory_management_api\n- production_order_system\n- staging_location_manager\n- transfer_equipment_interface\n- audit_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing VerificationApproval\n- StagingLocation unavailable after reroute attempt\n- transfer accuracy < 99.5%\n- WIP update cycle time breach",
+  "packager_timestamp": "2026-06-10T16:01:09.800109",
+  "product_summary": "The Transfer Product (MTO) agent orchestrates the movement of verified make-to-order materials into production staging or work-in-progress inventory while maintaining complete traceability and automated system updates. It combines rule-based validation with intelligent decisioning to enforce approvals, capacity constraints, and regulatory requirements such as GxP and chain-of-custody protocols. By reducing manual handoffs and audit gaps, the agent accelerates production cycles, minimizes compliance risk, and provides executives with real-time visibility into material flows and inventory accuracy. This drives higher throughput and lowers the cost of quality in regulated manufacturing environments.",
+  "value_proposition": "Automates end-to-end MTO material transfers with built-in compliance, capacity awareness, and system synchronization to eliminate delays and traceability gaps.",
+  "technical_summary": "As a hybrid agent, it sequences capabilities including approval validation, capacity-aware transfer execution, traceability enforcement, and WIP updates with confirmation events. It integrates with ERP, MES, and quality systems through event-driven triggers while applying conditional compliance logic for GxP or GDPR contexts. Audit logs and chain-of-custody records are emitted automatically to support downstream analytics and regulatory reporting.",
+  "integration_guide": "# Integration Guide â€” mto_transfer_agent\n**Process:** Transfer Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_transfer_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_transfer_agent import MtoTransferAgentAgent\n\nagent = MtoTransferAgentAgent()\nresult = agent.execute({\n    \"verification_approval\": your_verification_approval_data,\n    \"production_orders\": your_production_orders_data,\n    \"staging_locations\": your_staging_locations_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_API\n- WMS_API\n- Verification_System\n- Transfer_Sensor_Stream\n- ChainOfCustody_Logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- transfer_accuracy < 99 percent\n- missing chain_of_custody in pharma/defense\n- WIP update exceeds 5 minutes\n- GxP signature absent when required",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/mto_transfer_orchestrator/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/mto_transfer_orchestrator/status — Get agent status and metrics",
-    "GET  /api/v1/agents/mto_transfer_orchestrator/health — Health check",
-    "GET  /api/v1/agents/mto_transfer_orchestrator/spec   — Get agent specification",
-    "POST /api/v1/agents/mto_transfer_orchestrator/test   — Run test cases"
+    "POST /api/v1/agents/mto_transfer_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/mto_transfer_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/mto_transfer_agent/health â€” Health check",
+    "GET  /api/v1/agents/mto_transfer_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/mto_transfer_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with the €748 investment and 8.0x ROI target: show a live dashboard projecting €5,984 annual value from reduced manual transfers and avoided compliance penalties.  \n2. Trigger a sample MTO transfer request; the orchestrator ingests order data and auto-generates a compliant transfer plan in <30 seconds.  \n3. Run the built-in compliance engine: display real-time checks against regulatory rules, audit trail creation, and one-click sign-off that eliminates 90 % of manual review time.  \n4. Execute the optimized transfer workflow: highlight AI-driven routing that cuts processing steps from 14 to 4 and reduces cycle time by 65 %.  \n5. Surface the ROI meter: compare before/after metrics (labor hours, error rate, compliance incidents) to prove payback inside the first month.  \n6. Close with next-step options: pilot deployment timeline and scaling to additional MTO processes for further 8.0x multiples.",
+  "demo_script": "1. Open with MTO pain points: manual transfers average 4 hours, 12% compliance errors, and €6k+ annual risk exposure per product line.  \n2. Launch mto_transfer_agent live; input one product SKU and show end-to-end automation in <90 seconds.  \n3. Highlight built-in compliance layer: real-time regulatory checks, audit trail, and zero-touch sign-off.  \n4. Display side-by-side metrics: time reduced from 4 h to 12 min and error rate to 0%.  \n5. Present ROI calculator: €748 annual fee delivers 8.0x return (€5,984 net value) via labor and risk savings.  \n6. Summarize executive impact: scalable compliance, immediate payback, and next-quarter deployment path.  \n7. Close with single-question poll on pilot scope.",
   "demo_inputs": {
     "verification_approval": "[example_verification_approval]",
     "production_orders": "[example_production_orders]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-S2.4",
-    "agent_name": "mto_transfer_orchestrator",
+    "agent_name": "mto_transfer_agent",
     "framework": "SCOR",
     "domain": "Source",
     "level": "L2",
@@ -54,31 +54,31 @@
       "GDPR if personal data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:07:30.855455"
+    "created_at": "2026-06-10T16:01:09.800093"
   },
   "tags": [
+    "chemical",
+    "pharma",
+    "scor",
     "defense",
     "hybrid",
-    "manufacturing",
-    "l2",
-    "chemical",
-    "source",
     "automotive",
-    "pharma",
-    "scor"
+    "l2",
+    "source",
+    "manufacturing"
   ],
   "use_cases": [
-    "Use case 1: Pharma MTO API transfer between EU-US sites automates GxP chain-of-custody logging and temperature deviation alerts, cutting batch release cycle time from 14 days to 9 days and reducing regulatory audit prep costs by $180k per site annually.",
-    "Use case 2: Automotive Tier-1 supplier uses agent to orchestrate just-in-time MTO seat frame transfers to OEM assembly plants, eliminating 3-day buffer stock and lowering expedited freight spend by $420k per plant per year.",
-    "Use case 3: Defense contractor deploys agent for serialized MTO avionics module hand-offs across cleared facilities, enforcing immutable chain-of-custody records and cutting security incident investigation time from 40 hours to 6 hours per event.",
-    "Use case 4: Chemical manufacturer routes MTO specialty resin drums with automated SDS and hazmat compliance checks, reducing non-conforming shipment rejections from 7% to 0.8% and avoiding $95k average annual EPA fine exposure.",
-    "Use case 5: Contract manufacturer coordinates MTO clinical trial kit transfers under GDPR/GxP, auto-generating patient-data redacted shipping manifests and cutting kit distribution lead time by 35% while eliminating manual data-privacy review labor of 120 hours per quarter."
+    "Use case 1: Pharma MTO API transfer under GxP automates batch documentation and chain-of-custody logging, cutting approval cycle from 72 hours to 4 hours and eliminating 95% of audit findings, delivering $420K annual compliance cost reduction.",
+    "Use case 2: Automotive Tier-1 supplier uses agent for make-to-order seat component transfers, enabling real-time custody tracking that reduces expedited freight spend by 38% and cuts line-stoppage events from 12 to 2 per quarter, saving $1.1M yearly.",
+    "Use case 3: Defense contractor applies agent to serialized MTO subsystem transfers, enforcing immutable audit trails that achieve 100% DCMA audit pass rate and avoid $2.5M in potential contract penalties per program year.",
+    "Use case 4: Chemical plant deploys agent for hazardous MTO intermediate transfers with automated SDS and custody checks, lowering incident-related downtime from 18 to 3 hours per quarter and reducing insurance premiums by 12% ($180K annual savings).",
+    "Use case 5: Clinical-trial kit manufacturer uses agent for GDPR-compliant MTO patient-sample transfers, automating consent verification and data-redaction workflows to eliminate regulatory breach risk, achieving full ROI within 4 months via avoided €1.2M fine exposure."
   ],
   "pricing": {
     "process_id": "SCOR-S2.4",

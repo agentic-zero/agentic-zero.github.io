@@ -7,8 +7,7 @@
 Structured product quality planning process for automotive supply chain from concept through production launch including design FMEA, process FMEA, control plans and production part approval
 
 ## Triggers
-- New customer purchase order received
-- Design specification revision released
+- New customer order or design change notification received
 
 ## Inputs Required
 - customer requirements
@@ -18,8 +17,8 @@ Structured product quality planning process for automotive supply chain from con
 - risk assessments
 
 ## Process Steps
-1. IF Design_FMEA highest RPN > 100 THEN require risk mitigation action before phase gate approval
-2. IF PPAP submission status == 'rejected' THEN trigger corrective action loop and resubmission
+1. IF Phase_Gate compliance == true THEN advance to next APQP phase
+2. IF PPAP approval == false THEN trigger corrective action loop
 
 ## Expected Outputs
 - APQP plan
@@ -29,18 +28,17 @@ Structured product quality planning process for automotive supply chain from con
 - PPAP submission
 
 ## Business Rules
-- All APQP phases must achieve 100% gate compliance before advancing
-- Design_FMEA and Process_FMEA must be completed prior to Control_Plan release
-- PPAP submission requires signed PSW and full documentation per AIAG manual
+- All APQP phases must complete before PPAP submission
+- Design_FMEA and Process_FMEA must be updated before Control_Plan release
+- Customer-specific requirements override default AIAG APQP timing
 
 ## Exception Handling
-- Customer waives PPAP level 3-5 requirements: downgrade to level 2 with documented approval and retain all FMEA records
-- Low-volume prototype run: skip full process capability study but retain control plan
+- Customer waives PPAP submission: log waiver ID and proceed to production with increased audit frequency
 
 ## Success Criteria
+- PPAP_Submission status == approved
+- launch_defect_rate <= 50 PPM
 - APQP phase gate compliance == 100%
-- PPAP approval status == 'approved'
-- Launch defect rate < 50 PPM
 
 ## Compliance Requirements
 - IATF 16949:2016

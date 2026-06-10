@@ -1,4 +1,4 @@
-# Integration Guide — eto_delivery_scheduler
+# Integration Guide â€” eto_delivery_scheduler
 **Process:** Schedule Engineer-to-Order Product Deliveries
 **Version:** 1.0.0
 
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- project_management_api
-- plm_system
+- project_management_system_api
+- plm_system_api
 - supplier_portal
-- erp_integration
+- erp_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- schedule_variance > 10_percent
-- missing ITAR/EAR compliance_flags on defense sector
-- supplier data missing and confidence < 0.5
+- Missing SupplierEngineeringLeadTime after 48h
+- ITAR/EAR restricted item detected
+- schedule_variance >10% unresolvable automatically

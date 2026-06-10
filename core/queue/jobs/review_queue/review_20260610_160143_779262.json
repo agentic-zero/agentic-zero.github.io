@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260610_160143_779262",
+  "job_type": "review",
+  "payload": {
+    "process_id": "GDPR-ART5",
+    "certificate_id": "AZ-CERT-GDPR-ART5-20260610"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:01:43.779282",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

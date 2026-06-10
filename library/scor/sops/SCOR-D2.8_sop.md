@@ -7,8 +7,8 @@
 Process of receiving MTO finished goods from manufacturing or source operations into the deliver staging area with quality verification and inventory update
 
 ## Triggers
-- ProductionCompletionNotice received
-- QualityRelease issued
+- ProductionCompletionNotice received from manufacturing
+- QualityRelease signal from quality control
 
 ## Inputs Required
 - production completion notice
@@ -18,7 +18,8 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - delivery documentation
 
 ## Process Steps
-1. IF QualityRelease.status == 'approved' AND PackagingVerification.passed == true THEN create QualityAcceptance ELSE route to quality hold
+1. IF QualityRelease is valid AND PackagingVerification passes THEN proceed to inventory update ELSE quarantine goods
+2. IF all inputs present THEN execute quality verification ELSE hold for missing documentation
 
 ## Expected Outputs
 - received finished goods
@@ -27,19 +28,16 @@ Process of receiving MTO finished goods from manufacturing or source operations 
 - staging confirmation
 
 ## Business Rules
-- inventory_accuracy must be >= 99.5%
-- receive_cycle_time must be <= 4 hours
-- quality_acceptance_rate must be >= 98%
-- apply GxP audit trail if sector == 'pharma'
+- Quality verification must complete before DeliverInventory update
+- Receive accuracy KPI must be calculated on every receipt transaction
+- GDPR compliance required if DeliveryDocumentation contains personal data
 
 ## Exception Handling
-- IF FinishedGoods.quantity != expected_quantity THEN create discrepancy record and hold staging
-- IF GDPR applies and personal_data present THEN anonymize before DeliverInventoryUpdate
+- Missing QualityRelease: route to exception queue and notify source process SCOR-M2.5
+- Failed quality check: reject goods and trigger return to source or rework
 
 ## Success Criteria
-- DeliverInventoryUpdate committed with inventory_accuracy >= 99.5%
-- StagingConfirmation timestamp recorded within receive_cycle_time SLA
-- QualityAcceptance issued
+- StagingConfirmation generated AND DeliverInventory updated AND receive_accuracy >= 99%
 
 ## Compliance Requirements
 - GxP if pharma

@@ -1,6 +1,6 @@
-1. Open the Agentic Zero dashboard and launch mto_material_issue_controller; display live queue of 47 pending MTO issues to frame scale.
-2. Select a high-priority sourced item; trigger AI auto-validation of specs, inventory, and supplier status—complete in 12 seconds vs. 18-minute manual baseline.
-3. Run built-in compliance engine: show real-time audit trail, regulatory flags, and digital sign-off generation that satisfies ISO and SOX requirements without extra steps.
-4. Execute one-click issue release; AI updates ERP, notifies stakeholders, and logs immutable record—highlight 94% reduction in processing errors.
-5. Open ROI panel: calculate €5,592 annual savings per user (8.0x multiplier on €699 license) from time recovered and avoided compliance penalties.
-6. Summarize: 10-minute end-to-end cycle, full traceability, and immediate 8x return; invite pilot scope discussion.
+1. Open with executive pain point: "Manual MTO material-issue handling costs teams 12+ hours/week in errors, delays, and audit prep—€699 buys an 8.0x ROI agent that eliminates both."
+2. Trigger live MTO issue: Input a sourced/in-process product shortage; agent auto-matches inventory, raises PO, and updates ERP in <30 seconds.
+3. Display AI decision audit trail: Show timestamped, regulation-mapped logs (ISO/traceability) that satisfy compliance review without manual documentation.
+4. Run exception handling demo: Agent flags a compliance deviation, proposes resolution, and records sign-off—reducing audit prep from 4 hours to minutes.
+5. Surface ROI dashboard: Real-time panel calculates €5,592 annual savings per user (8.0x multiplier) via time recovered and avoided non-compliance penalties.
+6. Close with one-click deployment: "Zero-code install; full ROI realized in first month—ready to pilot this week."

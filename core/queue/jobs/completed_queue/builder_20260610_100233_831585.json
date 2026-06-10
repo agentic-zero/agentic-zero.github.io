@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260610_100233_831585",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO9001-5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:02:33.831608",
+  "status": "completed",
+  "started_at": "2026-06-10T16:11:55.544652",
+  "completed_at": "2026-06-10T16:12:39.013485",
+  "error": null,
+  "result": {
+    "agent_name": "iso9001_leadership_quality_policy_agent",
+    "ready_for_packager": true
+  }
+}

@@ -7,8 +7,9 @@
 Monitoring, measurement, analysis and evaluation of QMS performance including customer satisfaction, internal audit program and management review
 
 ## Triggers
-- quarterly scheduled job on first business day of quarter
-- manual trigger via management review request
+- Quarterly schedule or ad-hoc request from ISO9001-6
+- Receipt of new customer feedback exceeding volume threshold
+- Completion of any related process ISO9001-10
 
 ## Inputs Required
 - KPI data
@@ -18,8 +19,8 @@ Monitoring, measurement, analysis and evaluation of QMS performance including cu
 - supplier performance data
 
 ## Process Steps
-1. IF audit_completion_rate < 0.9 THEN escalate to management review
-2. IF finding_closure_rate < 0.8 THEN create corrective action within 14 days
+1. IF audit_completion_rate < 0.95 THEN schedule additional audits within 30 days
+2. IF finding_closure_rate < 0.8 THEN escalate to management review within 14 days
 3. IF customer_satisfaction_score < 3.5 THEN trigger root cause analysis
 
 ## Expected Outputs
@@ -30,18 +31,16 @@ Monitoring, measurement, analysis and evaluation of QMS performance including cu
 - customer satisfaction data
 
 ## Business Rules
-- audit_completion_rate must be >= 0.95 per quarter
-- internal_audit_independence must be enforced (no auditor audits own process)
-- all GDPR-related audit data must be anonymized before storage
+- Internal audits must maintain documented independence from audited processes
+- All KPI data must be collected at minimum monthly frequency
+- GDPR audit data requires anonymization before storage
 
 ## Exception Handling
-- If supplier_performance_data is missing, use last 3 months average and flag as incomplete
-- If customer feedback volume < 50 responses, apply statistical weighting before scoring
+- If supplier performance data is missing for >2 consecutive periods, substitute with last known value and flag for manual review
+- If management review cannot be scheduled within quarter, document justification and defer to next quarter
 
 ## Success Criteria
-- audit_completion_rate >= 0.95
-- finding_closure_rate >= 0.85 within SLA
-- all outputs generated and stored with timestamp
+- audit_completion_rate >= 0.95 AND finding_closure_rate >= 0.9 AND customer_satisfaction_score >= 4.0
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 9

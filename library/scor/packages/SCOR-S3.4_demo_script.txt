@@ -1,6 +1,7 @@
-1. Open with a live pain-point example: Display a stalled ETO component transfer (manual hand-offs, missing specs, compliance gaps) and note the €6k+ hidden cost per incident.
-2. Launch eto_component_transfer_agent on the same case; show AI auto-extracting BOM, drawings, and regulatory requirements in <60 seconds.
-3. Run the transfer workflow: AI validates against ISO/REACH rules, generates compliant documentation, and routes approvals with full audit trail.
-4. Reveal real-time dashboard: 94% reduction in cycle time, zero compliance flags, and quantified savings of €5,984 on this single transfer.
-5. Calculate ROI on-screen: €5,984 savings ÷ €748 price = 8.0x multiplier, with payback in under one use.
-6. Close with compliance proof: Export the immutable audit log and one-click regulatory report; invite executives to schedule a pilot on their next ETO order.
+1. Open with ROI framing: €748 investment delivers 8x return (€5,984+ annual value) via 10+ hours saved per ETO transfer.
+2. Load sample ETO specs into transfer_eto_product_agent and trigger automated data extraction.
+3. Run AI-driven mapping and validation, eliminating manual re-entry errors.
+4. Execute compliance layer: auto-check against export controls, certifications, and audit rules with flagged exceptions.
+5. Generate transfer package plus immutable audit trail for executive sign-off.
+6. Display dashboard: time/cost metrics before vs. after, confirming 8x multiplier in real time.
+7. Close with one-click deployment option and projected quarterly ROI report.

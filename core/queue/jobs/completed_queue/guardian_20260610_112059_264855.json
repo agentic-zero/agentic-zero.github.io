@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260610_112059_264855",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "GXP-GMP"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:20:59.264879",
+  "status": "completed",
+  "started_at": "2026-06-10T16:01:32.182538",
+  "completed_at": "2026-06-10T16:01:37.971169",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-GXP-GMP-20260610",
+    "status": "conditional",
+    "process_id": "GXP-GMP"
+  }
+}

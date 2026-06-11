@@ -1,0 +1,392 @@
+{
+  "process_id": "BPMN-OTC-001",
+  "generated_at": "2026-06-11T10:27:21.428207+00:00",
+  "certified_by": [
+    "grok-3-mini",
+    "claude-haiku-4-5"
+  ],
+  "consensus_score": 0.978,
+  "decision": "AUTO_MERGE",
+  "decision_label": "CERTIFIED",
+  "overall_automation_score": 0.82,
+  "steps": [
+    {
+      "step_id": "S01",
+      "name": "Receive and Capture Order",
+      "description": "Capture customer order via EDI or portal and create sales order in SAP",
+      "automation_potential": 0.925,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "SD"
+      ],
+      "data_inputs": [
+        "customer_order"
+      ],
+      "data_outputs": [
+        "sales_order"
+      ],
+      "model_agreement": 0.998
+    },
+    {
+      "step_id": "S02",
+      "name": "Credit and Availability Check",
+      "description": "Perform credit check and ATP check",
+      "automation_potential": 0.885,
+      "actor": "hybrid",
+      "erp_touchpoints": [
+        "SD",
+        "FI"
+      ],
+      "data_inputs": [
+        "sales_order"
+      ],
+      "data_outputs": [
+        "order_confirmed"
+      ],
+      "model_agreement": 0.995
+    },
+    {
+      "step_id": "S03",
+      "name": "Create Outbound Delivery",
+      "description": "Generate delivery document and picking list",
+      "automation_potential": 0.475,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "SD",
+        "MM"
+      ],
+      "data_inputs": [
+        "order_confirmed"
+      ],
+      "data_outputs": [
+        "delivery_document"
+      ],
+      "model_agreement": 0.577
+    },
+    {
+      "step_id": "S04",
+      "name": "Pick, Pack and Ship",
+      "description": "Execute warehouse picking, packing and goods issue",
+      "automation_potential": 0.74,
+      "actor": "hybrid",
+      "erp_touchpoints": [
+        "MM",
+        "WM"
+      ],
+      "data_inputs": [
+        "delivery_document"
+      ],
+      "data_outputs": [
+        "goods_issue"
+      ],
+      "model_agreement": 0.922
+    },
+    {
+      "step_id": "S05",
+      "name": "Create and Send Invoice",
+      "description": "Generate billing document and transmit to customer",
+      "automation_potential": 0.65,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "SD",
+        "FI"
+      ],
+      "data_inputs": [
+        "goods_issue"
+      ],
+      "data_outputs": [
+        "invoice"
+      ],
+      "model_agreement": 0.64
+    },
+    {
+      "step_id": "S06",
+      "name": "Process Incoming Payment",
+      "description": "Apply customer payment and clear open items",
+      "automation_potential": 0.8,
+      "actor": "hybrid",
+      "erp_touchpoints": [
+        "FI"
+      ],
+      "data_inputs": [
+        "payment_advice"
+      ],
+      "data_outputs": [
+        "payment_cleared"
+      ],
+      "model_agreement": 0.99
+    },
+    {
+      "step_id": "S07",
+      "name": "Carrier Selection & Tendering",
+      "description": "Automated carrier selection based on cost, service level, and delivery zone optimization",
+      "automation_potential": 0.82,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "LE",
+        "SD"
+      ],
+      "data_inputs": [
+        "shipment_weight",
+        "destination",
+        "service_level",
+        "carrier_rates"
+      ],
+      "data_outputs": [
+        "carrier_assignment",
+        "shipment_tender",
+        "freight_cost"
+      ],
+      "model_agreement": 1.0
+    },
+    {
+      "step_id": "S08",
+      "name": "Goods Issue & Shipment",
+      "description": "Automated goods issue posting to inventory, shipment confirmation to customer and carrier",
+      "automation_potential": 0.93,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "MM",
+        "SD",
+        "LE"
+      ],
+      "data_inputs": [
+        "packed_shipment",
+        "carrier_confirmation"
+      ],
+      "data_outputs": [
+        "goods_issue_document",
+        "shipment_confirmation",
+        "invoice_trigger"
+      ],
+      "model_agreement": 1.0
+    },
+    {
+      "step_id": "S09",
+      "name": "Invoice Generation & Posting",
+      "description": "Automated invoice creation based on delivery confirmation, tax calculation, and FI posting",
+      "automation_potential": 0.96,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "SD",
+        "FI",
+        "CO"
+      ],
+      "data_inputs": [
+        "delivery_document",
+        "pricing_master",
+        "tax_rules"
+      ],
+      "data_outputs": [
+        "invoice",
+        "accounting_entry",
+        "revenue_recognition"
+      ],
+      "model_agreement": 1.0
+    },
+    {
+      "step_id": "S10",
+      "name": "Payment Processing & Reconciliation",
+      "description": "Automated payment receipt matching, bank reconciliation, and cash application",
+      "automation_potential": 0.89,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "FI",
+        "TR"
+      ],
+      "data_inputs": [
+        "invoice",
+        "payment_receipt",
+        "bank_statement"
+      ],
+      "data_outputs": [
+        "payment_posting",
+        "reconciliation_status",
+        "ar_clearance"
+      ],
+      "model_agreement": 1.0
+    },
+    {
+      "step_id": "S11",
+      "name": "Dispute & Exception Handling",
+      "description": "Manual investigation and resolution of payment discrepancies, returns, or claim disputes",
+      "automation_potential": 0.25,
+      "actor": "human",
+      "erp_touchpoints": [
+        "SD",
+        "FI"
+      ],
+      "data_inputs": [
+        "dispute_notification",
+        "supporting_documents"
+      ],
+      "data_outputs": [
+        "resolution_decision",
+        "credit_memo",
+        "adjustment_posting"
+      ],
+      "model_agreement": 1.0
+    },
+    {
+      "step_id": "S12",
+      "name": "Performance Analytics & Reporting",
+      "description": "Automated KPI calculation, SLA monitoring, and regulatory compliance reporting",
+      "automation_potential": 0.91,
+      "actor": "agent",
+      "erp_touchpoints": [
+        "SD",
+        "FI",
+        "CO",
+        "BW"
+      ],
+      "data_inputs": [
+        "transaction_data",
+        "master_data",
+        "configuration"
+      ],
+      "data_outputs": [
+        "performance_report",
+        "compliance_report",
+        "audit_log"
+      ],
+      "model_agreement": 1.0
+    }
+  ],
+  "automation_zones": {
+    "fully_automatable": [
+      "S01",
+      "S02",
+      "S04",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S12"
+    ],
+    "hybrid": [],
+    "human_required": [
+      "S03",
+      "S05",
+      "S11"
+    ]
+  },
+  "risk_flags": [
+    {
+      "flag": "inventory_shortage",
+      "severity": "high",
+      "mitigation": "real-time ATP with backorder management",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Credit Risk & Fraud Detection",
+      "severity": "high",
+      "mitigation": "Implement real-time credit scoring with machine learning, multi-factor verification for high-value orders, and automated fraud pattern detection",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Data Quality & Master Data Integrity",
+      "severity": "high",
+      "mitigation": "Establish MDM governance, automated validation rules at entry points, regular data quality audits, and exception handling workflows",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Regulatory Compliance & Audit Trail",
+      "severity": "high",
+      "mitigation": "Implement immutable audit logging, automated compliance checks, segregation of duties enforcement, and regulatory reporting automation",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "credit_limit_override",
+      "severity": "medium",
+      "mitigation": "require dual approval workflow",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Integration Latency & System Downtime",
+      "severity": "medium",
+      "mitigation": "Deploy API gateway with retry logic, implement queue-based asynchronous processing, establish SLA monitoring, and failover mechanisms",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Exception Handling Bottleneck",
+      "severity": "medium",
+      "mitigation": "Establish clear escalation procedures, implement intelligent routing to appropriate human agents, and provide decision support tools",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Inventory Discrepancy & Allocation Conflicts",
+      "severity": "medium",
+      "mitigation": "Real-time inventory synchronization, automated cycle counting, conflict resolution algorithms, and safety stock optimization",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "Payment Reconciliation Complexity",
+      "severity": "medium",
+      "mitigation": "Implement automated matching rules, exception flagging for manual review, and bank statement integration with variance analysis",
+      "mentioned_by": 1,
+      "models_count": 2
+    },
+    {
+      "flag": "AI Model Bias & Transparency",
+      "severity": "medium",
+      "mitigation": "Regular model validation, explainability frameworks for credit decisions, bias testing, and human override capabilities",
+      "mentioned_by": 1,
+      "models_count": 2
+    }
+  ],
+  "integration_map": {
+    "erp_modules": [
+      "TR",
+      "SD",
+      "BW",
+      "WM",
+      "FI",
+      "MM",
+      "CO",
+      "LE"
+    ],
+    "api_type": "RFC/BAPI",
+    "data_format": "JSON",
+    "auth_method": "API_KEY+OAuth2"
+  },
+  "compliance_notes": {
+    "eu_ai_act_risk": "limited",
+    "gdpr_data_touched": true,
+    "audit_trail_required": true,
+    "iso_42001_applicable": true,
+    "model_risk_agreement": 1.0
+  },
+  "divergence_map": {
+    "automation_zones_agreement": 1.0,
+    "steps_agreement": 0.927,
+    "compliance_agreement": 1.0,
+    "integration_agreement": 1.0,
+    "weakest_field": "steps"
+  },
+  "models_queried": [
+    "grok-3-mini",
+    "gemini-1.5-flash",
+    "claude-haiku-4-5"
+  ],
+  "models_failed": {
+    "gemini-1.5-flash": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+  },
+  "elapsed_seconds": 21.55,
+  "governance": {
+    "data_never_leaves_api": true,
+    "sensitive_fields_masked": true,
+    "no_personal_data_in_prompt": true,
+    "audit_trail_path": "comparator_logs/BPMN-OTC-001_comparator_*.json",
+    "eu_ai_act_compliant": true,
+    "methodology": "Multi-model consensus â€” Agentic Zero PROPRIETARY"
+  }
+}

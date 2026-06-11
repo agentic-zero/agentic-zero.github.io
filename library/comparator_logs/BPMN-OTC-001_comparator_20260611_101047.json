@@ -1,0 +1,645 @@
+{
+  "process_id": "BPMN-OTC-001",
+  "timestamp": "2026-06-11T10:10:47.986590",
+  "elapsed_seconds": 20.99,
+  "models_queried": [
+    "grok-3-mini",
+    "gemini-1.5-flash",
+    "claude-haiku-4-5"
+  ],
+  "models_succeeded": [
+    "grok-3-mini",
+    "gemini-1.5-flash",
+    "claude-haiku-4-5"
+  ],
+  "models_failed": {},
+  "model_outputs": {
+    "grok-3-mini": {
+      "process_id": "BPMN-OTC-001",
+      "model_name": "Order-to-Cash Distribution v1",
+      "steps": [
+        {
+          "step_id": "S01",
+          "name": "Receive Sales Order",
+          "description": "Capture and log incoming customer order via EDI or portal",
+          "automation_potential": 0.9,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "SD"
+          ],
+          "data_inputs": [
+            "order_json"
+          ],
+          "data_outputs": [
+            "sales_order_id"
+          ]
+        },
+        {
+          "step_id": "S02",
+          "name": "Credit & Compliance Check",
+          "description": "Run credit scoring and regulatory screening",
+          "automation_potential": 0.75,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI"
+          ],
+          "data_inputs": [
+            "customer_id",
+            "order_value"
+          ],
+          "data_outputs": [
+            "credit_status"
+          ]
+        },
+        {
+          "step_id": "S03",
+          "name": "Pick, Pack & Ship",
+          "description": "Warehouse execution and ASN generation",
+          "automation_potential": 0.6,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "MM",
+            "WM"
+          ],
+          "data_inputs": [
+            "delivery_id"
+          ],
+          "data_outputs": [
+            "goods_issue",
+            "tracking"
+          ]
+        },
+        {
+          "step_id": "S04",
+          "name": "Create & Send Invoice",
+          "description": "Generate invoice and transmit to customer",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI"
+          ],
+          "data_inputs": [
+            "delivery_id"
+          ],
+          "data_outputs": [
+            "invoice_id",
+            "pdf"
+          ]
+        },
+        {
+          "step_id": "S05",
+          "name": "Process Incoming Payment",
+          "description": "Apply cash and clear open items",
+          "automation_potential": 0.85,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "FI",
+            "AR"
+          ],
+          "data_inputs": [
+            "payment_advice"
+          ],
+          "data_outputs": [
+            "clearing_doc"
+          ]
+        }
+      ],
+      "automation_zones": {
+        "fully_automatable": [
+          "S02",
+          "S04"
+        ],
+        "hybrid": [
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "human_required": []
+      },
+      "risk_flags": [
+        {
+          "flag": "credit_override",
+          "severity": "medium",
+          "mitigation": "dual_approval_workflow"
+        },
+        {
+          "flag": "data_privacy",
+          "severity": "low",
+          "mitigation": "tokenize_pii_fields"
+        }
+      ],
+      "integration_map": {
+        "erp_modules": [
+          "SD",
+          "FI",
+          "MM"
+        ],
+        "api_type": "RFC/BAPI",
+        "data_format": "IDOC",
+        "auth_method": "SAP_SSO"
+      },
+      "compliance_notes": {
+        "eu_ai_act_risk": "limited",
+        "gdpr_data_touched": true,
+        "gdpr_lawful_basis": "contract",
+        "iso_42001_applicable": true,
+        "audit_trail_required": true
+      },
+      "overall_automation_score": 0.82,
+      "confidence": 0.78
+    },
+    "gemini-1.5-flash": {
+      "process_id": "BPMN-OTC-001",
+      "model_name": "gemini-1.5-flash",
+      "steps": [
+        {
+          "step_id": "S01",
+          "name": "Order Receipt & Initial Validation",
+          "description": "Customer orders are received via various channels (EDI, portal, manual entry) and undergo initial validation against customer and product master data in SAP SD.",
+          "automation_potential": 0.8,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "SD"
+          ],
+          "data_inputs": [
+            "Customer Purchase Order",
+            "Product IDs",
+            "Quantities",
+            "Delivery Dates"
+          ],
+          "data_outputs": [
+            "Sales Order (draft)",
+            "Validation Log"
+          ]
+        },
+        {
+          "step_id": "S02",
+          "name": "Credit Check & Availability-to-Promise (ATP)",
+          "description": "Automated credit check is performed against customer's credit limits. An ATP check confirms product availability based on inventory and production schedules.",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "MM",
+            "PP"
+          ],
+          "data_inputs": [
+            "Sales Order",
+            "Customer Credit Data",
+            "Inventory Levels",
+            "Production Schedule"
+          ],
+          "data_outputs": [
+            "Credit Status",
+            "ATP Confirmation",
+            "Sales Order (confirmed)"
+          ]
+        },
+        {
+          "step_id": "S03",
+          "name": "Order Confirmation & Regulatory Review",
+          "description": "The sales order is confirmed to the customer. For regulated goods, a review for specific licenses, permits, or destination restrictions is conducted, potentially involving SAP GTS.",
+          "automation_potential": 0.7,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "SD",
+            "GTS"
+          ],
+          "data_inputs": [
+            "Sales Order",
+            "Regulatory Compliance Data"
+          ],
+          "data_outputs": [
+            "Order Confirmation",
+            "Regulatory Compliance Status"
+          ]
+        },
+        {
+          "step_id": "S04",
+          "name": "Picking, Packing & Batch Management",
+          "description": "Picking lists are generated. Goods are picked from the warehouse, packed, and critical batch/lot numbers are recorded for traceability, often involving SAP WM.",
+          "automation_potential": 0.75,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "WM",
+            "MM",
+            "QM"
+          ],
+          "data_inputs": [
+            "Sales Order",
+            "Picking List",
+            "Batch/Lot Numbers"
+          ],
+          "data_outputs": [
+            "Picking Confirmation",
+            "Packing List",
+            "Batch Traceability Records"
+          ]
+        },
+        {
+          "step_id": "S05",
+          "name": "Shipping & Documentation Generation",
+          "description": "Goods are loaded for shipment. Required shipping documents (e.g., Bill of Lading, Commercial Invoice, Customs Declarations) are generated and shipment tracking initiated.",
+          "automation_potential": 0.85,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "LE",
+            "SD"
+          ],
+          "data_inputs": [
+            "Packed Goods",
+            "Shipping Carrier Info",
+            "Destination Details"
+          ],
+          "data_outputs": [
+            "Shipping Notification",
+            "Bill of Lading",
+            "Commercial Invoice",
+            "Customs Declarations"
+          ]
+        },
+        {
+          "step_id": "S06",
+          "name": "Invoicing & Accounts Receivable Posting",
+          "description": "An invoice is generated based on the goods issue and sales order. The invoice is posted to the customer's account in Accounts Receivable.",
+          "automation_potential": 0.9,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI"
+          ],
+          "data_inputs": [
+            "Goods Issue Document",
+            "Sales Order",
+            "Pricing Conditions"
+          ],
+          "data_outputs": [
+            "Invoice Document",
+            "AR Posting"
+          ]
+        },
+        {
+          "step_id": "S07",
+          "name": "Payment Processing & Reconciliation",
+          "description": "Customer payments are received, processed, and automatically reconciled against open invoices. Exceptions are handled manually.",
+          "automation_potential": 0.85,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "FI"
+          ],
+          "data_inputs": [
+            "Bank Statements",
+            "Invoice Data"
+          ],
+          "data_outputs": [
+            "Payment Confirmation",
+            "Cleared Invoices"
+          ]
+        }
+      ],
+      "automation_zones": {
+        "fully_automatable": [
+          "S02",
+          "S06"
+        ],
+        "hybrid": [
+          "S01",
+          "S03",
+          "S04",
+          "S05",
+          "S07"
+        ],
+        "human_required": []
+      },
+      "risk_flags": [
+        {
+          "flag": "Regulatory Non-Compliance",
+          "severity": "high",
+          "mitigation": "Implement automated compliance checks (e.g., SAP GTS), robust master data management for product classifications and destination rules, and human review for high-risk transactions."
+        },
+        {
+          "flag": "Data Inaccuracy (Order Entry)",
+          "severity": "medium",
+          "mitigation": "Increase EDI/portal adoption, implement strict data validation rules, and leverage AI/ML for anomaly detection in manual entries."
+        },
+        {
+          "flag": "Inventory Discrepancies",
+          "severity": "medium",
+          "mitigation": "Enhance WMS integration, implement regular cycle counting, and ensure real-time inventory updates from all touchpoints."
+        },
+        {
+          "flag": "Traceability Gaps",
+          "severity": "high",
+          "mitigation": "Enforce strict batch/lot management and serialization protocols, integrate with quality management systems (SAP QM), and maintain comprehensive audit trails."
+        }
+      ],
+      "integration_map": {
+        "erp_modules": [
+          "SD",
+          "MM",
+          "WM",
+          "FI",
+          "LE",
+          "PP",
+          "QM",
+          "GTS"
+        ],
+        "api_type": "RFC/BAPI|REST",
+        "data_format": "IDoc|XML|JSON",
+        "auth_method": "SAP User/Password|OAuth2"
+      },
+      "compliance_notes": {
+        "eu_ai_act_risk": "limited",
+        "gdpr_data_touched": true,
+        "gdpr_lawful_basis": "Contractual Necessity",
+        "iso_42001_applicable": true,
+        "audit_trail_required": true
+      },
+      "overall_automation_score": 0.82,
+      "confidence": 0.9
+    },
+    "claude-haiku-4-5": {
+      "process_id": "BPMN-OTC-001",
+      "model_name": "claude-haiku-4-5",
+      "steps": [
+        {
+          "step_id": "S01",
+          "name": "Order Receipt & Validation",
+          "description": "Customer order received via EDI/portal, validated against master data and inventory availability",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "MM",
+            "FI"
+          ],
+          "data_inputs": [
+            "customer_order",
+            "product_master",
+            "inventory_levels"
+          ],
+          "data_outputs": [
+            "validated_order",
+            "availability_check"
+          ]
+        },
+        {
+          "step_id": "S02",
+          "name": "Credit Check & Risk Assessment",
+          "description": "Automated credit limit verification and fraud detection against customer master and payment history",
+          "automation_potential": 0.92,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "FI",
+            "SD"
+          ],
+          "data_inputs": [
+            "customer_credit_profile",
+            "outstanding_balance",
+            "payment_terms"
+          ],
+          "data_outputs": [
+            "credit_decision",
+            "risk_score"
+          ]
+        },
+        {
+          "step_id": "S03",
+          "name": "Sales Order Creation",
+          "description": "System creates sales order in SAP SD module with pricing, tax calculation, and delivery schedule",
+          "automation_potential": 0.98,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "MM"
+          ],
+          "data_inputs": [
+            "validated_order",
+            "pricing_master",
+            "tax_configuration"
+          ],
+          "data_outputs": [
+            "sales_order_number",
+            "order_confirmation"
+          ]
+        },
+        {
+          "step_id": "S04",
+          "name": "Inventory Allocation & Picking",
+          "description": "Warehouse management system allocates stock, generates pick lists, and tracks physical picking",
+          "automation_potential": 0.88,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "MM",
+            "WM"
+          ],
+          "data_inputs": [
+            "sales_order",
+            "warehouse_location",
+            "stock_status"
+          ],
+          "data_outputs": [
+            "pick_list",
+            "goods_issue_document"
+          ]
+        },
+        {
+          "step_id": "S05",
+          "name": "Quality Inspection & Compliance Check",
+          "description": "Regulated goods inspected for compliance, batch tracking, and expiration date verification",
+          "automation_potential": 0.65,
+          "actor": "human",
+          "erp_touchpoints": [
+            "QM",
+            "MM"
+          ],
+          "data_inputs": [
+            "batch_data",
+            "quality_standards",
+            "regulatory_requirements"
+          ],
+          "data_outputs": [
+            "inspection_report",
+            "compliance_certificate"
+          ]
+        },
+        {
+          "step_id": "S06",
+          "name": "Packing & Labeling",
+          "description": "Goods packed according to order specifications with regulatory labels and shipping marks",
+          "automation_potential": 0.72,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "WM",
+            "SD"
+          ],
+          "data_inputs": [
+            "pick_list",
+            "packaging_rules",
+            "label_templates"
+          ],
+          "data_outputs": [
+            "packed_shipment",
+            "shipping_label"
+          ]
+        },
+        {
+          "step_id": "S07",
+          "name": "Shipping & Carrier Integration",
+          "description": "Shipment handed to carrier, tracking number generated, carrier notified via API",
+          "automation_potential": 0.94,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "LE"
+          ],
+          "data_inputs": [
+            "shipment_data",
+            "carrier_master",
+            "shipping_terms"
+          ],
+          "data_outputs": [
+            "tracking_number",
+            "shipment_notification"
+          ]
+        },
+        {
+          "step_id": "S08",
+          "name": "Invoice Generation & Billing",
+          "description": "Billing document created in FI module, tax calculated, invoice transmitted to customer",
+          "automation_potential": 0.96,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "FI",
+            "SD"
+          ],
+          "data_inputs": [
+            "goods_issue",
+            "pricing",
+            "tax_rules"
+          ],
+          "data_outputs": [
+            "invoice",
+            "accounting_entry"
+          ]
+        },
+        {
+          "step_id": "S09",
+          "name": "Payment Processing & Reconciliation",
+          "description": "Payment received, matched against invoice, cash application in FI, exception handling for discrepancies",
+          "automation_potential": 0.85,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "FI",
+            "TR"
+          ],
+          "data_inputs": [
+            "payment_data",
+            "invoice",
+            "bank_statement"
+          ],
+          "data_outputs": [
+            "payment_posting",
+            "reconciliation_report"
+          ]
+        },
+        {
+          "step_id": "S10",
+          "name": "Order Closure & Analytics",
+          "description": "Order marked complete, performance metrics captured, data archived for audit and analytics",
+          "automation_potential": 0.97,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI",
+            "CO"
+          ],
+          "data_inputs": [
+            "order_status",
+            "financial_data",
+            "logistics_metrics"
+          ],
+          "data_outputs": [
+            "closed_order",
+            "analytics_dataset"
+          ]
+        }
+      ],
+      "automation_zones": {
+        "fully_automatable": [
+          "S01",
+          "S03",
+          "S07",
+          "S08",
+          "S10"
+        ],
+        "hybrid": [
+          "S04",
+          "S06",
+          "S09"
+        ],
+        "human_required": [
+          "S05"
+        ]
+      },
+      "risk_flags": [
+        {
+          "flag": "Regulatory Compliance Drift",
+          "severity": "high",
+          "mitigation": "Implement automated compliance rule engine with quarterly audit reviews; maintain version control of regulatory configurations"
+        },
+        {
+          "flag": "Data Quality in Master Data",
+          "severity": "high",
+          "mitigation": "Enforce data governance policies; implement MDM solution; automated validation rules at point of entry"
+        },
+        {
+          "flag": "Exception Handling in Payment Reconciliation",
+          "severity": "medium",
+          "mitigation": "Define escalation rules; implement intelligent matching algorithms; maintain human review queue for edge cases"
+        },
+        {
+          "flag": "Batch Tracking & Traceability",
+          "severity": "high",
+          "mitigation": "Implement blockchain-based tracking for regulated goods; maintain immutable audit trail; integrate with quality management"
+        },
+        {
+          "flag": "Carrier Integration Failures",
+          "severity": "medium",
+          "mitigation": "Implement API retry logic with exponential backoff; maintain fallback manual process; monitor carrier SLAs"
+        },
+        {
+          "flag": "Credit Limit Bypass Risk",
+          "severity": "high",
+          "mitigation": "Enforce hard stops in system; require management override with audit logging; daily credit exposure reporting"
+        }
+      ],
+      "integration_map": {
+        "erp_modules": [
+          "SD",
+          "MM",
+          "FI",
+          "WM",
+          "QM",
+          "LE",
+          "TR",
+          "CO"
+        ],
+        "api_type": "RFC/BAPI",
+        "data_format": "XML/JSON",
+        "auth_method": "SAP Single Sign-On (SSO) with role-based access control"
+      },
+      "compliance_notes": {
+        "eu_ai_act_risk": "limited",
+        "gdpr_data_touched": true,
+        "gdpr_lawful_basis": "Contract performance (Article 6(1)(b)); Legal obligation (Article 6(1)(c))",
+        "iso_42001_applicable": true,
+        "audit_trail_required": true
+      },
+      "overall_automation_score": 0.89,
+      "confidence": 0.92
+    }
+  }
+}

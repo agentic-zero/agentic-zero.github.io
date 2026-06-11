@@ -1,0 +1,470 @@
+{
+  "process_id": "BPMN-OTC-001",
+  "timestamp": "2026-06-11T10:30:07.773341",
+  "elapsed_seconds": 23.42,
+  "models_queried": [
+    "grok-3-mini",
+    "gemini-1.5-flash",
+    "claude-haiku-4-5"
+  ],
+  "models_succeeded": [
+    "grok-3-mini",
+    "gemini-1.5-flash",
+    "claude-haiku-4-5"
+  ],
+  "models_failed": {},
+  "model_outputs": {
+    "grok-3-mini": {
+      "process_id": "BPMN-OTC-001",
+      "model_name": "SCOR-Deliver-OTC-v1",
+      "steps": [
+        {
+          "step_id": "S01",
+          "name": "Create Sales Order",
+          "description": "Capture and validate customer order in SAP SD",
+          "automation_potential": 0.85,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "SD"
+          ],
+          "data_inputs": [
+            "customer_po",
+            "material",
+            "qty"
+          ],
+          "data_outputs": [
+            "sales_order"
+          ]
+        },
+        {
+          "step_id": "S02",
+          "name": "ATP Check & Credit Check",
+          "description": "Availability and credit limit validation",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI"
+          ],
+          "data_inputs": [
+            "sales_order"
+          ],
+          "data_outputs": [
+            "availability_status",
+            "credit_status"
+          ]
+        },
+        {
+          "step_id": "S03",
+          "name": "Order Confirmation & Pick List",
+          "description": "Confirm order and release to warehouse",
+          "automation_potential": 0.9,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "WM"
+          ],
+          "data_inputs": [
+            "sales_order"
+          ],
+          "data_outputs": [
+            "pick_list"
+          ]
+        },
+        {
+          "step_id": "S04",
+          "name": "Goods Issue & Shipment",
+          "description": "Pick, pack, ship and post goods issue",
+          "automation_potential": 0.7,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "WM",
+            "SD"
+          ],
+          "data_inputs": [
+            "pick_list"
+          ],
+          "data_outputs": [
+            "delivery_note",
+            "goods_issue"
+          ]
+        },
+        {
+          "step_id": "S05",
+          "name": "Create & Send Invoice",
+          "description": "Generate customer invoice and transmit",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI"
+          ],
+          "data_inputs": [
+            "delivery_note"
+          ],
+          "data_outputs": [
+            "invoice",
+            "edi_output"
+          ]
+        }
+      ],
+      "automation_zones": {
+        "fully_automatable": [
+          "S02",
+          "S05"
+        ],
+        "hybrid": [
+          "S01",
+          "S03",
+          "S04"
+        ],
+        "human_required": []
+      },
+      "risk_flags": [
+        {
+          "flag": "credit_override",
+          "severity": "medium",
+          "mitigation": "dual_approval_workflow"
+        },
+        {
+          "flag": "price_deviation",
+          "severity": "low",
+          "mitigation": "tolerance_checks"
+        }
+      ],
+      "integration_map": {
+        "erp_modules": [
+          "SD",
+          "FI",
+          "WM"
+        ],
+        "api_type": "RFC/BAPI",
+        "data_format": "IDOC",
+        "auth_method": "SAP_SSO"
+      },
+      "compliance_notes": {
+        "eu_ai_act_risk": "minimal",
+        "gdpr_data_touched": true,
+        "gdpr_lawful_basis": "contract",
+        "iso_42001_applicable": true,
+        "audit_trail_required": true
+      },
+      "overall_automation_score": 0.88,
+      "confidence": 0.75
+    },
+    "gemini-1.5-flash": {
+      "model_name": "gemini-1.5-flash",
+      "parse_error": "Unterminated string starting at: line 117 column 20 (char 6791)",
+      "raw_response": "{\n  \"process_id\": \"BPMN-OTC-001\",\n  \"model_name\": \"Order-to-Cash for Regulated Distribution\",\n  \"steps\": [\n    {\n      \"step_id\": \"S01\",\n      \"name\": \"Order Receipt & Validation\",\n      \"description\": \"Customer order is received via EDI, portal, or manual entry. Basic validation (product availability, pricing, customer data) is performed, ensuring compliance with regulatory requirements.\",\n      \"automation_potential\": 0.8,\n      \"actor\": \"hybrid\",\n      \"erp_touchpoints\": [\"SD (Sales Document ",
+      "steps": [],
+      "automation_zones": {},
+      "risk_flags": [],
+      "integration_map": {},
+      "compliance_notes": {},
+      "overall_automation_score": 0.0,
+      "confidence": 0.0
+    },
+    "claude-haiku-4-5": {
+      "process_id": "BPMN-OTC-001",
+      "model_name": "claude-haiku-4-5",
+      "steps": [
+        {
+          "step_id": "S01",
+          "name": "Order Receipt & Validation",
+          "description": "Customer order received via EDI/portal, validated against master data, credit limits, and inventory availability",
+          "automation_potential": 0.85,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI",
+            "MM"
+          ],
+          "data_inputs": [
+            "customer_order",
+            "credit_master",
+            "inventory_levels"
+          ],
+          "data_outputs": [
+            "validated_order",
+            "order_number",
+            "validation_status"
+          ]
+        },
+        {
+          "step_id": "S02",
+          "name": "Credit Check & Risk Assessment",
+          "description": "Automated credit limit verification, payment history review, and fraud detection scoring",
+          "automation_potential": 0.9,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "FI",
+            "SD"
+          ],
+          "data_inputs": [
+            "customer_financials",
+            "payment_history",
+            "order_amount"
+          ],
+          "data_outputs": [
+            "credit_decision",
+            "risk_score",
+            "hold_flag"
+          ]
+        },
+        {
+          "step_id": "S03",
+          "name": "Inventory Allocation & Reservation",
+          "description": "System reserves inventory from warehouse, applies allocation rules, generates picking list",
+          "automation_potential": 0.95,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "MM",
+            "WM"
+          ],
+          "data_inputs": [
+            "order_lines",
+            "warehouse_stock",
+            "allocation_rules"
+          ],
+          "data_outputs": [
+            "reservation_id",
+            "picking_list",
+            "allocation_status"
+          ]
+        },
+        {
+          "step_id": "S04",
+          "name": "Picking & Quality Inspection",
+          "description": "Warehouse staff picks items, performs quality checks, scans barcodes for verification",
+          "automation_potential": 0.4,
+          "actor": "human",
+          "erp_touchpoints": [
+            "WM",
+            "QM"
+          ],
+          "data_inputs": [
+            "picking_list",
+            "item_master",
+            "quality_standards"
+          ],
+          "data_outputs": [
+            "picked_items",
+            "inspection_results",
+            "defect_log"
+          ]
+        },
+        {
+          "step_id": "S05",
+          "name": "Packing & Labeling",
+          "description": "Items packed into shipping containers, labels generated with tracking and compliance info",
+          "automation_potential": 0.6,
+          "actor": "hybrid",
+          "erp_touchpoints": [
+            "WM",
+            "SD"
+          ],
+          "data_inputs": [
+            "picked_items",
+            "shipping_rules",
+            "regulatory_requirements"
+          ],
+          "data_outputs": [
+            "shipment_id",
+            "tracking_number",
+            "shipping_label"
+          ]
+        },
+        {
+          "step_id": "S06",
+          "name": "Shipping & Carrier Integration",
+          "description": "Shipment handed to carrier, tracking updated in real-time via API integration",
+          "automation_potential": 0.88,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "LE"
+          ],
+          "data_inputs": [
+            "shipment_details",
+            "carrier_rates",
+            "delivery_address"
+          ],
+          "data_outputs": [
+            "carrier_shipment_id",
+            "tracking_url",
+            "eta"
+          ]
+        },
+        {
+          "step_id": "S07",
+          "name": "Invoice Generation & Posting",
+          "description": "Automated invoice creation based on delivery confirmation, posted to FI module",
+          "automation_potential": 0.92,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI",
+            "AR"
+          ],
+          "data_inputs": [
+            "delivery_receipt",
+            "pricing_master",
+            "tax_rules"
+          ],
+          "data_outputs": [
+            "invoice_number",
+            "accounting_entry",
+            "invoice_document"
+          ]
+        },
+        {
+          "step_id": "S08",
+          "name": "Payment Processing & Reconciliation",
+          "description": "Payment received, matched against invoice, reconciled in cash management module",
+          "automation_potential": 0.85,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "FI",
+            "TR",
+            "AR"
+          ],
+          "data_inputs": [
+            "payment_receipt",
+            "invoice_record",
+            "bank_statement"
+          ],
+          "data_outputs": [
+            "payment_posting",
+            "reconciliation_status",
+            "cash_entry"
+          ]
+        },
+        {
+          "step_id": "S09",
+          "name": "Dispute Resolution & Escalation",
+          "description": "Handling of order discrepancies, returns, chargebacks; escalation to management if needed",
+          "automation_potential": 0.3,
+          "actor": "human",
+          "erp_touchpoints": [
+            "SD",
+            "FI",
+            "CS"
+          ],
+          "data_inputs": [
+            "complaint_data",
+            "order_history",
+            "policy_rules"
+          ],
+          "data_outputs": [
+            "resolution_decision",
+            "credit_memo",
+            "case_status"
+          ]
+        },
+        {
+          "step_id": "S10",
+          "name": "Compliance & Audit Logging",
+          "description": "All transactions logged for regulatory compliance, audit trail maintained with timestamps and user IDs",
+          "automation_potential": 0.98,
+          "actor": "agent",
+          "erp_touchpoints": [
+            "SD",
+            "FI",
+            "GRC"
+          ],
+          "data_inputs": [
+            "transaction_data",
+            "regulatory_rules",
+            "user_context"
+          ],
+          "data_outputs": [
+            "audit_log",
+            "compliance_report",
+            "evidence_file"
+          ]
+        }
+      ],
+      "automation_zones": {
+        "fully_automatable": [
+          "S01",
+          "S02",
+          "S03",
+          "S06",
+          "S07",
+          "S08",
+          "S10"
+        ],
+        "hybrid": [
+          "S05"
+        ],
+        "human_required": [
+          "S04",
+          "S09"
+        ]
+      },
+      "risk_flags": [
+        {
+          "flag": "Credit Fraud Detection Accuracy",
+          "severity": "high",
+          "mitigation": "Implement multi-model ensemble scoring, maintain human review threshold, continuous model retraining with labeled fraud cases"
+        },
+        {
+          "flag": "Inventory Allocation Conflicts",
+          "severity": "medium",
+          "mitigation": "Use pessimistic locking, implement queue-based allocation, maintain safety stock buffers"
+        },
+        {
+          "flag": "Regulatory Compliance Drift",
+          "severity": "high",
+          "mitigation": "Maintain compliance rule engine, quarterly audit reviews, automated policy version control"
+        },
+        {
+          "flag": "Data Quality in Master Records",
+          "severity": "medium",
+          "mitigation": "Implement data validation rules at entry, periodic MDM reconciliation, automated anomaly detection"
+        },
+        {
+          "flag": "Carrier API Downtime",
+          "severity": "medium",
+          "mitigation": "Implement fallback manual tracking, circuit breaker pattern, SLA monitoring with alerts"
+        },
+        {
+          "flag": "Payment Reconciliation Exceptions",
+          "severity": "medium",
+          "mitigation": "Automated exception routing, machine learning-based matching rules, manual review queue with SLA"
+        },
+        {
+          "flag": "Personal Data Exposure in Logs",
+          "severity": "high",
+          "mitigation": "Implement data masking in audit logs, encryption at rest, role-based access control, GDPR retention policies"
+        }
+      ],
+      "integration_map": {
+        "erp_modules": [
+          "SD",
+          "MM",
+          "WM",
+          "FI",
+          "AR",
+          "TR",
+          "QM",
+          "LE",
+          "CS",
+          "GRC"
+        ],
+        "api_type": "RFC/BAPI",
+        "data_format": "XML/JSON",
+        "auth_method": "SAP Single Sign-On (SSO) with OAuth 2.0 for external carrier APIs"
+      },
+      "compliance_notes": {
+        "eu_ai_act_risk": "limited",
+        "gdpr_data_touched": true,
+        "gdpr_lawful_basis": "Contract performance (Article 6(1)(b)) and legitimate interest (Article 6(1)(f)) for fraud detection",
+        "iso_42001_applicable": true,
+        "audit_trail_required": true
+      },
+      "overall_automation_score": 0.78,
+      "confidence": 0.92
+    }
+  }
+}

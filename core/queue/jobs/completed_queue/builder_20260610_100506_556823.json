@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260610_100506_556823",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO42001-9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:05:06.556836",
+  "status": "completed",
+  "started_at": "2026-06-10T16:28:44.956336",
+  "completed_at": "2026-06-10T16:29:13.514968",
+  "error": null,
+  "result": {
+    "agent_name": "ai_performance_monitoring_audit_agent",
+    "ready_for_packager": true
+  }
+}

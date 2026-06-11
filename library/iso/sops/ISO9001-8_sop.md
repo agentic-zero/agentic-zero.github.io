@@ -7,9 +7,9 @@
 Operational planning and control including customer communication, design and development, control of externally provided processes, production and service provision, release and control of nonconforming outputs
 
 ## Triggers
-- New customer_requirements received
-- QualityPlan updated
-- SupplierData refresh event
+- New customer order received
+- Production schedule released
+- Supplier data updated
 
 ## Inputs Required
 - customer requirements
@@ -19,8 +19,8 @@ Operational planning and control including customer communication, design and de
 - quality plans
 
 ## Process Steps
-1. IF inspection_result == 'pass' THEN create ReleaseDecision ELSE create NonconformanceReport
-2. IF supplier_quality_rate < 0.95 THEN flag SupplierEvaluation for review
+1. IF inspection_result == 'pass' AND nonconformance_count == 0 THEN create ReleaseDecision
+2. IF supplier_quality_rate < 0.95 THEN trigger SupplierEvaluation and corrective_action
 
 ## Expected Outputs
 - controlled products/services
@@ -30,17 +30,17 @@ Operational planning and control including customer communication, design and de
 - supplier evaluations
 
 ## Business Rules
-- All outputs must generate InspectionRecord before ReleaseDecision
-- NonconformanceReport must be created within 24 hours of detection
-- Sector == 'pharma' requires GxP compliance flag on all records
+- Every output must have at least one linked InspectionRecord before ReleaseDecision
+- NonconformanceReport must be closed within 10 business days or escalate to management
+- All customer requirements must be traceable to ProcessParameter settings
 
 ## Exception Handling
-- If sector == 'food' and HACCP deviation detected, route to external HACCP review before ReleaseDecision
-- If automation_potential check fails, require manual sign-off on ReleaseDecision
+- IF customer_requirement changes after planning start THEN re-run OperationalPlan and log revision
+- IF GxP flag active THEN require electronic signature on ReleaseDecision
 
 ## Success Criteria
-- first_pass_yield >= 0.95
-- nonconformance_closure_rate >= 0.98
+- first_pass_yield >= 0.98
+- nonconformance_closure_rate >= 0.95 within SLA
 - customer_complaint_rate <= 0.02
 
 ## Compliance Requirements

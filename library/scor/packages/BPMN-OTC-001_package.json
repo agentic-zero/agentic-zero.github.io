@@ -92,5 +92,33 @@
     "roi_multiplier": 8.0
   },
   "ready_for_guardian": true,
-  "package_path": "library/scor/packages/BPMN-OTC-001_package.json"
+  "package_path": "library/scor/packages/BPMN-OTC-001_package.json",
+  "multi_model_validation": {
+    "consensus_score": 0.833,
+    "decision": "WEIGHTED_MERGE",
+    "decision_label": "REVIEW_RECOMMENDED",
+    "overall_automation_score": 0.825,
+    "certified_by": [
+      "grok-3-mini",
+      "gemini-1.5-flash",
+      "claude-haiku-4-5"
+    ],
+    "generated_at": "2026-06-11T10:26:10.563239+00:00",
+    "divergence_map": {
+      "automation_zones_agreement": 0.697,
+      "steps_agreement": 0.969,
+      "compliance_agreement": 1.0,
+      "integration_agreement": 0.667,
+      "weakest_field": "integration"
+    },
+    "governance": {
+      "data_never_leaves_api": true,
+      "sensitive_fields_masked": true,
+      "no_personal_data_in_prompt": true,
+      "audit_trail_path": "comparator_logs/BPMN-OTC-001_comparator_*.json",
+      "eu_ai_act_compliant": true,
+      "methodology": "Multi-model consensus â€” Agentic Zero PROPRIETARY"
+    },
+    "ontology_path": "library/ontologies/BPMN-OTC-001_ontology.json"
+  }
 }

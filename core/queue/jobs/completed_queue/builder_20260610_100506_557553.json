@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260610_100506_557553",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO42001-10"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:05:06.557565",
+  "status": "completed",
+  "started_at": "2026-06-10T16:29:13.528218",
+  "completed_at": "2026-06-10T16:29:45.813743",
+  "error": null,
+  "result": {
+    "agent_name": "continual_improvement_orchestrator",
+    "ready_for_packager": true
+  }
+}

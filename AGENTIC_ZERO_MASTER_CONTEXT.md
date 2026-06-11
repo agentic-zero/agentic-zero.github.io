@@ -8669,3 +8669,385 @@ git push origin master
 *Master Context v4.4 — 10 Junio 2026 — 16:30h*  
 *Claude Sonnet 4.6 + Alberto Muñoz Waissen*  
 *Sprint 7 activo · 1073+ completados · audit.html en verificación · HTTPS ✅*
+
+# FIN DE SESION 10 JUNIO DE 2026
+
+# AGENTIC ZERO — MASTER CONTEXT
+## Documento de recuperación de contexto completo
+### Versión: 4.5 | Fecha: 10 Jun 2026 — Fin de jornada | Sprint 7 activo
+
+---
+
+## 1. IDENTIDAD DE LA EMPRESA
+
+**Nombre:** AGENTIC ZERO  
+**Tagline:** Autonomous Operations for Regulated Supply Chains  
+**Subtítulo:** Building the Agentic Enterprise · Built for Complexity  
+**Fundador:** Alberto Muñoz Waissen — Founder & CEO  
+**Fecha de fundación:** 27 Mayo 2026  
+**Dominio:** agentic-zero.com  
+**Web:** https://agentic-zero.github.io  
+**Email:** alberto@agentic-zero.com  
+**LinkedIn:** linkedin.com/in/awaissen  
+
+---
+
+## 2. PROPUESTA DE VALOR
+
+**Mensaje principal:**  
+"Construimos la empresa Agentic que los grandes persiguen y las medianas creen que no pueden permitirse."
+
+**Posicionamiento:**  
+Agentic Zero ocupa el único cuadrante no cubierto: alta capacidad técnica + alta accesibilidad económica + agnóstico de plataforma + razonamiento regulatorio embebido + conocimiento de dominio real en entornos regulados.
+
+**Mercado objetivo:** Empresa mediana (50M-500M€) en sectores regulados europeos:  
+Pharma (GxP/GMP/GDP) · Defense (AS9100/ARP4761) · Chemical (REACH) · Food (HACCP/FSMA) · Automotive (APQP/PPAP/IATF 16949) · MedTech (ISO 13485/MDR) · Logistics · Energy · Manufacturing · Distribution
+
+---
+
+## 3. PERFIL DEL FUNDADOR
+
+**Experiencia:** 25+ años · 30+ países · 400+ plantas industriales · $420M valor demostrado  
+**Credenciales clave:**  
+MIT Operations Research & Analytics · Oxford AI Governance · Vanderbilt Agentic AI Developer · IBM AI Engineering Professional · APICS SCOR-D · ERP Certified Consultant · EU AI Act · NIST AI RMF · ISO/IEC 42001
+
+---
+
+## 4. PRODUCTOS
+
+### AGENTIC ZERO AUDIT (producto de entrada)
+- 10 días · ROI visible · Precio no publicado en web
+- Primer audit gratuito a cambio de caso de estudio
+- **5 fases:** Intake (1-2) · Mapeo (3-4) · ROI & Compliance (5-6) · Autonomy Map (7-8) · Sesión Ejecutiva (9-10)
+- **Entregables:** Autonomy Map · ROI exact · Agentic Engineering Design · Governance Framework · Compliance Certification · Agent Demo · Deployment Roadmap · Executive Session · Multi-Model Process Ontology (PROPRIETARY)
+- **Garantías post-deploy:** ROI medido 30/60/90 días · Ajuste sin coste si ROI no se cumple · Audit trail Guardian-certified · EU AI Act compliant día 1
+
+### AGENTIC ZERO SWARM (producto estrella)
+- Enjambre de agentes coordinados para procesos de alta complejidad
+
+### AGENTIC ZERO PLATFORM (Fase 5 - futuro)
+- SaaS self-service · Engine = Pioneer Team · Pricing dinámico por complejidad
+
+---
+
+## 5. AI GOVERNANCE (diferencial crítico)
+
+4 frameworks embebidos nativamente:
+- **EU AI Act** — obligatorio agosto 2026
+- **ISO/IEC 42001** — AI Management Systems
+- **NIST AI RMF** — Govern · Map · Measure · Manage
+- **GDPR AI** — intersección GDPR con sistemas AI autónomos
+
+---
+
+## 6. ARQUITECTURA TÉCNICA
+
+```
+Fase 1-2: Nanobot + ClawWork + Gemini Flash (GRATIS)
+Fase 3:   + Paperclip AI + OpenClaw Communication Agent
+Fase 4:   + IBM Bob Skills pattern (proceso → agente)
+Fase 5:   Pioneer Team = SaaS Engine
+```
+
+**Política de coste actual:** Coste cero — Gemini Flash gratuito (15 RPM · 1.500 RPD · 1M tokens/request)
+
+---
+
+## 7. PIONEER TEAM — R&D ENGINE
+
+5 agentes: **SCOUT** · **ARCHITECT** · **BUILDER** · **PACKAGER** · **GUARDIAN**  
+Pipeline: Scout → Architect → Builder → Packager → Guardian → Auditor
+
+---
+
+## 8. BIBLIOTECA DE PROCESOS — ESTADO 10 JUN 2026
+
+```
+Capa 1: SCOR + SCOR-D    → 111 procesos ✅
+Capa 2: ISO generalistas  → ISO 9001 · ISO 42001 ✅
+Capa 3: BPMN transversal  → 41 procesos ✅
+Capa 4: Sector específico → GxP · IATF · EU AI Act · GDPR · NIST ✅
+Capa 5: Complejos/emergentes → pendiente
+```
+
+### Frameworks certificados
+| Framework | Procesos | Estado |
+|-----------|----------|--------|
+| SCOR (P·S·M·D·SR·DR·E·DIG) | 111 | ✅ |
+| BPMN transversal | 41 | ✅ |
+| ISO 9001:2015 | clauses 4-10 | ✅ |
+| ISO/IEC 42001:2023 | clauses 4-10 | ✅ |
+| EU AI Act | ART6·9·10·11·12·13·14·72 | ✅ |
+| GDPR | ART5·13·30 | ✅ |
+| GxP | GDP·GMP | ✅ |
+| IATF 16949 | 8D·APQP·PPAP | ✅ |
+| NIST AI RMF | GOVERN·MAP·MEASURE·MANAGE | ✅ |
+| **TOTAL** | **~189 procesos** | **1073+ completados** |
+
+### Estructura library
+```
+F:\agentic-zero\library\
+  scor/agents/code/        → {process_id}_agent.py
+  scor/certificates/       → {process_id}_certificate.txt + _guardian.json
+  scor/packages/           → _package.json + _demo_script.txt + _integration_guide.md
+  scor/sops/               → {process_id}_sop.md
+  iso/agents/              → ISO frameworks agents
+  iso/certificates/        → ISO certificates
+  frameworks/              → JSON definitions (source of truth)
+  sector_specific/         → EUAIA · GDPR · GXP · IATF · NIST agents + certificates
+```
+
+---
+
+## 9. WEB — ESTADO 10 JUNIO 2026
+
+### Archivos (single source of truth — raíz)
+```
+F:\agentic-zero\index.html   → página principal
+F:\agentic-zero\audit.html   → formulario AUDIT
+```
+**ELIMINADOS:** commercial/web/audit.html · commercial/web/index.html
+
+### HTTPS / DNS
+✅ HTTPS activo — candado verde visible en agentic-zero.com  
+✅ DNS check successful — resuelto hoy tras fix CNAME  
+✅ CNAME corregido — era `[www.agentic-zero.com](https://www.agentic-zero.com)` (markdown) → ahora `agentic-zero.com` limpio  
+
+### audit.html — funcionalidades
+- **Step 1:** datos contacto (name · company · email · role · sector)
+- **Step 2:** datos operacionales (ERP · volume slider ✅ · team_size · timing)
+- **Step 3:** L1 grid 16 categorías + L2 subcategorías desplegables + L3 cross-process detection
+- **Step 4:** confirmación + AL indicator + submit
+- **Backend:** Formspree xlgkgapl · subject [AUDIT AL1/2/3/4] · _replyto cliente
+- **FRAMEWORK_MAP:** 16 L1 · 105 L2 · 216 refs validadas → campo `process_mapping` al Scout Comercial
+- **AL1-AL4:** clasificación automática basada en volumen + ERP
+
+### Fixes aplicados HOY (10 Jun)
+```
+1. onclick &#39; → ' (Chrome save artifact — botones no funcionaban)
+2. Meta tag Content-Type legacy eliminado
+3. const SUBCATEGORIES declarado dos veces → duplicado eliminado
+4. CNAME markdown → dominio limpio (fix DNS check crónico)
+5. Branch master → main (GitHub Pages servía desde main)
+6. Volume slider: updateVolume() añadida + f-volume hidden input
+```
+
+### Último commit
+```
+2702a97 — Fix volume slider · updateVolume fn · f-volume hidden input · real value mapping
+```
+
+### Verificación pendiente mañana
+- Probar slider en producción → confirmar valor llega a Formspree (no "Not specified")
+- Confirmar clasificación AL1/AL2 cambia correctamente al mover slider > 500
+
+---
+
+## 10. SCOUT COMERCIAL (Sprint 7 — diseñado, pendiente implementar)
+
+```
+audit.html submit
+      ↓
+  Formspree → email alberto@agentic-zero.com
+      ↓
+  Scout Comercial lee process_mapping + parámetros
+      ↓
+  AL1/AL2 → auto-genera ROI + propuesta
+  AL3/AL4 → deriva a revisión humana Alberto
+      ↓
+  Dashboard confirmación (Alberto confirma o edita)
+      ↓
+  Herald envía secuencia
+```
+
+---
+
+## 11. PRIMER CLIENTE — INMACULADA SIERRA
+
+```
+Proceso:      BPMN-OTC-001 (Order-to-Cash)
+ERP:          SAP ECC + HANA (FI+SD+MM conectados, TMS fase final)
+Volumen:      50 órdenes/día · 1.100/mes
+Coste manual: €29.640/año
+ROI 65%:      €19.266/año · 3.3x · payback 3.7 meses
+ROI 100%:     €29.640/año · 5.0x · payback 2.4 meses
+Coste agente: €490/mes
+```
+
+### Secuencia comercial
+```
+Touch 1: Email consultivo ✅
+Touch 2: Email ROI real ✅ (9 Jun 2026)
+Touch 3: LinkedIn ⏳ ~13 Jun 2026
+Touch 4: Email final ⏳ ~23 Jun 2026 (propuesta expira 30 Jun)
+```
+
+---
+
+## 12. INTELIGENCIA COMPETITIVA
+
+### SCIQLab (Tauseef Irfan — competidor directo)
+SAP S/4HANA certified · custom por cliente · meses de deploy · sciqlab.com
+
+**Checklist comparativo Agentic Zero vs SCIQLab:**
+| Dimensión | AZ vs SCIQLab |
+|---|---|
+| Certificación EU AI Act | ✅ MEJOR — embebida, obligatorio ago 2026 |
+| Velocidad deploy | ✅ MEJOR — 24h vs meses |
+| Biblioteca pre-built | ✅ MEJOR — 189 procesos vs custom |
+| Coste cliente | ✅ MEJOR — €490/mes vs fees consultoría |
+| Pioneer Team (proceso→agente) | ✅ MEJOR — infraestructura propietaria |
+| Conocimiento dominio regulado | ✅ MEJOR — 25 años campo real |
+| SAP S/4HANA integration | = PARIDAD |
+| Multi-agent orchestration | = PARIDAD (Swarm diseñado) |
+| Escalation logic | = PARIDAD |
+| ROI tracking | = PARIDAD (M3 operativo) |
+| Token governance por cliente | ⚠️ PARCIAL — M11 pendiente Sprint 7 |
+| Context sharing lateral | ⚠️ PARCIAL — semilla Swarm, pendiente |
+| Demand Planning Agent (datos ext.) | ⚠️ PARCIAL — P1-P5 OK, conector ERP pendiente |
+| Supplier Risk Agent específico | ❌ PENDIENTE — P2+SR existe, falta risk scoring continuo |
+| Swarm multi-agent runtime cliente | ❌ PENDIENTE — Fase 4 |
+
+### CollectivIQ (Steve Nouri)
+Trust layer AI — governa decisiones humanas. Distinto a AZ (agentes autónomos operacionales).
+
+### Stanford HAI CooperBench (Zhu & Yang, ICLR Apr 2026)
+Multi-agentes pierden ~50% capacidad al coordinar. 4 soluciones para diseño Swarm: reward coordination · commitment+verification · merges periódicos · canales inter-agente fuertes.
+
+---
+
+## 13. MÓDULOS
+
+```
+✅ M1  — License Manager
+✅ M2  — Autonomy Dashboard v2
+✅ M3  — ROI Calculator
+✅ M4  — Compliance Engine
+✅ M5  — Pioneer Team Pipeline
+✅ M6  — Library Management
+✅ M7  — API Gateway (FastAPI, 13 endpoints)
+✅ M8  — Queue System (max_jobs=9999)
+✅ M9  — Library API Service
+✅ M10 — Orchestration Interface
+⏳ M11 — Token Governance "cuentakilómetros" (Sprint 7)
+⏳ M12 — Evidence Shield (definido, pendiente implementar)
+```
+
+### M11 Token Governance
+Medidor de consumo real vs auditado por cliente. ROI alerts automáticos. Ajuste dinámico de comportamiento del agente para mantenerse dentro del presupuesto del ROI inicial.
+
+### M12 Evidence Shield
+3 capas: (1) Técnica: certificado Guardian + audit trail + test cases; (2) Comercial: ROI estimado → ROI real 30/60/90 días → caso estudio firmado → testimonio LinkedIn; (3) Autoridad: posts metodología + transparencia Guardian + refs estándares.
+
+---
+
+## 14. INFRAESTRUCTURA
+
+```
+GitHub:  agentic-zero/agentic-zero.github.io (branch: main)
+DNS:     IONOS — 4 registros A → 185.199.108/109/110/111.153
+HTTPS:   ✅ activo
+CNAME:   agentic-zero.com (sin www — corregido hoy)
+xAI API: grok-3-mini · ~$6.41 créditos (10 Jun)
+Coste total invertido: < €20
+```
+
+---
+
+## 15. ARRANQUE TÉCNICO
+
+```powershell
+# Activar entorno
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+& f:\agentic-zero\.venv\Scripts\Activate.ps1
+
+# Pipeline
+cd F:\agentic-zero\core\queue
+python queue_system.py --status
+python queue_system.py --worker builder    # Terminal 1
+python queue_system.py --worker packager   # Terminal 2
+python queue_system.py --worker guardian   # Terminal 3
+
+# Auditor
+cd F:\agentic-zero\pioneer_team\auditor
+python auditor.py --all
+
+# Bulk approve AUTO_APPROVE desde review_queue
+cd F:\agentic-zero
+python bulk_approve.py --dry-run
+python bulk_approve.py
+
+# Encoding fix para Windows
+$env:PYTHONIOENCODING="utf-8"
+
+# Deploy web
+cd F:\agentic-zero
+git add .
+git commit -m "descripcion"
+git push origin master:main    ← IMPORTANTE: siempre master:main
+```
+
+---
+
+## 16. PENDIENTES SPRINT 7 — ESTADO 10 JUN 2026
+
+### ✅ COMPLETADOS HOY
+1. audit.html — verificación funcional end-to-end ✅
+2. Submit Formspree — email llega a alberto@agentic-zero.com ✅
+3. CNAME fix (markdown → dominio limpio) ✅
+4. DNS check resuelto ✅
+5. Branch master→main sincronizado ✅
+6. Volume slider fix (updateVolume + f-volume) ✅
+
+### 🔴 VERIFICACIÓN PENDIENTE MAÑANA
+7. Probar slider en producción — confirmar valor real llega a Formspree
+
+### 🟡 PIPELINE — Biblioteca
+8. 156 jobs APPROVE_WITH_CONDITIONS/HOLD — revisión manual pendiente
+
+### 🟡 AI ENGINEERING
+9. Multi-Model Comparador — agente que lanza misma spec a múltiples LLMs, compara outputs, genera ontología de consenso. Integrar en Architect o Builder. En audit.html como entregable 09 PROPRIETARY — implementación pendiente.
+10. Context Sharing Lateral (Swarm seed) — puente estado compartido entre agentes en tiempo real. Basado en CooperBench. 4 principios: reward coordination · commitment+verification · merges periódicos · canales fuertes.
+
+### 🟡 MÓDULOS
+11. Scout Comercial v1 — lee process_mapping → mapea biblioteca → AL1/AL2 auto-propuesta → AL3/AL4 deriva manual → dashboard → Herald
+12. M11 Token Governance — cuentakilómetros por cliente
+13. M12 Evidence Shield — implementar
+
+### 🟢 COMERCIAL
+14. LinkedIn post "AI Efficiency Trap" — DESBLOQUEADO · publicar esta semana
+15. Touch 3 Inmaculada — ~13 Jun vía LinkedIn
+16. Touch 4 Inmaculada — ~23 Jun · propuesta expira 30 Jun
+
+---
+
+## 17. ROADMAP
+
+```
+✅ Sprint 5: Pioneer Team · SCOR 111 · xAI API · web online
+✅ Sprint 6: BPMN 41 · 0 HOLD · DNS · LinkedIn · Inmaculada Touch 2
+⏳ Sprint 7 (activo — 10 Jun 2026):
+   ✅ Compliance frameworks (ISO/EUAIA/GDPR/GXP/IATF/NIST) certificados
+   ✅ audit.html completo — Formspree + AL1-AL4 + L1/L2/L3 + FRAMEWORK_MAP
+   ✅ queue_system fix max_jobs=9999
+   ✅ bulk_approve.py — 91 AUTO_APPROVE aprobados
+   ✅ HTTPS activo
+   ✅ audit.html verificado end-to-end (10 Jun)
+   ✅ CNAME + DNS fix (10 Jun)
+   ✅ Volume slider fix (10 Jun)
+   ⏳ Slider verificación en producción
+   ⏳ Scout Comercial v1
+   ⏳ M11 Token Governance
+   ⏳ M12 Evidence Shield
+   ⏳ Multi-Model Comparador
+   ⏳ Context Sharing Lateral (Swarm seed)
+   ⏳ LinkedIn post (desbloqueado · esta semana)
+   ⏳ Touch 3 Inmaculada ~13 Jun
+   ⏳ Touch 4 Inmaculada ~23 Jun
+```
+
+---
+
+*Master Context v4.5 — 10 Junio 2026 — Fin de jornada*  
+*Claude Sonnet 4.6 + Alberto Muñoz Waissen*  
+*Sprint 7 activo · 1073+ completados · audit.html verificado ✅ · HTTPS ✅ · DNS ✅*

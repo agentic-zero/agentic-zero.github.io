@@ -8,9 +8,12 @@
   "retries": 0,
   "max_retries": 3,
   "created_at": "2026-06-10T11:10:36.250962",
-  "status": "pending",
-  "started_at": null,
-  "completed_at": null,
+  "status": "completed",
+  "started_at": "2026-06-10T16:32:22.708741",
+  "completed_at": "2026-06-10T16:32:52.265474",
   "error": null,
-  "result": null
+  "result": {
+    "agent_name": "risk_opportunity_planner",
+    "ready_for_packager": true
+  }
 }

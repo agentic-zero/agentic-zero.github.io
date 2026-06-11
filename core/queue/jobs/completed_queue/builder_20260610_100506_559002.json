@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260610_100506_559002",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "NIST-MANAGE"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T10:05:06.559017",
+  "status": "completed",
+  "started_at": "2026-06-10T16:30:15.592992",
+  "completed_at": "2026-06-10T16:30:48.906446",
+  "error": null,
+  "result": {
+    "agent_name": "nist_manage_risk_treatment_agent",
+    "ready_for_packager": true
+  }
+}

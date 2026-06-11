@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260610_111036_255056",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO42001-5"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T11:10:36.255069",
+  "status": "completed",
+  "started_at": "2026-06-10T16:34:34.421422",
+  "completed_at": "2026-06-10T16:35:04.339107",
+  "error": null,
+  "result": {
+    "agent_name": "ai_policy_governance_agent",
+    "ready_for_packager": true
+  }
+}

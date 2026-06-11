@@ -7,9 +7,9 @@
 Establishing organizational practices for AI risk management including policies, processes, accountability structures and culture that enable trustworthy AI development and deployment
 
 ## Triggers
-- new organizational_ai_strategy published
-- regulatory_context updated
-- annual governance review date reached
+- organizational_ai_strategy update event
+- new regulatory_context addition
+- quarterly KPI review schedule
 
 ## Inputs Required
 - organizational AI strategy
@@ -19,8 +19,8 @@ Establishing organizational practices for AI risk management including policies,
 - ethical principles
 
 ## Process Steps
-1. IF RegulatoryContext contains EU_AI_Act THEN add EU_AI_Act_governance compliance flag to AIPolicies
-2. IF automation_potential < 0.5 THEN require manual review of AccountabilityStructures
+1. IF Regulatory_Context changes THEN trigger AI_Policy update and recompute Policy_Adherence_Rate
+2. IF Accountability_Coverage < 1.0 THEN require new Role_Responsibility assignment
 
 ## Expected Outputs
 - AI risk governance framework
@@ -30,18 +30,17 @@ Establishing organizational practices for AI risk management including policies,
 - AI culture indicators
 
 ## Business Rules
-- PolicyAdherenceRate must be calculated quarterly from audit logs
-- AccountabilityCoverage must map every AIPolicy to at least one named role
-- GovernanceMaturityScore must be updated after each policy change
+- GOVERN_Process must produce AI_Risk_Governance_Framework before any MAP process execution
+- All AI_Policy must reference at least one Ethical_Principle
+- Governance_Maturity_Score must be recalculated quarterly using defined KPIs
 
 ## Exception Handling
-- If sector_applicability excludes defense then skip defense-specific accountability structures
-- If source confidence < 0.9 then flag output for human validation before publishing AIRiskGovernanceFramework
+- Low-risk AI systems may use reduced Accountability_Structure with documented justification and approval from Risk_Appetite owner
 
 ## Success Criteria
-- GovernanceMaturityScore >= 0.8
-- PolicyAdherenceRate >= 0.95
-- all roles mapped to at least one AIPolicy
+- Governance_Maturity_Score >= 0.8
+- Accountability_Coverage == 1.0
+- Policy_Adherence_Rate >= 0.95
 
 ## Compliance Requirements
 - NIST AI RMF 1.0 GOVERN

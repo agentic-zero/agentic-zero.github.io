@@ -7,8 +7,9 @@
 Analyzing and assessing AI risks using quantitative and qualitative methods including trustworthiness metrics, bias measurement, robustness testing and performance benchmarking
 
 ## Triggers
-- Availability of AI system outputs and test datasets
-- Start of MEASURE function in NIST AI RMF workflow
+- New AI_System_Output batch received
+- Scheduled quarterly robustness testing
+- EU AI Act performance metrics request
 
 ## Inputs Required
 - AI system outputs
@@ -18,8 +19,9 @@ Analyzing and assessing AI risks using quantitative and qualitative methods incl
 - robustness test results
 
 ## Process Steps
-1. IF automation_potential >= 0.8 THEN execute automated metric calculation
-2. IF bias score trends exceed threshold THEN trigger bias review
+1. IF bias_measurement > 0.15 THEN generate compliance_flag
+2. IF measurement_coverage < 0.8 THEN request additional Test_Dataset
+3. IF metric_reliability < 0.9 THEN rerun Robustness_Test_Result
 
 ## Expected Outputs
 - risk metrics
@@ -29,16 +31,18 @@ Analyzing and assessing AI risks using quantitative and qualitative methods incl
 - performance benchmarks
 
 ## Business Rules
-- compliance_flags must include NIST AI RMF 1.0 MEASURE
-- sector_applicability must match one of manufacturing,pharma,defense,chemical,food,automotive,distribution
-- kpis must report measurement coverage, metric reliability, benchmark achievement, bias score trends
+- All outputs must include NIST AI RMF 1.0 MEASURE compliance_flag
+- Compute at least 4 KPIs per process execution
+- Map every input to at least one output entity
 
 ## Exception Handling
-- If source confidence < 0.9 then require manual validation of all outputs
+- Missing Test_Dataset: skip Bias_Measurement and log warning
+- Automation_potential < 0.5: require human review before producing Risk_Metric
 
 ## Success Criteria
-- All outputs generated: risk metrics, trustworthiness scores, bias measurements, robustness reports, performance benchmarks
-- All kpis computed with values
+- All 4 KPIs exceed defined thresholds
+- Risk_Metric and Trustworthiness_Score generated for 100% of inputs
+- Robustness_Report produced within SLA
 
 ## Compliance Requirements
 - NIST AI RMF 1.0 MEASURE

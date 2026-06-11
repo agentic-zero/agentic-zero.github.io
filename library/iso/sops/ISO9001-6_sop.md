@@ -7,8 +7,10 @@
 Actions to address risks and opportunities, quality objectives and planning to achieve them, planning of changes to the QMS
 
 ## Triggers
-- new context_analysis or stakeholder_needs received
-- performance_data update or change_trigger detected
+- new ContextAnalysis available
+- PerformanceData updated
+- StakeholderNeed changed
+- scheduled quarterly review
 
 ## Inputs Required
 - context analysis
@@ -19,8 +21,8 @@ Actions to address risks and opportunities, quality objectives and planning to a
 
 ## Process Steps
 1. IF risk.likelihood * risk.impact > 12 THEN create ActionPlan with mitigation steps
-2. IF opportunity.impact > 8 THEN create ActionPlan with exploitation steps
-3. IF change_trigger.priority == 'high' THEN generate ChangePlan within 30 days
+2. IF change_trigger exists THEN generate ChangePlan with impact assessment
+3. IF objective_achievement_rate < 0.8 THEN revise QualityObjective and ActionPlan
 
 ## Expected Outputs
 - risk register
@@ -30,19 +32,18 @@ Actions to address risks and opportunities, quality objectives and planning to a
 - change plans
 
 ## Business Rules
-- Every Risk must have likelihood and impact scores before RiskRegister update
-- QualityObjective must reference at least one quality_policy clause
-- All ActionPlans must define owner, due_date and success_metric
-- RiskRegister must be reviewed before any ChangePlan approval
+- Risk must have likelihood (1-5), impact (1-5) and owner before register entry
+- QualityObjective must be SMART and linked to at least one Risk or Opportunity
+- All ActionPlans require due_date and kpi_link before approval
 
 ## Exception Handling
-- If no change_triggers present, skip ChangePlan creation and log waiver
-- If performance_data missing for >20% of risks, flag for manual review instead of auto-register
+- IF no change_triggers in review period THEN skip ChangePlan creation and log waiver
+- IF sector is 'defense' THEN require additional compliance_flags check before Risk approval
 
 ## Success Criteria
-- risk_mitigation_effectiveness >= 0.8
+- risk_mitigation_effectiveness >= 0.85
 - objective_achievement_rate >= 0.9
-- change_success_rate >= 0.85
+- change_success_rate >= 0.95
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 6

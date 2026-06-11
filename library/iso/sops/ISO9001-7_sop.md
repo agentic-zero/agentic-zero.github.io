@@ -7,9 +7,10 @@
 Management of resources including people, infrastructure, environment, monitoring resources, organizational knowledge, competence, awareness, communication and documented information
 
 ## Triggers
-- new ResourceRequirement submitted via ERP API
-- scheduled quarterly competence review
-- infrastructure inventory update event
+- new ResourceRequirement submitted
+- annual competence review date reached
+- document retention policy expiry
+- infrastructure maintenance ticket created
 
 ## Inputs Required
 - resource requirements
@@ -19,9 +20,9 @@ Management of resources including people, infrastructure, environment, monitorin
 - document control requirements
 
 ## Process Steps
-1. IF competence_gap > 0 THEN create TrainingRecord
-2. IF infrastructure_availability < 0.95 THEN trigger ResourceAllocation
-3. IF document_control_compliance == false THEN block ControlledDocument release
+1. IF competence_gap > 0 THEN create TrainingRecord and schedule training
+2. IF document_version != latest THEN enforce ControlledDocument update before release
+3. IF infrastructure_availability < 0.95 THEN trigger ResourceAllocation review
 
 ## Expected Outputs
 - resource allocation
@@ -31,20 +32,20 @@ Management of resources including people, infrastructure, environment, monitorin
 - communication plans
 
 ## Business Rules
-- competence_coverage_rate >= 0.9 required for process sign-off
-- all TrainingRecord entries must include completion_date and assessor_id
-- ControlledDocument must retain version history and retention_period per GDPR
-- infrastructure_availability must be logged daily
+- TrainingRecord.completion_date must be <= 90 days from CompetenceAssessment.date
+- ControlledDocument must retain revision history for minimum 7 years per ISO 9001
+- CommunicationPlan must log recipient, timestamp and acknowledgment for GDPR traceability
+- Competence_coverage_rate = (assessed_employees / total_employees) must be >= 0.95
 
 ## Exception Handling
-- IF sector == 'pharma' THEN add additional validation_signature to TrainingRecord
-- IF GDPR_employee_data_flag == true THEN anonymize personal fields in CompetenceAssessment before storage
+- IF sector == 'pharma' THEN add 21 CFR Part 11 electronic signature validation to ControlledDocument
+- IF GDPR_employee_data == true THEN anonymize TrainingRecord.personal_data after 3 years retention
 
 ## Success Criteria
-- competence_coverage_rate >= 0.9
-- training_completion_rate >= 0.95
-- document_control_compliance == true
-- infrastructure_availability >= 0.98
+- competence_coverage_rate >= 0.95
+- training_completion_rate >= 0.98
+- document_control_compliance == 100%
+- infrastructure_availability >= 0.99
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 7

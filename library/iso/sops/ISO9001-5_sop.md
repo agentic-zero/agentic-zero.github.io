@@ -7,9 +7,9 @@
 Leadership commitment, quality policy establishment and communication, organizational roles responsibilities and authorities for the QMS
 
 ## Triggers
-- annual_strategic_planning_cycle_start
-- management_review_meeting_scheduled
-- major_organizational_change_event
+- fiscal_year_start
+- organizational_structure_change
+- external_audit_nonconformance
 
 ## Inputs Required
 - strategic direction
@@ -18,8 +18,8 @@ Leadership commitment, quality policy establishment and communication, organizat
 - resource plans
 
 ## Process Steps
-1. IF leadership_commitment_evidence missing THEN schedule management_review within 30 days
-2. IF quality_objectives not measurable THEN return to planning for revision
+1. IF leadership_commitment_evidence exists AND resource_plans allocated THEN approve QualityPolicy
+2. IF policy_communication_rate < 0.95 THEN trigger communication campaign
 
 ## Expected Outputs
 - quality policy
@@ -28,18 +28,18 @@ Leadership commitment, quality policy establishment and communication, organizat
 - management commitment evidence
 
 ## Business Rules
-- QualityPolicy must include commitment to ISO9001 requirements and continual improvement
-- All OrganizationalRoles must have documented authority and responsibility assignments
-- QualityPolicy must be reviewed at least annually or after strategic changes
+- QualityPolicy must be documented, signed by top management and reviewed annually
+- All RoleAssignment entries must specify authority limits and reporting lines
+- QualityObjectives must be measurable and linked to strategic_direction
 
 ## Exception Handling
-- Organizations under 10 employees may combine multiple roles into single assignment with documented justification
-- Pharma and defense sectors require additional compliance_flags documentation before policy approval
+- Organizations <50 employees may combine RoleAssignment entries for multiple functions if documented in ManagementReviewRecord
+- If no regulatory change occurs, QualityPolicy review interval may extend to 24 months with documented justification
 
 ## Success Criteria
 - policy_communication_rate >= 0.95
 - objective_achievement_rate >= 0.80
-- management_review_frequency >= 1 per year
+- ManagementReviewRecord created within 12 months of prior review
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 5

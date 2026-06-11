@@ -9,7 +9,7 @@ Managing AI risks through treatment plans, prioritization, response activities a
 ## Triggers
 - New RiskAssessment received
 - IncidentData logged
-- Scheduled residual risk review (daily)
+- ResidualRiskLevel exceeds 0.3
 
 ## Inputs Required
 - risk assessments
@@ -19,8 +19,9 @@ Managing AI risks through treatment plans, prioritization, response activities a
 - residual risk levels
 
 ## Process Steps
-1. IF residual_risk_level > acceptable_threshold THEN create new RiskTreatmentPlan
-2. IF incident_severity == 'high' THEN activate RecoveryPlan within 1 hour
+1. IF ResidualRiskLevel > threshold THEN execute RecoveryPlan
+2. IF incident_response_time > SLA THEN trigger ImprovementAction
+3. IF risk_treatment_coverage < 0.8 THEN reallocate ResourceConstraint
 
 ## Expected Outputs
 - risk treatment plans
@@ -30,17 +31,18 @@ Managing AI risks through treatment plans, prioritization, response activities a
 - recovery plans
 
 ## Business Rules
-- RiskTreatmentPlan must allocate resources within documented constraints
-- IncidentResponseRecord must be created within 4 hours of IncidentData receipt
-- All outputs require audit log entry with timestamp and actor
+- RiskTreatmentPlan must cover all inputs from RiskAssessment
+- IncidentResponseRecord must be created within 24 hours of IncidentData receipt
+- ResidualRiskReport must be generated after every RiskTreatmentPlan
 
 ## Exception Handling
-- If resource constraints block full treatment, log residual risk and escalate to NIST-GOVERN within 24 hours
+- Low automation_potential sectors require manual approval before RecoveryPlan execution
+- Defense sector skips automated ImprovementAction if compliance_flags include EU AI Act
 
 ## Success Criteria
-- risk_treatment_coverage >= 0.95
+- risk_treatment_coverage >= 0.9
 - incident_response_time <= 3600 seconds
-- residual_risk_reduction >= 0.20 over 30 days
+- residual_risk_reduction >= 0.2 per quarter
 
 ## Compliance Requirements
 - NIST AI RMF 1.0 MANAGE

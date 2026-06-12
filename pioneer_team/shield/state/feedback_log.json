@@ -1,0 +1,45 @@
+[
+  {
+    "process_id": "BPMN-OTC-001",
+    "timestamp": "2026-06-12T07:26:48.438067+00:00",
+    "score": 0.65,
+    "rejection_reasons": [
+      "GDPR compliance missing",
+      "EU AI Act ART.9 not documented",
+      "overall score 0.65 below threshold"
+    ],
+    "retry_count": 0,
+    "analysis": {
+      "fixes_needed": [
+        {
+          "issue": "GDPR",
+          "description": "Agente sin compliance GDPR",
+          "fix_prompt_addition": "CRITICAL: Include explicit GDPR compliance in the agent code. Add: lawful_basis check, data_minimization, retention_policy, right_to_erasure handler, and audit_log for all personal data operations. Every data access must be logged with timestamp and legal basis.",
+          "severity": "high"
+        },
+        {
+          "issue": "EU AI Act",
+          "description": "Agente sin compliance EU AI Act",
+          "fix_prompt_addition": "CRITICAL: Include EU AI Act compliance. Add: risk_classification (limited risk for this process type), transparency_notice, human_oversight_checkpoint, and explainability_log for every automated decision. Document ART.9 risk management measures.",
+          "severity": "high"
+        },
+        {
+          "issue": "unknown",
+          "description": "overall score 0.65 below threshold",
+          "fix_prompt_addition": "Fix the following issue: overall score 0.65 below threshold",
+          "severity": "medium"
+        },
+        {
+          "issue": "score_low",
+          "description": "Score 0.65 insuficiente (minimo 0.75)",
+          "fix_prompt_addition": "Improve overall quality: add comprehensive error handling, input validation, output verification, detailed logging, and inline documentation for every function. Ensure all business rules are explicitly coded, not implied.",
+          "severity": "medium"
+        }
+      ],
+      "overall_severity": "high",
+      "auto_fixable": true,
+      "combined_prompt": "CRITICAL: Include explicit GDPR compliance in the agent code. Add: lawful_basis check, data_minimization, retention_policy, right_to_erasure handler, and audit_log for all personal data operations. Every data access must be logged with timestamp and legal basis.\n\nCRITICAL: Include EU AI Act compliance. Add: risk_classification (limited risk for this process type), transparency_notice, human_oversight_checkpoint, and explainability_log for every automated decision. Document ART.9 risk management measures.\n\nFix the following issue: overall score 0.65 below threshold\n\nImprove overall quality: add comprehensive error handling, input validation, output verification, detailed logging, and inline documentation for every function. Ensure all business rules are explicitly coded, not implied."
+    },
+    "action_taken": "feedback_registered"
+  }
+]

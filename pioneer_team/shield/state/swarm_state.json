@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-06-12T07:26:48.429868+00:00",
+  "processes": {
+    "BPMN-OTC-001": {
+      "process_id": "BPMN-OTC-001",
+      "status": "pending",
+      "current_agent": "guardian",
+      "started_at": "2026-06-12T07:26:48.429848+00:00",
+      "updated_at": "2026-06-12T07:26:48.429852+00:00",
+      "history": [],
+      "metadata": {},
+      "retry_count": 0,
+      "feedback": []
+    }
+  },
+  "agents": {},
+  "metrics": {
+    "total_processed": 0,
+    "total_certified": 0,
+    "total_rejected": 0,
+    "total_retried": 0,
+    "avg_cycle_seconds": 0.0
+  }
+}

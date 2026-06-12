@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_151246_903474",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART72"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T15:12:46.903498",
+  "status": "completed",
+  "started_at": "2026-06-12T15:17:29.438165",
+  "completed_at": "2026-06-12T15:17:51.436950",
+  "error": null,
+  "result": {
+    "agent_name": "post_market_monitoring_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

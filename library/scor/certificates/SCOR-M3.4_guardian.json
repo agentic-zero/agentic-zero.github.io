@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-M3.4",
-  "guardian_timestamp": "2026-06-08T18:48:38.059100",
+  "guardian_timestamp": "2026-06-12T09:15:08.372523",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-M3.4-20260608",
+    "certificate_id": "AZ-CERT-SCOR-M3.4-20260612",
     "process_id": "SCOR-M3.4",
-    "agent_name": "eto_packaging_compliance_agent",
-    "issued_at": "2026-06-08T18:48:38.059057",
+    "agent_name": "eto_packaging_agent",
+    "issued_at": "2026-06-12T09:15:08.372480",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-08",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.88,
+    "overall_score": 0.83,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,18 +38,17 @@
     },
     "iso_42001": {
       "compliant": false,
-      "score": 0.58,
+      "score": 0.35,
       "gaps": [
-        "No explicit AI risk assessment or impact assessment process defined",
-        "Missing transparency, explainability, and decision audit trail mechanisms",
-        "Absence of AI performance monitoring, bias controls, or data governance provisions",
-        "Escalation rules are reactive only; no proactive continual improvement loop"
+        "No AI risk assessment, impact analysis or ethical review processes defined",
+        "Missing performance evaluation, monitoring of AI model behavior, and continual improvement mechanisms",
+        "Lack of transparency, explainability, and accountability controls for hybrid decisions",
+        "No evidence of leadership, policy, or resource allocation elements required by ISO 42001"
       ],
       "recommendations": [
-        "Implement formal AI risk and impact assessment aligned with ISO 42001 clauses 6.1 and 8.2",
-        "Add mandatory decision logging and human-in-the-loop review for all flagged compliance actions",
-        "Define AI-specific KPIs (accuracy, robustness, drift) with periodic internal audits",
-        "Establish documented policies for accountability, stakeholder communication, and record retention"
+        "Implement formal AI risk and impact assessment integrated with escalation rules",
+        "Add metrics for AI decision quality, bias detection, and post-deployment monitoring",
+        "Establish documented AI policy, roles, and continual improvement cycle aligned with Clause 10"
       ]
     },
     "nist_ai_rmf": {
@@ -79,25 +78,19 @@
     "notes": "Guardian review completed. Risk level: high. Quality: 100%"
   },
   "approved_for_library": true,
-  "approved_for_delivery": true,
+  "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No explicit AI risk assessment or impact assessment process defined"
+    "ISO 42001: No AI risk assessment, impact analysis or ethical review processes defined"
   ],
   "auditor_review": {
-    "decision": "AUTO_APPROVE",
-    "delivery": true,
+    "decision": "HOLD",
+    "delivery": false,
     "restricted": false,
     "conditions": [
-      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 58% — monitor evolution"
+      "ISO/IEC 42001 score 35% below 60% minimum"
     ],
-    "audited_at": "2026-06-09T16:18:54.432820",
+    "audited_at": "2026-06-12T16:09:44.793443",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  },
-  "human_sign_off": {
-    "signed_by": "Alberto Munoz Waissen — Founder & CEO",
-    "signed_at": "2026-06-10T16:23:44.489572",
-    "method": "bulk_approve · AUTO_APPROVE criteria met"
   }
 }

@@ -1,15 +1,15 @@
 # SOP — Record-Keeping and Logging
 **Process ID:** EUAIA-ART12
 **Framework:** EU AI Act 2024 | **Domain:** EU AI Act
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Automatic logging requirements for high-risk AI systems to enable post-market monitoring, investigation of incidents and demonstration of compliance with requirements
 
 ## Triggers
-- High-risk AI system activation
-- Post-market monitoring schedule
-- Incident report submission
+- High-risk AI inference completion
+- Human oversight action submission
+- System error or anomaly detection event
 
 ## Inputs Required
 - AI system outputs
@@ -19,8 +19,8 @@ Automatic logging requirements for high-risk AI systems to enable post-market mo
 - human oversight actions
 
 ## Process Steps
-1. IF log_completeness_rate < 1.0 THEN trigger retention_check and alert
-2. IF incident_detected THEN create Incident_Record and link to Decision_Audit_Trail
+1. IF log_completeness_rate < 0.99 THEN trigger immediate system alert and halt high-risk inference
+2. IF retention_period_exceeded THEN execute automated purge after compliance check
 
 ## Expected Outputs
 - audit logs
@@ -30,17 +30,18 @@ Automatic logging requirements for high-risk AI systems to enable post-market mo
 - monitoring reports
 
 ## Business Rules
-- All inputs must be logged with immutable timestamp and hash before any output is produced
-- Audit_Log retention must satisfy GDPR and EU AI Act Art.12 minimum periods
-- Every Human_Oversight_Action must be recorded with actor_id and timestamp
+- All high-risk outputs and decisions must be logged within 100ms of generation
+- Audit logs must be immutable and stored with SHA-256 hash verification
+- Log retention must satisfy GDPR minimum of 5 years or sector-specific requirement
 
 ## Exception Handling
-- Non-high-risk systems bypass automatic logging but must still produce manual Compliance_Evidence on request
+- System outage: switch to local buffer mode and backfill logs within 60 seconds of recovery
+- Human override: log override reason and operator ID before allowing action
 
 ## Success Criteria
-- log_completeness_rate == 1.0
-- incident_traceability_rate >= 0.95
-- all Audit_Logs retained for required period with zero tampering
+- log_completeness_rate == 1.0 for all decisions in 24h window
+- incident_traceability_rate >= 0.999 with full decision audit trail
+- compliance_evidence generated and exportable in <5 seconds
 
 ## Compliance Requirements
 - EU AI Act Art.12 mandatory

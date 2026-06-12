@@ -1,15 +1,15 @@
 # SOP — Good Distribution Practice (GDP)
 **Process ID:** GXP-GDP
 **Framework:** EU GDP Guidelines 2013/C 343/01 | **Domain:** GxP
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Good Distribution Practice requirements for pharmaceutical distribution including quality system, personnel, premises, documentation, operations, complaints and returns management
 
 ## Triggers
-- New distribution order received with product specifications and storage requirements
-- Scheduled temperature data upload from vehicle IoT device
-- Customer complaint or return notification received
+- Customer order received in WMS
+- Product receipt at warehouse dock
+- Scheduled temperature monitoring interval
 
 ## Inputs Required
 - product specifications
@@ -19,9 +19,9 @@ Good Distribution Practice requirements for pharmaceutical distribution includin
 - temperature monitoring data
 
 ## Process Steps
-1. IF temperature > validated_range THEN quarantine batch and log excursion
-2. IF customer_qualification_status == false THEN reject order
-3. IF complaint_severity == critical THEN initiate recall and notify authority within 24h
+1. IF temperature > StorageRequirement.max OR temperature < StorageRequirement.min THEN create TemperatureRecord.excursion and initiate investigation
+2. IF Customer.qualification_status == false THEN reject distribution request
+3. IF complaint received THEN log ComplaintRecord and trigger investigation within 24h
 
 ## Expected Outputs
 - GDP-compliant distribution
@@ -31,19 +31,20 @@ Good Distribution Practice requirements for pharmaceutical distribution includin
 - return records
 
 ## Business Rules
-- All personnel must hold current GDP training certificate before performing operations
-- Temperature must be logged every 5 minutes during transit with 0.5C accuracy
-- Returns must be physically segregated within 4 hours of receipt
-- Documentation retention period minimum 5 years or 1 year after expiry whichever longer
+- All TemperatureRecord values must be logged every 15 minutes with timestamp and sensor_id
+- Personnel must complete GDP training before handling products
+- DistributionRoute must maintain continuous temperature chain compliance
+- All QualificationRecord must be signed and version-controlled
 
 ## Exception Handling
-- Temperature excursion <30min and <2C deviation: auto-approve with CAPA record
-- Emergency delivery to unqualified customer: requires QP-signed deviation and post-delivery audit within 7 days
+- Temperature excursion < 30 minutes with documented risk assessment may be approved by QA
+- Emergency distribution without full customer qualification requires documented deviation and post-approval within 48h
 
 ## Success Criteria
-- GDP audit compliance rate >= 98%
-- temperature_excursion_rate == 0 for validated shipments
-- delivery_quality_rate >= 99.5% with zero critical complaints
+- GDP audit compliance rate == 100%
+- temperature excursion rate < 0.5%
+- delivery quality rate >= 99.5%
+- All outputs generated with complete audit trail
 
 ## Compliance Requirements
 - EU GDP Guidelines 2013

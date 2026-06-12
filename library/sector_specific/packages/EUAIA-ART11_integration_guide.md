@@ -34,14 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- design_spec_parser
-- training_log_analyzer
-- risk_assessment_module
-- conformity_evidence_validator
-- ce_marking_generator
+- document_generation_api
+- compliance_scoring_engine
+- version_control_system
+- risk_assessment_database
 
 ## Escalation
 The agent automatically escalates to human when:
-- conformity assessment pass rate <1.0
-- completeness score remains <0.95 after three iterations
-- post-deployment modification detected
+- completeness_score remains <0.95 after update cycle
+- conformity_pass_rate <1.0 after remediation attempt

@@ -1,0 +1,96 @@
+{
+  "process_id": "BPMN-RMA-001",
+  "agent_name": "rma_autonomous_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:32:11.404805",
+  "product_summary": "The Returns Management (RMA) agent provides end-to-end automation for handling customer returns, from initial request validation through authorization, receipt, inspection, and final disposition decisions including credits or replacements. This hybrid agent streamlines operations across multiple lanes while ensuring adherence to consumer protection regulations, GDPR, and warranty compliance. By monitoring process timeouts and applying intelligent disposition decisions, it reduces manual effort, minimizes errors, and enhances customer satisfaction, ultimately lowering return-related costs and improving operational efficiency for the business.",
+  "value_proposition": "Automates the complete returns lifecycle from request to resolution while enforcing compliance and optimizing disposition decisions.",
+  "technical_summary": "Built as a hybrid agent, it integrates capabilities such as return request validation, cross-lane coordination, disposition application, credit/replacement triggering, and timeout monitoring. The system ensures compliance with GDPR for customer data handling and other regulations through secure data flows and audit trails. It connects seamlessly with existing ERP, warehouse management, and customer service platforms for real-time execution and reporting.",
+  "integration_guide": "# Integration Guide â€” rma_autonomous_agent\n**Process:** Returns Management (RMA)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp rma_autonomous_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.rma_autonomous_agent import RmaAutonomousAgentAgent\n\nagent = RmaAutonomousAgentAgent()\nresult = agent.execute({\n    \"return_request\": your_return_request_data,\n    \"order_history\": your_order_history_data,\n    \"return_policy\": your_return_policy_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- erp_system_api\n- customer_portal_event_bus\n- quality_inspection_system\n- finance_credit_api\n- inventory_update_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- ReturnRequest outside policy or inspection timeout\n- ERP sync failure after retry queue\n- manual review required for quality criteria failure",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/rma_autonomous_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/rma_autonomous_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/rma_autonomous_agent/health â€” Health check",
+    "GET  /api/v1/agents/rma_autonomous_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/rma_autonomous_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Launch rma_autonomous_agent dashboard and load a live batch of 50 pending returns to establish baseline manual effort (est. 12 hrs, €1,200 cost).  \n2. Trigger AI intake: agent auto-validates eligibility, detects fraud patterns, and routes 42 returns for instant approval while flagging 8 for review—completing in 90 seconds.  \n3. Display real-time compliance panel: show immutable audit logs, GDPR consent capture, and automated tax/VAT adjustment for each approved return.  \n4. Execute one-click bulk refund and label generation; agent updates ERP and notifies customers while preserving full chain-of-custody records.  \n5. Reveal ROI dashboard: 8 processed hours saved (€960) on this batch alone, projecting €5,592 monthly savings (8.0x multiplier on €699 license).  \n6. Run side-by-side compliance report: export regulator-ready PDF proving 100 % policy adherence versus prior 14 % manual error rate.  \n7. Close with one-screen summary: annual ROI of €67k+ and zero compliance incidents, confirming immediate deployment value.",
+  "demo_inputs": {
+    "return_request": "[example_return_request]",
+    "order_history": "[example_order_history]",
+    "return_policy": "[example_return_policy]"
+  },
+  "expected_demo_outputs": {
+    "rma_authorization": "[generated_rma_authorization]",
+    "received_return": "[generated_received_return]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-RMA-001",
+    "agent_name": "rma_autonomous_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "distribution",
+      "manufacturing",
+      "food",
+      "pharma",
+      "automotive",
+      "retail"
+    ],
+    "compliance_frameworks": [
+      "consumer protection regulations",
+      "GDPR customer data",
+      "warranty compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:11.404788"
+  },
+  "tags": [
+    "",
+    "food",
+    "distribution",
+    "retail",
+    "bpmn",
+    "automotive",
+    "manufacturing",
+    "hybrid",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Retail agent auto-processes 2,000 monthly RMAs with GDPR-compliant data redaction, cutting manual review time 75% and avoiding €120k annual regulatory fines",
+    "Use case 2: Pharma distributor uses agent to validate temperature-controlled returns against warranty and consumer protection rules, reducing rejected claims 40% and recovering €85k in inventory value per quarter",
+    "Use case 3: Automotive parts manufacturer deploys agent for reverse-logistics optimization across 12 warehouses, lowering return shipping costs 28% and improving on-time credit issuance to 98%",
+    "Use case 4: Food wholesaler leverages agent to forecast perishable returns by SKU and route, cutting spoilage write-offs 32% and saving €65k monthly in disposal and restocking fees",
+    "Use case 5: Manufacturing plant integrates agent to root-cause analyze 1,500 warranty returns monthly, driving a 22% reduction in repeat defects and €400k annual cost-of-quality savings"
+  ],
+  "pricing": {
+    "process_id": "BPMN-RMA-001",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-RMA-001_package.json"
+}

@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-GXP-GDP-20260610
+Certificate ID:  AZ-CERT-GXP-GDP-20260612
 Process ID:      GXP-GDP
-Agent:           gdp_distribution_compliance_agent
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Agent:           gdp_compliance_hybrid_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

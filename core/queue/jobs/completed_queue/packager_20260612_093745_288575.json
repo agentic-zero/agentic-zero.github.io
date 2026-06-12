@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_093745_288575",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:37:45.288592",
+  "status": "completed",
+  "started_at": "2026-06-12T09:50:50.505953",
+  "completed_at": "2026-06-12T09:51:07.079349",
+  "error": null,
+  "result": {
+    "agent_name": "high_risk_ai_risk_manager",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

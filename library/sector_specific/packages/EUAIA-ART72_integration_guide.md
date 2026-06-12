@@ -34,14 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- runtime_log_ingestion_api
-- incident_database
+- runtime_log_analyzer
+- incident_reporting_api
 - national_authority_notification_service
-- user_feedback_api
-- metric_computation_engine
+- performance_metric_calculator
 
 ## Escalation
 The agent automatically escalates to human when:
-- corrective_action_effectiveness < 0.8 escalate to EUAIA-ART9
-- reporting_timeliness breach or missed serious incident notify human operator
-- defense sector route via SCOR-DIG10 instead of direct authority
+- national_authority unreachable after 5 retry days
+- corrective_action_effectiveness below 0.8 after two attempts
+- monitoring_coverage remains below 0.95 after source expansion

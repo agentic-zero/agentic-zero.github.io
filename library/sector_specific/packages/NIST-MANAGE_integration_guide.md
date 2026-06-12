@@ -1,4 +1,4 @@
-# Integration Guide â€” risk_treatment_response_agent
+# Integration Guide â€” ai_risk_treatment_manager
 **Process:** MANAGE — AI Risk Treatment and Response
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp risk_treatment_response_agent.py ./agents/
+cp ai_risk_treatment_manager.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.risk_treatment_response_agent import RiskTreatmentResponseAgentAgent
+from agents.ai_risk_treatment_manager import AiRiskTreatmentManagerAgent
 
-agent = RiskTreatmentResponseAgentAgent()
+agent = AiRiskTreatmentManagerAgent()
 result = agent.execute({
     "risk_assessments": your_risk_assessments_data,
     "treatment_options": your_treatment_options_data,
@@ -34,12 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- risk_engine_api
-- incident_monitoring_feed
-- resource_allocator
-- audit_log_service
+- risk_model_api
+- incident_logging_system
+- resource_allocation_dashboard
+- compliance_audit_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- Resource constraints block full treatment (escalate to NIST-GOVERN within 24h)
-- High-severity incident response cannot complete within 1 hour
+- residual_risk_level > 0.3
+- incident_severity >= HIGH
+- risk_treatment_coverage < 0.8 after reprioritization

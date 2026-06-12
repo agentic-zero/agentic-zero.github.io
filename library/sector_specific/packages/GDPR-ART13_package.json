@@ -1,12 +1,12 @@
 {
   "process_id": "GDPR-ART13",
-  "agent_name": "gdpr_data_subject_rights_handler",
+  "agent_name": "gdpr_data_subject_rights_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T16:00:35.542120",
-  "product_summary": "This agent manages GDPR transparency obligations and data subject rights, handling requests for access, rectification, erasure, and more, including explanations for automated decisions. It automates compliance processes to ensure organizations meet legal requirements under Articles 13-22. By streamlining these operations, it reduces the risk of regulatory fines and enhances customer trust through efficient rights management. Executives benefit from automated compliance checks that maintain ongoing adherence without manual intervention.",
-  "value_proposition": "Automates the end-to-end processing of data subject requests and compliance verifications to deliver GDPR adherence with minimal operational overhead.",
-  "technical_summary": "The hybrid agent architecture combines rule-based processing for standard requests with AI-driven generation of automated decision explanations, integrating seamlessly with enterprise data systems via APIs. It supports capabilities such as portability exports and scheduled compliance audits to monitor adherence to GDPR articles. This setup enables scalable handling of rights management while maintaining audit trails for regulatory reporting.",
-  "integration_guide": "# Integration Guide â€” gdpr_data_subject_rights_handler\n**Process:** GDPR Transparency and Data Subject Rights\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gdpr_data_subject_rights_handler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gdpr_data_subject_rights_handler import GdprDataSubjectRightsHandlerAgent\n\nagent = GdprDataSubjectRightsHandlerAgent()\nresult = agent.execute({\n    \"data_subject_requests\": your_data_subject_requests_data,\n    \"personal_data_inventory\": your_personal_data_inventory_data,\n    \"processing_records\": your_processing_records_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- request_intake_api\n- personal_data_inventory_db\n- processing_record_system\n- identity_verification_service\n- export_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- response_time_days > 30 escalate to DPO\n- identity_verification fails reject with 403\n- conflicting legal obligation trigger Article 23 derogation logging",
+  "packager_timestamp": "2026-06-12T15:18:38.174990",
+  "product_summary": "This hybrid agent manages GDPR transparency obligations and data subject rights by processing requests for access, rectification, erasure, portability, and objection while handling automated decision-making explainability. It verifies identities, generates compliance reports, executes data actions, and runs audits to maintain regulatory alignment across Articles 13-22. Executives gain reduced legal exposure, faster response times, and stronger customer trust through automated compliance workflows that scale without proportional headcount increases.",
+  "value_proposition": "Automates end-to-end data subject rights fulfillment and transparency audits to eliminate manual compliance bottlenecks and regulatory risk.",
+  "technical_summary": "The hybrid agent integrates via APIs with identity verification services, data repositories, and audit logging systems to orchestrate capabilities such as request processing, explainability report generation, and erasure/portability execution. It supports modular deployment across cloud or on-premise environments with hooks for existing CRM, data lakes, and consent management platforms. Compliance checks are embedded through rule-based engines aligned to GDPR articles, enabling real-time monitoring and automated workflows.",
+  "integration_guide": "# Integration Guide â€” gdpr_data_subject_rights_agent\n**Process:** GDPR Transparency and Data Subject Rights\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gdpr_data_subject_rights_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gdpr_data_subject_rights_agent import GdprDataSubjectRightsAgentAgent\n\nagent = GdprDataSubjectRightsAgentAgent()\nresult = agent.execute({\n    \"data_subject_requests\": your_data_subject_requests_data,\n    \"personal_data_inventory\": your_personal_data_inventory_data,\n    \"processing_records\": your_processing_records_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- personal_data_inventory_api\n- identity_verification_service\n- request_intake_system\n- machine_readable_export_generator\n- retention_policy_db\n\n## Escalation\nThe agent automatically escalates to human when:\n- request volume >100/day\n- legal_obligation_to_retain conflicts\n- identity verification failure after 3 attempts\n- automated_decision_explainability <0.9",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/gdpr_data_subject_rights_handler/execute â€” Execute the agent with inputs",
-    "GET  /api/v1/agents/gdpr_data_subject_rights_handler/status â€” Get agent status and metrics",
-    "GET  /api/v1/agents/gdpr_data_subject_rights_handler/health â€” Health check",
-    "GET  /api/v1/agents/gdpr_data_subject_rights_handler/spec   â€” Get agent specification",
-    "POST /api/v1/agents/gdpr_data_subject_rights_handler/test   â€” Run test cases"
+    "POST /api/v1/agents/gdpr_data_subject_rights_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/gdpr_data_subject_rights_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/gdpr_data_subject_rights_agent/health â€” Health check",
+    "GET  /api/v1/agents/gdpr_data_subject_rights_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/gdpr_data_subject_rights_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with the pain: Manual DSAR handling costs 3-5 hours per request and exposes €20M+ GDPR fine risk.  \n2. Trigger gdpr_data_subject_rights_handler with one live access request (name + email).  \n3. Show real-time AI flow: auto-identifies data sources, applies redaction, and drafts Article 15 response in <90 seconds.  \n4. Generate and export the signed transparency report plus audit log for the DPO.  \n5. Display dashboard: 47 requests processed this month, 94% time reduction, zero missed deadlines.  \n6. ROI snapshot: €224 price delivers 10x return via €2,240+ monthly savings plus avoided fines.  \n7. Close: one-click deployment, 30-day compliance guarantee, and upsell path to full DSR suite.",
+  "demo_script": "1. Open with executive pain point: \"Manual DSAR handling costs €2,500+ per month in staff time and exposes €20M GDPR fine risk—let's see the agent eliminate both.\"\n2. Submit live sample request via the agent interface, triggering automated identity verification and data mapping across systems in under 60 seconds.\n3. Display AI-generated response package: redacted data export, legal citations, and full audit log produced instantly with zero manual drafting.\n4. Run side-by-side timer: show 4-hour manual process reduced to 8 minutes, equating to €180 saved per request at blended executive rates.\n5. Generate monthly ROI dashboard: at 15 requests/month the €224 agent fee delivers €2,700+ net savings, confirming the 10.0x multiplier.\n6. Highlight compliance value: one-click regulator-ready report and immutable logs that cut audit prep from days to seconds and reduce fine exposure.\n7. Close: \"€224 buys €2,240+ monthly value—ready to deploy?\"",
   "demo_inputs": {
     "data_subject_requests": "[example_data_subject_requests]",
     "personal_data_inventory": "[example_personal_data_inventory]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "GDPR-ART13",
-    "agent_name": "gdpr_data_subject_rights_handler",
+    "agent_name": "gdpr_data_subject_rights_agent",
     "framework": "GDPR (EU) 2016/679",
     "domain": "GDPR",
     "level": "L1",
@@ -56,33 +56,33 @@
       "GDPR Art.22 automated decisions"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:00:35.542101"
+    "created_at": "2026-06-12T15:18:38.174971"
   },
   "tags": [
-    "food",
-    "pharma",
     "defense",
     "gdpr (eu) 2016/679",
-    "hybrid",
+    "manufacturing",
+    "chemical",
     "l1",
     "automotive",
     "gdpr",
-    "chemical",
+    "hybrid",
     "distribution",
-    "manufacturing"
+    "food",
+    "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm deploys the agent to auto-generate Art.13-14 notices and fulfill 200+ monthly DSARs for clinical trial data, cutting average response time from 28 days to 4 days and eliminating €1.2M GDPR fine risk.",
-    "Use case 2: Automotive OEM uses the agent to handle Art.15-22 erasure and objection requests on connected-vehicle telemetry, reducing manual legal review hours by 65% and saving €480k annually in external counsel fees.",
-    "Use case 3: Defense contractor applies the agent for Art.22 automated decision explanations in AI-based supplier-risk scoring, shortening audit preparation from 6 weeks to 10 days and avoiding contract loss valued at €3M.",
-    "Use case 4: Chemical manufacturer automates portability and rectification workflows for REACH safety data sheets containing employee exposure records, lowering per-request processing cost from €95 to €22 and achieving 92% SLA compliance.",
-    "Use case 5: Food & beverage distributor routes Art.17 deletion requests across ERP and cold-chain IoT systems via the agent, reducing data-residency breach exposure by 78% and cutting regulatory notification costs by €210k per incident avoided."
+    "Use case 1: A pharma manufacturer automates Art.15 DSAR responses for 1,200 annual clinical-trial subject requests, cutting average response time from 28 days to 6 days and avoiding €400k in potential fines while saving 1,800 analyst hours yearly.",
+    "Use case 2: An automotive OEM deploys the agent for Art.13-14 transparency notices across 850,000 connected-vehicle customers, achieving 98% automated delivery and reducing manual legal review costs by €180k per model-year launch.",
+    "Use case 3: A chemical plant uses the agent to manage Art.22 explanations for 3,200 employee performance-prediction decisions, lowering appeal processing time by 75% and eliminating €250k annual regulatory-risk exposure.",
+    "Use case 4: A food-distribution company processes 4,500 Art.15-22 rights requests monthly via the agent, reducing fulfillment cost per request from €12 to €3.50 and delivering €450k annual savings within the first quarter.",
+    "Use case 5: A defense supplier implements the agent for Art.13-14 notices on 22,000 subcontractor personnel records, achieving full audit readiness in 10 days instead of 6 weeks and cutting external-consultant spend by €95k per compliance cycle."
   ],
   "pricing": {
     "process_id": "GDPR-ART13",

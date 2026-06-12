@@ -1,0 +1,97 @@
+{
+  "process_id": "ISO9001-9",
+  "agent_name": "performance_evaluation_audit_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-12T15:14:14.731113",
+  "product_summary": "The Performance Evaluation agent continuously monitors, measures, and analyzes QMS performance metrics including customer satisfaction data, internal audit outcomes, and management review inputs to identify gaps and drive improvements. It autonomously schedules audits, evaluates performance thresholds for escalation, generates compliance reports, and tracks corrective actions while enforcing ISO 9001:2015 Clause 9 requirements and maintaining internal audit independence. This hybrid agent reduces manual effort in quality oversight and provides executives with timely insights that support certification maintenance and risk mitigation. Organizations gain stronger accountability and faster response to performance issues without compromising data privacy under GDPR.",
+  "value_proposition": "Automates continuous QMS monitoring, autonomous internal audits, and improvement tracking to deliver ISO-compliant performance evaluation with minimal manual oversight.",
+  "technical_summary": "The hybrid agent combines rule-based scheduling and compliance logic with AI-driven analytics for KPI monitoring, threshold evaluation, and report generation, integrating directly with QMS platforms, customer feedback systems, and audit repositories. It maintains separate execution paths to enforce audit independence while handling GDPR-protected data through encrypted storage and access controls. Escalation workflows connect to existing management review tools and action-tracking modules for closed-loop resolution.",
+  "integration_guide": "# Integration Guide â€” performance_evaluation_audit_agent\n**Process:** Performance Evaluation — Monitoring and Internal Audit\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp performance_evaluation_audit_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.performance_evaluation_audit_agent import PerformanceEvaluationAuditAgentAgent\n\nagent = PerformanceEvaluationAuditAgentAgent()\nresult = agent.execute({\n    \"kpi_data\": your_kpi_data_data,\n    \"customer_feedback\": your_customer_feedback_data,\n    \"audit_findings\": your_audit_findings_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_KPI_API\n- CRM_survey_module\n- audit_management_system\n- document_retention_store\n\n## Escalation\nThe agent automatically escalates to human when:\n- audit_completion_rate < 0.95\n- customer_satisfaction_score < 80\n- finding_closure_rate not 100% within 30 days\n- independence conflict detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/performance_evaluation_audit_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/performance_evaluation_audit_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/performance_evaluation_audit_agent/health â€” Health check",
+    "GET  /api/v1/agents/performance_evaluation_audit_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/performance_evaluation_audit_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open dashboard: Load live team performance data; AI agent auto-ingests metrics in <30 seconds vs. 4-hour manual process.  \n2. Run monitoring scan: Trigger real-time anomaly detection; flag 3 compliance gaps (GDPR audit trails, SLA breaches) with risk scores.  \n3. Execute automated audit: AI reviews 100% of evaluation records for policy adherence; produces annotated compliance report in 2 minutes.  \n4. Quantify time savings: Display before/after metrics—12 hours/week saved per manager (€1,800 monthly at loaded cost).  \n5. Calculate ROI live: Input €224 price; system shows 10.0x return (€2,240 net value) within first month via efficiency + avoided fines.  \n6. Export & schedule: One-click PDF + calendar integration for recurring audits; highlight zero-touch compliance logging.  \n7. Close: Summarize €224 investment delivers sustained 10x ROI plus audit-ready evidence trail for executives.",
+  "demo_inputs": {
+    "kpi_data": "[example_kpi_data]",
+    "customer_feedback": "[example_customer_feedback]",
+    "audit_findings": "[example_audit_findings]"
+  },
+  "expected_demo_outputs": {
+    "performance_reports": "[generated_performance_reports]",
+    "audit_reports": "[generated_audit_reports]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO9001-9",
+    "agent_name": "performance_evaluation_audit_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 9",
+      "internal audit independence",
+      "GDPR audit data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:14:14.731093"
+  },
+  "tags": [
+    "defense",
+    "manufacturing",
+    "l1",
+    "automotive",
+    "iso 9001",
+    "hybrid",
+    "distribution",
+    "iso 9001:2015",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing plant deploys the agent for ISO 9001:2015 Clause 9 performance monitoring, automating quarterly internal audits and cutting audit cycle time from 120 to 72 hours, delivering $185k annual labor savings.",
+    "Use case 2: Pharma company uses the agent to enforce internal audit independence while reviewing GDPR audit data logs, identifying 3 high-risk data flows and avoiding potential €2.4M regulatory fines.",
+    "Use case 3: Automotive supplier runs continuous performance evaluation audits across 4 plants, uncovering 22% supplier defect rate reduction within 6 months and generating $920k in warranty cost avoidance.",
+    "Use case 4: Food distributor applies the agent for real-time monitoring of HACCP-linked KPIs during internal audits, reducing non-conformance incidents by 47% and lowering recall-related expenses by $310k per year.",
+    "Use case 5: Defense contractor leverages the agent to maintain audit independence and Clause 9 compliance across classified programs, shortening external audit preparation from 8 weeks to 3 weeks and saving $475k in external consultant fees."
+  ],
+  "pricing": {
+    "process_id": "ISO9001-9",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO9001-9_package.json"
+}

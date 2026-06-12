@@ -1,7 +1,7 @@
-1. Open with the pain: Manual DSAR handling costs 3-5 hours per request and exposes €20M+ GDPR fine risk.  
-2. Trigger gdpr_data_subject_rights_handler with one live access request (name + email).  
-3. Show real-time AI flow: auto-identifies data sources, applies redaction, and drafts Article 15 response in <90 seconds.  
-4. Generate and export the signed transparency report plus audit log for the DPO.  
-5. Display dashboard: 47 requests processed this month, 94% time reduction, zero missed deadlines.  
-6. ROI snapshot: €224 price delivers 10x return via €2,240+ monthly savings plus avoided fines.  
-7. Close: one-click deployment, 30-day compliance guarantee, and upsell path to full DSR suite.
+1. Open with executive pain point: "Manual DSAR handling costs €2,500+ per month in staff time and exposes €20M GDPR fine risk—let's see the agent eliminate both."
+2. Submit live sample request via the agent interface, triggering automated identity verification and data mapping across systems in under 60 seconds.
+3. Display AI-generated response package: redacted data export, legal citations, and full audit log produced instantly with zero manual drafting.
+4. Run side-by-side timer: show 4-hour manual process reduced to 8 minutes, equating to €180 saved per request at blended executive rates.
+5. Generate monthly ROI dashboard: at 15 requests/month the €224 agent fee delivers €2,700+ net savings, confirming the 10.0x multiplier.
+6. Highlight compliance value: one-click regulator-ready report and immutable logs that cut audit prep from days to seconds and reduce fine exposure.
+7. Close: "€224 buys €2,240+ monthly value—ready to deploy?"

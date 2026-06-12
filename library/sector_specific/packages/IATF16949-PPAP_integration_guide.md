@@ -1,4 +1,4 @@
-# Integration Guide â€” ppap_automation_agent
+# Integration Guide â€” ppap_autonomous_agent
 **Process:** Production Part Approval Process (PPAP)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp ppap_automation_agent.py ./agents/
+cp ppap_autonomous_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.ppap_automation_agent import PpapAutomationAgentAgent
+from agents.ppap_autonomous_agent import PpapAutonomousAgentAgent
 
-agent = PpapAutomationAgentAgent()
+agent = PpapAutonomousAgentAgent()
 result = agent.execute({
     "engineering_drawings": your_engineering_drawings_data,
     "material_certifications": your_material_certifications_data,
@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- pdf_step_parser
-- cpk_ppk_calculator
-- pdm_connector
-- digital_signature_service
+- statistical_analysis_api
+- document_validation_service
 - customer_portal_api
+- root_cause_tracker
 
 ## Escalation
 The agent automatically escalates to human when:
-- first-time approval failure with missing MaterialCertification or Cpk<1.33
-- approval_cycle_time>30 days
-- customer-specific vs AIAG requirement conflict
+- Cpk below threshold after remediation
+- customer-specific requirement conflict unresolved
+- cycle time exceeds 30 days
+- first-time rejection without root cause

@@ -1,0 +1,7 @@
+1. Open the demo console and load a sample AI system (e.g., credit-scoring model) to show current manual lifecycle gaps in controls and audit trails.  
+2. Activate ai_lifecycle_operations_controller; it auto-maps the full lifecycle, applies policy controls, and generates a compliance baseline in <60 seconds.  
+3. Trigger continuous monitoring; the agent detects a drift event, enforces version control, and produces an EU AI Act-aligned audit pack instantly.  
+4. Run the ROI calculator live: input €224 license cost; dashboard displays 10.0x multiplier via 18 hours saved per cycle and zero compliance penalties.  
+5. Simulate a regulatory query; the agent retrieves immutable logs and risk scores in one click, proving audit readiness.  
+6. Export the signed compliance report and projected annual savings (€2,240+ per deployment) for executive review.  
+7. Close by confirming one-click deployment to production with ongoing 10x ROI tracking.

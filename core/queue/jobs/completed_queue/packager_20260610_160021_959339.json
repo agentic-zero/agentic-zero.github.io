@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_160021_959339",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "BPMN-TRP-001"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:00:21.959375",
+  "status": "completed",
+  "started_at": "2026-06-11T18:31:36.358610",
+  "completed_at": "2026-06-11T18:31:52.558147",
+  "error": null,
+  "result": {
+    "agent_name": "transport_management_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

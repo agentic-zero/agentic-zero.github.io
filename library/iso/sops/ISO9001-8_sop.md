@@ -1,15 +1,14 @@
 # SOP — Operation — Planning and Control
 **Process ID:** ISO9001-8
 **Framework:** ISO 9001:2015 | **Domain:** ISO 9001
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Operational planning and control including customer communication, design and development, control of externally provided processes, production and service provision, release and control of nonconforming outputs
 
 ## Triggers
-- New customer order received
-- Production schedule released
-- Supplier data updated
+- receipt of new customer order containing requirements
+- scheduled production start date reached with approved QualityPlan
 
 ## Inputs Required
 - customer requirements
@@ -19,8 +18,8 @@ Operational planning and control including customer communication, design and de
 - quality plans
 
 ## Process Steps
-1. IF inspection_result == 'pass' AND nonconformance_count == 0 THEN create ReleaseDecision
-2. IF supplier_quality_rate < 0.95 THEN trigger SupplierEvaluation and corrective_action
+1. IF inspection_result == 'pass' AND process_parameters_met THEN create ReleaseDecision ELSE create NonconformanceReport
+2. IF nonconformance_closure_rate >= 0.95 THEN close NonconformanceReport ELSE escalate to CAPA
 
 ## Expected Outputs
 - controlled products/services
@@ -31,17 +30,15 @@ Operational planning and control including customer communication, design and de
 
 ## Business Rules
 - Every output must have at least one linked InspectionRecord before ReleaseDecision
-- NonconformanceReport must be closed within 10 business days or escalate to management
-- All customer requirements must be traceable to ProcessParameter settings
+- SupplierEvaluation score must be calculated from supplier_data before any externally provided process is used
+- All NonconformanceReport must record root_cause and corrective_action within 5 business days
 
 ## Exception Handling
-- IF customer_requirement changes after planning start THEN re-run OperationalPlan and log revision
-- IF GxP flag active THEN require electronic signature on ReleaseDecision
+- IF customer_requirement changes after OperationalPlan approval THEN trigger revision of QualityPlan and re-execution of planning step
+- IF GxP flag active in pharma sector THEN enforce additional batch record validation before ReleaseDecision
 
 ## Success Criteria
-- first_pass_yield >= 0.98
-- nonconformance_closure_rate >= 0.95 within SLA
-- customer_complaint_rate <= 0.02
+- first_pass_yield >= target AND customer_complaint_rate <= threshold AND all ReleaseDecision issued with linked InspectionRecord
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 8

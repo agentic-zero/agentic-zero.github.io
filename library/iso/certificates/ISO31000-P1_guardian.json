@@ -79,5 +79,16 @@
   "requires_human_sign_off": true,
   "remediation_plan": [
     "ISO 42001: limited AI-specific risk controls beyond ISO 31000"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "audited_at": "2026-06-12T16:09:43.156320",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

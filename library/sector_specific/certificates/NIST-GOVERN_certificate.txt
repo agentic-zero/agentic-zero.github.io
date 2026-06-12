@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-NIST-GOVERN-20260610
+Certificate ID:  AZ-CERT-NIST-GOVERN-20260612
 Process ID:      NIST-GOVERN
-Agent:           ai_governance_accountability_agent
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Agent:           govern_ai_risk_accountability_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

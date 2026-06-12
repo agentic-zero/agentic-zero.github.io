@@ -2,11 +2,11 @@
   "process_id": "EUAIA-ART72",
   "agent_name": "post_market_monitoring_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:13:26.444297",
-  "product_summary": "The Post-Market Monitoring agent is a hybrid system designed for high-risk AI applications that ensures ongoing compliance and safety after deployment. It handles proactive data collection, performance analysis, and serious incident management, including automated reporting to national authorities as mandated by EU AI Act Art.72. By integrating metric monitoring with feedback mechanisms and corrective actions, it enables organizations to maintain regulatory adherence while minimizing operational disruptions. This delivers significant business value through risk reduction, enhanced trust, and avoidance of potential fines or market withdrawals.",
-  "value_proposition": "Automates incident collection, severity assessment, performance reporting, and national authority notifications to fulfill mandatory EU AI Act requirements for high-risk AI systems.",
-  "technical_summary": "The hybrid agent leverages a combination of deterministic rules for compliance notifications and adaptive models for performance analysis and incident assessment. It integrates seamlessly with AI systems through metric monitoring APIs and feedback channels, enabling real-time data ingestion and automated triggering of corrective actions. Report generation modules ensure standardized outputs for regulatory submissions.",
-  "integration_guide": "# Integration Guide â€” post_market_monitoring_agent\n**Process:** Post-Market Monitoring\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp post_market_monitoring_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.post_market_monitoring_agent import PostMarketMonitoringAgentAgent\n\nagent = PostMarketMonitoringAgentAgent()\nresult = agent.execute({\n    \"deployment_performance_data\": your_deployment_performance_data_data,\n    \"user_feedback\": your_user_feedback_data,\n    \"incident_reports\": your_incident_reports_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- runtime_log_ingestion_api\n- incident_database\n- national_authority_notification_service\n- user_feedback_api\n- metric_computation_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- corrective_action_effectiveness < 0.8 escalate to EUAIA-ART9\n- reporting_timeliness breach or missed serious incident notify human operator\n- defense sector route via SCOR-DIG10 instead of direct authority",
+  "packager_timestamp": "2026-06-12T15:17:51.423671",
+  "product_summary": "The Post-Market Monitoring agent provides a comprehensive system for overseeing high-risk AI deployments after market release. It enables proactive data collection and performance analysis while managing incident detection and regulatory notifications to national authorities. By automating compliance with EU AI Act requirements, it reduces legal risks and supports continuous improvement through quarterly plan updates. This ensures organizations maintain operational integrity and stakeholder confidence in their AI systems.",
+  "value_proposition": "Automates continuous performance monitoring, incident detection, and mandatory regulatory notifications to deliver EU AI Act Art.72 compliance and proactive risk management.",
+  "technical_summary": "The hybrid agent architecture integrates continuous performance monitoring modules with incident detection and logging systems to enable real-time analysis. It supports corrective action triggering and regulatory notification through secure channels compliant with national authority protocols. Integration occurs via API endpoints for quarterly plan updates and seamless embedding into existing AI governance frameworks.",
+  "integration_guide": "# Integration Guide â€” post_market_monitoring_agent\n**Process:** Post-Market Monitoring\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp post_market_monitoring_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.post_market_monitoring_agent import PostMarketMonitoringAgentAgent\n\nagent = PostMarketMonitoringAgentAgent()\nresult = agent.execute({\n    \"deployment_performance_data\": your_deployment_performance_data_data,\n    \"user_feedback\": your_user_feedback_data,\n    \"incident_reports\": your_incident_reports_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- runtime_log_analyzer\n- incident_reporting_api\n- national_authority_notification_service\n- performance_metric_calculator\n\n## Escalation\nThe agent automatically escalates to human when:\n- national_authority unreachable after 5 retry days\n- corrective_action_effectiveness below 0.8 after two attempts\n- monitoring_coverage remains below 0.95 after source expansion",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/post_market_monitoring_agent/spec   â€” Get agent specification",
     "POST /api/v1/agents/post_market_monitoring_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open dashboard and load last quarter's manual monitoring log (15s): highlight 40+ hours spent on adverse event scanning and regulatory checks.\n2. Trigger post_market_monitoring_agent live scan across EUDAMED, social, and literature feeds (30s): show AI auto-tagging 127 signals with risk scores in under 2 minutes.\n3. Drill into one flagged case (60s): demonstrate instant root-cause summary, CAPA draft, and audit-ready traceability log that satisfies ISO 13485/MDR requirements.\n4. Generate compliance report (45s): export one-click PDF with full chain-of-evidence, timestamps, and sign-off fields—ready for notified-body review.\n5. Display ROI panel (60s): input €224 license fee; auto-calculate 10.0x multiplier from 38 hours saved + €18k avoided recall exposure, equaling €2,240 net value per month.\n6. Run side-by-side manual vs. agent comparison (90s): prove 94% faster detection and zero missed signals, confirming both cost and compliance gains.\n7. Close with one-sentence summary: “€224 buys 10x ROI while locking in audit-ready compliance every day.”",
+  "demo_script": "1. Open dashboard and launch post_market_monitoring_agent; display €224 annual cost vs. 10x ROI target (€2,240+ value).\n2. Ingest live post-market data feed and trigger AI scan, highlighting automated detection of 12 compliance signals in <90 seconds.\n3. Review AI-flagged issues (e.g., labeling deviations, adverse-event patterns) with one-click regulatory mapping to EU MDR/IVDR articles.\n4. Auto-generate executive report quantifying risk reduction (avoided recall cost estimate: €18k) and time saved (4.2 analyst hours).\n5. Run ROI calculator live: input saved hours and risk metrics to show 10.2x multiplier and payback in 11 days.\n6. Export audit-ready PDF and schedule recurring monitoring; close with compliance sign-off and next-quarter savings projection.",
   "demo_inputs": {
     "deployment_performance_data": "[example_deployment_performance_data]",
     "user_feedback": "[example_user_feedback]",
@@ -61,26 +61,26 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:13:26.444275"
+    "created_at": "2026-06-12T15:17:51.423653"
   },
   "tags": [
-    "manufacturing",
-    "automotive",
     "defense",
     "eu ai act 2024",
-    "hybrid",
-    "l1",
+    "manufacturing",
     "eu ai act",
     "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
     "food",
     "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma company uses the agent to auto-detect and file EU AI Act Art.72 serious incident reports for an AI diagnostic tool within 4 hours instead of 72, avoiding €2.4M in potential fines and cutting compliance labor by 85%.",
-    "Use case 2: Automotive OEM deploys the agent for post-market monitoring of Level-3 autonomous driving AI, triggering national authority notifications on 12 edge-case failures per quarter and reducing recall costs by €1.8M through early containment.",
-    "Use case 3: Defense contractor monitors AI targeting software in deployed systems, achieving mandatory 24-hour incident reporting compliance and preventing €4.5M contract penalties plus 3-week audit delays.",
-    "Use case 4: Chemical manufacturer applies the agent to track AI process-control models, identifying 7 reportable anomalies monthly and cutting unplanned downtime by 22% (€920K annual savings) while meeting EU AI Act obligations.",
-    "Use case 5: Food producer uses the agent for post-market surveillance of AI quality-inspection systems, automating authority notifications and reducing compliance audit preparation from 40 hours to 6 hours per quarter (€48K yearly labor savings)."
+    "Use case 1: Pharma company uses agent to auto-detect and report serious incidents from AI diagnostic software within 24h per EU AI Act Art.72, cutting average regulatory fine exposure from €4.2M to €180k per incident.",
+    "Use case 2: Automotive OEM deploys agent for continuous post-market monitoring of Level-3 autonomous driving AI, reducing recall investigation costs by 62% (€1.9M saved annually) via automated national authority notifications.",
+    "Use case 3: Defense contractor monitors AI targeting systems in field use, achieving 100% on-time serious incident reporting and avoiding contract suspension penalties valued at €8M+ per quarter.",
+    "Use case 4: Chemical plant applies agent to AI process-control models, identifying safety deviations 11 days earlier on average and preventing €3.7M in downtime and environmental remediation costs.",
+    "Use case 5: Food manufacturer monitors AI quality-inspection systems across 14 sites, cutting manual compliance audit hours by 78% (1,240 hours/year) while maintaining zero missed Art.72 notifications."
   ],
   "pricing": {
     "process_id": "EUAIA-ART72",

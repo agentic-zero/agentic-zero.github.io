@@ -1,4 +1,4 @@
-# Integration Guide â€” apqp_compliance_orchestrator
+# Integration Guide â€” apqp_phase_orchestrator
 **Process:** Advanced Product Quality Planning (APQP)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp apqp_compliance_orchestrator.py ./agents/
+cp apqp_phase_orchestrator.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.apqp_compliance_orchestrator import ApqpComplianceOrchestratorAgent
+from agents.apqp_phase_orchestrator import ApqpPhaseOrchestratorAgent
 
-agent = ApqpComplianceOrchestratorAgent()
+agent = ApqpPhaseOrchestratorAgent()
 result = agent.execute({
     "customer_requirements": your_customer_requirements_data,
     "design_specifications": your_design_specifications_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- fmea_tool_api
-- spc_system
-- crm_integration
-- workflow_system
+- customer_portal_api
+- document_management_system
+- quality_data_analytics
+- compliance_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- RPN > 100 without mitigation
-- PPAP rejected requiring corrective action
-- Missing required documentation for gate approval
+- PPAP rejection after corrective loop
+- Missing customer requirement traceability
+- Phase gate compliance below 100%

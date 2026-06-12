@@ -2,11 +2,11 @@
   "process_id": "EUAIA-ART11",
   "agent_name": "eu_ai_act_art11_documentation_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:11:31.682642",
-  "product_summary": "This agent automates the production of comprehensive technical documentation required for high-risk AI systems under the EU AI Act. It ensures coverage of system descriptions, design specs, training methods, performance metrics, and conformity evidence, streamlining compliance processes. By reducing manual effort and minimizing errors, it accelerates time-to-market while mitigating regulatory risks for organizations deploying AI solutions.",
-  "value_proposition": "Automates Annex IV documentation generation and conformity validation to achieve CE marking compliance efficiently.",
-  "technical_summary": "The hybrid agent architecture combines generative AI for documentation creation with validation modules for completeness scoring and update monitoring. It integrates seamlessly with existing AI development pipelines via APIs, enabling continuous conformity assessment against EU AI Act Article 11 requirements. Real-time monitoring capabilities ensure documentation remains current with system changes and regulatory updates.",
-  "integration_guide": "# Integration Guide â€” eu_ai_act_art11_documentation_agent\n**Process:** Technical Documentation Requirements\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art11_documentation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art11_documentation_agent import EuAiActArt11DocumentationAgentAgent\n\nagent = EuAiActArt11DocumentationAgentAgent()\nresult = agent.execute({\n    \"ai_system_design\": your_ai_system_design_data,\n    \"training_documentation\": your_training_documentation_data,\n    \"test_results\": your_test_results_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- design_spec_parser\n- training_log_analyzer\n- risk_assessment_module\n- conformity_evidence_validator\n- ce_marking_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- conformity assessment pass rate <1.0\n- completeness score remains <0.95 after three iterations\n- post-deployment modification detected",
+  "packager_timestamp": "2026-06-12T15:16:34.297258",
+  "product_summary": "Agentic Zero's technical documentation agent streamlines the creation of comprehensive system descriptions, design specifications, and performance metrics required for high-risk AI systems. By aggregating training and test risk data, it produces Annex IV compliant technical files essential for CE marking. Executives benefit from accelerated compliance processes that reduce development timelines and mitigate regulatory penalties. This hybrid agent ensures ongoing adherence to EU AI Act Article 11 through enforced update cycles.",
+  "value_proposition": "Automates the end-to-end production and maintenance of EU AI Act Article 11 and Annex IV technical documentation to achieve CE marking readiness for high-risk AI systems.",
+  "technical_summary": "The hybrid architecture combines modular capabilities for documentation generation, completeness scoring, risk data aggregation, and system card production to meet Annex IV requirements. It integrates with AI development pipelines through API-driven workflows that enforce automated update cycles and conformity evidence collection. Technical teams can embed the agent for continuous monitoring without disrupting existing model training or deployment processes.",
+  "integration_guide": "# Integration Guide â€” eu_ai_act_art11_documentation_agent\n**Process:** Technical Documentation Requirements\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art11_documentation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art11_documentation_agent import EuAiActArt11DocumentationAgentAgent\n\nagent = EuAiActArt11DocumentationAgentAgent()\nresult = agent.execute({\n    \"ai_system_design\": your_ai_system_design_data,\n    \"training_documentation\": your_training_documentation_data,\n    \"test_results\": your_test_results_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- document_generation_api\n- compliance_scoring_engine\n- version_control_system\n- risk_assessment_database\n\n## Escalation\nThe agent automatically escalates to human when:\n- completeness_score remains <0.95 after update cycle\n- conformity_pass_rate <1.0 after remediation attempt",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/eu_ai_act_art11_documentation_agent/spec   â€” Get agent specification",
     "POST /api/v1/agents/eu_ai_act_art11_documentation_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with the compliance pain point: \"Manual EU AI Act Art 11 documentation costs teams 18-25 hours per high-risk system. At €120/hr fully loaded, that's €2,880 per cycle—before audit risk.\"\n\n2. Launch the agent live: \"Watch eu_ai_act_art11_documentation_agent ingest model cards, risk assessments, and test logs in one click.\"\n\n3. Run automated generation: \"In 90 seconds it produces a complete, audit-ready technical documentation package mapped to every Art 11 requirement.\"\n\n4. Display compliance output: \"Review the structured, version-controlled document with traceability links, bias metrics, and human oversight logs—ready for submission.\"\n\n5. Quantify ROI on screen: \"This €224 agent replaces €2,240 of manual effort per use, delivering the stated 10x multiplier and payback on first deployment.\"\n\n6. Show scaling impact: \"For 12 systems per year the annual saving exceeds €24k while eliminating non-compliance exposure.\"\n\n7. Close with next step: \"Approve pilot on one high-risk system this week; full rollout decision in 14 days.\"",
+  "demo_script": "1. Open with the compliance pain: \"Manual EU AI Act Art. 11 documentation costs teams 18–25 hours per high-risk system; at €120/hr this is €2,160–€3,000 per model—our €224 agent delivers the same output in minutes.\"\n\n2. Load a sample AI system spec and trigger the agent: \"Watch it auto-ingest model cards, risk assessments, and test logs, then generate the full technical documentation package aligned to Art. 11 requirements.\"\n\n3. Review the auto-generated artifacts: \"See instant sections for system description, data governance, accuracy metrics, and human oversight—pre-formatted for audit and conformity assessment.\"\n\n4. Run the compliance check: \"One-click scan flags gaps against the regulation and produces a signed, version-controlled PDF ready for notified bodies.\"\n\n5. Quantify ROI live: \"Time saved: 20 hours × €120 = €2,400. Net value on €224 purchase = 10.7× multiplier in a single use; scales to every subsequent model at near-zero marginal cost.\"\n\n6. Close with deployment path: \"One API call integrates into your existing MLOps pipeline; pilot license activates today, full ROI realized on first high-risk system.\"",
   "demo_inputs": {
     "ai_system_design": "[example_ai_system_design]",
     "training_documentation": "[example_training_documentation]",
@@ -61,26 +61,26 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:11:31.682618"
+    "created_at": "2026-06-12T15:16:34.297238"
   },
   "tags": [
-    "manufacturing",
-    "automotive",
     "defense",
     "eu ai act 2024",
-    "hybrid",
-    "l1",
+    "manufacturing",
     "eu ai act",
     "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
     "food",
     "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm uses agent to auto-generate Annex IV technical docs for high-risk AI diagnostic software, cutting documentation effort from 320 to 95 hours and accelerating EU AI Act Art.11 compliance sign-off by 11 weeks.",
-    "Use case 2: Automotive OEM deploys agent for CE marking technical files on AI braking systems, reducing external consultant spend by €68k per vehicle platform and shortening time-to-type-approval from 14 to 9 weeks.",
-    "Use case 3: Defense supplier leverages agent to produce mandatory technical documentation for AI target-recognition modules, lowering non-compliance audit findings by 92% and avoiding €1.2M potential fines under EU AI Act.",
-    "Use case 4: Chemical manufacturer applies agent to create Annex IV documentation for AI process-control agents, decreasing documentation revision cycles from 7 to 2 and saving 180 engineering hours per product release.",
-    "Use case 5: Food processing company uses agent for CE-marked AI quality-inspection systems, cutting total compliance documentation cost by 47% (€42k) and enabling market launch two months earlier than prior manual process."
+    "Use case 1: Pharma company uses agent to auto-generate EU AI Act Art.11 and Annex IV docs for AI diagnostic software, cutting compliance cycle from 14 weeks to 5 weeks and avoiding €2M potential fines.",
+    "Use case 2: Defense contractor deploys agent for CE marking technical files on autonomous targeting systems, reducing documentation labor costs by 55% while passing external audit on first submission.",
+    "Use case 3: Automotive OEM leverages agent to produce Annex IV documentation for Level-3 ADAS AI, shortening time-to-market by 4 months and saving €1.8M in delayed revenue.",
+    "Use case 4: Chemical plant implements agent for EU AI Act Art.11 process-control AI documentation, decreasing audit preparation effort from 120 person-hours to 35 person-hours per inspection cycle.",
+    "Use case 5: Manufacturing firm uses agent to create CE marking dossiers for AI quality-inspection robots, achieving 40% lower external consultancy spend and zero non-conformities in notified-body review."
   ],
   "pricing": {
     "process_id": "EUAIA-ART11",

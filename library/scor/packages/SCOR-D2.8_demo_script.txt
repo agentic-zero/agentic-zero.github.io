@@ -1,11 +1,6 @@
-1. Open with a 60-second scenario: "Manual MTO receiving costs 22 minutes per shipment and risks 12% compliance gaps—today the agent cuts both to near zero."
-
-2. Trigger live receipt: Paste ASN and shipping docs; agent auto-matches PO, inspects tolerances, and flags deviations in <45 seconds.
-
-3. Surface compliance layer: Show immutable audit trail, auto-generated CoC, and real-time regulatory checks (REACH, ISO) logged to ERP.
-
-4. Quantify time savings: Display dashboard—22 min → 3 min per receipt, 480 receipts/year = 152 hours recovered (€7,600 at €50/hr).
-
-5. Calculate ROI on screen: €699 price × 8.0x = €5,592 net annual value; break-even in 11 days.
-
-6. Close with one-click deployment note and next-step offer for pilot in their MTO flow.
+1. Open dashboard showing €42K annual manual receipt costs; highlight 8.0x ROI target (€5.6K savings per €699 license).
+2. Trigger live MTO receipt; agent auto-ingests ASN, PO, and quality specs in <8 seconds.
+3. Demonstrate AI compliance scan: real-time checks against ISO and customer specs with instant pass/fail flags and full audit trail.
+4. Show exception handling: agent routes damaged goods to quarantine while auto-creating CAPA documentation without human input.
+5. Display time-stamped metrics: 14 minutes saved per receipt, equating to 92% labor reduction on 200 monthly receipts.
+6. Generate one-click ROI report confirming €5.8K first-month savings and immutable compliance log for executive review.

@@ -55,7 +55,7 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:18:04.569345"
+    "created_at": "2026-06-12T15:20:41.122590"
   },
   {
     "process_id": "ISO31000-P3",
@@ -84,6 +84,409 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:18:31.312348"
+    "created_at": "2026-06-12T15:20:59.914378"
+  },
+  {
+    "process_id": "ISO9001-5",
+    "agent_name": "iso9001_leadership_quality_policy_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 5",
+      "corporate governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 74,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:13:37.208450"
+  },
+  {
+    "process_id": "ISO9001-6",
+    "agent_name": "risk_opportunity_planner",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 6",
+      "ISO 31000 risk management"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 74,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:44:59.147593"
+  },
+  {
+    "process_id": "ISO9001-7",
+    "agent_name": "iso9001_support_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 7",
+      "GDPR employee data",
+      "document retention requirements"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:45:15.594070"
+  },
+  {
+    "process_id": "ISO9001-8",
+    "agent_name": "quality_operations_control_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 8",
+      "GxP if pharma",
+      "HACCP if food",
+      "IATF 16949 if automotive"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:13:55.648989"
+  },
+  {
+    "process_id": "ISO9001-9",
+    "agent_name": "performance_evaluation_audit_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 9",
+      "internal audit independence",
+      "GDPR audit data"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:14:14.731093"
+  },
+  {
+    "process_id": "ISO9001-10",
+    "agent_name": "nonconformity_improvement_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 10",
+      "CAPA requirements",
+      "continual improvement mandate"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:14:32.608684"
+  },
+  {
+    "process_id": "ISO9001-4",
+    "agent_name": "iso9001_context_monitor",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution",
+      "services"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 4",
+      "GDPR context analysis",
+      "regulatory landscape"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:40:29.359810"
+  },
+  {
+    "process_id": "ISO42001-4",
+    "agent_name": "iso42001_4_context_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 4",
+      "EU AI Act context assessment",
+      "GDPR AI context"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:45:48.321591"
+  },
+  {
+    "process_id": "ISO42001-5",
+    "agent_name": "ai_policy_governance_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 5",
+      "EU AI Act Art.4 AI literacy",
+      "corporate AI governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:46:06.510799"
+  },
+  {
+    "process_id": "ISO42001-6",
+    "agent_name": "ai_risk_objectives_planner",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 6",
+      "EU AI Act Art.9 risk management",
+      "NIST AI RMF Map",
+      "algorithmic impact assessment"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:46:23.116457"
+  },
+  {
+    "process_id": "ISO42001-7",
+    "agent_name": "iso42001_7_resource_competence_governance_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 7",
+      "EU AI Act Art.10 data governance",
+      "GDPR training data",
+      "EU AI Act Art.4 literacy"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:46:44.348388"
+  },
+  {
+    "process_id": "ISO42001-8",
+    "agent_name": "ai_lifecycle_operations_controller",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 8",
+      "EU AI Act Art.9-14 operations",
+      "NIST AI RMF Manage",
+      "GxP computer validation if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:14:53.143939"
+  },
+  {
+    "process_id": "ISO42001-9",
+    "agent_name": "aims_performance_monitor_audit_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 9",
+      "EU AI Act Art.12 logging",
+      "EU AI Act Art.72 monitoring",
+      "NIST AI RMF Measure"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 90,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:15:13.240005"
+  },
+  {
+    "process_id": "ISO42001-10",
+    "agent_name": "aims_continual_improvement_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 10",
+      "EU AI Act post-market monitoring",
+      "NIST AI RMF continual improvement"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 6,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:15:32.522674"
   }
 ]

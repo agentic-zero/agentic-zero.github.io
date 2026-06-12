@@ -1,20 +1,20 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-SCOR-M3.1-20260608
+Certificate ID:  AZ-CERT-SCOR-M3.1-20260611
 Process ID:      SCOR-M3.1
-Agent:           eto_production_scheduler
-Issued:          2026-06-08
-Valid Until:     2027-06-08
+Agent:           eto_production_schedule_agent
+Issued:          2026-06-11
+Valid Until:     2027-06-11
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL
-Overall Score:   88%
+Overall Score:   92%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       HIGH RISK
-ISO/IEC 42001:   GAPS FOUND (62%)
+ISO/IEC 42001:   COMPLIANT (78%)
 NIST AI RMF:     100% overall
 GDPR AI:         CLEAR
 Quality:         100%

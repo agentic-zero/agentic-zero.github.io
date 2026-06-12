@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_162913_526059",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO42001-9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:29:13.526091",
+  "status": "completed",
+  "started_at": "2026-06-11T18:42:42.790892",
+  "completed_at": "2026-06-11T18:43:01.805764",
+  "error": null,
+  "result": {
+    "agent_name": "ai_performance_monitoring_audit_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

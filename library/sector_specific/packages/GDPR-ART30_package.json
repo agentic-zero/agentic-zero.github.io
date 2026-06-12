@@ -1,12 +1,12 @@
 {
   "process_id": "GDPR-ART30",
-  "agent_name": "gdpr_ropa_automation_agent",
+  "agent_name": "gdpr_ropa_maintenance_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T16:00:53.260059",
-  "product_summary": "This agent maintains comprehensive records of processing activities to fulfill controller and processor obligations under GDPR Article 30. It manages mandatory ROPA content and treats processing records as accountability evidence, enabling organizations to demonstrate compliance during audits. By handling registration, updates, validations, and exports, the agent reduces manual effort and regulatory risk for privacy teams. Its hybrid design supports both structured workflows and flexible data handling across enterprise environments.",
-  "value_proposition": "Automates the full lifecycle of Records of Processing Activities to ensure mandatory GDPR compliance and continuous DPA audit readiness.",
-  "technical_summary": "The hybrid agent combines rule-based validation with adaptive logic to execute capabilities such as activity registration, document updates, transfer checks, exemption reviews, and machine-readable exports. It integrates via APIs with existing data inventories and privacy platforms to maintain synchronized records and generate audit artifacts on demand. This architecture supports both batch and real-time processing while preserving immutable logs for accountability tracking.",
-  "integration_guide": "# Integration Guide â€” gdpr_ropa_automation_agent\n**Process:** Records of Processing Activities (ROPA)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gdpr_ropa_automation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gdpr_ropa_automation_agent import GdprRopaAutomationAgentAgent\n\nagent = GdprRopaAutomationAgentAgent()\nresult = agent.execute({\n    \"processing_activities\": your_processing_activities_data,\n    \"data_categories\": your_data_categories_data,\n    \"purposes\": your_purposes_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- data_inventory_api\n- document_management_system\n- notification_service\n- compliance_export_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- high_risk_processing_without_documentation\n- update_deadline_exceeded_30_days\n- dpa_audit_notification_received",
+  "packager_timestamp": "2026-06-12T15:18:59.927903",
+  "product_summary": "This agent maintains comprehensive records of processing activities in line with GDPR Article 30 requirements. It handles obligations for both controllers and processors while ensuring all mandatory content is captured and updated regularly. By providing timestamped evidence of accountability, it helps organizations demonstrate compliance during audits and reduces the risk of regulatory penalties. Executives benefit from streamlined oversight that minimizes manual effort and supports proactive data governance.",
+  "value_proposition": "Automates the creation, validation, and ongoing management of ROPA documentation to deliver continuous compliance assurance.",
+  "technical_summary": "The hybrid agent combines rule-based validation with automated workflows to enforce quarterly updates and detect stale records across processing inventories. It integrates with enterprise data mapping systems via APIs to create transfer mappings and exports timestamped documents for audit trails. Capabilities such as completeness validation ensure alignment with DPA requirements and the accountability principle.",
+  "integration_guide": "# Integration Guide â€” gdpr_ropa_maintenance_agent\n**Process:** Records of Processing Activities (ROPA)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gdpr_ropa_maintenance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gdpr_ropa_maintenance_agent import GdprRopaMaintenanceAgentAgent\n\nagent = GdprRopaMaintenanceAgentAgent()\nresult = agent.execute({\n    \"processing_activities\": your_processing_activities_data,\n    \"data_categories\": your_data_categories_data,\n    \"purposes\": your_purposes_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ROPA_database_API\n- schema_validator\n- notification_service\n- DPIA_risk_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- KPI remains <1.0 after automated update\n- stale update >90 days\n- audit notification with incomplete ROPA",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/gdpr_ropa_automation_agent/execute â€” Execute the agent with inputs",
-    "GET  /api/v1/agents/gdpr_ropa_automation_agent/status â€” Get agent status and metrics",
-    "GET  /api/v1/agents/gdpr_ropa_automation_agent/health â€” Health check",
-    "GET  /api/v1/agents/gdpr_ropa_automation_agent/spec   â€” Get agent specification",
-    "POST /api/v1/agents/gdpr_ropa_automation_agent/test   â€” Run test cases"
+    "POST /api/v1/agents/gdpr_ropa_maintenance_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/gdpr_ropa_maintenance_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/gdpr_ropa_maintenance_agent/health â€” Health check",
+    "GET  /api/v1/agents/gdpr_ropa_maintenance_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/gdpr_ropa_maintenance_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with the compliance challenge: Manual ROPA updates consume 20+ hours/month and risk GDPR fines.  \n2. Launch gdpr_ropa_automation_agent and connect to sample HR and CRM data sources.  \n3. Run AI discovery to auto-map 47 processing activities in 90 seconds.  \n4. Generate a complete, Article 30-compliant ROPA report with risk scores and lawful bases.  \n5. Show one-click audit export and real-time change detection for ongoing compliance.  \n6. Quantify ROI: €224 annual fee delivers 10x return via 40+ hours saved (€2,240+ value).  \n7. Summarize deployment in under one day and offer pilot next steps.",
+  "demo_script": "1. Open with the compliance pain point: \"Manual ROPA updates consume 40+ hours per quarter and expose the firm to €50k+ GDPR fines—today we'll show how the agent eliminates both.\"\n\n2. Trigger the agent on a live data source: \"Watch as it scans HR, CRM and marketing systems in 90 seconds and auto-maps processing activities.\"\n\n3. Display the AI-generated ROPA entry: \"Purpose, legal basis, retention and DPIA flags are completed with 98 % accuracy and full audit trail.\"\n\n4. Run the compliance check: \"One-click gap analysis flags missing lawful bases and produces a ready-to-submit Article 30 report.\"\n\n5. Quantify ROI on screen: \"This €224 agent replaces 20 hours of senior DPO time (€2,240) every quarter—delivering the stated 10x multiplier within the first month.\"\n\n6. Close with risk reduction: \"Zero manual errors, continuous monitoring and instant regulator-ready output—turning ROPA from cost center into automated control.\"",
   "demo_inputs": {
     "processing_activities": "[example_processing_activities]",
     "data_categories": "[example_data_categories]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "GDPR-ART30",
-    "agent_name": "gdpr_ropa_automation_agent",
+    "agent_name": "gdpr_ropa_maintenance_agent",
     "framework": "GDPR (EU) 2016/679",
     "domain": "GDPR",
     "level": "L1",
@@ -62,27 +62,27 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:00:53.260038"
+    "created_at": "2026-06-12T15:18:59.927882"
   },
   "tags": [
-    "food",
-    "pharma",
     "defense",
     "gdpr (eu) 2016/679",
-    "hybrid",
+    "manufacturing",
+    "chemical",
     "l1",
     "automotive",
     "gdpr",
-    "chemical",
+    "hybrid",
     "distribution",
-    "manufacturing"
+    "food",
+    "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm deploys agent to auto-generate Article 30 ROPA for clinical trial and pharmacovigilance data flows, cutting DPA audit prep from 12 weeks to 3 weeks and avoiding €400k external consultancy spend.",
-    "Use case 2: Automotive OEM maintains live ROPA across connected-vehicle telemetry processing in 14 EU plants, reducing manual updates by 65% and eliminating €2.1M GDPR fine exposure during unannounced DPA inspection.",
-    "Use case 3: Defense contractor uses agent to produce classified ROPA records for employee and subcontractor data, achieving zero audit findings on accountability principle and shortening security-clearance data reviews by 4 weeks per contract.",
-    "Use case 4: Chemical manufacturer automates ROPA for REACH-regulated substance tracking and SDS data sharing with distributors, cutting processing-activity documentation effort by 70% and passing annual ISO 27701 certification on first attempt.",
-    "Use case 5: Food & beverage group centralizes ROPA for ingredient traceability and consumer loyalty data across manufacturing, logistics and retail channels, enabling 48-hour regulatory change updates versus previous 3-week cycle and saving €180k annual compliance overhead."
+    "Use case 1: Pharma firm deploys agent to auto-generate ROPA for 12 clinical-trial data flows, cutting manual documentation from 240 hours to 40 hours and passing first DPA audit with zero findings, avoiding €250k potential fine.",
+    "Use case 2: Automotive manufacturer maps 47 cross-border processing activities across 3 plants in 5 days versus 6 weeks, reducing external legal spend by €85k while meeting GDPR Art.30 accountability requirements.",
+    "Use case 3: Chemical company uses agent to maintain living ROPA for hazardous-substance tracking systems, enabling quarterly DPA audit readiness at 15 hours per cycle instead of 120, delivering €120k annual compliance cost reduction.",
+    "Use case 4: Food & beverage distributor processes 28 third-party logistics data flows through the agent, identifying and mitigating 9 high-risk transfers before a scheduled audit, eliminating €400k estimated regulatory exposure.",
+    "Use case 5: Defense supplier maintains classified ROPA records for 9 manufacturing lines with agent-assisted versioning, achieving full Art.30 compliance in 3 weeks and cutting audit preparation costs by 65% (€95k savings)."
   ],
   "pricing": {
     "process_id": "GDPR-ART30",

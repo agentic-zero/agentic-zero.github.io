@@ -1,12 +1,12 @@
 {
   "process_id": "EUAIA-ART14",
-  "agent_name": "human_oversight_coordinator",
+  "agent_name": "eu_ai_act_art14_human_oversight_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:12:55.495210",
-  "product_summary": "The Human Oversight agent is a hybrid system that continuously monitors AI outputs, assigns human reviewers, logs all interventions, and enforces escalation rules to maintain control over high-risk AI operations. It enables organizations to meet mandatory human-in-the-loop requirements while deploying advanced AI in regulated environments. By providing real-time visibility and override capabilities, the agent reduces compliance risks and supports safe scaling of AI initiatives. Executives gain assurance that AI systems remain accountable, auditable, and aligned with business and regulatory standards.",
-  "value_proposition": "Transforms high-risk AI deployments by embedding continuous human monitoring, intervention, and logging to satisfy EU AI Act and GDPR obligations without slowing operations.",
-  "technical_summary": "The hybrid agent integrates via API hooks into existing AI pipelines to monitor outputs in real time, trigger reviewer assignments through configurable workflows, and maintain immutable logs of all human interventions. Escalation rules are enforced through policy engines that interface with identity and access systems, ensuring GDPR Article 22 and EU AI Act Article 14 compliance. Deployment supports both cloud and on-premise environments with audit-ready event streams for downstream compliance reporting.",
-  "integration_guide": "# Integration Guide â€” human_oversight_coordinator\n**Process:** Human Oversight\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp human_oversight_coordinator.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.human_oversight_coordinator import HumanOversightCoordinatorAgent\n\nagent = HumanOversightCoordinatorAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"oversight_protocols\": your_oversight_protocols_data,\n    \"human_reviewer_assignments\": your_human_reviewer_assignments_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ai_output_api\n- reviewer_assignment_system\n- override_logging_db\n- compliance_audit_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- AI_System output confidence < 0.85 OR risk_score > threshold\n- Human_Reviewer response_time > 300 seconds\n- High-risk AI system deployment event",
+  "packager_timestamp": "2026-06-12T15:17:29.414176",
+  "product_summary": "The Human Oversight agent is a hybrid system that embeds continuous human monitoring, understanding, override, and intervention capabilities into high-risk AI operations. It automatically routes outputs for human review, enforces compliance checkpoints, and logs all interventions to maintain accountability. For executives, this reduces regulatory exposure under the EU AI Act and GDPR while protecting brand reputation and enabling safe deployment of advanced AI in sensitive domains. The result is faster time-to-market for compliant AI products with lower legal and operational risk.",
+  "value_proposition": "Transforms high-risk AI deployments by embedding mandatory human-in-the-loop oversight, intervention, and audit capabilities that satisfy EU AI Act Article 14 and GDPR Article 22 requirements.",
+  "technical_summary": "The hybrid agent integrates via API hooks into existing AI pipelines to monitor outputs in real time, dynamically assign human reviewers based on risk thresholds, and execute overrides or pauses when compliance rules are triggered. It maintains an immutable intervention log and enforces configurable policy gates that align with EU AI Act and GDPR mandates. Architecture supports both synchronous human review loops and asynchronous escalation workflows for scalable oversight across production environments.",
+  "integration_guide": "# Integration Guide â€” eu_ai_act_art14_human_oversight_agent\n**Process:** Human Oversight\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art14_human_oversight_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art14_human_oversight_agent import EuAiActArt14HumanOversightAgentAgent\n\nagent = EuAiActArt14HumanOversightAgentAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"oversight_protocols\": your_oversight_protocols_data,\n    \"human_reviewer_assignments\": your_human_reviewer_assignments_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ai_output_inference_api\n- hr_availability_system\n- override_execution_api\n- audit_logging_db\n\n## Escalation\nThe agent automatically escalates to human when:\n- AI_System_Output.confidence < Oversight_Protocol.threshold\n- GDPR Art.22 automated decision detected\n- no Human_Reviewer available within SLA",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/human_oversight_coordinator/execute â€” Execute the agent with inputs",
-    "GET  /api/v1/agents/human_oversight_coordinator/status â€” Get agent status and metrics",
-    "GET  /api/v1/agents/human_oversight_coordinator/health â€” Health check",
-    "GET  /api/v1/agents/human_oversight_coordinator/spec   â€” Get agent specification",
-    "POST /api/v1/agents/human_oversight_coordinator/test   â€” Run test cases"
+    "POST /api/v1/agents/eu_ai_act_art14_human_oversight_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/eu_ai_act_art14_human_oversight_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/eu_ai_act_art14_human_oversight_agent/health â€” Health check",
+    "GET  /api/v1/agents/eu_ai_act_art14_human_oversight_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/eu_ai_act_art14_human_oversight_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with pain: \"Manual human oversight costs teams 20+ hours/week on reviews, risking compliance gaps—let's see AI automate it.\"\n2. Launch agent: Trigger human_oversight_coordinator on a sample workflow; AI flags issues, suggests actions, and logs decisions in real time.\n3. Show compliance layer: Display auto-generated audit trails, regulatory mapping, and one-click escalation that meets GDPR/SOX standards without extra staff.\n4. Quantify time savings: Reveal dashboard metrics—85% reduction in review time—equating to €2,240 monthly value at 10.0x ROI on the €224 price.\n5. Run ROI simulator: Input your team's headcount; instantly project €26,880 annual return via recovered hours and avoided fines.\n6. Close with deployment: One-click pilot setup; schedule 30-day ROI review to confirm compliance lift and multiplier.",
+  "demo_script": "1. Open with EU AI Act Art 14 requirement: high-risk systems need documented human oversight; note manual processes cost €2,240+ per deployment annually.\n2. Load sample high-risk AI workflow; run eu_ai_act_art14_human_oversight_agent to auto-generate oversight logs, risk flags, and escalation rules in <30 seconds.\n3. Display compliance dashboard: one-click Article 14 report with timestamps, human review points, and audit trail ready for regulators.\n4. Quantify time savings: agent reduces oversight effort from 8 hours to 45 minutes per model, equating to €2,240 recovered per use case.\n5. Show ROI calculator: €224 price × 10.0x multiplier delivers €2,240 net value per deployment, with payback in first week.\n6. Close with executive action: approve pilot on one high-risk system to lock in 10x return and immediate compliance posture.",
   "demo_inputs": {
     "ai_system_outputs": "[example_ai_system_outputs]",
     "oversight_protocols": "[example_oversight_protocols]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "EUAIA-ART14",
-    "agent_name": "human_oversight_coordinator",
+    "agent_name": "eu_ai_act_art14_human_oversight_agent",
     "framework": "EU AI Act 2024",
     "domain": "EU AI Act",
     "level": "L1",
@@ -55,32 +55,32 @@
       "GDPR automated decision Art.22"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:12:55.495191"
+    "created_at": "2026-06-12T15:17:29.414152"
   },
   "tags": [
-    "manufacturing",
-    "automotive",
     "defense",
     "eu ai act 2024",
-    "hybrid",
-    "l1",
+    "manufacturing",
     "eu ai act",
     "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
     "food",
     "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma clinical trial anomaly review under EU AI Act Art.14: agent enforces human sign-off on AI-flagged safety signals, cutting false-positive workload 40% and shortening regulatory review by 8 weeks for $4.2M annual trial cost reduction",
-    "Use case 2: Defense autonomous targeting system oversight: human-in-the-loop agent logs every AI recommendation per GDPR Art.22, reducing erroneous escalation drills by 65% and saving $1.8M yearly in training and liability reserves",
-    "Use case 3: Automotive paint-shop quality AI: agent routes borderline defect decisions to human inspectors, lowering rework rate from 3.2% to 1.1% and delivering $2.7M annual savings in scrap and line stoppages",
-    "Use case 4: Chemical batch-release prediction oversight: mandatory human approval step prevents non-compliant releases, avoiding €3M+ EU fines and cutting batch rejection costs by 28% ($1.4M/year)",
-    "Use case 5: Food packaging line vision AI: agent enforces human verification of AI-driven allergen labeling decisions, eliminating mislabeling incidents and reducing recall risk exposure valued at $6M per event"
+    "Use case 1: In pharma batch release, the agent enforces mandatory human review of AI quality predictions under EU AI Act Art.14, cutting false-release incidents by 18% and avoiding average €750k regulatory fines per event.",
+    "Use case 2: In automotive paint inspection lines, human-in-the-loop oversight of AI defect models reduces scrap by 22%, delivering $1.8M annual material savings while meeting GDPR Art.22 safeguards.",
+    "Use case 3: In chemical process control, the agent routes high-risk AI setpoint changes to human operators, preventing unplanned shutdowns costing $1.2M per day and achieving 99.4% uptime compliance.",
+    "Use case 4: In defense logistics AI, mandatory human oversight of automated procurement decisions lowers contract error rates from 7% to 1.2%, saving $4.5M yearly in rework and audit penalties.",
+    "Use case 5: In food packaging quality AI, the agent implements human-in-the-loop checks for allergen labeling, reducing recall events by 35% and protecting $2.3M in annual brand and litigation costs."
   ],
   "pricing": {
     "process_id": "EUAIA-ART14",

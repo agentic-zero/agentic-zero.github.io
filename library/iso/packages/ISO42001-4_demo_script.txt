@@ -1,0 +1,13 @@
+1. Open with the compliance challenge: "Manual ISO 42001 Clause 4 context mapping takes 12–15 hours per audit cycle and risks nonconformities—today we automate it in minutes."
+
+2. Load sample org data (strategy, stakeholders, AI use-cases) into the agent and trigger "iso42001_4_context_agent" to generate the full Organization & Interested Parties register.
+
+3. Display the AI-produced output: structured context, interested-party needs, and direct clause traceability—ready for certification evidence.
+
+4. Run one-click compliance check: show automatic gap flags and version-controlled audit trail that satisfies external auditors.
+
+5. Quantify ROI live: 14 hours saved × €120 blended rate = €1,680 per cycle; at 10 cycles/year this agent (€224) delivers 75× return, exceeding the stated 10× multiplier.
+
+6. Simulate annual renewal: re-run with updated inputs in <90 seconds, proving ongoing cost avoidance and continuous compliance.
+
+7. Close: "For €224 you remove a recurring audit bottleneck and gain defensible ISO 42001 evidence—ready to pilot this week?"

@@ -86,5 +86,16 @@
   "remediation_plan": [
     "ISO 42001: Clause 5 leadership/accountability not explicitly defined in logic",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:40.438874",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

@@ -86,14 +86,13 @@
     "ISO 42001: Clause 5 (Leadership): no accountability/oversight mechanisms defined in logic"
   ],
   "auditor_review": {
-    "decision": "APPROVE_WITH_CONDITIONS",
-    "delivery": true,
-    "restricted": true,
+    "decision": "HOLD",
+    "delivery": false,
+    "restricted": false,
     "conditions": [
-      "EU AI Act gaps require documentation: art_9, art_10, art_11",
-      "ISO/IEC 42001 at 47% — improvement roadmap required"
+      "ISO/IEC 42001 score 47% below 60% minimum"
     ],
-    "audited_at": "2026-06-09T16:18:55.589589",
+    "audited_at": "2026-06-12T16:09:38.594143",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

@@ -1,0 +1,7 @@
+1. Open demo with a live enterprise scenario: input Q3 expansion goals and regulatory constraints into ai_risk_objectives_planner.  
+2. Run AI Planning — Risk Assessment and Objectives; show automated output of prioritized risks, mitigation actions, and measurable objectives in <60 seconds.  
+3. Highlight compliance value: auto-mapped controls to ISO 27001 and EU AI Act requirements with audit-ready traceability.  
+4. Quantify time savings: compare 18 manual hours vs. 12 AI minutes; calculate €2,240 recovered cost at blended executive rate.  
+5. Display ROI dashboard: €224 price yields 10.0x multiplier via risk avoidance (€18k projected) and faster regulatory sign-off.  
+6. Export one-click report for board review; confirm zero manual rework needed.  
+7. Close with 60-second summary: €224 investment, immediate compliance lift, and 10x verified return.

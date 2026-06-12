@@ -1,15 +1,14 @@
 # SOP — GDPR Data Processing Principles
 **Process ID:** GDPR-ART5
 **Framework:** GDPR (EU) 2016/679 | **Domain:** GDPR
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Core GDPR data processing principles including lawfulness, fairness, transparency, purpose limitation, data minimization, accuracy, storage limitation, integrity, confidentiality and accountability, plus lawful basis and special category data requirements
 
 ## Triggers
-- New processing activity registration
-- Quarterly compliance audit
-- Data subject request for access or erasure
+- New processing activity registered in inventory
+- Quarterly compliance audit scheduled
 
 ## Inputs Required
 - personal data inventory
@@ -19,9 +18,8 @@ Core GDPR data processing principles including lawfulness, fairness, transparenc
 - retention schedules
 
 ## Process Steps
-1. IF LawfulBasis is missing THEN block processing and require assessment
-2. IF SpecialCategoryData is true THEN require explicit Art9 exception or consent
-3. IF retention period exceeds schedule THEN trigger deletion workflow
+1. IF SpecialCategoryData == true THEN require explicit Art9 condition before processing
+2. IF LawfulBasis == consent AND consent withdrawn THEN stop processing unless alternative Art6 basis exists
 
 ## Expected Outputs
 - lawful basis documentation
@@ -31,19 +29,18 @@ Core GDPR data processing principles including lawfulness, fairness, transparenc
 - accountability evidence
 
 ## Business Rules
-- Every PersonalDataInventory entry must have documented LawfulBasis from Art6
-- ProcessingPurpose must be specific, explicit and legitimate before any processing
-- DataMinimizationControl must reduce collected fields to minimum necessary for purpose
-- RetentionPolicy must enforce storage limitation with automated expiry
-- AccountabilityEvidence must log all decisions for audit
+- Every PersonalData processing MUST have one documented Art6 lawful basis
+- PersonalData MUST be limited to data fields necessary for stated ProcessingPurpose
+- RetentionSchedule MUST enforce deletion or anonymization at end of period
+- PrivacyNotice MUST be published before processing starts
 
 ## Exception Handling
-- Vital interests or legal obligation may override consent requirement for SpecialCategoryData; log justification and notify DPO
+- If legal obligation overrides retention limit, document specific statute and extend RetentionPolicy with justification
 
 ## Success Criteria
 - lawful_basis_coverage == 100%
-- privacy_notice_completeness >= 95%
-- retention_compliance_rate >= 98%
+- privacy_notice_published == true for all active purposes
+- retention_compliance_rate >= 0.95
 
 ## Compliance Requirements
 - GDPR Art.5 principles

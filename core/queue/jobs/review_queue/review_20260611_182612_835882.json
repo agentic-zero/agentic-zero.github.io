@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260611_182612_835882",
+  "job_type": "review",
+  "payload": {
+    "process_id": "SCOR-S2.4",
+    "certificate_id": "AZ-CERT-SCOR-S2.4-20260611"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:26:12.835897",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

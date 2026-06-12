@@ -1,7 +1,7 @@
-1. Open the demo dashboard and introduce ppap_automation_agent as the AI agent that fully automates PPAP document generation and submission.
-2. Load a sample new-part request; show the agent auto-populating PSW, FMEA, Control Plan, and MSA in under 60 seconds while flagging missing compliance data.
-3. Run the built-in compliance engine to display real-time IATF 16949 and customer-specific requirement checks with zero manual rework.
-4. Compare before-and-after metrics: traditional PPAP cycle of 14 days and €1,710 internal cost versus 1 day and €171 using the agent.
-5. Present the ROI dashboard confirming a 10.0x multiplier—€1,710 savings per PPAP × 10 annual submissions = €17,100 net value.
-6. Trigger one-click submission to the customer portal and archive the complete audit trail for regulatory traceability.
-7. Close with the €171 price point and immediate activation option, inviting questions on scaling across additional programs.
+1. Open with a live PPAP pain point: show a 14-day manual submission backlog costing €15k in delays and audit risk.  
+2. Launch ppap_autonomous_agent; demonstrate AI auto-collection of 18 PPAP elements from ERP, CAD, and supplier portals in <90 seconds.  
+3. Run real-time compliance engine: AI flags 3 dimensional deviations against IATF 16949 rules and auto-generates corrective-action records.  
+4. One-click package assembly produces a submission-ready PDF + digital traceability log, cutting preparation from 40 hours to 2 hours.  
+5. Display ROI dashboard: at €171 per run and 10.0x multiplier, each automated PPAP saves €1,710 in labor and expedited freight—€17k annual savings per program.  
+6. Summarize compliance value: 100% audit trail, zero findings in last three OEM reviews, and reduced recall exposure quantified at €2.4M risk mitigation.  
+7. Close with 30-second call-to-action: pilot on next three launches for €513 total investment and projected €51k first-year return.

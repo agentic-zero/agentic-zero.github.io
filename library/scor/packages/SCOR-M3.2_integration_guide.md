@@ -1,4 +1,4 @@
-# Integration Guide — eto_component_issue_agent
+# Integration Guide â€” eto_issue_processor
 **Process:** Issue In-Process Product (ETO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_component_issue_agent.py ./agents/
+cp eto_issue_processor.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_component_issue_agent import EtoComponentIssueAgentAgent
+from agents.eto_issue_processor import EtoIssueProcessorAgent
 
-agent = EtoComponentIssueAgentAgent()
+agent = EtoIssueProcessorAgent()
 result = agent.execute({
     "engineering_boms": your_engineering_boms_data,
     "configuration_documents": your_configuration_documents_data,
@@ -35,12 +35,12 @@ print(result['outputs'])
 
 ## Tools Required
 - PLM_API
-- ERP_API
+- ECM_API
 - MES_API
-- Audit_Log_System
+- ComplianceEngine
 
 ## Escalation
 The agent automatically escalates to human when:
-- BOM version mismatch or missing Configuration_Document
-- traceability_completeness < 100%
-- export_control or AS9100 flag violation
+- BOM accuracy < 1.0
+- defense sector with exportControl flag requiring dual authorization
+- configuration mismatch detected

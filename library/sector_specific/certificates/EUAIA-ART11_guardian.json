@@ -1,13 +1,13 @@
 {
   "process_id": "EUAIA-ART11",
-  "guardian_timestamp": "2026-06-10T11:21:28.296279",
+  "guardian_timestamp": "2026-06-12T15:28:38.982532",
   "certificate": {
-    "certificate_id": "AZ-CERT-EUAIA-ART11-20260610",
+    "certificate_id": "AZ-CERT-EUAIA-ART11-20260612",
     "process_id": "EUAIA-ART11",
     "agent_name": "eu_ai_act_art11_documentation_agent",
-    "issued_at": "2026-06-10T11:21:28.296239",
+    "issued_at": "2026-06-12T15:28:38.982491",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.82,
     "eu_ai_act": {
@@ -40,13 +40,14 @@
       "compliant": false,
       "score": 0.62,
       "gaps": [
-        "Narrow scope limited to technical documentation; missing leadership, planning, support, and performance evaluation clauses of ISO 42001",
-        "No explicit mechanisms for internal audits, management review, or organization-wide risk treatment",
-        "Escalation rules address only documentation conformity, not broader AI management system continual improvement"
+        "Scope limited to technical documentation; does not address full ISO 42001 clauses (leadership, planning, risk management, performance evaluation)",
+        "No explicit mechanisms for internal audits, management review, or organization-wide continual improvement",
+        "Escalation rules reference conformity metrics without defined mapping to ISO 42001 requirements"
       ],
       "recommendations": [
-        "Extend agent capabilities to cover full PDCA cycle and AI risk assessment processes",
-        "Add modules for stakeholder needs, resource management, and management review reporting"
+        "Extend agent capabilities to cover all ISO 42001 clauses including 5 (Leadership) and 6 (Planning)",
+        "Implement automated mapping of documentation outputs to ISO 42001 documented information requirements (7.5)",
+        "Add integration hooks for risk assessment and performance evaluation processes"
       ]
     },
     "nist_ai_rmf": {
@@ -83,7 +84,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Narrow scope limited to technical documentation; missing leadership, planning, support, and performance evaluation clauses of ISO 42001",
+    "ISO 42001: Scope limited to technical documentation; does not address full ISO 42001 clauses (leadership, planning, risk management, performance evaluation)",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:41.956609",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

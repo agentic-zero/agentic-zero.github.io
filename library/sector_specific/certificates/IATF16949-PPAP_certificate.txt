@@ -1,20 +1,20 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-IATF16949-PPAP-20260610
+Certificate ID:  AZ-CERT-IATF16949-PPAP-20260612
 Process ID:      IATF16949-PPAP
-Agent:           ppap_automation_agent
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Agent:           ppap_autonomous_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CERTIFIED
-Overall Score:   82%
+Overall Score:   80%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       LIMITED RISK
-ISO/IEC 42001:   GAPS FOUND (58%)
+ISO/IEC 42001:   GAPS FOUND (52%)
 NIST AI RMF:     100% overall
 GDPR AI:         ISSUES FOUND
 Quality:         100%

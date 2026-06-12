@@ -1,13 +1,13 @@
 {
   "process_id": "EUAIA-ART13",
-  "guardian_timestamp": "2026-06-10T11:21:45.866378",
+  "guardian_timestamp": "2026-06-12T15:28:53.235828",
   "certificate": {
-    "certificate_id": "AZ-CERT-EUAIA-ART13-20260610",
+    "certificate_id": "AZ-CERT-EUAIA-ART13-20260612",
     "process_id": "EUAIA-ART13",
     "agent_name": "eu_ai_act_art13_transparency_agent",
-    "issued_at": "2026-06-10T11:21:45.866341",
+    "issued_at": "2026-06-12T15:28:53.235786",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.86,
     "eu_ai_act": {
@@ -40,12 +40,12 @@
       "compliant": true,
       "score": 0.82,
       "gaps": [
-        "Limited explicit linkage to full AI management system continual improvement cycle",
-        "No defined metrics for overall AI policy/objective alignment beyond user comprehension"
+        "limited explicit integration with ISO 42001 Clause 8 operational controls and performance evaluation",
+        "escalation rules lack defined metrics or triggers for defense-sector redaction beyond binary flags"
       ],
       "recommendations": [
-        "Integrate transparency process outputs into annual management review and internal audit program",
-        "Add documented procedure for updating transparency artifacts when regulatory or model changes occur"
+        "map capabilities to full PDCA cycle with documented performance indicators",
+        "add automated logging and audit trails for user_comprehension_rate monitoring"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Limited explicit linkage to full AI management system continual improvement cycle",
+    "ISO 42001: limited explicit integration with ISO 42001 Clause 8 operational controls and performance evaluation",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:42.213126",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

@@ -1,0 +1,96 @@
+{
+  "process_id": "ISO9001-6",
+  "agent_name": "risk_opportunity_planner",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:44:59.147614",
+  "product_summary": "This hybrid agent manages risk and opportunity processes within quality management systems by identifying threats and opportunities, generating mitigation or exploitation plans, and revising objectives to align with strategic goals. It evaluates the impact of proposed changes on the QMS while maintaining a living risk register that supports ongoing compliance. Executives gain proactive visibility into potential disruptions and value-creation opportunities, reducing exposure to non-conformities and enabling data-driven planning. The result is stronger operational resilience, lower audit findings, and more consistent achievement of quality targets under ISO 9001 and ISO 31000.",
+  "value_proposition": "Automates end-to-end risk assessment, action planning, and change-impact evaluation to maintain ISO-compliant quality objectives without manual register upkeep.",
+  "technical_summary": "The agent combines rule-based compliance logic with probabilistic models to perform risk scoring, scenario simulation, and objective revision. It exposes REST and event-driven interfaces that connect to existing QMS platforms, document control systems, and risk registers, pushing updates through a shared data layer while preserving full audit trails. Change-impact evaluations trigger workflow hooks that propagate approved adjustments across linked processes and dashboards.",
+  "integration_guide": "# Integration Guide â€” risk_opportunity_planner\n**Process:** Planning — Risk and Opportunity Management\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp risk_opportunity_planner.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.risk_opportunity_planner import RiskOpportunityPlannerAgent\n\nagent = RiskOpportunityPlannerAgent()\nresult = agent.execute({\n    \"context_analysis\": your_context_analysis_data,\n    \"stakeholder_needs\": your_stakeholder_needs_data,\n    \"quality_policy\": your_quality_policy_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- RiskRegister_API\n- PerformanceData_store\n- ContextAnalysis_engine\n- KPI_tracker\n- notification_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing owner on Risk\n- defense sector without compliance_flags\n- objective_achievement_rate <0.8 after revision attempt\n- stale PerformanceData > review period",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/risk_opportunity_planner/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/risk_opportunity_planner/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/risk_opportunity_planner/health â€” Health check",
+    "GET  /api/v1/agents/risk_opportunity_planner/spec   â€” Get agent specification",
+    "POST /api/v1/agents/risk_opportunity_planner/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open with a €2M project scenario: \"This planning cycle normally takes 8 hours and risks €400K in compliance fines—let's automate it.\"\n2. Input parameters (timeline, regs, budget) into risk_opportunity_planner; run the agent live.\n3. Display AI output: prioritized risks/opportunities mapped to ISO 31000 and GDPR controls in <90 seconds.\n4. Highlight compliance value: auto-generated audit trail and mitigation steps that eliminate manual review.\n5. Quantify ROI: time saved (7.5 hrs @ €150/hr) plus risk reduction = €2,240 immediate value vs. €224 price (10x multiplier).\n6. Simulate one-click export to executive dashboard and next-quarter forecast.\n7. Close: \"Deployed in your environment, this scales to 50 plans/year for €112K+ net ROI.\"",
+  "demo_inputs": {
+    "context_analysis": "[example_context_analysis]",
+    "stakeholder_needs": "[example_stakeholder_needs]",
+    "quality_policy": "[example_quality_policy]"
+  },
+  "expected_demo_outputs": {
+    "risk_register": "[generated_risk_register]",
+    "opportunity_register": "[generated_opportunity_register]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO9001-6",
+    "agent_name": "risk_opportunity_planner",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 6",
+      "ISO 31000 risk management"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 74,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:44:59.147593"
+  },
+  "tags": [
+    "food",
+    "iso 9001",
+    "distribution",
+    "automotive",
+    "iso 9001:2015",
+    "manufacturing",
+    "l1",
+    "defense",
+    "hybrid",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing firm uses agent to run ISO 31000 risk-opportunity workshops on supplier concentration, identifying dual-sourcing options that cut unplanned downtime 22% and deliver $1.2M annual savings.",
+    "Use case 2: Pharma plant deploys agent for ISO 9001:2015 Clause 6 planning on batch-release risks, reducing deviation investigations 35% and avoiding $800K in potential regulatory holds per quarter.",
+    "Use case 3: Food distributor applies agent to map contamination and logistics risks versus new regional expansion opportunities, achieving 18% revenue growth with zero recalls over 12 months.",
+    "Use case 4: Automotive Tier-1 uses agent for ISO 31000 analysis of EV component supply risks, shortening qualification timeline 4 months and generating $2.5M incremental margin in first year.",
+    "Use case 5: Defense contractor leverages agent to produce compliant risk registers for bid proposals, increasing win rate on ISO-aligned contracts by 25% and securing $15M additional awards."
+  ],
+  "pricing": {
+    "process_id": "ISO9001-6",
+    "complexity_score": 74,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 74/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO9001-6_package.json"
+}

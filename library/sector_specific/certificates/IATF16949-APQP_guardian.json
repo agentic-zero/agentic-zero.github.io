@@ -1,13 +1,13 @@
 {
   "process_id": "IATF16949-APQP",
-  "guardian_timestamp": "2026-06-10T16:01:13.821747",
+  "guardian_timestamp": "2026-06-12T09:19:20.115490",
   "certificate": {
-    "certificate_id": "AZ-CERT-IATF16949-APQP-20260610",
+    "certificate_id": "AZ-CERT-IATF16949-APQP-20260612",
     "process_id": "IATF16949-APQP",
-    "agent_name": "apqp_compliance_orchestrator",
-    "issued_at": "2026-06-10T16:01:13.821702",
+    "agent_name": "apqp_phase_orchestrator",
+    "issued_at": "2026-06-12T09:19:20.115456",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "certified",
     "overall_score": 0.82,
     "eu_ai_act": {
@@ -27,16 +27,16 @@
       "compliant": false,
       "score": 0.58,
       "gaps": [
-        "No AI-specific risk assessment, impact analysis or bias evaluation processes defined",
-        "Missing transparency, explainability and audit trail requirements for AI-driven decisions",
-        "Insufficient provisions for ongoing AI system monitoring, performance drift detection and continual improvement",
-        "Lack of explicit data governance, quality and provenance controls for any ML components"
+        "No explicit AI-specific risk management or impact assessment processes defined",
+        "Missing data governance, quality, and provenance controls for AI-driven decisions",
+        "Insufficient transparency, explainability, and human oversight mechanisms beyond basic escalation",
+        "No provisions for continual AI performance monitoring, bias detection, or model improvement"
       ],
       "recommendations": [
-        "Map existing escalation rules to ISO/IEC 42001 AI risk and impact assessment requirements",
-        "Add mandatory human oversight checkpoints and decision logging for all AI outputs",
-        "Implement AI performance metrics, drift monitoring and periodic re-validation procedures",
-        "Establish data governance policies covering training/validation data used by the hybrid agent"
+        "Integrate formal AI risk assessment and impact analysis aligned with ISO/IEC 42001 clauses 6.1 and 8.2",
+        "Establish documented data governance policies and AI decision audit trails",
+        "Define measurable human oversight and explainability requirements for all AI outputs",
+        "Implement ongoing AI system performance evaluation and feedback loops for model refinement"
       ]
     },
     "nist_ai_rmf": {
@@ -69,7 +69,7 @@
   "approved_for_delivery": true,
   "requires_human_sign_off": false,
   "remediation_plan": [
-    "ISO 42001: No AI-specific risk assessment, impact analysis or bias evaluation processes defined",
+    "ISO 42001: No explicit AI-specific risk management or impact assessment processes defined",
     "GDPR: Personal data detected: define lawful basis for processing"
   ]
 }

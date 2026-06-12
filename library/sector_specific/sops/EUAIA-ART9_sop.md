@@ -1,14 +1,14 @@
 # SOP — Risk Management System for High-Risk AI
 **Process ID:** EUAIA-ART9
 **Framework:** EU AI Act 2024 | **Domain:** EU AI Act
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Mandatory risk management system for high-risk AI systems including risk identification, estimation, evaluation, mitigation and residual risk assessment throughout the AI lifecycle
 
 ## Triggers
-- Classification of AI system as high-risk under EU AI Act Annex III
-- Start of design phase for high-risk AI system
+- New high-risk AI system registration in EUAIA registry
+- Change to intended_use or system_design after initial deployment
 
 ## Inputs Required
 - AI system design
@@ -18,8 +18,8 @@ Mandatory risk management system for high-risk AI systems including risk identif
 - mitigation measures
 
 ## Process Steps
-1. IF residual_risk_level > acceptance_threshold THEN require additional MitigationControl before deployment
-2. IF new foreseeable_misuse identified THEN trigger risk reassessment
+1. IF residual_risk_level > acceptable_threshold THEN trigger additional_mitigation OR reject deployment
+2. IF risk_identification_completeness < 1.0 THEN require additional risk_assessment_data before approval
 
 ## Expected Outputs
 - risk management plan
@@ -29,17 +29,19 @@ Mandatory risk management system for high-risk AI systems including risk identif
 - risk monitoring plan
 
 ## Business Rules
-- Risk identification must cover intended_use and foreseeable_misuse for entire AI lifecycle
-- Residual risk must be explicitly accepted and documented before release
-- Review frequency must be at minimum quarterly or on material system change
+- Mandatory risk identification, estimation, evaluation, mitigation and residual risk assessment throughout AI lifecycle per EU AI Act Art.9
+- All outputs(RiskManagementPlan, RiskAssessmentReport, ResidualRisk acceptance) must be documented and versioned
+- Review frequency KPI must be executed at minimum every 6 months or on system change
 
 ## Exception Handling
-- Non-high-risk AI systems are exempt from Art9 process execution
+- Low-risk AI systems exempt from Art.9 process but must log justification and re-evaluate if use case changes
+- Sector-specific standards (pharma, defense) may override with stricter thresholds; document variance and obtain legal sign-off
 
 ## Success Criteria
-- risk_identification_completeness >= 0.95
-- residual_risk_level <= acceptance_threshold
-- all mitigation_controls implemented and verified
+- risk_identification_completeness == 1.0
+- residual_risk_level <= low
+- mitigation_effectiveness >= 0.8
+- all outputs signed off by responsible_role
 
 ## Compliance Requirements
 - EU AI Act Art.9 mandatory

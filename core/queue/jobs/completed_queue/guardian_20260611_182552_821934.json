@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260611_182552_821934",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "SCOR-M3.1"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:25:52.821958",
+  "status": "completed",
+  "started_at": "2026-06-11T18:26:50.181574",
+  "completed_at": "2026-06-11T18:26:56.750979",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-SCOR-M3.1-20260611",
+    "status": "conditional",
+    "process_id": "SCOR-M3.1"
+  }
+}

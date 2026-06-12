@@ -1,20 +1,20 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-ISO31000-P2-20260610
+Certificate ID:  AZ-CERT-ISO31000-P2-20260612
 Process ID:      ISO31000-P2
 Agent:           iso31000_risk_assessment_agent
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL
-Overall Score:   86%
+Overall Score:   81%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       HIGH RISK
-ISO/IEC 42001:   COMPLIANT (78%)
+ISO/IEC 42001:   GAPS FOUND (55%)
 NIST AI RMF:     100% overall
 GDPR AI:         ISSUES FOUND
 Quality:         100%

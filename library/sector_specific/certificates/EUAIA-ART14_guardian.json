@@ -1,13 +1,13 @@
 {
   "process_id": "EUAIA-ART14",
-  "guardian_timestamp": "2026-06-10T11:21:54.662349",
+  "guardian_timestamp": "2026-06-12T15:28:59.037472",
   "certificate": {
-    "certificate_id": "AZ-CERT-EUAIA-ART14-20260610",
+    "certificate_id": "AZ-CERT-EUAIA-ART14-20260612",
     "process_id": "EUAIA-ART14",
-    "agent_name": "human_oversight_coordinator",
-    "issued_at": "2026-06-10T11:21:54.662309",
+    "agent_name": "eu_ai_act_art14_human_oversight_agent",
+    "issued_at": "2026-06-12T15:28:59.037435",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.86,
     "eu_ai_act": {
@@ -40,12 +40,14 @@
       "compliant": true,
       "score": 0.78,
       "gaps": [
-        "No explicit competence or training requirements defined for human reviewers",
-        "Missing mechanisms for periodic effectiveness review and continual improvement of oversight processes"
+        "No explicit mechanisms for reviewer competency assessment or bias mitigation",
+        "Missing integration with broader AI risk management and continual improvement processes",
+        "SLA definitions and fallback procedures for reviewer unavailability are underspecified"
       ],
       "recommendations": [
-        "Define and document competence criteria and training for reviewers per ISO 42001 Clause 7.2",
-        "Implement KPIs and scheduled audits of escalation rules and intervention logs to support continual improvement"
+        "Define and document reviewer qualification criteria and periodic training requirements",
+        "Link oversight logs to the AI management system's performance evaluation and improvement cycle",
+        "Formalize quantitative thresholds and escalation timelines within the documented procedures"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +84,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No explicit competence or training requirements defined for human reviewers",
+    "ISO 42001: No explicit mechanisms for reviewer competency assessment or bias mitigation",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:42.345842",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

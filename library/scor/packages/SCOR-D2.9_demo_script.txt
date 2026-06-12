@@ -1,7 +1,7 @@
-1. Open with current MTO picking pain: 12-min manual picks, 18% compliance errors, €85k annual labor cost.  
-2. Launch mto_pick_execution_agent; show real-time order ingestion and AI-driven slotting in 45 seconds.  
-3. Run live pick: agent auto-selects compliant bin, prints audit trail, flags restricted SKU—zero manual checks.  
-4. Display dashboard: 94% faster cycle time, 100% regulatory logging, instant ERP update.  
-5. ROI screen: €699 price yields 8.0x return (€5,592 net) via 41 labor hours saved per week.  
-6. Compliance close: one-click export for audits; policy engine blocks 100% of restricted picks.  
-7. End with pilot offer: 30-day deployment, full ROI visible in first invoice cycle.
+1. Open dashboard and load sample MTO order; highlight AI agent auto-selecting optimal product match in <3 seconds vs. 12-minute manual process.  
+2. Trigger compliance check: show real-time validation against inventory, regulatory, and audit rules with zero flagged exceptions.  
+3. Execute pick confirmation; display automated logging, digital signature, and full traceability trail for compliance audit.  
+4. Reveal live metrics panel: 8.4 min saved per order, 97% error reduction, equating to 47 hours/week recovered.  
+5. Run ROI calculator: input €699 license cost; instantly project €5,592 annual value (8.0x multiplier) from labor and compliance savings.  
+6. Simulate scale: process 50 concurrent orders to demonstrate consistent speed and 100% audit-ready output.  
+7. Close with one-click deployment summary and next-step integration timeline.

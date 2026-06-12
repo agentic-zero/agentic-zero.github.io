@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260612_095604_875593",
+  "job_type": "review",
+  "payload": {
+    "process_id": "EUAIA-ART10",
+    "certificate_id": "AZ-CERT-EUAIA-ART10-20260612"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:56:04.875606",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

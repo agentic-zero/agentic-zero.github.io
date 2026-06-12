@@ -2,11 +2,11 @@
   "process_id": "NIST-MEASURE",
   "agent_name": "nist_measure_risk_analyzer",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:14:58.920286",
-  "product_summary": "This agent delivers quantitative and qualitative analysis of AI risks by measuring trustworthiness, detecting bias trends, testing robustness, and benchmarking performance against established standards. It supports organizations in identifying vulnerabilities before deployment, reducing exposure to regulatory penalties and reputational harm. Executives gain actionable insights that strengthen governance, accelerate safe AI adoption, and demonstrate compliance with NIST, EU AI Act, and ISO frameworks. The result is more reliable systems that protect business value while enabling responsible scaling of AI initiatives.",
-  "value_proposition": "Transforms AI risk management by automating metric computation, bias analysis, and compliance-aligned reporting across the full model lifecycle.",
-  "technical_summary": "The hybrid agent combines compute_risk_metrics and analyze_bias_trends functions with generate_robustness_reports and validate_metric_reliability modules to process model outputs and datasets in a unified workflow. It integrates directly into MLOps pipelines through standardized APIs, enabling continuous evaluation and automated report generation. All outputs are structured to satisfy NIST AI RMF 1.0 MEASURE, EU AI Act performance metrics, and ISO 42001 evaluation requirements without custom engineering.",
-  "integration_guide": "# Integration Guide â€” nist_measure_risk_analyzer\n**Process:** MEASURE — AI Risk Analysis and Metrics\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp nist_measure_risk_analyzer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.nist_measure_risk_analyzer import NistMeasureRiskAnalyzerAgent\n\nagent = NistMeasureRiskAnalyzerAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"test_datasets\": your_test_datasets_data,\n    \"performance_benchmarks\": your_performance_benchmarks_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- statistical_analysis_library\n- bias_detection_api\n- report_generator\n- dataset_validator\n\n## Escalation\nThe agent automatically escalates to human when:\n- source confidence below 0.9\n- bias score trends exceed defined thresholds",
+  "packager_timestamp": "2026-06-11T18:44:28.965372",
+  "product_summary": "This agent provides a comprehensive framework for measuring and evaluating AI risks through both quantitative metrics and qualitative assessments. It enables organizations to quantify trustworthiness, detect biases, test robustness, and benchmark performance against industry standards. By ensuring compliance with frameworks like NIST AI RMF and EU AI Act, it helps mitigate potential liabilities and builds stakeholder confidence in AI deployments. Executives can leverage these insights to make informed decisions that balance innovation with responsible AI governance.",
+  "value_proposition": "Automates AI risk measurement, bias detection, and compliance reporting to deliver trustworthy, regulation-ready AI systems at scale.",
+  "technical_summary": "The hybrid agent combines computational modules for risk metrics and bias robustness analysis with KPI calculation and automated reporting functions. It integrates via standardized APIs into existing AI pipelines to enable real-time benchmarking and continuous evaluation. Built-in compliance mappings ensure all outputs align with NIST AI RMF 1.0, EU AI Act metrics, and ISO 42001 evaluation requirements.",
+  "integration_guide": "# Integration Guide â€” nist_measure_risk_analyzer\n**Process:** MEASURE — AI Risk Analysis and Metrics\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp nist_measure_risk_analyzer.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.nist_measure_risk_analyzer import NistMeasureRiskAnalyzerAgent\n\nagent = NistMeasureRiskAnalyzerAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"test_datasets\": your_test_datasets_data,\n    \"performance_benchmarks\": your_performance_benchmarks_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- json_csv_ingestion\n- metric_calculation_engine\n- report_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- automation_potential < 0.5 require human review\n- incomplete inputs or metric_reliability < 0.9 produce invalid scores",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/nist_measure_risk_analyzer/spec   â€” Get agent specification",
     "POST /api/v1/agents/nist_measure_risk_analyzer/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open nist_measure_risk_analyzer and load a live AI system profile (e.g., credit-scoring model) to set the compliance baseline.  \n2. Trigger automated MEASURE analysis; display real-time risk metrics mapped directly to NIST AI RMF subcategories in under 60 seconds.  \n3. Overlay risk heat-map and quantitative scores, highlighting high-impact vulnerabilities and regulatory gaps.  \n4. Run ROI simulator: input current manual assessment cost (€2,800) versus tool cost (€224), instantly showing 10x multiplier via 12-hour time saving.  \n5. Generate and export a board-ready compliance report with audit-ready evidence, proving reduced legal and operational exposure.  \n6. Close by confirming one-click integration into existing governance workflows and immediate activation for the full enterprise license.",
+  "demo_script": "1. Open the executive dashboard and load a sample high-risk AI model profile (e.g., credit decisioning system) to set the compliance context.  \n2. Launch nist_measure_risk_analyzer; it auto-ingests model metadata and runs NIST-aligned risk scoring in <60 seconds.  \n3. Review the generated metrics dashboard showing quantitative risk scores, bias indicators, and performance drift—highlighting gaps executives can immediately action.  \n4. Display the one-click NIST MEASURE compliance map that auto-tags controls and produces an audit-ready report, eliminating manual evidence collection.  \n5. Run the ROI calculator: input current manual assessment cost (€2,240) versus €224 agent fee to show the 10x multiplier and 90% time reduction.  \n6. Export the signed risk report and mitigation roadmap; confirm next-step integration into the enterprise GRC platform.",
   "demo_inputs": {
     "ai_system_outputs": "[example_ai_system_outputs]",
     "test_datasets": "[example_test_datasets]",
@@ -62,27 +62,27 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:14:58.920268"
+    "created_at": "2026-06-11T18:44:28.965352"
   },
   "tags": [
-    "manufacturing",
-    "nist ai rmf 1.0",
-    "nist ai rmf",
-    "defense",
-    "automotive",
-    "hybrid",
-    "l1",
-    "chemical",
-    "distribution",
     "food",
-    "pharma"
+    "distribution",
+    "chemical",
+    "automotive",
+    "manufacturing",
+    "l1",
+    "defense",
+    "hybrid",
+    "pharma",
+    "nist ai rmf",
+    "nist ai rmf 1.0"
   ],
   "use_cases": [
-    "Use case 1: Pharma company uses agent to quantify bias and performance metrics in AI clinical-trial predictors per EU AI Act, cutting regulatory review time by 4 months and avoiding €1.2M in delays.",
-    "Use case 2: Automotive manufacturer runs NIST AI RMF risk scoring on vision-based quality AI, reducing false-positive defects by 28% and saving $950K annually in scrap and rework.",
-    "Use case 3: Defense contractor applies ISO 42001 evaluation metrics to autonomous logistics AI, identifying high-impact failure modes and securing $4M contract renewal by demonstrating <0.1% mission-risk threshold.",
-    "Use case 4: Chemical plant deploys agent-driven performance metrics on process-control AI, lowering incident probability by 35% and eliminating $2.1M in potential EPA fines plus downtime.",
-    "Use case 5: Food distributor measures AI demand-forecast risk under NIST/EU frameworks, improving forecast accuracy to 94% and reducing spoilage losses by $780K per year."
+    "Use case 1: Pharma firm applies the agent to measure bias and robustness in AI clinical trial predictors under EU AI Act, cutting compliance audit prep time by 45% and avoiding €2M potential fines.",
+    "Use case 2: Automotive OEM uses the agent for NIST AI RMF metrics on predictive quality inspection models, reducing false-positive defect rates by 32% and saving $1.8M yearly in rework costs.",
+    "Use case 3: Defense contractor deploys the agent for ISO 42001 evaluation of logistics AI, achieving full audit certification in 6 weeks instead of 5 months and securing a $12M contract renewal.",
+    "Use case 4: Chemical manufacturer runs the agent on process-control AI risk metrics, identifying 7 high-severity vulnerabilities and preventing an estimated $4.5M in unplanned downtime incidents.",
+    "Use case 5: Food distributor leverages the agent for performance and fairness metrics on demand-forecasting AI, improving forecast accuracy by 28% and reducing excess inventory carrying costs by $950K annually."
   ],
   "pricing": {
     "process_id": "NIST-MEASURE",

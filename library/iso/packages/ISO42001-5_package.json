@@ -1,0 +1,99 @@
+{
+  "process_id": "ISO42001-5",
+  "agent_name": "ai_policy_governance_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:46:06.510818",
+  "product_summary": "This hybrid agent supports executive leadership in establishing and maintaining responsible AI practices by monitoring regulatory changes, enforcing policy approvals, and assigning governance roles such as AI ethics board members, risk owners, and system owners. It validates accountability coverage across the organization and tracks governance meeting cadence to sustain ongoing compliance. By embedding these controls, the agent reduces regulatory exposure, strengthens corporate AI oversight, and demonstrates commitment to standards like ISO 42001 and the EU AI Act. Executives gain a structured, auditable framework that aligns AI initiatives with strategic and ethical requirements while minimizing operational and reputational risk.",
+  "value_proposition": "Automates regulatory monitoring, policy enforcement, role assignments, and accountability validation to ensure continuous AI governance compliance without manual oversight.",
+  "technical_summary": "The hybrid agent integrates with regulatory intelligence feeds and internal policy repositories to trigger monitoring workflows, then interfaces with HR and access-management systems to enforce role assignments and approval rules. It validates coverage by querying organizational accountability matrices and logs governance activities through calendar and collaboration platform APIs. Results are surfaced via dashboards and audit logs that map directly to ISO 42001 Clause 5 and EU AI Act Article 4 requirements.",
+  "integration_guide": "# Integration Guide â€” ai_policy_governance_agent\n**Process:** AI Leadership — Policy and Governance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp ai_policy_governance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.ai_policy_governance_agent import AiPolicyGovernanceAgentAgent\n\nagent = AiPolicyGovernanceAgentAgent()\nresult = agent.execute({\n    \"ai_strategy\": your_ai_strategy_data,\n    \"ai_risk_appetite\": your_ai_risk_appetite_data,\n    \"regulatory_requirements\": your_regulatory_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- compliance_database_api\n- digital_signature_system\n- document_publishing_platform\n- audit_scheduler\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing AI_Leadership sign-off on AI_Policy\n- governance_meeting_frequency < 1 per quarter\n- AI_accountability_coverage < 100%",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/ai_policy_governance_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/ai_policy_governance_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/ai_policy_governance_agent/health â€” Health check",
+    "GET  /api/v1/agents/ai_policy_governance_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/ai_policy_governance_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open dashboard and load sample AI initiative (e.g., customer chatbot), highlighting current manual governance gaps and €50k+ annual compliance risk exposure.  \n2. Input regulatory requirements (EU AI Act + internal policy); agent auto-generates tailored governance framework in <60 seconds.  \n3. Run real-time compliance scan across model, data, and outputs; flag and auto-remediate 3 high-risk issues with audit trail.  \n4. Trigger ROI calculator: display time saved (12 hrs/week), risk reduction (€120k avoided fines), and 10.0x multiplier on €224 price.  \n5. Simulate quarterly board report: export one-click compliance attestation and projected annual savings of €45k+.  \n6. End with live monitoring toggle showing continuous policy enforcement and next-cycle ROI projection.",
+  "demo_inputs": {
+    "ai_strategy": "[example_ai_strategy]",
+    "ai_risk_appetite": "[example_ai_risk_appetite]",
+    "regulatory_requirements": "[example_regulatory_requirements]"
+  },
+  "expected_demo_outputs": {
+    "ai_policy": "[generated_ai_policy]",
+    "ai_governance_framework": "[generated_ai_governance_framework]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO42001-5",
+    "agent_name": "ai_policy_governance_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 5",
+      "EU AI Act Art.4 AI literacy",
+      "corporate AI governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:46:06.510799"
+  },
+  "tags": [
+    "food",
+    "distribution",
+    "iso 42001",
+    "chemical",
+    "automotive",
+    "manufacturing",
+    "l1",
+    "defense",
+    "hybrid",
+    "iso 42001:2023",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: In pharma, mapping ISO 42001 Clause 5 leadership requirements to an existing clinical-trial AI platform, delivering a signed accountability matrix and audit-ready documentation in 11 days versus the prior 9-week manual cycle, cutting external audit prep costs by $87k.",
+    "Use case 2: In automotive, generating an EU AI Act Art.4 AI-literacy curriculum and role-based competency tracker for 1,200 engineers on autonomous-driving models, achieving 94% completion within 45 days and eliminating a projected €2.1M regulatory fine risk.",
+    "Use case 3: In defense, producing a corporate AI governance charter and risk-register template aligned to ISO 42001 and export-control rules for a drone-analytics program, shortening policy approval from 14 weeks to 19 days and freeing $340k in program contingency.",
+    "Use case 4: In chemical manufacturing, running a high-risk AI system classification and mitigation plan for predictive-maintenance models, identifying two prohibited use cases and redesigning them to avoid €15M+ potential EU AI Act penalties while reducing model downtime by 22%.",
+    "Use case 5: In food distribution, automating quarterly AI governance reviews across 37 warehouse-optimization models, surfacing 19 control gaps and closing them in one 6-week sprint, yielding a measured 31% reduction in AI-related incident tickets and $410k annual savings."
+  ],
+  "pricing": {
+    "process_id": "ISO42001-5",
+    "complexity_score": 84,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 84/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO42001-5_package.json"
+}

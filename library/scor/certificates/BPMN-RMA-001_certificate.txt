@@ -1,0 +1,30 @@
+
+AGENTIC ZERO — COMPLIANCE CERTIFICATE
+======================================
+Certificate ID:  AZ-CERT-BPMN-RMA-001-20260612
+Process ID:      BPMN-RMA-001
+Agent:           rma_autonomous_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
+Issued By:       Guardian Agent — Agentic Zero Pioneer Team
+
+OVERALL STATUS:  CONDITIONAL
+Overall Score:   82%
+
+COMPLIANCE SUMMARY
+──────────────────
+EU AI Act:       HIGH RISK
+ISO/IEC 42001:   GAPS FOUND (58%)
+NIST AI RMF:     100% overall
+GDPR AI:         ISSUES FOUND
+Quality:         100%
+
+CONDITIONS
+────────────────────
+• Risk management system (Art. 9)
+• Data governance measures (Art. 10)
+• Technical documentation (Art. 11)
+
+HUMAN REVIEW REQUIRED
+
+Guardian review completed. Risk level: high. Quality: 100%

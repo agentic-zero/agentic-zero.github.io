@@ -1,0 +1,7 @@
+1. Open dashboard: Display live AR metrics (DSO, collection rate, exception queue) vs. manual baseline to quantify 8.0x ROI potential at €699 price point.  
+2. Ingest batch invoices: Run AI extraction and three-way match; show 92% straight-through processing with full audit trail for SOX/GDPR compliance.  
+3. Handle exception: AI flags one mismatch, auto-generates compliant dispute note and routes for approval while logging every action.  
+4. Trigger cash application: Demonstrate instant posting to ERP, real-time aging update, and automated dunning sequence that cuts DSO by 11 days.  
+5. Surface compliance report: One-click export of immutable ledger with role-based access evidence and regulatory sign-off timestamps.  
+6. Reveal ROI calculator: Input live volumes to project €5,592+ annual net benefit (8.0x multiplier) and payback in <30 days.  
+7. Close: Summarize risk reduction, compliance assurance, and next-step pilot offer.

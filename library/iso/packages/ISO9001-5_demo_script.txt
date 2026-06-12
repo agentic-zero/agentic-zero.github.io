@@ -1,0 +1,11 @@
+1. Open demo: "This €224 agent automates ISO 9001 Clause 5 leadership and quality policy creation, cutting 12-15 manual hours to under 10 minutes while ensuring full compliance traceability."
+
+2. Input executive scenario: Enter board-level objectives and risk context; agent instantly drafts a tailored Leadership & Quality Policy with measurable objectives and stakeholder alignment.
+
+3. Run compliance validation: Trigger built-in ISO 9001 audit checks—agent flags gaps, adds required statements, and produces version-controlled evidence pack ready for certification audit.
+
+4. Simulate approval workflow: Route draft to simulated exec stakeholders; agent logs comments, enforces sign-off timestamps, and exports final PDF with digital audit trail.
+
+5. Quantify ROI live: Display dashboard showing 10.0x multiplier—€224 spend replaces €2,240+ in consultant and internal labor costs per policy cycle, with 95% reduction in non-conformance risk.
+
+6. Close with next step: "One-click deployment to your QMS; schedule 15-min integration call to activate for your next management review."

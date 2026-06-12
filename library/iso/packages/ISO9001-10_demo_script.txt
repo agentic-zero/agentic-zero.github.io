@@ -1,0 +1,6 @@
+1. Open with pain: "Manual nonconformity logging and CAPA tracking costs teams 18+ hours/week and risks audit failures—let's fix it in under 60 seconds."
+2. Trigger agent: Paste a real nonconformity (e.g., "Supplier batch failed spec") into nonconformity_improvement_agent; AI auto-classifies severity, links to ISO clause, and drafts root-cause hypotheses.
+3. Show compliance output: One-click generation of audit-ready CAPA record, evidence pack, and updated risk register—exportable to your QMS in 30 seconds.
+4. Quantify time/ROI: Dashboard reveals 14 hours saved per incident; at €224 price and 10x multiplier, annual value exceeds €35k for a mid-size team.
+5. Run continual-improvement loop: Agent scans 90 days of data, surfaces two systemic patterns, and proposes preventive actions with predicted 22% recurrence drop.
+6. Close with proof: "Zero nonconformities missed in last three mock audits; full traceability delivered at 1/10th prior effort—ready to pilot this week."

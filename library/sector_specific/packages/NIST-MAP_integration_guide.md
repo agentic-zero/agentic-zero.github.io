@@ -1,4 +1,4 @@
-# Integration Guide â€” nist_map_risk_context_mapper
+# Integration Guide â€” ai_risk_context_mapper
 **Process:** MAP — AI Risk Context and Categorization
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp nist_map_risk_context_mapper.py ./agents/
+cp ai_risk_context_mapper.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.nist_map_risk_context_mapper import NistMapRiskContextMapperAgent
+from agents.ai_risk_context_mapper import AiRiskContextMapperAgent
 
-agent = NistMapRiskContextMapperAgent()
+agent = AiRiskContextMapperAgent()
 result = agent.execute({
     "ai_use_case_descriptions": your_ai_use_case_descriptions_data,
     "stakeholder_map": your_stakeholder_map_data,
@@ -34,14 +34,11 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- nist_rmf_schema_validator
-- stakeholder_interview_workflow
-- impact_scoring_engine
-- eu_ai_act_classifier
+- ontology_engine
+- risk_database_api
+- compliance_validator
 
 ## Escalation
 The agent automatically escalates to human when:
-- risk_categorization_coverage < 0.9
-- stakeholder_mapping_completeness < 1.0
-- impact_assessment_accuracy < 0.85
-- zero automation_potential
+- automation_potential < 0.6 requires manual approval on ImpactAssessment
+- source confidence < 0.9 invalidates AIRiskCategory assignments

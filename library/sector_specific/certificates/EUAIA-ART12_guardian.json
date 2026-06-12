@@ -1,15 +1,15 @@
 {
   "process_id": "EUAIA-ART12",
-  "guardian_timestamp": "2026-06-10T11:21:37.843119",
+  "guardian_timestamp": "2026-06-12T15:28:46.263615",
   "certificate": {
-    "certificate_id": "AZ-CERT-EUAIA-ART12-20260610",
+    "certificate_id": "AZ-CERT-EUAIA-ART12-20260612",
     "process_id": "EUAIA-ART12",
-    "agent_name": "eu_ai_act12_logging_agent",
-    "issued_at": "2026-06-10T11:21:37.843071",
+    "agent_name": "art12_compliance_logger",
+    "issued_at": "2026-06-12T15:28:46.263575",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.87,
+    "overall_score": 0.86,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,14 +38,14 @@
     },
     "iso_42001": {
       "compliant": true,
-      "score": 0.85,
+      "score": 0.82,
       "gaps": [
-        "limited explicit linkage to AI risk management records (clause 8.2)",
-        "no defined process for management review of log effectiveness"
+        "limited explicit coverage of documented information control per clause 7.5",
+        "no visible integration with continual improvement or management review processes"
       ],
       "recommendations": [
-        "map immutable logs directly to AI impact and risk registers",
-        "add scheduled management review checkpoints for audit trail integrity"
+        "map logging outputs to full ISO 42001 clause 7.5 and 9.2 audit requirements",
+        "add automated retention schedule enforcement and periodic management review triggers"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: limited explicit linkage to AI risk management records (clause 8.2)",
+    "ISO 42001: limited explicit coverage of documented information control per clause 7.5",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:42.081770",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

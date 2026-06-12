@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_162844_954631",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO42001-8"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:28:44.954650",
+  "status": "completed",
+  "started_at": "2026-06-11T18:42:25.720312",
+  "completed_at": "2026-06-11T18:42:42.788434",
+  "error": null,
+  "result": {
+    "agent_name": "deployment_validation_orchestrator",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

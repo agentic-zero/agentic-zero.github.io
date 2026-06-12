@@ -1,0 +1,6 @@
+1. Open with compliance pain point: "Manual nonconformity tracking costs teams 20+ hours/month; this €224 agent automates ISO/AI Act alignment and pays for itself in one cycle."
+2. Trigger live scan: Run aims_continual_improvement_agent on a sample AI workflow; it flags 3 nonconformities in <60 seconds with risk scores and clause references.
+3. Demonstrate automated fixes: Agent proposes and applies targeted improvements (e.g., prompt hardening, logging upgrades), logging each change for full audit traceability.
+4. Generate compliance artifact: Export one-click, regulator-ready report showing closed nonconformities, timestamps, and evidence—ready for external audit in minutes.
+5. Quantify ROI on screen: Display dashboard: 12 hours saved (€1,200 internal cost) minus €224 = €976 net; 10x multiplier realized via risk reduction and faster certification.
+6. Close with scale: "One deployment delivers recurring 10x value; next step is pilot on your highest-risk model."

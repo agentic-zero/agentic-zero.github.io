@@ -1,0 +1,6 @@
+1. Open with the €224 price tag and 10x ROI promise: "This agent pays for itself in under a week by cutting manual planning hours by 80% while embedding compliance at every step."
+2. Load sample operational data; instantly generate an AI-optimized plan with built-in risk and regulatory checkpoints.
+3. Run the automated compliance scan: show real-time flagging of gaps against ISO/audit standards and one-click remediation.
+4. Execute the control loop: AI monitors live KPIs, auto-adjusts the plan, and logs every change for full audit traceability.
+5. Display the ROI dashboard: quantify hours saved, avoided non-compliance costs, and projected €2,240 annual return per license.
+6. Close with deployment: "One-click rollout, zero new headcount—ready to pilot this week."

@@ -1,13 +1,13 @@
 {
   "process_id": "NIST-GOVERN",
-  "guardian_timestamp": "2026-06-10T11:22:17.842594",
+  "guardian_timestamp": "2026-06-12T09:21:20.407662",
   "certificate": {
-    "certificate_id": "AZ-CERT-NIST-GOVERN-20260610",
+    "certificate_id": "AZ-CERT-NIST-GOVERN-20260612",
     "process_id": "NIST-GOVERN",
-    "agent_name": "ai_governance_accountability_agent",
-    "issued_at": "2026-06-10T11:22:17.842554",
+    "agent_name": "govern_ai_risk_accountability_agent",
+    "issued_at": "2026-06-12T09:21:20.407630",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.92,
     "eu_ai_act": {
@@ -40,12 +40,12 @@
       "compliant": true,
       "score": 0.78,
       "gaps": [
-        "Limited explicit mechanisms for fostering organization-wide AI risk culture beyond accountability mapping",
-        "Escalation rules do not reference human oversight or top-management review triggers required by ISO 42001 Clause 5"
+        "Insufficient explicit assignment of accountability to top management as required by ISO 42001 Clause 5",
+        "No defined mechanisms for resource allocation, competence evaluation, or internal audit integration under Clauses 7 and 9"
       ],
       "recommendations": [
-        "Add periodic AI risk culture surveys and training effectiveness metrics to the GOVERN process",
-        "Link GovernanceMaturityScore thresholds to documented leadership review and resource allocation under ISO 42001"
+        "Map escalation rules to formal top-management review and sign-off procedures",
+        "Extend KPI scoring to include ISO 42001 performance evaluation and continual improvement metrics"
       ]
     },
     "nist_ai_rmf": {
@@ -78,6 +78,17 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Limited explicit mechanisms for fostering organization-wide AI risk culture beyond accountability mapping"
-  ]
+    "ISO 42001: Insufficient explicit assignment of accountability to top management as required by ISO 42001 Clause 5"
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "audited_at": "2026-06-12T16:09:42.613204",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

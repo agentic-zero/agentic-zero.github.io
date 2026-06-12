@@ -1,15 +1,15 @@
 {
   "process_id": "NIST-MAP",
-  "guardian_timestamp": "2026-06-10T11:22:25.818046",
+  "guardian_timestamp": "2026-06-12T15:29:52.697837",
   "certificate": {
-    "certificate_id": "AZ-CERT-NIST-MAP-20260610",
+    "certificate_id": "AZ-CERT-NIST-MAP-20260612",
     "process_id": "NIST-MAP",
-    "agent_name": "nist_map_risk_context_mapper",
-    "issued_at": "2026-06-10T11:22:25.818009",
+    "agent_name": "ai_risk_context_mapper",
+    "issued_at": "2026-06-12T15:29:52.697791",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.86,
+    "overall_score": 0.82,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,15 +37,15 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.82,
+      "compliant": false,
+      "score": 0.62,
       "gaps": [
-        "Scope limited to MAP function without explicit linkage to full PDCA cycle",
-        "Missing documented procedures for resource allocation and competence assurance"
+        "Scope limited to MAP/risk categorization; missing leadership, AI policy, objectives, and continual improvement clauses of ISO 42001",
+        "Escalation rules address only two narrow triggers and do not cover full risk treatment, monitoring, or internal audit requirements"
       ],
       "recommendations": [
-        "Map outputs to PLAN-DO-CHECK-ACT clauses of ISO 42001",
-        "Add competence and resource management controls"
+        "Integrate MAP outputs into a complete AI management system covering all ISO 42001 clauses",
+        "Add documented processes for leadership accountability, resource allocation, and management review"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Scope limited to MAP function without explicit linkage to full PDCA cycle",
+    "ISO 42001: Scope limited to MAP/risk categorization; missing leadership, AI policy, objectives, and continual improvement clauses of ISO 42001",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 82% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:42.740122",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

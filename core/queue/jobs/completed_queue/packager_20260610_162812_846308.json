@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_162812_846308",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO42001-7"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:28:12.846328",
+  "status": "completed",
+  "started_at": "2026-06-11T18:42:07.699022",
+  "completed_at": "2026-06-11T18:42:25.717577",
+  "error": null,
+  "result": {
+    "agent_name": "iso42001_7_resource_competence_governance_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

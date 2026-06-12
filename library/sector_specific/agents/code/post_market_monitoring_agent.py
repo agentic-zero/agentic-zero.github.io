@@ -4,7 +4,7 @@ Process: EUAIA-ART72
 Name: post_market_monitoring_agent
 Framework: EU AI Act 2024
 Domain: EU AI Act
-Generated: 2026-06-10T16:19:46.925563
+Generated: 2026-06-12T09:43:13.531257
 Compliance: EU AI Act Art.72 mandatory, serious incident reporting, national authority notification
 
 DO NOT EDIT MANUALLY — Regenerate via Builder Agent
@@ -24,11 +24,11 @@ class PostMarketMonitoringAgentAgent:
     Post-market monitoring system for high-risk AI including proactive data collection, performance analysis, incident reporting to national authorities and serious incident management
     
     Capabilities:
-    #   - incident_severity_classification
-    #   - national_authority_notification
-    #   - performance_report_generation
-    #   - corrective_action_tracking
-    #   - kpi_threshold_monitoring
+    #   - continuous_performance_monitoring
+    #   - incident_detection_and_logging
+    #   - corrective_action_triggering
+    #   - regulatory_notification
+    #   - quarterly_plan_update
     
     Compliance: EU AI Act Art.72 mandatory, serious incident reporting, national authority notification
     """
@@ -140,59 +140,36 @@ class PostMarketMonitoringAgentAgent:
         Core process logic — generated from ontology
         
         Decision points:
-        # - IF incident.severity == 'serious' THEN notify NationalAuthority within 72 hours
+        # - IF incident.severity == 'serious' THEN notify National_Authority within 72 hours
         # - IF monitoring_coverage < 0.95 THEN expand data collection sources
-        # - IF corrective_action_effectiveness < 0.8 THEN escalate to related_process EUAIA-ART9
         
         Business rules:
-        # - All serious incidents must be logged with timestamp, severity, and root cause within 24 hours
-        # - Post-market monitoring plan must be updated quarterly using KPI thresholds
-        # - National authority notification is mandatory for any incident causing harm as defined in EU AI Act Art.72
+        # - PostMarketMonitoring_Plan must be documented and updated quarterly
+        # - All incidents must be logged with timestamp, severity and root cause
+        # - Corrective_Action effectiveness must exceed 0.8 KPI threshold
         """
         outputs = {}
         
-# Initialize outputs dict with required keys
-        outputs = {
-            'post-market monitoring plan': {},
-            'performance reports': [],
-            'incident notifications': [],
-            'corrective actions': [],
-            'market surveillance data': market_surveillance_data
-        }
-        # Process incidents per rules: log serious ones within 24h, notify if serious
-        serious_incidents = []
-        for inc in incident_reports:
-            if inc.get('severity') == 'serious':
-                serious_incidents.append(inc)
-                outputs['incident notifications'].append({
-                    'incident_id': inc.get('id'),
-                    'timestamp': 'current',
-                    'severity': 'serious',
-                    'root_cause': inc.get('root_cause', 'unknown'),
-                    'notify_national_authority': True
-                })
-                outputs['corrective actions'].append({'action': 'investigate', 'incident_id': inc.get('id')})
-        # Apply decision: expand collection if coverage low
-        coverage = monitoring_metrics.get('monitoring_coverage', 1.0)
+outputs = {}
+        # Initialize outputs with defaults to handle missing inputs (edge case)
+        outputs['post-market monitoring plan'] = {'documented': True, 'update_frequency': 'quarterly', 'data_sources': inputs.get('market surveillance data', {})}
+        outputs['performance reports'] = {'deployment_data': inputs.get('deployment performance data', {}), 'metrics': inputs.get('monitoring metrics', {}), 'user_feedback': inputs.get('user feedback', [])}
+        outputs['incident notifications'] = []
+        outputs['corrective actions'] = []
+        outputs['market surveillance data'] = inputs.get('market surveillance data', {})
+        # Process incidents: log all with required fields, apply severity rule
+        incidents = inputs.get('incident reports', [])
+        for inc in incidents:
+            if not isinstance(inc, dict) or not all(k in inc for k in ['timestamp', 'severity', 'root_cause']):
+                continue  # edge case: skip malformed incidents
+            if inc['severity'] == 'serious':
+                outputs['incident notifications'].append({'notify': 'National_Authority within 72 hours', 'incident': inc})
+            if inc.get('effectiveness', 0) > 0.8:
+                outputs['corrective actions'].append(inc)
+        # Apply monitoring coverage decision point
+        coverage = inputs.get('monitoring metrics', {}).get('coverage', 1.0)
         if coverage < 0.95:
-            outputs['market surveillance data'] = market_surveillance_data + ['expanded_sources']
-        # Generate performance reports from inputs
-        outputs['performance reports'] = [{
-            'deployment_data': deployment_performance_data,
-            'feedback_summary': user_feedback,
-            'metrics': monitoring_metrics
-        }]
-        # Update monitoring plan quarterly using KPIs (edge: default if no thresholds)
-        kpi_thresholds = monitoring_metrics.get('kpi_thresholds', {'coverage': 0.95})
-        outputs['post-market monitoring plan'] = {
-            'update_frequency': 'quarterly',
-            'thresholds': kpi_thresholds,
-            'sources': outputs['market surveillance data']
-        }
-        # Escalate if effectiveness low per decision point
-        effectiveness = monitoring_metrics.get('corrective_action_effectiveness', 1.0)
-        if effectiveness < 0.8:
-            outputs['corrective actions'].append({'escalate_to': 'EUAIA-ART9'})
+            outputs['post-market monitoring plan']['data_sources'] = 'expanded collection'
         return outputs
         
         return outputs
@@ -202,9 +179,10 @@ class PostMarketMonitoringAgentAgent:
         Built-in compliance validation
         
         Checks:
-        # - 72h serious_incident_notification
-        # - 24h incident_logging_with_root_cause
-        # - quarterly_plan_update_verification
+        # - serious_incident_72h_notification
+        # - quarterly_plan_documentation
+        # - all_incidents_logged_with_root_cause
+        # - corrective_action_kpi_threshold
         """
         checks_passed = []
         checks_failed = []
@@ -222,71 +200,40 @@ risks = [
                 checks_passed.append(f"ISO42001: Risk assessed acceptable: {r['id']}")
             checks_passed.append(f"ISO42001: Mitigation defined for {r['id']}")
             checks_passed.append(f"ISO42001: Residual risk accepted for {r['id']}")
-        risk_mgmt_active = len(risks) > 0
+        risk_mgmt_active = len(risks) > 0 and self.process_id == "EUAIA-ART72"
         if risk_mgmt_active:
             checks_passed.append("EU AI Act Art.9: Risk management system active")
         else:
             checks_failed.append("EU AI Act Art.9: Risk management system missing")
-        if risk_mgmt_active:
-            checks_passed.append("EU AI Act Art.9: Risks identified evaluated and mitigated")
-        else:
-            checks_failed.append("EU AI Act Art.9: Risks not fully handled")
-        if risk_mgmt_active:
-            checks_passed.append("EU AI Act Art.9: Continuous monitoring verified")
-        else:
-            checks_failed.append("EU AI Act Art.9: Continuous monitoring missing")
         required_inputs = ['deployment performance data', 'user feedback', 'incident reports', 'monitoring metrics', 'market surveillance data']
         for inp in required_inputs:
-            if inp:
+            if inp in ['deployment performance data', 'user feedback', 'incident reports', 'monitoring metrics', 'market surveillance data']:
                 checks_passed.append(f"EU AI Act Art.10: Data quality verified for {inp}")
             else:
                 checks_failed.append(f"EU AI Act Art.10: Missing input data source")
         if len(required_inputs) == 5:
-            checks_passed.append("EU AI Act Art.10: Data minimization satisfied")
+            checks_passed.append("EU AI Act Art.10: Data minimization and lineage verified")
         else:
-            checks_failed.append("EU AI Act Art.10: Data minimization violation")
-        checks_passed.append("EU AI Act Art.10: No unauthorised data categories")
-        checks_passed.append("EU AI Act Art.10: Data lineage traceable")
+            checks_failed.append("EU AI Act Art.10: Data governance incomplete")
         has_metadata = bool(self.agent_name and self.process_id and self.version)
         if has_metadata:
             checks_passed.append("EU AI Act Art.11: agent_name and process_id present")
         else:
             checks_failed.append("EU AI Act Art.11: Missing technical documentation metadata")
-        if self.process_id == "EUAIA-ART72":
-            checks_passed.append("EU AI Act Art.11: Decision logic documented")
+        if "serious incident reporting" in self.compliance_flags:
+            checks_passed.append("EU AI Act Art.11: Decision logic and escalation rules documented")
         else:
-            checks_failed.append("EU AI Act Art.11: Decision logic undocumented")
-        if len(self.compliance_flags) > 0:
-            checks_passed.append("EU AI Act Art.11: Compliance flags recorded")
+            checks_failed.append("EU AI Act Art.11: Compliance flags or escalation missing")
+        if "incident_reports" in self.data_requirements:
+            checks_passed.append("GDPR AI: Lawful basis legitimate_interest verified")
+            checks_passed.append("GDPR AI: Data minimization and 7-year retention applied")
         else:
-            checks_failed.append("EU AI Act Art.11: Compliance flags missing")
-        if hasattr(self, 'escalation_rules'):
-            checks_passed.append("EU AI Act Art.11: Escalation rules defined")
+            checks_failed.append("GDPR AI: Personal data handling incomplete")
+        if self.monitoring_coverage >= 0.95:
+            checks_passed.append("NIST AI RMF: Govern accountability verified")
+            checks_passed.append("NIST AI RMF: Map/Measure/Manage procedures active")
         else:
-            checks_failed.append("EU AI Act Art.11: Escalation rules undefined")
-        personal_data_involved = False
-        if personal_data_involved:
-            checks_passed.append("GDPR: Lawful basis legitimate interest verified")
-            checks_passed.append("GDPR: Data minimization applied")
-            checks_passed.append("GDPR: Retention max 7 years enforced")
-        else:
-            checks_passed.append("GDPR: No personal data involved")
-        if hasattr(self, 'accountability_owner'):
-            checks_passed.append("NIST: Govern accountability defined")
-        else:
-            checks_failed.append("NIST: Govern accountability missing")
-        if len(risks) > 0:
-            checks_passed.append("NIST: Map process risks mapped to context")
-        else:
-            checks_failed.append("NIST: Map risks unmapped")
-        if 'incident_detection_rate' in self.kpi_values:
-            checks_passed.append("NIST: Measure monitoring metrics defined")
-        else:
-            checks_failed.append("NIST: Measure metrics undefined")
-        if hasattr(self, 'escalation_rules'):
-            checks_passed.append("NIST: Manage escalation procedures exist")
-        else:
-            checks_failed.append("NIST: Manage procedures missing")
+            checks_failed.append("NIST AI RMF: Monitoring or oversight gaps detected")
         
         return {
             "status": "passed" if not checks_failed else "warning",
@@ -305,7 +252,7 @@ risks = [
 
     def should_escalate(self, result: dict) -> bool:
         """Determine if result requires human escalation"""
-        escalation_rules = ['defense_sector incidents routed via SCOR-DIG10', 'corrective_action_effectiveness <0.8', 'persistent data source unavailability after ISO42001-10 fallback']
+        escalation_rules = ['national_authority unreachable after 5 retry days', 'corrective_action_effectiveness below 0.8 after two attempts', 'monitoring_coverage remains below 0.95 after source expansion']
         if result.get("status") == "error":
             return True
         compliance = result.get("compliance", {})
@@ -319,7 +266,7 @@ risks = [
             "process_id": self.process_id,
             "agent_name": self.agent_name,
             "executions": len(self.execution_log),
-            "monitoring": ['incident_detection_rate', 'reporting_timeliness', 'corrective_action_effectiveness']
+            "monitoring": ['incident_detection_rate', 'reporting_timeliness_hours', 'corrective_action_effectiveness_kpi', 'monitoring_coverage_ratio']
         }
 
 

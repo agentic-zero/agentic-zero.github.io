@@ -1,0 +1,100 @@
+{
+  "process_id": "ISO42001-8",
+  "agent_name": "ai_lifecycle_operations_controller",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-12T15:14:53.143959",
+  "product_summary": "This hybrid agent delivers operational control over AI systems throughout their full lifecycle, covering development controls, validation, deployment gates, human oversight, incident management, and supply chain assessments. It enables organizations to maintain continuous compliance with ISO 42001, EU AI Act Articles 9-14, NIST AI RMF, and GxP requirements in regulated sectors such as pharma. By embedding these controls into daily operations, the agent reduces regulatory exposure, prevents costly deployment failures, and supports responsible scaling of AI initiatives. Executives gain auditable oversight without slowing innovation velocity.",
+  "value_proposition": "Automates lifecycle-wide validation, oversight, and compliance controls to eliminate manual risk gaps across AI development and deployment.",
+  "technical_summary": "The hybrid agent combines rule-based policy engines with model-driven validation functions to enforce deployment gates and human oversight checkpoints within existing CI/CD and MLOps pipelines. It integrates directly with supplier assessment APIs, monitoring platforms, and incident tracking systems while producing standardized reports aligned to ISO 42001 and EU AI Act requirements. Architecture supports modular extensions for GxP computer validation and real-time control feedback loops across hybrid cloud and on-premise environments.",
+  "integration_guide": "# Integration Guide â€” ai_lifecycle_operations_controller\n**Process:** AI Operation — System Lifecycle and Controls\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp ai_lifecycle_operations_controller.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.ai_lifecycle_operations_controller import AiLifecycleOperationsControllerAgent\n\nagent = AiLifecycleOperationsControllerAgent()\nresult = agent.execute({\n    \"ai_system_designs\": your_ai_system_designs_data,\n    \"validation_protocols\": your_validation_protocols_data,\n    \"deployment_plans\": your_deployment_plans_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- validation_protocol_executor\n- oversight_log_generator\n- supplier_assessment_api\n- incident_reporting_system\n- gxp_validator\n\n## Escalation\nThe agent automatically escalates to human when:\n- human oversight compliance <1.0\n- validation pass rate <0.95\n- supplier assessment below threshold\n- pharma sector without GxP validation",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/ai_lifecycle_operations_controller/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/ai_lifecycle_operations_controller/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/ai_lifecycle_operations_controller/health â€” Health check",
+    "GET  /api/v1/agents/ai_lifecycle_operations_controller/spec   â€” Get agent specification",
+    "POST /api/v1/agents/ai_lifecycle_operations_controller/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open the demo console and load a sample AI system (e.g., credit-scoring model) to show current manual lifecycle gaps in controls and audit trails.  \n2. Activate ai_lifecycle_operations_controller; it auto-maps the full lifecycle, applies policy controls, and generates a compliance baseline in <60 seconds.  \n3. Trigger continuous monitoring; the agent detects a drift event, enforces version control, and produces an EU AI Act-aligned audit pack instantly.  \n4. Run the ROI calculator live: input €224 license cost; dashboard displays 10.0x multiplier via 18 hours saved per cycle and zero compliance penalties.  \n5. Simulate a regulatory query; the agent retrieves immutable logs and risk scores in one click, proving audit readiness.  \n6. Export the signed compliance report and projected annual savings (€2,240+ per deployment) for executive review.  \n7. Close by confirming one-click deployment to production with ongoing 10x ROI tracking.",
+  "demo_inputs": {
+    "ai_system_designs": "[example_ai_system_designs]",
+    "validation_protocols": "[example_validation_protocols]",
+    "deployment_plans": "[example_deployment_plans]"
+  },
+  "expected_demo_outputs": {
+    "validated_ai_systems": "[generated_validated_ai_systems]",
+    "deployment_records": "[generated_deployment_records]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO42001-8",
+    "agent_name": "ai_lifecycle_operations_controller",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 8",
+      "EU AI Act Art.9-14 operations",
+      "NIST AI RMF Manage",
+      "GxP computer validation if pharma"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:14:53.143939"
+  },
+  "tags": [
+    "defense",
+    "manufacturing",
+    "iso 42001",
+    "iso 42001:2023",
+    "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
+    "distribution",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma company uses the agent to manage GxP-validated AI batch-release systems under ISO 42001 Clause 8, cutting validation cycle time from 14 weeks to 8 weeks and saving $620K per site annually.",
+    "Use case 2: Automotive OEM deploys the agent for EU AI Act Art.9-14 risk management on vision-based quality AI, reducing false-positive scrap by 22% and generating $1.8M yearly savings across two plants.",
+    "Use case 3: Chemical manufacturer applies NIST AI RMF Manage controls via the agent to predictive-maintenance models, lowering unplanned downtime by 31% and delivering $4.2M annual production-value recovery.",
+    "Use case 4: Defense contractor uses the agent for continuous lifecycle monitoring of AI logistics optimizers, achieving 100% audit compliance and avoiding $2.5M in potential contract penalties per year.",
+    "Use case 5: Food & beverage distributor implements the agent for ISO 42001-controlled demand-forecast AI, cutting excess inventory carrying costs by 18% and freeing $3.1M in working capital within nine months."
+  ],
+  "pricing": {
+    "process_id": "ISO42001-8",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO42001-8_package.json"
+}

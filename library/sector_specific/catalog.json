@@ -25,11 +25,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:11:31.682618"
+    "created_at": "2026-06-12T15:16:34.297238"
   },
   {
     "process_id": "EUAIA-ART12",
-    "agent_name": "eu_ai_act12_logging_agent",
+    "agent_name": "art12_compliance_logger",
     "framework": "EU AI Act 2024",
     "domain": "EU AI Act",
     "level": "L1",
@@ -47,13 +47,13 @@
       "data retention requirements"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 223.5,
     "complexity_score": 84,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:11:58.505557"
+    "created_at": "2026-06-12T15:16:52.993576"
   },
   {
     "process_id": "EUAIA-ART13",
@@ -81,11 +81,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:12:22.029764"
+    "created_at": "2026-06-12T15:17:12.692592"
   },
   {
     "process_id": "EUAIA-ART14",
-    "agent_name": "human_oversight_coordinator",
+    "agent_name": "eu_ai_act_art14_human_oversight_agent",
     "framework": "EU AI Act 2024",
     "domain": "EU AI Act",
     "level": "L1",
@@ -103,13 +103,13 @@
       "GDPR automated decision Art.22"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:12:55.495191"
+    "created_at": "2026-06-12T15:17:29.414152"
   },
   {
     "process_id": "EUAIA-ART72",
@@ -137,11 +137,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:13:26.444275"
+    "created_at": "2026-06-12T15:17:51.423653"
   },
   {
     "process_id": "NIST-GOVERN",
-    "agent_name": "ai_governance_accountability_agent",
+    "agent_name": "govern_ai_risk_accountability_agent",
     "framework": "NIST AI RMF 1.0",
     "domain": "NIST AI RMF",
     "level": "L1",
@@ -160,17 +160,17 @@
       "EU AI Act governance"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:13:55.083371"
+    "created_at": "2026-06-11T18:43:38.225283"
   },
   {
     "process_id": "NIST-MAP",
-    "agent_name": "nist_map_risk_context_mapper",
+    "agent_name": "ai_risk_context_mapper",
     "framework": "NIST AI RMF 1.0",
     "domain": "NIST AI RMF",
     "level": "L1",
@@ -189,13 +189,13 @@
       "EU AI Act risk classification"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 223.5,
     "complexity_score": 84,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:14:28.874058"
+    "created_at": "2026-06-12T15:20:00.158916"
   },
   {
     "process_id": "NIST-MEASURE",
@@ -224,11 +224,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:14:58.920268"
+    "created_at": "2026-06-11T18:44:28.965352"
   },
   {
     "process_id": "NIST-MANAGE",
-    "agent_name": "risk_treatment_response_agent",
+    "agent_name": "ai_risk_treatment_manager",
     "framework": "NIST AI RMF 1.0",
     "domain": "NIST AI RMF",
     "level": "L1",
@@ -253,11 +253,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:15:21.601699"
+    "created_at": "2026-06-12T15:20:21.144812"
   },
   {
     "process_id": "IATF16949-APQP",
-    "agent_name": "apqp_compliance_orchestrator",
+    "agent_name": "apqp_phase_orchestrator",
     "framework": "IATF 16949:2016",
     "domain": "IATF 16949",
     "level": "L1",
@@ -278,11 +278,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:19:06.576317"
+    "created_at": "2026-06-11T18:39:56.313748"
   },
   {
     "process_id": "IATF16949-PPAP",
-    "agent_name": "ppap_automation_agent",
+    "agent_name": "ppap_autonomous_agent",
     "framework": "IATF 16949:2016",
     "domain": "IATF 16949",
     "level": "L1",
@@ -303,11 +303,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:19:36.914542"
+    "created_at": "2026-06-11T18:40:14.566562"
   },
   {
     "process_id": "IATF16949-8D",
-    "agent_name": "iatf_8d_autonomous_solver",
+    "agent_name": "iatf16949_8d_automation_agent",
     "framework": "IATF 16949:2016",
     "domain": "IATF 16949",
     "level": "L1",
@@ -329,11 +329,11 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:20:04.085677"
+    "created_at": "2026-06-11T18:39:40.669783"
   },
   {
     "process_id": "GXP-GDP",
-    "agent_name": "gdp_distribution_compliance_agent",
+    "agent_name": "gdp_compliance_hybrid_agent",
     "framework": "EU GDP Guidelines 2013/C 343/01",
     "domain": "GxP",
     "level": "L1",
@@ -355,7 +355,7 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:20:28.106423"
+    "created_at": "2026-06-12T15:19:21.562134"
   },
   {
     "process_id": "GXP-GMP",
@@ -377,17 +377,17 @@
       "ALCOA+ data integrity"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 208.6,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:20:59.248335"
+    "created_at": "2026-06-12T15:19:42.464351"
   },
   {
     "process_id": "GDPR-ART5",
-    "agent_name": "gdpr_article5_compliance_agent",
+    "agent_name": "gdpr_art5_compliance_agent",
     "framework": "GDPR (EU) 2016/679",
     "domain": "GDPR",
     "level": "L1",
@@ -406,17 +406,17 @@
       "GDPR Art.9 special categories"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 6,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:21:20.506883"
+    "created_at": "2026-06-12T15:18:17.628855"
   },
   {
     "process_id": "GDPR-ART13",
-    "agent_name": "gdpr_data_subject_rights_handler",
+    "agent_name": "gdpr_data_subject_rights_agent",
     "framework": "GDPR (EU) 2016/679",
     "domain": "GDPR",
     "level": "L1",
@@ -435,17 +435,17 @@
       "GDPR Art.22 automated decisions"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 223.5,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:00:35.542101"
+    "created_at": "2026-06-12T15:18:38.174971"
   },
   {
     "process_id": "GDPR-ART30",
-    "agent_name": "gdpr_ropa_automation_agent",
+    "agent_name": "gdpr_ropa_maintenance_agent",
     "framework": "GDPR (EU) 2016/679",
     "domain": "GDPR",
     "level": "L1",
@@ -470,6 +470,92 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:00:53.260038"
+    "created_at": "2026-06-12T15:18:59.927882"
+  },
+  {
+    "process_id": "EUAIA-ART6",
+    "agent_name": "eu_ai_act_risk_classifier",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.6",
+      "Annex I safety components",
+      "Annex III high-risk use cases"
+    ],
+    "agent_type": "reactive",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:21:21.927152"
+  },
+  {
+    "process_id": "EUAIA-ART9",
+    "agent_name": "high_risk_ai_risk_manager",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.9 mandatory",
+      "ISO 31000 risk management",
+      "NIST AI RMF",
+      "sector-specific risk standards"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:15:56.680920"
+  },
+  {
+    "process_id": "EUAIA-ART10",
+    "agent_name": "eu_ai_act_art10_data_governor",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.10 mandatory",
+      "GDPR data quality",
+      "algorithmic bias prevention"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:16:15.132667"
   }
 ]

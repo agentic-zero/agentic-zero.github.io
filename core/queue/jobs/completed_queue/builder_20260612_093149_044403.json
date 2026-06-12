@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260612_093149_044403",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "ISO9001-9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:31:49.044415",
+  "status": "completed",
+  "started_at": "2026-06-12T09:32:56.085629",
+  "completed_at": "2026-06-12T09:33:37.991034",
+  "error": null,
+  "result": {
+    "agent_name": "performance_evaluation_audit_agent",
+    "ready_for_packager": true
+  }
+}

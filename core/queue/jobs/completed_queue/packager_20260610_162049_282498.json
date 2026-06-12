@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_162049_282498",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "GDPR-ART13"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:20:49.282514",
+  "status": "completed",
+  "started_at": "2026-06-11T18:37:37.748808",
+  "completed_at": "2026-06-11T18:37:56.449467",
+  "error": null,
+  "result": {
+    "agent_name": "gdpr_data_subject_rights_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

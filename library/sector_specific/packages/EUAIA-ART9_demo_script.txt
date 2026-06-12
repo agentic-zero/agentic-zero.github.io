@@ -1,0 +1,7 @@
+1. Open with compliance pain: "High-risk AI systems require full EU AI Act risk management—manual processes cost €50k+ annually in audits and delays."
+2. Launch high_risk_ai_risk_manager: Input a sample high-risk model; agent auto-generates risk register, bias metrics, and mitigation plan in <60 seconds.
+3. Run live compliance scan: Show real-time mapping to all seven EU AI Act requirements with pass/fail scores and auto-generated documentation.
+4. Quantify risk reduction: Display before/after dashboard—residual risk drops 85%, cutting potential fines exposure from €2M to under €300k.
+5. Reveal ROI: €224 price yields 10x return via 120 hours saved per audit cycle (€2,240+ value) plus avoided compliance penalties.
+6. Trigger one-click report: Export board-ready PDF with audit trail; confirm deployment readiness in under 3 minutes.
+7. Close with next step: "Pilot starts today—first compliance report delivered within 24 hours."

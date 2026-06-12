@@ -1,13 +1,13 @@
 {
   "process_id": "NIST-MEASURE",
-  "guardian_timestamp": "2026-06-10T11:22:36.714666",
+  "guardian_timestamp": "2026-06-12T09:21:52.113445",
   "certificate": {
-    "certificate_id": "AZ-CERT-NIST-MEASURE-20260610",
+    "certificate_id": "AZ-CERT-NIST-MEASURE-20260612",
     "process_id": "NIST-MEASURE",
     "agent_name": "nist_measure_risk_analyzer",
-    "issued_at": "2026-06-10T11:22:36.714620",
+    "issued_at": "2026-06-12T09:21:52.113410",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.92,
     "eu_ai_act": {
@@ -40,12 +40,12 @@
       "compliant": true,
       "score": 0.78,
       "gaps": [
-        "Scope limited to MEASURE function without explicit linkage to PLAN/DO/ACT clauses",
-        "No defined mechanisms for management review or continual improvement documentation"
+        "limited scope to MEASURE function only without explicit links to PLAN/DO/ACT clauses",
+        "no evidence of documented continual improvement or internal audit processes"
       ],
       "recommendations": [
-        "Map capabilities explicitly to ISO 42001 Clauses 9 and 10",
-        "Add audit-trail logging and periodic management-review triggers"
+        "map capabilities to full ISO 42001 clause structure and add cross-process interfaces",
+        "define measurable KPIs for the AI management system itself and schedule periodic reviews"
       ]
     },
     "nist_ai_rmf": {
@@ -78,6 +78,17 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Scope limited to MEASURE function without explicit linkage to PLAN/DO/ACT clauses"
-  ]
+    "ISO 42001: limited scope to MEASURE function only without explicit links to PLAN/DO/ACT clauses"
+  ],
+  "auditor_review": {
+    "decision": "AUTO_APPROVE",
+    "delivery": true,
+    "restricted": false,
+    "conditions": [
+      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
+      "ISO/IEC 42001 at 78% — monitor evolution"
+    ],
+    "audited_at": "2026-06-12T16:09:42.875775",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

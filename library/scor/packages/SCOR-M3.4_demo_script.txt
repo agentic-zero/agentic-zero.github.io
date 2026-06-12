@@ -1,7 +1,6 @@
-1. Open dashboard: Display live ETO packaging queue and note 47 pending manual reviews (avg. 22 min each).  
-2. Trigger eto_packaging_compliance_agent on a real SKU: Show AI auto-extracting specs, running 34 regulatory checks, and surfacing 3 compliance gaps in <45 seconds.  
-3. One-click remediation: Agent proposes label and material fixes; executive approves, instantly generating audit-ready PDF with full traceability.  
-4. Batch process 50 SKUs: Reveal 94 % straight-through rate and 18.4 hours saved versus prior week’s manual effort.  
-5. ROI panel: Input €748 price; system calculates 8.0x annual return from reduced audit failures, faster time-to-shelf, and 312 hours reclaimed per quarter.  
-6. Compliance export: Download signed report for upcoming ISO audit, confirming zero deviations and full ETO residue documentation.  
-7. Close: Summarize €5,984 net value in first month and offer 14-day pilot for their top 200 SKUs.
+1. Open with current ETO packaging pain: 14 hours/order, €6k compliance risk exposure, and 3 failed audits last quarter.  
+2. Launch eto_packaging_agent; input one live ETO spec (BOM, regs, destination).  
+3. Agent auto-generates compliant package in <90 seconds, flagging two regulatory gaps in real time.  
+4. One-click export to ERP; show full audit trail and digital signature for compliance proof.  
+5. Display ROI dashboard: 11.2 hours saved per order × €540 loaded cost = €6,048 annual value per user (8.0x on €748).  
+6. Summarize: zero compliance incidents, 8.0x ROI, payback in 11 days; offer 30-day pilot.

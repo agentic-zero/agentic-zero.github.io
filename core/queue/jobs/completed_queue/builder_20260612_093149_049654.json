@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260612_093149_049654",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "EUAIA-ART10"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:31:49.049667",
+  "status": "completed",
+  "started_at": "2026-06-12T09:37:45.298520",
+  "completed_at": "2026-06-12T09:38:41.589154",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_art10_data_governor",
+    "ready_for_packager": true
+  }
+}

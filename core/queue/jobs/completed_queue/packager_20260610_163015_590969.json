@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_163015_590969",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "NIST-GOVERN"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:30:15.590987",
+  "status": "completed",
+  "started_at": "2026-06-11T18:43:19.828601",
+  "completed_at": "2026-06-11T18:43:38.239767",
+  "error": null,
+  "result": {
+    "agent_name": "govern_ai_risk_accountability_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

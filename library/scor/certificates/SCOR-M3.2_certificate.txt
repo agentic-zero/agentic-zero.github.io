@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-SCOR-M3.2-20260608
+Certificate ID:  AZ-CERT-SCOR-M3.2-20260611
 Process ID:      SCOR-M3.2
-Agent:           eto_component_issue_agent
-Issued:          2026-06-08
-Valid Until:     2027-06-08
+Agent:           eto_issue_processor
+Issued:          2026-06-11
+Valid Until:     2027-06-11
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

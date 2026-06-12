@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-S3.4",
-  "guardian_timestamp": "2026-06-08T18:38:36.920263",
+  "guardian_timestamp": "2026-06-11T18:26:27.394292",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-S3.4-20260608",
+    "certificate_id": "AZ-CERT-SCOR-S3.4-20260611",
     "process_id": "SCOR-S3.4",
-    "agent_name": "eto_component_transfer_agent",
-    "issued_at": "2026-06-08T18:38:36.920219",
+    "agent_name": "transfer_eto_product_agent",
+    "issued_at": "2026-06-11T18:26:27.394260",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-08",
+    "valid_until": "2027-06-11",
     "overall_status": "conditional",
-    "overall_score": 0.88,
+    "overall_score": 0.92,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,20 +37,17 @@
       ]
     },
     "iso_42001": {
-      "compliant": false,
-      "score": 0.58,
+      "compliant": true,
+      "score": 0.78,
       "gaps": [
-        "No explicit AI risk assessment, impact assessment or AI-specific risk treatment process defined",
-        "Missing mechanisms for AI transparency, explainability and decision audit trails",
-        "Insufficient detail on continual improvement, performance monitoring and feedback loops for the AI capabilities",
-        "Human oversight limited to escalation rules without broader accountability and oversight framework",
-        "GDPR coverage is conditional rather than systematically integrated into data governance"
+        "Reactive-only design lacks proactive risk monitoring and impact assessment loops required by ISO 42001",
+        "No explicit mechanisms for continual improvement or performance evaluation of the AI controls",
+        "GDPR handling is conditional and lacks defined data-subject rights or data-minimization procedures"
       ],
       "recommendations": [
-        "Implement formal AI risk and impact assessment aligned with ISO/IEC 42001 clauses 6.1 and 8.2",
-        "Add logging, traceability and explainability requirements for all AI-driven decisions",
-        "Define AI performance metrics, monitoring and management review processes",
-        "Establish documented human oversight and accountability roles beyond escalation triggers"
+        "Add scheduled AI risk and impact assessment reviews integrated with the escalation rules",
+        "Implement logging and metrics for ongoing compliance effectiveness and traceability audits",
+        "Define explicit GDPR data-handling workflows and retention policies when personal data is present"
       ]
     },
     "nist_ai_rmf": {
@@ -80,10 +77,10 @@
     "notes": "Guardian review completed. Risk level: high. Quality: 100%"
   },
   "approved_for_library": true,
-  "approved_for_delivery": true,
+  "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No explicit AI risk assessment, impact assessment or AI-specific risk treatment process defined"
+    "ISO 42001: Reactive-only design lacks proactive risk monitoring and impact assessment loops required by ISO 42001"
   ],
   "auditor_review": {
     "decision": "AUTO_APPROVE",
@@ -91,14 +88,9 @@
     "restricted": false,
     "conditions": [
       "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 58% — monitor evolution"
+      "ISO/IEC 42001 at 78% — monitor evolution"
     ],
-    "audited_at": "2026-06-09T16:18:53.596688",
+    "audited_at": "2026-06-12T16:09:44.279377",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  },
-  "human_sign_off": {
-    "signed_by": "Alberto Munoz Waissen — Founder & CEO",
-    "signed_at": "2026-06-10T16:23:44.480753",
-    "method": "bulk_approve · AUTO_APPROVE criteria met"
   }
 }

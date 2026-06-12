@@ -1,6 +1,6 @@
-1. Open nist_measure_risk_analyzer and load a live AI system profile (e.g., credit-scoring model) to set the compliance baseline.  
-2. Trigger automated MEASURE analysis; display real-time risk metrics mapped directly to NIST AI RMF subcategories in under 60 seconds.  
-3. Overlay risk heat-map and quantitative scores, highlighting high-impact vulnerabilities and regulatory gaps.  
-4. Run ROI simulator: input current manual assessment cost (€2,800) versus tool cost (€224), instantly showing 10x multiplier via 12-hour time saving.  
-5. Generate and export a board-ready compliance report with audit-ready evidence, proving reduced legal and operational exposure.  
-6. Close by confirming one-click integration into existing governance workflows and immediate activation for the full enterprise license.
+1. Open the executive dashboard and load a sample high-risk AI model profile (e.g., credit decisioning system) to set the compliance context.  
+2. Launch nist_measure_risk_analyzer; it auto-ingests model metadata and runs NIST-aligned risk scoring in <60 seconds.  
+3. Review the generated metrics dashboard showing quantitative risk scores, bias indicators, and performance drift—highlighting gaps executives can immediately action.  
+4. Display the one-click NIST MEASURE compliance map that auto-tags controls and produces an audit-ready report, eliminating manual evidence collection.  
+5. Run the ROI calculator: input current manual assessment cost (€2,240) versus €224 agent fee to show the 10x multiplier and 90% time reduction.  
+6. Export the signed risk report and mitigation roadmap; confirm next-step integration into the enterprise GRC platform.

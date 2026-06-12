@@ -1,20 +1,20 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-SCOR-D2.8-20260608
+Certificate ID:  AZ-CERT-SCOR-D2.8-20260612
 Process ID:      SCOR-D2.8
-Agent:           mto_receive_finished_goods_agent
-Issued:          2026-06-08
-Valid Until:     2027-06-08
+Agent:           finished_goods_receipt_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL
-Overall Score:   88%
+Overall Score:   84%
 
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       HIGH RISK
-ISO/IEC 42001:   GAPS FOUND (58%)
+ISO/IEC 42001:   GAPS FOUND (42%)
 NIST AI RMF:     100% overall
 GDPR AI:         CLEAR
 Quality:         100%

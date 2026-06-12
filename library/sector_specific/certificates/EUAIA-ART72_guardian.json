@@ -1,13 +1,13 @@
 {
   "process_id": "EUAIA-ART72",
-  "guardian_timestamp": "2026-06-10T11:22:07.314142",
+  "guardian_timestamp": "2026-06-12T15:29:05.478890",
   "certificate": {
-    "certificate_id": "AZ-CERT-EUAIA-ART72-20260610",
+    "certificate_id": "AZ-CERT-EUAIA-ART72-20260612",
     "process_id": "EUAIA-ART72",
     "agent_name": "post_market_monitoring_agent",
-    "issued_at": "2026-06-10T11:22:07.314106",
+    "issued_at": "2026-06-12T15:29:05.478845",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.86,
     "eu_ai_act": {
@@ -40,14 +40,12 @@
       "compliant": true,
       "score": 0.82,
       "gaps": [
-        "Limited explicit provisions for documented information retention and audit trail completeness required by ISO 42001 Clause 7.5",
-        "Escalation rules do not reference management review or internal audit integration (Clause 9.2/9.3)",
-        "No coverage of broader AI impact monitoring (e.g., ethical/societal risks) beyond incidents and performance metrics"
+        "limited explicit linkage to broader AI risk management and impact assessment processes",
+        "no provisions for independent or third-party review of monitoring outputs"
       ],
       "recommendations": [
-        "Add mandatory logging of all severity assessments, notifications, and corrective action outcomes with retention periods aligned to ISO 42001",
-        "Define scheduled management review triggers and internal audit sampling of post-market data",
-        "Extend metric_monitoring_and_feedback_integration to include ethical impact indicators and stakeholder feedback channels"
+        "map monitoring outputs directly to ISO 42001 risk treatment and impact assessment records",
+        "add scheduled internal audit checkpoints and external review triggers for the monitoring system"
       ]
     },
     "nist_ai_rmf": {
@@ -84,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Limited explicit provisions for documented information retention and audit trail completeness required by ISO 42001 Clause 7.5",
+    "ISO 42001: limited explicit linkage to broader AI risk management and impact assessment processes",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:42.473090",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-IATF16949-8D-20260610
+Certificate ID:  AZ-CERT-IATF16949-8D-20260612
 Process ID:      IATF16949-8D
-Agent:           iatf_8d_autonomous_solver
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Agent:           iatf16949_8d_automation_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CERTIFIED
@@ -14,7 +14,7 @@ Overall Score:   82%
 COMPLIANCE SUMMARY
 ──────────────────
 EU AI Act:       LIMITED RISK
-ISO/IEC 42001:   GAPS FOUND (58%)
+ISO/IEC 42001:   GAPS FOUND (62%)
 NIST AI RMF:     100% overall
 GDPR AI:         ISSUES FOUND
 Quality:         100%

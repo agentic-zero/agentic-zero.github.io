@@ -1,15 +1,15 @@
 {
   "process_id": "GDPR-ART5",
-  "guardian_timestamp": "2026-06-10T16:01:43.770574",
+  "guardian_timestamp": "2026-06-12T15:29:12.622731",
   "certificate": {
-    "certificate_id": "AZ-CERT-GDPR-ART5-20260610",
+    "certificate_id": "AZ-CERT-GDPR-ART5-20260612",
     "process_id": "GDPR-ART5",
-    "agent_name": "gdpr_article5_compliance_agent",
-    "issued_at": "2026-06-10T16:01:43.770528",
+    "agent_name": "gdpr_art5_compliance_agent",
+    "issued_at": "2026-06-12T15:29:12.622688",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.81,
+    "overall_score": 0.86,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,15 +37,15 @@
       ]
     },
     "iso_42001": {
-      "compliant": false,
-      "score": 0.55,
+      "compliant": true,
+      "score": 0.82,
       "gaps": [
-        "Narrow focus on GDPR data processing without broader AI risk assessment, impact assessment, or performance monitoring required by ISO 42001",
-        "Missing provisions for AI-specific controls such as transparency/explainability of agent decisions, bias detection, human oversight mechanisms, and continual improvement processes"
+        "No explicit AI risk assessment or impact assessment processes beyond GDPR",
+        "Missing provisions for continual improvement, internal audits, and broader ethical metrics (fairness, transparency, accountability)"
       ],
       "recommendations": [
-        "Expand the agent to include ISO 42001-aligned AI risk treatment, impact assessments, and monitoring of model performance/robustness",
-        "Implement documentation, audit trails, and escalation for AI governance elements including competence, stakeholder communication, and management review"
+        "Extend the system to include AI-specific risk treatment and DPIA-style assessments",
+        "Add monitoring, logging, and periodic review mechanisms aligned with ISO 42001 clauses 9 and 10"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Narrow focus on GDPR data processing without broader AI risk assessment, impact assessment, or performance monitoring required by ISO 42001",
+    "ISO 42001: No explicit AI risk assessment or impact assessment processes beyond GDPR",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:43.808803",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

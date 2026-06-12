@@ -1,4 +1,4 @@
-# Integration Guide â€” gdpr_ropa_automation_agent
+# Integration Guide â€” gdpr_ropa_maintenance_agent
 **Process:** Records of Processing Activities (ROPA)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp gdpr_ropa_automation_agent.py ./agents/
+cp gdpr_ropa_maintenance_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.gdpr_ropa_automation_agent import GdprRopaAutomationAgentAgent
+from agents.gdpr_ropa_maintenance_agent import GdprRopaMaintenanceAgentAgent
 
-agent = GdprRopaAutomationAgentAgent()
+agent = GdprRopaMaintenanceAgentAgent()
 result = agent.execute({
     "processing_activities": your_processing_activities_data,
     "data_categories": your_data_categories_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- data_inventory_api
-- document_management_system
+- ROPA_database_API
+- schema_validator
 - notification_service
-- compliance_export_generator
+- DPIA_risk_checker
 
 ## Escalation
 The agent automatically escalates to human when:
-- high_risk_processing_without_documentation
-- update_deadline_exceeded_30_days
-- dpa_audit_notification_received
+- KPI remains <1.0 after automated update
+- stale update >90 days
+- audit notification with incomplete ROPA

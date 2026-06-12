@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_151245_720679",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART11"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T15:12:45.720702",
+  "status": "completed",
+  "started_at": "2026-06-12T15:16:15.157680",
+  "completed_at": "2026-06-12T15:16:34.311483",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_art11_documentation_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

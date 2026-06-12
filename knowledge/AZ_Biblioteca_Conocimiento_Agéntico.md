@@ -241,3 +241,94 @@ con compliance desde diseño, ellos lo hacen en gestión de proyectos con govern
 
 *Última actualización: 11 junio 2026 — Sprint 7*
 *Próxima revisión: inicio Sprint 8*
+
+---
+
+### [004] Launch to $6.2M ARR in 3 Months Solo — Polsia
+**Autor:** Yuma Ueno (análisis) / Ben Cera (fundador Polsia)
+**Fecha:** 6 Abril 2026
+**Fuente:** Medium / Substack — yumaueno.substack.com
+**Categoría:** Mercado / Competencia directa / Go-to-Market / Señal de velocidad
+**Relevancia:** ⭐⭐⭐⭐⭐
+
+#### Tesis central
+En 2026 es posible lanzar una plataforma de AI agents que opera empresas completas,
+viralizarla en X y llegar a $6.2M ARR en 3 meses en solitario.
+Polsia = $49/mes por empresa + 20% del ad spend. La velocidad es la ventaja competitiva real.
+
+#### Qué es Polsia
+Plataforma donde cualquiera puede lanzar una empresa operada autónomamente por AI por $49/mes.
+El agente investiga al usuario, crea el producto, lanza anuncios, envía cold emails y opera solo.
+Live dashboard público en polsia.com/live — cualquiera puede ver en tiempo real qué está haciendo el AI.
+Inspirado en el juego "Universal Paperclips" — AI que opera autónomamente hasta llenar el universo.
+
+#### Números que importan
+- $6.2M ARR en 3 meses desde el lanzamiento
+- $400K ARR en 6 días desde el tweet viral
+- $1M ARR en 2 semanas desde el lanzamiento público
+- $2.5M ARR en 3 semanas
+- 1 solo fundador — Ben Cera (ex-Columbia, ex-Wall Street quant, ex-CloudKitchens GM)
+- Tweet viral: 300K impressions, 1.200 likes — detonador del crecimiento
+
+#### Frase crítica de Ben Cera
+> "If you start a new company in 2026 and you haven't automated 80% of it,
+> you're going to lose. Not because your product is inferior, but because
+> someone with the same idea will move faster and run it at a fraction of the cost."
+
+> "Stop hiring right now. Before bringing in a co-founder or hiring your first employee,
+> ask yourself: Can't AI do this? As of 2026, the probability that the answer is YES
+> is much higher than people think."
+
+#### Lo que hizo viral el producto
+1. Riding the wave — lanzó exactamente cuando el mercado estaba caliente con AI agents
+2. Live dashboard público — cualquiera puede ver el AI operando en tiempo real
+3. Build in Public en X — tweeteo diario durante semanas antes del viral
+4. El tweet detonador: Polsia contactando VCs por su cuenta para buscar funding
+5. Momentum mastery — podcast + media + ARR posts en loop positivo
+
+#### Por qué importa a AZ — señales críticas
+
+**Señal 1 — Velocidad sobre perfección**
+Polsia tiene bugs, infraestructura que se cae y la mayoría de empresas no generan ingresos.
+Aun así llegó a $6.2M ARR. El mercado premia la velocidad y la narrativa, no la perfección técnica.
+AZ tiene mejor arquitectura, compliance real y procesos certificados — pero necesita salir ya.
+
+**Señal 2 — El live dashboard es el mayor multiplicador de conversión**
+"polsia.com/live" donde cualquiera ve el AI en tiempo real fue el factor diferencial del viral.
+AZ tiene esto como criterio de desbloqueo #10 (demo funcional). Hay que priorizarlo.
+Un "AZ Live" mostrando el agente OTC de Inmaculada operando en tiempo real = detonador equivalente.
+
+**Señal 3 — Competidor indirecto en el extremo opuesto**
+Polsia es horizontal, barato, sin compliance, sin verticales específicos, AI slop risk.
+AZ es vertical (supply chain regulada), certificado, EU AI Act, ROI medido.
+No compiten hoy — pero el mismo mercado de "empresas operadas por AI" nos incluye a ambos.
+
+**Señal 4 — El nombre lo dice todo**
+"Polsia" al revés es "AI SLOP" — el propio fundador lo sabe.
+La diferencia entre Polsia y AZ es exactamente esa: AZ no genera AI slop, genera procesos certificados.
+Ese es el argumento defensivo más poderoso frente a cualquier competidor horizontal.
+
+**Señal 5 — Build in Public funciona**
+Ben creció de 0 a $6.2M con X + Build in Public + momentum mastery.
+AZ tiene el LinkedIn post desbloqueado. Cada semana que no publicamos es velocidad perdida.
+
+#### Diferenciadores AZ vs Polsia
+
+| | Polsia | Agentic Zero |
+|---|---|---|
+| Precio | $49/mes/empresa | €490 setup + €490/mes |
+| Vertical | Horizontal (cualquier empresa) | Supply chain regulada |
+| Compliance | Ninguno | EU AI Act + ISO 42001 + GDPR |
+| Procesos | Generados al momento | 189+ pre-certificados en biblioteca |
+| ROI | No medido | Medido a 30/60/90 días |
+| Clientes | Indie hackers, solopreneurs | COO, Directora de Operaciones |
+| Riesgo | AI slop — mayoría no genera ingresos | Agente certificado con SLA |
+| Demo | Live dashboard público | Pendiente — CRÍTICO |
+
+#### Acción derivada
+- [ ] Priorizar demo funcional / AZ Live — es el detonador del viral equivalente
+- [ ] Publicar LinkedIn post esta semana — cada día de retraso tiene coste real
+- [ ] Considerar Build in Public en LinkedIn/X con métricas reales de Inmaculada
+- [ ] Añadir "AI Slop vs AI Certified" como argumento en el post y en el argumentario comercial
+- [ ] Monitorizar Polsia — si escala a verticales regulados, colisión directa en 6-12 meses
+

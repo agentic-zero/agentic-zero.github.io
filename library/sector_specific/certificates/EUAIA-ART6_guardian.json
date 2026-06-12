@@ -1,0 +1,96 @@
+{
+  "process_id": "EUAIA-ART6",
+  "guardian_timestamp": "2026-06-12T15:30:32.256047",
+  "certificate": {
+    "certificate_id": "AZ-CERT-EUAIA-ART6-20260612",
+    "process_id": "EUAIA-ART6",
+    "agent_name": "eu_ai_act_risk_classifier",
+    "issued_at": "2026-06-12T15:30:32.256004",
+    "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
+    "valid_until": "2027-06-12",
+    "overall_status": "conditional",
+    "overall_score": 0.87,
+    "eu_ai_act": {
+      "risk_level": "high",
+      "risk_rationale": "Process operates in regulated/safety-critical domain",
+      "prohibited": false,
+      "requirements": [
+        "Risk management system (Art. 9)",
+        "Data governance measures (Art. 10)",
+        "Technical documentation (Art. 11)",
+        "Record-keeping and logging (Art. 12)",
+        "Transparency and information (Art. 13)",
+        "Human oversight measures (Art. 14)",
+        "Accuracy, robustness, cybersecurity (Art. 15)",
+        "Conformity assessment (Art. 43)",
+        "Registration in EU database (Art. 51)"
+      ],
+      "article_references": [
+        "Annex III — High-risk AI systems",
+        "Article 9",
+        "Article 10",
+        "Article 11",
+        "Article 12",
+        "Article 13",
+        "Article 14",
+        "Article 15"
+      ]
+    },
+    "iso_42001": {
+      "compliant": false,
+      "score": 0.55,
+      "gaps": [
+        "Reactive-only design lacks proactive risk assessment and continuous improvement processes required by ISO 42001 Clause 10",
+        "No evidence of documented AI risk management framework, impact assessments, or stakeholder consultation mechanisms (Clauses 6.1, 8.2)",
+        "Escalation rules are narrow and do not cover full lifecycle monitoring, performance evaluation, or internal audit requirements (Clauses 9.1, 9.2)",
+        "Missing top management accountability, resource allocation, and competence management elements (Clauses 5, 7)"
+      ],
+      "recommendations": [
+        "Extend agent to support full PDCA cycle with periodic system performance reviews and improvement actions",
+        "Integrate formal AI risk assessment, human oversight logging, and impact assessment workflows aligned with ISO 42001 Annex A controls",
+        "Add automated documentation, audit trail generation, and management review triggers for classification decisions"
+      ]
+    },
+    "nist_ai_rmf": {
+      "govern_score": 1.0,
+      "map_score": 1.0,
+      "measure_score": 1.0,
+      "manage_score": 1.0,
+      "overall_score": 1.0,
+      "gaps": []
+    },
+    "gdpr": {
+      "personal_data_involved": false,
+      "lawful_basis_defined": true,
+      "data_minimization": true,
+      "transparency_adequate": true,
+      "issues": []
+    },
+    "quality_score": 1.0,
+    "quality_issues": [],
+    "conditions": [
+      "Risk management system (Art. 9)",
+      "Data governance measures (Art. 10)",
+      "Technical documentation (Art. 11)"
+    ],
+    "rejection_reasons": [],
+    "human_review_required": true,
+    "notes": "Guardian review completed. Risk level: high. Quality: 100%"
+  },
+  "approved_for_library": true,
+  "approved_for_delivery": false,
+  "requires_human_sign_off": true,
+  "remediation_plan": [
+    "ISO 42001: Reactive-only design lacks proactive risk assessment and continuous improvement processes required by ISO 42001 Clause 10"
+  ],
+  "auditor_review": {
+    "decision": "HOLD",
+    "delivery": false,
+    "restricted": false,
+    "conditions": [
+      "ISO/IEC 42001 score 55% below 60% minimum"
+    ],
+    "audited_at": "2026-06-12T16:09:46.140127",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
+}

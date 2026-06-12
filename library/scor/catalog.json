@@ -298,7 +298,7 @@
   },
   {
     "process_id": "SCOR-M3.1",
-    "agent_name": "eto_production_scheduler",
+    "agent_name": "eto_production_schedule_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -316,13 +316,13 @@
       "project management compliance"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:43:31.270276"
+    "created_at": "2026-06-11T18:26:09.404231"
   },
   {
     "process_id": "SCOR-M4.1",
@@ -1855,7 +1855,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:03:09.319022"
+    "created_at": "2026-06-11T18:30:11.813583"
   },
   {
     "process_id": "SCOR-M2.3",
@@ -1943,7 +1943,7 @@
   },
   {
     "process_id": "SCOR-M3.2",
-    "agent_name": "eto_component_issue_agent",
+    "agent_name": "eto_issue_processor",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -1966,7 +1966,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:46:30.728137"
+    "created_at": "2026-06-11T18:26:44.737931"
   },
   {
     "process_id": "SCOR-M3.3",
@@ -1997,7 +1997,7 @@
   },
   {
     "process_id": "SCOR-M3.4",
-    "agent_name": "eto_packaging_compliance_agent",
+    "agent_name": "eto_packaging_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -2020,7 +2020,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:52:30.815260"
+    "created_at": "2026-06-11T18:30:28.743553"
   },
   {
     "process_id": "SCOR-M3.5",
@@ -2210,7 +2210,7 @@
   },
   {
     "process_id": "SCOR-D2.8",
-    "agent_name": "mto_receive_finished_goods_agent",
+    "agent_name": "finished_goods_receipt_agent",
     "framework": "SCOR",
     "domain": "Deliver",
     "level": "L2",
@@ -2226,17 +2226,17 @@
       "GDPR if personal data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T18:16:30.603432"
+    "created_at": "2026-06-11T18:30:47.291319"
   },
   {
     "process_id": "SCOR-D2.9",
-    "agent_name": "mto_pick_execution_agent",
+    "agent_name": "mto_product_pick_agent",
     "framework": "SCOR",
     "domain": "Deliver",
     "level": "L2",
@@ -2258,7 +2258,7 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T18:19:31.325892"
+    "created_at": "2026-06-11T18:31:02.181165"
   },
   {
     "process_id": "SCOR-D2.10",
@@ -3592,5 +3592,91 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-10T10:06:23.992418"
+  },
+  {
+    "process_id": "BPMN-RMA-001",
+    "agent_name": "rma_autonomous_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "distribution",
+      "manufacturing",
+      "food",
+      "pharma",
+      "automotive",
+      "retail"
+    ],
+    "compliance_frameworks": [
+      "consumer protection regulations",
+      "GDPR customer data",
+      "warranty compliance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:11.404788"
+  },
+  {
+    "process_id": "BPMN-FIN-001",
+    "agent_name": "invoice_to_cash_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "transport",
+      "services"
+    ],
+    "compliance_frameworks": [
+      "tax compliance",
+      "GDPR financial data",
+      "e-invoicing regulations",
+      "financial reporting"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:28.137233"
+  },
+  {
+    "process_id": "BPMN-TRP-001",
+    "agent_name": "transport_management_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "transport",
+      "distribution",
+      "manufacturing",
+      "food",
+      "pharma",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "customs compliance",
+      "dangerous goods ADR",
+      "GDPR shipment data",
+      "driver regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:41.803144"
   }
 ]

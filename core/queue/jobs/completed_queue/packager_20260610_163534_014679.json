@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_163534_014679",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO42001-6"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:35:34.014718",
+  "status": "completed",
+  "started_at": "2026-06-11T18:46:06.526256",
+  "completed_at": "2026-06-11T18:46:23.131648",
+  "error": null,
+  "result": {
+    "agent_name": "ai_risk_objectives_planner",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

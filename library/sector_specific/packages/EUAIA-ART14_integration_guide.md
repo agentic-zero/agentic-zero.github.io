@@ -1,4 +1,4 @@
-# Integration Guide â€” human_oversight_coordinator
+# Integration Guide â€” eu_ai_act_art14_human_oversight_agent
 **Process:** Human Oversight
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp human_oversight_coordinator.py ./agents/
+cp eu_ai_act_art14_human_oversight_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.human_oversight_coordinator import HumanOversightCoordinatorAgent
+from agents.eu_ai_act_art14_human_oversight_agent import EuAiActArt14HumanOversightAgentAgent
 
-agent = HumanOversightCoordinatorAgent()
+agent = EuAiActArt14HumanOversightAgentAgent()
 result = agent.execute({
     "ai_system_outputs": your_ai_system_outputs_data,
     "oversight_protocols": your_oversight_protocols_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- ai_output_api
-- reviewer_assignment_system
-- override_logging_db
-- compliance_audit_tool
+- ai_output_inference_api
+- hr_availability_system
+- override_execution_api
+- audit_logging_db
 
 ## Escalation
 The agent automatically escalates to human when:
-- AI_System output confidence < 0.85 OR risk_score > threshold
-- Human_Reviewer response_time > 300 seconds
-- High-risk AI system deployment event
+- AI_System_Output.confidence < Oversight_Protocol.threshold
+- GDPR Art.22 automated decision detected
+- no Human_Reviewer available within SLA

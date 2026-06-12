@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_094036_147387",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART12"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:40:36.147400",
+  "status": "completed",
+  "started_at": "2026-06-12T09:51:38.700574",
+  "completed_at": "2026-06-12T09:51:52.505767",
+  "error": null,
+  "result": {
+    "agent_name": "art12_compliance_logger",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

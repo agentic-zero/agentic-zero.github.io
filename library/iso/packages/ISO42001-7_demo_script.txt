@@ -1,0 +1,6 @@
+1. Open dashboard: Display real-time ISO 42001 Clause 7 compliance score (92 %) and flag three resource/competence gaps versus manual baseline.
+2. Trigger resource mapping: Auto-ingest org chart and AI inventory; show system assigning only competent personnel to high-risk models in <30 seconds.
+3. Run competence engine: Generate personalized upskilling plan with tracked completion rates, proving elimination of 18 manual audit hours per quarter.
+4. Activate data governance: Enforce automated lineage, access controls and retention rules; export signed, audit-ready evidence pack.
+5. Launch ROI simulator: Input €224 license fee; instantly calculate 10.0x multiplier via 40 h/month saved + €18 k risk-reduction value.
+6. Produce executive report: One-click PDF summarizing compliance status, quantified savings and recommended next actions for board review.

@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_162506_152151",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO9001-8"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:25:06.152177",
+  "status": "completed",
+  "started_at": "2026-06-11T18:40:29.383708",
+  "completed_at": "2026-06-11T18:40:44.734022",
+  "error": null,
+  "result": {
+    "agent_name": "operational_planning_control_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

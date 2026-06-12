@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_161544_099066",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "EUAIA-ART6"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:15:44.099086",
+  "status": "completed",
+  "started_at": "2026-06-11T18:34:23.520464",
+  "completed_at": "2026-06-11T18:34:37.347116",
+  "error": null,
+  "result": {
+    "agent_name": "eu_ai_act_risk_classifier",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

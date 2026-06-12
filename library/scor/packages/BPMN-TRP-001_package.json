@@ -1,0 +1,97 @@
+{
+  "process_id": "BPMN-TRP-001",
+  "agent_name": "transport_management_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:32:41.803164",
+  "product_summary": "The Transport Management agent orchestrates the full shipment lifecycle at Agentic Zero, handling planning, carrier selection, booking, real-time tracking, exception management, and freight payment. As a hybrid agent, it combines automated decision-making with human oversight to optimize routes, reduce delays, and maintain compliance with customs, ADR dangerous goods rules, GDPR data protection, and driver regulations. Executives gain streamlined operations that lower logistics costs, improve on-time delivery rates, and provide end-to-end visibility without manual coordination across multiple carriers and systems. This drives measurable ROI through faster freight cycles and reduced compliance risks in complex supply chains.",
+  "value_proposition": "Automates the complete transport workflow from shipment planning to proof of delivery while embedding regulatory compliance and exception handling.",
+  "technical_summary": "The hybrid agent architecture integrates the listed capabilities as modular functions that interface with external carrier APIs, TMS platforms, and ERP systems for booking and invoicing. It incorporates rule-based compliance engines for customs, ADR, GDPR, and driver regulations alongside machine learning models for route optimization and predictive exception management. Data flows are secured through encrypted channels with audit logging to support seamless integration into existing enterprise environments.",
+  "integration_guide": "# Integration Guide â€” transport_management_agent\n**Process:** Transport Management\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp transport_management_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.transport_management_agent import TransportManagementAgentAgent\n\nagent = TransportManagementAgentAgent()\nresult = agent.execute({\n    \"shipment_orders\": your_shipment_orders_data,\n    \"carrier_contracts\": your_carrier_contracts_data,\n    \"route_data\": your_route_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_event_listener\n- carrier_booking_API\n- route_tracking_service\n- compliance_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- no carrier after 3 attempts\n- invoice mismatch >2%\n- GDPR breach or customs hold detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/transport_management_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/transport_management_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/transport_management_agent/health â€” Health check",
+    "GET  /api/v1/agents/transport_management_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/transport_management_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open with pain points: \"Manual transport management drains 20+ hours/week on scheduling, routing, and compliance checks—costing firms €50k+ annually in errors and delays.\"\n2. Launch agent: \"Watch transport_management_agent auto-ingest shipment data and optimize routes in seconds while flagging regulatory gaps.\"\n3. Demo compliance: \"It cross-checks EU transport regs, driver hours, and emissions in real time, auto-generating audit-ready reports—zero manual oversight needed.\"\n4. Show automation value: \"AI re-plans disrupted routes instantly, cutting fuel and delay costs by 40% on this live scenario.\"\n5. Quantify ROI: \"At €699, the 8.0x multiplier delivers €5,592+ annual value per user via time savings and avoided fines—payback in under 6 weeks.\"\n6. Executive close: \"One dashboard view proves compliance and ROI; ready to pilot this quarter?\"",
+  "demo_inputs": {
+    "shipment_orders": "[example_shipment_orders]",
+    "carrier_contracts": "[example_carrier_contracts]",
+    "route_data": "[example_route_data]"
+  },
+  "expected_demo_outputs": {
+    "carrier_bookings": "[generated_carrier_bookings]",
+    "shipping_documents": "[generated_shipping_documents]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-TRP-001",
+    "agent_name": "transport_management_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "transport",
+      "distribution",
+      "manufacturing",
+      "food",
+      "pharma",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "customs compliance",
+      "dangerous goods ADR",
+      "GDPR shipment data",
+      "driver regulations"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:41.803144"
+  },
+  "tags": [
+    "",
+    "distribution",
+    "food",
+    "bpmn",
+    "automotive",
+    "transport",
+    "manufacturing",
+    "hybrid",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma sector deploys agent for ADR dangerous goods + temperature monitoring on 200 monthly shipments, cutting spoilage losses by 35% and avoiding €120k annual regulatory fines",
+    "Use case 2: Automotive parts distributor uses agent for customs compliance automation, reducing average border clearance from 36h to 8h and saving €85k yearly in demurrage and storage fees",
+    "Use case 3: Food distribution network applies agent to enforce driver regulations across 150 drivers, lowering overtime and violation penalties by 28% while increasing on-time deliveries by 18%",
+    "Use case 4: Manufacturing exporter leverages agent for GDPR shipment data handling and customs filings, eliminating €95k in potential data-breach fines and cutting documentation labor by 22 hours/week",
+    "Use case 5: Multi-sector transport operator runs agent for integrated ADR, customs and driver compliance checks, reducing failed audits from 12 to 2 per year and delivering €150k net savings in penalties and rework"
+  ],
+  "pricing": {
+    "process_id": "BPMN-TRP-001",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-TRP-001_package.json"
+}

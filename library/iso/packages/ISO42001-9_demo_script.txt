@@ -1,0 +1,6 @@
+1. Open with executive pain point: "Manual AI audits consume 40+ hours/month per model, risking €50k+ in compliance fines—our agent automates this end-to-end."
+2. Trigger live scan: Run aims_performance_monitor_audit_agent on a sample model; display real-time metrics dashboard (accuracy drift, bias scores, latency) in under 60 seconds.
+3. Show automated audit report: Generate compliance-ready PDF with EU AI Act/GDPR mappings, flagging 3 issues and recommending fixes—highlight zero manual effort.
+4. Quantify ROI live: Input team hours saved (€2,240 at 10x multiplier on €224 price) plus avoided fine exposure; project annual savings of €26k+ per model.
+5. Compare baseline vs. automated: Side-by-side view of manual process (2 days) vs. agent (minutes), emphasizing 95% time reduction and full audit trail for regulators.
+6. Close with next-step CTA: "Deploy in your environment today for immediate compliance coverage and 10x payback within first month—schedule pilot?"

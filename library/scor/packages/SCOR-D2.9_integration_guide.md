@@ -1,4 +1,4 @@
-# Integration Guide — mto_pick_execution_agent
+# Integration Guide â€” mto_product_pick_agent
 **Process:** Pick Product (MTO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp mto_pick_execution_agent.py ./agents/
+cp mto_product_pick_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.mto_pick_execution_agent import MtoPickExecutionAgentAgent
+from agents.mto_product_pick_agent import MtoProductPickAgentAgent
 
-agent = MtoPickExecutionAgentAgent()
+agent = MtoProductPickAgentAgent()
 result = agent.execute({
     "pick_lists": your_pick_lists_data,
     "staging_locations": your_staging_locations_data,
@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- WMS_API
-- ScanSystem_interface
-- InventoryManagementSystem
-- PickList_trigger_listener
+- ScanSystem_API
+- WMS_interface
+- ERP_PickList_connector
+- PackStagingLocation_API
 
 ## Escalation
 The agent automatically escalates to human when:
 - Item not found at StagingLocation
-- Quantity mismatch after scan
-- Pick cycle time exceeds KPI threshold
+- Scan mismatch or inventory discrepancy
+- Inventory update exceeds 30s
+- Pick accuracy fails OrderDocumentation validation

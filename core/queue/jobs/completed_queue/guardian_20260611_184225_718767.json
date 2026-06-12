@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260611_184225_718767",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "ISO42001-7"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:42:25.718786",
+  "status": "completed",
+  "started_at": "2026-06-12T09:20:35.156577",
+  "completed_at": "2026-06-12T09:20:44.989095",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-ISO42001-7-20260612",
+    "status": "conditional",
+    "process_id": "ISO42001-7"
+  }
+}

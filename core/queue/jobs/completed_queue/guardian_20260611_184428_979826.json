@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260611_184428_979826",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "NIST-MEASURE"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:44:28.979843",
+  "status": "completed",
+  "started_at": "2026-06-12T09:21:40.758426",
+  "completed_at": "2026-06-12T09:21:52.115295",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-NIST-MEASURE-20260612",
+    "status": "conditional",
+    "process_id": "NIST-MEASURE"
+  }
+}

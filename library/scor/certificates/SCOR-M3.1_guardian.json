@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-M3.1",
-  "guardian_timestamp": "2026-06-08T18:45:37.801299",
+  "guardian_timestamp": "2026-06-11T18:27:01.563346",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-M3.1-20260608",
+    "certificate_id": "AZ-CERT-SCOR-M3.1-20260611",
     "process_id": "SCOR-M3.1",
-    "agent_name": "eto_production_scheduler",
-    "issued_at": "2026-06-08T18:45:37.801259",
+    "agent_name": "eto_production_schedule_agent",
+    "issued_at": "2026-06-11T18:27:01.563314",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-08",
+    "valid_until": "2027-06-11",
     "overall_status": "conditional",
-    "overall_score": 0.88,
+    "overall_score": 0.92,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,18 +37,17 @@
       ]
     },
     "iso_42001": {
-      "compliant": false,
-      "score": 0.62,
+      "compliant": true,
+      "score": 0.78,
       "gaps": [
-        "No documented AI risk assessment, treatment, or impact analysis process per ISO 42001 Clause 6",
-        "Missing transparency, explainability, and decision-logging requirements for hybrid agent actions",
-        "Insufficient human oversight and accountability mechanisms beyond basic escalation rules",
-        "No evidence of continual improvement, performance monitoring, or internal audit processes for the AI system"
+        "No explicit AI risk assessment or impact assessment process documented beyond escalation triggers",
+        "Insufficient provisions for AI decision explainability, audit trails, and data provenance controls",
+        "Lack of defined mechanisms for ongoing AI performance monitoring, bias detection, and model drift"
       ],
       "recommendations": [
-        "Establish formal AI risk management framework with documented objectives, stakeholders, and ITAR/export-control controls",
-        "Add mandatory decision audit trails, impact explainability, and periodic third-party conformity assessment",
-        "Define measurable AI performance metrics and escalation review cycles aligned with AS9100 and defense regulations"
+        "Implement formal AI risk management and impact assessment procedures aligned with ISO 42001 clauses 6.1 and 8.2",
+        "Add mandatory logging, explainability outputs, and human-in-the-loop review for all schedule changes",
+        "Establish periodic third-party audits and continuous improvement cycles for the compliance_validation and kpi_monitoring capabilities"
       ]
     },
     "nist_ai_rmf": {
@@ -78,10 +77,10 @@
     "notes": "Guardian review completed. Risk level: high. Quality: 100%"
   },
   "approved_for_library": true,
-  "approved_for_delivery": true,
+  "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No documented AI risk assessment, treatment, or impact analysis process per ISO 42001 Clause 6"
+    "ISO 42001: No explicit AI risk assessment or impact assessment process documented beyond escalation triggers"
   ],
   "auditor_review": {
     "decision": "AUTO_APPROVE",
@@ -89,14 +88,9 @@
     "restricted": false,
     "conditions": [
       "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 62% — monitor evolution"
+      "ISO/IEC 42001 at 78% — monitor evolution"
     ],
-    "audited_at": "2026-06-09T16:18:54.189716",
+    "audited_at": "2026-06-12T16:09:44.538175",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  },
-  "human_sign_off": {
-    "signed_by": "Alberto Munoz Waissen — Founder & CEO",
-    "signed_at": "2026-06-10T16:23:44.486163",
-    "method": "bulk_approve · AUTO_APPROVE criteria met"
   }
 }

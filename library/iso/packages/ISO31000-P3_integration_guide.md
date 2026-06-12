@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- risk_database_api
-- scheduling_engine
-- notification_service
-- compliance_audit_logger
+- risk_register_api
+- treatment_execution_logger
+- compliance_flag_attacher
+- review_scheduler
+- exception_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- ResourceAvailability=false creates escalation ticket and pauses activation
-- Review missed >14 days marks non-compliant and notifies compliance
-- residual_risk_level > risk_appetite after treatments
+- resource_availability=false triggers retention default and ReviewRecord log
+- sector_applicability excludes domain requires manual approval
+- monitoring_compliance < 1.0 or treatment_implementation_rate < 0.9 escalates resource allocation

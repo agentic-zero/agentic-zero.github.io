@@ -1,7 +1,7 @@
-1. Open with executive pain point: "Manual NIST AI RMF MAP categorization consumes 18–25 hours per use case and risks audit findings—today we automate it in minutes."
-2. Load a live high-risk AI system description (e.g., credit-decision model) and trigger nist_map_risk_context_mapper.
-3. Display instant output: risk contexts auto-categorized to NIST MAP 1.1–1.5, with severity scores and regulatory cross-references.
-4. Export one-click compliance artifact (PDF + JSON) ready for auditors, proving 100% MAP coverage in <90 seconds.
-5. Reveal ROI dashboard: 22 hours saved × €120 blended rate = €2,640 value per run; at €224 price, 10× multiplier realized on first use.
-6. Simulate quarterly refresh: re-run on updated model shows delta risks flagged automatically, eliminating recurring manual effort.
-7. Close: "Deploy across 10 systems and the agent pays for itself in a single audit cycle while reducing compliance risk to near zero."
+1. Open with a live compliance scenario: "Manual AI risk mapping takes 8-10 hours per system and risks missing EU AI Act categories—let's automate it."
+2. Input a sample high-risk AI use case (e.g., credit scoring model) via the interface in under 60 seconds.
+3. Trigger ai_risk_context_mapper; it auto-categorizes risks across context, severity, and regulatory domains in real time.
+4. Display the structured output: risk heat map, mapped controls, and one-click compliance report aligned to MAP framework.
+5. Quantify value: "This replaces 8 hours of expert work (€2,240 internal cost) with a €224 automated run—delivering the stated 10x ROI multiplier."
+6. Show audit-ready export and risk mitigation recommendations; confirm reduced regulatory exposure in under 2 minutes.
+7. Close: "One deployment pays for itself immediately and scales across your AI portfolio with consistent compliance."

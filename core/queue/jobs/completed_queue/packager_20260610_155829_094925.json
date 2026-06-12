@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_155829_094925",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "SCOR-D2.8"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T15:58:29.094944",
+  "status": "completed",
+  "started_at": "2026-06-11T18:30:28.775373",
+  "completed_at": "2026-06-11T18:30:47.310195",
+  "error": null,
+  "result": {
+    "agent_name": "finished_goods_receipt_agent",
+    "price_eur": 698.6,
+    "ready_for_guardian": true
+  }
+}

@@ -1,12 +1,12 @@
 {
   "process_id": "EUAIA-ART12",
-  "agent_name": "eu_ai_act12_logging_agent",
+  "agent_name": "art12_compliance_logger",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:11:58.505579",
-  "product_summary": "This hybrid agent automates the generation and maintenance of immutable logs for high-risk AI systems, ensuring comprehensive audit trails and compliance monitoring. It facilitates post-market monitoring, incident investigation, and demonstrates adherence to regulatory requirements such as the EU AI Act Article 12 and GDPR. By enforcing data retention policies and providing traceability, it minimizes legal risks and supports operational transparency for organizations deploying AI solutions.",
-  "value_proposition": "Automates immutable log generation and audit trail maintenance to deliver EU AI Act and GDPR compliance without manual overhead.",
-  "technical_summary": "The hybrid agent combines deterministic rule engines with AI-driven analysis to produce tamper-proof logs and enforce retention schedules in real time. It integrates via standard APIs with existing AI pipelines and monitoring platforms to capture events, maintain traceability, and surface compliance metrics for downstream reporting tools.",
-  "integration_guide": "# Integration Guide â€” eu_ai_act12_logging_agent\n**Process:** Record-Keeping and Logging\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act12_logging_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act12_logging_agent import EuAiAct12LoggingAgentAgent\n\nagent = EuAiAct12LoggingAgentAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"decision_logs\": your_decision_logs_data,\n    \"input_data_logs\": your_input_data_logs_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- cryptographic_hash_chain_store\n- immutable_log_db\n- regulatory_alert_api\n- gdpr_anonymizer\n- retention_audit_scheduler\n\n## Escalation\nThe agent automatically escalates to human when:\n- log_completeness_rate < 1.0\n- retention_period_below_minimum\n- storage_failure_or_hash_chain_corruption\n- incident_traceability_rate < 0.99",
+  "packager_timestamp": "2026-06-12T15:16:52.993594",
+  "product_summary": "This agent provides automatic record-keeping and logging capabilities for high-risk AI systems, ensuring all decisions and operations are captured in real-time. It generates immutable audit trails that support post-market monitoring and incident investigations while demonstrating compliance with stringent regulatory requirements. By leveraging hybrid architecture, it combines real-time processing with robust monitoring to aggregate incidents and maintain completeness of logs. This delivers significant business value by mitigating legal risks, avoiding hefty fines under EU AI Act, and building trust with stakeholders through transparent operations.",
+  "value_proposition": "Automates real-time decision logging and immutable audit generation to ensure continuous compliance and rapid incident traceability for high-risk AI systems.",
+  "technical_summary": "The hybrid agent integrates real-time decision logging modules with immutable audit generation using secure, tamper-proof storage solutions, while completeness monitoring ensures no events are missed and incident aggregation compiles data for analysis. It supports compliance integrations with EU AI Act Art.12 and GDPR requirements through standardized data retention protocols. Architecture allows seamless deployment alongside existing AI infrastructures via API endpoints for continuous logging and monitoring.",
+  "integration_guide": "# Integration Guide â€” art12_compliance_logger\n**Process:** Record-Keeping and Logging\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp art12_compliance_logger.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.art12_compliance_logger import Art12ComplianceLoggerAgent\n\nagent = Art12ComplianceLoggerAgent()\nresult = agent.execute({\n    \"ai_system_outputs\": your_ai_system_outputs_data,\n    \"decision_logs\": your_decision_logs_data,\n    \"input_data_logs\": your_input_data_logs_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- immutable_log_store\n- sha256_hasher\n- iso8601_timestamp_service\n- gdpr_retention_manager\n\n## Escalation\nThe agent automatically escalates to human when:\n- log_completeness_rate < 0.99\n- hash mismatch on AuditLog\n- system outage buffer overflow",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/eu_ai_act12_logging_agent/execute â€” Execute the agent with inputs",
-    "GET  /api/v1/agents/eu_ai_act12_logging_agent/status â€” Get agent status and metrics",
-    "GET  /api/v1/agents/eu_ai_act12_logging_agent/health â€” Health check",
-    "GET  /api/v1/agents/eu_ai_act12_logging_agent/spec   â€” Get agent specification",
-    "POST /api/v1/agents/eu_ai_act12_logging_agent/test   â€” Run test cases"
+    "POST /api/v1/agents/art12_compliance_logger/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/art12_compliance_logger/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/art12_compliance_logger/health â€” Health check",
+    "GET  /api/v1/agents/art12_compliance_logger/spec   â€” Get agent specification",
+    "POST /api/v1/agents/art12_compliance_logger/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with the compliance gap: \"Under EU AI Act Article 12, high-risk systems require immutable, auditable logs—manual processes cost teams 12+ hours/week and risk €7.5M+ fines.\"\n\n2. Trigger live logging: Run a sample high-risk decision through the agent; it auto-captures inputs, model version, confidence scores, and human overrides in a tamper-proof ledger within seconds.\n\n3. Generate compliance artifact: One-click export of an Article 12-ready report (timestamped, signed, queryable) that passes a mock regulatory audit in under 60 seconds.\n\n4. Quantify time savings: Dashboard shows 10 hours/week reclaimed per compliance officer; at €80/hour loaded cost, that's €41,600 annual savings per team.\n\n5. Calculate ROI on screen: €224 annual fee × 10.0x multiplier = €2,240 net value in year one from time savings and avoided fines—payback in 11 days.\n\n6. Close with risk reduction: \"Zero manual log gaps, full audit trail, and board-ready metrics—deploy in one click with SOC2 and ISO alignment already built in.\"",
+  "demo_script": "1. Open with compliance pain point: 15+ hours/month lost to manual GDPR Art. 12 logging, risking €20k+ fines.  \n2. Launch art12_compliance_logger; paste three sample transactions and run AI parse.  \n3. Show instant structured logs with immutable timestamps, consent flags, and retention rules.  \n4. Auto-generate audit-ready PDF/JSON report in <30 seconds versus 45 manual minutes.  \n5. Display dashboard: 18 hours saved this month = €2,250 at €125/hr loaded cost.  \n6. ROI snapshot: €224 price delivers 10.0x return (€2,240 net value) within first month.  \n7. One-click deploy to production workspace; schedule weekly compliance attestation.",
   "demo_inputs": {
     "ai_system_outputs": "[example_ai_system_outputs]",
     "decision_logs": "[example_decision_logs]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "EUAIA-ART12",
-    "agent_name": "eu_ai_act12_logging_agent",
+    "agent_name": "art12_compliance_logger",
     "framework": "EU AI Act 2024",
     "domain": "EU AI Act",
     "level": "L1",
@@ -55,32 +55,32 @@
       "data retention requirements"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 5,
+    "capabilities_count": 4,
     "price_eur": 223.5,
     "complexity_score": 84,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:11:58.505557"
+    "created_at": "2026-06-12T15:16:52.993576"
   },
   "tags": [
-    "manufacturing",
-    "automotive",
     "defense",
     "eu ai act 2024",
-    "hybrid",
-    "l1",
+    "manufacturing",
     "eu ai act",
     "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
     "food",
     "pharma"
   ],
   "use_cases": [
-    "Use case 1: Pharma firm automates EU AI Act Art.12 logging for clinical-trial AI models, cutting manual audit-prep time from 240 to 48 hours per inspection and avoiding €20M+ fines.",
-    "Use case 2: Defense contractor implements tamper-proof GDPR audit logs for AI-based threat-detection systems, reducing incident-investigation effort by 65% and saving 1,200 analyst hours annually.",
-    "Use case 3: Automotive manufacturer deploys data-retention-compliant logging on predictive-maintenance AI, shortening root-cause analysis from 14 days to 3 days and cutting unplanned downtime costs by $4.2M per year.",
-    "Use case 4: Chemical plant uses automated batch-process logging to meet 10-year retention mandates, eliminating 95% of manual record errors and preventing €8M regulatory shutdown risk.",
-    "Use case 5: Food producer applies real-time traceability logging for quality-control AI, achieving 99.8% audit-pass rate and reducing recall investigation costs from $1.5M to $180K per event."
+    "Use case 1: Pharma firm deploys agent for EU AI Act Art.12 logging on clinical-trial AI, cutting manual audit prep from 120 to 20 hours per quarter and avoiding €4M fine risk",
+    "Use case 2: Defense contractor uses agent for GDPR audit logs on supply-chain AI, achieving zero non-conformities in annual audit and saving €250k in remediation costs",
+    "Use case 3: Automotive manufacturer automates data-retention logging for production AI, reducing storage over-retention penalties by 95% and reclaiming €180k annual cloud spend",
+    "Use case 4: Chemical plant applies agent to mandatory AI-system records under EU AI Act, shortening regulatory inspection cycles from 6 weeks to 5 days and saving 300 engineer hours",
+    "Use case 5: Food processor implements agent for traceability and GDPR logs on quality-control AI, cutting product-recall investigation time by 70% and avoiding €1.2M potential recall costs"
   ],
   "pricing": {
     "process_id": "EUAIA-ART12",

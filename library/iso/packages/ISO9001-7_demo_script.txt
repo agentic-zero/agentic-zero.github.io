@@ -1,0 +1,6 @@
+1. Open with the compliance gap: "ISO 9001 clause 7 requires documented competence and communication evidence—manual tracking costs €2,240+ per quarter in audits and rework; our €224 agent delivers 10x ROI by automating it."
+2. Trigger resource allocation: Ask the agent to map current team competencies against an open support ticket backlog and auto-assign training resources with audit-ready logs.
+3. Demonstrate real-time competence update: Show the agent ingesting a completed training record, updating the competence matrix, and flagging gaps for the next quarter in under 30 seconds.
+4. Automate stakeholder communication: Instruct the agent to generate and send ISO-compliant status updates to relevant roles, logging delivery and acknowledgments for traceability.
+5. Run ROI snapshot: Display the live dashboard calculating time saved (est. 22 hours/quarter) and risk reduction, confirming the 10x multiplier versus the €224 subscription.
+6. Close with compliance proof: Export the full audit trail package and note one-click readiness for external ISO auditors, locking in the value proposition.

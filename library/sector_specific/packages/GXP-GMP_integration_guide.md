@@ -34,12 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- manufacturing_system_api
-- validation_report_store
-- audit_trail_monitor
+- batch_record_repository
+- validation_documentation_store
+- audit_trail_logger
+- kpi_calculator
+- capa_tracker
 
 ## Escalation
 The agent automatically escalates to human when:
-- validation documentation missing
-- data integrity breach detected
-- equipment qualification expired
+- Critical GMPAuditFinding detected
+- ALCOA+ violation post-release
+- Legacy system partial coverage without risk assessment

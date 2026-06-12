@@ -1,6 +1,6 @@
-1. Open with pain: "Manual human oversight costs teams 20+ hours/week on reviews, risking compliance gaps—let's see AI automate it."
-2. Launch agent: Trigger human_oversight_coordinator on a sample workflow; AI flags issues, suggests actions, and logs decisions in real time.
-3. Show compliance layer: Display auto-generated audit trails, regulatory mapping, and one-click escalation that meets GDPR/SOX standards without extra staff.
-4. Quantify time savings: Reveal dashboard metrics—85% reduction in review time—equating to €2,240 monthly value at 10.0x ROI on the €224 price.
-5. Run ROI simulator: Input your team's headcount; instantly project €26,880 annual return via recovered hours and avoided fines.
-6. Close with deployment: One-click pilot setup; schedule 30-day ROI review to confirm compliance lift and multiplier.
+1. Open with EU AI Act Art 14 requirement: high-risk systems need documented human oversight; note manual processes cost €2,240+ per deployment annually.
+2. Load sample high-risk AI workflow; run eu_ai_act_art14_human_oversight_agent to auto-generate oversight logs, risk flags, and escalation rules in <30 seconds.
+3. Display compliance dashboard: one-click Article 14 report with timestamps, human review points, and audit trail ready for regulators.
+4. Quantify time savings: agent reduces oversight effort from 8 hours to 45 minutes per model, equating to €2,240 recovered per use case.
+5. Show ROI calculator: €224 price × 10.0x multiplier delivers €2,240 net value per deployment, with payback in first week.
+6. Close with executive action: approve pilot on one high-risk system to lock in 10x return and immediate compliance posture.

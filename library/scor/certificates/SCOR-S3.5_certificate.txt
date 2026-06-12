@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-SCOR-S3.5-20260608
+Certificate ID:  AZ-CERT-SCOR-S3.5-20260611
 Process ID:      SCOR-S3.5
-Agent:           supplier_payment_authorization_agent
-Issued:          2026-06-08
-Valid Until:     2027-06-08
+Agent:           supplier_milestone_payment_authorizer
+Issued:          2026-06-11
+Valid Until:     2027-06-11
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

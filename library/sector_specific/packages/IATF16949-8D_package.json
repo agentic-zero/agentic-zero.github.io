@@ -1,12 +1,12 @@
 {
   "process_id": "IATF16949-8D",
-  "agent_name": "iatf_8d_autonomous_solver",
+  "agent_name": "iatf16949_8d_automation_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:20:04.085697",
-  "product_summary": "This agent implements the structured 8D problem-solving methodology to manage automotive quality issues from initial team formation through root cause identification, corrective actions, verification, and recurrence prevention. It supports hybrid execution of triggered report generation, data-driven analysis, and ongoing monitoring while enforcing compliance with IATF 16949:2016, VDA, and AIAG CQI standards. By embedding KPI cycle-time controls and linkage between corrective and preventive actions, the agent reduces defect recurrence, shortens resolution cycles, and lowers warranty and quality-related costs for manufacturers and suppliers.",
-  "value_proposition": "Automates the full 8D lifecycle with data-driven verification and compliance enforcement to eliminate recurring automotive quality issues.",
-  "technical_summary": "The hybrid agent combines workflow orchestration for the eight disciplines with AI modules that handle triggered report generation, root cause verification, and action tracking. It integrates through event-driven hooks into quality management and ERP systems to monitor containment effectiveness and enforce KPI cycle times while maintaining audit trails aligned with IATF and VDA requirements. Preventive action linkage is achieved via shared data models that connect resolved 8D records to upstream process controls.",
-  "integration_guide": "# Integration Guide â€” iatf_8d_autonomous_solver\n**Process:** 8D Problem Solving\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iatf_8d_autonomous_solver.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iatf_8d_autonomous_solver import Iatf8DAutonomousSolverAgent\n\nagent = Iatf8DAutonomousSolverAgent()\nresult = agent.execute({\n    \"customer_complaint\": your_customer_complaint_data,\n    \"defect_data\": your_defect_data_data,\n    \"process_data\": your_process_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_complaint_api\n- MES_defect_data_query\n- ERP_user_assignment\n- quality_database_recurrence_calc\n- document_management_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- root_cause unidentified after two analysis cycles\n- containment_effectiveness < 100% after scope expansion\n- missing defect samples logged as exception beyond 24h\n- cycle_time approaching KPI limit without closure",
+  "packager_timestamp": "2026-06-11T18:39:40.669799",
+  "product_summary": "This agent implements the 8D problem-solving methodology to address automotive quality issues systematically from initial trigger through team formation, root cause analysis, corrective actions, verification, and recurrence prevention. It operates as a hybrid agent that enforces compliance with IATF 16949, VDA, and AIAG CQI standards while producing standardized reports. By automating these disciplines, the agent reduces resolution time, lowers defect-related costs, and improves overall product quality for automotive manufacturers. Executives gain consistent, auditable outcomes that support regulatory requirements and continuous improvement initiatives.",
+  "value_proposition": "Automates the full 8D lifecycle to accelerate root cause resolution and eliminate recurrence risks in automotive quality management.",
+  "technical_summary": "The hybrid agent combines deterministic workflow orchestration with AI modules to deliver capabilities such as SLA-based team formation, automated root cause analysis, action validation, and KPI monitoring. It integrates via APIs with quality management and ERP systems to ingest triggers, maintain compliance data flows, and output standardized 8D reports aligned with customer and regulatory formats. This architecture supports both event-driven initiation and scheduled recurrence checks without requiring custom coding for each deployment.",
+  "integration_guide": "# Integration Guide â€” iatf16949_8d_automation_agent\n**Process:** 8D Problem Solving\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iatf16949_8d_automation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iatf16949_8d_automation_agent import Iatf169498DAutomationAgentAgent\n\nagent = Iatf169498DAutomationAgentAgent()\nresult = agent.execute({\n    \"customer_complaint\": your_customer_complaint_data,\n    \"defect_data\": your_defect_data_data,\n    \"process_data\": your_process_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- CRM_API\n- MES_defect_API\n- SCADA_process_feed\n- ERP_change_order\n- KPI_dashboard\n- fishbone_5why_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- team_formation_exceeds_24h\n- root_cause_rate_below_0.9_after_extension\n- recurrence_rate_above_0.02\n- missing_critical_data_without_exception_flag",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/iatf_8d_autonomous_solver/execute â€” Execute the agent with inputs",
-    "GET  /api/v1/agents/iatf_8d_autonomous_solver/status â€” Get agent status and metrics",
-    "GET  /api/v1/agents/iatf_8d_autonomous_solver/health â€” Health check",
-    "GET  /api/v1/agents/iatf_8d_autonomous_solver/spec   â€” Get agent specification",
-    "POST /api/v1/agents/iatf_8d_autonomous_solver/test   â€” Run test cases"
+    "POST /api/v1/agents/iatf16949_8d_automation_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/iatf16949_8d_automation_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/iatf16949_8d_automation_agent/health â€” Health check",
+    "GET  /api/v1/agents/iatf16949_8d_automation_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/iatf16949_8d_automation_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with a live IATF nonconformance ticket; state the €171 license cost and project 10x ROI via 20+ hours saved per 8D cycle.\n2. Paste the defect description into iatf_8d_autonomous_solver; trigger autonomous generation of D1–D3 (team, problem definition, containment).\n3. Display AI-proposed D4–D5 outputs: Ishikawa diagram, verified root cause, and corrective actions mapped to IATF clauses 10.2 & 8.7.\n4. Run one-click compliance audit; highlight auto-generated evidence pack with timestamps, approvals, and audit-trail export ready for IATF certification.\n5. Simulate D6–D8 closure; quantify ROI dashboard showing €1,710+ value created per incident through reduced scrap and faster customer response.\n6. Export the full 8D report and schedule; confirm zero manual rework and immediate upload to customer portal.\n7. Close with 60-second recap: €171 investment, 10x multiplier proven, full IATF traceability delivered in under 8 minutes.",
+  "demo_script": "1. Open with a live automotive defect scenario (e.g., brake-component dimensional failure) and import the customer complaint into the agent to start an IATF 16949-aligned 8D record.  \n2. Run automated D1–D3: AI forms the cross-functional team, writes the problem statement, and generates immediate containment actions with risk ratings.  \n3. Execute D4–D5 root-cause analysis: AI correlates SPC, warranty, and supplier data to deliver a verified Ishikawa and 5-Why output in <60 seconds.  \n4. Generate D6–D7 corrective/preventive actions with linked control-plan updates and automatically populate the IATF-mandated forms and evidence package.  \n5. Complete D8 verification: AI schedules effectiveness checks, produces the closure report, and flags any missing IATF 16949 clauses for audit readiness.  \n6. Display the ROI dashboard: 12 hours of manual 8D effort reduced to 25 minutes, equating to €1,710 saved per incident and a 10× return on the €171 license within the first use.",
   "demo_inputs": {
     "customer_complaint": "[example_customer_complaint]",
     "defect_data": "[example_defect_data]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "IATF16949-8D",
-    "agent_name": "iatf_8d_autonomous_solver",
+    "agent_name": "iatf16949_8d_automation_agent",
     "framework": "IATF 16949:2016",
     "domain": "IATF 16949",
     "level": "L1",
@@ -59,23 +59,23 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:20:04.085677"
+    "created_at": "2026-06-11T18:39:40.669783"
   },
   "tags": [
     "iatf 16949:2016",
-    "automotive suppliers",
-    "hybrid",
-    "iatf 16949",
     "automotive",
+    "iatf 16949",
     "l1",
-    "manufacturing"
+    "manufacturing",
+    "hybrid",
+    "automotive suppliers"
   ],
   "use_cases": [
-    "Use case 1: Resolving recurring casting porosity defects in transmission housings under IATF 16949, closing 8D in 12 days vs. 25-day average and cutting scrap costs by $320K annually.",
-    "Use case 2: Managing customer 8D for brake caliper dimensional non-conformances, preventing line stoppage at OEM plant and avoiding $480K in expedited freight and penalty fees via VDA-aligned root cause analysis.",
-    "Use case 3: Addressing paint adhesion failures on body panels per AIAG CQI-12, achieving 35% reduction in rework labor hours and $210K yearly savings while maintaining zero repeat occurrences.",
-    "Use case 4: Investigating supplier wiring harness short circuits, delivering compliant 8D report that recovers $175K in warranty costs and improves supplier PPM from 850 to 120 within one quarter.",
-    "Use case 5: Correcting torque variation on engine assembly station, raising Cpk from 0.92 to 1.72 and reducing field warranty claims by 28% for $390K annual cost avoidance under customer-specific 8D requirements."
+    "Use case 1: Automotive Tier-1 supplier uses the agent to complete a customer-mandated 8D on recurring transmission housing porosity, closing the report in 7 days vs. 28-day average and cutting repeat defects by 62%, delivering $1.2M annual warranty savings while maintaining IATF 16949 compliance.",
+    "Use case 2: Assembly plant deploys the agent for an 8D on paint line contamination, identifying root cause via VDA 5-Why linkage in 48 hours and implementing poka-yoke, reducing scrap rate from 1.8% to 0.3% and saving $480K in first quarter.",
+    "Use case 3: OEM powertrain division leverages the agent to resolve a supplier brake caliper dimensional issue against AIAG CQI-9 heat-treat standards, achieving zero customer line stops within 10 days and avoiding a potential $3.5M recall exposure.",
+    "Use case 4: Manufacturing site uses the agent to generate and verify 8D responses for three simultaneous customer complaints, cutting average response time from 14 days to 4 days, improving customer scorecards by 18 points and securing $900K in new contract awards.",
+    "Use case 5: Automotive supplier applies the agent during IATF surveillance audit preparation to retroactively complete missing 8D evidence packages, eliminating 4 major non-conformances and avoiding certification suspension that would have cost $650K in lost production."
   ],
   "pricing": {
     "process_id": "IATF16949-8D",

@@ -34,13 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- risk_database_api
-- event_listener_service
-- control_inventory_api
-- scheduler_service
+- external_risk_feeds_api
+- risk_database
+- calculation_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- Update delay exceeds 24-hour rule
-- Missing likelihood/consequence after expert default attempt
-- Empty controls inventory detected
+- likelihood * consequence > 12
+- control effectiveness < 0.6
+- incomplete inputs or stale controls detected

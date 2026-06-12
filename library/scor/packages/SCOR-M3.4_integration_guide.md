@@ -1,4 +1,4 @@
-# Integration Guide — eto_packaging_compliance_agent
+# Integration Guide â€” eto_packaging_agent
 **Process:** Package (ETO)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eto_packaging_compliance_agent.py ./agents/
+cp eto_packaging_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eto_packaging_compliance_agent import EtoPackagingComplianceAgentAgent
+from agents.eto_packaging_agent import EtoPackagingAgentAgent
 
-agent = EtoPackagingComplianceAgentAgent()
+agent = EtoPackagingAgentAgent()
 result = agent.execute({
     "eto_finished_products": your_eto_finished_products_data,
     "contract_packaging_requirements": your_contract_packaging_requirements_data,
@@ -34,14 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- packaging_workflow_api
-- compliance_rule_engine
-- documentation_generator
-- test_equipment_interface
+- contract_system_api
 - export_control_db
+- engineering_specs_store
+- document_management_system
+- packaging_kpi_logger
 
 ## Escalation
 The agent automatically escalates to human when:
-- missing contract packaging requirements
-- preservation test failure
-- export control mismatch detected
+- preservation treatment fails effectiveness check after reapplication
+- export marking non-compliant after compliance review
+- documentation_completeness < 1.0 at shipment gate

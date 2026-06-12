@@ -1,0 +1,7 @@
+1. Open demo: "Your high-risk AI system needs EU AI Act Art. 10 data governance—manual compliance currently costs €2,240 per model annually in audits and rework."
+2. Load sample dataset and requirements: Agent scans for bias, quality, and documentation gaps in 30 seconds.
+3. Run automated governance: AI generates Art. 10-compliant data policies, lineage reports, and risk logs without manual input.
+4. Export audit-ready package: One-click PDF/JSON output meeting regulatory standards, reducing prep time from 8 hours to 5 minutes.
+5. Display ROI dashboard: €224 price delivers 10x return via €2,240+ annual savings per model plus avoided fines.
+6. Simulate scale: Apply to 10 models live—total yearly value €22,400 at 1/10th the effort.
+7. Close: "Ready to deploy? License today for immediate compliance automation and 10x ROI."

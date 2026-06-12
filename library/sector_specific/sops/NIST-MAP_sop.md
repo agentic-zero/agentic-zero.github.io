@@ -1,14 +1,14 @@
 # SOP — MAP — AI Risk Context and Categorization
 **Process ID:** NIST-MAP
 **Framework:** NIST AI RMF 1.0 | **Domain:** NIST AI RMF
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Contextualizing AI risks by categorizing AI systems, identifying stakeholders and their needs, mapping AI system impacts and establishing risk tolerances for different use cases
 
 ## Triggers
 - AI use case descriptions received
-- deployment context updated
+- DeploymentContext updated
 
 ## Inputs Required
 - AI use case descriptions
@@ -18,8 +18,8 @@ Contextualizing AI risks by categorizing AI systems, identifying stakeholders an
 - deployment context
 
 ## Process Steps
-1. IF risk categorization coverage < 1.0 THEN add missing AIRiskCategory to AISystemInventory
-2. IF stakeholder mapping completeness < 0.9 THEN request additional StakeholderMap entries
+1. IF sector in ['defense','pharma'] THEN enforce RiskToleranceThreshold = 'strict'
+2. IF stakeholder_needs identified THEN generate StakeholderImpactMap entry
 
 ## Expected Outputs
 - AI risk categories
@@ -29,17 +29,15 @@ Contextualizing AI risks by categorizing AI systems, identifying stakeholders an
 - AI system inventory
 
 ## Business Rules
-- Every AIUseCaseDescription must map to at least one AIRiskCategory
-- RiskToleranceThreshold must be set per sector_applicability entry before ImpactAssessment
-- All outputs require compliance_flags check for NIST AI RMF 1.0 MAP
+- Require compliance_flags include 'NIST AI RMF 1.0 MAP' before output generation
+- risk_categorization_coverage KPI must equal 1.0
+- Only process if sector_applicability matches input sector
 
 ## Exception Handling
-- defense sector: require extra EUAIA-ART6 flag before producing StakeholderImpactMap
+- If automation_potential < 0.6 require manual approval on all ImpactAssessment outputs
 
 ## Success Criteria
-- risk categorization coverage == 1.0
-- stakeholder mapping completeness >= 0.9
-- impact assessment accuracy >= 0.85
+- All outputs produced and KPIs met: risk categorization coverage=1.0, stakeholder mapping completeness>=0.95, impact assessment accuracy>=0.9
 
 ## Compliance Requirements
 - NIST AI RMF 1.0 MAP

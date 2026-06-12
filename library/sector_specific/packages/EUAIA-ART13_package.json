@@ -2,11 +2,11 @@
   "process_id": "EUAIA-ART13",
   "agent_name": "eu_ai_act_art13_transparency_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:12:22.029785",
-  "product_summary": "This hybrid agent automates the generation of transparency documentation for high-risk AI systems, including instructions for use, capability disclosures, and output interpretation guidance to meet EU AI Act Article 13 requirements. It assesses user comprehension levels, discloses system limitations, and produces tailored instructions that support explainability and user rights. By embedding these processes into AI workflows, the agent helps organizations achieve mandatory compliance, reduce regulatory risks, and build stakeholder trust in deployed systems. Its business value lies in streamlining what would otherwise be manual, error-prone documentation efforts across multiple AI deployments.",
-  "value_proposition": "Automates end-to-end transparency documentation and compliance checks to eliminate manual EU AI Act Article 13 violations.",
-  "technical_summary": "The agent integrates via API hooks into existing AI pipelines, combining generative models for documentation creation with rule-based modules that evaluate user comprehension metrics and limitation disclosures. It pulls system metadata, model cards, and output logs at runtime to produce structured reports while maintaining audit trails for explainability. Hybrid orchestration allows seamless embedding into both cloud and on-premise environments with configurable compliance templates.",
-  "integration_guide": "# Integration Guide â€” eu_ai_act_art13_transparency_agent\n**Process:** Transparency and User Information\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art13_transparency_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art13_transparency_agent import EuAiActArt13TransparencyAgentAgent\n\nagent = EuAiActArt13TransparencyAgentAgent()\nresult = agent.execute({\n    \"ai_system_capabilities\": your_ai_system_capabilities_data,\n    \"limitation_assessments\": your_limitation_assessments_data,\n    \"use_case_definitions\": your_use_case_definitions_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- documentation_generator\n- survey_tool\n- compliance_auditor\n\n## Escalation\nThe agent automatically escalates to human when:\n- automation_potential < 0.3 requires manual legal review\n- user_comprehension_metric < 0.8 triggers mandatory rewrite",
+  "packager_timestamp": "2026-06-12T15:17:12.692609",
+  "product_summary": "This hybrid agent automates the creation and maintenance of transparency documentation for high-risk AI systems, delivering clear instructions for use, capability and limitation disclosures, and interpretability reports that enable users to understand outputs correctly. It supports mandatory compliance with EU AI Act Article 13 and related explainability requirements while customizing user-facing guidance to protect user rights. By embedding limitation assessment and documentation generation into development and deployment workflows, the agent reduces regulatory risk, accelerates audit readiness, and strengthens stakeholder trust in AI products. Executives gain a repeatable process that turns complex compliance obligations into scalable, auditable outputs without slowing product velocity.",
+  "value_proposition": "Automates EU AI Act Article 13 transparency obligations by generating limitation assessments, user instructions, and interpretability reports that keep high-risk systems compliant and explainable.",
+  "technical_summary": "The agent combines rule-based compliance templates with model-driven assessment modules to evaluate system capabilities, surface limitations, and produce structured documentation. It integrates via APIs with existing model registries, monitoring pipelines, and deployment platforms to pull performance metrics and output logs in real time. Generated artifacts are version-controlled and exportable in formats required for conformity assessments and user-facing interfaces.",
+  "integration_guide": "# Integration Guide â€” eu_ai_act_art13_transparency_agent\n**Process:** Transparency and User Information\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art13_transparency_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art13_transparency_agent import EuAiActArt13TransparencyAgentAgent\n\nagent = EuAiActArt13TransparencyAgentAgent()\nresult = agent.execute({\n    \"ai_system_capabilities\": your_ai_system_capabilities_data,\n    \"limitation_assessments\": your_limitation_assessments_data,\n    \"use_case_definitions\": your_use_case_definitions_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ai_system_spec_api\n- user_profile_database\n- compliance_audit_tool\n\n## Escalation\nThe agent automatically escalates to human when:\n- documentation_completeness <1.0 after generation attempt\n- defense sector national-security redaction required\n- user_comprehension_rate <0.8 post-deployment",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/eu_ai_act_art13_transparency_agent/spec   â€” Get agent specification",
     "POST /api/v1/agents/eu_ai_act_art13_transparency_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with EU AI Act Art. 13 risk: manual transparency docs cost €2,800/month in legal + engineering time and expose €50k+ fines.  \n2. Launch eu_ai_act_art13_transparency_agent; it auto-scans the model card and generates user-facing transparency text in <30 seconds.  \n3. Display side-by-side: before (incomplete, non-compliant) vs. after (concise, Art. 13-ready notices with risk levels and human-oversight info).  \n4. Run one-click export to web UI, privacy policy, and internal audit log—proving traceability for regulators.  \n5. ROI snapshot: €224 price vs. 12 hours/month saved (€2,240) + avoided fine risk = 10.0x multiplier within first month.  \n6. Close: one-line compliance certificate generated for the executive pack; offer 48-hour pilot on their highest-risk model.",
+  "demo_script": "1. Open with EU AI Act Art. 13 risk: 15 min manual transparency logging per high-risk AI interaction costs €50k+/yr in staff time and audit gaps.  \n2. Launch eu_ai_act_art13_transparency_agent; auto-scan model card and generate user-facing disclosure text in <8 seconds.  \n3. Display side-by-side: manual PDF vs. agent output—complete, plain-language notice ready for UI injection.  \n4. Run live compliance check: agent flags missing risk info, auto-fills, and logs immutable audit trail for regulators.  \n5. ROI snapshot: €224 annual license vs. 10.0x multiplier yields €2,240 verified savings from 45 hrs reclaimed and zero Art. 13 fines.  \n6. Executive close: one-click deployment, SOC2 export, and 30-day compliance certification—ready for board sign-off.",
   "demo_inputs": {
     "ai_system_capabilities": "[example_ai_system_capabilities]",
     "limitation_assessments": "[example_limitation_assessments]",
@@ -61,26 +61,26 @@
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:12:22.029764"
+    "created_at": "2026-06-12T15:17:12.692592"
   },
   "tags": [
-    "manufacturing",
-    "automotive",
     "defense",
     "eu ai act 2024",
-    "hybrid",
-    "l1",
+    "manufacturing",
     "eu ai act",
     "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
     "food",
     "pharma"
   ],
   "use_cases": [
-    "Use case 1: In pharma, automating EU AI Act Art.13 explainability documentation for AI drug interaction predictors, cutting compliance audit prep time by 65% and avoiding €1.2M in potential fines.",
-    "Use case 2: In defense manufacturing, generating transparent user information reports for AI supply chain optimizers, reducing regulatory review cycles from 8 weeks to 2 weeks and saving $450K annually in external consultant fees.",
-    "Use case 3: In chemical processing plants, delivering real-time compliance dashboards for AI process control systems under EU AI Act, lowering incident investigation costs by 40% through faster root-cause traceability.",
-    "Use case 4: In food production, streamlining user rights and explainability audits for AI quality inspection models, achieving 30% faster certification renewals and preventing €800K in market access delays.",
-    "Use case 5: In automotive assembly, enforcing transparency protocols for AI predictive maintenance agents, reducing downtime-related losses by 22% via improved stakeholder reporting and compliance traceability."
+    "Use case 1: In pharma, the agent automates EU AI Act Art.13 explainability audits for clinical trial AI tools, cutting compliance review time from 6 weeks to 10 days and avoiding €1.2M in potential fines per product launch.",
+    "Use case 2: In defense, the agent generates transparent documentation for AI logistics optimization systems, enabling faster contract approvals and securing €4M additional annual revenue through accelerated bidding cycles.",
+    "Use case 3: In manufacturing, the agent enforces user rights and explainability in predictive quality control AI, reducing production defects by 22% and delivering €850K yearly savings in scrap and rework costs.",
+    "Use case 4: In chemical, the agent maps compliance gaps in process safety AI models against EU AI Act requirements, preventing regulatory shutdowns and saving €2.5M in avoided downtime and legal penalties annually.",
+    "Use case 5: In automotive, the agent delivers ROI through automated transparency reports for supply chain forecasting AI, shortening supplier audit cycles by 40% and yielding €1.8M in negotiated cost reductions per year."
   ],
   "pricing": {
     "process_id": "EUAIA-ART13",

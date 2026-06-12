@@ -1,6 +1,6 @@
-1. Open with executive pain point: "Manual MTO material-issue handling costs teams 12+ hours/week in errors, delays, and audit prep—€699 buys an 8.0x ROI agent that eliminates both."
-2. Trigger live MTO issue: Input a sourced/in-process product shortage; agent auto-matches inventory, raises PO, and updates ERP in <30 seconds.
-3. Display AI decision audit trail: Show timestamped, regulation-mapped logs (ISO/traceability) that satisfy compliance review without manual documentation.
-4. Run exception handling demo: Agent flags a compliance deviation, proposes resolution, and records sign-off—reducing audit prep from 4 hours to minutes.
-5. Surface ROI dashboard: Real-time panel calculates €5,592 annual savings per user (8.0x multiplier) via time recovered and avoided non-compliance penalties.
-6. Close with one-click deployment: "Zero-code install; full ROI realized in first month—ready to pilot this week."
+1. Open with executive pain point: "Manual MTO material-issue handling costs €5,600 per month in delays and audit risk; our €699 agent delivers 8.0x ROI by automating the full workflow."
+2. Trigger live agent: Launch mto_material_issue_agent on a real sourced/in-process order, showing instant ingestion of BOM, supplier status, and shop-floor data.
+3. Run AI resolution: Agent auto-matches inventory, flags shortages, and generates compliant issue documentation in <30 seconds while enforcing SOX and ISO audit trails.
+4. Display compliance dashboard: Real-time traceability log, digital signatures, and deviation alerts prove zero manual rework and full regulatory readiness.
+5. Quantify ROI on screen: Side-by-side metrics show 11 hours saved per issue × €85 fully-loaded cost = €935 per transaction; at 6 issues/month the agent pays for itself in 12 days and returns €5,600+ annually.
+6. Close with action: "Approve one production line pilot today; full rollout across three sites yields €44,800 yearly savings at 8.0x multiplier."

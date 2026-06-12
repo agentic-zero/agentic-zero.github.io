@@ -1,11 +1,11 @@
 
 AGENTIC ZERO — COMPLIANCE CERTIFICATE
 ======================================
-Certificate ID:  AZ-CERT-EUAIA-ART14-20260610
+Certificate ID:  AZ-CERT-EUAIA-ART14-20260612
 Process ID:      EUAIA-ART14
-Agent:           human_oversight_coordinator
-Issued:          2026-06-10
-Valid Until:     2027-06-10
+Agent:           eu_ai_act_art14_human_oversight_agent
+Issued:          2026-06-12
+Valid Until:     2027-06-12
 Issued By:       Guardian Agent — Agentic Zero Pioneer Team
 
 OVERALL STATUS:  CONDITIONAL

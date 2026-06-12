@@ -1,15 +1,15 @@
 # SOP — Technical Documentation Requirements
 **Process ID:** EUAIA-ART11
 **Framework:** EU AI Act 2024 | **Domain:** EU AI Act
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Mandatory technical documentation for high-risk AI systems covering system description, design specifications, training methodology, performance metrics and conformity assessment evidence
 
 ## Triggers
-- high-risk AI system development start
-- AI system component change
-- regulatory audit request
+- HighRiskAISystem design approval completed
+- new training run finished
+- scheduled quarterly review triggered
 
 ## Inputs Required
 - AI system design
@@ -19,8 +19,8 @@ Mandatory technical documentation for high-risk AI systems covering system descr
 - conformity evidence
 
 ## Process Steps
-1. IF AI system classification == high-risk THEN mandate Art.11 documentation
-2. IF documentation completeness score < 0.95 THEN block conformity assessment
+1. IF documentation_completeness_score < 0.95 THEN trigger update cycle before CE marking submission
+2. IF conformity_assessment_pass_rate < 1.0 THEN return to risk_assessment for remediation
 
 ## Expected Outputs
 - technical file
@@ -29,17 +29,17 @@ Mandatory technical documentation for high-risk AI systems covering system descr
 - Annex IV documentation
 
 ## Business Rules
-- TechnicalDocumentation must contain system description, design specs, training methodology, performance metrics and conformity evidence
-- TechnicalDocumentation must satisfy Annex IV structure for CE marking
-- update frequency must be logged and >= policy interval
+- TechnicalDocumentation must contain system_description, design_specifications, training_methodology, performance_metrics and conformity_assessment_evidence per EU AI Act Art.11
+- AnnexIVDocumentation must be included for all high-risk systems before CE marking
+- update_frequency must be at minimum every 6 months or after any material model change
 
 ## Exception Handling
-- IF system risk level != high-risk THEN skip mandatory Art.11 documentation
+- If AI system is not classified as high-risk under EU AI Act Annex III then TechnicalDocumentation requirements are waived but voluntary SystemCard is recommended
 
 ## Success Criteria
-- documentation completeness score >= 0.95
-- conformity assessment pass rate == 1.0
-- AnnexIVDocumentation present and valid
+- documentation_completeness_score >= 0.95
+- conformity_assessment_pass_rate == 1.0
+- TechnicalFile, SystemCard, ConformityDeclaration and AnnexIVDocumentation all generated and version-controlled
 
 ## Compliance Requirements
 - EU AI Act Art.11 mandatory

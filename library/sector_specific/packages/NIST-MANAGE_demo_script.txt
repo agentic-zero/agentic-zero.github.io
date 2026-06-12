@@ -1,6 +1,7 @@
-1. Open with a live high-risk AI scenario (e.g., biased credit model) and show the 4-hour manual risk treatment process that currently costs €2,240 in analyst time.  
-2. Trigger risk_treatment_response_agent; it ingests the scenario and auto-generates a complete MANAGE treatment plan with controls, owners, and timelines in 45 seconds.  
-3. Display instant compliance mapping to NIST AI RMF and EU AI Act requirements, producing audit-ready artifacts without extra effort.  
-4. Run side-by-side ROI calculator: €224 agent cost vs. €2,240 manual effort yields immediate 10× multiplier plus 92 % faster remediation.  
-5. Simulate one-click escalation and board report that logs residual risk and treatment status for executive oversight.  
-6. Close with annual projection: 50 similar incidents × 10× ROI = €1.12 M net value at €11 k yearly agent spend.
+1. Open dashboard and load a live high-risk AI model scenario (e.g., credit-scoring system flagged under EU AI Act).  
+2. Trigger one-click automated risk identification; AI surfaces top threats, likelihood, and impact scores in <30 seconds.  
+3. Run AI-generated treatment plan: select mitigation actions, assign owners, and set timelines with built-in compliance mapping to ISO 42001 and NIST AI RMF.  
+4. Simulate incident response: AI drafts containment steps, notification templates, and regulatory filings, cutting manual effort by 85 %.  
+5. Display real-time ROI calculator: €224 license fee vs. €2,240 quantified savings from avoided fines, reduced audit hours, and faster remediation (10.0x multiplier).  
+6. Export audit-ready report with full traceability; confirm one-click submission to compliance portal.  
+7. Close with summary: “€224 delivers 10x risk-reduction ROI while ensuring continuous regulatory alignment.”

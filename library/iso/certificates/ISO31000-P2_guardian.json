@@ -1,15 +1,15 @@
 {
   "process_id": "ISO31000-P2",
-  "guardian_timestamp": "2026-06-10T16:01:03.393199",
+  "guardian_timestamp": "2026-06-12T15:30:10.567732",
   "certificate": {
-    "certificate_id": "AZ-CERT-ISO31000-P2-20260610",
+    "certificate_id": "AZ-CERT-ISO31000-P2-20260612",
     "process_id": "ISO31000-P2",
     "agent_name": "iso31000_risk_assessment_agent",
-    "issued_at": "2026-06-10T16:01:03.393155",
+    "issued_at": "2026-06-12T15:30:10.567693",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.86,
+    "overall_score": 0.81,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -37,15 +37,17 @@
       ]
     },
     "iso_42001": {
-      "compliant": true,
-      "score": 0.78,
+      "compliant": false,
+      "score": 0.55,
       "gaps": [
-        "Missing explicit AI-specific risk dimensions (bias, transparency, societal impact)",
-        "No documented continual improvement or context-establishment steps for AI systems"
+        "No AI-specific risk dimensions (bias, fairness, explainability, robustness)",
+        "Missing integration with AI policy, objectives, and leadership requirements",
+        "Lacks performance evaluation, internal audit, and continual improvement mechanisms"
       ],
       "recommendations": [
-        "Extend risk identification to include AI ethics, fairness and explainability criteria",
-        "Add escalation triggers for model performance drift and stakeholder impact changes"
+        "Extend risk model to include AI ethics, bias, and societal impact criteria",
+        "Map process outputs to ISO/IEC 42001 clauses 5-10 for full AIMS coverage",
+        "Add human oversight checkpoints and documented continual improvement loop"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +84,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: Missing explicit AI-specific risk dimensions (bias, transparency, societal impact)",
+    "ISO 42001: No AI-specific risk dimensions (bias, fairness, explainability, robustness)",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 81% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:43.284416",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

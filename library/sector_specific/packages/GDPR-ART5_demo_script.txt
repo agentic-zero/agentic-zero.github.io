@@ -1,7 +1,7 @@
-1. Introduce the €224 agent and its 10x ROI by framing a €50k annual GDPR audit risk scenario for a 5k-record customer dataset.
-2. Ingest the live dataset via API and trigger automated Article 5 principle scans (lawfulness, minimisation, storage limitation).
-3. Display real-time compliance dashboard: red-flag violations with risk scores and one-click remediation suggestions.
-4. Execute automated fixes (data minimisation rules, consent tagging) and generate an Article 5 accountability report in <60 seconds.
-5. Compare manual audit effort (12 hours, €2,400) versus agent runtime (2 minutes, €0.50) to quantify immediate 10x efficiency gain.
-6. Project annual ROI: €22.4k savings across 10 audits plus reduced fine exposure, confirming payback in first use.
-7. Close with deployment options and next-step pilot for the executive team.
+1. Open dashboard and load sample EU customer dataset (10k records) flagged for potential Art 5 breaches.  
+2. Trigger gdpr_art5_compliance_agent; AI scans in <30 seconds against all six principles.  
+3. Display real-time compliance report highlighting lawfulness and minimization gaps with risk scores.  
+4. Auto-generate remediation actions (e.g., purpose tags, retention rules) and one-click policy updates.  
+5. Compare manual audit time (est. 18 hrs, €1,800) vs agent runtime (€224), proving 10x ROI.  
+6. Run batch mode on three additional datasets to show scalable, repeatable compliance at €0.02/record.  
+7. Export audit trail and ROI dashboard for board sign-off, confirming reduced fine exposure.

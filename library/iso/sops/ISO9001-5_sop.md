@@ -1,15 +1,15 @@
 # SOP — Leadership and Quality Policy
 **Process ID:** ISO9001-5
 **Framework:** ISO 9001:2015 | **Domain:** ISO 9001
-**Generated:** 2026-06-10
+**Generated:** 2026-06-12
 
 ## Purpose
 Leadership commitment, quality policy establishment and communication, organizational roles responsibilities and authorities for the QMS
 
 ## Triggers
-- fiscal_year_start
-- organizational_structure_change
-- external_audit_nonconformance
+- New or revised strategic direction input
+- Scheduled annual ManagementReview
+- Related process change from ISO9001-4 or ISO9001-6
 
 ## Inputs Required
 - strategic direction
@@ -18,8 +18,8 @@ Leadership commitment, quality policy establishment and communication, organizat
 - resource plans
 
 ## Process Steps
-1. IF leadership_commitment_evidence exists AND resource_plans allocated THEN approve QualityPolicy
-2. IF policy_communication_rate < 0.95 THEN trigger communication campaign
+1. IF strategic direction changes THEN trigger QualityPolicy review and update
+2. IF objective achievement rate < 80% THEN escalate to ManagementReview
 
 ## Expected Outputs
 - quality policy
@@ -28,18 +28,17 @@ Leadership commitment, quality policy establishment and communication, organizat
 - management commitment evidence
 
 ## Business Rules
-- QualityPolicy must be documented, signed by top management and reviewed annually
-- All RoleAssignment entries must specify authority limits and reporting lines
-- QualityObjectives must be measurable and linked to strategic_direction
+- QualityPolicy must be documented, communicated to all personnel within 30 days, and reviewed annually
+- RoleAssignment must map every QMS process to a named responsible person with defined authority
+- ManagementReview must occur at minimum quarterly with documented attendance and decisions
 
 ## Exception Handling
-- Organizations <50 employees may combine RoleAssignment entries for multiple functions if documented in ManagementReviewRecord
-- If no regulatory change occurs, QualityPolicy review interval may extend to 24 months with documented justification
+- For organizations < 20 employees, RoleAssignment may combine multiple processes under one person if documented and competence verified
 
 ## Success Criteria
-- policy_communication_rate >= 0.95
-- objective_achievement_rate >= 0.80
-- ManagementReviewRecord created within 12 months of prior review
+- policy_communication_rate >= 95%
+- objective_achievement_rate >= 90%
+- ManagementReview completed within planned frequency with documented actions
 
 ## Compliance Requirements
 - ISO 9001:2015 Clause 5

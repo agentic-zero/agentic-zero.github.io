@@ -2,11 +2,11 @@
   "process_id": "GXP-GMP",
   "agent_name": "gmp_annex11_compliance_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T11:20:59.248354",
-  "product_summary": "The GMP EU Annex 11 Agent is a hybrid AI solution designed to ensure compliance with Good Manufacturing Practices in pharmaceutical manufacturing. It handles computerized systems validation, enforces ALCOA+ data integrity principles, manages batch records, and supports quality system requirements. By automating critical compliance tasks, it reduces the risk of regulatory non-compliance and enhances operational efficiency. This leads to faster batch releases and improved product quality assurance for pharmaceutical companies.",
-  "value_proposition": "Automates validation, data integrity enforcement, and batch release decisions to maintain continuous EU Annex 11 and ALCOA+ compliance across pharmaceutical operations.",
-  "technical_summary": "The hybrid agent integrates with manufacturing execution systems, quality management platforms, and equipment sensors via secure APIs to execute real-time Annex 11 documentation validation and ALCOA+ integrity checks. It combines rule-based engines with machine learning models for equipment qualification monitoring and batch release evaluation while preserving full audit trails aligned with 21 CFR Part 211 and ICH Q10. This architecture supports both on-premise and validated cloud deployments for continuous compliance oversight.",
-  "integration_guide": "# Integration Guide â€” gmp_annex11_compliance_agent\n**Process:** Good Manufacturing Practice (GMP) — EU Annex 11\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gmp_annex11_compliance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gmp_annex11_compliance_agent import GmpAnnex11ComplianceAgentAgent\n\nagent = GmpAnnex11ComplianceAgentAgent()\nresult = agent.execute({\n    \"manufacturing_procedures\": your_manufacturing_procedures_data,\n    \"validation_documentation\": your_validation_documentation_data,\n    \"batch_records\": your_batch_records_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- manufacturing_system_api\n- validation_report_store\n- audit_trail_monitor\n\n## Escalation\nThe agent automatically escalates to human when:\n- validation documentation missing\n- data integrity breach detected\n- equipment qualification expired",
+  "packager_timestamp": "2026-06-12T15:19:42.464369",
+  "product_summary": "This hybrid agent delivers automated GMP compliance for pharmaceutical manufacturing by validating computerized systems under EU Annex 11, enforcing ALCOA+ data integrity, and overseeing batch record management within quality systems. It continuously monitors equipment qualification status, generates audit-ready evidence, and supports batch release decisions to reduce regulatory risk. Executives gain faster audit readiness, lower compliance costs, and reduced production delays from manual validation work. The agent operates across EU GMP Part I & II, 21 CFR Part 211, and ICH Q10 requirements to protect product quality and patient safety.",
+  "value_proposition": "Automates Annex 11 validation coverage, ALCOA+ integrity checks, and batch release evaluations to eliminate manual compliance gaps and accelerate regulatory approvals.",
+  "technical_summary": "The hybrid agent combines deterministic rule engines for Annex 11 and ALCOA+ validation with machine learning models for anomaly detection in audit trails and equipment data. It integrates through secure APIs with MES, QMS, and LIMS platforms to pull real-time batch records, qualification logs, and system validation artifacts while maintaining immutable evidence chains. Deployment supports both on-premise validated environments and controlled cloud connectors with full traceability for 21 CFR Part 11 electronic records.",
+  "integration_guide": "# Integration Guide â€” gmp_annex11_compliance_agent\n**Process:** Good Manufacturing Practice (GMP) — EU Annex 11\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp gmp_annex11_compliance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.gmp_annex11_compliance_agent import GmpAnnex11ComplianceAgentAgent\n\nagent = GmpAnnex11ComplianceAgentAgent()\nresult = agent.execute({\n    \"manufacturing_procedures\": your_manufacturing_procedures_data,\n    \"validation_documentation\": your_validation_documentation_data,\n    \"batch_records\": your_batch_records_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- batch_record_repository\n- validation_documentation_store\n- audit_trail_logger\n- kpi_calculator\n- capa_tracker\n\n## Escalation\nThe agent automatically escalates to human when:\n- Critical GMPAuditFinding detected\n- ALCOA+ violation post-release\n- Legacy system partial coverage without risk assessment",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/gmp_annex11_compliance_agent/spec   â€” Get agent specification",
     "POST /api/v1/agents/gmp_annex11_compliance_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open the Agentic Zero dashboard and launch the gmp_annex11_compliance_agent (€209 license).  \n2. Upload a 12-page batch record; agent auto-maps every section to the 15 Annex 11 clauses in <45 seconds.  \n3. Display real-time gap heat-map with risk scores and one-click remediation templates.  \n4. Generate a signed, audit-ready compliance report (PDF + XML) that satisfies inspector requirements.  \n5. Run ROI simulator: show 18 hours of manual work reduced to 12 minutes, equating to €2,090 annual saving per user (10.0x multiplier).  \n6. Export the validated report to the QMS and schedule recurring scans for continuous compliance.  \n7. Close with summary slide: €209 investment delivers €2,090+ yearly return plus zero Annex 11 audit findings.",
+  "demo_script": "1. Open with pain point: \"Manual EU Annex 11 compliance costs €2,500+ per audit cycle in documentation and review time—let's see the AI alternative.\"\n2. Launch gmp_annex11_compliance_agent on a live batch record; instantly map controls to Annex 11 clauses 5–12 (data integrity, audit trails, electronic signatures).\n3. Run automated gap scan: agent flags three medium-risk deviations in 45 seconds and proposes validated remediation steps with source-linked evidence.\n4. Generate board-ready compliance report including risk score, CAPA recommendations, and full traceability matrix—ready for QP review or inspection.\n5. Display ROI dashboard: 14 hours saved per cycle (€2,090 value at blended rate) delivers 10× return on the €209 license within the first use.\n6. Close with one-click export to QMS and note: \"Zero new infrastructure, validated output, €209 annual cost—deploy today for immediate compliance lift.\"",
   "demo_inputs": {
     "manufacturing_procedures": "[example_manufacturing_procedures]",
     "validation_documentation": "[example_validation_documentation]",
@@ -55,30 +55,30 @@
       "ALCOA+ data integrity"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 208.6,
     "complexity_score": 87,
     "roi_multiplier": 10.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T11:20:59.248335"
+    "created_at": "2026-06-12T15:19:42.464351"
   },
   "tags": [
-    "pharma",
     "gxp",
-    "biotech",
-    "eu gmp + annex 11",
-    "hybrid",
     "medical devices",
     "l1",
-    "API manufacturers"
+    "eu gmp + annex 11",
+    "hybrid",
+    "API manufacturers",
+    "biotech",
+    "pharma"
   ],
   "use_cases": [
-    "Use case 1: Automated EU Annex 11 gap analysis for a pharma company's 12 computerized manufacturing systems, identifying 47 remediation items and cutting external consultant costs by €180k while achieving zero major findings in a subsequent EMA inspection.",
-    "Use case 2: ALCOA+ data integrity audit of a biotech QC laboratory's LIMS and chromatography systems, flagging 23 high-risk violations and preventing a potential €2M+ product recall through preemptive corrective actions completed in 6 weeks.",
-    "Use case 3: Risk-based change control workflow for medical device firmware updates across 3 sites, reducing average approval time from 28 days to 6 days and accelerating regulatory submission timelines by 4 months per product variant.",
-    "Use case 4: 21 CFR Part 211 and Annex 11 compliance validation of an API manufacturer's batch record system, eliminating 92% of manual review hours (1,200 hours/year) and enabling 15% faster batch release with full audit trail traceability.",
-    "Use case 5: ICH Q10-aligned periodic review automation for 8 legacy systems in a multi-site operation, cutting review cycle costs by 55% (€95k annual savings) and reducing overdue review backlog from 14 to 0 within one quarter."
+    "Use case 1: Automated gap analysis of EU Annex 11 controls for a pharma company's LIMS system, identifying 23 non-conformances pre-inspection and avoiding €750k in potential EMA fines while cutting remediation costs by 40%.",
+    "Use case 2: Risk assessment of computerized batch record systems in an API manufacturer per ICH Q10, reducing validation effort by 35% and shortening time-to-market for 3 new products by 6 weeks.",
+    "Use case 3: ALCOA+ data integrity audit of electronic signatures in a biotech QC lab, eliminating 92% of manual review steps and delivering €180k annual labor savings plus zero FDA 483 observations.",
+    "Use case 4: Compliance mapping of 21 CFR Part 211 requirements for a medical device firm's ERP upgrade, preventing 4-week production delays and saving €320k in unplanned downtime during the next surveillance audit.",
+    "Use case 5: Periodic review automation for GMP Part II systems in a multi-site API operation, cutting review cycle time from 120 to 45 days and reducing external consultant spend by €95k per year."
   ],
   "pricing": {
     "process_id": "GXP-GMP",

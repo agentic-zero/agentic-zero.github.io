@@ -34,11 +34,12 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- documentation_generator
-- survey_tool
-- compliance_auditor
+- ai_system_spec_api
+- user_profile_database
+- compliance_audit_tool
 
 ## Escalation
 The agent automatically escalates to human when:
-- automation_potential < 0.3 requires manual legal review
-- user_comprehension_metric < 0.8 triggers mandatory rewrite
+- documentation_completeness <1.0 after generation attempt
+- defense sector national-security redaction required
+- user_comprehension_rate <0.8 post-deployment

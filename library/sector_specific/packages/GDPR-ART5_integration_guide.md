@@ -1,4 +1,4 @@
-# Integration Guide â€” gdpr_article5_compliance_agent
+# Integration Guide â€” gdpr_art5_compliance_agent
 **Process:** GDPR Data Processing Principles
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp gdpr_article5_compliance_agent.py ./agents/
+cp gdpr_art5_compliance_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.gdpr_article5_compliance_agent import GdprArticle5ComplianceAgentAgent
+from agents.gdpr_art5_compliance_agent import GdprArt5ComplianceAgentAgent
 
-agent = GdprArticle5ComplianceAgentAgent()
+agent = GdprArt5ComplianceAgentAgent()
 result = agent.execute({
     "personal_data_inventory": your_personal_data_inventory_data,
     "processing_purposes": your_processing_purposes_data,
@@ -35,12 +35,13 @@ print(result['outputs'])
 
 ## Tools Required
 - personal_data_inventory_api
-- legal_basis_evaluator
-- automated_deletion_scheduler
-- dpia_generator
+- compliance_audit_logger
+- retention_policy_engine
+- privacy_notice_publisher
 
 ## Escalation
 The agent automatically escalates to human when:
 - Missing lawful basis documentation
-- Special category processing without documented exception or DPIA
-- Retention schedule expiry without deletion confirmation
+- SpecialCategoryData without Art9 condition
+- Consent withdrawn with no alternative Art6 basis
+- Retention compliance below 0.95 threshold

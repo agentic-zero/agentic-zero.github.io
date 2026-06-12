@@ -1,4 +1,4 @@
-# Integration Guide â€” eu_ai_act12_logging_agent
+# Integration Guide â€” art12_compliance_logger
 **Process:** Record-Keeping and Logging
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp eu_ai_act12_logging_agent.py ./agents/
+cp art12_compliance_logger.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.eu_ai_act12_logging_agent import EuAiAct12LoggingAgentAgent
+from agents.art12_compliance_logger import Art12ComplianceLoggerAgent
 
-agent = EuAiAct12LoggingAgentAgent()
+agent = Art12ComplianceLoggerAgent()
 result = agent.execute({
     "ai_system_outputs": your_ai_system_outputs_data,
     "decision_logs": your_decision_logs_data,
@@ -34,15 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- cryptographic_hash_chain_store
-- immutable_log_db
-- regulatory_alert_api
-- gdpr_anonymizer
-- retention_audit_scheduler
+- immutable_log_store
+- sha256_hasher
+- iso8601_timestamp_service
+- gdpr_retention_manager
 
 ## Escalation
 The agent automatically escalates to human when:
-- log_completeness_rate < 1.0
-- retention_period_below_minimum
-- storage_failure_or_hash_chain_corruption
-- incident_traceability_rate < 0.99
+- log_completeness_rate < 0.99
+- hash mismatch on AuditLog
+- system outage buffer overflow

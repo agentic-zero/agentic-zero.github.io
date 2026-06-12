@@ -1,4 +1,4 @@
-# Integration Guide â€” iatf_8d_autonomous_solver
+# Integration Guide â€” iatf16949_8d_automation_agent
 **Process:** 8D Problem Solving
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp iatf_8d_autonomous_solver.py ./agents/
+cp iatf16949_8d_automation_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.iatf_8d_autonomous_solver import Iatf8DAutonomousSolverAgent
+from agents.iatf16949_8d_automation_agent import Iatf169498DAutomationAgentAgent
 
-agent = Iatf8DAutonomousSolverAgent()
+agent = Iatf169498DAutomationAgentAgent()
 result = agent.execute({
     "customer_complaint": your_customer_complaint_data,
     "defect_data": your_defect_data_data,
@@ -34,15 +34,16 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- CRM_complaint_api
-- MES_defect_data_query
-- ERP_user_assignment
-- quality_database_recurrence_calc
-- document_management_system
+- CRM_API
+- MES_defect_API
+- SCADA_process_feed
+- ERP_change_order
+- KPI_dashboard
+- fishbone_5why_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- root_cause unidentified after two analysis cycles
-- containment_effectiveness < 100% after scope expansion
-- missing defect samples logged as exception beyond 24h
-- cycle_time approaching KPI limit without closure
+- team_formation_exceeds_24h
+- root_cause_rate_below_0.9_after_extension
+- recurrence_rate_above_0.02
+- missing_critical_data_without_exception_flag

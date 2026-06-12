@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_093625_394434",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "ISO42001-9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:36:25.394450",
+  "status": "completed",
+  "started_at": "2026-06-12T09:50:16.168472",
+  "completed_at": "2026-06-12T09:50:33.126390",
+  "error": null,
+  "result": {
+    "agent_name": "aims_performance_monitor_audit_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

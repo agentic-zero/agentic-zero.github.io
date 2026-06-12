@@ -1,0 +1,97 @@
+{
+  "process_id": "EUAIA-ART10",
+  "agent_name": "eu_ai_act_art10_data_governor",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-12T15:16:15.132686",
+  "product_summary": "This hybrid agent automates data governance processes for high-risk AI systems by evaluating training, validation, and testing datasets against criteria such as relevance, representativeness, error-free status, and completeness. It enforces compliance with EU AI Act Article 10, GDPR data quality standards, and algorithmic bias prevention measures through capabilities including quality scoring, bias assessment, provenance tracking, and report generation. By mitigating regulatory risks and enhancing dataset integrity, it delivers significant business value in terms of reduced compliance costs, accelerated time-to-market for AI products, and improved trust in AI outcomes.",
+  "value_proposition": "Automates end-to-end data governance for high-risk AI to enforce regulatory compliance and dataset quality at scale.",
+  "technical_summary": "The hybrid agent integrates dataset_quality_scoring and bias_assessment_triggering modules with provenance_tracking and compliance_rule_enforcement engines to monitor and validate datasets throughout the ML lifecycle. It generates compliance reports via report_generation capabilities and can be deployed within existing data pipelines to interface with EU AI Act and GDPR frameworks. This architecture supports both automated and human-in-the-loop oversight for robust governance.",
+  "integration_guide": "# Integration Guide â€” eu_ai_act_art10_data_governor\n**Process:** Data Governance for High-Risk AI\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_art10_data_governor.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_art10_data_governor import EuAiActArt10DataGovernorAgent\n\nagent = EuAiActArt10DataGovernorAgent()\nresult = agent.execute({\n    \"training_datasets\": your_training_datasets_data,\n    \"validation_datasets\": your_validation_datasets_data,\n    \"test_datasets\": your_test_datasets_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- dataset_ingestion_scanner\n- bias_metric_calculator\n- data_lineage_tracker\n- quality_report_generator\n\n## Escalation\nThe agent automatically escalates to human when:\n- missing data_provenance fields\n- bias_metric > 0.1 after mitigation\n- representativeness_score < 0.85\n- classified defense data exception invoked",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eu_ai_act_art10_data_governor/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/eu_ai_act_art10_data_governor/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/eu_ai_act_art10_data_governor/health â€” Health check",
+    "GET  /api/v1/agents/eu_ai_act_art10_data_governor/spec   â€” Get agent specification",
+    "POST /api/v1/agents/eu_ai_act_art10_data_governor/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open demo: \"Your high-risk AI system needs EU AI Act Art. 10 data governance—manual compliance currently costs €2,240 per model annually in audits and rework.\"\n2. Load sample dataset and requirements: Agent scans for bias, quality, and documentation gaps in 30 seconds.\n3. Run automated governance: AI generates Art. 10-compliant data policies, lineage reports, and risk logs without manual input.\n4. Export audit-ready package: One-click PDF/JSON output meeting regulatory standards, reducing prep time from 8 hours to 5 minutes.\n5. Display ROI dashboard: €224 price delivers 10x return via €2,240+ annual savings per model plus avoided fines.\n6. Simulate scale: Apply to 10 models live—total yearly value €22,400 at 1/10th the effort.\n7. Close: \"Ready to deploy? License today for immediate compliance automation and 10x ROI.\"",
+  "demo_inputs": {
+    "training_datasets": "[example_training_datasets]",
+    "validation_datasets": "[example_validation_datasets]",
+    "test_datasets": "[example_test_datasets]"
+  },
+  "expected_demo_outputs": {
+    "data_governance_documentation": "[generated_data_governance_documentation]",
+    "dataset_quality_report": "[generated_dataset_quality_report]"
+  },
+  "catalog_entry": {
+    "process_id": "EUAIA-ART10",
+    "agent_name": "eu_ai_act_art10_data_governor",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.10 mandatory",
+      "GDPR data quality",
+      "algorithmic bias prevention"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:16:15.132667"
+  },
+  "tags": [
+    "defense",
+    "eu ai act 2024",
+    "manufacturing",
+    "eu ai act",
+    "chemical",
+    "l1",
+    "automotive",
+    "hybrid",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma firm applies Art.10 data governance to clinical-trial AI, cutting EMA rejection risk and shortening approval cycle by 5 months for $12M revenue gain",
+    "Use case 2: Defense contractor uses bias-prevention controls on sensor-fusion AI, passing mandatory audits and securing $8M contract 4 weeks earlier than competitors",
+    "Use case 3: Automotive OEM enforces GDPR data-quality rules on ADAS training sets, reducing field recall probability by 35% and avoiding $25M warranty exposure",
+    "Use case 4: Chemical plant deploys governed predictive-safety AI, lowering reportable incident rate by 28% and cutting regulatory-fine exposure by $3.2M annually",
+    "Use case 5: Food manufacturer governs vision-based quality AI under EU AI Act, trimming false-reject waste by 18% and delivering $4.7M yearly throughput improvement"
+  ],
+  "pricing": {
+    "process_id": "EUAIA-ART10",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/EUAIA-ART10_package.json"
+}

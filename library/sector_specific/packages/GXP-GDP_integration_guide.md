@@ -1,4 +1,4 @@
-# Integration Guide â€” gdp_distribution_compliance_agent
+# Integration Guide â€” gdp_compliance_hybrid_agent
 **Process:** Good Distribution Practice (GDP)
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp gdp_distribution_compliance_agent.py ./agents/
+cp gdp_compliance_hybrid_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.gdp_distribution_compliance_agent import GdpDistributionComplianceAgentAgent
+from agents.gdp_compliance_hybrid_agent import GdpComplianceHybridAgentAgent
 
-agent = GdpDistributionComplianceAgentAgent()
+agent = GdpComplianceHybridAgentAgent()
 result = agent.execute({
     "product_specifications": your_product_specifications_data,
     "storage_requirements": your_storage_requirements_data,
@@ -34,13 +34,13 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- IoT_sensor_API
-- ERP_WMS_TMS_integration
-- record_database
-- qualification_registry
+- IoT_sensor_api
+- WMS_integration
+- CRM_qualification_api
+- document_management_system
 
 ## Escalation
 The agent automatically escalates to human when:
-- unresolved temperature excursion after 48 hours
-- missing Qualification_Record or Temperature_Record
-- customer complaint requiring QA release decision
+- excursion >30 min without QA approval
+- unqualified customer without documented deviation
+- complaint not investigated within 24 h

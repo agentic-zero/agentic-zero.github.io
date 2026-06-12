@@ -1,4 +1,4 @@
-# Integration Guide â€” gdpr_data_subject_rights_handler
+# Integration Guide â€” gdpr_data_subject_rights_agent
 **Process:** GDPR Transparency and Data Subject Rights
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp gdpr_data_subject_rights_handler.py ./agents/
+cp gdpr_data_subject_rights_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.gdpr_data_subject_rights_handler import GdprDataSubjectRightsHandlerAgent
+from agents.gdpr_data_subject_rights_agent import GdprDataSubjectRightsAgentAgent
 
-agent = GdprDataSubjectRightsHandlerAgent()
+agent = GdprDataSubjectRightsAgentAgent()
 result = agent.execute({
     "data_subject_requests": your_data_subject_requests_data,
     "personal_data_inventory": your_personal_data_inventory_data,
@@ -34,14 +34,15 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- request_intake_api
-- personal_data_inventory_db
-- processing_record_system
+- personal_data_inventory_api
 - identity_verification_service
-- export_generator
+- request_intake_system
+- machine_readable_export_generator
+- retention_policy_db
 
 ## Escalation
 The agent automatically escalates to human when:
-- response_time_days > 30 escalate to DPO
-- identity_verification fails reject with 403
-- conflicting legal obligation trigger Article 23 derogation logging
+- request volume >100/day
+- legal_obligation_to_retain conflicts
+- identity verification failure after 3 attempts
+- automated_decision_explainability <0.9

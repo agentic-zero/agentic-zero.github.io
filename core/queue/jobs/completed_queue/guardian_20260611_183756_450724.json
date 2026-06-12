@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260611_183756_450724",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "GDPR-ART13"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:37:56.450742",
+  "status": "completed",
+  "started_at": "2026-06-12T09:18:18.501186",
+  "completed_at": "2026-06-12T09:18:28.849796",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-GDPR-ART13-20260612",
+    "status": "conditional",
+    "process_id": "GDPR-ART13"
+  }
+}

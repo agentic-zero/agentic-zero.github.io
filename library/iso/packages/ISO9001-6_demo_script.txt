@@ -1,0 +1,7 @@
+1. Open with a €2M project scenario: "This planning cycle normally takes 8 hours and risks €400K in compliance fines—let's automate it."
+2. Input parameters (timeline, regs, budget) into risk_opportunity_planner; run the agent live.
+3. Display AI output: prioritized risks/opportunities mapped to ISO 31000 and GDPR controls in <90 seconds.
+4. Highlight compliance value: auto-generated audit trail and mitigation steps that eliminate manual review.
+5. Quantify ROI: time saved (7.5 hrs @ €150/hr) plus risk reduction = €2,240 immediate value vs. €224 price (10x multiplier).
+6. Simulate one-click export to executive dashboard and next-quarter forecast.
+7. Close: "Deployed in your environment, this scales to 50 plans/year for €112K+ net ROI."

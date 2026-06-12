@@ -1,0 +1,19 @@
+{
+  "job_id": "builder_20260612_093149_048931",
+  "job_type": "builder",
+  "payload": {
+    "process_id": "EUAIA-ART9"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T09:31:49.048943",
+  "status": "completed",
+  "started_at": "2026-06-12T09:37:04.587041",
+  "completed_at": "2026-06-12T09:37:45.287438",
+  "error": null,
+  "result": {
+    "agent_name": "high_risk_ai_risk_manager",
+    "ready_for_packager": true
+  }
+}

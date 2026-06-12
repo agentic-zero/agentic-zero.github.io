@@ -1,0 +1,7 @@
+1. Open with the EU AI Act compliance challenge: executives spend 40+ hours manually classifying one AI system at €5k+ internal cost.
+2. Paste a sample AI system description (e.g., credit-scoring model) into eu_ai_act_risk_classifier.
+3. Execute the automated scan; display instant high-risk classification plus article-level obligations in under 60 seconds.
+4. Review generated compliance report: risk category, required measures, and audit-ready documentation export.
+5. Trigger ROI calculator: show €224 fee vs. €2,240+ manual effort per system, confirming 10x multiplier at scale.
+6. Simulate quarterly re-scan on the same system to illustrate ongoing monitoring at near-zero marginal cost.
+7. Close with deployment options and projected annual savings for a 50-system portfolio.

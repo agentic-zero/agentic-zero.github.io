@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-M3.1",
-  "agent_name": "eto_production_scheduler",
+  "agent_name": "eto_production_schedule_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T17:43:31.270296",
-  "product_summary": "This hybrid agent orchestrates Engineer-to-Order production scheduling by synchronizing engineering design releases with manufacturing plans, dynamically managing changes, and aligning resources across engineering, procurement, and production teams. It continuously monitors KPIs, detects conflicts, and validates compliance flags to keep complex, regulated projects on track. In defense and aerospace environments, the agent reduces schedule slippage, minimizes costly rework from late design changes, and ensures adherence to ITAR, AS9100, and defense acquisition requirements. Executives gain real-time visibility into project health and faster decision-making without manual coordination overhead.",
-  "value_proposition": "Automates the integration of engineering releases with production planning while enforcing compliance and resolving resource conflicts in real time.",
-  "technical_summary": "The hybrid agent connects to PLM, ERP, and MES platforms through event-driven APIs that trigger schedule updates on design release or change events. It executes its core capabilities—schedule synchronization, KPI monitoring, conflict detection, and compliance validation—via a rules engine that references AS9100, ITAR, and defense acquisition controls. Results and alerts are surfaced through dashboards and workflow tools for both automated actions and human oversight.",
-  "integration_guide": "# Integration Guide — eto_production_scheduler\n**Process:** Schedule Engineer-to-Order Production Activities\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_production_scheduler.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_production_scheduler import EtoProductionSchedulerAgent\n\nagent = EtoProductionSchedulerAgent()\nresult = agent.execute({\n    \"engineering_releases\": your_engineering_releases_data,\n    \"project_schedules\": your_project_schedules_data,\n    \"resource_plans\": your_resource_plans_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- PLM_engineering_release_api\n- ERP_resource_plan_api\n- supplier_portal_integration\n- KPI_engine\n\n## Escalation\nThe agent automatically escalates to human when:\n- Design change exceeds 15% variance requiring new baseline\n- ITAR compliance flag blocks publication\n- Unresolved resource conflict after interface plan revision",
+  "packager_timestamp": "2026-06-11T18:26:09.404250",
+  "product_summary": "This agent automates the scheduling of engineer-to-order production activities by integrating engineering design releases with production planning and dynamically managing design changes across multi-discipline teams. It coordinates project execution while embedding compliance checks for defense acquisition regulations, AS9100 aerospace standards, ITAR export controls, and project management requirements. Executives gain real-time KPI visibility and optimized resource allocation that reduces delays, mitigates regulatory risk, and accelerates time-to-delivery in complex ETO environments.",
+  "value_proposition": "Transforms engineer-to-order production scheduling by fusing design releases, change impact assessment, and compliance validation into a single coordinated workflow.",
+  "technical_summary": "The hybrid agent combines schedule_generation, change_impact_assessment, resource_allocation, compliance_validation, and kpi_monitoring modules that interface with PLM, ERP, and project management systems. It enforces ITAR, AS9100, and defense acquisition rules through configurable policy engines while propagating design changes in real time across engineering and production domains.",
+  "integration_guide": "# Integration Guide â€” eto_production_schedule_agent\n**Process:** Schedule Engineer-to-Order Production Activities\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eto_production_schedule_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eto_production_schedule_agent import EtoProductionScheduleAgentAgent\n\nagent = EtoProductionScheduleAgentAgent()\nresult = agent.execute({\n    \"engineering_releases\": your_engineering_releases_data,\n    \"project_schedules\": your_project_schedules_data,\n    \"resource_plans\": your_resource_plans_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- engineering_system_api\n- project_management_software\n- resource_planning_tool\n- compliance_checker\n\n## Escalation\nThe agent automatically escalates to human when:\n- ITAR flag active with non-US subcontractor\n- design change frequency >3 per week\n- schedule_adherence_pct <80% or milestone delay >10 days",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/eto_production_scheduler/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/eto_production_scheduler/status — Get agent status and metrics",
-    "GET  /api/v1/agents/eto_production_scheduler/health — Health check",
-    "GET  /api/v1/agents/eto_production_scheduler/spec   — Get agent specification",
-    "POST /api/v1/agents/eto_production_scheduler/test   — Run test cases"
+    "POST /api/v1/agents/eto_production_schedule_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/eto_production_schedule_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/eto_production_schedule_agent/health â€” Health check",
+    "GET  /api/v1/agents/eto_production_schedule_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/eto_production_schedule_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open eto_production_scheduler with a live ETO project (50+ tasks, multi-supplier constraints) and display current manual Gantt showing 18-day delay risk and €92k penalty exposure.  \n2. Trigger AI schedule generation; in <90 seconds it produces an optimized sequence that eliminates the delay while embedding ISO 9001/14001 checkpoints.  \n3. Overlay compliance dashboard: every task now carries automated audit trails, material certs, and safety sign-offs—export one-click PDF for regulators.  \n4. Reveal ROI panel: scheduler cut planning effort from 14 hours to 1.2 hours (€6.2k labor saved per project) and reduced expediting costs by 23% (€11k), delivering 8.0x return on the €748 license within the first project.  \n5. Run “what-if” scenario adding a new engineering change; AI re-optimizes in real time while preserving all compliance gates, proving ongoing value.  \n6. Close with summary slide: annual savings projection €47k+ per scheduler seat and zero compliance findings in last three audits.",
+  "demo_script": "1. Open demo dashboard and load sample ETO project (50+ tasks, multi-site constraints, regulatory deadlines).  \n2. Trigger eto_production_schedule_agent; AI ingests ERP/PLM data and auto-generates optimized schedule in <60 seconds.  \n3. Display Gantt with AI-driven resource leveling, critical-path compression, and embedded compliance flags (ISO, safety, export-control).  \n4. Run one-click “What-if” scenario showing 18% cycle-time reduction and zero compliance violations versus manual baseline.  \n5. Overlay ROI panel: €6k+ projected savings per project (8.0x multiplier on €748 fee) via reduced overtime and expedited penalties.  \n6. Export audit-ready schedule package with digital sign-off trail for executive and regulatory stakeholders.  \n7. Close with summary: full automation delivered in minutes, 8x ROI confirmed, 100% compliance traceability.",
   "demo_inputs": {
     "engineering_releases": "[example_engineering_releases]",
     "project_schedules": "[example_project_schedules]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-M3.1",
-    "agent_name": "eto_production_scheduler",
+    "agent_name": "eto_production_schedule_agent",
     "framework": "SCOR",
     "domain": "Make",
     "level": "L2",
@@ -55,31 +55,31 @@
       "project management compliance"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 748.5,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T17:43:31.270276"
+    "created_at": "2026-06-11T18:26:09.404231"
   },
   "tags": [
-    "defense",
-    "industrial equipment",
     "infrastructure",
-    "hybrid",
-    "l2",
-    "aerospace",
+    "industrial equipment",
     "energy",
+    "defense",
+    "hybrid",
+    "scor",
     "make",
-    "scor"
+    "l2",
+    "aerospace"
   ],
   "use_cases": [
-    "Use case 1: Defense contractor uses the agent to auto-schedule ETO radar system builds under defense acquisition regulations and ITAR, cutting schedule variance from 18% to 4% and avoiding $2.1M in annual liquidated damages.",
-    "Use case 2: Aerospace OEM applies the agent for AS9100-compliant ETO satellite component sequencing, shortening engineering-to-production cycle by 22% and enabling two additional $4M contracts per year.",
-    "Use case 3: Energy equipment maker schedules custom subsea valve production with the agent, raising on-time delivery from 68% to 94% and eliminating $1.8M in yearly delay penalties.",
-    "Use case 4: Industrial equipment firm uses the agent to resolve multi-site ETO crane fabrication conflicts, reducing overtime labor spend by 31% ($920K annually) while maintaining project management compliance.",
-    "Use case 5: Infrastructure contractor deploys the agent for ETO bridge segment manufacturing under export-controlled specs, compressing overall program duration by 14% and unlocking $3.4M in early-completion incentives."
+    "Use case 1: In defense ETO production of ITAR-controlled radar systems, the agent auto-generates compliant schedules aligned with DFARS milestones, reducing schedule slippage from 18% to 4% and avoiding $2.4M in liquidated damages per program.",
+    "Use case 2: For AS9100-certified aerospace ETO of custom landing gear, the agent optimizes critical-path sequencing across 12 suppliers, shortening average build cycle from 14 to 11 months and unlocking $1.8M early revenue recognition per aircraft.",
+    "Use case 3: In energy-sector ETO of nuclear-grade pressure vessels, the agent enforces export-control and quality-gate dependencies, cutting unplanned downtime by 22% and delivering $950K annual savings in overtime and rework.",
+    "Use case 4: For industrial equipment ETO of custom mining crushers, the agent dynamically re-sequences work centers under tight material constraints, improving on-time delivery from 68% to 94% and reducing expedited freight costs by $420K per year.",
+    "Use case 5: In infrastructure ETO of modular bridge systems, the agent maintains PMBOK-compliant earned-value tracking across multi-year programs, enabling 15% reduction in contingency drawdown and $3.1M in avoided claims and change-order disputes."
   ],
   "pricing": {
     "process_id": "SCOR-M3.1",

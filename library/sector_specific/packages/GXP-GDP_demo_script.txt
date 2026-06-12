@@ -1,6 +1,11 @@
-1. Open dashboard and load sample pharma distribution logs; highlight €50K+ annual compliance risk exposure from manual GDP gaps.  
-2. Trigger gdp_distribution_compliance_agent on 200 records; show AI auto-classifying temperature excursions and CAPA needs in <30 seconds.  
-3. Display real-time compliance scorecard (98% GDP pass rate) with flagged deviations and auto-generated audit trail for regulators.  
-4. Run ROI calculator: input €209 price, reveal 10x multiplier via 18 hours/week time savings and avoided €4K fine risk per audit.  
-5. Export one-click GDP report and corrective-action plan; confirm integration with existing ERP in under two minutes.  
-6. Summarize: €2,090 net value per deployment cycle, zero manual rework, and full GDP alignment for executive sign-off.
+1. Open with ROI framing: "This €209 agent delivers 10x ROI by automating GDP compliance, cutting manual audit prep from 20 hours to under 2 while eliminating €50k+ annual non-compliance risk."
+
+2. Load sample batch shipment data and run real-time GDP scan, highlighting AI-flagged temperature excursion and auto-generated CAPA recommendation.
+
+3. Trigger automated deviation report with full audit trail, showing one-click export that meets EU GDP Annex 5 requirements without manual formatting.
+
+4. Compare before/after metrics on screen: manual process (18 hours, 3 FTEs) vs agent (12 minutes, zero errors), quantifying €4,200 monthly time savings.
+
+5. Simulate regulatory inspection mode, demonstrating instant retrieval of serialized records and 100% traceability score.
+
+6. Close with live ROI calculator: input your shipment volume to project €2,090+ annual value, confirming 10x multiplier within first quarter.

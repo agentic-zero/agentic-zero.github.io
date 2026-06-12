@@ -1,6 +1,6 @@
-1. Open with EU AI Act Art. 13 risk: manual transparency docs cost €2,800/month in legal + engineering time and expose €50k+ fines.  
-2. Launch eu_ai_act_art13_transparency_agent; it auto-scans the model card and generates user-facing transparency text in <30 seconds.  
-3. Display side-by-side: before (incomplete, non-compliant) vs. after (concise, Art. 13-ready notices with risk levels and human-oversight info).  
-4. Run one-click export to web UI, privacy policy, and internal audit log—proving traceability for regulators.  
-5. ROI snapshot: €224 price vs. 12 hours/month saved (€2,240) + avoided fine risk = 10.0x multiplier within first month.  
-6. Close: one-line compliance certificate generated for the executive pack; offer 48-hour pilot on their highest-risk model.
+1. Open with EU AI Act Art. 13 risk: 15 min manual transparency logging per high-risk AI interaction costs €50k+/yr in staff time and audit gaps.  
+2. Launch eu_ai_act_art13_transparency_agent; auto-scan model card and generate user-facing disclosure text in <8 seconds.  
+3. Display side-by-side: manual PDF vs. agent output—complete, plain-language notice ready for UI injection.  
+4. Run live compliance check: agent flags missing risk info, auto-fills, and logs immutable audit trail for regulators.  
+5. ROI snapshot: €224 annual license vs. 10.0x multiplier yields €2,240 verified savings from 45 hrs reclaimed and zero Art. 13 fines.  
+6. Executive close: one-click deployment, SOC2 export, and 30-day compliance certification—ready for board sign-off.

@@ -34,12 +34,11 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- statistical_analysis_library
-- bias_detection_api
+- json_csv_ingestion
+- metric_calculation_engine
 - report_generator
-- dataset_validator
 
 ## Escalation
 The agent automatically escalates to human when:
-- source confidence below 0.9
-- bias score trends exceed defined thresholds
+- automation_potential < 0.5 require human review
+- incomplete inputs or metric_reliability < 0.9 produce invalid scores

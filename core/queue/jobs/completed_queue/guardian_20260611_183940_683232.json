@@ -1,0 +1,21 @@
+{
+  "job_id": "guardian_20260611_183940_683232",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "IATF16949-8D"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-11T18:39:40.683248",
+  "status": "completed",
+  "started_at": "2026-06-12T09:18:58.481042",
+  "completed_at": "2026-06-12T09:19:09.531224",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-IATF16949-8D-20260612",
+    "status": "certified",
+    "approved_for_library": true,
+    "process_id": "IATF16949-8D"
+  }
+}

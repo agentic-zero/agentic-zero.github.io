@@ -1,0 +1,97 @@
+{
+  "process_id": "BPMN-FIN-001",
+  "agent_name": "invoice_to_cash_automation_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:32:28.137249",
+  "product_summary": "This hybrid agent manages the complete Invoice-to-Cash process in accounts receivable, from generating and dispatching invoices through dunning, dispute handling, and cash application. It monitors aging, applies receipts, and enforces compliance with tax rules, GDPR data protection, e-invoicing mandates, and financial reporting standards. By reducing manual intervention across the cycle, the agent shortens collection times, lowers days sales outstanding, and improves cash flow predictability. Executives gain real-time visibility into receivables performance without increasing operational headcount.",
+  "value_proposition": "Automates the full Invoice-to-Cash lifecycle to accelerate collections while ensuring continuous regulatory compliance.",
+  "technical_summary": "The hybrid architecture blends rule-based engines for compliance and cash application with machine learning models for dispute prediction and dunning optimization. It connects to ERP platforms, banking APIs, and document management systems through secure, event-driven interfaces that support both batch and real-time processing. Built-in audit logging and data residency controls satisfy GDPR and financial reporting requirements across multi-entity deployments.",
+  "integration_guide": "# Integration Guide â€” invoice_to_cash_automation_agent\n**Process:** Invoice-to-Cash (Accounts Receivable)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp invoice_to_cash_automation_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.invoice_to_cash_automation_agent import InvoiceToCashAutomationAgentAgent\n\nagent = InvoiceToCashAutomationAgentAgent()\nresult = agent.execute({\n    \"invoices\": your_invoices_data,\n    \"payment_terms\": your_payment_terms_data,\n    \"customer_data\": your_customer_data_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_invoice_api\n- bank_payment_feed\n- customer_data_store\n- dunning_messaging_service\n\n## Escalation\nThe agent automatically escalates to human when:\n- Dispute amount >5000 requires management approval\n- Payment unapplied after 3 days triggers manual reconcile\n- Escalated dunning notifies sales for lane customers",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/invoice_to_cash_automation_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/invoice_to_cash_automation_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/invoice_to_cash_automation_agent/health â€” Health check",
+    "GET  /api/v1/agents/invoice_to_cash_automation_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/invoice_to_cash_automation_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open dashboard: Display live AR metrics (DSO, collection rate, exception queue) vs. manual baseline to quantify 8.0x ROI potential at €699 price point.  \n2. Ingest batch invoices: Run AI extraction and three-way match; show 92% straight-through processing with full audit trail for SOX/GDPR compliance.  \n3. Handle exception: AI flags one mismatch, auto-generates compliant dispute note and routes for approval while logging every action.  \n4. Trigger cash application: Demonstrate instant posting to ERP, real-time aging update, and automated dunning sequence that cuts DSO by 11 days.  \n5. Surface compliance report: One-click export of immutable ledger with role-based access evidence and regulatory sign-off timestamps.  \n6. Reveal ROI calculator: Input live volumes to project €5,592+ annual net benefit (8.0x multiplier) and payback in <30 days.  \n7. Close: Summarize risk reduction, compliance assurance, and next-step pilot offer.",
+  "demo_inputs": {
+    "invoices": "[example_invoices]",
+    "payment_terms": "[example_payment_terms]",
+    "customer_data": "[example_customer_data]"
+  },
+  "expected_demo_outputs": {
+    "cash_receipts": "[generated_cash_receipts]",
+    "applied_payments": "[generated_applied_payments]"
+  },
+  "catalog_entry": {
+    "process_id": "BPMN-FIN-001",
+    "agent_name": "invoice_to_cash_automation_agent",
+    "framework": null,
+    "domain": "BPMN",
+    "level": null,
+    "sector_applicability": [
+      "manufacturing",
+      "distribution",
+      "pharma",
+      "food",
+      "transport",
+      "services"
+    ],
+    "compliance_frameworks": [
+      "tax compliance",
+      "GDPR financial data",
+      "e-invoicing regulations",
+      "financial reporting"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 698.6,
+    "complexity_score": 100,
+    "roi_multiplier": 8.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:32:28.137233"
+  },
+  "tags": [
+    "",
+    "distribution",
+    "food",
+    "services",
+    "bpmn",
+    "transport",
+    "manufacturing",
+    "hybrid",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing firm deploys agent to auto-match 12,000 monthly invoices against POs and shipments, cutting DSO from 52 to 38 days and unlocking $1.8M in accelerated cash flow within first quarter",
+    "Use case 2: Mid-size distributor uses agent to score customer payment risk and trigger automated dunning sequences, lifting on-time collections from 68% to 89% and reducing bad-debt write-offs by $420K annually",
+    "Use case 3: Pharma company routes all EU invoices through agent for e-invoicing and VAT compliance checks, eliminating 95% of regulatory rejections and avoiding €250K in potential fines plus audit remediation costs",
+    "Use case 4: Food & beverage processor integrates agent with ERP to handle 25,000 variable-term invoices per month, reducing manual AR processing time by 65% and lowering annual operating costs by $310K",
+    "Use case 5: Transport & logistics provider applies agent to detect unbilled or under-billed shipments in AR sub-ledger, recovering $1.2M in leakage within six months while maintaining full GDPR data-handling compliance"
+  ],
+  "pricing": {
+    "process_id": "BPMN-FIN-001",
+    "complexity_score": 100,
+    "level": "L2",
+    "base_price_eur": 499.0,
+    "regulated_surcharge": 199.60000000000002,
+    "total_price_eur": 698.6,
+    "price_rationale": "Level L2 process with complexity score 100/100. Regulated sector surcharge 40% applied",
+    "roi_multiplier": 8.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/BPMN-FIN-001_package.json"
+}

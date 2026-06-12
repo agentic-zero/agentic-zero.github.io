@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.9",
-  "guardian_timestamp": "2026-06-08T18:57:36.236293",
+  "guardian_timestamp": "2026-06-12T09:15:23.804718",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-D2.9-20260608",
+    "certificate_id": "AZ-CERT-SCOR-D2.9-20260612",
     "process_id": "SCOR-D2.9",
-    "agent_name": "mto_pick_execution_agent",
-    "issued_at": "2026-06-08T18:57:36.236249",
+    "agent_name": "mto_product_pick_agent",
+    "issued_at": "2026-06-12T09:15:23.804687",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-08",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.84,
+    "overall_score": 0.88,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,14 +38,14 @@
     },
     "iso_42001": {
       "compliant": false,
-      "score": 0.42,
+      "score": 0.58,
       "gaps": [
-        "No evidence of AI risk assessment, impact analysis or documented risk treatment process as required by ISO/IEC 42001",
-        "Missing governance elements: AI policy, objectives, roles/responsibilities, performance monitoring and continual improvement mechanisms"
+        "No evidence of AI-specific risk assessment, impact assessment or documented AI policy/objectives per ISO 42001 clauses 6 and 8",
+        "Missing transparency, explainability and audit logging mechanisms for hybrid decisions; insufficient data governance and performance monitoring controls"
       ],
       "recommendations": [
-        "Establish formal AI risk management and impact assessment procedures covering GxP, GDPR and health & safety scenarios",
-        "Define accountability structures, human oversight metrics and audit logging for all escalation paths and compliance flags"
+        "Conduct formal AI risk and impact assessment covering GxP/GDPR/health-safety contexts and implement continuous monitoring with drift detection",
+        "Add decision logging, human-in-the-loop oversight records and explainability features to satisfy accountability and transparency requirements"
       ]
     },
     "nist_ai_rmf": {
@@ -78,17 +78,16 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No evidence of AI risk assessment, impact analysis or documented risk treatment process as required by ISO/IEC 42001"
+    "ISO 42001: No evidence of AI-specific risk assessment, impact assessment or documented AI policy/objectives per ISO 42001 clauses 6 and 8"
   ],
   "auditor_review": {
-    "decision": "APPROVE_WITH_CONDITIONS",
-    "delivery": true,
-    "restricted": true,
+    "decision": "HOLD",
+    "delivery": false,
+    "restricted": false,
     "conditions": [
-      "EU AI Act gaps require documentation: art_9, art_10, art_11",
-      "ISO/IEC 42001 at 42% — improvement roadmap required"
+      "ISO/IEC 42001 score 58% below 60% minimum"
     ],
-    "audited_at": "2026-06-09T16:18:54.678758",
+    "audited_at": "2026-06-12T16:09:37.648894",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

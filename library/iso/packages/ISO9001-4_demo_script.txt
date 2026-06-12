@@ -1,0 +1,6 @@
+1. Open with ISO 9001 Clause 4 pain point: executives manually map stakeholders, issues, and risks quarterly (avg. 18 hrs, €4,500 internal cost).  
+2. Launch iso9001_context_monitor; paste company URL and last board deck; agent auto-ingests data in <60 seconds.  
+3. Display real-time output: AI-generated context register with prioritized risks, opportunities, and interested parties mapped to strategic objectives.  
+4. Run compliance check: one-click export produces auditable Clause 4 report with version control and evidence links, ready for certification body.  
+5. Trigger ROI calculator: show €224 license vs. €4,500 saved per cycle plus 10× multiplier from faster decisions and avoided non-conformities (€22k+ annual value).  
+6. Close with 30-second summary: “€224 buys automated, audit-ready context intelligence that returns 10× in the first quarter.”

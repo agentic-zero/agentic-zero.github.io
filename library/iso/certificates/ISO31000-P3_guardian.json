@@ -1,13 +1,13 @@
 {
   "process_id": "ISO31000-P3",
-  "guardian_timestamp": "2026-06-10T16:01:08.127774",
+  "guardian_timestamp": "2026-06-12T15:30:22.245356",
   "certificate": {
-    "certificate_id": "AZ-CERT-ISO31000-P3-20260610",
+    "certificate_id": "AZ-CERT-ISO31000-P3-20260612",
     "process_id": "ISO31000-P3",
     "agent_name": "risk_treatment_monitoring_agent",
-    "issued_at": "2026-06-10T16:01:08.127732",
+    "issued_at": "2026-06-12T15:30:22.245319",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.86,
     "eu_ai_act": {
@@ -40,14 +40,12 @@
       "compliant": true,
       "score": 0.78,
       "gaps": [
-        "No explicit handling of AI-specific risks (bias, transparency, robustness)",
-        "Escalation rules lack linkage to top-management review and resource allocation per ISO 42001 clause 5 & 7",
-        "Monitoring focuses on implementation metrics but omits AI system performance evaluation and impact monitoring"
+        "Escalation rules lack explicit human oversight triggers for high-impact AI decisions",
+        "No evidence of integration with broader AI impact or ethical risk assessment processes"
       ],
       "recommendations": [
-        "Extend risk treatment plan generation to incorporate AI-specific risk categories and ethical impact assessments",
-        "Add automated triggers for management review when residual risk exceeds appetite or reviews are missed",
-        "Integrate continuous monitoring with AI system performance indicators and stakeholder feedback loops"
+        "Add mandatory human review gates for residual risk above defined thresholds",
+        "Map capabilities explicitly to ISO/IEC 42001 clauses 6.1, 8.2 and 9.1 for full traceability"
       ]
     },
     "nist_ai_rmf": {
@@ -84,7 +82,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No explicit handling of AI-specific risks (bias, transparency, robustness)",
+    "ISO 42001: Escalation rules lack explicit human oversight triggers for high-impact AI decisions",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:43.418757",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

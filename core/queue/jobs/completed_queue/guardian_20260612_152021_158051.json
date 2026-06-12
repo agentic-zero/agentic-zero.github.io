@@ -1,0 +1,20 @@
+{
+  "job_id": "guardian_20260612_152021_158051",
+  "job_type": "guardian",
+  "payload": {
+    "process_id": "NIST-MANAGE"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T15:20:21.158072",
+  "status": "completed",
+  "started_at": "2026-06-12T15:29:52.712652",
+  "completed_at": "2026-06-12T15:30:00.431628",
+  "error": null,
+  "result": {
+    "certificate_id": "AZ-CERT-NIST-MANAGE-20260612",
+    "status": "conditional",
+    "process_id": "NIST-MANAGE"
+  }
+}

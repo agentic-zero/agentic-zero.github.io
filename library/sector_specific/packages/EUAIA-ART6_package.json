@@ -1,0 +1,99 @@
+{
+  "process_id": "EUAIA-ART6",
+  "agent_name": "eu_ai_act_risk_classifier",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-12T15:21:21.927172",
+  "product_summary": "This agent classifies AI systems as high-risk according to the EU AI Act by evaluating them against Annex I safety components and Annex III high-risk use cases. It covers domains such as supply chain, employment, critical infrastructure, and other regulated areas. By automating compliance checks, it helps organizations mitigate regulatory risks and streamline deployment processes. Executives benefit from reduced legal exposure and faster time-to-market for AI solutions.",
+  "value_proposition": "Automates high-risk AI system classification under EU AI Act Annexes I and III to deliver compliant pathways while logging exceptions.",
+  "technical_summary": "The reactive agent applies annex_i_iii_evaluation and high_risk_determination modules against structured regulatory rulesets before invoking compliance_pathway_generation. It integrates through standard APIs with enterprise systems handling supply chain, HR, and infrastructure data, while exception_logging captures edge cases for audit trails. The architecture supports real-time rule updates aligned to EU AI Act Article 6 without requiring model retraining.",
+  "integration_guide": "# Integration Guide â€” eu_ai_act_risk_classifier\n**Process:** High-Risk AI System Classification\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp eu_ai_act_risk_classifier.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.eu_ai_act_risk_classifier import EuAiActRiskClassifierAgent\n\nagent = EuAiActRiskClassifierAgent()\nresult = agent.execute({\n    \"ai_system_description\": your_ai_system_description_data,\n    \"use_case_definition\": your_use_case_definition_data,\n    \"sector_classification\": your_sector_classification_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- annex_criteria_checker\n- sector_intent_validator\n- legal_reference_api\n\n## Escalation\nThe agent automatically escalates to human when:\n- sector in pharma/defense/automotive with critical infrastructure\n- annex_iii_match incomplete\n- classification confidence below threshold",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/eu_ai_act_risk_classifier/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/eu_ai_act_risk_classifier/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/eu_ai_act_risk_classifier/health â€” Health check",
+    "GET  /api/v1/agents/eu_ai_act_risk_classifier/spec   â€” Get agent specification",
+    "POST /api/v1/agents/eu_ai_act_risk_classifier/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open with the EU AI Act compliance challenge: executives spend 40+ hours manually classifying one AI system at €5k+ internal cost.\n2. Paste a sample AI system description (e.g., credit-scoring model) into eu_ai_act_risk_classifier.\n3. Execute the automated scan; display instant high-risk classification plus article-level obligations in under 60 seconds.\n4. Review generated compliance report: risk category, required measures, and audit-ready documentation export.\n5. Trigger ROI calculator: show €224 fee vs. €2,240+ manual effort per system, confirming 10x multiplier at scale.\n6. Simulate quarterly re-scan on the same system to illustrate ongoing monitoring at near-zero marginal cost.\n7. Close with deployment options and projected annual savings for a 50-system portfolio.",
+  "demo_inputs": {
+    "ai_system_description": "[example_ai_system_description]",
+    "use_case_definition": "[example_use_case_definition]",
+    "sector_classification": "[example_sector_classification]"
+  },
+  "expected_demo_outputs": {
+    "risk_classification_decision": "[generated_risk_classification_decision]",
+    "high-risk_determination": "[generated_high-risk_determination]"
+  },
+  "catalog_entry": {
+    "process_id": "EUAIA-ART6",
+    "agent_name": "eu_ai_act_risk_classifier",
+    "framework": "EU AI Act 2024",
+    "domain": "EU AI Act",
+    "level": "L1",
+    "sector_applicability": [
+      "pharma",
+      "defense",
+      "manufacturing",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act Art.6",
+      "Annex I safety components",
+      "Annex III high-risk use cases"
+    ],
+    "agent_type": "reactive",
+    "capabilities_count": 4,
+    "price_eur": 223.5,
+    "complexity_score": 84,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:21:21.927152"
+  },
+  "tags": [
+    "defense",
+    "eu ai act 2024",
+    "manufacturing",
+    "eu ai act",
+    "chemical",
+    "l1",
+    "automotive",
+    "reactive",
+    "distribution",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma company classifies AI clinical-trial adverse-event predictor under Annex III; agent delivers classification report in 4 hours vs 3 weeks manual effort, cutting external legal spend by €180k and shortening EMA submission cycle by 5 weeks.",
+    "Use case 2: Automotive OEM runs agent on AI emergency-braking perception module (Annex I safety component); early high-risk flag enables €2.4M preemptive validation budget reallocation, avoiding €12M late-stage redesign.",
+    "Use case 3: Chemical plant deploys agent to classify predictive-maintenance AI controlling pressure vessels; correct Art.6 determination prevents 14-day shutdown, protecting €3.1M in lost production.",
+    "Use case 4: Defense contractor uses agent for AI target-recognition system; Annex III classification package secures €8M follow-on contract by satisfying national authority audit in first pass.",
+    "Use case 5: Food distributor classifies AI spoilage-forecasting model; compliance workflow reduces recall risk exposure by €4.7M annually and trims insurance premiums 18% (€92k/year)."
+  ],
+  "pricing": {
+    "process_id": "EUAIA-ART6",
+    "complexity_score": 84,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 84/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/EUAIA-ART6_package.json"
+}

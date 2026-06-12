@@ -196,29 +196,42 @@ def check_quality(guardian: dict) -> dict:
 
 
 def check_artifacts(process_id: str) -> dict:
-    """Verifica existencia de artefactos requeridos."""
+    """Verifica existencia de artefactos requeridos en todas las carpetas de biblioteca."""
     checks = {
-        "sop": (SOPS / f"{process_id}_sop.md").exists(),
-        "builder_json": (AGENTS / f"{process_id}_builder.json").exists(),
-        "package_json": (PACKAGES / f"{process_id}_package.json").exists(),
-        "certificate": bool(
-            find_in_library(f"{process_id}_certificate.txt", "certificates")
-        )
-        or (CERTS / f"{process_id}_certificate.txt").exists(),
+        "sop":          bool(find_in_library(f"{process_id}_sop.md", "sops")),
+        "builder_json": bool(find_in_library(f"{process_id}_builder.json", "agents")),
+        "package_json": bool(find_in_library(f"{process_id}_package.json", "packages")),
+        "certificate":  bool(find_in_library(f"{process_id}_certificate.txt", "certificates"))
+                         or (CERTS / f"{process_id}_certificate.txt").exists(),
     }
-    # Código del agente — buscar en agents/code/
-    code_dir = AGENTS / "code"
-    builder = {}
-    try:
-        builder = load_builder_json(process_id)
-    except Exception:
-        pass
-    agent_name = builder.get("agent_name", builder.get("agent", {}).get("name", ""))
+    # Codigo del agente -- buscar en agents/code/ de todas las carpetas
+    agent_name = ""
+    for folder in LIBRARY_FOLDERS:
+        builder_path = ROOT / "library" / folder / "agents" / f"{process_id}_builder.json"
+        if builder_path.exists():
+            try:
+                with open(builder_path, encoding="utf-8") as f:
+                    b = json.load(f)
+                agent_name = b.get("agent_name", b.get("agent", {}).get("name", ""))
+                if agent_name:
+                    break
+            except Exception:
+                pass
+
     if agent_name:
-        checks["agent_code"] = (code_dir / f"{agent_name}.py").exists()
+        found_code = False
+        for folder in LIBRARY_FOLDERS:
+            code_path = ROOT / "library" / folder / "agents" / "code" / f"{agent_name}.py"
+            if code_path.exists():
+                found_code = True
+                break
+        checks["agent_code"] = found_code
     else:
-        checks["agent_code"] = (
-            any(code_dir.glob("*.py")) if code_dir.exists() else False
+        # Fallback: verificar que existe algun .py en agents/code/ de cualquier carpeta
+        checks["agent_code"] = any(
+            any((ROOT / "library" / folder / "agents" / "code").glob("*.py"))
+            for folder in LIBRARY_FOLDERS
+            if (ROOT / "library" / folder / "agents" / "code").exists()
         )
 
     all_ok = all(checks.values())

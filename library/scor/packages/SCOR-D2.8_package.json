@@ -1,12 +1,12 @@
 {
   "process_id": "SCOR-D2.8",
-  "agent_name": "mto_receive_finished_goods_agent",
+  "agent_name": "finished_goods_receipt_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-08T18:16:30.603452",
-  "product_summary": "This hybrid agent manages the end-to-end receipt of made-to-order finished goods from manufacturing or sourcing into the deliver staging area. It triggers on inbound events to perform quality and packaging verification, update inventory records in real time, and monitor KPIs while routing exceptions for resolution. By embedding compliance checks for GxP, quality release, and data privacy, the agent reduces receiving cycle times, prevents inventory discrepancies, and accelerates order fulfillment for operations teams.",
-  "value_proposition": "Automates event-triggered receipt, quality verification, and inventory staging of MTO goods while enforcing compliance and exception handling.",
-  "technical_summary": "The agent operates as a hybrid service that listens for manufacturing or source events via APIs or message queues, then orchestrates quality verification workflows and inventory commits through existing ERP and WMS integrations. It incorporates modular compliance engines that activate based on product type or data sensitivity and exposes KPI dashboards plus exception queues for human-in-the-loop review.",
-  "integration_guide": "# Integration Guide — mto_receive_finished_goods_agent\n**Process:** Receive Product from Source or Make (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_receive_finished_goods_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_receive_finished_goods_agent import MtoReceiveFinishedGoodsAgentAgent\n\nagent = MtoReceiveFinishedGoodsAgentAgent()\nresult = agent.execute({\n    \"production_completion_notice\": your_production_completion_notice_data,\n    \"quality_release\": your_quality_release_data,\n    \"finished_goods\": your_finished_goods_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- wms_api\n- qa_system_connector\n- manufacturing_notice_listener\n- inventory_db_writer\n- compliance_logger\n\n## Escalation\nThe agent automatically escalates to human when:\n- QualityRelease rejected or packaging failed\n- Missing DeliveryDocumentation after SLA window\n- System write failure on DeliverInventoryUpdate\n- ReceiveAccuracy or InventoryAccuracy below target",
+  "packager_timestamp": "2026-06-11T18:30:47.291339",
+  "product_summary": "This hybrid agent manages the end-to-end receipt of make-to-order finished goods from manufacturing or sourcing partners into the deliver staging area. It performs quality release verification, packaging inspection, and automated inventory updates while handling exceptions and calculating operational KPIs. By embedding compliance checks for GxP, quality release, and GDPR requirements, the agent reduces manual errors, accelerates time-to-stock, and provides executives with real-time visibility into supply chain performance and regulatory adherence.",
+  "value_proposition": "Automates quality-verified receiving and inventory updates for MTO goods to eliminate delays, compliance risks, and manual reconciliation.",
+  "technical_summary": "The hybrid agent orchestrates rule-based workflows with AI-driven inspection and verification modules, exposing standardized capability interfaces for quality_release_verification, packaging_inspection, inventory_update, exception_handling, and kpi_calculation. It integrates via APIs with ERP, WMS, and manufacturing execution systems while maintaining audit trails and conditional compliance logic for GxP and GDPR contexts.",
+  "integration_guide": "# Integration Guide â€” finished_goods_receipt_agent\n**Process:** Receive Product from Source or Make (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp finished_goods_receipt_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.finished_goods_receipt_agent import FinishedGoodsReceiptAgentAgent\n\nagent = FinishedGoodsReceiptAgentAgent()\nresult = agent.execute({\n    \"production_completion_notice\": your_production_completion_notice_data,\n    \"quality_release\": your_quality_release_data,\n    \"finished_goods\": your_finished_goods_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_api\n- WMS_integration\n- quality_control_system\n- packaging_inspection_module\n\n## Escalation\nThe agent automatically escalates to human when:\n- Missing QualityRelease route to exception queue and notify SCOR-M2.5\n- Failed quality check reject goods and trigger return/rework\n- InventoryAccuracy below threshold trigger cycle count",
   "supported_systems": [
     "SAP ECC",
     "SAP S/4HANA",
@@ -19,13 +19,13 @@
     "Database direct connection"
   ],
   "api_endpoints": [
-    "POST /api/v1/agents/mto_receive_finished_goods_agent/execute — Execute the agent with inputs",
-    "GET  /api/v1/agents/mto_receive_finished_goods_agent/status — Get agent status and metrics",
-    "GET  /api/v1/agents/mto_receive_finished_goods_agent/health — Health check",
-    "GET  /api/v1/agents/mto_receive_finished_goods_agent/spec   — Get agent specification",
-    "POST /api/v1/agents/mto_receive_finished_goods_agent/test   — Run test cases"
+    "POST /api/v1/agents/finished_goods_receipt_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/finished_goods_receipt_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/finished_goods_receipt_agent/health â€” Health check",
+    "GET  /api/v1/agents/finished_goods_receipt_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/finished_goods_receipt_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with a 60-second scenario: \"Manual MTO receiving costs 22 minutes per shipment and risks 12% compliance gaps—today the agent cuts both to near zero.\"\n\n2. Trigger live receipt: Paste ASN and shipping docs; agent auto-matches PO, inspects tolerances, and flags deviations in <45 seconds.\n\n3. Surface compliance layer: Show immutable audit trail, auto-generated CoC, and real-time regulatory checks (REACH, ISO) logged to ERP.\n\n4. Quantify time savings: Display dashboard—22 min → 3 min per receipt, 480 receipts/year = 152 hours recovered (€7,600 at €50/hr).\n\n5. Calculate ROI on screen: €699 price × 8.0x = €5,592 net annual value; break-even in 11 days.\n\n6. Close with one-click deployment note and next-step offer for pilot in their MTO flow.",
+  "demo_script": "1. Open dashboard showing €42K annual manual receipt costs; highlight 8.0x ROI target (€5.6K savings per €699 license).\n2. Trigger live MTO receipt; agent auto-ingests ASN, PO, and quality specs in <8 seconds.\n3. Demonstrate AI compliance scan: real-time checks against ISO and customer specs with instant pass/fail flags and full audit trail.\n4. Show exception handling: agent routes damaged goods to quarantine while auto-creating CAPA documentation without human input.\n5. Display time-stamped metrics: 14 minutes saved per receipt, equating to 92% labor reduction on 200 monthly receipts.\n6. Generate one-click ROI report confirming €5.8K first-month savings and immutable compliance log for executive review.",
   "demo_inputs": {
     "production_completion_notice": "[example_production_completion_notice]",
     "quality_release": "[example_quality_release]",
@@ -37,7 +37,7 @@
   },
   "catalog_entry": {
     "process_id": "SCOR-D2.8",
-    "agent_name": "mto_receive_finished_goods_agent",
+    "agent_name": "finished_goods_receipt_agent",
     "framework": "SCOR",
     "domain": "Deliver",
     "level": "L2",
@@ -53,30 +53,30 @@
       "GDPR if personal data"
     ],
     "agent_type": "hybrid",
-    "capabilities_count": 4,
+    "capabilities_count": 5,
     "price_eur": 698.6,
     "complexity_score": 100,
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-08T18:16:30.603432"
+    "created_at": "2026-06-11T18:30:47.291319"
   },
   "tags": [
-    "hybrid",
-    "deliver",
-    "manufacturing",
-    "l2",
     "distribution",
     "automotive",
     "industrial equipment",
-    "scor"
+    "manufacturing",
+    "hybrid",
+    "scor",
+    "deliver",
+    "l2"
   ],
   "use_cases": [
-    "Use case 1: In automotive manufacturing, the agent automates MTO component receipt and quality release compliance checks, reducing inbound processing cycle time from 48 hours to 12 hours and cutting manual labor costs by 65%.",
-    "Use case 2: In industrial equipment distribution, the agent validates supplier shipments against purchase orders with real-time GDPR-compliant documentation, eliminating 95% of receiving discrepancies and avoiding $120K annual chargeback penalties.",
-    "Use case 3: In manufacturing plants handling mixed source and MTO flows, the agent triggers automated quality release workflows, shortening inventory hold time by 3 days and improving working capital turnover by 22%.",
-    "Use case 4: In automotive Tier-1 supplier operations, the agent enforces GxP-aligned batch traceability on received materials, reducing audit preparation effort from 40 hours to 6 hours per quarter and preventing $250K in potential non-compliance fines.",
-    "Use case 5: In industrial equipment warehouses, the agent coordinates cross-dock receipts for MTO orders with automated ASN matching, increasing dock throughput by 35% and reducing expedited freight spend by $180K annually."
+    "Use case 1: Automotive Tier-1 supplier uses the agent to automate MTO component receiving and quality release, cutting dock-to-stock time from 36 hours to 8 hours and reducing expedited freight spend by $420K annually",
+    "Use case 2: Industrial equipment OEM deploys the agent for source-product receiving inspections, lowering incoming defect escape rate from 2.8% to 0.4% and avoiding $1.2M in warranty claims per year",
+    "Use case 3: Manufacturing plant applies the agent to MTO finished-goods receipt and batch release, increasing on-time release compliance from 78% to 99.5% and unlocking $650K in accelerated revenue recognition",
+    "Use case 4: Distribution network uses the agent to validate source receipts against purchase orders in real time, reducing inventory discrepancies by 92% and freeing $3.1M in working capital tied to phantom stock",
+    "Use case 5: Automotive aftermarket distributor routes all inbound shipments through the agent for GDPR-compliant handling of dealer data during receiving, cutting manual compliance audit hours by 65% and avoiding €180K in potential regulatory fines"
   ],
   "pricing": {
     "process_id": "SCOR-D2.8",

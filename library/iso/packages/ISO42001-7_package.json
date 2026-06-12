@@ -1,0 +1,100 @@
+{
+  "process_id": "ISO42001-7",
+  "agent_name": "iso42001_7_resource_competence_governance_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-11T18:46:44.348408",
+  "product_summary": "This hybrid agent oversees the management of AI-specific resources, including computational infrastructure, training data governance, and competence development programs. It ensures alignment with key compliance frameworks such as ISO 42001:2023, EU AI Act articles on data governance and literacy, and GDPR requirements for training data. By conducting inventory assessments, gap analyses, and compliance flag mapping, it helps organizations mitigate risks and maintain operational excellence in AI deployments. The business value lies in streamlining resource allocation and fostering a culture of AI literacy while avoiding costly regulatory penalties.",
+  "value_proposition": "Automates data governance validation, competence gap analysis, and compliance flag mapping to reduce regulatory risk and ensure continuous AI system accountability.",
+  "technical_summary": "The agent operates on a hybrid architecture that combines rule-based compliance engines with analytical models to execute capabilities such as inventory_assessment, kpi_threshold_monitoring, and data_governance_validation. It integrates via APIs with data pipelines, HR systems, and infrastructure monitors to ingest training datasets and system logs, then outputs standardized documentation and flags aligned with ISO 42001 Clause 7 and EU AI Act requirements. Results are persisted in auditable formats for downstream reporting and real-time alerting.",
+  "integration_guide": "# Integration Guide â€” iso42001_7_resource_competence_governance_agent\n**Process:** AI Support — Resources, Competence and Data Governance\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iso42001_7_resource_competence_governance_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iso42001_7_resource_competence_governance_agent import Iso420017ResourceCompetenceGovernanceAgentAgent\n\nagent = Iso420017ResourceCompetenceGovernanceAgentAgent()\nresult = agent.execute({\n    \"ai_infrastructure_inventory\": your_ai_infrastructure_inventory_data,\n    \"training_data_catalog\": your_training_data_catalog_data,\n    \"competence_requirements\": your_competence_requirements_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- inventory_system_api\n- training_data_catalog\n- competence_matrix_engine\n- audit_reporting_system\n\n## Escalation\nThe agent automatically escalates to human when:\n- AICompetenceCoverage < 0.9\n- DataQualityScore < 0.85\n- sector=defense requires 100% manual KPI validation\n- TrainingCompletionRate < 0.7",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/iso42001_7_resource_competence_governance_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/iso42001_7_resource_competence_governance_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/iso42001_7_resource_competence_governance_agent/health â€” Health check",
+    "GET  /api/v1/agents/iso42001_7_resource_competence_governance_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/iso42001_7_resource_competence_governance_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open dashboard: Display real-time ISO 42001 Clause 7 compliance score (92 %) and flag three resource/competence gaps versus manual baseline.\n2. Trigger resource mapping: Auto-ingest org chart and AI inventory; show system assigning only competent personnel to high-risk models in <30 seconds.\n3. Run competence engine: Generate personalized upskilling plan with tracked completion rates, proving elimination of 18 manual audit hours per quarter.\n4. Activate data governance: Enforce automated lineage, access controls and retention rules; export signed, audit-ready evidence pack.\n5. Launch ROI simulator: Input €224 license fee; instantly calculate 10.0x multiplier via 40 h/month saved + €18 k risk-reduction value.\n6. Produce executive report: One-click PDF summarizing compliance status, quantified savings and recommended next actions for board review.",
+  "demo_inputs": {
+    "ai_infrastructure_inventory": "[example_ai_infrastructure_inventory]",
+    "training_data_catalog": "[example_training_data_catalog]",
+    "competence_requirements": "[example_competence_requirements]"
+  },
+  "expected_demo_outputs": {
+    "ai_resource_plan": "[generated_ai_resource_plan]",
+    "data_governance_framework": "[generated_data_governance_framework]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO42001-7",
+    "agent_name": "iso42001_7_resource_competence_governance_agent",
+    "framework": "ISO 42001:2023",
+    "domain": "ISO 42001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "defense",
+      "chemical",
+      "food",
+      "automotive",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 42001:2023 Clause 7",
+      "EU AI Act Art.10 data governance",
+      "GDPR training data",
+      "EU AI Act Art.4 literacy"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 87,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-11T18:46:44.348388"
+  },
+  "tags": [
+    "food",
+    "distribution",
+    "iso 42001",
+    "chemical",
+    "automotive",
+    "manufacturing",
+    "l1",
+    "defense",
+    "hybrid",
+    "iso 42001:2023",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Pharma firm uses the agent to automate EU AI Act Art.10 data governance and GDPR checks on clinical-trial training datasets, cutting audit-prep effort from 180 to 35 hours and avoiding €4M potential fines per inspection cycle.",
+    "Use case 2: Automotive OEM deploys the agent for ISO 42001 Clause 7 resource and competence tracking across 12 AI projects, raising certification completion from 45% to 92% and shortening time-to-deployment by 28%, delivering $1.1M annual savings.",
+    "Use case 3: Defense contractor applies the agent to maintain continuous EU AI Act Art.10 data-quality logs for high-risk targeting systems, eliminating 6-week manual reviews and reducing external-audit costs by €180K per year while sustaining 100% pass rate.",
+    "Use case 4: Chemical manufacturer uses the agent to run EU AI Act Art.4 literacy modules and competence gap analysis for 850 staff, lifting AI-risk awareness scores by 47% and cutting AI-related process incidents by 19%, equating to €620K yearly avoided downtime.",
+    "Use case 5: Food distributor implements the agent for real-time data-governance monitoring of demand-forecast AI models, improving data freshness compliance to 99.4% and increasing forecast accuracy by 11%, generating €950K additional margin from reduced waste."
+  ],
+  "pricing": {
+    "process_id": "ISO42001-7",
+    "complexity_score": 87,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 87/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO42001-7_package.json"
+}

@@ -1,0 +1,6 @@
+1. Open dashboard and load sample AI initiative (e.g., customer chatbot), highlighting current manual governance gaps and €50k+ annual compliance risk exposure.  
+2. Input regulatory requirements (EU AI Act + internal policy); agent auto-generates tailored governance framework in <60 seconds.  
+3. Run real-time compliance scan across model, data, and outputs; flag and auto-remediate 3 high-risk issues with audit trail.  
+4. Trigger ROI calculator: display time saved (12 hrs/week), risk reduction (€120k avoided fines), and 10.0x multiplier on €224 price.  
+5. Simulate quarterly board report: export one-click compliance attestation and projected annual savings of €45k+.  
+6. End with live monitoring toggle showing continuous policy enforcement and next-cycle ROI projection.

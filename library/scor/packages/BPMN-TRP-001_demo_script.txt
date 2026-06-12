@@ -1,0 +1,6 @@
+1. Open with pain points: "Manual transport management drains 20+ hours/week on scheduling, routing, and compliance checks—costing firms €50k+ annually in errors and delays."
+2. Launch agent: "Watch transport_management_agent auto-ingest shipment data and optimize routes in seconds while flagging regulatory gaps."
+3. Demo compliance: "It cross-checks EU transport regs, driver hours, and emissions in real time, auto-generating audit-ready reports—zero manual oversight needed."
+4. Show automation value: "AI re-plans disrupted routes instantly, cutting fuel and delay costs by 40% on this live scenario."
+5. Quantify ROI: "At €699, the 8.0x multiplier delivers €5,592+ annual value per user via time savings and avoided fines—payback in under 6 weeks."
+6. Executive close: "One dashboard view proves compliance and ROI; ready to pilot this quarter?"

@@ -2,10 +2,10 @@
   "process_id": "SCOR-M2.2",
   "agent_name": "mto_material_issue_agent",
   "package_version": "1.0.0",
-  "packager_timestamp": "2026-06-10T16:03:09.319042",
-  "product_summary": "This hybrid agent manages the end-to-end issuance of sourced materials and work-in-process (WIP) items to Make-to-Order (MTO) production operations, encompassing pick-list validation, kitting, staging, and controlled release to the production floor. It enforces full lot-level traceability while automatically applying GxP, ISO 9001, and GDPR rules where personal or regulated data is present. By reducing manual errors and ensuring regulatory compliance at every step, the agent accelerates production readiness, lowers audit risk, and improves on-time delivery performance for manufacturers operating in highly regulated environments.",
-  "value_proposition": "Automates material and WIP issuance to MTO operations with built-in traceability, kitting accuracy, and compliance enforcement to eliminate delays and regulatory exposure.",
-  "technical_summary": "The hybrid agent orchestrates a sequence of discrete capabilities—validate_pick_list_availability, enforce_lot_traceability, perform_kitting_accuracy_check, apply_gxp_gdpr_rules, and trigger_wip_transfer—through event-driven calls to ERP, MES, and warehouse systems. It maintains an auditable decision log for every action and dynamically applies regulatory rules based on product type and data classification. Integration occurs via standard APIs and message queues, allowing real-time status updates and rollback handling when traceability or compliance checks fail.",
+  "packager_timestamp": "2026-06-11T18:30:11.813599",
+  "product_summary": "This hybrid agent manages the full issuance workflow for sourced and in-process materials to MTO production operations, covering pick-list validation, kitting, staging, and controlled release to the floor. It enforces lot-level traceability and applies GxP, ISO 9001, and GDPR rules automatically during every transaction. By digitizing these steps, the agent reduces manual errors, accelerates production readiness, and delivers complete audit-ready records that lower compliance risk and inventory holding costs for manufacturers.",
+  "value_proposition": "Automates kitting, staging, and traceable release of materials to MTO operations while embedding real-time compliance checks.",
+  "technical_summary": "The hybrid agent orchestrates the listed capabilities through event-driven calls to ERP and MES systems, validating availability and accuracy before triggering WIP transfers. It logs every action with immutable traceability data and conditionally invokes GxP or GDPR controls based on product and data type. Integration occurs via standard APIs with manufacturing execution and quality systems to maintain ISO 9001 process integrity.",
   "integration_guide": "# Integration Guide â€” mto_material_issue_agent\n**Process:** Issue Sourced/In-Process Product (MTO)\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp mto_material_issue_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.mto_material_issue_agent import MtoMaterialIssueAgentAgent\n\nagent = MtoMaterialIssueAgentAgent()\nresult = agent.execute({\n    \"production_schedule\": your_production_schedule_data,\n    \"material_pick_lists\": your_material_pick_lists_data,\n    \"wip_inventory\": your_wip_inventory_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- ERP_work_order_api\n- WMS_inventory_query\n- MES_routing_interface\n- barcode_scan_validator\n- QA_hold_workflow\n\n## Escalation\nThe agent automatically escalates to human when:\n- material shortage detected\n- kitting_accuracy < 99.5%\n- GxP deviation requiring QA sign-off\n- scan lot mismatch",
   "supported_systems": [
     "SAP ECC",
@@ -25,7 +25,7 @@
     "GET  /api/v1/agents/mto_material_issue_agent/spec   â€” Get agent specification",
     "POST /api/v1/agents/mto_material_issue_agent/test   â€” Run test cases"
   ],
-  "demo_script": "1. Open with executive pain point: \"Manual MTO material-issue handling costs teams 12+ hours/week in errors, delays, and audit prep—€699 buys an 8.0x ROI agent that eliminates both.\"\n2. Trigger live MTO issue: Input a sourced/in-process product shortage; agent auto-matches inventory, raises PO, and updates ERP in <30 seconds.\n3. Display AI decision audit trail: Show timestamped, regulation-mapped logs (ISO/traceability) that satisfy compliance review without manual documentation.\n4. Run exception handling demo: Agent flags a compliance deviation, proposes resolution, and records sign-off—reducing audit prep from 4 hours to minutes.\n5. Surface ROI dashboard: Real-time panel calculates €5,592 annual savings per user (8.0x multiplier) via time recovered and avoided non-compliance penalties.\n6. Close with one-click deployment: \"Zero-code install; full ROI realized in first month—ready to pilot this week.\"",
+  "demo_script": "1. Open with executive pain point: \"Manual MTO material-issue handling costs €5,600 per month in delays and audit risk; our €699 agent delivers 8.0x ROI by automating the full workflow.\"\n2. Trigger live agent: Launch mto_material_issue_agent on a real sourced/in-process order, showing instant ingestion of BOM, supplier status, and shop-floor data.\n3. Run AI resolution: Agent auto-matches inventory, flags shortages, and generates compliant issue documentation in <30 seconds while enforcing SOX and ISO audit trails.\n4. Display compliance dashboard: Real-time traceability log, digital signatures, and deviation alerts prove zero manual rework and full regulatory readiness.\n5. Quantify ROI on screen: Side-by-side metrics show 11 hours saved per issue × €85 fully-loaded cost = €935 per transaction; at 6 issues/month the agent pays for itself in 12 days and returns €5,600+ annually.\n6. Close with action: \"Approve one production line pilot today; full rollout across three sites yields €44,800 yearly savings at 8.0x multiplier.\"",
   "demo_inputs": {
     "production_schedule": "[example_production_schedule]",
     "material_pick_lists": "[example_material_pick_lists]",
@@ -60,25 +60,25 @@
     "roi_multiplier": 8.0,
     "status": "ready_for_guardian",
     "version": "1.0.0",
-    "created_at": "2026-06-10T16:03:09.319022"
+    "created_at": "2026-06-11T18:30:11.813583"
   },
   "tags": [
     "food",
     "chemical",
-    "scor",
-    "hybrid",
     "automotive",
-    "l2",
-    "make",
     "industrial equipment",
-    "manufacturing"
+    "manufacturing",
+    "hybrid",
+    "scor",
+    "make",
+    "l2"
   ],
   "use_cases": [
-    "Use case 1: Automotive MTO plant uses agent to auto-issue sourced components for custom orders, cutting manual verification time 55% and delivering $420K annual labor savings while maintaining ISO 9001 traceability.",
-    "Use case 2: Industrial equipment manufacturer deploys agent for in-process sub-assembly issuance, reducing order-to-ship cycle by 12 days and generating $1.1M extra revenue from faster throughput.",
-    "Use case 3: Chemical producer applies agent to MTO batch issuance with automated COA checks, lowering batch rejection rate from 4.2% to 0.3% and saving $680K in rework and disposal costs yearly.",
-    "Use case 4: Food processing facility uses agent for sourced-ingredient MTO runs, cutting finished-goods waste 28% via real-time expiry and allocation logic, yielding $310K annual margin improvement under GDPR record controls.",
-    "Use case 5: Precision manufacturing site integrates agent for in-process product release, reducing audit non-conformances 92% and avoiding $250K potential ISO 9001 certification penalties plus remediation expenses."
+    "Use case 1: Automotive MTO plant uses the agent to auto-issue sourced components to custom vehicle orders, cutting material issuance errors from 3.2% to 0.4% and saving $420K annually in rework and scrap.",
+    "Use case 2: Industrial equipment manufacturer applies the agent for real-time issuance of in-process subassemblies, shortening average order cycle time from 14 days to 9 days and increasing on-time delivery from 78% to 96%.",
+    "Use case 3: Chemical producer leverages the agent to issue sourced raw materials under ISO 9001-tracked MTO batches, reducing compliance audit preparation time by 65% and avoiding $180K in potential non-conformance penalties.",
+    "Use case 4: Food processing facility deploys the agent for traceable issuance of in-process ingredients to made-to-order SKUs, cutting recall investigation time from 48 hours to 6 hours and lowering potential recall costs by $750K per event.",
+    "Use case 5: Precision manufacturing site uses the agent to synchronize issuance of sourced parts with live MTO schedules, lowering excess inventory holding costs by 22% ($310K/year) while maintaining 99.1% material availability."
   ],
   "pricing": {
     "process_id": "SCOR-M2.2",

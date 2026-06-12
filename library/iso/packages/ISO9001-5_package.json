@@ -1,0 +1,96 @@
+{
+  "process_id": "ISO9001-5",
+  "agent_name": "iso9001_leadership_quality_policy_agent",
+  "package_version": "1.0.0",
+  "packager_timestamp": "2026-06-12T15:13:37.208469",
+  "product_summary": "The Leadership and Quality Policy agent is a hybrid solution that monitors strategic changes, enforces policy communication, tracks objective KPIs, schedules management reviews, and validates role assignments to maintain ISO 9001:2015 Clause 5 compliance. It ensures that leadership commitments to the quality management system are consistently upheld and communicated across the organization. By automating these critical governance processes, the agent reduces the risk of non-compliance, enhances organizational accountability, and supports continuous improvement in corporate governance. Executives benefit from streamlined oversight that aligns quality objectives with business strategy, ultimately driving operational excellence and regulatory adherence.",
+  "value_proposition": "Automates leadership commitment monitoring, policy enforcement, and KPI tracking to deliver continuous ISO 9001 compliance with minimal executive overhead.",
+  "technical_summary": "The hybrid agent architecture integrates monitoring triggers with enterprise policy engines and KPI dashboards via secure APIs, while leveraging scheduling modules for management reviews and validation services for role-based access controls. It connects to existing QMS platforms and corporate governance tools to enforce communication rules and track achievements in real-time. Data flows are secured through compliance checkpoints aligned with ISO standards, enabling seamless interoperability with HR systems and strategic planning software.",
+  "integration_guide": "# Integration Guide â€” iso9001_leadership_quality_policy_agent\n**Process:** Leadership and Quality Policy\n**Version:** 1.0.0\n\n## Prerequisites\n- Python 3.10+\n- Agentic Zero runtime installed\n- API credentials configured in .env\n\n## Installation\n```bash\n# Copy agent to your project\ncp iso9001_leadership_quality_policy_agent.py ./agents/\n```\n\n## Basic Usage\n```python\nfrom agents.iso9001_leadership_quality_policy_agent import Iso9001LeadershipQualityPolicyAgentAgent\n\nagent = Iso9001LeadershipQualityPolicyAgentAgent()\nresult = agent.execute({\n    \"strategic_direction\": your_strategic_direction_data,\n    \"quality_objectives\": your_quality_objectives_data,\n    \"organizational_structure\": your_organizational_structure_data,\n})\nprint(result['outputs'])\n```\n\n## Supported Systems\n- SAP ECC\n- SAP S/4HANA\n- SAP EWM\n- Oracle ERP Cloud\n- Oracle JDE\n\n## Tools Required\n- document_management_system\n- hr_distribution_api\n- kpi_database\n- org_chart_repository\n- calendar_scheduler\n\n## Escalation\nThe agent automatically escalates to human when:\n- objective_achievement_rate < 80%\n- policy_communication_rate < 95% or missing within 30 days\n- leadership_commitment evidence absent\n- role_assignment conflicts detected",
+  "supported_systems": [
+    "SAP ECC",
+    "SAP S/4HANA",
+    "SAP EWM",
+    "Oracle ERP Cloud",
+    "Oracle JDE",
+    "Microsoft Dynamics 365",
+    "Custom REST APIs",
+    "CSV/Excel file input",
+    "Database direct connection"
+  ],
+  "api_endpoints": [
+    "POST /api/v1/agents/iso9001_leadership_quality_policy_agent/execute â€” Execute the agent with inputs",
+    "GET  /api/v1/agents/iso9001_leadership_quality_policy_agent/status â€” Get agent status and metrics",
+    "GET  /api/v1/agents/iso9001_leadership_quality_policy_agent/health â€” Health check",
+    "GET  /api/v1/agents/iso9001_leadership_quality_policy_agent/spec   â€” Get agent specification",
+    "POST /api/v1/agents/iso9001_leadership_quality_policy_agent/test   â€” Run test cases"
+  ],
+  "demo_script": "1. Open demo: \"This €224 agent automates ISO 9001 Clause 5 leadership and quality policy creation, cutting 12-15 manual hours to under 10 minutes while ensuring full compliance traceability.\"\n\n2. Input executive scenario: Enter board-level objectives and risk context; agent instantly drafts a tailored Leadership & Quality Policy with measurable objectives and stakeholder alignment.\n\n3. Run compliance validation: Trigger built-in ISO 9001 audit checks—agent flags gaps, adds required statements, and produces version-controlled evidence pack ready for certification audit.\n\n4. Simulate approval workflow: Route draft to simulated exec stakeholders; agent logs comments, enforces sign-off timestamps, and exports final PDF with digital audit trail.\n\n5. Quantify ROI live: Display dashboard showing 10.0x multiplier—€224 spend replaces €2,240+ in consultant and internal labor costs per policy cycle, with 95% reduction in non-conformance risk.\n\n6. Close with next step: \"One-click deployment to your QMS; schedule 15-min integration call to activate for your next management review.\"",
+  "demo_inputs": {
+    "strategic_direction": "[example_strategic_direction]",
+    "quality_objectives": "[example_quality_objectives]",
+    "organizational_structure": "[example_organizational_structure]"
+  },
+  "expected_demo_outputs": {
+    "quality_policy": "[generated_quality_policy]",
+    "quality_objectives": "[generated_quality_objectives]"
+  },
+  "catalog_entry": {
+    "process_id": "ISO9001-5",
+    "agent_name": "iso9001_leadership_quality_policy_agent",
+    "framework": "ISO 9001:2015",
+    "domain": "ISO 9001",
+    "level": "L1",
+    "sector_applicability": [
+      "manufacturing",
+      "pharma",
+      "food",
+      "automotive",
+      "defense",
+      "distribution"
+    ],
+    "compliance_frameworks": [
+      "ISO 9001:2015 Clause 5",
+      "corporate governance"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 223.5,
+    "complexity_score": 74,
+    "roi_multiplier": 10.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-12T15:13:37.208450"
+  },
+  "tags": [
+    "defense",
+    "manufacturing",
+    "l1",
+    "automotive",
+    "iso 9001",
+    "hybrid",
+    "distribution",
+    "iso 9001:2015",
+    "food",
+    "pharma"
+  ],
+  "use_cases": [
+    "Use case 1: Manufacturing firm uses agent to perform ISO 9001:2015 Clause 5 leadership gap analysis across 3 plants, identifying accountability gaps and cutting non-conformance incidents by 35% for $420K annual savings in rework.",
+    "Use case 2: Pharma company deploys agent for corporate governance policy alignment audits, reducing compliance violation risk and avoiding $750K in potential regulatory penalties while shortening audit cycles by 60%.",
+    "Use case 3: Food sector distributor automates quality policy rollout and leadership training tracking, decreasing policy update time from 80 to 25 hours per quarter and achieving $180K in operational efficiency gains.",
+    "Use case 4: Automotive supplier leverages agent for Clause 5 risk assessments in leadership processes, preventing supply chain governance failures and saving $1.2M by avoiding a major recall event.",
+    "Use case 5: Defense contractor uses agent to streamline ISO Clause 5 documentation and governance reporting, accelerating certification by 4 months and unlocking $2.5M in new contract eligibility."
+  ],
+  "pricing": {
+    "process_id": "ISO9001-5",
+    "complexity_score": 74,
+    "level": "L1",
+    "base_price_eur": 149.0,
+    "regulated_surcharge": 74.5,
+    "total_price_eur": 223.5,
+    "price_rationale": "Level L1 process with complexity score 74/100. Regulated sector surcharge 50% applied",
+    "roi_multiplier": 10.0
+  },
+  "ready_for_guardian": true,
+  "package_path": "library/scor/packages/ISO9001-5_package.json"
+}

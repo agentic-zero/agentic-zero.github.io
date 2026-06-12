@@ -1,13 +1,13 @@
 {
   "process_id": "NIST-MANAGE",
-  "guardian_timestamp": "2026-06-10T16:00:54.365436",
+  "guardian_timestamp": "2026-06-12T15:30:00.429284",
   "certificate": {
-    "certificate_id": "AZ-CERT-NIST-MANAGE-20260610",
+    "certificate_id": "AZ-CERT-NIST-MANAGE-20260612",
     "process_id": "NIST-MANAGE",
-    "agent_name": "risk_treatment_response_agent",
-    "issued_at": "2026-06-10T16:00:54.365375",
+    "agent_name": "ai_risk_treatment_manager",
+    "issued_at": "2026-06-12T15:30:00.429237",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-10",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
     "overall_score": 0.86,
     "eu_ai_act": {
@@ -40,12 +40,14 @@
       "compliant": true,
       "score": 0.78,
       "gaps": [
-        "limited evidence of continual improvement mechanisms and performance evaluation loops required by ISO 42001 clause 10",
-        "escalation rules reference external NIST-GOVERN without defined internal governance or resource reallocation procedures"
+        "Missing explicit linkage to AI risk assessment and impact analysis processes",
+        "No defined mechanisms for top-management review or internal audit integration",
+        "Escalation rules lack traceability and documentation requirements"
       ],
       "recommendations": [
-        "add explicit continual improvement triggers and metrics review cycles tied to residual_risk_evaluation outputs",
-        "define internal escalation paths and resource reallocation rules before external handoff to satisfy leadership and support clauses"
+        "Add formal interfaces to risk assessment outputs and require documented decisions",
+        "Implement logging of all treatment actions and residual-risk decisions for auditability",
+        "Define periodic management-review triggers and performance metrics for the MANAGE process"
       ]
     },
     "nist_ai_rmf": {
@@ -82,7 +84,18 @@
   "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: limited evidence of continual improvement mechanisms and performance evaluation loops required by ISO 42001 clause 10",
+    "ISO 42001: Missing explicit linkage to AI risk assessment and impact analysis processes",
     "GDPR: Personal data detected: define lawful basis for processing"
-  ]
+  ],
+  "auditor_review": {
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "delivery": true,
+    "restricted": true,
+    "conditions": [
+      "GDPR issues noted (non-blocking): define lawful basis and retention policy before client deployment",
+      "Overall score 86% meets threshold — approved with GDPR remediation plan required"
+    ],
+    "audited_at": "2026-06-12T16:09:43.001989",
+    "auditor": "Auditor Agent v1.0 — Agentic Zero"
+  }
 }

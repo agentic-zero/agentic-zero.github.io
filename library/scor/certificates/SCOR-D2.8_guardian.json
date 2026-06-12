@@ -1,15 +1,15 @@
 {
   "process_id": "SCOR-D2.8",
-  "guardian_timestamp": "2026-06-08T18:56:36.043545",
+  "guardian_timestamp": "2026-06-12T09:15:17.477171",
   "certificate": {
-    "certificate_id": "AZ-CERT-SCOR-D2.8-20260608",
+    "certificate_id": "AZ-CERT-SCOR-D2.8-20260612",
     "process_id": "SCOR-D2.8",
-    "agent_name": "mto_receive_finished_goods_agent",
-    "issued_at": "2026-06-08T18:56:36.043501",
+    "agent_name": "finished_goods_receipt_agent",
+    "issued_at": "2026-06-12T09:15:17.477130",
     "issued_by": "Guardian Agent — Agentic Zero Pioneer Team",
-    "valid_until": "2027-06-08",
+    "valid_until": "2027-06-12",
     "overall_status": "conditional",
-    "overall_score": 0.88,
+    "overall_score": 0.84,
     "eu_ai_act": {
       "risk_level": "high",
       "risk_rationale": "Process operates in regulated/safety-critical domain",
@@ -38,18 +38,18 @@
     },
     "iso_42001": {
       "compliant": false,
-      "score": 0.58,
+      "score": 0.42,
       "gaps": [
-        "No explicit AI risk assessment, impact analysis or bias controls documented",
-        "Missing transparency/explainability and audit trail requirements for automated decisions",
-        "No defined continual improvement, performance monitoring or management review processes",
-        "Human oversight limited to escalations; broader accountability and responsibility mapping absent"
+        "No AI-specific risk/impact assessment or bias controls",
+        "Missing transparency, explainability and human oversight mechanisms",
+        "No data governance, model validation or performance monitoring processes",
+        "Lacks continual improvement and management review structures"
       ],
       "recommendations": [
-        "Conduct formal AI risk and impact assessment per ISO 42001 Clause 6.1",
-        "Implement decision logging, explainability mechanisms and human-in-the-loop checkpoints",
-        "Define AI-specific KPIs, monitoring cadence and management review cycles",
-        "Establish documented roles, escalation ownership and continual improvement procedures"
+        "Implement ISO 42001 AI risk and impact assessment procedures",
+        "Add AI decision logging, audit trails and human-in-the-loop controls",
+        "Define data quality, lineage and GDPR/GxP handling policies",
+        "Establish KPI-driven performance evaluation and improvement cycles"
       ]
     },
     "nist_ai_rmf": {
@@ -79,25 +79,19 @@
     "notes": "Guardian review completed. Risk level: high. Quality: 100%"
   },
   "approved_for_library": true,
-  "approved_for_delivery": true,
+  "approved_for_delivery": false,
   "requires_human_sign_off": true,
   "remediation_plan": [
-    "ISO 42001: No explicit AI risk assessment, impact analysis or bias controls documented"
+    "ISO 42001: No AI-specific risk/impact assessment or bias controls"
   ],
   "auditor_review": {
-    "decision": "AUTO_APPROVE",
-    "delivery": true,
+    "decision": "HOLD",
+    "delivery": false,
     "restricted": false,
     "conditions": [
-      "EU AI Act gaps noted (non-blocking): art_9, art_10, art_11",
-      "ISO/IEC 42001 at 58% — monitor evolution"
+      "ISO/IEC 42001 score 42% below 60% minimum"
     ],
-    "audited_at": "2026-06-09T16:18:54.598486",
+    "audited_at": "2026-06-12T16:09:44.882246",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
-  },
-  "human_sign_off": {
-    "signed_by": "Alberto Munoz Waissen — Founder & CEO",
-    "signed_at": "2026-06-10T16:23:44.491572",
-    "method": "bulk_approve · AUTO_APPROVE criteria met"
   }
 }

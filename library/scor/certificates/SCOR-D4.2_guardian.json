@@ -84,14 +84,13 @@
     "ISO 42001: No evidence of AI-specific risk assessment or impact analysis"
   ],
   "auditor_review": {
-    "decision": "APPROVE_WITH_CONDITIONS",
-    "delivery": true,
-    "restricted": true,
+    "decision": "HOLD",
+    "delivery": false,
+    "restricted": false,
     "conditions": [
-      "EU AI Act gaps require documentation: art_9, art_10, art_11",
-      "ISO/IEC 42001 at 55% — improvement roadmap required"
+      "ISO/IEC 42001 score 55% below 60% minimum"
     ],
-    "audited_at": "2026-06-09T16:18:55.108338",
+    "audited_at": "2026-06-12T16:09:38.104060",
     "auditor": "Auditor Agent v1.0 — Agentic Zero"
   }
 }

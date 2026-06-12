@@ -1,4 +1,4 @@
-# Integration Guide â€” ai_governance_accountability_agent
+# Integration Guide â€” govern_ai_risk_accountability_agent
 **Process:** GOVERN — AI Risk Culture and Accountability
 **Version:** 1.0.0
 
@@ -10,14 +10,14 @@
 ## Installation
 ```bash
 # Copy agent to your project
-cp ai_governance_accountability_agent.py ./agents/
+cp govern_ai_risk_accountability_agent.py ./agents/
 ```
 
 ## Basic Usage
 ```python
-from agents.ai_governance_accountability_agent import AiGovernanceAccountabilityAgentAgent
+from agents.govern_ai_risk_accountability_agent import GovernAiRiskAccountabilityAgentAgent
 
-agent = AiGovernanceAccountabilityAgentAgent()
+agent = GovernAiRiskAccountabilityAgentAgent()
 result = agent.execute({
     "organizational_ai_strategy": your_organizational_ai_strategy_data,
     "risk_appetite": your_risk_appetite_data,
@@ -34,13 +34,14 @@ print(result['outputs'])
 - Oracle JDE
 
 ## Tools Required
-- strategy_document_parser
-- risk_register_api
-- legal_compliance_db
-- audit_log_analyzer
+- organizational_strategy_json_reader
+- risk_appetite_threshold_api
+- regulatory_context_db
+- kpi_calculator
+- policy_template_engine
 
 ## Escalation
 The agent automatically escalates to human when:
-- source_confidence_below_0.9
-- automation_potential_below_0.5
-- GovernanceMaturityScore_below_0.8
+- Accountability_Coverage < 1.0
+- Governance_Maturity_Score < 0.8 after recalculation
+- new regulatory_context requires policy change without existing Ethical_Principle reference

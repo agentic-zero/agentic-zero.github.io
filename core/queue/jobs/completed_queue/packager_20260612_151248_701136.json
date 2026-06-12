@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260612_151248_701136",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "NIST-MAP"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-12T15:12:48.701158",
+  "status": "completed",
+  "started_at": "2026-06-12T15:19:42.490041",
+  "completed_at": "2026-06-12T15:20:00.171469",
+  "error": null,
+  "result": {
+    "agent_name": "ai_risk_context_mapper",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

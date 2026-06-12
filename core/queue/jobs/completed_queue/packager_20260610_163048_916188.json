@@ -1,0 +1,20 @@
+{
+  "job_id": "packager_20260610_163048_916188",
+  "job_type": "packager",
+  "payload": {
+    "process_id": "NIST-MANAGE"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-10T16:30:48.916204",
+  "status": "completed",
+  "started_at": "2026-06-11T18:43:38.242847",
+  "completed_at": "2026-06-11T18:43:55.122290",
+  "error": null,
+  "result": {
+    "agent_name": "nist_manage_risk_treatment_agent",
+    "price_eur": 223.5,
+    "ready_for_guardian": true
+  }
+}

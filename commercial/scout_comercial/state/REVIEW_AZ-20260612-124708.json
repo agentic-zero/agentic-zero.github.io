@@ -1,0 +1,13 @@
+{
+  "alert_type": "HUMAN_REVIEW_REQUIRED",
+  "proposal_id": "AZ-20260612-124708",
+  "created_at": "2026-06-12T12:47:08.388170+00:00",
+  "company": "Su empresa",
+  "email": "inmaculada@empresa.com",
+  "al_level": "AL4",
+  "processes": [
+    "BPMN-OTC-001"
+  ],
+  "action": "Lead AL4 de Su empresa requiere evaluacion manual. Sector: distribution - ERP: SAP ECC - Procesos: ['BPMN-OTC-001']. Preparar propuesta Enterprise personalizada.",
+  "urgency": "normal"
+}

@@ -1,0 +1,73 @@
+{
+  "proposal_id": "AZ-20260612-124858",
+  "generated_at": "2026-06-12T12:48:58.669371+00:00",
+  "lead": {
+    "submission_id": "MANUAL-20260612124840",
+    "submitted_at": "2026-06-12T12:48:40.574622+00:00",
+    "name": "Inmaculada Sierra",
+    "company": "Su empresa",
+    "email": "inmaculada@empresa.com",
+    "role": "Directora Operaciones",
+    "sector": "distribution",
+    "erp": "SAP ECC",
+    "volume": 50,
+    "team_size": 8,
+    "timing": "1-3 months",
+    "process_mapping": "Order Management: Order Entry [BPMN-OTC-001]",
+    "notes": "",
+    "autonomy_level": "",
+    "source": "manual"
+  },
+  "classification": {
+    "autonomy_level": "AL1",
+    "recommended_tier": "Essential",
+    "deploy_time": "24 horas",
+    "setup_fee": 490.0,
+    "monthly_fee": 490.0,
+    "annual_fee": 4900.0,
+    "processes": [
+      "BPMN-OTC-001"
+    ],
+    "cluster": null,
+    "rationale": "ERP estandar (SAP ECC) con volumen manejable (50/dia). Perfil ideal para Essential con deploy en 24h."
+  },
+  "content": {
+    "executive_summary": "In the distribution sector, efficient order-to-cash management is critical for maintaining cash flow and customer satisfaction. With your SAP ECC system processing 50 orders daily across an 8-person operations team, our autonomous agent targets the BPMN-OTC-001 process to reduce manual workload and accelerate cycle times. This solution aligns with your 1-3 month implementation timeline for rapid operational impact.",
+    "pain_points_addressed": [
+      "Manual order processing bottlenecks in high-volume distribution",
+      "Integration friction and data re-entry between SAP ECC and downstream systems",
+      "Team capacity strain handling 50 daily orders leading to delayed invoicing and collections"
+    ],
+    "solution_description": "The order_to_cash_autonomous_agent will connect directly to your SAP ECC instance to autonomously receive orders, validate stock and pricing, generate and send invoices, track payments, and trigger escalations for exceptions, handling 80% of the BPMN-OTC-001 process end-to-end while logging all actions for compliance and audit.",
+    "roi_narrative": "For a distribution company processing 50 orders per day with an 8-person team, automating the order-to-cash workflow delivers EUR 26,000 in annual savings through reduced manual effort and faster collections. This yields a 4.1x ROI with full payback in just 0.5 months, freeing your operations team to focus on higher-value distribution activities rather than repetitive SAP transactions.",
+    "key_differentiators": [
+      "Native real-time integration with SAP ECC without custom middleware",
+      "80% automation rate specifically certified for order-to-cash in distribution",
+      "Low-risk deployment with EUR 490 setup and 1-3 month go-live"
+    ],
+    "implementation_steps": [
+      {
+        "step": 1,
+        "title": "SAP ECC Discovery & Integration",
+        "duration": "10 days",
+        "description": "Map your current BPMN-OTC-001 flows and establish secure connection to SAP ECC"
+      },
+      {
+        "step": 2,
+        "title": "Agent Configuration & Testing",
+        "duration": "20 days",
+        "description": "Configure the autonomous agent, run parallel testing on live order volume, and train your team"
+      },
+      {
+        "step": 3,
+        "title": "Go-Live & Optimization",
+        "duration": "15 days",
+        "description": "Full production rollout with monitoring, fine-tuning, and handover within your 1-3 month window"
+      }
+    ],
+    "subject_line": "Automate order-to-cash in SAP ECC for Su empresa distribution operations",
+    "opening_hook": "Inmaculada, as Directora de Operaciones at Su empresa handling 50 daily orders in distribution through SAP ECC, your team is likely spending too much time on repetitive order-to-cash tasks that could be 80% automated."
+  },
+  "status": "ready_for_herald",
+  "requires_human": false
+}

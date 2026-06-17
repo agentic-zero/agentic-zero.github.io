@@ -1,6 +1,6 @@
 # AGENTIC ZERO — MASTER CONTEXT
 ## Documento de recuperación de contexto completo
-### Versión: 4.6 | Fecha: 12 Jun 2026 — Fin de jornada | Sprint 7 activo
+### Versión: 4.7 | Fecha: 17 Jun 2026 — Fin de jornada | Sprint 7 activo
 
 ---
 
@@ -294,7 +294,17 @@ Estado:   Firmando — departamentos revisando
 Datos técnicos: pedidos por adelantado via WhatsApp ⏳ esperando respuesta
 ```
 
-### Datos técnicos pendientes de Inmaculada (10 campos)
+### Datos técnicos RECIBIDOS de Inmaculada (17 Jun 2026)
+
+**SAP:** ECC 6.0 EHP8 SPS15 · Módulos: SD + MM + FI · S/4HANA go-live Q4 2027
+**TMS:** Externo REST API (interfaz personalizada SAP) — capacidad en metros lineales
+**Volumen:** ZEST x35 + ZURG x8 + ZINT x5 + ZDEV x2 = 50/día
+**Reglas clave:** FD32 crédito (vencido >15d = bloqueo) · VK11 precio (tolerancia 1%) · TMS metros lineales
+**Contacto IT:** Carlos Mendoza — cmendoza@empresatransportes.com — credenciales RFC al firmar
+**Sesión operador:** ofrecida — aceptar para enriquecer el build
+**Estado build:** AGENTE CONSTRUIDO POR EL SISTEMA — APPROVE_WITH_CONDITIONS · Delivery: True
+
+### Datos técnicos originalmente pendientes
 ```
 1. Versión SAP ECC exacta
 2. Fase migración HANA · go-live previsto
@@ -426,6 +436,15 @@ python shield_state.py --status
 # Scout Comercial
 cd F:\agentic-zero\commercial\scout_comercial
 python scout_comercial.py status
+
+# Customer Pipeline (cliente -> agente)
+cd F:\agentic-zero\pioneer_team\architect
+python customer_pipeline.py --fa ..\..\clients\inmaculada\functional_analysis_inmaculada.json
+python customer_pipeline.py --audit path/to/audit_zero.json  # pipeline completo desde cero
+
+# Builder desde blueprint
+cd F:\agentic-zero\pioneer_team\builder
+python builder.py CUSTOMER-ORDER-TO-CASH-OTC
 
 # Deploy web
 cd F:\agentic-zero

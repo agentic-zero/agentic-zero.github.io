@@ -557,5 +557,37 @@
     "status": "ready_for_guardian",
     "version": "1.0.0",
     "created_at": "2026-06-12T15:16:15.132667"
+  },
+  {
+    "process_id": "CUSTOMER-ORDER-TO-CASH-OTC",
+    "agent_name": "otc_transport_autonomous_agent",
+    "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+    "domain": "transport_distribution",
+    "level": "L3",
+    "sector_applicability": [
+      "transport_distribution"
+    ],
+    "compliance_frameworks": [
+      "EU AI Act",
+      "ISO/IEC 42001",
+      "NIST AI RMF",
+      "Identity & Access",
+      "Real-time Audit Trails",
+      "Escalation Pathways",
+      "Human Accountability",
+      "AI Risk Classification",
+      "Explainability",
+      "Model Monitoring",
+      "Action Thresholds",
+      "Fail-Safes"
+    ],
+    "agent_type": "hybrid",
+    "capabilities_count": 5,
+    "price_eur": 1500.0,
+    "complexity_score": 100,
+    "roi_multiplier": 6.0,
+    "status": "ready_for_guardian",
+    "version": "1.0.0",
+    "created_at": "2026-06-17T17:22:08.756092"
   }
 ]

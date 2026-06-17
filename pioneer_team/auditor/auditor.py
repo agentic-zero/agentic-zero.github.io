@@ -198,16 +198,20 @@ def check_quality(guardian: dict) -> dict:
 def check_artifacts(process_id: str) -> dict:
     """Verifica existencia de artefactos requeridos en todas las carpetas de biblioteca."""
     checks = {
-        "sop":          bool(find_in_library(f"{process_id}_sop.md", "sops")),
+        "sop": bool(find_in_library(f"{process_id}_sop.md", "sops")),
         "builder_json": bool(find_in_library(f"{process_id}_builder.json", "agents")),
         "package_json": bool(find_in_library(f"{process_id}_package.json", "packages")),
-        "certificate":  bool(find_in_library(f"{process_id}_certificate.txt", "certificates"))
-                         or (CERTS / f"{process_id}_certificate.txt").exists(),
+        "certificate": bool(
+            find_in_library(f"{process_id}_certificate.txt", "certificates")
+        )
+        or (CERTS / f"{process_id}_certificate.txt").exists(),
     }
     # Codigo del agente -- buscar en agents/code/ de todas las carpetas
     agent_name = ""
     for folder in LIBRARY_FOLDERS:
-        builder_path = ROOT / "library" / folder / "agents" / f"{process_id}_builder.json"
+        builder_path = (
+            ROOT / "library" / folder / "agents" / f"{process_id}_builder.json"
+        )
         if builder_path.exists():
             try:
                 with open(builder_path, encoding="utf-8") as f:
@@ -221,7 +225,9 @@ def check_artifacts(process_id: str) -> dict:
     if agent_name:
         found_code = False
         for folder in LIBRARY_FOLDERS:
-            code_path = ROOT / "library" / folder / "agents" / "code" / f"{agent_name}.py"
+            code_path = (
+                ROOT / "library" / folder / "agents" / "code" / f"{agent_name}.py"
+            )
             if code_path.exists():
                 found_code = True
                 break

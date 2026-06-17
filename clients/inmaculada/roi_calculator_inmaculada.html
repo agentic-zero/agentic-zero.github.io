@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Calculator — OTC Agent · Inmaculada Sierra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:   #04080f; --bg2: #070d18; --sur: #0d1828; --sur2: #111f35;
+  --brd:  #1a2e4a; --brd2:#142338; --acc:#00d4ff; --grn:#00e676;
+  --amb:  #ffab40; --red:#ff3d3d;  --w1:#f0f4f8;  --w2:#8fa3c0; --w3:#4a6080;
+  --syne:'Syne',sans-serif; --mono:'DM Mono',monospace; --serif:'Instrument Serif',serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--w1);font-family:var(--syne);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:0.35}
+
+/* HEADER */
+.header{padding:32px 48px 24px;border-bottom:1px solid var(--brd2);
+  display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.header-brand{font-family:var(--mono);font-size:13px;letter-spacing:3px;color:var(--acc)}
+.header-title{font-size:13px;color:var(--w3);letter-spacing:1px}
+.header-badge{font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:2px;
+  color:var(--grn);background:rgba(0,230,118,0.08);border:1px solid rgba(0,230,118,0.2);letter-spacing:1px}
+
+/* LAYOUT */
+.wrap{max-width:1100px;margin:0 auto;padding:40px 48px;position:relative;z-index:2}
+
+/* HERO */
+.hero{text-align:center;margin-bottom:48px}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:4px;color:var(--acc);
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:var(--acc)}
+.hero-title{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-1.5px;
+  line-height:0.95;margin-bottom:16px}
+.hero-title em{font-family:var(--serif);font-style:italic;color:var(--grn);font-weight:400}
+.hero-sub{font-size:15px;color:var(--w2);max-width:480px;margin:0 auto;line-height:1.7}
+
+/* SLIDER SECTION */
+.sliders{background:var(--sur);border:1px solid var(--brd);border-radius:6px;
+  padding:32px;margin-bottom:24px}
+.sliders-title{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--acc);
+  text-transform:uppercase;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px}
+.sliders-title::after{content:'';flex:1;height:1px;background:var(--brd2)}
+
+.slider-row{display:grid;grid-template-columns:200px 1fr 100px;
+  gap:16px;align-items:center;margin-bottom:20px}
+.slider-row:last-child{margin-bottom:0}
+.slider-label{font-size:13px;color:var(--w2)}
+.slider-label small{display:block;font-family:var(--mono);font-size:10px;color:var(--w3);margin-top:2px}
+.slider-val{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--acc);text-align:right}
+
+input[type=range]{
+  width:100%;height:4px;border-radius:2px;outline:none;cursor:pointer;
+  background:var(--brd);-webkit-appearance:none;appearance:none}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--acc);cursor:pointer;border:2px solid var(--bg)}
+input[type=range]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--acc);cursor:pointer;border:2px solid var(--bg)}
+input[type=range]:focus::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(0,212,255,0.2)}
+
+/* RESULTS GRID */
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.result-card{background:var(--sur);border:1px solid var(--brd2);border-radius:4px;
+  padding:24px;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.result-card.primary::before{background:linear-gradient(90deg,var(--grn),var(--acc))}
+.result-card.secondary::before{background:linear-gradient(90deg,var(--acc),#0097b8)}
+.result-card.tertiary::before{background:linear-gradient(90deg,var(--amb),#ff8c42)}
+.result-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--w3);
+  text-transform:uppercase;margin-bottom:12px}
+.result-value{font-size:42px;font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:6px}
+.result-card.primary .result-value{color:var(--grn)}
+.result-card.secondary .result-value{color:var(--acc)}
+.result-card.tertiary .result-value{color:var(--amb)}
+.result-sub{font-family:var(--mono);font-size:11px;color:var(--w3)}
+
+/* MONTH TABLE */
+.table-section{background:var(--sur);border:1px solid var(--brd);border-radius:6px;
+  overflow:hidden;margin-bottom:24px}
+.table-head{display:grid;grid-template-columns:80px 1fr 1fr 1fr 1fr;
+  gap:0;padding:12px 20px;background:rgba(0,0,0,0.2);
+  border-bottom:1px solid var(--brd2)}
+.th{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--w3);
+  text-transform:uppercase}
+.th:not(:first-child){text-align:right}
+.table-row{display:grid;grid-template-columns:80px 1fr 1fr 1fr 1fr;
+  gap:0;padding:10px 20px;border-bottom:1px solid var(--brd2);
+  transition:background 0.15s}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:rgba(26,46,74,0.3)}
+.table-row.highlight{background:rgba(0,230,118,0.04);border-left:2px solid var(--grn)}
+.td{font-family:var(--mono);font-size:12px;color:var(--w2)}
+.td:not(:first-child){text-align:right}
+.td.month{color:var(--w3);font-size:11px}
+.td.grn{color:var(--grn);font-weight:500}
+.td.acc{color:var(--acc)}
+.td.red{color:var(--red)}
+
+/* PAYBACK VISUAL */
+.payback-section{background:var(--sur);border:1px solid var(--brd);border-radius:6px;
+  padding:28px 32px;margin-bottom:24px}
+.payback-title{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--acc);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:12px}
+.payback-title::after{content:'';flex:1;height:1px;background:var(--brd2)}
+.payback-track{height:10px;background:var(--brd);border-radius:5px;overflow:hidden;margin-bottom:10px}
+.payback-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--grn),var(--acc));
+  transition:width 0.5s ease}
+.payback-labels{display:flex;justify-content:space-between}
+.payback-label{font-family:var(--mono);font-size:10px;color:var(--w3)}
+.payback-marker{font-family:var(--mono);font-size:11px;color:var(--grn);
+  display:flex;align-items:center;gap:6px;margin-top:10px}
+
+/* GUARANTEE BOX */
+.guarantee{background:linear-gradient(135deg,rgba(0,230,118,0.06),rgba(0,212,255,0.04));
+  border:1px solid rgba(0,230,118,0.25);border-radius:4px;padding:20px 24px;
+  display:flex;align-items:center;gap:16px}
+.guarantee-icon{font-size:24px;flex-shrink:0}
+.guarantee-title{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--grn);margin-bottom:4px}
+.guarantee-text{font-size:13px;color:var(--w2);line-height:1.6}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--brd2);padding:20px 48px;
+  display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.footer-brand{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--acc)}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--w3)}
+
+@media(max-width:768px){
+  .wrap{padding:24px 20px}
+  .header{padding:20px}
+  .results{grid-template-columns:1fr}
+  .slider-row{grid-template-columns:1fr 80px}
+  .slider-label small{display:none}
+  .table-section{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <span class="header-brand">AGENTIC ZERO</span>
+  <span class="header-title">ROI Calculator · OTC Agent</span>
+  <span class="header-badge">Essential · BPMN-OTC-001</span>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Inmaculada Sierra · Directora de Operaciones</div>
+    <h1 class="hero-title">Your OTC process,<br><em>monetised.</em></h1>
+    <p class="hero-sub">Adjust the sliders to see exactly what your autonomous agent saves — month by month, euro by euro.</p>
+  </div>
+
+  <!-- SLIDERS -->
+  <div class="sliders">
+    <div class="sliders-title">Your operation parameters</div>
+
+    <div class="slider-row">
+      <div class="slider-label">Orders / day<small>Current volume</small></div>
+      <input type="range" id="sl-orders" min="10" max="200" value="50" oninput="update()">
+      <div class="slider-val" id="val-orders">50</div>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">Time / order<small>Manual minutes</small></div>
+      <input type="range" id="sl-time" min="3" max="30" value="10" oninput="update()">
+      <div class="slider-val" id="val-time">10 min</div>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">Hourly cost<small>Operations staff</small></div>
+      <input type="range" id="sl-cost" min="10" max="40" value="13" step="0.5" oninput="update()">
+      <div class="slider-val" id="val-cost">€13.5</div>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">Automation rate<small>% handled by agent</small></div>
+      <input type="range" id="sl-auto" min="50" max="100" value="65" oninput="update()">
+      <div class="slider-val" id="val-auto">65%</div>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">Working days / month<small>Operational calendar</small></div>
+      <input type="range" id="sl-days" min="18" max="23" value="22" oninput="update()">
+      <div class="slider-val" id="val-days">22</div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results">
+    <div class="result-card primary">
+      <div class="result-label">Annual savings</div>
+      <div class="result-value" id="res-annual">€0</div>
+      <div class="result-sub" id="res-annual-sub">at selected automation rate</div>
+    </div>
+    <div class="result-card secondary">
+      <div class="result-label">ROI · Year 1</div>
+      <div class="result-value" id="res-roi">0×</div>
+      <div class="result-sub">vs. Essential investment</div>
+    </div>
+    <div class="result-card tertiary">
+      <div class="result-label">Payback period</div>
+      <div class="result-value" id="res-payback">0 mo</div>
+      <div class="result-sub" id="res-payback-sub">from activation</div>
+    </div>
+  </div>
+
+  <!-- PAYBACK VISUAL -->
+  <div class="payback-section">
+    <div class="payback-title">Payback timeline</div>
+    <div class="payback-track">
+      <div class="payback-fill" id="payback-fill" style="width:0%"></div>
+    </div>
+    <div class="payback-labels">
+      <span class="payback-label">Month 0 · Activation</span>
+      <span class="payback-label">Month 6</span>
+      <span class="payback-label">Month 12</span>
+    </div>
+    <div class="payback-marker" id="payback-marker">
+      ✓ Investment recovered at month —
+    </div>
+  </div>
+
+  <!-- MONTH BY MONTH TABLE -->
+  <div class="table-section">
+    <div class="table-head">
+      <div class="th">Month</div>
+      <div class="th">Orders automated</div>
+      <div class="th">Hours recovered</div>
+      <div class="th">Monthly saving</div>
+      <div class="th">Cumulative ROI</div>
+    </div>
+    <div id="table-body"></div>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <div>
+      <div class="guarantee-title">ROI Guarantee</div>
+      <div class="guarantee-text">If the measured ROI at 30 / 60 / 90 days falls more than 20% below this projection, Agentic Zero rebuilds your agent at no additional cost — or applies a proportional credit to your account.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <span class="footer-brand">AGENTIC ZERO</span>
+  <span class="footer-meta">Essential · BPMN-OTC-001 · Inmaculada Sierra · agentic-zero.com</span>
+</footer>
+
+<script>
+const INVESTMENT = 299; // Essential one-time
+
+function fmt(n) {
+  return '€' + Math.round(n).toLocaleString('en-GB');
+}
+
+function update() {
+  const orders  = +document.getElementById('sl-orders').value;
+  const minOrd  = +document.getElementById('sl-time').value;
+  const costH   = +document.getElementById('sl-cost').value;
+  const autoP   = +document.getElementById('sl-auto').value / 100;
+  const days    = +document.getElementById('sl-days').value;
+
+  // Labels
+  document.getElementById('val-orders').textContent = orders;
+  document.getElementById('val-time').textContent   = minOrd + ' min';
+  document.getElementById('val-cost').textContent   = '€' + costH;
+  document.getElementById('val-auto').textContent   = Math.round(autoP * 100) + '%';
+  document.getElementById('val-days').textContent   = days;
+
+  // Monthly figures
+  const ordersMonth   = orders * days;
+  const hoursMonth    = (ordersMonth * minOrd) / 60;
+  const costMonth     = hoursMonth * costH;
+  const savingMonth   = costMonth * autoP;
+  const savingYear    = savingMonth * 12;
+  const roi           = savingYear / INVESTMENT;
+  const paybackMonths = INVESTMENT / savingMonth;
+
+  // KPI cards
+  document.getElementById('res-annual').textContent      = fmt(savingYear);
+  document.getElementById('res-annual-sub').textContent  = Math.round(autoP * 100) + '% automation · ' + orders + ' orders/day';
+  document.getElementById('res-roi').textContent         = roi.toFixed(1) + '×';
+  document.getElementById('res-payback').textContent     = paybackMonths < 1
+    ? '<1 mo' : paybackMonths.toFixed(1) + ' mo';
+  document.getElementById('res-payback-sub').textContent = 'from activation date';
+
+  // Payback bar (0-12 months)
+  const pct = Math.min((paybackMonths / 12) * 100, 100);
+  document.getElementById('payback-fill').style.width = pct + '%';
+  document.getElementById('payback-marker').innerHTML =
+    '✓ Investment recovered at month ' + paybackMonths.toFixed(1);
+
+  // Monthly table
+  let rows = '';
+  let cumulative = -INVESTMENT;
+  for (let m = 1; m <= 12; m++) {
+    const rampUp    = m <= 2 ? 0.7 + (m - 1) * 0.15 : 1.0;
+    const mSaving   = savingMonth * rampUp;
+    const mOrders   = Math.round(ordersMonth * autoP * rampUp);
+    const mHours    = (mSaving / costH).toFixed(1);
+    cumulative     += mSaving;
+
+    const isPayback = cumulative >= 0 && (cumulative - mSaving) < 0;
+    const cls       = isPayback ? 'table-row highlight' : 'table-row';
+    const cumClass  = cumulative >= 0 ? 'td grn' : 'td red';
+    const cumSign   = cumulative >= 0 ? '+' : '';
+
+    rows += `<div class="${cls}">
+      <div class="td month">M${m}</div>
+      <div class="td">${mOrders.toLocaleString()}</div>
+      <div class="td">${mHours} h</div>
+      <div class="td grn">${fmt(mSaving)}</div>
+      <div class="${cumClass}">${cumSign}${fmt(cumulative)}</div>
+    </div>`;
+  }
+  document.getElementById('table-body').innerHTML = rows;
+}
+
+update();
+</script>
+</body>
+</html>

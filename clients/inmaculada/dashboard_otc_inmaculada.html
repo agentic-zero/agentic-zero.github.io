@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomy Dashboard — Order-to-Cash Agent</title>
+<meta name="description" content="Real-time monitoring of your autonomous Order-to-Cash agent. Powered by Agentic Zero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #04080f;
+  --bg2:    #070d18;
+  --sur:    #0d1828;
+  --sur2:   #111f35;
+  --brd:    #1a2e4a;
+  --brd2:   #142338;
+  --acc:    #00d4ff;
+  --grn:    #00e676;
+  --amb:    #ffab40;
+  --red:    #ff3d3d;
+  --w1:     #f0f4f8;
+  --w2:     #8fa3c0;
+  --w3:     #4a6080;
+  --syne:   'Syne', sans-serif;
+  --mono:   'DM Mono', monospace;
+  --serif:  'Instrument Serif', serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--w1);
+  font-family: var(--syne);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* NOISE */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1; opacity: 0.35;
+}
+
+/* TOP BAR */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(4,8,15,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--brd2);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.topbar-left { display: flex; align-items: center; gap: 20px; }
+.topbar-brand { font-family: var(--mono); font-size: 13px; letter-spacing: 3px; color: var(--acc); }
+.topbar-sep { width: 1px; height: 20px; background: var(--brd); }
+.topbar-title { font-size: 13px; color: var(--w3); letter-spacing: 1px; }
+.topbar-right { display: flex; align-items: center; gap: 16px; }
+
+/* STATUS PILL */
+.status-pill {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+  padding: 6px 14px; border-radius: 2px;
+  text-transform: uppercase;
+}
+.status-pill.running {
+  color: var(--grn);
+  background: rgba(0,230,118,0.08);
+  border: 1px solid rgba(0,230,118,0.25);
+}
+.status-pill.idle {
+  color: var(--amb);
+  background: rgba(255,171,64,0.08);
+  border: 1px solid rgba(255,171,64,0.25);
+}
+.pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--grn);
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.topbar-time { font-family: var(--mono); font-size: 12px; color: var(--w3); }
+
+/* LAYOUT */
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); position: relative; z-index: 2; }
+
+/* SIDEBAR */
+.sidebar {
+  border-right: 1px solid var(--brd2);
+  padding: 24px 0;
+  background: var(--bg2);
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+}
+.sidebar-section { padding: 0 16px 24px; }
+.sidebar-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--w3); text-transform: uppercase;
+  padding: 0 8px; margin-bottom: 8px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 3px;
+  font-size: 13px; color: var(--w3);
+  cursor: pointer; transition: all 0.15s;
+  margin-bottom: 2px;
+}
+.nav-item:hover { background: var(--sur); color: var(--w2); }
+.nav-item.active { background: rgba(0,212,255,0.08); color: var(--acc); border-left: 2px solid var(--acc); }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot-grn { background: var(--grn); }
+.dot-acc { background: var(--acc); }
+.dot-amb { background: var(--amb); }
+.dot-red { background: var(--red); }
+.dot-w3  { background: var(--w3); }
+
+.sidebar-divider { height: 1px; background: var(--brd2); margin: 8px 16px 16px; }
+
+.agent-card {
+  margin: 0 12px 16px;
+  background: rgba(0,212,255,0.04);
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 4px; padding: 12px;
+}
+.agent-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--acc); margin-bottom: 6px; }
+.agent-card-name { font-size: 12px; font-weight: 600; color: var(--w1); margin-bottom: 2px; }
+.agent-card-id { font-family: var(--mono); font-size: 10px; color: var(--w3); }
+
+/* MAIN */
+.main { padding: 28px 32px; overflow: auto; }
+
+/* PAGE HEADER */
+.page-header { margin-bottom: 28px; }
+.page-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+  color: var(--acc); text-transform: uppercase; margin-bottom: 8px;
+}
+.page-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: var(--w1); margin-bottom: 4px; }
+.page-sub { font-size: 13px; color: var(--w3); }
+
+/* KPI GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.kpi {
+  background: var(--sur);
+  border: 1px solid var(--brd2);
+  border-radius: 4px; padding: 18px 20px;
+  position: relative; overflow: hidden;
+}
+.kpi::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.kpi.grn::before { background: var(--grn); }
+.kpi.acc::before { background: var(--acc); }
+.kpi.amb::before { background: var(--amb); }
+.kpi.w3::before  { background: var(--w3); }
+.kpi-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--w3); text-transform: uppercase; margin-bottom: 10px; }
+.kpi-value { font-size: 36px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+.kpi.grn .kpi-value { color: var(--grn); }
+.kpi.acc .kpi-value { color: var(--acc); }
+.kpi.amb .kpi-value { color: var(--amb); }
+.kpi.w3  .kpi-value { color: var(--w2); }
+.kpi-delta { font-family: var(--mono); font-size: 11px; color: var(--w3); }
+.kpi-delta.up { color: var(--grn); }
+.kpi-delta.dn { color: var(--red); }
+
+/* GRID 2 COL */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-3-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+/* PANEL */
+.panel {
+  background: var(--sur);
+  border: 1px solid var(--brd2);
+  border-radius: 4px; overflow: hidden;
+}
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid var(--brd2);
+}
+.panel-title { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--w2); text-transform: uppercase; }
+.panel-badge {
+  font-family: var(--mono); font-size: 10px; padding: 3px 8px;
+  border-radius: 2px; letter-spacing: 1px;
+}
+.badge-grn { color: var(--grn); background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.2); }
+.badge-acc { color: var(--acc); background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); }
+.badge-amb { color: var(--amb); background: rgba(255,171,64,0.08); border: 1px solid rgba(255,171,64,0.2); }
+.badge-w3  { color: var(--w3); background: rgba(74,96,128,0.15); border: 1px solid var(--brd); }
+.panel-body { padding: 18px; }
+
+/* ACTIVITY FEED */
+.feed { display: flex; flex-direction: column; gap: 0; }
+.feed-item {
+  display: grid; grid-template-columns: 70px 24px 1fr auto;
+  align-items: start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--brd2);
+}
+.feed-item:last-child { border-bottom: none; }
+.feed-time { font-family: var(--mono); font-size: 11px; color: var(--w3); padding-top: 2px; }
+.feed-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.feed-text { font-size: 12px; color: var(--w2); line-height: 1.5; }
+.feed-text b { color: var(--w1); font-weight: 600; }
+.feed-tag { font-family: var(--mono); font-size: 10px; color: var(--w3); padding-top: 2px; white-space: nowrap; }
+
+/* PROCESS STEPS */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: grid; grid-template-columns: 28px 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid var(--brd2);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  flex-shrink: 0;
+}
+.step-num.done   { background: rgba(0,230,118,0.12); color: var(--grn); border: 1px solid rgba(0,230,118,0.3); }
+.step-num.active { background: rgba(0,212,255,0.12); color: var(--acc); border: 1px solid rgba(0,212,255,0.3); }
+.step-num.wait   { background: rgba(74,96,128,0.15); color: var(--w3); border: 1px solid var(--brd); }
+.step-name { font-size: 13px; color: var(--w2); }
+.step-name.active { color: var(--w1); font-weight: 600; }
+.step-name.done   { color: var(--w3); }
+.step-status { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; }
+.step-status.done   { color: var(--grn); }
+.step-status.active { color: var(--acc); }
+.step-status.wait   { color: var(--w3); }
+
+/* ROI TRACKER */
+.roi-bar-wrap { margin-bottom: 16px; }
+.roi-bar-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.roi-bar-name { font-family: var(--mono); font-size: 11px; color: var(--w3); letter-spacing: 1px; }
+.roi-bar-val  { font-family: var(--mono); font-size: 11px; color: var(--w2); }
+.roi-bar-track { height: 6px; background: var(--brd); border-radius: 3px; overflow: hidden; }
+.roi-bar-fill  { height: 100%; border-radius: 3px; transition: width 1s ease; }
+.fill-grn { background: linear-gradient(90deg, var(--grn), var(--acc)); }
+.fill-acc { background: linear-gradient(90deg, var(--acc), #0097b8); }
+.fill-amb { background: linear-gradient(90deg, var(--amb), #ff8c42); }
+
+/* COMPLIANCE GRID */
+.compliance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.comp-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg2); border: 1px solid var(--brd2); border-radius: 3px;
+}
+.comp-icon { font-size: 16px; flex-shrink: 0; }
+.comp-label { font-family: var(--mono); font-size: 11px; color: var(--w2); letter-spacing: 1px; }
+.comp-status { font-family: var(--mono); font-size: 10px; margin-top: 2px; }
+.comp-status.pass { color: var(--grn); }
+.comp-status.cond { color: var(--amb); }
+
+/* ESCALATION */
+.esc-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 32px; text-align: center; gap: 8px;
+}
+.esc-empty-icon { font-size: 28px; opacity: 0.4; }
+.esc-empty-text { font-family: var(--mono); font-size: 12px; color: var(--w3); }
+
+/* MINI CHART */
+.chart-wrap { padding: 0 0 4px; }
+.chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 64px; }
+.chart-bar {
+  flex: 1; border-radius: 2px 2px 0 0;
+  background: rgba(0,212,255,0.2);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.chart-bar:hover { background: rgba(0,212,255,0.45); }
+.chart-bar.today { background: var(--acc); }
+.chart-labels { display: flex; justify-content: space-between; margin-top: 6px; }
+.chart-label { font-family: var(--mono); font-size: 9px; color: var(--w3); text-align: center; flex: 1; }
+
+/* BOTTOM STRIP */
+.bottom-strip {
+  margin-top: 16px;
+  background: var(--sur); border: 1px solid var(--brd2); border-radius: 4px;
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.strip-item { display: flex; flex-direction: column; gap: 3px; }
+.strip-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--w3); text-transform: uppercase; }
+.strip-value { font-family: var(--mono); font-size: 14px; font-weight: 500; }
+.strip-div { width: 1px; height: 32px; background: var(--brd2); }
+
+/* GUARDIAN CERT */
+.cert-panel {
+  background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(0,230,118,0.03));
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 4px; padding: 16px 20px;
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 16px;
+}
+.cert-logo {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--acc), var(--grn));
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--bg);
+  flex-shrink: 0;
+}
+.cert-body { flex: 1; }
+.cert-title { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--acc); margin-bottom: 4px; }
+.cert-name { font-size: 14px; font-weight: 700; color: var(--w1); margin-bottom: 2px; }
+.cert-meta { font-family: var(--mono); font-size: 11px; color: var(--w3); }
+.cert-score { font-size: 28px; font-weight: 800; color: var(--grn); letter-spacing: -1px; }
+
+/* LIVE INDICATOR */
+.live { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--w3); }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--grn); animation: pulse 2s ease infinite; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .grid-2, .grid-3-1 { grid-template-columns: 1fr; }
+  .main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-brand">AGENTIC ZERO</span>
+    <div class="topbar-sep"></div>
+    <span class="topbar-title">Autonomy Dashboard</span>
+  </div>
+  <div class="topbar-right">
+    <div class="live"><div class="live-dot"></div>Live</div>
+    <div class="status-pill running" id="agent-status">
+      <div class="pulse"></div>
+      <span id="status-text">AGENT RUNNING</span>
+    </div>
+    <div class="topbar-time" id="clock">--:--:--</div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="agent-card">
+        <div class="agent-card-label">Active Agent</div>
+        <div class="agent-card-name">OTC Autonomous Agent</div>
+        <div class="agent-card-id">BPMN-OTC-001 · v1.0</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigation</div>
+      <div class="nav-item active" onclick="showSection('overview')">
+        <div class="nav-dot dot-acc"></div>Overview
+      </div>
+      <div class="nav-item" onclick="showSection('activity')">
+        <div class="nav-dot dot-grn"></div>Activity Feed
+      </div>
+      <div class="nav-item" onclick="showSection('roi')">
+        <div class="nav-dot dot-grn"></div>ROI Tracker
+      </div>
+      <div class="nav-item" onclick="showSection('compliance')">
+        <div class="nav-dot dot-acc"></div>Compliance
+      </div>
+      <div class="nav-item" onclick="showSection('escalations')">
+        <div class="nav-dot dot-amb"></div>Escalations
+        <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--w3)" id="esc-count">0</span>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Client</div>
+      <div style="padding:0 8px">
+        <div style="font-size:13px;color:var(--w2);margin-bottom:2px">Inmaculada Sierra</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--w3)">Directora de Operaciones</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:4px">SAP ECC + HANA</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--w3)">Distribution · Spain</div>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Support</div>
+      <div style="padding:0 8px">
+        <div style="font-size:12px;color:var(--w3);margin-bottom:4px">SLA: 24h response</div>
+        <a href="mailto:alberto@agentic-zero.com" style="font-family:var(--mono);font-size:11px;color:var(--acc);text-decoration:none">alberto@agentic-zero.com</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <div id="section-overview">
+      <div class="page-header">
+        <div class="page-eyebrow">Order-to-Cash · BPMN-OTC-001</div>
+        <h1 class="page-title">Operations Overview</h1>
+        <p class="page-sub">Real-time status of your autonomous OTC agent · <span id="last-update">Updating...</span></p>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi grn">
+          <div class="kpi-label">Orders today</div>
+          <div class="kpi-value" id="kpi-orders">0</div>
+          <div class="kpi-delta up" id="kpi-orders-delta">— loading</div>
+        </div>
+        <div class="kpi acc">
+          <div class="kpi-label">Automation rate</div>
+          <div class="kpi-value" id="kpi-auto">—%</div>
+          <div class="kpi-delta" id="kpi-auto-delta">of orders processed autonomously</div>
+        </div>
+        <div class="kpi grn">
+          <div class="kpi-label">Time saved today</div>
+          <div class="kpi-value" id="kpi-time">0h</div>
+          <div class="kpi-delta up" id="kpi-time-delta">vs manual processing</div>
+        </div>
+        <div class="kpi amb">
+          <div class="kpi-label">Pending escalation</div>
+          <div class="kpi-value" id="kpi-esc">0</div>
+          <div class="kpi-delta" id="kpi-esc-delta">require human review</div>
+        </div>
+      </div>
+
+      <div class="grid-3-1">
+        <!-- PROCESS STEPS -->
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Process Steps</span>
+            <span class="panel-badge badge-acc" id="current-step-badge">Step 3 of 6</span>
+          </div>
+          <div class="panel-body">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num done">✓</div>
+                <div class="step-name done">Order Received</div>
+                <span class="step-status done">COMPLETE</span>
+              </div>
+              <div class="step">
+                <div class="step-num done">✓</div>
+                <div class="step-name done">Validate Order</div>
+                <span class="step-status done">COMPLETE</span>
+              </div>
+              <div class="step">
+                <div class="step-num active">3</div>
+                <div class="step-name active">Process Payment</div>
+                <span class="step-status active">RUNNING</span>
+              </div>
+              <div class="step">
+                <div class="step-num wait">4</div>
+                <div class="step-name">Ship Order</div>
+                <span class="step-status wait">QUEUED</span>
+              </div>
+              <div class="step">
+                <div class="step-num wait">5</div>
+                <div class="step-name">Send Confirmation</div>
+                <span class="step-status wait">QUEUED</span>
+              </div>
+              <div class="step">
+                <div class="step-num wait">6</div>
+                <div class="step-name">Order Complete</div>
+                <span class="step-status wait">QUEUED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VOLUME CHART -->
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Volume · 7 days</span>
+            <span class="panel-badge badge-w3">Orders/day</span>
+          </div>
+          <div class="panel-body">
+            <div class="chart-wrap">
+              <div class="chart-bars" id="vol-chart"></div>
+              <div class="chart-labels" id="vol-labels"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY + ROI STRIP -->
+      <div class="grid-2">
+        <!-- RECENT ACTIVITY -->
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Recent Activity</span>
+            <span class="panel-badge badge-grn">Live</span>
+          </div>
+          <div class="panel-body" style="padding:0 18px">
+            <div class="feed" id="activity-preview"></div>
+          </div>
+        </div>
+
+        <!-- ROI SNAPSHOT -->
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">ROI · Month to date</span>
+            <span class="panel-badge badge-grn" id="roi-day-badge">Day 1</span>
+          </div>
+          <div class="panel-body">
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-label">
+                <span class="roi-bar-name">Hours recovered</span>
+                <span class="roi-bar-val" id="roi-hours">0 h</span>
+              </div>
+              <div class="roi-bar-track"><div class="roi-bar-fill fill-grn" id="roi-bar-hours" style="width:0%"></div></div>
+            </div>
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-label">
+                <span class="roi-bar-name">Orders automated</span>
+                <span class="roi-bar-val" id="roi-orders">0</span>
+              </div>
+              <div class="roi-bar-track"><div class="roi-bar-fill fill-acc" id="roi-bar-orders" style="width:0%"></div></div>
+            </div>
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-label">
+                <span class="roi-bar-name">Savings this month</span>
+                <span class="roi-bar-val" id="roi-savings">€0</span>
+              </div>
+              <div class="roi-bar-track"><div class="roi-bar-fill fill-amb" id="roi-bar-savings" style="width:0%"></div></div>
+            </div>
+            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--brd2)">
+              <div style="font-family:var(--mono);font-size:10px;color:var(--w3);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Annual projection</div>
+              <div style="font-size:28px;font-weight:800;color:var(--grn);letter-spacing:-1px" id="roi-annual">€0</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:2px">at current automation rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GUARDIAN CERT -->
+      <div class="cert-panel">
+        <div class="cert-logo">G</div>
+        <div class="cert-body">
+          <div class="cert-title">Guardian Certificate</div>
+          <div class="cert-name">OTC Autonomous Agent · BPMN-OTC-001</div>
+          <div class="cert-meta">EU AI Act · ISO/IEC 42001 · NIST AI RMF · GDPR · Valid until: <span id="cert-valid">—</span></div>
+        </div>
+        <div class="cert-score" id="cert-score">91.9%</div>
+      </div>
+
+      <!-- BOTTOM STRIP -->
+      <div class="bottom-strip">
+        <div class="strip-item">
+          <div class="strip-label">Agent version</div>
+          <div class="strip-value" style="color:var(--acc)">v1.0</div>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-item">
+          <div class="strip-label">Process</div>
+          <div class="strip-value" style="color:var(--w2)">BPMN-OTC-001</div>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-item">
+          <div class="strip-label">ERP</div>
+          <div class="strip-value" style="color:var(--w2)">SAP ECC + HANA</div>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-item">
+          <div class="strip-label">Next QBR</div>
+          <div class="strip-value" style="color:var(--amb)" id="next-qbr">—</div>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-item">
+          <div class="strip-label">Tier</div>
+          <div class="strip-value" style="color:var(--acc)">Essential</div>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-item">
+          <div class="strip-label">Support</div>
+          <div class="strip-value" style="color:var(--w2)">24h SLA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY SECTION -->
+    <div id="section-activity" style="display:none">
+      <div class="page-header">
+        <div class="page-eyebrow">Audit Trail</div>
+        <h1 class="page-title">Activity Feed</h1>
+        <p class="page-sub">Complete log of every agent action · EU AI Act Art. 12 compliant</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">All actions</span>
+          <span class="panel-badge badge-grn" id="feed-count">0 events today</span>
+        </div>
+        <div class="panel-body" style="padding:0 18px">
+          <div class="feed" id="activity-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI SECTION -->
+    <div id="section-roi" style="display:none">
+      <div class="page-header">
+        <div class="page-eyebrow">Return on Investment</div>
+        <h1 class="page-title">ROI Tracker</h1>
+        <p class="page-sub">Measured at 30 · 60 · 90 days from activation</p>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi grn">
+          <div class="kpi-label">Day 30 savings</div>
+          <div class="kpi-value" id="roi-30">—</div>
+          <div class="kpi-delta">projected</div>
+        </div>
+        <div class="kpi acc">
+          <div class="kpi-label">Day 60 savings</div>
+          <div class="kpi-value" id="roi-60">—</div>
+          <div class="kpi-delta">projected</div>
+        </div>
+        <div class="kpi grn">
+          <div class="kpi-label">Day 90 savings</div>
+          <div class="kpi-value" id="roi-90">—</div>
+          <div class="kpi-delta">projected</div>
+        </div>
+        <div class="kpi amb">
+          <div class="kpi-label">Year 1 total</div>
+          <div class="kpi-value">€19K</div>
+          <div class="kpi-delta up">conservative estimate</div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <div class="panel-head">
+          <span class="panel-title">ROI baseline — Inmaculada Sierra</span>
+          <span class="panel-badge badge-acc">Real data</span>
+        </div>
+        <div class="panel-body">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+            <div>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--w3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Manual cost today</div>
+              <div style="font-size:22px;font-weight:800;color:var(--red)">€29,640</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:4px">183 h/month × €13.5/h × 12</div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--w3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Conservative saving (65%)</div>
+              <div style="font-size:22px;font-weight:800;color:var(--grn)">€19,266</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:4px">3.3× ROI · 3.7 months payback</div>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--w3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Maximum saving (100%)</div>
+              <div style="font-size:22px;font-weight:800;color:var(--grn)">€29,640</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:4px">5.0× ROI · 2.4 months payback</div>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--brd2);font-family:var(--mono);font-size:11px;color:var(--w3)">
+            ROI report delivered at Day 30 · Day 60 · Day 90 from activation. If measured ROI falls more than 20% below estimate, Agentic Zero rebuilds at no cost.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLIANCE SECTION -->
+    <div id="section-compliance" style="display:none">
+      <div class="page-header">
+        <div class="page-eyebrow">Guardian Protocol</div>
+        <h1 class="page-title">Compliance Status</h1>
+        <p class="page-sub">Real-time compliance monitoring · BPMN-OTC-001</p>
+      </div>
+      <div class="cert-panel" style="margin-bottom:20px">
+        <div class="cert-logo">G</div>
+        <div class="cert-body">
+          <div class="cert-title">Guardian Certificate · CERTIFIED</div>
+          <div class="cert-name">OTC Autonomous Agent · BPMN-OTC-001</div>
+          <div class="cert-meta">Multi-model consensus: grok-3-mini · gemini-2.5-flash · claude-haiku · Score: 91.9%</div>
+        </div>
+        <div class="cert-score">91.9%</div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Framework compliance</span>
+          <span class="panel-badge badge-grn">All active</span>
+        </div>
+        <div class="panel-body">
+          <div class="compliance-grid">
+            <div class="comp-item">
+              <span class="comp-icon">🇪🇺</span>
+              <div>
+                <div class="comp-label">EU AI Act</div>
+                <div class="comp-status pass">CERTIFIED · Limited risk</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <span class="comp-icon">📋</span>
+              <div>
+                <div class="comp-label">ISO/IEC 42001</div>
+                <div class="comp-status pass">CERTIFIED · 78%</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <span class="comp-icon">🛡️</span>
+              <div>
+                <div class="comp-label">NIST AI RMF</div>
+                <div class="comp-status pass">CERTIFIED · 100%</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <span class="comp-icon">🔒</span>
+              <div>
+                <div class="comp-label">GDPR</div>
+                <div class="comp-status cond">CONDITIONAL · DPA active</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <span class="comp-icon">📊</span>
+              <div>
+                <div class="comp-label">Audit trail</div>
+                <div class="comp-status pass">ACTIVE · Art. 12 compliant</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <span class="comp-icon">👁️</span>
+              <div>
+                <div class="comp-label">Human oversight</div>
+                <div class="comp-status pass">ACTIVE · Escalation enabled</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESCALATIONS SECTION -->
+    <div id="section-escalations" style="display:none">
+      <div class="page-header">
+        <div class="page-eyebrow">Human Review</div>
+        <h1 class="page-title">Escalations</h1>
+        <p class="page-sub">Cases requiring your attention · Agent paused on these items</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Pending review</span>
+          <span class="panel-badge badge-amb" id="esc-badge">0 items</span>
+        </div>
+        <div class="panel-body">
+          <div class="esc-empty">
+            <div class="esc-empty-icon">✓</div>
+            <div class="esc-empty-text">No escalations pending</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--w3);margin-top:4px">The agent is processing all orders autonomously</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+const STATE = {
+  ordersToday: 0,
+  autoRate: 0,
+  timeSaved: 0,
+  escalations: 0,
+  activities: [],
+  activationDate: new Date(),
+  targetOrders: 47,
+  targetAutoRate: 82,
+};
+
+// ── CLOCK ─────────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toTimeString().slice(0,8);
+  document.getElementById('last-update').textContent =
+    'Last updated ' + now.toTimeString().slice(0,5);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── CERT VALID DATE ───────────────────────────────────────────────────────
+function setCertDate() {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() + 1);
+  document.getElementById('cert-valid').textContent =
+    d.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+setCertDate();
+
+// ── NEXT QBR ──────────────────────────────────────────────────────────────
+function setNextQBR() {
+  const d = new Date();
+  d.setDate(d.getDate() + 90);
+  document.getElementById('next-qbr').textContent =
+    d.toLocaleDateString('en-GB', { day:'2-digit', month:'short' });
+}
+setNextQBR();
+
+// ── VOLUME CHART ──────────────────────────────────────────────────────────
+function buildChart() {
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Today'];
+  const vals = [44, 51, 38, 46, 53, 12, 47];
+  const max = Math.max(...vals);
+  const bars = document.getElementById('vol-chart');
+  const labels = document.getElementById('vol-labels');
+  bars.innerHTML = '';
+  labels.innerHTML = '';
+  vals.forEach((v, i) => {
+    const b = document.createElement('div');
+    b.className = 'chart-bar' + (i === 6 ? ' today' : '');
+    b.style.height = Math.round((v / max) * 100) + '%';
+    b.title = v + ' orders';
+    bars.appendChild(b);
+    const l = document.createElement('div');
+    l.className = 'chart-label';
+    l.textContent = days[i];
+    labels.appendChild(l);
+  });
+}
+buildChart();
+
+// ── ACTIVITY EVENTS ───────────────────────────────────────────────────────
+const EVENTS = [
+  { time: '09:41', color: 'var(--grn)', text: '<b>Order #OTC-1147</b> received and validated — stock confirmed', tag: 'AUTO' },
+  { time: '09:38', color: 'var(--acc)', text: '<b>Payment processed</b> for Order #OTC-1146 — EUR 4,280', tag: 'AUTO' },
+  { time: '09:35', color: 'var(--grn)', text: '<b>Order #OTC-1146</b> shipped — tracking generated', tag: 'AUTO' },
+  { time: '09:31', color: 'var(--grn)', text: '<b>Confirmation sent</b> to customer Distribuciones Murcia S.L.', tag: 'AUTO' },
+  { time: '09:28', color: 'var(--acc)', text: '<b>Order #OTC-1145</b> complete — cycle time 4.2 min', tag: 'AUTO' },
+  { time: '09:15', color: 'var(--amb)', text: '<b>Credit check flagged</b> for Order #OTC-1144 — limit exceeded 8%', tag: 'ESCALATED' },
+  { time: '09:12', color: 'var(--grn)', text: '<b>Order #OTC-1143</b> validated — all rules passed', tag: 'AUTO' },
+  { time: '08:58', color: 'var(--grn)', text: '<b>Agent started</b> — 47 orders in queue', tag: 'SYSTEM' },
+];
+
+function renderFeed(containerId, limit) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const items = limit ? EVENTS.slice(0, limit) : EVENTS;
+  el.innerHTML = items.map(e => `
+    <div class="feed-item">
+      <span class="feed-time">${e.time}</span>
+      <div class="feed-dot" style="background:${e.color}"></div>
+      <span class="feed-text">${e.text}</span>
+      <span class="feed-tag">${e.tag}</span>
+    </div>`).join('');
+  if (containerId === 'activity-full') {
+    document.getElementById('feed-count').textContent = EVENTS.length + ' events today';
+  }
+}
+
+// ── KPI ANIMATION ─────────────────────────────────────────────────────────
+function animateKPIs() {
+  const ordersEl  = document.getElementById('kpi-orders');
+  const autoEl    = document.getElementById('kpi-auto');
+  const timeEl    = document.getElementById('kpi-time');
+  const escEl     = document.getElementById('kpi-esc');
+
+  let o = 0, a = 0, t = 0;
+  const targetO = 47, targetA = 82, targetT = 4;
+  const steps = 40;
+  let i = 0;
+
+  const tick = setInterval(() => {
+    i++;
+    o = Math.min(Math.round(targetO * i / steps), targetO);
+    a = Math.min(Math.round(targetA * i / steps), targetA);
+    t = Math.min(+(targetT * i / steps).toFixed(1), targetT);
+    ordersEl.textContent = o;
+    autoEl.textContent   = a + '%';
+    timeEl.textContent   = t + 'h';
+    escEl.textContent    = '0';
+    if (i >= steps) clearInterval(tick);
+  }, 30);
+
+  document.getElementById('kpi-orders-delta').textContent = '↑ 6% vs yesterday';
+  document.getElementById('kpi-auto-delta').textContent   = 'of orders processed autonomously';
+  document.getElementById('kpi-time-delta').textContent   = 'vs manual processing (10 min/order)';
+  document.getElementById('kpi-esc-delta').textContent    = 'require human review';
+}
+
+// ── ROI ANIMATION ─────────────────────────────────────────────────────────
+function animateROI() {
+  const daysSinceActivation = 1;
+  const dailySavings = 19266 / 365;
+  const hoursPerDay  = 183 / 22;
+  const savingsToDate = Math.round(dailySavings * daysSinceActivation);
+  const hoursToDate   = +(hoursPerDay * daysSinceActivation).toFixed(1);
+  const ordersToDate  = 47;
+
+  document.getElementById('roi-hours').textContent   = hoursToDate + ' h';
+  document.getElementById('roi-orders').textContent  = ordersToDate;
+  document.getElementById('roi-savings').textContent = '€' + savingsToDate;
+  document.getElementById('roi-annual').textContent  = '€' + Math.round(dailySavings * 365).toLocaleString();
+  document.getElementById('roi-day-badge').textContent = 'Day ' + daysSinceActivation;
+
+  setTimeout(() => {
+    document.getElementById('roi-bar-hours').style.width  = '12%';
+    document.getElementById('roi-bar-orders').style.width = '9%';
+    document.getElementById('roi-bar-savings').style.width = '3%';
+  }, 300);
+
+  // 30/60/90 projections
+  document.getElementById('roi-30').textContent = '€' + Math.round(dailySavings * 30 * 0.65).toLocaleString();
+  document.getElementById('roi-60').textContent = '€' + Math.round(dailySavings * 60 * 0.72).toLocaleString();
+  document.getElementById('roi-90').textContent = '€' + Math.round(dailySavings * 90 * 0.80).toLocaleString();
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+function showSection(name) {
+  ['overview','activity','roi','compliance','escalations'].forEach(s => {
+    document.getElementById('section-' + s).style.display = s === name ? '' : 'none';
+  });
+  document.querySelectorAll('.nav-item').forEach((el, i) => {
+    const names = ['overview','activity','roi','compliance','escalations'];
+    el.classList.toggle('active', names[i] === name);
+  });
+  if (name === 'activity') renderFeed('activity-full', null);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+function init() {
+  animateKPIs();
+  animateROI();
+  renderFeed('activity-preview', 4);
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

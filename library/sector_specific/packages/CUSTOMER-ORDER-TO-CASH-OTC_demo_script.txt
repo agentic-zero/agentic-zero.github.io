@@ -1,0 +1,6 @@
+1. Open with current-state pain: one full-time operator manually handling OTC for transport orders, exposed to compliance gaps in delivery docs, invoicing, and EU transport regs—taking 25+ hours/week.  
+2. Launch otc_transport_autonomous_agent live; show it ingesting a batch of orders and auto-generating compliant shipping docs, CMR notes, and invoices in <90 seconds.  
+3. Trigger real-time compliance engine: agent flags and auto-remediates a weight-manifest mismatch against ADR rules, producing an audit-ready PDF trail.  
+4. Execute end-to-end cash cycle: agent posts goods issue, creates customer invoice per agreed tariff, and posts receipt—zero manual touches after approval gate.  
+5. Surface ROI dashboard: calculate 15 hours/week saved × €45 fully-loaded operator cost = €2,700/month; at €1,500 one-time price this yields 6.0x annual return within 4 weeks.  
+6. Close with one-click compliance report export for the executive team and next-step deployment timeline.

@@ -1,0 +1,17 @@
+{
+  "job_id": "review_20260617_172244_648788",
+  "job_type": "review",
+  "payload": {
+    "process_id": "CUSTOMER-ORDER-TO-CASH-OTC",
+    "certificate_id": "AZ-CERT-CUSTOMER-ORDER-TO-CASH-OTC-20260617"
+  },
+  "priority": 5,
+  "retries": 0,
+  "max_retries": 3,
+  "created_at": "2026-06-17T17:22:44.648817",
+  "status": "pending",
+  "started_at": null,
+  "completed_at": null,
+  "error": null,
+  "result": null
+}

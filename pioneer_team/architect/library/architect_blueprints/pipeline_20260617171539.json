@@ -1,0 +1,57 @@
+{
+  "pipeline_id": "20260617171539",
+  "started_at": "2026-06-17T15:15:39.618227+00:00",
+  "completed_at": "2026-06-17T15:15:39.850076+00:00",
+  "company": "",
+  "process": "",
+  "status": "complete",
+  "stages": [
+    {
+      "stage": "1_functional_translator",
+      "status": "skipped",
+      "output_path": "..\\..\\clients\\inmaculada\\functional_analysis_inmaculada.json",
+      "output_id": "",
+      "score": 0.0,
+      "issues": [],
+      "warnings": [],
+      "duration_sec": 0.0
+    },
+    {
+      "stage": "2_siop_generator",
+      "status": "ok",
+      "output_path": "library\\siop_internal\\SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539.json",
+      "output_id": "SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539",
+      "score": 0.87,
+      "issues": [],
+      "warnings": [],
+      "duration_sec": 0.18
+    },
+    {
+      "stage": "3_siop_validator",
+      "status": "warn",
+      "output_path": "library\\siop_validations\\VAL-siop_empresa_transportes_inmaculada_sierra_order_to_cash_otc_20260617171539-20260617171539.json",
+      "output_id": "VAL-siop_empresa_transportes_inmaculada_sierra_order_to_cash_otc_20260617171539-20260617171539",
+      "score": 0.98,
+      "issues": [],
+      "warnings": [
+        "data_requirements.data_classification: Data is not classified as master/transactional."
+      ],
+      "duration_sec": 0.04
+    },
+    {
+      "stage": "4_architect_bridge",
+      "status": "ok",
+      "output_path": "library\\architect_blueprints\\SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539_blueprint.json",
+      "output_id": "BP-SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539",
+      "score": 82.0,
+      "issues": [],
+      "warnings": [],
+      "duration_sec": 0.02
+    }
+  ],
+  "blueprint_path": "library\\architect_blueprints\\SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539_blueprint.json",
+  "blueprint_id": "BP-SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539",
+  "ready_for_builder": true,
+  "blocking_issues": [],
+  "next_step": "python builder.py --blueprint library\\architect_blueprints\\SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539_blueprint.json"
+}

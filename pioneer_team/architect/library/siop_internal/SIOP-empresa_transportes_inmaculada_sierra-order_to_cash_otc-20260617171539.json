@@ -1,0 +1,407 @@
+{
+  "siop_id": "SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171539",
+  "created_at": "2026-06-17T17:15:39.794807",
+  "source_functional_analysis_id": "FA-empresa-transportes-order-to-cash-20260616",
+  "internal_only": true,
+  "mantra": "Does this make it feel like a living enterprise?",
+  "executive_summary": {
+    "process_name": "Order-to-Cash OTC",
+    "validated_description": "Proceso OTC para empresa de transporte de distribucion. Un unico operador full-time gestiona 50 ordenes diarias (ZEST x35 + ZURG x8 + ZINT x5 + ZDEV x2) combinando transacciones SAP ECC y un TMS externo para asignacion de rutas. Los puntos criticos son la validacion de credito (FD32), la disponibilidad de capacidad de transporte en el TMS (metros lineales), y la verificacion de precios de condicion (VK11). El 90pct de clientes son B2B con pago a credito 30-60 dias. El 10pct son nuevos clientes con pago anticipado.",
+    "business_goal": "Enable safe agentic automation for Order-to-Cash OTC while preserving control, traceability and continuous improvement.",
+    "value_baseline": {
+      "volume": "50 ordenes/dia -- ~1100/mes",
+      "team_size": "1 operador full-time",
+      "documentation_score": 82.0,
+      "confidence": 0.87
+    },
+    "recommended_route": "Essential",
+    "confidence": 0.87
+  },
+  "business_context": {
+    "company": "Empresa Transportes Inmaculada Sierra",
+    "sector": "transport_distribution",
+    "erp": "SAP ECC 6.0 EHP8 SPS15",
+    "volume": "50 ordenes/dia -- ~1100/mes",
+    "team_size": "1 operador full-time",
+    "documentation_score": 82.0,
+    "compliance_implications": [
+      "EU AI Act",
+      "ISO/IEC 42001",
+      "NIST AI RMF"
+    ]
+  },
+  "process_flow": [
+    {
+      "step_id": "STEP-01",
+      "name": "Order Received",
+      "owner": "SAP SD Automatic",
+      "system": "SAP ECC -- VBAK VBAP",
+      "inputs": [
+        "customer_order",
+        "order_type_code",
+        "delivery_address",
+        "time_window",
+        "weight_kg",
+        "linear_meters"
+      ],
+      "outputs": [
+        "normalized_order",
+        "order_type_classified"
+      ],
+      "rule": "Clasificar por codigo: ZEST nacional estandar, ZURG urgente antes 10AM, ZINT internacional Portugal-Francia, ZDEV devolucion logistica inversa",
+      "automation_candidate": true,
+      "confidence": 0.95
+    },
+    {
+      "step_id": "STEP-02",
+      "name": "Validate Order Data",
+      "owner": "Agent -- replaces manual operator",
+      "system": "SAP ECC -- VBAP",
+      "inputs": [
+        "normalized_order",
+        "mandatory_fields_list"
+      ],
+      "outputs": [
+        "data_validation_result",
+        "issues_list"
+      ],
+      "rule": "Verificar coherencia matematica de pesos y volumenes. Verificar campos obligatorios: direccion carga/descarga, ventanas horarias. ZINT requiere documentacion de transito internacional.",
+      "automation_candidate": true,
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-03",
+      "name": "Credit Check FD32",
+      "owner": "Agent -- SAP FD32",
+      "system": "SAP FI -- FD32 BAPI_CREDIT_CHECK",
+      "inputs": [
+        "customer_id",
+        "order_value"
+      ],
+      "outputs": [
+        "credit_status",
+        "overdue_days",
+        "credit_limit",
+        "credit_used"
+      ],
+      "rule": "Si facturas vencidas mas de 15 dias: bloquear orden y escalar a Finanzas -- NO procesar. Si SAP marca bloqueo financiero: misma ruta. Cliente nuevo con pago anticipado: escalar a operador para match de extracto bancario.",
+      "automation_candidate": true,
+      "confidence": 0.95
+    },
+    {
+      "step_id": "STEP-04",
+      "name": "Price Validation VK11",
+      "owner": "Agent -- SAP SD",
+      "system": "SAP SD -- VK11 condiciones de precio",
+      "inputs": [
+        "customer_id",
+        "material_transport",
+        "quoted_price"
+      ],
+      "outputs": [
+        "condition_price",
+        "price_discrepancy_pct",
+        "price_valid"
+      ],
+      "rule": "Cada cliente recurrente tiene tabla de tarifas en VK11. Comparar precio cotizado vs condicion registrada con tolerancia del 1pct. Si variacion supera 1pct: bloquear con motivo Discrepancia de Precio y escalar a Operaciones.",
+      "automation_candidate": true,
+      "confidence": 0.92
+    },
+    {
+      "step_id": "STEP-05",
+      "name": "Capacity Check TMS",
+      "owner": "Agent -- TMS External API",
+      "system": "TMS externo -- API REST -- interfaz personalizada SAP",
+      "inputs": [
+        "route_date",
+        "linear_meters",
+        "order_type"
+      ],
+      "outputs": [
+        "capacity_available",
+        "route_id",
+        "alternative_slots"
+      ],
+      "rule": "El stock en transporte son metros lineales de camion en ruta. Si ruta colapsada: generar borrador email al cliente con las 2 proximas ventanas disponibles segun TMS usando IA generativa con tono corporativo -- dejar en borrador para que operador solo pulse Enviar. ZURG tiene prioridad de asignacion de ruta.",
+      "automation_candidate": true,
+      "confidence": 0.88
+    },
+    {
+      "step_id": "STEP-06",
+      "name": "Process Payment",
+      "owner": "Agent -- SAP FI",
+      "system": "SAP FI -- VF01 VF04",
+      "inputs": [
+        "order_id",
+        "delivery_doc",
+        "payment_terms"
+      ],
+      "outputs": [
+        "invoice_document",
+        "fi_posting"
+      ],
+      "rule": "90pct clientes B2B credito 30-60 dias: factura automatica VF01/VF04 tras liquidacion transporte -- apunte contable FI automatico. 10pct clientes nuevos pago anticipado: agente lee extracto bancario PDF para match antes de liberar pedido comercial.",
+      "automation_candidate": true,
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-07",
+      "name": "Ship Order VL01N",
+      "owner": "Agent -- SAP SD + TMS",
+      "system": "SAP SD -- VL01N + TMS externo",
+      "inputs": [
+        "order_id",
+        "capacity_confirmed",
+        "route_id"
+      ],
+      "outputs": [
+        "delivery_document",
+        "carrier_assigned",
+        "estimated_delivery"
+      ],
+      "rule": "Crear documento entrega VL01N en SAP. Asignar ruta en TMS externo. ZURG: prioridad maxima de asignacion -- entrega garantizada antes de 10AM dia siguiente.",
+      "automation_candidate": true,
+      "confidence": 0.92
+    },
+    {
+      "step_id": "STEP-08",
+      "name": "Send Confirmation",
+      "owner": "Agent -- SAP Output",
+      "system": "SAP SD -- output type ZED1",
+      "inputs": [
+        "order_id",
+        "delivery_document",
+        "customer_email"
+      ],
+      "outputs": [
+        "confirmation_sent",
+        "confirmation_timestamp"
+      ],
+      "rule": "Disparar output type SAP ZED1 para envio automatico de confirmacion al cliente. Para ZDEV devoluciones: confirmar recogida con ventana horaria.",
+      "automation_candidate": true,
+      "confidence": 0.95
+    }
+  ],
+  "data_requirements": {
+    "input_objects": [
+      "VBAK -- cabecera orden venta",
+      "VBAP -- posicion orden venta",
+      "KNA1 -- maestro clientes",
+      "FD32 -- limite credito cliente",
+      "VK11 -- condiciones precio cliente",
+      "TMS_capacity_API -- metros lineales disponibles por ruta y fecha",
+      "LFB1 -- datos bancarios cliente para match anticipado",
+      "email_extractos_PDF -- buzon extractos bancarios clientes nuevos"
+    ],
+    "output_objects": [
+      "VL01N -- documento entrega",
+      "VF01 -- factura cliente",
+      "FI_posting -- apunte contable",
+      "TMS_route_assignment -- asignacion ruta TMS",
+      "email_draft_capacity -- borrador email falta capacidad",
+      "email_confirmation -- confirmacion pedido cliente",
+      "escalation_notification -- notificacion escalado interno"
+    ],
+    "documents": [
+      "CMR -- carta de porte internacional ZINT",
+      "Packing List -- lista empaque ZINT",
+      "extracto_bancario_PDF -- match pago anticipado clientes nuevos"
+    ],
+    "master_data": [],
+    "transactional_data": [],
+    "data_quality_risks": [
+      "Missing master data",
+      "Incomplete transaction data",
+      "Inconsistent system ownership"
+    ]
+  },
+  "business_rules": {
+    "decision_rules": [
+      "Credito vencido mas de 15 dias: bloquear y escalar a Finanzas -- nunca procesar autonomamente",
+      "Bloqueo financiero SAP FD32: misma ruta que credito vencido",
+      "Discrepancia precio VK11 superior a 1pct: bloquear con motivo Discrepancia de Precio",
+      "Sin capacidad TMS: generar borrador email con 2 ventanas alternativas -- no cancelar orden",
+      "ZURG prioridad maxima asignacion ruta TMS: entrega antes 10AM dia siguiente",
+      "ZINT requiere validacion documental CMR y Packing List antes de proceder",
+      "Cliente nuevo pago anticipado: no liberar sin confirmar extracto bancario",
+      "Clientes VIP o con condiciones especiales: consultar tabla condiciones VK11 antes de validar precio",
+      "Fuera de horario operativo 07:00-22:00 CET: encolar ordenes sin procesarlas autonomamente"
+    ],
+    "approval_rules": [
+      "Credito vencido mas de 15 dias: bloquear y escalar a Finanzas -- nunca procesar autonomamente",
+      "Bloqueo financiero SAP FD32: misma ruta que credito vencido"
+    ],
+    "exception_rules": [
+      "Exception handling required: Falta de capacidad TMS en ruta solicitada",
+      "Exception handling required: Cliente con facturas vencidas mas de 15 dias",
+      "Exception handling required: Discrepancia de precio superior a 1pct vs VK11",
+      "Exception handling required: Cliente nuevo pago anticipado sin extracto bancario confirmado",
+      "Exception handling required: ZINT sin documentacion de transito internacional",
+      "Exception handling required: Error de conexion SAP RFC",
+      "Exception handling required: Error de conexion TMS API externa",
+      "Exception handling required: Orden fuera de ventana horaria operativa"
+    ],
+    "missing_rules": []
+  },
+  "compliance": {
+    "applicable_frameworks": [
+      "EU AI Act",
+      "ISO/IEC 42001",
+      "NIST AI RMF"
+    ],
+    "guardian_requirements": [
+      "Identity & Access",
+      "Real-time Audit Trails",
+      "Escalation Pathways",
+      "Human Accountability",
+      "AI Risk Classification",
+      "Explainability",
+      "Model Monitoring"
+    ],
+    "audit_trail_required": true,
+    "human_review_required": false,
+    "regulated_process": false
+  },
+  "autonomy_design": {
+    "autonomous_actions": [
+      "Leer y clasificar ordenes SAP VBAK/VBAP",
+      "Validar datos de pedido formato y coherencia",
+      "Ejecutar credit check FD32",
+      "Verificar precio condicion VK11",
+      "Consultar capacidad TMS API",
+      "Crear entrega VL01N",
+      "Generar factura VF01 clientes B2B credito",
+      "Asignar ruta TMS",
+      "Enviar confirmacion SAP output ZED1",
+      "Generar borrador email falta capacidad con IA"
+    ],
+    "approval_required": [
+      "Liberar bloqueo credito FD32",
+      "Autorizar excepcion precio VK11 superior a 1pct",
+      "Confirmar match extracto bancario clientes pago anticipado",
+      "Aprobar documentacion ZINT transito internacional"
+    ],
+    "always_human": [
+      "Cancelacion definitiva de orden",
+      "Modificacion limite credito cliente",
+      "Acuerdos especiales de precio fuera de VK11",
+      "Escalado a direccion por impacto economico alto"
+    ],
+    "thresholds": {
+      "approval_threshold": "Ordenes superiores a umbral a definir en kick-off -- escalado automatico a Inmaculada Sierra",
+      "documentation_score": 82.0
+    },
+    "escalation_paths": [
+      "Escalate low-confidence decisions",
+      "Escalate exceptions not covered by business rules",
+      "Escalate regulated decisions when required"
+    ],
+    "agentic_shield_requirements": [
+      "Identity & Access",
+      "Real-time Audit Trails",
+      "Escalation Pathways",
+      "Human Accountability",
+      "AI Risk Classification",
+      "Explainability",
+      "Model Monitoring",
+      "Action Thresholds",
+      "Fail-Safes"
+    ]
+  },
+  "acceptance_criteria": {
+    "kpis": [
+      "tasa_automatizacion_pct -- objetivo 80pct ordenes procesadas sin intervencion humana",
+      "tiempo_ciclo_minutos -- objetivo menos de 5 minutos por orden",
+      "tasa_escalado_pct -- objetivo menos de 20pct de ordenes escaladasq",
+      "ordenes_dia -- volumen procesado vs recibido",
+      "ahorro_anual_eur -- objetivo 19266 EUR conservador",
+      "disponibilidad_agente_pct -- objetivo 99pct en horario operativo"
+    ],
+    "certification_metrics": [
+      "All mandatory data objects available",
+      "All critical exceptions have handling path",
+      "Autonomy thresholds configured",
+      "Audit trail active",
+      "Human escalation path tested"
+    ],
+    "minimum_confidence": 0.75,
+    "test_scenarios": [
+      "Happy path test for Order-to-Cash OTC",
+      "Missing data exception test",
+      "System unavailable exception test",
+      "Human approval escalation test",
+      "Audit trail verification test"
+    ],
+    "pass_fail_criteria": [
+      "No critical missing information",
+      "Process flow contains at least one executable step",
+      "Systems and data objects are defined",
+      "Business rules or Fast Track validation captured",
+      "Autonomy design includes escalation handling"
+    ]
+  },
+  "learning_hooks": {
+    "enabled": true,
+    "observation_points": [
+      "step execution time",
+      "exception frequency",
+      "human escalation frequency",
+      "manual override frequency",
+      "KPI deviation from target"
+    ],
+    "failure_patterns_to_monitor": [
+      "Falta de capacidad TMS en ruta solicitada",
+      "Cliente con facturas vencidas mas de 15 dias",
+      "Discrepancia de precio superior a 1pct vs VK11",
+      "Cliente nuevo pago anticipado sin extracto bancario confirmado",
+      "ZINT sin documentacion de transito internacional",
+      "Error de conexion SAP RFC",
+      "Error de conexion TMS API externa",
+      "Orden fuera de ventana horaria operativa"
+    ],
+    "kpi_deviation_signals": [
+      "tasa_automatizacion_pct -- objetivo 80pct ordenes procesadas sin intervencion humana",
+      "tiempo_ciclo_minutos -- objetivo menos de 5 minutos por orden",
+      "tasa_escalado_pct -- objetivo menos de 20pct de ordenes escaladasq",
+      "ordenes_dia -- volumen procesado vs recibido",
+      "ahorro_anual_eur -- objetivo 19266 EUR conservador",
+      "disponibilidad_agente_pct -- objetivo 99pct en horario operativo"
+    ],
+    "feedback_targets": [
+      "business_rules",
+      "exceptions",
+      "autonomy_design",
+      "acceptance_criteria",
+      "agent_blueprint"
+    ],
+    "improvement_loop": "observe_analyze_recommend_validate_deploy"
+  },
+  "missing_information": [
+    {
+      "field": "sap_rfc_credentials",
+      "reason": "Credenciales RFC entorno QA pendientes de Carlos Mendoza -- llegan al firmar contrato",
+      "required_for": "integracion tecnica SAP",
+      "severity": "high"
+    },
+    {
+      "field": "tms_api_endpoint",
+      "reason": "URL y API key del TMS externo pendientes de Carlos Mendoza",
+      "required_for": "check capacidad y asignacion rutas",
+      "severity": "high"
+    },
+    {
+      "field": "autonomy_threshold_value",
+      "reason": "Importe maximo decision autonoma a definir en kick-off con Inmaculada",
+      "required_for": "autonomy_design threshold",
+      "severity": "medium"
+    },
+    {
+      "field": "email_draft_template",
+      "reason": "Template corporativo exacto para emails de falta de capacidad",
+      "required_for": "generacion borradores email cliente",
+      "severity": "low"
+    }
+  ],
+  "ready_for_validation": true,
+  "ready_for_architect": true
+}

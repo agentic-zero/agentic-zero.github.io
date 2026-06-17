@@ -1,0 +1,86 @@
+{
+  "validation_id": "VAL-siop_empresa_transportes_inmaculada_sierra_order_to_cash_otc_20260617171640-20260617171640",
+  "siop_id": "SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260617171640",
+  "validated_at": "2026-06-17T17:16:40.682097",
+  "status": "PASS_WITH_WARNINGS",
+  "score": 0.98,
+  "architect_ready": true,
+  "builder_ready": false,
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "severity": "warning",
+      "section": "data_requirements",
+      "field": "data_classification",
+      "message": "Data is not classified as master/transactional.",
+      "recommendation": "Classify relevant data objects for agent data model."
+    }
+  ],
+  "section_scores": [
+    {
+      "section": "executive_summary",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "business_context",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "process_flow",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "data_requirements",
+      "score": 0.85,
+      "passed": true,
+      "issues": [
+        {
+          "severity": "warning",
+          "section": "data_requirements",
+          "field": "data_classification",
+          "message": "Data is not classified as master/transactional.",
+          "recommendation": "Classify relevant data objects for agent data model."
+        }
+      ]
+    },
+    {
+      "section": "business_rules",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "compliance",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "autonomy_design",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "acceptance_criteria",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "section": "learning_hooks",
+      "score": 1.0,
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "required_human_review": false,
+  "notes": "SIOP can proceed to Architect.",
+  "mantra_check": "Does this make it feel like a living enterprise?"
+}

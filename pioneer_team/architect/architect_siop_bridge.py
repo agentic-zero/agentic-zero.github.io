@@ -489,12 +489,73 @@ def save_blueprint(blueprint: ArchitectBlueprint) -> Path:
     return filename
 
 
+def save_process_for_builder(blueprint: ArchitectBlueprint) -> Path:
+    """
+    Save a process entry in the format Builder expects.
+    Builder searches: library/*/processes/{process_id}.json
+    We write to:      library/sector_specific/processes/{process_id}.json
+    """
+    library_path = Path(os.getenv("LIBRARY_PATH", "library"))
+    processes_dir = library_path / "sector_specific" / "processes"
+    processes_dir.mkdir(parents=True, exist_ok=True)
+
+    bp = asdict(blueprint)
+
+    # Collect all unique inputs/outputs from steps
+    all_inputs  = list(dict.fromkeys(
+        inp for s in blueprint.steps for inp in s.inputs
+    ))[:15]
+    all_outputs = list(dict.fromkeys(
+        out for s in blueprint.steps for out in s.outputs
+    ))[:15]
+
+    process_entry = {
+        "process_id":          blueprint.process_id,
+        "name":                (blueprint.agent_description or blueprint.agent_class_name)[:80],
+        "framework":           "CUSTOMER_FUNCTIONAL_ANALYSIS",
+        "domain":              blueprint.sector or "operations",
+        "level":               "L3",
+        "description":         blueprint.agent_description,
+        "inputs":              all_inputs,
+        "outputs":             all_outputs,
+        "kpis":                blueprint.kpis,
+        "compliance_flags":    blueprint.compliance_frameworks + blueprint.shield_requirements,
+        "business_rules":      [e.condition for e in blueprint.escalations if e.condition],
+        "sector_applicability": [blueprint.sector or "all"],
+        "source":              "Architect SIOP Bridge -- Customer Pipeline",
+        "confidence":          blueprint.confidence_threshold,
+        # Extended fields -- Builder uses builder_prompt for LLM enrichment
+        "procedure_steps":     [asdict(s) for s in blueprint.steps],
+        "connectors":          [c.name for c in blueprint.connectors],
+        "escalation_types":    list(dict.fromkeys(e.trigger for e in blueprint.escalations)),
+        "builder_prompt":      blueprint.builder_prompt,
+        "blueprint_id":        blueprint.blueprint_id,
+        "siop_id":             blueprint.siop_id,
+        "company":             blueprint.company,
+        "erp":                 blueprint.erp,
+        "volume":              blueprint.volume,
+        "operating_hours":     blueprint.operating_hours,
+        "agent_class_name":    blueprint.agent_class_name,
+        "learning_hooks":      blueprint.learning_hooks,
+        "acceptance_tests":    blueprint.acceptance_tests,
+        "missing_info":        blueprint.missing_info,
+    }
+
+    filename = processes_dir / f"{blueprint.process_id}.json"
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(process_entry, f, indent=2, ensure_ascii=False)
+
+    print(f"Process entry saved for Builder: {filename}")
+    return filename
+
+
 def run_bridge(siop_path: str) -> ArchitectBlueprint:
     with open(siop_path, encoding="utf-8") as f:
         siop = json.load(f)
 
     blueprint = siop_to_blueprint(siop)
     path = save_blueprint(blueprint)
+    save_process_for_builder(blueprint)  # -> library/sector_specific/processes/{process_id}.json
 
     print(f"\n== Architect SIOP Bridge ==")
     print(f"  SIOP ID:          {blueprint.siop_id}")

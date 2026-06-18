@@ -1,0 +1,49 @@
+# AGENTIC ZERO -- OTC Agent -- Empresa Transportes Inmaculada Sierra
+# Entorno: QA
+# Generado: 2026-06-18
+# NUNCA subir este archivo al repositorio
+
+# ── SAP ECC QA ────────────────────────────────────────────────────────────────
+SAP_HOST=eccqa.company.test
+SAP_SYSNR=00
+SAP_CLIENT=200
+SAP_LANGUAGE=ES
+
+# Usuario agente (System user -- runtime del agente OTC)
+SAP_QA_USER_AUTO=QA_AUTOMATION
+SAP_QA_PASS_AUTO=AutoQA!2026Secure
+
+# Usuario tester funcional (Dialog -- pruebas manuales)
+SAP_QA_USER_TESTER=QA_TESTER01
+SAP_QA_PASS_TESTER=QaTest2026!#
+
+# Usuario tecnico (Dialog -- validacion tecnica Carlos Mendoza)
+SAP_QA_USER_TECH=QA_TECH01
+SAP_QA_PASS_TECH=TechQA$2026Pass
+
+# ── TMS EXTERNO ───────────────────────────────────────────────────────────────
+# Pendiente de Carlos Mendoza -- rellenar antes del go-live
+TMS_API_URL=PENDING_CARLOS_MENDOZA
+TMS_API_KEY=PENDING_CARLOS_MENDOZA
+
+# ── ESCALACIONES ─────────────────────────────────────────────────────────────
+ESCALATION_OPS=inmaculada@empresatransportes.com
+ESCALATION_FINANCE=finanzas@empresatransportes.com
+ESCALATION_IT=cmendoza@empresatransportes.com
+ESCALATION_AZ=alberto@agentic-zero.com
+
+# ── AGENTE ────────────────────────────────────────────────────────────────────
+# false = modo live (SAP real) | true = modo simulacion
+DRY_RUN=false
+
+AUDIT_LOG_PATH=logs/otc_audit_log.jsonl
+DASHBOARD_PATH=clients/inmaculada/dashboard_events.jsonl
+EMAIL_DRAFTS_PATH=clients/inmaculada/email_drafts
+
+# ── SCOUT / PROPUESTA ────────────────────────────────────────────────────────
+FORMSPREE_FORM_ID=xlgkgapl
+SCOUT_PROPOSALS_PATH=commercial/scout_comercial/proposals
+
+# ── LIBRARY ───────────────────────────────────────────────────────────────────
+LIBRARY_PATH=library
+AGENTIC_ZERO_ROOT=F:/agentic-zero

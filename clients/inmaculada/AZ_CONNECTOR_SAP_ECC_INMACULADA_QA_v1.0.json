@@ -1,0 +1,323 @@
+{
+  "_schema": "AZ-CONNECTOR-v1.0",
+  "_created": "2026-06-18",
+  "_note": "Credenciales referenciadas como variables de entorno -- NUNCA hardcodear en este archivo",
+
+  "connector_id": "SAP-ECC-INMACULADA-QA",
+  "connector_type": "sap_ecc",
+  "version": "1.0",
+  "status": "active",
+  "environment": "QA",
+
+  "client": {
+    "name": "Empresa Transportes Inmaculada Sierra",
+    "contact": "Carlos Mendoza",
+    "email": "cmendoza@empresatransportes.com",
+    "az_process": "CUSTOMER-ORDER-TO-CASH-OTC",
+    "az_tier": "Essential"
+  },
+
+  "system": {
+    "sid":           "ECCQA",
+    "client":        "200",
+    "hostname":      "eccqa.company.test",
+    "ip":            "10.20.30.40",
+    "port_sap_gui":  3200,
+    "port_rfc":      3300,
+    "system_nr":     "00",
+    "erp_version":   "SAP ECC 6.0 EHP8 SPS15",
+    "language":      "ES",
+    "timezone":      "Europe/Madrid",
+    "codepage":      "UTF-8"
+  },
+
+  "users": [
+    {
+      "user_id":       "QA_TESTER01",
+      "env_var_user":  "SAP_QA_USER_TESTER",
+      "env_var_pass":  "SAP_QA_PASS_TESTER",
+      "type":          "Dialog",
+      "role":          "SAP_ALL",
+      "purpose":       "functional_testing",
+      "allowed_operations": [
+        "read", "create_order", "validate_order", "credit_check",
+        "create_delivery", "post_invoice", "send_output"
+      ]
+    },
+    {
+      "user_id":       "QA_TECH01",
+      "env_var_user":  "SAP_QA_USER_TECH",
+      "env_var_pass":  "SAP_QA_PASS_TECH",
+      "type":          "Dialog",
+      "role":          "technical_consultant",
+      "purpose":       "technical_validation",
+      "allowed_operations": [
+        "read", "debug", "trace_rfc", "view_tables",
+        "test_bapi", "check_idoc", "view_logs"
+      ]
+    },
+    {
+      "user_id":       "QA_AUTOMATION",
+      "env_var_user":  "SAP_QA_USER_AUTO",
+      "env_var_pass":  "SAP_QA_PASS_AUTO",
+      "type":          "System",
+      "role":          "automation",
+      "purpose":       "agent_runtime",
+      "allowed_operations": [
+        "read_vbak", "read_vbap", "credit_check_fd32",
+        "price_check_vk11", "create_delivery_vl01n",
+        "post_invoice_vf01", "send_output_zed1",
+        "read_kna1", "read_lfb1"
+      ],
+      "primary": true,
+      "_note": "Este usuario es el que usa el agente OTC en produccion"
+    }
+  ],
+
+  "rfc_connection": {
+    "env_var_host":     "SAP_HOST",
+    "env_var_sysnr":    "SAP_SYSNR",
+    "env_var_client":   "SAP_CLIENT",
+    "env_var_user":     "SAP_QA_USER_AUTO",
+    "env_var_password": "SAP_QA_PASS_AUTO",
+    "env_var_language": "SAP_LANGUAGE",
+    "pool_size":        5,
+    "timeout_sec":      30,
+    "retry_attempts":   3,
+    "retry_delay_sec":  5
+  },
+
+  "modules": {
+    "SD": {
+      "active": true,
+      "tables":       ["VBAK", "VBAP", "VBEP", "VBUK", "LIPS"],
+      "transactions": ["VA01", "VA02", "VA03", "VL01N", "VL02N"],
+      "bapis": [
+        "BAPI_SALESORDER_CREATEFROMDAT2",
+        "BAPI_SALESORDER_CHANGE",
+        "BAPI_DELIVERYPROCESSING_EXEC",
+        "BAPI_MESSAGING_SEND"
+      ],
+      "custom_fields": {
+        "tms_interface": "Campos Z en VBAP para interfaz TMS externo",
+        "table": "VBAPZ",
+        "fields": ["ZLIN_METERS", "ZROUTE_ID", "ZTMS_STATUS"]
+      },
+      "output_types": ["ZED1"]
+    },
+    "FI": {
+      "active": true,
+      "tables":       ["BKPF", "BSEG", "KNA1", "KNKK"],
+      "transactions": ["FD32", "FD33", "VF01", "VF04", "FB03"],
+      "bapis": [
+        "BAPI_CREDIT_CHECK",
+        "BAPI_CUSTOMERCONTACT_CREATEFROMDATA",
+        "RV_INVOICE_CREATE"
+      ]
+    },
+    "MM": {
+      "active": true,
+      "tables":       ["MARA", "MARC", "MARD"],
+      "transactions": ["MM03", "MMBE"],
+      "bapis": [
+        "BAPI_MATERIAL_GETALL",
+        "BAPI_MATERIAL_AVAILABILITY"
+      ],
+      "_note": "MM usado solo para consultas de disponibilidad -- stock = capacidad TMS, no inventario fisico"
+    }
+  },
+
+  "pricing": {
+    "condition_table": "VK11",
+    "tolerance_pct":   1.0,
+    "bapi":            "BAPI_PRICES_CONDITIONS",
+    "customer_field":  "KUNNR",
+    "material_field":  "MATNR"
+  },
+
+  "credit": {
+    "transaction":     "FD32",
+    "bapi":            "BAPI_CREDIT_CHECK",
+    "overdue_days_threshold": 15,
+    "block_on_overdue": true,
+    "escalation_recipient_env": "ESCALATION_FINANCE"
+  },
+
+  "order_types": [
+    {
+      "code": "ZEST", "name": "Nacional Estandar",
+      "volume_per_day": 35, "delivery_hours": 48,
+      "priority": "normal", "international": false
+    },
+    {
+      "code": "ZURG", "name": "Urgente Express",
+      "volume_per_day": 8,  "delivery_hours": 10,
+      "priority": "high",   "international": false,
+      "cutoff_time": "10:00"
+    },
+    {
+      "code": "ZINT", "name": "Internacional",
+      "volume_per_day": 5,  "delivery_hours": 72,
+      "priority": "normal", "international": true,
+      "required_docs": ["CMR", "Packing List"]
+    },
+    {
+      "code": "ZDEV", "name": "Devolucion RMA",
+      "volume_per_day": 2,  "delivery_hours": 48,
+      "priority": "low",    "international": false,
+      "reverse_logistics": true
+    }
+  ],
+
+  "tms_external": {
+    "type":            "rest_api",
+    "env_var_url":     "TMS_API_URL",
+    "env_var_key":     "TMS_API_KEY",
+    "unit":            "linear_meters",
+    "max_capacity_m":  13.6,
+    "endpoints": {
+      "check_capacity": "POST /capacity/check",
+      "assign_route":   "POST /route/assign",
+      "get_slots":      "GET  /slots/available"
+    },
+    "timeout_sec":     10,
+    "_note": "Interfaz personalizada desarrollada por Carlos Mendoza -- documentacion pendiente"
+  },
+
+  "escalation_contacts": {
+    "ops":     "ESCALATION_OPS",
+    "finance": "ESCALATION_FINANCE",
+    "it":      "ESCALATION_IT",
+    "az":      "ESCALATION_AZ"
+  },
+
+  "operating_hours": {
+    "timezone":    "Europe/Madrid",
+    "weekdays":    "Mon-Fri",
+    "start":       "07:00",
+    "end":         "22:00",
+    "outside_behavior": "queue"
+  },
+
+  "env_file_template": {
+    "_instructions": "Copiar como .env en el directorio del agente. NUNCA subir al repo.",
+    "SAP_HOST":           "eccqa.company.test",
+    "SAP_SYSNR":          "00",
+    "SAP_CLIENT":         "200",
+    "SAP_LANGUAGE":       "ES",
+    "SAP_QA_USER_AUTO":   "QA_AUTOMATION",
+    "SAP_QA_PASS_AUTO":   "*** FILL FROM VAULT ***",
+    "SAP_QA_USER_TESTER": "QA_TESTER01",
+    "SAP_QA_PASS_TESTER": "*** FILL FROM VAULT ***",
+    "SAP_QA_USER_TECH":   "QA_TECH01",
+    "SAP_QA_PASS_TECH":   "*** FILL FROM VAULT ***",
+    "TMS_API_URL":        "*** PENDING CARLOS MENDOZA ***",
+    "TMS_API_KEY":        "*** PENDING CARLOS MENDOZA ***",
+    "ESCALATION_OPS":     "inmaculada@empresatransportes.com",
+    "ESCALATION_FINANCE": "finanzas@empresatransportes.com",
+    "ESCALATION_IT":      "cmendoza@empresatransportes.com",
+    "ESCALATION_AZ":      "alberto@agentic-zero.com",
+    "DRY_RUN":            "false",
+    "AUDIT_LOG_PATH":     "logs/otc_audit_log.jsonl",
+    "DASHBOARD_PATH":     "clients/inmaculada/dashboard_events.jsonl"
+  },
+
+  "test_cases": [
+    {
+      "id": "TC-01", "type": "ZEST",
+      "description": "Orden nacional estandar -- flujo feliz completo",
+      "expected": "complete", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-02", "type": "ZEST",
+      "description": "Cliente con credito vencido >15 dias",
+      "expected": "escalated:credit_overdue", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-03", "type": "ZURG",
+      "description": "Orden urgente -- prioridad maxima TMS",
+      "expected": "complete:priority", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-04", "type": "ZEST",
+      "description": "Sin capacidad TMS -- generar borrador email alternativas",
+      "expected": "escalated:no_capacity + email_draft", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-05", "type": "ZEST",
+      "description": "Discrepancia precio VK11 > 1%",
+      "expected": "escalated:price_discrepancy", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-06", "type": "ZINT",
+      "description": "Orden internacional sin documentacion CMR",
+      "expected": "escalated:international_docs", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-07", "type": "ZDEV",
+      "description": "Devolucion RMA -- logistica inversa",
+      "expected": "complete:reverse", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-08", "type": "ZEST",
+      "description": "Cliente nuevo pago anticipado",
+      "expected": "escalated:prepayment_pending", "user": "QA_TESTER01"
+    },
+    {
+      "id": "TC-09", "type": "RFC",
+      "description": "Conexion RFC -- ping BAPI_SYSTEM_GET_RELEASE",
+      "expected": "connected", "user": "QA_AUTOMATION"
+    },
+    {
+      "id": "TC-10", "type": "RFC",
+      "description": "TMS API -- check capacity endpoint",
+      "expected": "response_200", "user": "QA_AUTOMATION"
+    }
+  ],
+
+  "connector_catalog": {
+    "_note": "Este bloque define como registrar este conector en la biblioteca AZ para reutilizacion",
+    "category":       "erp",
+    "subcategory":    "sap_ecc",
+    "reusable":       true,
+    "sectors":        ["transport", "distribution", "logistics", "manufacturing"],
+    "erp_versions":   ["SAP ECC 6.0 EHP5+", "SAP ECC 6.0 EHP7", "SAP ECC 6.0 EHP8"],
+    "tags":           ["sap", "rfc", "bapi", "sd", "fi", "mm", "otc", "p2p"],
+    "compatible_processes": [
+      "BPMN-OTC-001", "BPMN-PTP-001", "BPMN-FIN-001",
+      "SCOR-D1", "SCOR-S1", "SCOR-M1"
+    ],
+    "next_connectors_to_build": [
+      {
+        "id":          "SAP-S4HANA",
+        "priority":    "high",
+        "trigger":     "Inmaculada go-live Q4 2027",
+        "delta_from_ecc": "OData APIs replace RFC in most cases -- adapter needed"
+      },
+      {
+        "id":          "TMS-GENERIC-REST",
+        "priority":    "high",
+        "trigger":     "Inmaculada TMS pendiente documentacion Carlos Mendoza",
+        "delta_from_ecc": "Pure REST -- no SAP dependency"
+      },
+      {
+        "id":          "ORACLE-ERP",
+        "priority":    "medium",
+        "trigger":     "Segundo cliente potencial sector pharma",
+        "delta_from_ecc": "SOAP/REST APIs -- different auth model"
+      },
+      {
+        "id":          "MS-DYNAMICS-365",
+        "priority":    "medium",
+        "trigger":     "Standard tier clients -- frequent ERP",
+        "delta_from_ecc": "OAuth2 + REST -- well documented"
+      },
+      {
+        "id":          "EMAIL-PDF-READER",
+        "priority":    "medium",
+        "trigger":     "Inmaculada pago anticipado extractos bancarios",
+        "delta_from_ecc": "IMAP + PDF parser -- no ERP dependency"
+      }
+    ]
+  }
+}

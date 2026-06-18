@@ -1,0 +1,32 @@
+{
+  "name": "Essential Blueprint Instruction Pack",
+  "version": "1.0.0",
+  "intended_paths": {
+    "python": "pioneer_team/architect/essential_blueprint.py",
+    "markdown": "docs/ESSENTIAL_BLUEPRINT_INSTRUCTION_PACK.md"
+  },
+  "required_artifacts": [
+    "functional_analysis_json",
+    "siop_internal_json",
+    "siop_validation_json",
+    "architect_blueprint_json",
+    "agent_runtime_py",
+    "sop_md",
+    "integration_guide_md",
+    "dashboard_html",
+    "roi_calculator_html",
+    "escalation_policy_md",
+    "guardian_certificate",
+    "auditor_decision_json",
+    "delivery_manifest_json",
+    "client_executive_summary_md"
+  ],
+  "final_statuses": [
+    "DELIVERABLE",
+    "DELIVERABLE_WITH_CONDITIONS",
+    "BLOCKED_MISSING_INFORMATION",
+    "BLOCKED_COMPLIANCE",
+    "BLOCKED_BUILD_FAILURE"
+  ],
+  "mantra": "Does this make it feel like a living enterprise?"
+}

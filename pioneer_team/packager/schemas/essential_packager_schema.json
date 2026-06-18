@@ -1,0 +1,16 @@
+{
+  "component": "essential_packager.py",
+  "version": "1.0.0",
+  "recommended_path": "pioneer_team/packager/essential_packager.py",
+  "input_dir": "clients/{client}/{process}/essential_package",
+  "outputs": [
+    "05_delivery/sop.md",
+    "05_delivery/integration_guide.md",
+    "05_delivery/escalation_policy.md",
+    "05_delivery/client_executive_summary.md",
+    "05_delivery/dashboard.html",
+    "05_delivery/roi_calculator.html",
+    "delivery_manifest.json"
+  ],
+  "next_component": "economics_engine.py or guardian.py"
+}

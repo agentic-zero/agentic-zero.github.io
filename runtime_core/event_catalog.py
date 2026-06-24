@@ -1,16 +1,20 @@
 """
 AGENTIC ZERO - RUNTIME CORE
-Event Catalog v1.0
+Event Catalog v2.0
 
 Role:
   Single source of truth for the event taxonomy consumed by EventRouter.
-  Builds/normalizes event_catalog.json (event_name, targets,
-  shield_required) and validates real event streams against it, flagging
-  event types that would otherwise route to NO_TARGET.
+  Builds/normalizes event_catalog.json by DERIVING it from the real swarm
+  topology (coordination/swarm_coordination_<process>.json), instead of a
+  hand-maintained list. Falls back to a small seed of runtime-infra events
+  (heartbeat/degradation/shield) that are not part of any client topology.
+
+  Organism name -> target slug rule (matches 10_swarm/organisms/<SLUG>):
+    "Demand Planning Organism" -> "DEMAND_PLANNING"
 
 Input:
-  event_catalog.json (existing, optional)
-  swarm_events.jsonl / learning_events.jsonl / shield_events.jsonl (optional, for validation)
+  coordination/swarm_coordination_<process>.json (organisms + event_routes)
+  event_catalog.json (existing, optional - human overrides are preserved)
 
 Output:
   event_catalog.json
@@ -22,26 +26,26 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
-# Canonical event taxonomy known to be emitted by runtime_core/ and
-# the_machine/. New event types should be added here as modules evolve;
-# event_catalog.py is the only place this list should be edited.
-CANONICAL_EVENTS: list[dict[str, Any]] = [
-    {"event_name": "test_event", "category": "swarm", "targets": ["pulse_aggregator"], "shield_required": False},
-    {"event_name": "heartbeat_received", "category": "runtime", "targets": ["health_manager"], "shield_required": False},
-    {"event_name": "heartbeat_unknown_organism", "category": "runtime", "targets": ["health_manager", "degradation_manager"], "shield_required": True},
-    {"event_name": "heartbeat_check_ok", "category": "runtime", "targets": ["health_manager"], "shield_required": False},
-    {"event_name": "stale_organisms_detected", "category": "runtime", "targets": ["health_manager", "degradation_manager"], "shield_required": True},
-    {"event_name": "heartbeat_all_completed", "category": "runtime", "targets": ["health_manager"], "shield_required": False},
-    {"event_name": "degradation_escalated", "category": "runtime", "targets": ["health_manager", "the_machine.observer"], "shield_required": True},
-    {"event_name": "degradation_recovered", "category": "runtime", "targets": ["health_manager"], "shield_required": False},
-    {"event_name": "event_routed", "category": "routing", "targets": ["the_machine.observer"], "shield_required": False},
-    {"event_name": "shield_validation_requested", "category": "shield", "targets": ["agentic_shield.policy_engine"], "shield_required": True},
-    {"event_name": "demand_planning_updated", "category": "sop", "targets": ["swarm_coordinator", "the_machine.observer"], "shield_required": True},
+# Seed: runtime-infrastructure events emitted by runtime_core/ itself.
+# These are NOT part of any client's business topology, so they can't be
+# derived from a coordination file - they have to be seeded here once.
+INFRA_EVENT_SEED: list[dict[str, Any]] = [
+    {"event_name": "test_event", "category": "infra", "targets": ["pulse_aggregator"], "shield_required": False},
+    {"event_name": "heartbeat_received", "category": "infra", "targets": ["health_manager"], "shield_required": False},
+    {"event_name": "heartbeat_unknown_organism", "category": "infra", "targets": ["health_manager", "degradation_manager"], "shield_required": True},
+    {"event_name": "heartbeat_check_ok", "category": "infra", "targets": ["health_manager"], "shield_required": False},
+    {"event_name": "stale_organisms_detected", "category": "infra", "targets": ["health_manager", "degradation_manager"], "shield_required": True},
+    {"event_name": "heartbeat_all_completed", "category": "infra", "targets": ["health_manager"], "shield_required": False},
+    {"event_name": "degradation_escalated", "category": "infra", "targets": ["health_manager", "the_machine.observer"], "shield_required": True},
+    {"event_name": "degradation_recovered", "category": "infra", "targets": ["health_manager"], "shield_required": False},
+    {"event_name": "event_routed", "category": "infra", "targets": ["the_machine.observer"], "shield_required": False},
+    {"event_name": "shield_validation_requested", "category": "infra", "targets": ["agentic_shield.policy_engine"], "shield_required": True},
 ]
 
 
@@ -83,14 +87,58 @@ def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
         f.write(json.dumps(payload, ensure_ascii=False) + "\n")
 
 
+def organism_to_slug(organism_name: str) -> str:
+    """'Demand Planning Organism' -> 'DEMAND_PLANNING' (matches 10_swarm/organisms/<SLUG>)."""
+    name = re.sub(r"\s*Organism\s*$", "", organism_name.strip())
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_").upper()
+    return slug
+
+
+def derive_from_coordination(coordination: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build event definitions from a swarm_coordination_<process>.json file.
+
+    Groups all event_routes sharing the same event_name and unions their
+    'to' organisms into a single target list, since one upstream organism
+    typically fans out to several downstream organisms under one event type.
+    """
+    shield_required_globally = bool(
+        coordination.get("coordination_model", {}).get("shield_arbitration_required", True)
+    )
+
+    by_event: dict[str, dict[str, Any]] = {}
+    for route in coordination.get("event_routes", []):
+        event_name = route.get("event")
+        if not event_name:
+            continue
+        target_slug = organism_to_slug(route.get("to", ""))
+        origin_slug = organism_to_slug(route.get("from", ""))
+
+        entry = by_event.setdefault(
+            event_name,
+            {
+                "event_name": event_name,
+                "category": "business",
+                "origin": origin_slug,
+                "targets": [],
+                "shield_required": shield_required_globally,
+            },
+        )
+        if target_slug and target_slug not in entry["targets"]:
+            entry["targets"].append(target_slug)
+
+    return sorted(by_event.values(), key=lambda e: e["event_name"])
+
+
 class EventCatalog:
     def __init__(
         self,
         runtime_config_dir: str | Path,
+        coordination_file: str | Path | None = None,
         events_dir: str | Path | None = None,
         state_root: str | Path = "runtime_core/state",
     ):
         self.runtime_config_dir = Path(runtime_config_dir)
+        self.coordination_file = Path(coordination_file) if coordination_file else None
         self.events_dir = Path(events_dir) if events_dir else None
         self.state_root = Path(state_root)
 
@@ -100,29 +148,43 @@ class EventCatalog:
         )
         self.state_file = self.state_root / "event_catalog_state.json"
 
-    def load_existing(self) -> dict[str, dict[str, Any]]:
+    def load_existing_overrides(self) -> dict[str, dict[str, Any]]:
+        """Human-curated overrides already present in event_catalog.json.
+
+        Only fields a curator is likely to hand-tune (targets, shield_required)
+        are preserved; structural fields (category/origin) always come from
+        the live topology so the catalog never drifts from reality.
+        """
         existing = read_json(self.catalog_file, {"events": []})
-        return {e["event_name"]: e for e in existing.get("events", []) if "event_name" in e}
+        overrides = {}
+        for e in existing.get("events", []):
+            if e.get("source") == "human_override" and "event_name" in e:
+                overrides[e["event_name"]] = e
+        return overrides
 
     def normalize(self) -> dict[str, Any]:
-        existing_by_name = self.load_existing()
+        derived: list[dict[str, Any]] = list(INFRA_EVENT_SEED)
+        topology_source = None
 
+        if self.coordination_file and self.coordination_file.exists():
+            coordination = read_json(self.coordination_file, {})
+            derived = derived + derive_from_coordination(coordination)
+            topology_source = coordination.get("coordination_siop_id") or str(self.coordination_file.name)
+
+        overrides = self.load_existing_overrides()
         merged: dict[str, dict[str, Any]] = {}
-        for definition in CANONICAL_EVENTS:
+        for definition in derived:
             merged[definition["event_name"]] = dict(definition)
-
-        # Preserve any custom targets/flags a human curator already added
-        # for a known event, without losing canonical defaults for new ones.
-        for name, definition in existing_by_name.items():
+        for name, override in overrides.items():
             if name in merged:
                 merged[name].update(
-                    {k: v for k, v in definition.items() if k not in ("event_name",)}
+                    {k: v for k, v in override.items() if k in ("targets", "shield_required")}
                 )
-            else:
-                merged[name] = definition
+                merged[name]["source"] = "human_override"
 
         catalog = {
             "version": now(),
+            "derived_from": topology_source,
             "events": sorted(merged.values(), key=lambda e: e["event_name"]),
         }
 
@@ -165,6 +227,7 @@ class EventCatalog:
                 "timestamp": now(),
                 "module": "event_catalog",
                 "status": "EVENT_CATALOG_NORMALIZED",
+                "derived_from": catalog.get("derived_from"),
                 "event_types_cataloged": len(catalog.get("events", [])),
                 **validation,
             },
@@ -180,6 +243,11 @@ def run_cli():
         required=True,
         help="Directory where event_catalog.json lives (e.g. <client>/10_swarm/runtime)",
     )
+    parser.add_argument(
+        "--coordination-file",
+        default="",
+        help="Path to coordination/swarm_coordination_<process>.json to derive the catalog from",
+    )
     parser.add_argument("--events-dir", default="", help="Optional events dir to validate streams against the catalog")
     parser.add_argument("--state-root", default="runtime_core/state")
     parser.add_argument("--normalize", action="store_true", help="Build/normalize the catalog")
@@ -187,6 +255,7 @@ def run_cli():
 
     catalog = EventCatalog(
         runtime_config_dir=args.runtime_config_dir,
+        coordination_file=args.coordination_file or None,
         events_dir=args.events_dir or None,
         state_root=args.state_root,
     )
@@ -196,9 +265,10 @@ def run_cli():
     validation = result["validation"]
 
     print("\nAgentic Zero Event Catalog complete")
-    print(f"Event types cataloged:   {len(events)}")
-    print(f"Known event types:       {validation['known_event_types']}")
-    print(f"Unknown event types seen:{len(validation['unknown_event_types'])}")
+    print(f"Derived from:             {result['catalog'].get('derived_from')}")
+    print(f"Event types cataloged:    {len(events)}")
+    print(f"Known event types:        {validation['known_event_types']}")
+    print(f"Unknown event types seen: {len(validation['unknown_event_types'])}")
     if validation["unknown_event_types"]:
         for et in validation["unknown_event_types"]:
             print(f"  - {et}")

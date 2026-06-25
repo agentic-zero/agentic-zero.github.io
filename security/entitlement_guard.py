@@ -259,6 +259,16 @@ class EntitlementGuard:
         data["status"] = status.value
         if status == EntitlementStatus.ACTIVE:
             data["runtime_execution_enabled"] = True
+        if status in (EntitlementStatus.LOCKED, EntitlementStatus.DECOMMISSIONED):
+            # check() already denies everything unconditionally for these
+            # two statuses regardless of these flags, so this isn't closing
+            # a security hole - but leaving the stored record claiming
+            # "connectors_enabled": true on a fully blocked client is
+            # misleading data hygiene, and secure_client_offboarding.py's
+            # whole job is to make these flags reflect reality.
+            data["runtime_execution_enabled"] = False
+            data["connectors_enabled"] = False
+            data["swarm_enabled"] = False
 
         file_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
         return file_path

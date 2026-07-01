@@ -89,7 +89,7 @@ def bullet_list(values: Any) -> str:
         values = list(values.values())
     if not isinstance(values, list):
         values = [values]
-    return "\\n".join(f"- {v}" for v in values if str(v).strip()) or "- Not defined"
+    return chr(10).join(f"- {v}" for v in values if str(v).strip()) or "- Not defined"
 
 
 def load_context(package_dir: str | Path) -> dict[str, Any]:
@@ -321,7 +321,10 @@ calc();
 </script></body></html>""".format(company=company, process=process)
 
 
-def generate_sop_from_context(ctx: dict[str, Any]) -> str:
+def generate_sop_from_context(ctx: dict[str, Any]) -> tuple[str, bool]:
+    """Returns (sop_markdown, has_steps). has_steps=False signals an empty/incomplete
+    upstream SIOP or Blueprint -- callers should treat this as a packaging warning,
+    not a silent success."""
     siop, blueprint = ctx["siop"], ctx["blueprint"]
     steps = siop.get("process_flow", []) or blueprint.get("steps", [])
     lines = [
@@ -333,6 +336,7 @@ def generate_sop_from_context(ctx: dict[str, Any]) -> str:
         "Define the operating procedure used by the generated Essential agent.",
         "", "## Process Steps", ""
     ]
+    has_steps = bool(steps)
     if steps:
         for i, s in enumerate(steps, 1):
             lines += [
@@ -345,7 +349,7 @@ def generate_sop_from_context(ctx: dict[str, Any]) -> str:
     else:
         lines.append("No process steps detected. Re-run Functional Translator / Advanced AUDIT.")
     lines += ["", "## Exception Handling", "", "Exceptions are handled according to the Escalation Policy and Agentic Shield requirements.", "", "## Audit Trail", "", "Every autonomous decision must generate an audit entry with timestamp, rule, confidence and outcome.", "", "## Learning", "", "The agent emits learning hooks for The Machine to detect recurring exceptions, KPI deviations and improvement opportunities."]
-    return "\n".join(lines)
+    return "\n".join(lines), has_steps
 
 
 def normalize_core_artifacts(ctx: dict[str, Any]) -> list[str]:
@@ -410,12 +414,27 @@ def package_essential(package_dir: str | Path) -> EssentialPackageResult:
     write_text(delivery_dir / "integration_guide.md", generate_integration_guide(ctx))
     write_text(delivery_dir / "dashboard.html", generate_dashboard_html(ctx))
     write_text(delivery_dir / "roi_calculator.html", generate_roi_placeholder_html(ctx))
-    sop_path = delivery_dir / "sop.md"
-    if not sop_path.exists():
-        write_text(sop_path, generate_sop_from_context(ctx))
+    sop_text, sop_has_steps = generate_sop_from_context(ctx)
+    write_text(delivery_dir / "sop.md", sop_text)
+    if not sop_has_steps:
+        warnings.append(
+            "sop.md generated with NO process steps -- SIOP/Blueprint upstream "
+            "appear empty. Do not deliver until re-run with valid upstream artifacts."
+        )
 
     files = collect_files(package_dir)
-    blocking = [f"missing required file: {f.key}" for f in files if f.required and not f.exists]
+    # delivery_manifest.json is written by THIS function, a few lines below --
+    # it is the output of this run, not a prerequisite for it. Treating it as
+    # a blocking "missing required file" check here always failed on a brand
+    # new package's first run (the file genuinely doesn't exist yet at the
+    # point collect_files() inspects the folder), even though every other
+    # artifact was already correctly generated. Excluded from the blocking
+    # check; still listed in `files` for visibility.
+    blocking = [
+        f"missing required file: {f.key}"
+        for f in files
+        if f.required and not f.exists and f.key != "delivery_manifest_json"
+    ]
     ready = len(blocking) == 0
     result = EssentialPackageResult(
         package_id=f"EP-{_slug(ctx['company'])}-{_slug(ctx['process_name'])}-{datetime.now().strftime('%Y%m%d%H%M%S')}",

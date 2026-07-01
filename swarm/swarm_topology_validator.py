@@ -1,6 +1,7 @@
 """
 AGENTIC ZERO - SWARM
-Swarm Splitter v1.0
+Swarm Topology Validator v1.0 (renamed from Swarm Splitter - validates,
+never transforms or materializes. See SWARM_ARCHITECTURE_v1.md section 4.)
 
 Role:
   The validation gate between the Architect's decomposition (which already
@@ -282,7 +283,7 @@ class SwarmSplitter:
 
 
 def run_cli() -> None:
-    parser = argparse.ArgumentParser(description="Agentic Zero - Swarm Splitter")
+    parser = argparse.ArgumentParser(description="Agentic Zero - Swarm Topology Validator")
     parser.add_argument("--coordination-file", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--max-organisms", type=int, default=DEFAULT_MAX_ORGANISMS)
@@ -295,7 +296,7 @@ def run_cli() -> None:
     output_path = Path(args.output_dir) / "split_validation.json"
     write_json(output_path, asdict(result))
 
-    print("\nSwarm Splitter complete")
+    print("\nSwarm Topology Validator complete")
     print(f"Valid:            {result.valid}")
     print(f"Organism count:   {result.organism_count}")
     errors = [i for i in result.issues if i["severity"] == "ERROR"]

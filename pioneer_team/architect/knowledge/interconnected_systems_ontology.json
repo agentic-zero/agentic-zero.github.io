@@ -1,0 +1,160 @@
+{
+  "version": "1.0.0",
+  "purpose": "Semantic ontology for detecting interconnected enterprise systems and decomposing SIOPs into swarm-ready process organisms.",
+  "systems": [
+    {
+      "id": "sop",
+      "name": "S&OP / SIOP",
+      "route": "SWARM",
+      "keywords": ["s&op", "sop", "siop", "sales and operations planning", "demand review", "supply review", "executive s&op"],
+      "default_level2_processes": ["demand_planning", "supply_planning", "inventory_planning", "finance_reconciliation", "constraint_resolution"],
+      "scor_level_1_2": ["sP1 Plan Supply Chain", "sP2 Plan Source", "sP3 Plan Make", "sP4 Plan Deliver", "sP5 Plan Return"],
+      "scor_level_3": ["P1.1 Identify, Prioritize and Aggregate Supply-Chain Requirements", "P2.1 Identify, Assess and Aggregate Supply-Chain Resources", "P1.3 Balance Production Resources with Supply-Chain Requirements", "P1.4 Establish and Communicate Supply-Chain Plans"],
+      "bpmn_processes": ["Demand Planning Process", "Supply Planning and Reconciliation Process", "Pre-S&OP Meeting", "Executive S&OP Review"],
+      "frameworks": ["ISO 9001", "ISO 31000"]
+    },
+    {
+      "id": "ibp",
+      "name": "Integrated Business Planning",
+      "route": "SWARM",
+      "keywords": ["ibp", "integrated business planning", "strategic planning", "financial alignment", "scenario planning", "management business review"],
+      "default_level2_processes": ["demand_planning", "supply_planning", "inventory_planning", "capacity_planning", "finance_reconciliation", "constraint_resolution", "scenario_simulation"],
+      "scor_level_1_2": ["sP1 Plan Supply Chain", "sE Enable"],
+      "scor_level_3": ["P1.3 Balance Production Resources with Supply-Chain Requirements", "P1.4 Establish and Communicate Supply-Chain Plans", "E1-E10 Enable Processes"],
+      "bpmn_processes": ["Strategic and Financial Alignment", "Portfolio Review", "Scenario Planning", "Management Business Review"],
+      "frameworks": ["ISO 9001", "ISO 42001", "EU AI Act", "NIST AI RMF"]
+    },
+    {
+      "id": "control_tower",
+      "name": "Supply Chain Control Tower",
+      "route": "SWARM",
+      "keywords": ["control tower", "supply chain control tower", "torre de control", "real-time visibility", "exception management", "decision orchestration"],
+      "default_level2_processes": ["control_tower_monitoring", "risk_monitoring", "inventory_planning", "supply_planning", "constraint_resolution"],
+      "scor_level_1_2": ["sP Plan", "sS Source", "sM Make", "sD Deliver", "sR Return", "sE Enable"],
+      "scor_level_3": ["P1.1", "P2.1", "P3.1", "P4.1", "S1.1 Schedule Product Deliveries"],
+      "bpmn_processes": ["Real-time Visibility Monitoring", "Exception Management", "Alert Escalation", "Decision Orchestration"],
+      "frameworks": ["ISO 9001", "ISO 42001", "EU AI Act", "NIST AI RMF"]
+    },
+    {
+      "id": "digital_twin",
+      "name": "Digital Twin",
+      "route": "SWARM",
+      "keywords": ["digital twin", "enterprise twin", "supply chain twin", "gemelo digital", "simulation", "what-if", "scenario simulation"],
+      "default_level2_processes": ["digital_twin_simulation", "capacity_planning", "inventory_planning", "supply_planning", "finance_reconciliation", "constraint_resolution"],
+      "scor_level_1_2": ["sP Plan", "sS Source", "sM Make", "sD Deliver", "sR Return", "sE Enable"],
+      "scor_level_3": ["P1.3", "P1.4", "M1.1", "M2.3", "D1.3"],
+      "bpmn_processes": ["Digital Model Creation", "What-If Simulation", "Predictive Optimization", "Twin Sync Feedback Loop"],
+      "frameworks": ["ISO 9001", "ISO 42001", "EU AI Act", "NIST AI RMF", "ISO 31000"]
+    },
+    {
+      "id": "erp_integrated",
+      "name": "Integrated ERP",
+      "route": "SWARM",
+      "keywords": ["erp integrado", "integrated erp", "sap fi", "sap sd", "sap mm", "sap pp", "sap qm", "s/4hana", "ecc"],
+      "default_level2_processes": ["source_execution", "make_execution", "deliver_execution", "finance_reconciliation", "quality_management"],
+      "scor_level_1_2": ["sS Source", "sM Make", "sD Deliver", "sR Return"],
+      "scor_level_3": ["S1.1", "S1.2", "S1.3", "M1.1", "M1.2", "M1.3", "D1.1", "D1.2", "D1.3"],
+      "bpmn_processes": ["Order-to-Cash", "Procure-to-Pay", "Make-to-Stock", "Make-to-Order", "Record-to-Report", "Quality Management"],
+      "frameworks": ["ISO 9001", "IATF 16949", "GxP", "ISO 13485", "GDP"]
+    },
+    {
+      "id": "aps_mes",
+      "name": "APS + MES",
+      "route": "SWARM",
+      "keywords": ["aps", "mes", "advanced planning", "advanced scheduling", "manufacturing execution", "shop floor"],
+      "default_level2_processes": ["capacity_planning", "production_scheduling", "make_execution", "quality_management", "constraint_resolution"],
+      "scor_level_1_2": ["sP3 Plan Make", "sM Make", "sE Enable"],
+      "scor_level_3": ["P3.1", "P3.2", "P3.3", "P3.4", "M1.1", "M1.2", "M1.3"],
+      "bpmn_processes": ["Detailed Production Scheduling", "Shop Floor Execution", "Quality Check", "Work Order Management"],
+      "frameworks": ["IATF 16949", "GxP", "ISO 9001", "ISO 42001"]
+    },
+    {
+      "id": "wms_tms",
+      "name": "WMS + TMS Integrated",
+      "route": "SWARM",
+      "keywords": ["wms", "tms", "warehouse management", "transport management", "warehouse network", "transport network", "logistics execution"],
+      "default_level2_processes": ["warehouse_execution", "transport_execution", "inventory_planning", "control_tower_monitoring", "constraint_resolution"],
+      "scor_level_1_2": ["sD Deliver", "sR Return", "sE Enable"],
+      "scor_level_3": ["D1.8", "D1.9", "D1.10", "D2.1", "D2.2", "D2.3", "R1.1", "R1.2", "R1.3"],
+      "bpmn_processes": ["Inbound Logistics", "Putaway", "Picking and Packing", "Outbound Shipping", "Carrier Management", "Reverse Logistics"],
+      "frameworks": ["GDP", "HACCP", "ISO 9001"]
+    },
+    {
+      "id": "plm",
+      "name": "Product Lifecycle Management",
+      "route": "SWARM",
+      "keywords": ["plm", "product lifecycle", "new product development", "npi", "engineering change", "stage-gate", "portfolio management"],
+      "default_level2_processes": ["portfolio_management", "product_change_management", "source_planning", "risk_monitoring"],
+      "scor_level_1_2": ["sP1 Plan Supply Chain", "sE Enable"],
+      "scor_level_3": ["Enable Change Management", "Enable Portfolio Management", "P1", "S1"],
+      "bpmn_processes": ["Concept-to-Launch", "Engineering Change Management", "Portfolio Management", "End-of-Life Management"],
+      "frameworks": ["IATF 16949", "ISO 13485", "REACH", "ISO 9001"]
+    },
+    {
+      "id": "srm_procurement",
+      "name": "SRM / Procurement Platform",
+      "route": "SWARM",
+      "keywords": ["srm", "procurement platform", "supplier relationship", "supplier onboarding", "supplier risk", "contract lifecycle", "ariba"],
+      "default_level2_processes": ["supplier_onboarding", "supplier_risk", "source_planning", "contract_management", "constraint_resolution"],
+      "scor_level_1_2": ["sS Source", "sE Enable"],
+      "scor_level_3": ["S1.1", "S2.1", "Supplier Risk Enable Processes"],
+      "bpmn_processes": ["Supplier Selection", "Supplier Onboarding", "Contract Lifecycle Management", "Supplier Performance Monitoring"],
+      "frameworks": ["ISO 9001", "ISO 31000", "EU AI Act"]
+    },
+    {
+      "id": "grc_risk",
+      "name": "GRC + Risk Management",
+      "route": "SWARM",
+      "keywords": ["grc", "risk management", "compliance platform", "audit management", "risk mitigation", "continuous monitoring"],
+      "default_level2_processes": ["risk_monitoring", "compliance_monitoring", "control_management", "audit_management", "constraint_resolution"],
+      "scor_level_1_2": ["sE Enable", "Supplier Risk", "Demand Risk"],
+      "scor_level_3": ["Enable Risk Processes", "Supplier Risk", "Demand Risk"],
+      "bpmn_processes": ["Risk Identification", "Risk Assessment", "Risk Mitigation", "Compliance Monitoring", "Audit Management"],
+      "frameworks": ["ISO 31000", "ISO 42001", "EU AI Act", "NIST AI RMF", "GDPR"]
+    },
+    {
+      "id": "qms_capa",
+      "name": "QMS + CAPA / 8D",
+      "route": "SWARM",
+      "keywords": ["qms", "capa", "8d", "quality management", "non-conformance", "deviation", "root cause"],
+      "default_level2_processes": ["quality_management", "non_conformance", "root_cause_analysis", "corrective_action", "risk_monitoring"],
+      "scor_level_1_2": ["sE Enable", "sM Make", "sR Return"],
+      "scor_level_3": ["M1.3 Produce and Test", "R1 Return Processes", "Enable Quality Processes"],
+      "bpmn_processes": ["Non-Conformance Management", "Root Cause Analysis", "CAPA", "8D Problem Solving", "Effectiveness Verification"],
+      "frameworks": ["ISO 9001", "IATF 16949", "GxP", "ISO 13485"]
+    },
+    {
+      "id": "eam_predictive_maintenance",
+      "name": "EAM + Predictive Maintenance",
+      "route": "SWARM",
+      "keywords": ["eam", "predictive maintenance", "asset management", "asset health", "maintenance work order"],
+      "default_level2_processes": ["asset_health_monitoring", "maintenance_planning", "work_order_execution", "capacity_planning", "risk_monitoring"],
+      "scor_level_1_2": ["sE Enable", "sM Make"],
+      "scor_level_3": ["Enable Asset Management", "M Maintenance Processes"],
+      "bpmn_processes": ["Asset Health Monitoring", "Maintenance Work Order Generation", "Maintenance Execution", "Performance Feedback"],
+      "frameworks": ["ISO 55001", "ISO 9001"]
+    },
+    {
+      "id": "demand_sensing",
+      "name": "Demand Sensing / AI Forecasting",
+      "route": "SWARM",
+      "keywords": ["demand sensing", "ai forecasting", "real-time sensing", "forecast consensus", "model retraining"],
+      "default_level2_processes": ["demand_planning", "forecasting_ai", "model_monitoring", "plan_update", "risk_monitoring"],
+      "scor_level_1_2": ["sP1 Plan Supply Chain", "sP2 Plan Source", "sE Enable"],
+      "scor_level_3": ["P1.1", "P2.1"],
+      "bpmn_processes": ["Real-time Data Ingestion", "AI Forecasting", "Consensus Forecast", "Plan Update", "Model Retraining"],
+      "frameworks": ["ISO 42001", "EU AI Act", "NIST AI RMF"]
+    },
+    {
+      "id": "sustainability_esg",
+      "name": "Sustainability / ESG Platform",
+      "route": "SWARM",
+      "keywords": ["esg", "sustainability", "scope 3", "carbon footprint", "csrd", "sustainability reporting"],
+      "default_level2_processes": ["esg_data_collection", "carbon_calculation", "scenario_simulation", "reporting", "improvement_tracking"],
+      "scor_level_1_2": ["sE Enable", "sS Source", "sD Deliver"],
+      "scor_level_3": ["Enable Sustainability Processes", "Source Carbon Data", "Deliver Carbon Data"],
+      "bpmn_processes": ["ESG Data Collection", "Target Setting", "Scenario Modeling", "Reporting and Disclosure", "Improvement Action Tracking"],
+      "frameworks": ["ISO 14001", "ISO 42001", "EU AI Act", "CSRD"]
+    }
+  ]
+}

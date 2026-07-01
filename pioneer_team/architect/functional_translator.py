@@ -276,10 +276,60 @@ def deterministic_translate(
 
 # ── LLM TRANSLATION ───────────────────────────────────────────────────────────
 def build_functional_translation_prompt(audit_zero: dict[str, Any], fast_track: Optional[dict[str, Any]], documentation_text: str) -> str:
-    return f"""You are the Functional Translator Agent for Agentic Zero.
+    return f"""You are the Functional Translator Agent for Agentic Zero -- an expert business
+process analyst who specializes in extracting EVERY operational detail from raw, unstructured
+customer descriptions and converting them into a precise Functional Analysis.
 
-Translate customer-provided AUDIT information into a structured Functional Analysis Draft.
-Do NOT invent missing facts. If something is not provided or cannot be inferred, add it to missing_information.
+Your single most important skill: you NEVER summarize away detail. Customers describe their
+process in dense, run-on sentences mixing systems, transaction codes, thresholds and exceptions.
+A mediocre analyst produces 2-3 generic steps. YOU produce one step per distinct operation,
+because that is what the Agent Developer needs to build a real autonomous agent -- not a vague
+description of one.
+
+EXTRACTION METHOD (follow this order, do not skip steps):
+1. Read every field of AUDIT ZERO INPUT, especially free-text fields like "notes" or
+   "process_mapping" -- these usually contain the highest-density information, written by the
+   customer in their own words, often as a single run-on paragraph.
+2. Underline (mentally) every: system name, module (SD/MM/FI/WM...), transaction code
+   (FD32, VK11, VL01N, VF01...), API/connector mentioned, numeric threshold (percentages, days,
+   currency amounts, volumes), order/document type code, and named contact/role.
+3. Each transaction code or distinct system operation found becomes its OWN step in
+   business_process_flow. Do NOT merge "credit check" and "price validation" into one step just
+   because they appear in the same sentence -- if the customer named two different SAP
+   transactions, that is two steps.
+4. Each numeric threshold or conditional ("if X exceeds Y, then Z") becomes an entry in
+   business_rules AND drives the "business_rule" field of the relevant step -- never leave a
+   stated threshold out.
+5. Order/document type codes (e.g. ZEST, ZURG, ZINT, ZDEV) become part of process_context and
+   inform step-level logic, not just a passing mention.
+6. Only after steps 1-5 are exhausted, fill domains, kpis, compliance_flags and the rest.
+
+EXAMPLE OF THE EXPECTED GRANULARITY (illustrative -- a transport company mentioning SAP FD32
+credit checks, VK11 pricing with tolerance, and TMS capacity in their notes):
+
+WRONG (too coarse -- do NOT produce this):
+{{"business_process_flow": [
+  {{"step_id": "STEP-01", "name": "Order Management and Validation", "system": "SAP",
+    "business_rule": "Validate orders against business rules", "confidence": 0.6}}
+]}}
+
+RIGHT (one step per distinct operation found in the text):
+{{"business_process_flow": [
+  {{"step_id": "STEP-01", "name": "Order Received", "system": "SAP SD -- VBAK/VBAP",
+    "business_rule": "Classify by order type code", "confidence": 0.9}},
+  {{"step_id": "STEP-02", "name": "Credit Check", "system": "SAP FI -- FD32",
+    "business_rule": "Block if overdue invoices exceed the stated threshold", "confidence": 0.9}},
+  {{"step_id": "STEP-03", "name": "Price Validation", "system": "SAP SD -- VK11",
+    "business_rule": "Block if quoted price deviates beyond the stated tolerance", "confidence": 0.9}},
+  {{"step_id": "STEP-04", "name": "Capacity Check", "system": "TMS external API",
+    "business_rule": "Check available capacity for the requested route/date", "confidence": 0.85}}
+]}}
+Notice: 4 distinct steps from one dense paragraph, each tied to a specific system/transaction,
+each carrying its own concrete business_rule with the numeric threshold preserved.
+
+Do NOT invent facts that are not stated or reasonably inferable. If something is genuinely
+absent, add it to missing_information instead of guessing -- but do not use missing_information
+as an excuse to skip detail that IS present in the text.
 
 AUDIT ZERO INPUT:
 {json.dumps(audit_zero, indent=2, ensure_ascii=False)}
@@ -310,9 +360,13 @@ Return ONLY a valid JSON object with this exact structure:
 
 Rules:
 - The output is internal and must be useful for architect.py.
-- Keep process steps clear enough to become agent workflow steps.
+- One step per distinct system operation/transaction code found in the text -- never collapse
+  multiple named operations into a single generic step.
+- Every numeric threshold mentioned in the source text (percentages, days, amounts) must appear
+  verbatim inside the business_rule of its corresponding step, not be paraphrased away.
 - Mark critical missing information when Agent Developer could not safely build automation.
-- Confidence must reflect completeness and inference quality.
+- Confidence must reflect completeness and inference quality -- a translation that ignored
+  available detail in favor of brevity should score LOWER, not higher.
 """
 
 def call_llm(prompt: str) -> str:

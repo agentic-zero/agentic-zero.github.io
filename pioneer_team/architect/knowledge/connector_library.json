@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "purpose": "Maps an ERP/software system name (as a client describes it, colloquially, in an audit) to its optimal connection architecture - protocol, auth method, known constraints. Mirrors interconnected_systems_ontology.json's pattern (keyword-based, fuzzy-matchable), but for INTEGRATION knowledge rather than PROCESS knowledge.",
+  "connectors": [
+    {
+      "id": "sap_s4hana_cloud",
+      "name": "SAP S/4HANA Cloud",
+      "verified": true,
+      "keywords": ["sap s/4hana cloud", "s4hana cloud", "s/4hana public cloud", "sap public cloud"],
+      "protocol": "REST/OData (v2 and v4)",
+      "auth_method": "OAuth 2.0 (client credentials)",
+      "latency_class": "low (cloud-native API)",
+      "rate_limit_class": "moderate - SAP enforces tenant-level API call quotas",
+      "known_constraints": [
+        "OData entity sets vary by SAP module activated - confirm which Business APIs are licensed before designing the integration",
+        "Cloud ALM / SAP API Business Hub is the source of truth for available endpoints per tenant"
+      ],
+      "recommended_pattern": "Direct REST/OData calls from the agent runtime; no middleware needed for most standard processes"
+    },
+    {
+      "id": "sap_ecc_onprem",
+      "name": "SAP ECC / S/4HANA On-Premise",
+      "verified": true,
+      "keywords": ["sap ecc", "sap on-premise", "sap on premise", "s/4hana on-premise", "s/4hana onprem", "sap r/3", "sap erp central component"],
+      "protocol": "RFC/BAPI (via SAP NetWeaver Gateway or RFC SDK), IDoc for batch/async",
+      "auth_method": "SAP user/role-based (RFC trusted connection or service user)",
+      "latency_class": "moderate - depends on network path to the client's data center, RFC calls are synchronous",
+      "rate_limit_class": "depends on SAP Basis-configured dialog/work process limits, not a typical cloud API quota",
+      "known_constraints": [
+        "On-premise SAP almost always requires VPN or dedicated network connectivity - cannot be reached directly from a public-cloud-hosted agent without a tunnel or middleware",
+        "RFC/BAPI integration commonly goes through SAP PI/PO or SAP Cloud Connector as middleware, not direct from external code",
+        "Custom Z-transactions/Z-BAPIs are common in older ECC installs and must be confirmed with the client's SAP Basis team, not assumed from standard documentation"
+      ],
+      "recommended_pattern": "SAP Cloud Connector + middleware (PI/PO or a lightweight RFC gateway service) - rarely a direct connection"
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "verified": true,
+      "keywords": ["salesforce", "sfdc", "salesforce crm"],
+      "protocol": "REST API (standard objects/records) + Bulk API (large data volumes)",
+      "auth_method": "OAuth 2.0 (JWT bearer flow recommended for server-to-server)",
+      "latency_class": "low",
+      "rate_limit_class": "API call limits scale with Salesforce edition/license - must be checked per org, not assumed",
+      "known_constraints": [
+        "Governor limits apply per-transaction within Salesforce-side automation (Apex), separate from the external API call limits"
+      ],
+      "recommended_pattern": "Direct REST API calls; Bulk API specifically for high-volume batch operations"
+    },
+    {
+      "id": "dynamics_365",
+      "name": "Microsoft Dynamics 365",
+      "verified": true,
+      "keywords": ["dynamics 365", "dynamics365", "ms dynamics", "microsoft dynamics", "dataverse"],
+      "protocol": "Dataverse Web API (REST/OData v4)",
+      "auth_method": "OAuth 2.0 via Microsoft Entra ID (Azure AD)",
+      "latency_class": "low",
+      "rate_limit_class": "Microsoft enforces per-tenant API request limits (varies by license tier)",
+      "known_constraints": [],
+      "recommended_pattern": "Direct REST/OData calls against the Dataverse Web API"
+    },
+    {
+      "id": "netsuite",
+      "name": "NetSuite",
+      "verified": true,
+      "keywords": ["netsuite", "oracle netsuite"],
+      "protocol": "SuiteTalk (REST or SOAP)",
+      "auth_method": "Token-based authentication (TBA) or OAuth 2.0",
+      "latency_class": "low to moderate",
+      "rate_limit_class": "concurrency/governance limits per NetSuite account tier",
+      "known_constraints": [],
+      "recommended_pattern": "REST-based SuiteTalk for new integrations; SOAP only if the client already has it in use"
+    },
+    {
+      "id": "workday",
+      "name": "Workday",
+      "verified": true,
+      "keywords": ["workday", "workday hcm", "workday financials"],
+      "protocol": "SOAP (Workday Web Services) and REST (newer endpoints)",
+      "auth_method": "OAuth 2.0 or WS-Security (SOAP)",
+      "latency_class": "moderate",
+      "rate_limit_class": "not publicly standardized - confirm with client's Workday tenant configuration",
+      "known_constraints": [
+        "Workday's API surface is large and module-specific - confirm exactly which Workday product (HCM, Financials, etc.) before assuming endpoint availability"
+      ],
+      "recommended_pattern": "REST where available, SOAP for legacy/complete coverage"
+    },
+    {
+      "id": "manual_spreadsheets",
+      "name": "Manual process (Excel/spreadsheets, email)",
+      "verified": true,
+      "keywords": ["excel", "hojas de excel", "spreadsheet", "spreadsheets", "hoja de calculo", "a mano", "manualmente", "por email"],
+      "protocol": "File-based (CSV/XLSX import-export) - no real-time API exists by definition",
+      "auth_method": "N/A - file access only (shared drive, email attachment, SFTP)",
+      "latency_class": "high (batch, human-paced)",
+      "rate_limit_class": "N/A",
+      "known_constraints": [
+        "This is not a software integration - it is the ABSENCE of one. Confirmed multiple times during today's audit testing: a client describing 'lo hacemos a mano con Excel' has no system to connect to yet.",
+        "The real deliverable here is usually a structured intake (form, lightweight upload, or a first system of record) BEFORE any agent automation - building an agent that reads an ad-hoc spreadsheet is fragile and should be flagged for the client as a precondition, not silently treated as equivalent to a real API integration."
+      ],
+      "recommended_pattern": "Do not treat as equivalent to a system integration - flag missing_information in the SIOP (see functional_consultant.py's existing missing_information field) recommending a real intake mechanism first"
+    }
+  ],
+  "fallback": {
+    "verified": false,
+    "protocol": "UNKNOWN - requires research",
+    "auth_method": "UNKNOWN - requires research",
+    "known_constraints": [
+      "This system was not found in the connector library. Do not assume a connection method - this must be researched against the specific client's version/deployment before any integration work begins."
+    ],
+    "recommended_pattern": "Flag for human research before proceeding - same needs_human_review principle already used for synthesized organisms in functional_consultant.py"
+  }
+}

@@ -414,9 +414,9 @@ def siop_to_blueprint(siop: dict) -> ArchitectBlueprint:
             "approval":           "ESCALATION_OPS",
         }
 
-        # Deduplicate by type
-        if any(e.escalation_type == esc_type for e in escalations
-               if hasattr(e, 'escalation_type')):
+        # Deduplicate by escalation type (esc_type), comparing against the
+        # 'trigger' field already set on each BlueprintEscalation built so far.
+        if any(e.trigger == esc_type for e in escalations):
             continue
 
         escalations.append(BlueprintEscalation(

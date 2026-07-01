@@ -46,6 +46,32 @@ from loguru import logger
 
 load_dotenv()
 
+
+def apply_package_dir_override(package_dir: str) -> None:
+    """
+    Single entry point to make the whole pipeline reusable across clients
+    without ever touching .env.
+
+    When --package-dir is passed on the CLI, this derives and sets the
+    4 environment variables that customer_pipeline.py, siop_generator.py,
+    siop_validator.py and architect_siop_bridge.py all read independently
+    (each one calls os.getenv with the same variable names but is imported
+    lazily inside this file's functions -- see run_siop_generator,
+    run_siop_validator, run_architect_bridge below).
+
+    Must run BEFORE those lazy imports happen, i.e. before any Stage runs.
+    If --package-dir is not passed, nothing changes: .env values (or the
+    library/ defaults) are used exactly as before. This keeps the legacy
+    behaviour 100% intact for any caller that doesn't pass --package-dir.
+    """
+    base = Path(package_dir)
+    os.environ["FUNCTIONAL_ANALYSIS_PATH"] = str(base / "01_functional_analysis")
+    os.environ["SIOP_INTERNAL_PATH"]       = str(base / "02_siop")
+    os.environ["SIOP_VALIDATION_PATH"]     = str(base / "02_siop")
+    os.environ["BLUEPRINT_PATH"]           = str(base / "03_blueprint")
+    logger.info(f"package-dir override applied: base={base}")
+
+
 logger.add(
     "logs/customer_pipeline_{time:YYYY-MM-DD}.log",
     rotation="1 day",
@@ -55,13 +81,18 @@ logger.add(
 )
 
 # -- PATHS ---------------------------------------------------------------------
-FA_PATH         = Path(os.getenv("FUNCTIONAL_ANALYSIS_PATH", "library/functional_analysis"))
-SIOP_PATH       = Path(os.getenv("SIOP_INTERNAL_PATH",       "library/siop_internal"))
-VALIDATION_PATH = Path(os.getenv("SIOP_VALIDATION_PATH",     "library/siop_validations"))
-BLUEPRINT_PATH  = Path(os.getenv("BLUEPRINT_PATH",           "library/architect_blueprints"))
+def _resolve_paths():
+    """Re-readable so it reflects any os.environ override applied at CLI time."""
+    fa = Path(os.getenv("FUNCTIONAL_ANALYSIS_PATH", "library/functional_analysis"))
+    siop = Path(os.getenv("SIOP_INTERNAL_PATH", "library/siop_internal"))
+    validation = Path(os.getenv("SIOP_VALIDATION_PATH", "library/siop_validations"))
+    blueprint = Path(os.getenv("BLUEPRINT_PATH", "library/architect_blueprints"))
+    for p in [fa, siop, validation, blueprint]:
+        p.mkdir(parents=True, exist_ok=True)
+    return fa, siop, validation, blueprint
 
-for p in [FA_PATH, SIOP_PATH, VALIDATION_PATH, BLUEPRINT_PATH]:
-    p.mkdir(parents=True, exist_ok=True)
+
+FA_PATH, SIOP_PATH, VALIDATION_PATH, BLUEPRINT_PATH = _resolve_paths()
 
 
 # -- PIPELINE RESULT -----------------------------------------------------------
@@ -91,6 +122,9 @@ class PipelineResult:
     ready_for_builder: bool = False
     blocking_issues: list[str] = field(default_factory=list)
     next_step: str = ""
+    route: str = ""
+    tier: str = ""
+    swarm_info: Optional[dict] = None
 
     def print_summary(self):
         print(f"\n{'='*60}")
@@ -258,6 +292,145 @@ def run_siop_generator(fa_path: str) -> StageResult:
     return stage
 
 
+# -- STAGE 1+2 REPLACEMENT: FUNCTIONAL CONSULTANT (Claude) --------------------
+def run_functional_consultant(
+    audit_path: str,
+    fast_track_path: Optional[str],
+    documentation_path: Optional[str],
+    package_dir: str,
+    use_llm: bool = True,
+) -> tuple[StageResult, Optional[str], Optional[dict]]:
+    """
+    Replaces the old Stage 1 (Functional Translator) + Stage 2 (SIOP
+    Generator) - both previously running on a cheap/fast LLM tier (Groq
+    Llama) doing narrow, disconnected jobs - with a single consultation
+    by functional_consultant.py, using Claude directly.
+
+    This is THE most important decision in the commercial pipeline (per
+    explicit product direction, 26 Jun 2026): read the client's actual
+    described need - colloquial, often without any formal methodology
+    vocabulary - and in one coherent pass decide tier/route AND produce
+    either a real siop_internal.json (single-agent path) or a real set
+    of Level2SIOPs (Swarm/Agentic One path), not two artificially split
+    steps using a cheap model.
+
+    Only runs when package_dir is provided - this stage needs the real
+    per-client folder structure (00_enterprise_intent/) that the Swarm
+    pipeline (already validated end-to-end, see SWARM_ARCHITECTURE_v1.md)
+    requires. Without --package-dir, the pipeline falls back to the
+    legacy Stage 1/2 (Functional Translator + SIOP Generator) entirely
+    unchanged - see the branching in run_customer_pipeline().
+
+    Returns:
+      (stage_result, single_agent_siop_path_or_None, swarm_info_or_None)
+      Exactly one of the latter two is set, matching the route decision.
+    """
+    stage_start = datetime.now()
+    stage = StageResult(stage="1+2_functional_consultant", status="running")
+    logger.info(f"Stage 1+2: Functional Consultant | audit={audit_path}")
+
+    try:
+        from functional_consultant import (
+            consult_on_intent, build_siop_internal, materialize_level2_siops,
+        )
+
+        audit_zero = json.loads(Path(audit_path).read_text(encoding="utf-8"))
+        fast_track = (
+            json.loads(Path(fast_track_path).read_text(encoding="utf-8"))
+            if fast_track_path else {}
+        )
+        doc_text = (
+            Path(documentation_path).read_text(encoding="utf-8", errors="ignore")
+            if documentation_path else ""
+        )
+
+        # The client's described need, exactly as they gave it - field
+        # names included deliberately (helps Claude understand structure
+        # like "sector: ...", "notes: ..." rather than losing that
+        # context by extracting only free-text fields).
+        client_text = json.dumps(audit_zero, indent=2, ensure_ascii=False)
+        if fast_track:
+            client_text += "\n\nFAST TRACK ADDITIONAL DETAIL:\n" + json.dumps(fast_track, indent=2, ensure_ascii=False)
+        if doc_text:
+            client_text += "\n\nDOCUMENTATION TEXT:\n" + doc_text
+
+        result = consult_on_intent(client_text, {}, package_dir, use_llm=use_llm)
+
+        stage.output_id = result.consultation_id
+        stage.score = result.confidence
+
+        if result.method == "deterministic_fallback":
+            stage.warnings.append(
+                "Claude unavailable (no ANTHROPIC_API_KEY or call failed) - "
+                "used degraded keyword-matching fallback. Quality is lower; "
+                "review this consultation manually."
+            )
+
+        for org in result.organisms:
+            if org.synthesized:
+                stage.warnings.append(
+                    f"Organism '{org.organism}' was synthesized (not from the known "
+                    f"library) - needs human review before go-live."
+                )
+
+        logger.success(
+            f"Stage 1+2 OK | method={result.method} | route={result.route} | "
+            f"tier={result.tier} | confidence={result.confidence}"
+        )
+
+        if result.route in ("PROCESS_AGENT", "COMPLEX_PROCESS_AGENT"):
+            siop = build_siop_internal(result)
+            siop_path = Path(package_dir) / "02_siop" / "siop_internal.json"
+            siop_path.parent.mkdir(parents=True, exist_ok=True)
+            siop_path.write_text(json.dumps(siop, indent=2, ensure_ascii=False), encoding="utf-8")
+
+            stage.status = "ok" if siop["ready_for_architect"] else "warn"
+            stage.output_path = str(siop_path)
+            if not siop["ready_for_architect"]:
+                stage.warnings.append("SIOP not ready_for_architect - low confidence or no process steps produced")
+
+            stage.duration_sec = _duration(stage_start)
+            return stage, str(siop_path), None
+
+        # SWARM or AGENTIC_ONE_ENTERPRISE
+        level2_siops = materialize_level2_siops(result, result.level_1_process, {"systems_detected": []})
+
+        out_dir = Path(package_dir) / "00_enterprise_intent"
+        l2_dir = out_dir / "level_2_siops"
+        l2_dir.mkdir(parents=True, exist_ok=True)
+        for l2 in level2_siops:
+            (l2_dir / f"{l2.siop_id}.json").write_text(
+                json.dumps(asdict(l2), indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+
+        decomposition_summary = {
+            "level_1_process": result.level_1_process,
+            "route": result.route,
+            "tier": result.tier,
+            "level_2_count": len(level2_siops),
+        }
+        (out_dir / "siop_decomposition.json").write_text(
+            json.dumps(decomposition_summary, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+
+        stage.status = "ok"
+        stage.output_path = str(l2_dir)
+        stage.duration_sec = _duration(stage_start)
+        return stage, None, {
+            "route": result.route,
+            "tier": result.tier,
+            "level_2_count": len(level2_siops),
+            "level_2_siops_dir": str(l2_dir),
+        }
+
+    except Exception as e:
+        stage.status = "fail"
+        stage.issues.append(str(e))
+        logger.error(f"Stage 1+2 FAIL: {e}", exc_info=True)
+        stage.duration_sec = _duration(stage_start)
+        return stage, None, None
+
+
 # -- STAGE 3: SIOP VALIDATOR (GATE) --------------------------------------------
 def run_siop_validator(siop_path: str) -> StageResult:
     """
@@ -376,6 +549,7 @@ def run_customer_pipeline(
     fa_path: Optional[str] = None,
     siop_path: Optional[str] = None,
     use_llm: bool = False,
+    package_dir: Optional[str] = None,
 ) -> PipelineResult:
     """
     Run the full customer pipeline end-to-end.
@@ -384,6 +558,14 @@ def run_customer_pipeline(
       1. Full:        audit_path provided -> runs all 4 stages
       2. From FA:     fa_path provided -> skips Stage 1
       3. From SIOP:   siop_path provided -> skips Stages 1-2
+
+    package_dir (new, 26 Jun 2026): when provided alongside audit_path,
+    Stages 1+2 run via functional_consultant.py (Claude) instead of the
+    legacy Functional Translator + SIOP Generator (Groq). This is the
+    only mode that can produce a Swarm/Agentic One routing decision -
+    without package_dir, the pipeline behaves exactly as before
+    (single-agent only, legacy library/ paths). See
+    run_functional_consultant() for why.
 
     Gates:
       - Stage 3 FAIL -> pipeline stops, reports blocking issues
@@ -437,40 +619,80 @@ def run_customer_pipeline(
             _finalize(result)
             return result
 
-        s1 = run_translator(audit_path, fast_track_path, documentation_path, use_llm)
-        result.stages.append(s1)
+        if package_dir:
+            # -- NEW PATH: Functional Consultant (Claude) replaces Stages 1+2 --
+            s12, siop_path_from_consultant, swarm_info = run_functional_consultant(
+                audit_path, fast_track_path, documentation_path, package_dir, use_llm=use_llm,
+            )
+            result.stages.append(s12)
 
-        # Extract company and process name from FA for summary
-        if s1.output_path:
-            try:
-                with open(s1.output_path, encoding="utf-8") as f:
-                    fa_data = json.load(f)
-                bc = fa_data.get("business_context", {})
-                pc = fa_data.get("process_context", {})
-                result.company = bc.get("company", "")
-                result.process = pc.get("process_name", "")
-            except Exception:
-                pass
+            if s12.status == "fail":
+                result.status = "failed"
+                result.blocking_issues = s12.issues
+                result.next_step = "Fix Functional Consultant input -- check audit_zero.json and ANTHROPIC_API_KEY"
+                _finalize(result)
+                return result
 
-        if s1.status == "fail":
-            result.status = "blocked"
-            result.blocking_issues = s1.issues
-            result.next_step = "Fix AUDIT ZERO JSON and retry"
-            _finalize(result)
-            return result
+            if swarm_info:
+                # SWARM / AGENTIC_ONE_ENTERPRISE - the single-agent gate
+                # (Stages 3/4 below) does not apply. This client needs a
+                # coordinated Swarm, not one linear agent.
+                result.route = swarm_info["route"]
+                result.tier = swarm_info["tier"]
+                result.swarm_info = swarm_info
+                result.status = "complete"
+                result.next_step = (
+                    f"Run swarm_topology_validator.py against the coordination "
+                    f"file, then swarm_splitter.py / swarm_generator.py "
+                    f"(see SWARM_ARCHITECTURE_v1.md) - {swarm_info['level_2_count']} "
+                    f"organisms in {swarm_info['level_2_siops_dir']}"
+                )
+                _finalize(result)
+                return result
 
-        # Stage 2: SIOP Generator
-        s2 = run_siop_generator(s1.output_path)
-        result.stages.append(s2)
+            # PROCESS_AGENT / COMPLEX_PROCESS_AGENT - continue to the
+            # existing single-agent gate (Stage 3/4) below, unchanged.
+            current_siop_path = siop_path_from_consultant
+            result.route = "PROCESS_AGENT"
 
-        if s2.status == "fail":
-            result.status = "blocked"
-            result.blocking_issues = s2.issues
-            result.next_step = "Fix functional_analysis output and retry from Stage 2"
-            _finalize(result)
-            return result
+        else:
+            # -- LEGACY PATH: Functional Translator + SIOP Generator (Groq) --
+            # Unchanged. Swarm/Agentic One routing is not available here -
+            # it requires the per-client package_dir structure.
+            s1 = run_translator(audit_path, fast_track_path, documentation_path, use_llm)
+            result.stages.append(s1)
 
-        current_siop_path = s2.output_path
+            # Extract company and process name from FA for summary
+            if s1.output_path:
+                try:
+                    with open(s1.output_path, encoding="utf-8") as f:
+                        fa_data = json.load(f)
+                    bc = fa_data.get("business_context", {})
+                    pc = fa_data.get("process_context", {})
+                    result.company = bc.get("company", "")
+                    result.process = pc.get("process_name", "")
+                except Exception:
+                    pass
+
+            if s1.status == "fail":
+                result.status = "blocked"
+                result.blocking_issues = s1.issues
+                result.next_step = "Fix AUDIT ZERO JSON and retry"
+                _finalize(result)
+                return result
+
+            # Stage 2: SIOP Generator
+            s2 = run_siop_generator(s1.output_path)
+            result.stages.append(s2)
+
+            if s2.status == "fail":
+                result.status = "blocked"
+                result.blocking_issues = s2.issues
+                result.next_step = "Fix functional_analysis output and retry from Stage 2"
+                _finalize(result)
+                return result
+
+            current_siop_path = s2.output_path
 
     # -- STAGE 3: SIOP VALIDATOR (GATE) ----------------------------------------
     s3 = run_siop_validator(current_siop_path)
@@ -605,8 +827,25 @@ Examples:
     parser.add_argument("--siop",       help="Path to existing SIOP JSON (skip Stages 1-2)")
     parser.add_argument("--use-llm",    action="store_true", help="Use LLM for richer extraction (Stage 1)")
     parser.add_argument("--demo",       action="store_true", help="Run demo with Inmaculada's data")
+    parser.add_argument(
+        "--package-dir",
+        default=None,
+        help=(
+            "Essential package root for a client (e.g. clients/acme/otc/essential_package). "
+            "When set, overrides FUNCTIONAL_ANALYSIS_PATH/SIOP_INTERNAL_PATH/"
+            "SIOP_VALIDATION_PATH/BLUEPRINT_PATH for this run only -- .env is never modified. "
+            "Reusable across any client without manual .env edits."
+        ),
+    )
 
     args = parser.parse_args()
+
+    if args.package_dir:
+        apply_package_dir_override(args.package_dir)
+        # Re-resolve module-level path constants so any direct reference
+        # to them (e.g. inside run_architect_bridge's default save path)
+        # reflects the override too.
+        FA_PATH, SIOP_PATH, VALIDATION_PATH, BLUEPRINT_PATH = _resolve_paths()
 
     if args.demo:
         # Demo mode: build AUDIT from Inmaculada's data, save it, run full pipeline
@@ -618,7 +857,9 @@ Examples:
         with open(demo_audit_file, "w", encoding="utf-8") as f:
             json.dump(audit_data, f, indent=2, ensure_ascii=False)
         print(f"Demo AUDIT saved: {demo_audit_file}")
-        result = run_customer_pipeline(audit_path=str(demo_audit_file), use_llm=args.use_llm)
+        result = run_customer_pipeline(
+            audit_path=str(demo_audit_file), use_llm=args.use_llm, package_dir=args.package_dir,
+        )
 
     elif args.siop:
         result = run_customer_pipeline(siop_path=args.siop)
@@ -632,6 +873,7 @@ Examples:
             fast_track_path=args.fast_track,
             documentation_path=args.docs,
             use_llm=args.use_llm,
+            package_dir=args.package_dir,
         )
 
     else:

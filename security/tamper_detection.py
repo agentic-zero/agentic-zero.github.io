@@ -129,11 +129,19 @@ class TamperDetector:
     def discover_client_files(self, client_id: str) -> list[tuple[Path, bool]]:
         """Returns (path, append_only) pairs for the standard security
         state files of one client - the common case for --snapshot/--verify.
+
+        token_usage.jsonl added 29 Jun 2026 - built (saas/token_governance.py,
+        M11) after this discovery list already existed, so it was never
+        protected. A deleted line here would hide real spend before a
+        billing audit - the exact same attack already proven against
+        audit_logs.jsonl (a deleted CONTRACT_GO_LIVE line, caught as
+        SHRUNK). Append-only, same rule.
         """
         return [
             (Path("security/state/licenses") / f"{client_id}.json", False),
             (Path("security/state/entitlements") / f"{client_id}.json", False),
             (Path("security/state/audit_logs") / f"{client_id}.jsonl", True),
+            (Path("saas/state/token_usage") / f"{client_id}.jsonl", True),
         ]
 
     def snapshot(self, paths: list[tuple[Path, bool]]) -> list[FileBaseline]:

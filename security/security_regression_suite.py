@@ -118,9 +118,100 @@ def run_tamper_detection_case() -> SuiteCase:
     )
 
 
+def run_lead_notifier_case() -> SuiteCase:
+    """lead_notifier.py has no no-args self-test that's safe to run in an
+    automated suite - its __main__ tries a real Telegram send, which
+    depends on network + real credentials and would make this suite
+    flaky/slow for no security benefit. The actual security-critical
+    property to regression-test is _safe_client_id() - the path
+    traversal fix found during this module's own validation (a company
+    name of '../../etc/passwd' must never escape audit_logs/). Test that
+    directly, in-process, no network involved.
+    """
+    try:
+        from security.lead_notifier import _safe_client_id
+
+        result = _safe_client_id("../../etc/passwd")
+        passed = ".." not in result and "/" not in result and "\\" not in result
+        detail = f"_safe_client_id('../../etc/passwd') -> '{result}'"
+        return SuiteCase(
+            name="Lead Notifier (path traversal sanitization)",
+            module="lead_notifier",
+            args=["_safe_client_id"],
+            passed=passed,
+            returncode=0 if passed else 1,
+            stdout_tail=detail,
+            stderr_tail="",
+        )
+    except Exception as exc:
+        return SuiteCase(
+            name="Lead Notifier (path traversal sanitization)",
+            module="lead_notifier",
+            args=["_safe_client_id"],
+            passed=False,
+            returncode=1,
+            stdout_tail="",
+            stderr_tail=str(exc),
+        )
+
+
+OFFBOARDING_TEST_CLIENT = "_regression_suite_offboarding_check"
+
+
+def run_offboarding_case() -> SuiteCase:
+    """secure_client_offboarding.py's CLI requires real arguments
+    (--client-id/--activated-by/--contract-reference) - no bare
+    no-args self-test exists, same situation as tamper_detection.py.
+    Provisions a disposable client, activates it, then offboards it and
+    checks the exit code (which is 1 if ANY of the 7 post-conditions
+    failed verification - see secure_client_offboarding.py).
+    """
+    subprocess.run(
+        [
+            sys.executable, "-m", "security.contract_activation", "provision",
+            "--client-id", OFFBOARDING_TEST_CLIENT,
+            "--product", "AGENTIC_ZERO_ESSENTIAL", "--plan", "ESSENTIAL",
+            "--activated-by", "security_regression_suite",
+            "--contract-reference", "regression_suite_offboarding_check",
+        ],
+        capture_output=True, text=True,
+    )
+    subprocess.run(
+        [
+            sys.executable, "-m", "security.contract_activation", "go-live",
+            "--client-id", OFFBOARDING_TEST_CLIENT,
+            "--activated-by", "security_regression_suite",
+            "--contract-reference", "regression_suite_offboarding_check_golive",
+        ],
+        capture_output=True, text=True,
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable, "-m", "security.secure_client_offboarding",
+            "--client-id", OFFBOARDING_TEST_CLIENT,
+            "--activated-by", "security_regression_suite",
+            "--contract-reference", "regression_suite_offboarding_check_offboard",
+        ],
+        capture_output=True, text=True,
+    )
+
+    return SuiteCase(
+        name="Secure Client Offboarding (provision -> go-live -> offboard round-trip)",
+        module="secure_client_offboarding",
+        args=["roundtrip"],
+        passed=result.returncode == 0,
+        returncode=result.returncode,
+        stdout_tail=_tail(result.stdout),
+        stderr_tail=_tail(result.stderr),
+    )
+
+
 def run_suite() -> SuiteReport:
     cases = [run_case(name, module, args) for name, module, args in CASES]
     cases.append(run_tamper_detection_case())
+    cases.append(run_lead_notifier_case())
+    cases.append(run_offboarding_case())
 
     passed = sum(1 for c in cases if c.passed)
     failed = len(cases) - passed

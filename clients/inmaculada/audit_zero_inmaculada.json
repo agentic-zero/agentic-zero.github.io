@@ -1,0 +1,15 @@
+{
+  "company": "Empresa Transportes Inmaculada Sierra",
+  "name": "Inmaculada Sierra",
+  "email": "inmaculada@empresatransportes.com",
+  "role": "Directora de Operaciones",
+  "sector": "transport_distribution",
+  "erp": "SAP ECC 6.0 EHP8 SPS15",
+  "volume": "50",
+  "team_size": "1",
+  "timing": "immediate",
+  "autonomy_level": "AL1",
+  "process_mapping": "Order Management: Order Entry [BPMN-OTC-001] || Credit Management: Credit Check [SAP-FD32] || Transport Execution: Capacity Check [TMS-EXT]",
+  "areas": "order_management,credit_management,transport_execution,billing",
+  "notes": "SAP ECC 6.0 EHP8 SPS15. Modulos: SD+MM+FI. TMS externo REST API. 50 ordenes/dia: ZEST x35 + ZURG x8 + ZINT x5 + ZDEV x2. Credit check FD32. Price validation VK11 tolerancia 1pct. TMS capacidad en metros lineales. Operador: cmendoza@empresatransportes.com. S4HANA go-live Q4 2027."
+}

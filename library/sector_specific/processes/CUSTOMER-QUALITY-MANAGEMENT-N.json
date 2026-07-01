@@ -1,0 +1,234 @@
+{
+  "process_id": "CUSTOMER-QUALITY-MANAGEMENT-N",
+  "name": "The company follows a quality management process for handling non-conformities a",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "medtech_manufacturing",
+  "level": "L3",
+  "description": "The company follows a quality management process for handling non-conformities and releasing batches. The process involves registering NCRs, classifying them by severity, and taking appropriate actions.",
+  "inputs": [
+    "NCR Report",
+    "Critical NCR",
+    "Major NCR",
+    "Batch",
+    "Certificates of Raw Materials",
+    "CAPA"
+  ],
+  "outputs": [
+    "Registered NCR",
+    "Blocked Batch",
+    "Notification to Director of Quality",
+    "Root Cause Investigation Report",
+    "Released Batch",
+    "Verified CAPA"
+  ],
+  "kpis": [
+    "Number of NCRs per month",
+    "Number of critical NCRs per month",
+    "Number of major NCRs per month",
+    "Number of minor NCRs per month",
+    "Time to resolve NCRs",
+    "Time to complete root cause investigations",
+    "Time to verify CAPA effectiveness"
+  ],
+  "compliance_flags": [
+    "Identity & Access",
+    "Real-time Audit Trails",
+    "Escalation Pathways",
+    "Human Accountability",
+    "Action Thresholds",
+    "Fail-Safes"
+  ],
+  "business_rules": [
+    "and escalate to General Management if not closed within 120 days"
+  ],
+  "sector_applicability": [
+    "medtech_manufacturing"
+  ],
+  "source": "Architect SIOP Bridge -- Customer Pipeline",
+  "confidence": 0.8,
+  "procedure_steps": [
+    {
+      "step_id": "STEP-01",
+      "name": "NCR Registration",
+      "owner": "Quality Technician",
+      "system": "Oracle Quality Management",
+      "inputs": [
+        "NCR Report"
+      ],
+      "outputs": [
+        "Registered NCR"
+      ],
+      "rule": "Classify NCR by severity (critical, major, minor)",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-02",
+      "name": "Automatic Batch Blocking",
+      "owner": "System",
+      "system": "Oracle WMS",
+      "inputs": [
+        "Critical NCR"
+      ],
+      "outputs": [
+        "Blocked Batch"
+      ],
+      "rule": "Block batch automatically if NCR is critical",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-03",
+      "name": "Notification to Director of Quality",
+      "owner": "System",
+      "system": "Oracle Quality Management",
+      "inputs": [
+        "Critical NCR"
+      ],
+      "outputs": [
+        "Notification to Director of Quality"
+      ],
+      "rule": "Notify Director of Quality within 4 hours if NCR is critical",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-04",
+      "name": "Root Cause Investigation",
+      "owner": "Quality Technician",
+      "system": "Oracle Quality Management",
+      "inputs": [
+        "Major NCR"
+      ],
+      "outputs": [
+        "Root Cause Investigation Report"
+      ],
+      "rule": "Open root cause investigation for major NCRs, to be completed within 10 working days using 8D methodology",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-05",
+      "name": "Batch Release",
+      "owner": "Quality Technician",
+      "system": "Oracle WMS",
+      "inputs": [
+        "Batch",
+        "Certificates of Raw Materials"
+      ],
+      "outputs": [
+        "Released Batch"
+      ],
+      "rule": "Verify certificates of raw materials from approved suppliers (CeramTech GmbH, BioMat Iberia, Nippon Advanced Ceramics) before authorizing production",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-06",
+      "name": "CAPA Tracking",
+      "owner": "Quality Technician",
+      "system": "Oracle Quality Management",
+      "inputs": [
+        "CAPA"
+      ],
+      "outputs": [
+        "Verified CAPA"
+      ],
+      "rule": "Verify effectiveness of CAPA within 90 days, and escalate to General Management if not closed within 120 days",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "approval",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    }
+  ],
+  "connectors": [],
+  "escalation_types": [
+    "approval"
+  ],
+  "builder_prompt": "You are the Agentic Zero Builder Agent. Generate a complete, production-ready Python autonomous agent.\n\nPROCESS: The company follows a quality management process for handling non-conformities and releasing batches. The process involves registering NCRs, classifying them by severity, and taking appropriate actions.\nCLASS NAME: QualityManagementNonConformanceHandlingQmsNcrAndProductionBatchReleaseOracleWmsAgent\nPROCESS ID: CUSTOMER-QUALITY-MANAGEMENT-N\nCOMPANY: Bioceramicas del Mediterraneo SA | SECTOR: medtech_manufacturing | ERP: Oracle Fusion Cloud SCM\nVOLUME: 180\nOPERATING HOURS: \nCONFIDENCE THRESHOLD: 0.8\n\nPROCESS STEPS (implement each as an async method):\n  STEP-01: NCR Registration\n    System: Oracle Quality Management\n    Rule: Classify NCR by severity (critical, major, minor)\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-02: Automatic Batch Blocking\n    System: Oracle WMS\n    Rule: Block batch automatically if NCR is critical\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-03: Notification to Director of Quality\n    System: Oracle Quality Management\n    Rule: Notify Director of Quality within 4 hours if NCR is critical\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-04: Root Cause Investigation\n    System: Oracle Quality Management\n    Rule: Open root cause investigation for major NCRs, to be completed within 10 working days using 8D methodology\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-05: Batch Release\n    System: Oracle WMS\n    Rule: Verify certificates of raw materials from approved suppliers (CeramTech GmbH, BioMat Iberia, Nippon Advanced Ceramics) before authorizing production\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-06: CAPA Tracking\n    System: Oracle Quality Management\n    Rule: Verify effectiveness of CAPA within 90 days, and escalate to General Management if not closed within 120 days\n    SAP tx: []\n    External APIs: []\n    Escalation: approval -> \n\nEXTERNAL CONNECTORS (implement each as a class with connect() and dry-run mock):\n\n\nESCALATION SCENARIOS (implement handle_escalation() with all cases):\n  approval: queue_and_await_approval -> env:ESCALATION_OPS\n\nAUTONOMOUS ACTIONS (agent executes without human approval):\n  - Read data\n  - Validate data\n  - Create draft recommendation\n\nAPPROVAL REQUIRED (agent pauses and awaits human decision):\n\n\nALWAYS HUMAN (agent never executes these autonomously):\n\n\nAGENTIC SHIELD REQUIREMENTS (embed in every decision):\n  - Identity & Access\n  - Real-time Audit Trails\n  - Escalation Pathways\n  - Human Accountability\n  - Action Thresholds\n  - Fail-Safes\n\nCOMPLIANCE FRAMEWORKS (embed compliance checks):\n\n\nKPIs TO TRACK (log in audit trail and dashboard events):\n  - Number of NCRs per month\n  - Number of critical NCRs per month\n  - Number of major NCRs per month\n  - Number of minor NCRs per month\n  - Time to resolve NCRs\n  - Time to complete root cause investigations\n  - Time to verify CAPA effectiveness\n\nLEARNING HOOKS FOR THE MACHINE (emit these events):\n{\n  \"enabled\": true,\n  \"observation_points\": [\n    \"step execution time\",\n    \"exception frequency\",\n    \"human escalation frequency\",\n    \"manual override frequency\",\n    \"KPI deviation from target\"\n  ],\n  \"failure_patterns\": [\n    \"NCR not classified by severity\",\n    \"Batch not blocked automatically for critical NCR\",\n    \"Director of Quality not notified within 4 hours for critical NCR\",\n    \"Root cause investigation not completed within 10 working days for major NCR\",\n    \"Certificates of raw materials not verified before authorizing production\",\n    \"CAPA not verified within 90 days or not closed within 120 days\"\n  ],\n  \"kpi_deviation_signals\": [\n    \"Number of NCRs per month\",\n    \"Number of critical NCRs per month\",\n    \"Number of major NCRs per month\",\n    \"Number of minor NCRs per month\",\n    \"Time to resolve NCRs\",\n    \"Time to complete root cause investigations\",\n    \"Time to verify CAPA effectiveness\"\n  ],\n  \"feedback_targets\": [\n    \"business_rules\",\n    \"exceptions\",\n    \"autonomy_design\",\n    \"acceptance_criteria\",\n    \"agent_blueprint\"\n  ],\n  \"improvement_loop\": \"observe_analyze_recommend_validate_deploy\"\n}\n\nACCEPTANCE TEST SCENARIOS (all must pass before Guardian certification):\n  - Happy path test for Quality Management: Non-Conformance Handling [QMS-NCR] and Production: Batch Release [ORACLE-WMS]\n  - Missing data exception test\n  - System unavailable exception test\n  - Human approval escalation test\n  - Audit trail verification test\n\nMISSING INFORMATION (handle gracefully with dry-run mock until resolved):\n  - NCR classification criteria: Not explicitly stated in the text\n  - Root cause investigation methodology: Not explicitly stated in the text\n\nMANDATORY CODE REQUIREMENTS:\n1. All process steps as async methods: step_01_order_received(), step_02_validate_order(), etc.\n2. SAPConnector class with connect(), all required RFC/BAPI calls, and _mock_* dry-run methods\n3. External API connectors (TMS, email) with connect() and _mock_* dry-run methods\n4. handle_escalation(order, reason) covering ALL escalation scenarios above\n5. EmailDraftGenerator for capacity notifications using xAI grok-3-mini\n6. AuditEntry dataclass -- log every decision with timestamp, rule, confidence, outcome\n7. Dashboard events JSONL stream for Autonomy Dashboard\n8. CLI: --mode live/dry-run/single --order ORDER_ID\n9. EU AI Act ART.12 audit trail -- ART.14 human oversight checkpoints\n10. ASCII-only source code (Windows PowerShell compatible)\n11. Dry-run mode must work with zero external dependencies\n12. Config via environment variables (.env file)\n13. Operating hours check: queue orders outside \n\nThe agent must make it feel like a living enterprise. Every order processed updates the Enterprise Pulse.\nGenerate complete, runnable Python code. No placeholders. No TODO comments. Production-ready.",
+  "blueprint_id": "BP-SIOP-bioceramicas_del_mediterraneo_sa-quality_management_non_conformance_handling_qms_ncr_and_production_batch_release_oracle_wms-20260620164556",
+  "siop_id": "SIOP-bioceramicas_del_mediterraneo_sa-quality_management_non_conformance_handling_qms_ncr_and_production_batch_release_oracle_wms-20260620164556",
+  "company": "Bioceramicas del Mediterraneo SA",
+  "erp": "Oracle Fusion Cloud SCM",
+  "volume": "180",
+  "operating_hours": "",
+  "agent_class_name": "QualityManagementNonConformanceHandlingQmsNcrAndProductionBatchReleaseOracleWmsAgent",
+  "learning_hooks": {
+    "enabled": true,
+    "observation_points": [
+      "step execution time",
+      "exception frequency",
+      "human escalation frequency",
+      "manual override frequency",
+      "KPI deviation from target"
+    ],
+    "failure_patterns": [
+      "NCR not classified by severity",
+      "Batch not blocked automatically for critical NCR",
+      "Director of Quality not notified within 4 hours for critical NCR",
+      "Root cause investigation not completed within 10 working days for major NCR",
+      "Certificates of raw materials not verified before authorizing production",
+      "CAPA not verified within 90 days or not closed within 120 days"
+    ],
+    "kpi_deviation_signals": [
+      "Number of NCRs per month",
+      "Number of critical NCRs per month",
+      "Number of major NCRs per month",
+      "Number of minor NCRs per month",
+      "Time to resolve NCRs",
+      "Time to complete root cause investigations",
+      "Time to verify CAPA effectiveness"
+    ],
+    "feedback_targets": [
+      "business_rules",
+      "exceptions",
+      "autonomy_design",
+      "acceptance_criteria",
+      "agent_blueprint"
+    ],
+    "improvement_loop": "observe_analyze_recommend_validate_deploy"
+  },
+  "acceptance_tests": [
+    "Happy path test for Quality Management: Non-Conformance Handling [QMS-NCR] and Production: Batch Release [ORACLE-WMS]",
+    "Missing data exception test",
+    "System unavailable exception test",
+    "Human approval escalation test",
+    "Audit trail verification test"
+  ],
+  "missing_info": [
+    {
+      "field": "NCR classification criteria",
+      "reason": "Not explicitly stated in the text",
+      "required_for": "Automating NCR classification",
+      "severity": "medium"
+    },
+    {
+      "field": "Root cause investigation methodology",
+      "reason": "Not explicitly stated in the text",
+      "required_for": "Automating root cause investigation",
+      "severity": "medium"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "process_id": "FA-empresa_transportes_inmaculada_sierra-order_management-20260620162041",
+  "name": "order_management",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "order_management",
+  "level": "L4",
+  "description": "SAP ECC 6.0 EHP8 SPS15. Modulos: SD+MM+FI. TMS externo REST API. 50 ordenes/dia: ZEST x35 + ZURG x8 + ZINT x5 + ZDEV x2. Credit check FD32. Price validation VK11 tolerancia 1pct. TMS capacidad en metros lineales. Operador: cmendoza@empresatransportes.com. S4HANA go-live Q4 2027.",
+  "inputs": [
+    "customer provided process input"
+  ],
+  "outputs": [
+    "functional process output"
+  ],
+  "kpis": [
+    "cycle time",
+    "error rate",
+    "automation rate"
+  ],
+  "related_processes": [],
+  "sector_applicability": [
+    "transport_distribution"
+  ],
+  "compliance_flags": [],
+  "source": "Functional Translator — AUDIT ZERO",
+  "confidence": 0.14
+}

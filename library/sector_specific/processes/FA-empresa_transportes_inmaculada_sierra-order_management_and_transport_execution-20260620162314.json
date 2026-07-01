@@ -1,0 +1,32 @@
+{
+  "process_id": "FA-empresa_transportes_inmaculada_sierra-order_management_and_transport_execution-20260620162314",
+  "name": "Order Management and Transport Execution",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "order_management",
+  "level": "L3",
+  "description": "The company manages orders, checks credit, and executes transport using SAP ECC and an external TMS system.",
+  "inputs": [
+    "new order"
+  ],
+  "outputs": [
+    "order confirmation",
+    "credit check result",
+    "transport confirmation"
+  ],
+  "kpis": [
+    "cycle time",
+    "error rate",
+    "automation rate"
+  ],
+  "related_processes": [
+    "Order Entry",
+    "Credit Check",
+    "Transport Execution"
+  ],
+  "sector_applicability": [
+    "transport_distribution"
+  ],
+  "compliance_flags": [],
+  "source": "Functional Translator — AUDIT ZERO",
+  "confidence": 0.7
+}

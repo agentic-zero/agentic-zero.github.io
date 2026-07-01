@@ -1,0 +1,200 @@
+{
+  "process_id": "CUSTOMER-ORDER-MANAGEMENT-AND",
+  "name": "The company uses SAP ECC 6.0 EHP8 SPS15 with SD, MM, and FI modules, and an exte",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "transport_distribution",
+  "level": "L3",
+  "description": "The company uses SAP ECC 6.0 EHP8 SPS15 with SD, MM, and FI modules, and an external TMS system with a REST API. The process involves order entry, credit check, price validation, and transport execution.",
+  "inputs": [
+    "Order details",
+    "Customer data",
+    "Pricing data",
+    "Transport capacity"
+  ],
+  "outputs": [
+    "Order number",
+    "Credit status",
+    "Validated price",
+    "Transport schedule"
+  ],
+  "kpis": [
+    "Order fulfillment rate",
+    "Credit check success rate",
+    "Price validation success rate",
+    "Transport execution success rate"
+  ],
+  "compliance_flags": [
+    "EU AI Act",
+    "ISO/IEC 42001",
+    "NIST AI RMF",
+    "Identity & Access",
+    "Real-time Audit Trails",
+    "Escalation Pathways",
+    "Human Accountability",
+    "AI Risk Classification",
+    "Explainability",
+    "Model Monitoring",
+    "Action Thresholds",
+    "Fail-Safes"
+  ],
+  "business_rules": [
+    "ZINT",
+    "Block orders if credit check fails",
+    "Block orders if price deviates beyond 1% tolerance",
+    "Check available capacity for the requested route and date"
+  ],
+  "sector_applicability": [
+    "transport_distribution"
+  ],
+  "source": "Architect SIOP Bridge -- Customer Pipeline",
+  "confidence": 0.8,
+  "procedure_steps": [
+    {
+      "step_id": "STEP-01",
+      "name": "Order Entry",
+      "owner": "Inmaculada Sierra",
+      "system": "SAP SD -- VBAK/VBAP",
+      "inputs": [
+        "Order details"
+      ],
+      "outputs": [
+        "Order number"
+      ],
+      "rule": "Classify orders by type code (ZEST, ZURG, ZINT, ZDEV)",
+      "automation_candidate": true,
+      "escalation_trigger": "order_type == ZINT AND NOT international_docs",
+      "escalation_type": "international_docs",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-02",
+      "name": "Credit Check",
+      "owner": "Inmaculada Sierra",
+      "system": "SAP FI -- FD32",
+      "inputs": [
+        "Order details",
+        "Customer data"
+      ],
+      "outputs": [
+        "Credit status"
+      ],
+      "rule": "Block orders if credit check fails",
+      "automation_candidate": true,
+      "escalation_trigger": "overdue_days > credit_overdue_days OR sap_credit_blocked",
+      "escalation_type": "credit",
+      "sap_transactions": [
+        "FD32"
+      ],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-03",
+      "name": "Price Validation",
+      "owner": "Inmaculada Sierra",
+      "system": "SAP SD -- VK11",
+      "inputs": [
+        "Order details",
+        "Pricing data"
+      ],
+      "outputs": [
+        "Validated price"
+      ],
+      "rule": "Block orders if price deviates beyond 1% tolerance",
+      "automation_candidate": true,
+      "escalation_trigger": "abs(quoted_price - condition_price) / condition_price > price_tolerance",
+      "escalation_type": "price",
+      "sap_transactions": [
+        "VK11"
+      ],
+      "external_apis": [],
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-04",
+      "name": "Transport Execution",
+      "owner": "Inmaculada Sierra",
+      "system": "TMS external API",
+      "inputs": [
+        "Order details",
+        "Transport capacity"
+      ],
+      "outputs": [
+        "Transport schedule"
+      ],
+      "rule": "Check available capacity for the requested route and date",
+      "automation_candidate": true,
+      "escalation_trigger": "tms_capacity_available == False",
+      "escalation_type": "capacity",
+      "sap_transactions": [],
+      "external_apis": [
+        "TMS_REST_API"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "connectors": [
+    "SAPConnector",
+    "TMSConnector"
+  ],
+  "escalation_types": [
+    "international_docs",
+    "credit",
+    "price",
+    "capacity"
+  ],
+  "builder_prompt": "You are the Agentic Zero Builder Agent. Generate a complete, production-ready Python autonomous agent.\n\nPROCESS: The company uses SAP ECC 6.0 EHP8 SPS15 with SD, MM, and FI modules, and an external TMS system with a REST API. The process involves order entry, credit check, price validation, and transport execution.\nCLASS NAME: OrderManagementAndTransportExecutionAgent\nPROCESS ID: CUSTOMER-ORDER-MANAGEMENT-AND\nCOMPANY: Empresa Transportes Inmaculada Sierra | SECTOR: transport_distribution | ERP: SAP ECC 6.0 EHP8 SPS15\nVOLUME: 50\nOPERATING HOURS: \nCONFIDENCE THRESHOLD: 0.8\n\nPROCESS STEPS (implement each as an async method):\n  STEP-01: Order Entry\n    System: SAP SD -- VBAK/VBAP\n    Rule: Classify orders by type code (ZEST, ZURG, ZINT, ZDEV)\n    SAP tx: []\n    External APIs: []\n    Escalation: international_docs -> order_type == ZINT AND NOT international_docs\n  STEP-02: Credit Check\n    System: SAP FI -- FD32\n    Rule: Block orders if credit check fails\n    SAP tx: ['FD32']\n    External APIs: []\n    Escalation: credit -> overdue_days > credit_overdue_days OR sap_credit_blocked\n  STEP-03: Price Validation\n    System: SAP SD -- VK11\n    Rule: Block orders if price deviates beyond 1% tolerance\n    SAP tx: ['VK11']\n    External APIs: []\n    Escalation: price -> abs(quoted_price - condition_price) / condition_price > price_tolerance\n  STEP-04: Transport Execution\n    System: TMS external API\n    Rule: Check available capacity for the requested route and date\n    SAP tx: []\n    External APIs: ['TMS_REST_API']\n    Escalation: capacity -> tms_capacity_available == False\n\nEXTERNAL CONNECTORS (implement each as a class with connect() and dry-run mock):\n  SAPConnector (sap_rfc): ['FD32', 'VK11']\n  TMSConnector (rest_api): ['check_capacity', 'assign_route']\n\nESCALATION SCENARIOS (implement handle_escalation() with all cases):\n  international_docs: block_and_notify_ops -> env:ESCALATION_OPS\n  credit: block_and_notify_finance -> env:ESCALATION_FINANCE\n  price: block_and_notify_ops -> env:ESCALATION_OPS\n  capacity: draft_capacity_email_and_notify_ops -> env:ESCALATION_OPS\n\nAUTONOMOUS ACTIONS (agent executes without human approval):\n  - Read data\n  - Validate data\n  - Create draft recommendation\n\nAPPROVAL REQUIRED (agent pauses and awaits human decision):\n\n\nALWAYS HUMAN (agent never executes these autonomously):\n\n\nAGENTIC SHIELD REQUIREMENTS (embed in every decision):\n  - Identity & Access\n  - Real-time Audit Trails\n  - Escalation Pathways\n  - Human Accountability\n  - AI Risk Classification\n  - Explainability\n  - Model Monitoring\n  - Action Thresholds\n  - Fail-Safes\n\nCOMPLIANCE FRAMEWORKS (embed compliance checks):\n  - EU AI Act\n  - ISO/IEC 42001\n  - NIST AI RMF\n\nKPIs TO TRACK (log in audit trail and dashboard events):\n  - Order fulfillment rate\n  - Credit check success rate\n  - Price validation success rate\n  - Transport execution success rate\n\nLEARNING HOOKS FOR THE MACHINE (emit these events):\n{\n  \"enabled\": true,\n  \"observation_points\": [\n    \"step execution time\",\n    \"exception frequency\",\n    \"human escalation frequency\",\n    \"manual override frequency\",\n    \"KPI deviation from target\"\n  ],\n  \"failure_patterns\": [\n    \"Credit check failure\",\n    \"Price validation failure\",\n    \"Transport capacity unavailability\"\n  ],\n  \"kpi_deviation_signals\": [\n    \"Order fulfillment rate\",\n    \"Credit check success rate\",\n    \"Price validation success rate\",\n    \"Transport execution success rate\"\n  ],\n  \"feedback_targets\": [\n    \"business_rules\",\n    \"exceptions\",\n    \"autonomy_design\",\n    \"acceptance_criteria\",\n    \"agent_blueprint\"\n  ],\n  \"improvement_loop\": \"observe_analyze_recommend_validate_deploy\"\n}\n\nACCEPTANCE TEST SCENARIOS (all must pass before Guardian certification):\n  - Happy path test for Order Management and Transport Execution\n  - Missing data exception test\n  - System unavailable exception test\n  - Human approval escalation test\n  - Audit trail verification test\n\nMISSING INFORMATION (handle gracefully with dry-run mock until resolved):\n  - Detailed transport execution process: Not provided in the input text\n\nMANDATORY CODE REQUIREMENTS:\n1. All process steps as async methods: step_01_order_received(), step_02_validate_order(), etc.\n2. SAPConnector class with connect(), all required RFC/BAPI calls, and _mock_* dry-run methods\n3. External API connectors (TMS, email) with connect() and _mock_* dry-run methods\n4. handle_escalation(order, reason) covering ALL escalation scenarios above\n5. EmailDraftGenerator for capacity notifications using xAI grok-3-mini\n6. AuditEntry dataclass -- log every decision with timestamp, rule, confidence, outcome\n7. Dashboard events JSONL stream for Autonomy Dashboard\n8. CLI: --mode live/dry-run/single --order ORDER_ID\n9. EU AI Act ART.12 audit trail -- ART.14 human oversight checkpoints\n10. ASCII-only source code (Windows PowerShell compatible)\n11. Dry-run mode must work with zero external dependencies\n12. Config via environment variables (.env file)\n13. Operating hours check: queue orders outside \n\nThe agent must make it feel like a living enterprise. Every order processed updates the Enterprise Pulse.\nGenerate complete, runnable Python code. No placeholders. No TODO comments. Production-ready.",
+  "blueprint_id": "BP-SIOP-empresa_transportes_inmaculada_sierra-order_management_and_transport_execution-20260620163514",
+  "siop_id": "SIOP-empresa_transportes_inmaculada_sierra-order_management_and_transport_execution-20260620163514",
+  "company": "Empresa Transportes Inmaculada Sierra",
+  "erp": "SAP ECC 6.0 EHP8 SPS15",
+  "volume": "50",
+  "operating_hours": "",
+  "agent_class_name": "OrderManagementAndTransportExecutionAgent",
+  "learning_hooks": {
+    "enabled": true,
+    "observation_points": [
+      "step execution time",
+      "exception frequency",
+      "human escalation frequency",
+      "manual override frequency",
+      "KPI deviation from target"
+    ],
+    "failure_patterns": [
+      "Credit check failure",
+      "Price validation failure",
+      "Transport capacity unavailability"
+    ],
+    "kpi_deviation_signals": [
+      "Order fulfillment rate",
+      "Credit check success rate",
+      "Price validation success rate",
+      "Transport execution success rate"
+    ],
+    "feedback_targets": [
+      "business_rules",
+      "exceptions",
+      "autonomy_design",
+      "acceptance_criteria",
+      "agent_blueprint"
+    ],
+    "improvement_loop": "observe_analyze_recommend_validate_deploy"
+  },
+  "acceptance_tests": [
+    "Happy path test for Order Management and Transport Execution",
+    "Missing data exception test",
+    "System unavailable exception test",
+    "Human approval escalation test",
+    "Audit trail verification test"
+  ],
+  "missing_info": [
+    {
+      "field": "Detailed transport execution process",
+      "reason": "Not provided in the input text",
+      "required_for": "Complete automation",
+      "severity": "medium"
+    }
+  ]
+}

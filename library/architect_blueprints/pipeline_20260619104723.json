@@ -1,0 +1,39 @@
+{
+  "pipeline_id": "20260619104723",
+  "started_at": "2026-06-19T08:47:23.815407+00:00",
+  "completed_at": "2026-06-19T08:47:24.287233+00:00",
+  "company": "",
+  "process": "",
+  "status": "blocked",
+  "stages": [
+    {
+      "stage": "1_functional_translator",
+      "status": "skipped",
+      "output_path": "clients\\inmaculada\\otc\\essential_package\\01_functional_analysis\\functional_analysis.json",
+      "output_id": "",
+      "score": 0.0,
+      "issues": [],
+      "warnings": [],
+      "duration_sec": 0.0
+    },
+    {
+      "stage": "2_siop_generator",
+      "status": "fail",
+      "output_path": "",
+      "output_id": "",
+      "score": 0.0,
+      "issues": [
+        "[Errno 2] No such file or directory: 'clients\\\\inmaculada\\\\otc\\\\essential_package\\\\01_functional_analysis\\\\functional_analysis.json'"
+      ],
+      "warnings": [],
+      "duration_sec": 0.47
+    }
+  ],
+  "blueprint_path": "",
+  "blueprint_id": "",
+  "ready_for_builder": false,
+  "blocking_issues": [
+    "[Errno 2] No such file or directory: 'clients\\\\inmaculada\\\\otc\\\\essential_package\\\\01_functional_analysis\\\\functional_analysis.json'"
+  ],
+  "next_step": "Fix SIOP Generator input -- check functional_analysis.json"
+}

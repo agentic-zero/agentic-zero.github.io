@@ -1,0 +1,44 @@
+{
+  "process_id": "FA-bioceramicas_del_mediterraneo_sa-quality_management_non_conformance_handling_qms_ncr_and_production_batch_release_oracle_wms-20260620164556",
+  "name": "Quality Management: Non-Conformance Handling [QMS-NCR] and Production: Batch Release [ORACLE-WMS]",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "quality_management",
+  "level": "L3",
+  "description": "The company follows a quality management process for handling non-conformities and releasing batches. The process involves registering NCRs, classifying them by severity, and taking appropriate actions.",
+  "inputs": [
+    "NCR Report",
+    "Batch",
+    "Certificates of Raw Materials"
+  ],
+  "outputs": [
+    "Registered NCR",
+    "Blocked Batch",
+    "Notification to Director of Quality",
+    "Root Cause Investigation Report",
+    "Released Batch",
+    "Verified CAPA"
+  ],
+  "kpis": [
+    "Number of NCRs per month",
+    "Number of critical NCRs per month",
+    "Number of major NCRs per month",
+    "Number of minor NCRs per month",
+    "Time to resolve NCRs",
+    "Time to complete root cause investigations",
+    "Time to verify CAPA effectiveness"
+  ],
+  "related_processes": [
+    "Non-Conformance Handling",
+    "Batch Release",
+    "CAPA Tracking"
+  ],
+  "sector_applicability": [
+    "medtech_manufacturing"
+  ],
+  "compliance_flags": [
+    "ISO 13485",
+    "MDR 2017/745"
+  ],
+  "source": "Functional Translator — AUDIT ZERO",
+  "confidence": 0.85
+}

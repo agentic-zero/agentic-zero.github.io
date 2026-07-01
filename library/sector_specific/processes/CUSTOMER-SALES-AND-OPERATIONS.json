@@ -1,0 +1,286 @@
+{
+  "process_id": "CUSTOMER-SALES-AND-OPERATIONS",
+  "name": "Proceso S&OP mensual para distribuidora de alimentacion con 120 SKUs activos. Tr",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "food_distribution",
+  "level": "L3",
+  "description": "Proceso S&OP mensual para distribuidora de alimentacion con 120 SKUs activos. Tres planificadores coordinan un ciclo que combina forecast de demanda por canal (retail, horeca, ecommerce), revision de posicion de inventario en 4 almacenes regionales, verificacion de capacidad de proveedores criticos, y reconciliacion financiera del plan antes de la revision ejecutiva mensual. El proceso es inherentemente multi-organismo: cada sub-dominio (demanda, inventario, suministro, capacidad, finanzas) opera con sus propios datos y reglas, pero deben converger en un plan unico consensuado.",
+  "inputs": [
+    "historical_sales",
+    "promotional_calendar",
+    "market_signals",
+    "sales_team_input",
+    "consensus_forecast",
+    "current_stock_4_warehouses",
+    "safety_stock_policy",
+    "replenishment_proposal",
+    "supplier_capacity_data",
+    "lead_times",
+    "capacity_constraints",
+    "inventory_gap_analysis",
+    "priority_matrix",
+    "resolved_plan",
+    "budget_targets"
+  ],
+  "outputs": [
+    "consensus_forecast",
+    "forecast_accuracy_score",
+    "inventory_gap_analysis",
+    "replenishment_proposal",
+    "supply_feasibility",
+    "capacity_constraints",
+    "resolved_plan",
+    "unresolved_escalations",
+    "financial_impact",
+    "budget_variance",
+    "approved_sop_plan",
+    "action_items"
+  ],
+  "kpis": [
+    "forecast_accuracy_mape -- objetivo menor a 25pct",
+    "inventory_coverage_weeks -- objetivo 2-4 semanas SKU clase A",
+    "supply_feasibility_pct -- objetivo mayor a 90pct",
+    "margin_variance_pct -- objetivo dentro de 5 puntos vs budget",
+    "sop_cycle_time_days -- objetivo menor a 10 dias habiles",
+    "escalation_rate_pct -- objetivo menor a 15pct de conflictos"
+  ],
+  "compliance_flags": [
+    "HACCP",
+    "ISO 22000",
+    "FSSC 22000",
+    "EU AI Act",
+    "ISO/IEC 42001",
+    "NIST AI RMF",
+    "Identity & Access",
+    "Real-time Audit Trails",
+    "Escalation Pathways",
+    "Human Accountability",
+    "Critical Control Point Monitoring",
+    "AI Risk Classification",
+    "Explainability",
+    "Model Monitoring",
+    "Action Thresholds",
+    "Fail-Safes"
+  ],
+  "business_rules": [
+    "Conflicto demanda-capacidad sin resolucion automatica: escalar a S&OP Lead",
+    "Publicacion de plan a SAP solo tras aprobacion ejecutiva -- nunca automatica",
+    "Exception handling required: Proveedor critico reporta incapacidad de suministro"
+  ],
+  "sector_applicability": [
+    "food_distribution"
+  ],
+  "source": "Architect SIOP Bridge -- Customer Pipeline",
+  "confidence": 84.0,
+  "procedure_steps": [
+    {
+      "step_id": "STEP-01",
+      "name": "Demand Forecast Consensus",
+      "owner": "Demand Planner + Agent",
+      "system": "SAP IBP -- Demand Module",
+      "inputs": [
+        "historical_sales",
+        "promotional_calendar",
+        "market_signals",
+        "sales_team_input"
+      ],
+      "outputs": [
+        "consensus_forecast",
+        "forecast_accuracy_score"
+      ],
+      "rule": "Combinar forecast estadistico con input comercial. Si desviacion entre estadistico y comercial supera 20pct, escalar a revision manual. Forecast accuracy objetivo MAPE menor a 25pct.",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.85
+    },
+    {
+      "step_id": "STEP-02",
+      "name": "Inventory Position Review",
+      "owner": "Agent -- Inventory Organism",
+      "system": "SAP S/4HANA -- MM + WM",
+      "inputs": [
+        "consensus_forecast",
+        "current_stock_4_warehouses",
+        "safety_stock_policy"
+      ],
+      "outputs": [
+        "inventory_gap_analysis",
+        "replenishment_proposal"
+      ],
+      "rule": "Calcular gap entre forecast y stock disponible por almacen regional. Aplicar politica de stock de seguridad diferenciada por categoria ABC. Alertar si cobertura cae bajo 2 semanas en SKU clase A.",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.88
+    },
+    {
+      "step_id": "STEP-03",
+      "name": "Supply Capacity Check",
+      "owner": "Agent -- Supply Organism",
+      "system": "SAP Ariba + API proveedores criticos",
+      "inputs": [
+        "replenishment_proposal",
+        "supplier_capacity_data",
+        "lead_times"
+      ],
+      "outputs": [
+        "supply_feasibility",
+        "capacity_constraints"
+      ],
+      "rule": "Verificar capacidad de los 5 proveedores criticos contra el plan de reposicion propuesto. Si algun proveedor no puede cubrir mas del 90pct de la demanda propuesta, generar constraint para resolucion.",
+      "automation_candidate": true,
+      "escalation_trigger": "tms_capacity_available == False",
+      "escalation_type": "capacity",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.82
+    },
+    {
+      "step_id": "STEP-04",
+      "name": "Constraint Resolution",
+      "owner": "Agent -- cross-organism coordination",
+      "system": "Internal -- Shield coordination",
+      "inputs": [
+        "capacity_constraints",
+        "inventory_gap_analysis",
+        "priority_matrix"
+      ],
+      "outputs": [
+        "resolved_plan",
+        "unresolved_escalations"
+      ],
+      "rule": "Cuando demanda y capacidad de suministro entran en conflicto, aplicar matriz de prioridad por margen de contribucion y criticidad de cliente. Conflictos sin resolucion automatica escalan a S&OP Lead.",
+      "automation_candidate": true,
+      "escalation_trigger": "tms_capacity_available == False",
+      "escalation_type": "capacity",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.78
+    },
+    {
+      "step_id": "STEP-05",
+      "name": "Finance Reconciliation",
+      "owner": "Agent -- Finance Organism",
+      "system": "SAP FI-CO",
+      "inputs": [
+        "resolved_plan",
+        "budget_targets",
+        "margin_targets"
+      ],
+      "outputs": [
+        "financial_impact",
+        "budget_variance"
+      ],
+      "rule": "Traducir el plan de unidades a impacto financiero. Si la desviacion de margen bruto respecto al budget supera 5 puntos porcentuales, marcar para revision ejecutiva obligatoria.",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "none",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.86
+    },
+    {
+      "step_id": "STEP-06",
+      "name": "S&OP Executive Review",
+      "owner": "S&OP Lead + Direccion",
+      "system": "Dashboard ejecutivo",
+      "inputs": [
+        "resolved_plan",
+        "financial_impact",
+        "unresolved_escalations"
+      ],
+      "outputs": [
+        "approved_sop_plan",
+        "action_items"
+      ],
+      "rule": "Plan se publica a SAP solo tras aprobacion ejecutiva. Reuniones mensuales el primer lunes habil. Cualquier desviacion de demanda mayor al 15pct entre ciclos dispara revision extraordinaria.",
+      "automation_candidate": true,
+      "escalation_trigger": "",
+      "escalation_type": "approval",
+      "sap_transactions": [],
+      "external_apis": [],
+      "confidence": 0.9
+    }
+  ],
+  "connectors": [
+    "SAPConnector"
+  ],
+  "escalation_types": [
+    "capacity",
+    "approval"
+  ],
+  "builder_prompt": "You are the Agentic Zero Builder Agent. Generate a complete, production-ready Python autonomous agent.\n\nPROCESS: Proceso S&OP mensual para distribuidora de alimentacion con 120 SKUs activos. Tres planificadores coordinan un ciclo que combina forecast de demanda por canal (retail, horeca, ecommerce), revision de posicion de inventario en 4 almacenes regionales, verificacion de capacidad de proveedores criticos, y reconciliacion financiera del plan antes de la revision ejecutiva mensual. El proceso es inherentemente multi-organismo: cada sub-dominio (demanda, inventario, suministro, capacidad, finanzas) opera con sus propios datos y reglas, pero deben converger en un plan unico consensuado.\nCLASS NAME: SalesAndOperationsPlanningSOpAgent\nPROCESS ID: CUSTOMER-SALES-AND-OPERATIONS\nCOMPANY: Distribuciones Norte SL | SECTOR: food_distribution | ERP: SAP S/4HANA 2023\nVOLUME: 120 SKUs activos -- planificacion mensual con revision semanal\nOPERATING HOURS: Desviaciones de margen > 5 puntos o conflictos de canal con impacto > 50K EUR -- escalado a S&OP Lead y Direccion\nCONFIDENCE THRESHOLD: 84.0\n\nPROCESS STEPS (implement each as an async method):\n  STEP-01: Demand Forecast Consensus\n    System: SAP IBP -- Demand Module\n    Rule: Combinar forecast estadistico con input comercial. Si desviacion entre estadistico y comercial supera 20pct, escalar a revision manual. Forecast accuracy objetivo MAPE menor a 25pct.\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-02: Inventory Position Review\n    System: SAP S/4HANA -- MM + WM\n    Rule: Calcular gap entre forecast y stock disponible por almacen regional. Aplicar politica de stock de seguridad diferenciada por categoria ABC. Alertar si cobertura cae bajo 2 semanas en SKU clase A.\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-03: Supply Capacity Check\n    System: SAP Ariba + API proveedores criticos\n    Rule: Verificar capacidad de los 5 proveedores criticos contra el plan de reposicion propuesto. Si algun proveedor no puede cubrir mas del 90pct de la demanda propuesta, generar constraint para resolucion.\n    SAP tx: []\n    External APIs: []\n    Escalation: capacity -> tms_capacity_available == False\n  STEP-04: Constraint Resolution\n    System: Internal -- Shield coordination\n    Rule: Cuando demanda y capacidad de suministro entran en conflicto, aplicar matriz de prioridad por margen de contribucion y criticidad de cliente. Conflictos sin resolucion automatica escalan a S&OP Lead.\n    SAP tx: []\n    External APIs: []\n    Escalation: capacity -> tms_capacity_available == False\n  STEP-05: Finance Reconciliation\n    System: SAP FI-CO\n    Rule: Traducir el plan de unidades a impacto financiero. Si la desviacion de margen bruto respecto al budget supera 5 puntos porcentuales, marcar para revision ejecutiva obligatoria.\n    SAP tx: []\n    External APIs: []\n    Escalation: none -> \n  STEP-06: S&OP Executive Review\n    System: Dashboard ejecutivo\n    Rule: Plan se publica a SAP solo tras aprobacion ejecutiva. Reuniones mensuales el primer lunes habil. Cualquier desviacion de demanda mayor al 15pct entre ciclos dispara revision extraordinaria.\n    SAP tx: []\n    External APIs: []\n    Escalation: approval -> \n\nEXTERNAL CONNECTORS (implement each as a class with connect() and dry-run mock):\n  SAPConnector (sap_rfc): ['RFC_READ_TABLE', 'BAPI_CREDIT_CHECK']\n\nESCALATION SCENARIOS (implement handle_escalation() with all cases):\n  capacity: draft_capacity_email_and_notify_ops -> env:ESCALATION_OPS\n  approval: queue_and_await_approval -> env:ESCALATION_OPS\n  capacity: draft_capacity_email_and_notify_ops -> env:ESCALATION_OPS\n\nAUTONOMOUS ACTIONS (agent executes without human approval):\n  - Calcular forecast estadistico base\n  - Calcular gap de inventario por almacen\n  - Verificar capacidad de proveedores via API\n  - Aplicar matriz de prioridad en conflictos menores\n  - Generar reporte de impacto financiero\n  - Generar alertas de cobertura de stock\n\nAPPROVAL REQUIRED (agent pauses and awaits human decision):\n  - Resolver conflictos de asignacion entre canales de alto impacto\n  - Aprobar desviaciones de margen fuera de tolerancia\n  - Publicar el plan S&OP final a SAP\n\nALWAYS HUMAN (agent never executes these autonomously):\n  - Aprobacion ejecutiva final del plan mensual\n  - Decision de discontinuar un SKU\n  - Cambio de politica de stock de seguridad\n  - Negociacion de capacidad con proveedores criticos\n\nAGENTIC SHIELD REQUIREMENTS (embed in every decision):\n  - Identity & Access\n  - Real-time Audit Trails\n  - Escalation Pathways\n  - Human Accountability\n  - Critical Control Point Monitoring\n  - AI Risk Classification\n  - Explainability\n  - Model Monitoring\n  - Action Thresholds\n  - Fail-Safes\n\nCOMPLIANCE FRAMEWORKS (embed compliance checks):\n  - HACCP\n  - ISO 22000\n  - FSSC 22000\n  - EU AI Act\n  - ISO/IEC 42001\n  - NIST AI RMF\n\nKPIs TO TRACK (log in audit trail and dashboard events):\n  - forecast_accuracy_mape -- objetivo menor a 25pct\n  - inventory_coverage_weeks -- objetivo 2-4 semanas SKU clase A\n  - supply_feasibility_pct -- objetivo mayor a 90pct\n  - margin_variance_pct -- objetivo dentro de 5 puntos vs budget\n  - sop_cycle_time_days -- objetivo menor a 10 dias habiles\n  - escalation_rate_pct -- objetivo menor a 15pct de conflictos\n\nLEARNING HOOKS FOR THE MACHINE (emit these events):\n{\n  \"enabled\": true,\n  \"observation_points\": [\n    \"step execution time\",\n    \"exception frequency\",\n    \"human escalation frequency\",\n    \"manual override frequency\",\n    \"KPI deviation from target\"\n  ],\n  \"failure_patterns\": [\n    \"Forecast estadistico y comercial divergen mas de 20pct\",\n    \"Ruptura de stock proyectada en SKU clase A\",\n    \"Proveedor critico reporta incapacidad de suministro\",\n    \"Conflicto de asignacion entre canales sin resolucion automatica\",\n    \"Desviacion de margen bruto fuera de tolerancia\",\n    \"Demanda real se desvia mas del 15pct del plan vigente\"\n  ],\n  \"kpi_deviation_signals\": [\n    \"forecast_accuracy_mape -- objetivo menor a 25pct\",\n    \"inventory_coverage_weeks -- objetivo 2-4 semanas SKU clase A\",\n    \"supply_feasibility_pct -- objetivo mayor a 90pct\",\n    \"margin_variance_pct -- objetivo dentro de 5 puntos vs budget\",\n    \"sop_cycle_time_days -- objetivo menor a 10 dias habiles\",\n    \"escalation_rate_pct -- objetivo menor a 15pct de conflictos\"\n  ],\n  \"feedback_targets\": [\n    \"business_rules\",\n    \"exceptions\",\n    \"autonomy_design\",\n    \"acceptance_criteria\",\n    \"agent_blueprint\"\n  ],\n  \"improvement_loop\": \"observe_analyze_recommend_validate_deploy\"\n}\n\nACCEPTANCE TEST SCENARIOS (all must pass before Guardian certification):\n  - Happy path test for Sales and Operations Planning S&OP\n  - Missing data exception test\n  - System unavailable exception test\n  - Human approval escalation test\n  - Audit trail verification test\n\nMISSING INFORMATION (handle gracefully with dry-run mock until resolved):\n  - sap_ibp_api_credentials: Credenciales API SAP IBP pendientes de equipo IT del cliente\n  - supplier_api_endpoints: 5 proveedores criticos con APIs propias -- documentacion pendiente\n  - margin_variance_threshold_confirmation: Umbral de 5 puntos propuesto por AZ -- pendiente confirmacion CFO cliente\n\nMANDATORY CODE REQUIREMENTS:\n1. All process steps as async methods: step_01_order_received(), step_02_validate_order(), etc.\n2. SAPConnector class with connect(), all required RFC/BAPI calls, and _mock_* dry-run methods\n3. External API connectors (TMS, email) with connect() and _mock_* dry-run methods\n4. handle_escalation(order, reason) covering ALL escalation scenarios above\n5. EmailDraftGenerator for capacity notifications using xAI grok-3-mini\n6. AuditEntry dataclass -- log every decision with timestamp, rule, confidence, outcome\n7. Dashboard events JSONL stream for Autonomy Dashboard\n8. CLI: --mode live/dry-run/single --order ORDER_ID\n9. EU AI Act ART.12 audit trail -- ART.14 human oversight checkpoints\n10. ASCII-only source code (Windows PowerShell compatible)\n11. Dry-run mode must work with zero external dependencies\n12. Config via environment variables (.env file)\n13. Operating hours check: queue orders outside Desviaciones de margen > 5 puntos o conflictos de canal con impacto > 50K EUR -- escalado a S&OP Lead y Direccion\n\nThe agent must make it feel like a living enterprise. Every order processed updates the Enterprise Pulse.\nGenerate complete, runnable Python code. No placeholders. No TODO comments. Production-ready.",
+  "blueprint_id": "BP-SIOP-distribuciones_norte_sl-sales_and_operations_planning_s_op-20260619114805",
+  "siop_id": "SIOP-distribuciones_norte_sl-sales_and_operations_planning_s_op-20260619114805",
+  "company": "Distribuciones Norte SL",
+  "erp": "SAP S/4HANA 2023",
+  "volume": "120 SKUs activos -- planificacion mensual con revision semanal",
+  "operating_hours": "Desviaciones de margen > 5 puntos o conflictos de canal con impacto > 50K EUR -- escalado a S&OP Lead y Direccion",
+  "agent_class_name": "SalesAndOperationsPlanningSOpAgent",
+  "learning_hooks": {
+    "enabled": true,
+    "observation_points": [
+      "step execution time",
+      "exception frequency",
+      "human escalation frequency",
+      "manual override frequency",
+      "KPI deviation from target"
+    ],
+    "failure_patterns": [
+      "Forecast estadistico y comercial divergen mas de 20pct",
+      "Ruptura de stock proyectada en SKU clase A",
+      "Proveedor critico reporta incapacidad de suministro",
+      "Conflicto de asignacion entre canales sin resolucion automatica",
+      "Desviacion de margen bruto fuera de tolerancia",
+      "Demanda real se desvia mas del 15pct del plan vigente"
+    ],
+    "kpi_deviation_signals": [
+      "forecast_accuracy_mape -- objetivo menor a 25pct",
+      "inventory_coverage_weeks -- objetivo 2-4 semanas SKU clase A",
+      "supply_feasibility_pct -- objetivo mayor a 90pct",
+      "margin_variance_pct -- objetivo dentro de 5 puntos vs budget",
+      "sop_cycle_time_days -- objetivo menor a 10 dias habiles",
+      "escalation_rate_pct -- objetivo menor a 15pct de conflictos"
+    ],
+    "feedback_targets": [
+      "business_rules",
+      "exceptions",
+      "autonomy_design",
+      "acceptance_criteria",
+      "agent_blueprint"
+    ],
+    "improvement_loop": "observe_analyze_recommend_validate_deploy"
+  },
+  "acceptance_tests": [
+    "Happy path test for Sales and Operations Planning S&OP",
+    "Missing data exception test",
+    "System unavailable exception test",
+    "Human approval escalation test",
+    "Audit trail verification test"
+  ],
+  "missing_info": [
+    {
+      "field": "sap_ibp_api_credentials",
+      "reason": "Credenciales API SAP IBP pendientes de equipo IT del cliente",
+      "required_for": "integracion demand forecast",
+      "severity": "high"
+    },
+    {
+      "field": "supplier_api_endpoints",
+      "reason": "5 proveedores criticos con APIs propias -- documentacion pendiente",
+      "required_for": "supply capacity check",
+      "severity": "high"
+    },
+    {
+      "field": "margin_variance_threshold_confirmation",
+      "reason": "Umbral de 5 puntos propuesto por AZ -- pendiente confirmacion CFO cliente",
+      "required_for": "finance reconciliation autonomy",
+      "severity": "medium"
+    }
+  ]
+}

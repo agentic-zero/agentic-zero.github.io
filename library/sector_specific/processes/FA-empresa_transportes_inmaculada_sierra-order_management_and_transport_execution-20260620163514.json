@@ -1,0 +1,40 @@
+{
+  "process_id": "FA-empresa_transportes_inmaculada_sierra-order_management_and_transport_execution-20260620163514",
+  "name": "Order Management and Transport Execution",
+  "framework": "CUSTOMER_FUNCTIONAL_ANALYSIS",
+  "domain": "order_management",
+  "level": "L3",
+  "description": "The company uses SAP ECC 6.0 EHP8 SPS15 with SD, MM, and FI modules, and an external TMS system with a REST API. The process involves order entry, credit check, price validation, and transport execution.",
+  "inputs": [
+    "Order details",
+    "Customer data",
+    "Pricing data",
+    "Transport capacity"
+  ],
+  "outputs": [
+    "Order number",
+    "Credit status",
+    "Validated price",
+    "Transport schedule"
+  ],
+  "kpis": [
+    "Order fulfillment rate",
+    "Credit check success rate",
+    "Price validation success rate",
+    "Transport execution success rate"
+  ],
+  "related_processes": [
+    "Order Entry",
+    "Credit Check",
+    "Transport Execution"
+  ],
+  "sector_applicability": [
+    "transport_distribution"
+  ],
+  "compliance_flags": [
+    "SAP ECC 6.0 EHP8 SPS15 compliance",
+    "TMS external API compliance"
+  ],
+  "source": "Functional Translator — AUDIT ZERO",
+  "confidence": 0.85
+}

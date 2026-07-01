@@ -1,0 +1,331 @@
+{
+  "siop_id": "SIOP-empresa_transportes_inmaculada_sierra-order_to_cash_otc-20260619105641",
+  "created_at": "2026-06-19T10:56:41.981202",
+  "source_functional_analysis_id": "FA-empresa-transportes-order-to-cash-20260616",
+  "internal_only": true,
+  "mantra": "Does this make it feel like a living enterprise?",
+  "executive_summary": {
+    "process_name": "Order-to-Cash OTC",
+    "validated_description": "Proceso OTC para empresa de transporte de distribucion. Un unico operador full-time gestiona 50 ordenes diarias.",
+    "business_goal": "Enable safe agentic automation for Order-to-Cash OTC while preserving control, traceability and continuous improvement.",
+    "value_baseline": {
+      "volume": "50 ordenes/dia -- ~1100/mes",
+      "team_size": "1 operador full-time",
+      "documentation_score": 82.0,
+      "confidence": 0.87
+    },
+    "recommended_route": "Essential",
+    "confidence": 0.87
+  },
+  "business_context": {
+    "company": "Empresa Transportes Inmaculada Sierra",
+    "sector": "transport_distribution",
+    "erp": "SAP ECC 6.0 EHP8 SPS15",
+    "volume": "50 ordenes/dia -- ~1100/mes",
+    "team_size": "1 operador full-time",
+    "documentation_score": 82.0,
+    "compliance_implications": [
+      "EU AI Act",
+      "ISO/IEC 42001",
+      "NIST AI RMF"
+    ]
+  },
+  "process_flow": [
+    {
+      "step_id": "STEP-01",
+      "name": "Order Received",
+      "owner": "SAP SD Automatic",
+      "system": "SAP ECC -- VBAK VBAP",
+      "inputs": [
+        "customer_order",
+        "order_type_code"
+      ],
+      "outputs": [
+        "normalized_order"
+      ],
+      "rule": "Clasificar por codigo ZEST/ZURG/ZINT/ZDEV",
+      "automation_candidate": true,
+      "confidence": 0.95
+    },
+    {
+      "step_id": "STEP-02",
+      "name": "Validate Order Data",
+      "owner": "Agent",
+      "system": "SAP ECC -- VBAP",
+      "inputs": [
+        "normalized_order"
+      ],
+      "outputs": [
+        "data_validation_result"
+      ],
+      "rule": "Verificar coherencia matematica y campos obligatorios",
+      "automation_candidate": true,
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-03",
+      "name": "Credit Check FD32",
+      "owner": "Agent",
+      "system": "SAP FI -- FD32",
+      "inputs": [
+        "customer_id"
+      ],
+      "outputs": [
+        "credit_status"
+      ],
+      "rule": "Bloquear si vencido >15 dias",
+      "automation_candidate": true,
+      "confidence": 0.95
+    },
+    {
+      "step_id": "STEP-04",
+      "name": "Price Validation VK11",
+      "owner": "Agent",
+      "system": "SAP SD -- VK11",
+      "inputs": [
+        "quoted_price"
+      ],
+      "outputs": [
+        "price_valid"
+      ],
+      "rule": "Tolerancia 1pct",
+      "automation_candidate": true,
+      "confidence": 0.92
+    },
+    {
+      "step_id": "STEP-05",
+      "name": "Capacity Check TMS",
+      "owner": "Agent",
+      "system": "TMS externo",
+      "inputs": [
+        "route_date"
+      ],
+      "outputs": [
+        "capacity_available"
+      ],
+      "rule": "Metros lineales, ZURG prioridad",
+      "automation_candidate": true,
+      "confidence": 0.88
+    },
+    {
+      "step_id": "STEP-06",
+      "name": "Process Payment",
+      "owner": "Agent",
+      "system": "SAP FI -- VF01",
+      "inputs": [
+        "order_id"
+      ],
+      "outputs": [
+        "invoice_document"
+      ],
+      "rule": "B2B credito automatico, prepago match extracto",
+      "automation_candidate": true,
+      "confidence": 0.9
+    },
+    {
+      "step_id": "STEP-07",
+      "name": "Ship Order VL01N",
+      "owner": "Agent",
+      "system": "SAP SD + TMS",
+      "inputs": [
+        "order_id"
+      ],
+      "outputs": [
+        "delivery_document"
+      ],
+      "rule": "ZURG prioridad maxima",
+      "automation_candidate": true,
+      "confidence": 0.92
+    },
+    {
+      "step_id": "STEP-08",
+      "name": "Send Confirmation",
+      "owner": "Agent",
+      "system": "SAP Output ZED1",
+      "inputs": [
+        "delivery_document"
+      ],
+      "outputs": [
+        "confirmation_sent"
+      ],
+      "rule": "Output automatico",
+      "automation_candidate": true,
+      "confidence": 0.95
+    }
+  ],
+  "data_requirements": {
+    "input_objects": [
+      "VBAK",
+      "VBAP",
+      "KNA1",
+      "FD32",
+      "VK11",
+      "TMS_capacity_API"
+    ],
+    "output_objects": [
+      "VL01N",
+      "VF01",
+      "FI_posting",
+      "TMS_route_assignment"
+    ],
+    "documents": [
+      "CMR",
+      "Packing List",
+      "extracto_bancario_PDF"
+    ],
+    "master_data": [],
+    "transactional_data": [],
+    "data_quality_risks": [
+      "Missing master data",
+      "Incomplete transaction data",
+      "Inconsistent system ownership"
+    ]
+  },
+  "business_rules": {
+    "decision_rules": [
+      "Credito vencido mas de 15 dias: bloquear y escalar a Finanzas",
+      "Discrepancia precio VK11 superior a 1pct: bloquear",
+      "Sin capacidad TMS: generar borrador email con alternativas",
+      "ZURG prioridad maxima asignacion ruta TMS"
+    ],
+    "approval_rules": [
+      "Credito vencido mas de 15 dias: bloquear y escalar a Finanzas"
+    ],
+    "exception_rules": [
+      "Exception handling required: Falta de capacidad TMS",
+      "Exception handling required: Credito vencido",
+      "Exception handling required: Discrepancia de precio",
+      "Exception handling required: ZINT sin documentacion"
+    ],
+    "missing_rules": []
+  },
+  "compliance": {
+    "applicable_frameworks": [
+      "EU AI Act",
+      "ISO/IEC 42001",
+      "NIST AI RMF"
+    ],
+    "guardian_requirements": [
+      "Identity & Access",
+      "Real-time Audit Trails",
+      "Escalation Pathways",
+      "Human Accountability",
+      "AI Risk Classification",
+      "Explainability",
+      "Model Monitoring"
+    ],
+    "audit_trail_required": true,
+    "human_review_required": false,
+    "regulated_process": false
+  },
+  "autonomy_design": {
+    "autonomous_actions": [
+      "Leer ordenes",
+      "Validar datos",
+      "Credit check FD32",
+      "Verificar precio VK11",
+      "Crear entrega VL01N"
+    ],
+    "approval_required": [
+      "Liberar bloqueo credito",
+      "Autorizar excepcion precio"
+    ],
+    "always_human": [
+      "Cancelacion definitiva de orden"
+    ],
+    "thresholds": {
+      "approval_threshold": "",
+      "documentation_score": 82.0
+    },
+    "escalation_paths": [
+      "Escalate low-confidence decisions",
+      "Escalate exceptions not covered by business rules",
+      "Escalate regulated decisions when required"
+    ],
+    "agentic_shield_requirements": [
+      "Identity & Access",
+      "Real-time Audit Trails",
+      "Escalation Pathways",
+      "Human Accountability",
+      "AI Risk Classification",
+      "Explainability",
+      "Model Monitoring",
+      "Action Thresholds",
+      "Fail-Safes"
+    ]
+  },
+  "acceptance_criteria": {
+    "kpis": [
+      "tasa_automatizacion_pct",
+      "tiempo_ciclo_minutos",
+      "ahorro_anual_eur"
+    ],
+    "certification_metrics": [
+      "All mandatory data objects available",
+      "All critical exceptions have handling path",
+      "Autonomy thresholds configured",
+      "Audit trail active",
+      "Human escalation path tested"
+    ],
+    "minimum_confidence": 0.75,
+    "test_scenarios": [
+      "Happy path test for Order-to-Cash OTC",
+      "Missing data exception test",
+      "System unavailable exception test",
+      "Human approval escalation test",
+      "Audit trail verification test"
+    ],
+    "pass_fail_criteria": [
+      "No critical missing information",
+      "Process flow contains at least one executable step",
+      "Systems and data objects are defined",
+      "Business rules or Fast Track validation captured",
+      "Autonomy design includes escalation handling"
+    ]
+  },
+  "learning_hooks": {
+    "enabled": true,
+    "observation_points": [
+      "step execution time",
+      "exception frequency",
+      "human escalation frequency",
+      "manual override frequency",
+      "KPI deviation from target"
+    ],
+    "failure_patterns_to_monitor": [
+      "Falta de capacidad TMS",
+      "Credito vencido",
+      "Discrepancia de precio",
+      "ZINT sin documentacion"
+    ],
+    "kpi_deviation_signals": [
+      "tasa_automatizacion_pct",
+      "tiempo_ciclo_minutos",
+      "ahorro_anual_eur"
+    ],
+    "feedback_targets": [
+      "business_rules",
+      "exceptions",
+      "autonomy_design",
+      "acceptance_criteria",
+      "agent_blueprint"
+    ],
+    "improvement_loop": "observe_analyze_recommend_validate_deploy"
+  },
+  "missing_information": [
+    {
+      "field": "sap_rfc_credentials",
+      "reason": "Pendiente Carlos Mendoza",
+      "required_for": "integracion SAP",
+      "severity": "high"
+    },
+    {
+      "field": "tms_api_endpoint",
+      "reason": "Pendiente Carlos Mendoza",
+      "required_for": "TMS",
+      "severity": "high"
+    }
+  ],
+  "ready_for_validation": true,
+  "ready_for_architect": true
+}
